@@ -1,1 +1,10 @@
-<template></template>
+<template>
+  <require from='@material/textfield/dist/mdc.textfield.css'></require>
+
+  <label class="mdc-text-field mdc-text-field--filled">
+    <span class="mdc-text-field__ripple"></span>
+    <input class="mdc-text-field__input" type="text" aria-labelledby.bind="id" ref="input_">
+    <mdc-floating-label if.bind="label" id.bind="id" view-model.ref="label_">${label}</mdc-floating-label>
+    <mdc-line-ripple view-model.ref="lineRipple_"></mdc-line-ripple>
+  </label>
+</template>

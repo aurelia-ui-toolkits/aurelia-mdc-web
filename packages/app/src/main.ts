@@ -1,6 +1,7 @@
+import 'aurelia-bootstrapper';
 import { Aurelia, PLATFORM } from 'aurelia-framework';
 
-async function configure(aurelia: Aurelia): Promise<void> {
+export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia
     .use
     .developmentLogging()

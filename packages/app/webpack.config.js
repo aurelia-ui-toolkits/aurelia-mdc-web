@@ -1,7 +1,5 @@
-// @ts-check
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-/**@type {any} */
 const AureliaWebpackPlugin = require('aurelia-webpack-plugin');
 
 const outDir = path.resolve(__dirname, 'dist');
@@ -30,7 +28,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'textfield'
         ].reduce((map, packageName) => {
           const mappedPackagedName = `@aurelia-material-components-web/${packageName}`;
-          map[mappedPackagedName] = path.resolve(__dirname, `../packages/${packageName}/src`);
+          map[mappedPackagedName] = path.resolve(__dirname, `../${packageName}/src`);
           return map;
         }, {}))
       },
@@ -65,9 +63,9 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
     },
     plugins: [
       new AureliaWebpackPlugin.AureliaPlugin({
-        aureliaApp: undefined,
-        entry: undefined,
+        aureliaApp: 'src/main',
         dist: 'es2015',
+        viewsFor: '{**/!(tslib)*.{ts,js},../textfield/**/*.{ts,js}}'
       }),
       new HtmlWebpackPlugin({ template: './index.ejs' })
     ]

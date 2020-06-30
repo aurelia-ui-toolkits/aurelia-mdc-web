@@ -47,6 +47,7 @@
     "_version": "node ../update-peers.js"
   },
   "peerDependencies": {
+    "@material/textfield": "^7.0.0",
     "aurelia-binding": "^2.5.4",
     "aurelia-dependency-injection": "^1.5.2",
     "aurelia-framework": "^1.3.1",
@@ -61,7 +62,7 @@
   "devDependencies": {
     "concurrently": "^5.2.0",
     "conventional-changelog-cli": "^2.0.34",
-    "copyfiles": "^2.3.0",
+    "copyfiles": "^1.2.0",
     "cross-env": "^7.0.2",
     "rimraf": "^3.0.2",
     "typescript": "^3.9.5"
