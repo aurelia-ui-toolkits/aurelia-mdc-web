@@ -1,1 +1,1 @@
-# aurelia-material-components-web
+# aurelia-mdc-web

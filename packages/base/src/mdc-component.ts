@@ -1,4 +1,4 @@
-import {MDCFoundation} from '@material/base';
+import { MDCFoundation } from '@material/base';
 
 export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   constructor(protected root: HTMLElement) { }

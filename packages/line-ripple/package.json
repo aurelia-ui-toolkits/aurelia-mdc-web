@@ -1,13 +1,13 @@
 {
-  "name": "@aurelia-mdc-web/textfield",
+  "name": "@aurelia-mdc-web/line-ripple",
   "version": "0.0.1",
-  "description": "Wrapper for Material Components Web Textfield",
+  "description": "Wrapper for Material Components Web Line Ripple",
   "keywords": [
     "aurelia",
     "material",
     "components",
     "web",
-    "textfield"
+    "line-ripple"
   ],
   "homepage": "http://aurelia.io",
   "bugs": {
@@ -47,14 +47,10 @@
     "_version": "node ../update-peers.js"
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/base": "^0.0.1",
-    "@aurelia-mdc-web/floating-label": "^0.0.1",
-    "@aurelia-mdc-web/line-ripple": "^0.0.1"
+    "@aurelia-mdc-web/base": "^0.0.1"
   },
   "devDependencies": {
     "@aurelia-mdc-web/base": "^0.0.1",
-    "@aurelia-mdc-web/floating-label": "^0.0.1",
-    "@aurelia-mdc-web/line-ripple": "^0.0.1",
     "concurrently": "^5.2.0",
     "conventional-changelog-cli": "^2.0.34",
     "copyfiles": "^1.2.0",

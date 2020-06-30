@@ -1,9 +1,9 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
-export { MdcTextField } from './mdc-textfield';
+export { MdcLineRipple } from './mdc-line-ripple';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([
-    PLATFORM.moduleName('./mdc-textfield')
+    PLATFORM.moduleName('./mdc-line-ripple')
   ]);
 }

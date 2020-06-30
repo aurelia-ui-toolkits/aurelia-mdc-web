@@ -1,5 +1,5 @@
 import { inject, customElement, inlineView } from 'aurelia-framework';
-import { MdcComponent } from './mdc-component';
+import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCLineRippleFoundation, MDCLineRippleAdapter } from '@material/line-ripple';
 
 @inject(Element)

@@ -1,5 +1,5 @@
 {
-  "name": "aurelia-material-components-web-dev-app",
+  "name": "aurelia-mdc-web-dev-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@aurelia-material-components-web/textfield": "^0.0.1",
+    "@aurelia-mdc-web/base": "^0.0.1",
+    "@aurelia-mdc-web/textfield": "^0.0.1",
     "@material/textfield": "^7.0.0",
     "aurelia-loader-webpack": "^2.2.1",
     "aurelia-webpack-plugin": "^4.0.0",

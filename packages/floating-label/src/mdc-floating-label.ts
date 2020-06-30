@@ -1,6 +1,6 @@
-import { inject, customElement, useView, bindable } from 'aurelia-framework';
+import { inject, customElement, useView } from 'aurelia-framework';
 import { MDCFloatingLabelFoundation, MDCFloatingLabelAdapter } from '@material/floating-label';
-import { MdcComponent } from './mdc-component';
+import { MdcComponent } from '@aurelia-mdc-web/base';
 import { estimateScrollWidth } from '@material/dom/ponyfill';
 
 @inject(Element)

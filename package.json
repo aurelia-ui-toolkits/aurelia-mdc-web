@@ -1,5 +1,5 @@
 {
-  "name": "aurelia-material-components-web",
+  "name": "aurelia-mdc-web",
   "private": true,
   "scripts": {
     "_lint": "eslint -c .eslintrc.json packages/**/src/*.ts",

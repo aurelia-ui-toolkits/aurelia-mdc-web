@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "paths": {
-      "@aurelia-material-components-web/*": ["*/src"]
+      "@aurelia-mdc-web/*": ["*/src"]
     }
   }
 }

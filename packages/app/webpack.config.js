@@ -25,9 +25,12 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         'src': path.resolve(__dirname, 'src'),
         // alias all packages to src code
         ...([
+          'base',
+          'floating-label',
+          'line-ripple',
           'textfield'
         ].reduce((map, packageName) => {
-          const mappedPackagedName = `@aurelia-material-components-web/${packageName}`;
+          const mappedPackagedName = `@aurelia-mdc-web/${packageName}`;
           map[mappedPackagedName] = path.resolve(__dirname, `../${packageName}/src`);
           return map;
         }, {}))
@@ -65,7 +68,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
       new AureliaWebpackPlugin.AureliaPlugin({
         aureliaApp: 'src/main',
         dist: 'es2015',
-        viewsFor: '{**/!(tslib)*.{ts,js},../textfield/**/*.{ts,js}}'
+        viewsFor: '{**/!(tslib)*.{ts,js},../**/*.{ts,js}}'
       }),
       new HtmlWebpackPlugin({ template: './index.ejs' })
     ]

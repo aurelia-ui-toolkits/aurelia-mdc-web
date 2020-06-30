@@ -6,7 +6,9 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .use
     .developmentLogging()
     .standardConfiguration()
-    .plugin(PLATFORM.moduleName('@aurelia-material-components-web/textfield'));
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/line-ripple'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/textfield'));
 
   await aurelia.start();
   await aurelia.setRoot(PLATFORM.moduleName('app'));

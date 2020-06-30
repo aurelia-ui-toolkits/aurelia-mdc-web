@@ -1,9 +1,9 @@
 import { useView, inject, customElement, bindable } from 'aurelia-framework';
 import { MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap, MDCTextFieldLineRippleAdapter } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
-import { MdcComponent } from './mdc-component';
-import { MdcFloatingLabel } from './mdc-floating-label';
-import { MdcLineRipple } from './mdc-line-ripple';
+import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
+import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
 
 @inject(Element)
 @useView('./mdc-textfield.html')
