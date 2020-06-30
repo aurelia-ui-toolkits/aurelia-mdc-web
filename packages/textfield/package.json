@@ -1,0 +1,69 @@
+{
+  "name": "@aurelia-material-components-web/textfield",
+  "version": "0.0.1",
+  "description": "Wrapper for Material Components Web Textfield",
+  "keywords": [
+    "aurelia",
+    "material",
+    "components",
+    "web",
+    "textfield"
+  ],
+  "homepage": "http://aurelia.io",
+  "bugs": {
+    "url": "https://github.com/aurelia-ui-toolkits/aurelia-material-components-web/issues"
+  },
+  "license": "MIT",
+  "author": "Maxim Balaganskiy <m.balaganskiy@gmail.com>",
+  "contributors": [],
+  "main": "dist/commonjs/index.js",
+  "module": "dist/native-modules/index.js",
+  "typings": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aurelia-ui-toolkits/aurelia-material-components-web"
+  },
+  "scripts": {
+    "_test": "karma start --single-run",
+    "_develop": "cross-env TS_NODE_PROJECT=\"../../tsconfig-tsnode.json\" karma start",
+    "build-ts:amd": "tsc -p tsconfig.build.json -t es5 -m amd      --outDir dist/amd",
+    "build-ts:cjs": "tsc -p tsconfig.build.json -t es5 -m commonjs --outDir dist/commonjs",
+    "build-ts:ntv": "tsc -p tsconfig.build.json -t es5 -m es6      --outDir dist/native-modules",
+    "build-ts:es6": "tsc -p tsconfig.build.json -t es6 -m es6      --outDir dist/es2015",
+    "build-ts:types": "tsc -p tsconfig.build.json --skipLibCheck -d --emitDeclarationOnly --declarationDir dist/types",
+    "build-assets:amd": "copyfiles -u 1 src/**/*.html src/**/*.css dist/amd",
+    "build-assets:cjs": "copyfiles -u 1 src/**/*.html src/**/*.css dist/commonjs",
+    "build-assets:ntv": "copyfiles -u 1 src/**/*.html src/**/*.css dist/native-modules",
+    "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css dist/es2015",
+    "prebuild": "rimraf dist",
+    "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\"",
+    "_predoc": "cross-env rimraf doc/api.json && rimraf dist/doc-temp && tsc --project tsconfig.json --outFile dist/doc-temp/aurelia-ux.js && node doc/shape-defs && copyfiles tsconfig.json dist/doc-temp",
+    "_doc": "cross-env typedoc --json doc/api.json --excludeExternals --includeDeclarations --mode modules --target ES6 --name aurelia-ux-docs dist/doc-temp/",
+    "_postdoc": "cross-env node doc/shape-doc && rimraf dist/doc-temp",
+    "_changelog": "cross-env conventional-changelog -p aurelia-material-components-web -i doc/CHANGELOG.md -s",
+    "_bump-version": "npm --no-git-tag-version version",
+    "_preprepare-release": "cross-env npm run test",
+    "_prepare-release": "cross-env npm run changelog && npm run build && npm run doc",
+    "_version": "node ../update-peers.js"
+  },
+  "peerDependencies": {
+    "aurelia-binding": "^2.5.4",
+    "aurelia-dependency-injection": "^1.5.2",
+    "aurelia-framework": "^1.3.1",
+    "aurelia-logging": "^1.5.2",
+    "aurelia-pal": "^1.8.2",
+    "aurelia-task-queue": "^1.3.3",
+    "aurelia-templating": "^1.10.4",
+    "aurelia-templating-binding": "^1.5.3",
+    "aurelia-templating-resources": "^1.13.0",
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "conventional-changelog-cli": "^2.0.34",
+    "copyfiles": "^2.3.0",
+    "cross-env": "^7.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.5"
+  }
+}

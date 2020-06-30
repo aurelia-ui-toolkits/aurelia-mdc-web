@@ -1,0 +1,7 @@
+{
+  "packages": [
+    "packages/app",
+    "packages/textfield"
+  ],
+  "version": "0.0.1"
+}
