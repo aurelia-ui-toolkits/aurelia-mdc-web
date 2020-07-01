@@ -14,7 +14,8 @@
     "_bump-version": "npm --no-git-tag-version version",
     "_preprepare-release": "cross-env npm run test",
     "_prepare-release": "cross-env npm run changelog && npm run build && npm run doc",
-    "refresh": "lerna clean -y && npm run bootstrap"
+    "refresh": "lerna clean -y && npm run bootstrap",
+    "deploy": "deploy.sh"
   },
   "devDependencies": {
     "@material/floating-label": "^7.0.0",
