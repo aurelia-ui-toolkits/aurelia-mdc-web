@@ -1,30 +1,60 @@
-import { useView, inject, customElement, bindable } from 'aurelia-framework';
-import { MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap, MDCTextFieldLineRippleAdapter } from '@material/textfield';
+import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, BehaviorInstruction } from 'aurelia-framework';
+import {
+  MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
+  MDCTextFieldLineRippleAdapter, cssClasses, MDCTextFieldOutlineAdapter
+} from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
+import { MDCRipple, MDCRippleFactory, MDCRippleAdapter, MDCRippleFoundation } from '@material/ripple';
+import * as ponyfill from '@material/dom/ponyfill';
+import { bindable } from 'aurelia-typed-observable-plugin';
+import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
+import { MdcTextFieldIcon } from './icon/mdc-text-field-icon';
 
 @inject(Element)
-@useView('./mdc-textfield.html')
-@customElement('mdc-textfield')
+@useView('./mdc-text-field.html')
+@customElement('mdc-text-field')
+@processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
+
+  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element, _instruction: BehaviorInstruction) {
+    const leadingIcon = element.querySelector('[mdc-text-field-icon][leading]');
+    if (leadingIcon) {
+      leadingIcon.setAttribute('slot', 'leading-icon');
+    }
+    const trailingIcon = element.querySelector('[mdc-text-field-icon][trailing]');
+    if (trailingIcon) {
+      trailingIcon.setAttribute('slot', 'trailing-icon');
+    }
+    return true;
+  }
+
   static id = 0;
   id: number = ++MdcTextField.id;
   input_: HTMLInputElement;
   label_: MdcFloatingLabel;
   lineRipple_: MdcLineRipple;
+  ripple: MDCRipple | null;
+  outline_!: MdcNotchedOutline | null; // assigned in html
+  leadingIcon_: MdcTextFieldIcon;
+  trailingIcon_: MdcTextFieldIcon;
 
   @bindable
   label: string;
 
-  attached() {
-    this.foundation = this.getDefaultFoundation();
-    this.foundation.init();
+  @bindable.booleanAttr
+  outlined: boolean;
+
+  initialise() {
+    this.leadingIcon_ = (this.root.querySelector('[mdc-text-field-icon][leading]') as any)?.au['mdc-text-field-icon'].viewModel;
+    this.trailingIcon_ = (this.root.querySelector('[mdc-text-field-icon][trailing]') as any)?.au['mdc-text-field-icon'].viewModel;
+    this.ripple = this.createRipple_((el, foundation) => new MDCRipple(el, foundation));
   }
 
-  detached() {
-    this.foundation.destroy();
+  destroy() {
+    this.ripple?.destroy();
   }
 
   getDefaultFoundation() {
@@ -33,7 +63,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
       ...this.getInputAdapterMethods_(),
       ...this.getLabelAdapterMethods_(),
       ...this.getLineRippleAdapterMethods_(),
-      // ...this.getOutlineAdapterMethods_(),
+      ...this.getOutlineAdapterMethods_(),
     };
     return new MDCTextFieldFoundation(adapter, this.getFoundationMap_());
   }
@@ -87,6 +117,14 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     };
   }
 
+  private getOutlineAdapterMethods_(): MDCTextFieldOutlineAdapter {
+    return {
+      closeOutline: () => this.outline_ && this.outline_.closeNotch(),
+      hasOutline: () => Boolean(this.outline_),
+      notchOutline: (labelWidth) => this.outline_ && this.outline_.notch(labelWidth),
+    };
+  }
+
   /**
    * @return A map of all subcomponents to subfoundations.
    */
@@ -97,12 +135,29 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
       //     undefined,
       // helperText: this.helperText_ ? this.helperText_.foundationForTextField :
       //                                undefined,
-      // leadingIcon: this.leadingIcon_ ?
-      //     this.leadingIcon_.foundationForTextField :
-      //     undefined,
-      // trailingIcon: this.trailingIcon_ ?
-      //     this.trailingIcon_.foundationForTextField :
-      //     undefined,
+      leadingIcon: this.leadingIcon_ ? this.leadingIcon_.foundationForTextField : undefined,
+      trailingIcon: this.trailingIcon_ ? this.trailingIcon_.foundationForTextField : undefined,
     };
   }
+
+  private createRipple_(rippleFactory: MDCRippleFactory): MDCRipple | null {
+    const isTextArea = this.root.classList.contains(cssClasses.TEXTAREA);
+    const isOutlined = this.root.classList.contains(cssClasses.OUTLINED);
+
+    if (isTextArea || isOutlined) {
+      return null;
+    }
+
+    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    const adapter: MDCRippleAdapter = {
+      ...MDCRipple.createAdapter(this),
+      isSurfaceActive: () => ponyfill.matches(this.input_, ':active'),
+      registerInteractionHandler: (evtType, handler) => this.input_.addEventListener(evtType, handler, applyPassive()),
+      deregisterInteractionHandler: (evtType, handler) =>
+        this.input_.removeEventListener(evtType, handler, applyPassive()),
+    };
+    return rippleFactory(this.root, new MDCRippleFoundation(adapter));
+  }
+
 }

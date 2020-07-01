@@ -1,13 +1,13 @@
 {
-  "name": "@aurelia-mdc-web/base",
+  "name": "@aurelia-mdc-web/notched-outline",
   "version": "0.0.1",
-  "description": "Base classes for Aurelia Material Components Web",
+  "description": "Wrapper for Material Components Web Notched Outline",
   "keywords": [
     "aurelia",
     "material",
     "components",
     "web",
-    "base"
+    "notched-outline"
   ],
   "homepage": "http://aurelia.io",
   "bugs": {
@@ -47,20 +47,12 @@
     "_version": "node ../update-peers.js"
   },
   "peerDependencies": {
-    "@material/textfield": "^7.0.0",
-    "aurelia-binding": "^2.5.4",
-    "aurelia-dependency-injection": "^1.5.2",
-    "aurelia-framework": "^1.3.1",
-    "aurelia-logging": "^1.5.2",
-    "aurelia-pal": "^1.8.2",
-    "aurelia-task-queue": "^1.3.3",
-    "aurelia-templating": "^1.10.4",
-    "aurelia-templating-binding": "^1.5.3",
-    "aurelia-templating-resources": "^1.13.0",
-    "aurelia-typed-observable-plugin": "^0.4.2",
-    "tslib": "^2.0.0"
+    "@aurelia-mdc-web/base": "^0.0.1",
+    "@material/floating-label": "^7.0.0",
+    "@material/notched-outline": "^7.0.0"
   },
   "devDependencies": {
+    "@aurelia-mdc-web/base": "^0.0.1",
     "concurrently": "^5.2.0",
     "conventional-changelog-cli": "^2.0.34",
     "copyfiles": "^1.2.0",

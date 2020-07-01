@@ -28,7 +28,8 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'base',
           'floating-label',
           'line-ripple',
-          'textfield'
+          'notched-outline',
+          'text-field'
         ].reduce((map, packageName) => {
           const mappedPackagedName = `@aurelia-mdc-web/${packageName}`;
           map[mappedPackagedName] = path.resolve(__dirname, `../${packageName}/src`);

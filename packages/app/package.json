@@ -14,7 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "@aurelia-mdc-web/base": "^0.0.1",
-    "@aurelia-mdc-web/textfield": "^0.0.1",
+    "@aurelia-mdc-web/text-field": "^0.0.1",
     "@material/textfield": "^7.0.0",
     "aurelia-loader-webpack": "^2.2.1",
     "aurelia-webpack-plugin": "^4.0.0",

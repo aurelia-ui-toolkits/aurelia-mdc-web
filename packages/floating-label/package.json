@@ -47,7 +47,8 @@
     "_version": "node ../update-peers.js"
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/base": "^0.0.1"
+    "@aurelia-mdc-web/base": "^0.0.1",
+    "@material/floating-label": "^7.0.0"
   },
   "devDependencies": {
     "@aurelia-mdc-web/base": "^0.0.1",
