@@ -22570,7 +22570,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  Hello!\n  <mdc-text-field label=\"Label\">\n    <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n    <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n  </mdc-text-field>\n  <mdc-text-field label=\"Label\">\n    <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n    <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n  </mdc-text-field>\n</template>\n";
+var code = "<template>\n  Hello!\n  <mdc-text-field label=\"Label\">\n    <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n    <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n  </mdc-text-field>\n  <mdc-text-field label=\"Label\" outlined>\n    <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n    <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n  </mdc-text-field>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -27710,4 +27710,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.b899545de98d8afd1f3d.bundle.map
+//# sourceMappingURL=app.def1ba6380b25bf6b89c.bundle.map
