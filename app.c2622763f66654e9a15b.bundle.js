@@ -21857,10 +21857,104 @@ module.exports = function(originalModule) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./mdc-component */ "../base/src/mdc-component.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, mdc_component_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./mdc-component */ "../base/src/mdc-component.ts"), __webpack_require__(/*! ./mdc-component-adapters */ "../base/src/mdc-component-adapters.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, mdc_component_1, mdc_component_adapters_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     Object.defineProperty(exports, "MdcComponent", { enumerable: true, get: function () { return mdc_component_1.MdcComponent; } });
+    Object.defineProperty(exports, "MdcComponentAdapters", { enumerable: true, get: function () { return mdc_component_adapters_1.MdcComponentAdapters; } });
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "../base/src/mdc-component-adapters.ts":
+/*!*********************************************!*\
+  !*** ../base/src/mdc-component-adapters.ts ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-templating-binding */ "aurelia-templating-binding")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, aurelia_templating_binding_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcComponentAdapters = void 0;
+    var MdcComponentAdapters = /** @class */ (function () {
+        function MdcComponentAdapters(observerLocator) {
+            this.observerLocator = observerLocator;
+            this.adaptersCreated = false;
+            this.adapters = {};
+        }
+        MdcComponentAdapters.prototype.createAdapter = function () {
+            var _this = this;
+            this.observerLocator.addAdapter({
+                getObserver: function (obj, propertyName, descriptor) {
+                    if (obj instanceof Element) {
+                        var tagName = obj.getAttribute('as-element') || obj.tagName;
+                        var elAdapters = _this.adapters[tagName];
+                        if (!elAdapters) {
+                            return null;
+                        }
+                        var propertyAdapter = elAdapters.properties[propertyName];
+                        if (propertyAdapter) {
+                            var observer = propertyAdapter.getObserver(obj, propertyName, _this.observerLocator, descriptor);
+                            if (observer) {
+                                return observer;
+                            }
+                        }
+                    }
+                    return null;
+                }
+            });
+        };
+        MdcComponentAdapters.prototype.getOrCreateMdcElementAdapters = function (tagName) {
+            if (!this.adaptersCreated) {
+                this.createAdapter();
+                this.adaptersCreated = true;
+            }
+            var adapters = this.adapters;
+            var elementAdapters = adapters[tagName] || adapters[tagName.toLowerCase()];
+            if (!elementAdapters) {
+                elementAdapters = adapters[tagName] = adapters[tagName.toLowerCase()] = { tagName: tagName, properties: {} };
+            }
+            return elementAdapters;
+        };
+        MdcComponentAdapters.prototype.interceptDetermineDefaultBindingMode = function () {
+            var mdc = this;
+            var originalFn = aurelia_templating_binding_1.SyntaxInterpreter.prototype.determineDefaultBindingMode;
+            aurelia_templating_binding_1.SyntaxInterpreter.prototype.determineDefaultBindingMode = function (element, attrName, context) {
+                var tagName = element.getAttribute('as-element') || element.tagName;
+                var elAdapters = mdc.adapters[tagName];
+                if (elAdapters) {
+                    var propertyAdapter = elAdapters.properties[attrName];
+                    if (propertyAdapter) {
+                        return propertyAdapter.defaultBindingMode;
+                    }
+                }
+                return originalFn.call(this, element, attrName, context);
+            };
+        };
+        MdcComponentAdapters.prototype.addMdcElementObserverAdapter = function (tagName, properties) {
+            if (!this.adaptersCreated) {
+                this.createAdapter();
+                this.adaptersCreated = true;
+            }
+            var elementAdapters = this.getOrCreateMdcElementAdapters(tagName);
+            Object.assign(elementAdapters.properties, properties);
+        };
+        MdcComponentAdapters.prototype.registerMdcElementConfig = function (observerAdapter) {
+            if (!this.bindingModeIntercepted) {
+                this.interceptDetermineDefaultBindingMode();
+                this.bindingModeIntercepted = true;
+            }
+            this.addMdcElementObserverAdapter(observerAdapter.tagName.toUpperCase(), observerAdapter.properties);
+        };
+        MdcComponentAdapters = tslib_1.__decorate([
+            aurelia_framework_1.inject(aurelia_framework_1.ObserverLocator)
+        ], MdcComponentAdapters);
+        return MdcComponentAdapters;
+    }());
+    exports.MdcComponentAdapters = MdcComponentAdapters;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -22259,12 +22353,13 @@ module.exports = code;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! ./mdc-text-field */ "@aurelia-mdc-web/text-field/mdc-text-field")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_framework_1, mdc_text_field_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! ./mdc-text-field */ "@aurelia-mdc-web/text-field/mdc-text-field")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_framework_1, base_1, mdc_text_field_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.configure = void 0;
     Object.defineProperty(exports, "MdcTextField", { enumerable: true, get: function () { return mdc_text_field_1.MdcTextField; } });
     function configure(config) {
+        config.container.get(base_1.MdcComponentAdapters).registerMdcElementConfig(textFieldConfig);
         config.globalResources([
             './mdc-text-field',
             './mdc-text-field-icon',
@@ -22274,6 +22369,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         ]);
     }
     exports.configure = configure;
+    var textFieldConfig = {
+        tagName: 'mdc-text-field',
+        properties: {
+            value: {
+                defaultBindingMode: aurelia_framework_1.bindingMode.twoWay,
+                getObserver: function (element) {
+                    return new aurelia_framework_1.ValueAttributeObserver(element, 'value', new aurelia_framework_1.EventSubscriber(['change']));
+                }
+            }
+        }
+    };
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -22287,30 +22393,63 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @material/textfield */ "../../node_modules/@material/textfield/index.js"), __webpack_require__(/*! @material/dom/events */ "../../node_modules/@material/dom/events.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/ripple */ "../../node_modules/@material/ripple/index.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, textfield_1, events_1, base_1, ripple_1, ponyfill, aurelia_typed_observable_plugin_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @material/textfield */ "../../node_modules/@material/textfield/index.js"), __webpack_require__(/*! @material/dom/events */ "../../node_modules/@material/dom/events.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/ripple */ "../../node_modules/@material/ripple/index.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js"), __webpack_require__(/*! ./mdc-text-field-icon */ "@aurelia-mdc-web/text-field/mdc-text-field-icon")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, textfield_1, events_1, base_1, ripple_1, ponyfill, aurelia_typed_observable_plugin_1, mdc_text_field_icon_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTextField = void 0;
     ponyfill = tslib_1.__importStar(ponyfill);
+    /**
+     * Time in milliseconds for which to ignore mouse events, after
+     * receiving a touch event. Used to avoid doing double work for
+     * touch devices where the browser fires fake mouse events, in
+     * addition to touch events.
+     */
+    var MOUSE_EVENT_IGNORE_TIME = 800;
     var MdcTextField = /** @class */ (function (_super) {
         tslib_1.__extends(MdcTextField, _super);
-        function MdcTextField() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
+        function MdcTextField(root) {
+            var _this = _super.call(this, root) || this;
             _this.id = ++MdcTextField_1.id;
+            /** Time in milliseconds when the last touchstart event happened. */
+            _this._lastTouchStartEvent = 0;
+            defineMdcTextFieldElementApis(_this.root);
             return _this;
         }
         MdcTextField_1 = MdcTextField;
         MdcTextField.processContent = function (_viewCompiler, _resources, element, _instruction) {
-            var leadingIcon = element.querySelector('[mdc-text-field-icon][leading]');
+            var leadingIcon = element.querySelector("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.LEADING + "]");
             if (leadingIcon) {
                 leadingIcon.setAttribute('slot', 'leading-icon');
             }
-            var trailingIcon = element.querySelector('[mdc-text-field-icon][trailing]');
+            var trailingIcon = element.querySelector("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.TRAILING + "]");
             if (trailingIcon) {
                 trailingIcon.setAttribute('slot', 'trailing-icon');
             }
             return true;
         };
+        Object.defineProperty(MdcTextField.prototype, "value", {
+            get: function () {
+                if (this.foundation) {
+                    return this.foundation.getValue();
+                }
+                else {
+                    return this.initialValue;
+                }
+            },
+            set: function (value) {
+                if (this.foundation) {
+                    if (this.foundation.getValue() !== value) {
+                        this.foundation.setValue(value || '');
+                        this.foundation.handleInput();
+                    }
+                }
+                else {
+                    this.initialValue = value;
+                }
+            },
+            enumerable: false,
+            configurable: true
+        });
         MdcTextField.prototype.initialise = function () {
             var _a, _b, _c, _d, _e, _f;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
@@ -22318,18 +22457,31 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 return tslib_1.__generator(this, function (_g) {
                     switch (_g.label) {
                         case 0:
-                            this.leadingIcon_ = (_a = this.root.querySelector('[mdc-text-field-icon][leading]')) === null || _a === void 0 ? void 0 : _a.au['mdc-text-field-icon'].viewModel;
-                            this.trailingIcon_ = (_b = this.root.querySelector('[mdc-text-field-icon][trailing]')) === null || _b === void 0 ? void 0 : _b.au['mdc-text-field-icon'].viewModel;
+                            this.leadingIcon_ = (_a = this.root.querySelector("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.LEADING + "]")) === null || _a === void 0 ? void 0 : _a.au['mdc-text-field-icon'].viewModel;
+                            this.trailingIcon_ = (_b = this.root.querySelector("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.TRAILING + "]")) === null || _b === void 0 ? void 0 : _b.au['mdc-text-field-icon'].viewModel;
                             this.ripple = this.createRipple_(function (el, foundation) { return new ripple_1.MDCRipple(el, foundation); });
                             nextSibling = this.root.nextElementSibling;
                             if (!((nextSibling === null || nextSibling === void 0 ? void 0 : nextSibling.tagName) === textfield_1.cssClasses.HELPER_LINE.toUpperCase())) return [3 /*break*/, 2];
                             this.helperText_ = (_c = nextSibling.querySelector(textfield_1.helperTextStrings.ROOT_SELECTOR)) === null || _c === void 0 ? void 0 : _c.au.controller.viewModel;
                             this.characterCounter_ = (_d = nextSibling.querySelector(textfield_1.characterCountStrings.ROOT_SELECTOR)) === null || _d === void 0 ? void 0 : _d.au.controller.viewModel;
-                            return [4 /*yield*/, Promise.all([(_e = this.helperText_) === null || _e === void 0 ? void 0 : _e.initialised, (_f = this.characterCounter_) === null || _f === void 0 ? void 0 : _f.initialised])];
+                            return [4 /*yield*/, Promise.all([(_e = this.helperText_) === null || _e === void 0 ? void 0 : _e.initialised, (_f = this.characterCounter_) === null || _f === void 0 ? void 0 : _f.initialised].filter(function (x) { return x; }))];
                         case 1:
                             _g.sent();
                             _g.label = 2;
                         case 2: return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        MdcTextField.prototype.attached = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, _super.prototype.attached.call(this)];
+                        case 1:
+                            _a.sent();
+                            this.foundation.setValue(this.initialValue || '');
+                            return [2 /*return*/];
                     }
                 });
             });
@@ -22424,6 +22576,51 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 } });
             return rippleFactory(this.root, new ripple_1.MDCRippleFoundation(adapter));
         };
+        MdcTextField.prototype.onInputInteraction = function (evt) {
+            if (evt instanceof MouseEvent) {
+                var isSyntheticEvent = this._lastTouchStartEvent && Date.now() < this._lastTouchStartEvent + MOUSE_EVENT_IGNORE_TIME;
+                if (isSyntheticEvent) {
+                    return;
+                }
+            }
+            else {
+                this._lastTouchStartEvent = Date.now();
+            }
+            this.foundation.setTransformOrigin(evt);
+            return true;
+        };
+        MdcTextField.prototype.onInput = function (evt) {
+            var value = evt.target.value;
+            this.value = value;
+            this.emit('input', {}, true);
+        };
+        MdcTextField.prototype.onFocus = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.initialised];
+                        case 1:
+                            _a.sent();
+                            this.foundation.activateFocus();
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        MdcTextField.prototype.onChange = function (evt) {
+            var value = evt.target.value;
+            this.value = value;
+            this.emit('change', {}, true);
+        };
+        MdcTextField.prototype.onBlur = function () {
+            this.foundation.deactivateFocus();
+        };
+        MdcTextField.prototype.focus = function () {
+            this.input_.focus();
+        };
+        MdcTextField.prototype.blur = function () {
+            this.input_.blur();
+        };
         var MdcTextField_1;
         MdcTextField.id = 0;
         tslib_1.__decorate([
@@ -22453,6 +22650,32 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return MdcTextField;
     }(base_1.MdcComponent));
     exports.MdcTextField = MdcTextField;
+    function defineMdcTextFieldElementApis(element) {
+        Object.defineProperties(element, {
+            value: {
+                get: function () {
+                    return this.au.controller.viewModel.value;
+                },
+                set: function (value) {
+                    this.au.controller.viewModel.value = value;
+                },
+                configurable: true
+            },
+            focus: {
+                value: function () {
+                    this.au.controller.viewModel.focus();
+                },
+                configurable: true
+            },
+            blur: {
+                value: function () {
+                    this.au.controller.viewModel.blur();
+                },
+                configurable: true
+            }
+        });
+    }
+    ;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -22622,7 +22845,12 @@ module.exports = code;
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/textfield */ "../../node_modules/@material/textfield/index.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, textfield_1, aurelia_framework_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.MdcTextFieldIcon = void 0;
+    exports.MdcTextFieldIcon = exports.mdcIconStrings = void 0;
+    exports.mdcIconStrings = {
+        ATTRIBUTE: 'mdc-text-field-icon',
+        LEADING: 'leading',
+        TRAILING: 'trailing'
+    };
     var MdcTextFieldIcon = /** @class */ (function (_super) {
         tslib_1.__extends(MdcTextFieldIcon, _super);
         function MdcTextFieldIcon() {
@@ -22632,11 +22860,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return tslib_1.__awaiter(this, void 0, void 0, function () {
                 return tslib_1.__generator(this, function (_a) {
                     this.root.classList.add(textfield_1.iconCssClasses.ROOT);
-                    if (this.root.hasAttribute('leading')) {
-                        this.root.classList.add(textfield_1.iconCssClasses.ROOT + "--leading");
+                    if (this.root.hasAttribute(exports.mdcIconStrings.LEADING)) {
+                        this.root.classList.add(textfield_1.iconCssClasses.ROOT + "--" + exports.mdcIconStrings.LEADING);
                     }
-                    if (this.root.hasAttribute('trailing')) {
-                        this.root.classList.add(textfield_1.iconCssClasses.ROOT + "--trailing");
+                    if (this.root.hasAttribute(exports.mdcIconStrings.TRAILING)) {
+                        this.root.classList.add(textfield_1.iconCssClasses.ROOT + "--" + exports.mdcIconStrings.TRAILING);
                     }
                     return [2 /*return*/];
                 });
@@ -22669,7 +22897,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         };
         MdcTextFieldIcon = tslib_1.__decorate([
             aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-text-field-icon')
+            aurelia_framework_1.customAttribute(exports.mdcIconStrings.ATTRIBUTE)
         ], MdcTextFieldIcon);
         return MdcTextFieldIcon;
     }(base_1.MdcComponent));
@@ -22688,7 +22916,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template\n  class=\"mdc-text-field mdc-text-field--${outlined ? 'outlined' : 'filled'} ${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''} ${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}\">\n  <require from='@material/textfield/dist/mdc.textfield.css'></require>\n  <span class=\"mdc-text-field__ripple\"></span>\n  <slot name=\"leading-icon\"></slot>\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--prefix\" if.bind=\"prefix\">${prefix}</span>\n  <input class=\"mdc-text-field__input\" type=\"text\" aria-labelledby.bind=\"id\" maxlength.bind=\"maxlength\" required.bind=\"required\" ref=\"input_\">\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--suffix\" if.bind=\"suffix\">${suffix}</span>\n  <slot name=\"trailing-icon\"></slot>\n  <mdc-floating-label if.bind=\"label && !outlined\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple_\"></mdc-line-ripple>\n  <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline_\">\n    <mdc-floating-label if.bind=\"label\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  </mdc-notched-outline>\n</template>\n";
+var code = "<template\n  class=\"mdc-text-field mdc-text-field--${outlined ? 'outlined' : 'filled'} ${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''} ${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}\">\n  <require from='@material/textfield/dist/mdc.textfield.css'></require>\n  <span class=\"mdc-text-field__ripple\"></span>\n  <slot name=\"leading-icon\"></slot>\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--prefix\" if.bind=\"prefix\">${prefix}</span>\n  <input class=\"mdc-text-field__input\" type=\"text\" aria-labelledby.bind=\"id\" maxlength.bind=\"maxlength\"\n    required.bind=\"required\" ref=\"input_\" mousedown.trigger=\"onInputInteraction($event)\"\n    touchstart.trigger=\"onInputInteraction($event)\" focus.trigger=\"onFocus()\" input.trigger=\"onInput($event)\" change.trigger=\"onChange($event)\"\n    blur.trigger=\"onBlur()\">\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--suffix\" if.bind=\"suffix\">${suffix}</span>\n  <slot name=\"trailing-icon\"></slot>\n  <mdc-floating-label if.bind=\"label && !outlined\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple_\"></mdc-line-ripple>\n  <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline_\">\n    <mdc-floating-label if.bind=\"label\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  </mdc-notched-outline>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -22761,6 +22989,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.App = void 0;
     var App = /** @class */ (function () {
         function App() {
+            this.value = '123';
         }
         return App;
     }());
@@ -22779,7 +23008,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div style=\"display: inline-block\">\n    <mdc-text-field label=\"Label\" maxlength=\"100\" prefix=\"$\" suffix=\".00\">\n      <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n      <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n    </mdc-text-field>\n    <mdc-text-field-helper-line>\n      <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n      <mdc-text-field-character-counter></mdc-text-field-character-counter>\n    </mdc-text-field-helper-line>\n  </div>\n\n  <div style=\"display: inline-block\">\n    <mdc-text-field label=\"Label\" outlined required>\n      <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n      <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n    </mdc-text-field>\n    <mdc-text-field-helper-line>\n      <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n    </mdc-text-field-helper-line>\n  </div>\n</template>\n";
+var code = "<template>\n  <div style=\"display: inline-block\">\n    <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\">\n      <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n      <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n    </mdc-text-field>\n    <mdc-text-field-helper-line>\n      <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n      <mdc-text-field-character-counter></mdc-text-field-character-counter>\n    </mdc-text-field-helper-line>\n  </div>\n\n  <div style=\"display: inline-block\">\n    <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\">\n      <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n      <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n    </mdc-text-field>\n    <mdc-text-field-helper-line>\n      <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n    </mdc-text-field-helper-line>\n  </div>\n  <div>${value}</div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -27919,4 +28148,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.7a645a58f0d8fd76a4d2.bundle.map
+//# sourceMappingURL=app.c2622763f66654e9a15b.bundle.map
