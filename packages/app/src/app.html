@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block">
-    <mdc-text-field label="Label" maxlength="100" prefix="$" suffix=".00">
+    <mdc-text-field label="Label" maxlength="100" value.bind="value">
       <i class="material-icons" mdc-text-field-icon leading>event</i>
       <i class="material-icons" mdc-text-field-icon trailing>science</i>
     </mdc-text-field>
@@ -11,7 +11,7 @@
   </div>
 
   <div style="display: inline-block">
-    <mdc-text-field label="Label" outlined required>
+    <mdc-text-field label="Label" outlined value.bind="value" maxlength="100">
       <i class="material-icons" mdc-text-field-icon leading>event</i>
       <i class="material-icons" mdc-text-field-icon trailing>science</i>
     </mdc-text-field>
@@ -19,4 +19,5 @@
       <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>
     </mdc-text-field-helper-line>
   </div>
+  <div>${value}</div>
 </template>

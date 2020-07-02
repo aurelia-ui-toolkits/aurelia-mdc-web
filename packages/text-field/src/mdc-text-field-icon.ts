@@ -2,16 +2,22 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTextFieldIconFoundation, MDCTextFieldIconAdapter, iconCssClasses } from '@material/textfield';
 import { inject, customAttribute } from 'aurelia-framework';
 
+export const mdcIconStrings = {
+  ATTRIBUTE: 'mdc-text-field-icon',
+  LEADING: 'leading',
+  TRAILING: 'trailing'
+};
+
 @inject(Element)
-@customAttribute('mdc-text-field-icon')
+@customAttribute(mdcIconStrings.ATTRIBUTE)
 export class MdcTextFieldIcon extends MdcComponent<MDCTextFieldIconFoundation> {
   async initialise() {
     this.root.classList.add(iconCssClasses.ROOT);
-    if (this.root.hasAttribute('leading')) {
-      this.root.classList.add(`${iconCssClasses.ROOT}--leading`);
+    if (this.root.hasAttribute(mdcIconStrings.LEADING)) {
+      this.root.classList.add(`${iconCssClasses.ROOT}--${mdcIconStrings.LEADING}`);
     }
-    if (this.root.hasAttribute('trailing')) {
-      this.root.classList.add(`${iconCssClasses.ROOT}--trailing`);
+    if (this.root.hasAttribute(mdcIconStrings.TRAILING)) {
+      this.root.classList.add(`${iconCssClasses.ROOT}--${mdcIconStrings.TRAILING}`);
     }
   }
 
@@ -38,4 +44,12 @@ export class MdcTextFieldIcon extends MdcComponent<MDCTextFieldIconFoundation> {
     return new MDCTextFieldIconFoundation(adapter);
   }
 
+}
+
+export interface IMdcTextFieldIconElement extends HTMLElement {
+  au: {
+    'mdc-text-field-icon': {
+      viewModel: MdcTextFieldIcon;
+    }
+  }
 }

@@ -11,22 +11,34 @@ import { MDCRipple, MDCRippleFactory, MDCRippleAdapter, MDCRippleFoundation } fr
 import * as ponyfill from '@material/dom/ponyfill';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
-import { MdcTextFieldIcon } from './mdc-text-field-icon';
+import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './mdc-text-field-icon';
 import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
+
+/**
+ * Time in milliseconds for which to ignore mouse events, after
+ * receiving a touch event. Used to avoid doing double work for
+ * touch devices where the browser fires fake mouse events, in
+ * addition to touch events.
+ */
+const MOUSE_EVENT_IGNORE_TIME = 800;
 
 @inject(Element)
 @useView('./mdc-text-field.html')
 @customElement('mdc-text-field')
 @processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
+  constructor(root: HTMLElement) {
+    super(root);
+    defineMdcTextFieldElementApis(this.root);
+  }
 
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element, _instruction: BehaviorInstruction) {
-    const leadingIcon = element.querySelector('[mdc-text-field-icon][leading]');
+    const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`);
     if (leadingIcon) {
       leadingIcon.setAttribute('slot', 'leading-icon');
     }
-    const trailingIcon = element.querySelector('[mdc-text-field-icon][trailing]');
+    const trailingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`);
     if (trailingIcon) {
       trailingIcon.setAttribute('slot', 'trailing-icon');
     }
@@ -40,10 +52,13 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   lineRipple_: MdcLineRipple;
   ripple: MDCRipple | null;
   outline_!: MdcNotchedOutline | null; // assigned in html
-  leadingIcon_: MdcTextFieldIcon;
-  trailingIcon_: MdcTextFieldIcon;
+  leadingIcon_: MdcTextFieldIcon | undefined;
+  trailingIcon_: MdcTextFieldIcon | undefined;
   helperText_: MdcTextFieldHelperText | undefined;
   characterCounter_: MdcTextFieldCharacterCounter | undefined;
+
+  /** Time in milliseconds when the last touchstart event happened. */
+  private _lastTouchStartEvent: number = 0;
 
   @bindable
   label: string;
@@ -63,16 +78,40 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable.booleanAttr
   required: boolean;
 
+  private initialValue: string;
+  get value(): string {
+    if (this.foundation) {
+      return this.foundation.getValue();
+    } else {
+      return this.initialValue;
+    }
+  }
+  set value(value: string) {
+    if (this.foundation) {
+      if (this.foundation.getValue() !== value) {
+        this.foundation.setValue(value || '');
+        this.foundation.handleInput();
+      }
+    } else {
+      this.initialValue = value;
+    }
+  }
+
   async initialise() {
-    this.leadingIcon_ = (this.root.querySelector('[mdc-text-field-icon][leading]') as any)?.au['mdc-text-field-icon'].viewModel;
-    this.trailingIcon_ = (this.root.querySelector('[mdc-text-field-icon][trailing]') as any)?.au['mdc-text-field-icon'].viewModel;
+    this.leadingIcon_ = this.root.querySelector<IMdcTextFieldIconElement>(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`)?.au['mdc-text-field-icon'].viewModel;
+    this.trailingIcon_ = this.root.querySelector<IMdcTextFieldIconElement>(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`)?.au['mdc-text-field-icon'].viewModel;
     this.ripple = this.createRipple_((el, foundation) => new MDCRipple(el, foundation));
     const nextSibling = this.root.nextElementSibling;
     if (nextSibling?.tagName === cssClasses.HELPER_LINE.toUpperCase()) {
       this.helperText_ = nextSibling.querySelector<IMdcTextFieldHelperTextElement>(helperTextStrings.ROOT_SELECTOR)?.au.controller.viewModel;
       this.characterCounter_ = nextSibling.querySelector<IMdcTextFieldCharacterCounterElement>(characterCountStrings.ROOT_SELECTOR)?.au.controller.viewModel;
-      await Promise.all([this.helperText_?.initialised, this.characterCounter_?.initialised]);
+      await Promise.all([this.helperText_?.initialised, this.characterCounter_?.initialised].filter(x => x));
     }
+  }
+
+  async attached() {
+    await super.attached();
+    this.foundation.setValue(this.initialValue || '');
   }
 
   destroy() {
@@ -179,4 +218,81 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     return rippleFactory(this.root, new MDCRippleFoundation(adapter));
   }
 
+  onInputInteraction(evt: MouseEvent | TouchEvent) {
+    if (evt instanceof MouseEvent) {
+      const isSyntheticEvent = this._lastTouchStartEvent && Date.now() < this._lastTouchStartEvent + MOUSE_EVENT_IGNORE_TIME;
+
+      if (isSyntheticEvent) {
+        return;
+      }
+    } else {
+      this._lastTouchStartEvent = Date.now();
+    }
+
+    this.foundation.setTransformOrigin(evt);
+    return true;
+  }
+
+  onInput(evt: Event): void {
+    const value = (<any>evt.target).value;
+    this.value = value;
+    this.emit('input', {}, true);
+  }
+
+  async onFocus() {
+    await this.initialised;
+    this.foundation.activateFocus();
+  }
+
+  onChange(evt: Event): void {
+    const value = (evt.target as HTMLInputElement).value;
+    this.value = value;
+    this.emit('change', {}, true);
+  }
+
+  onBlur(): void {
+    this.foundation.deactivateFocus();
+  }
+
+  focus() {
+    this.input_.focus();
+  }
+
+  blur() {
+    this.input_.blur();
+  }
 }
+
+export interface IMdcTextFieldElement extends HTMLElement {
+  au: {
+    controller: {
+      viewModel: MdcTextField;
+    }
+  }
+}
+
+function defineMdcTextFieldElementApis(element: HTMLElement) {
+  Object.defineProperties(element, {
+    value: {
+      get(this: IMdcTextFieldElement) {
+        return this.au.controller.viewModel.value;
+      },
+      set(this: IMdcTextFieldElement, value: any) {
+        this.au.controller.viewModel.value = value;
+      },
+      configurable: true
+    },
+    focus: {
+      value(this: IMdcTextFieldElement) {
+        this.au.controller.viewModel.focus();
+      },
+      configurable: true
+    },
+    blur: {
+      value(this: IMdcTextFieldElement) {
+        this.au.controller.viewModel.blur();
+      },
+      configurable: true
+    }
+  });
+};
