@@ -1,7 +1,7 @@
 import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, BehaviorInstruction } from 'aurelia-framework';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
-  MDCTextFieldLineRippleAdapter, cssClasses, MDCTextFieldOutlineAdapter
+  MDCTextFieldLineRippleAdapter, cssClasses, MDCTextFieldOutlineAdapter, helperTextStrings, characterCountStrings
 } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
 import { MdcComponent } from '@aurelia-mdc-web/base';
@@ -11,7 +11,9 @@ import { MDCRipple, MDCRippleFactory, MDCRippleAdapter, MDCRippleFoundation } fr
 import * as ponyfill from '@material/dom/ponyfill';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
-import { MdcTextFieldIcon } from './icon/mdc-text-field-icon';
+import { MdcTextFieldIcon } from './mdc-text-field-icon';
+import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
+import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
 
 @inject(Element)
 @useView('./mdc-text-field.html')
@@ -40,6 +42,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   outline_!: MdcNotchedOutline | null; // assigned in html
   leadingIcon_: MdcTextFieldIcon;
   trailingIcon_: MdcTextFieldIcon;
+  helperText_: MdcTextFieldHelperText | undefined;
+  characterCounter_: MdcTextFieldCharacterCounter | undefined;
 
   @bindable
   label: string;
@@ -47,10 +51,28 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable.booleanAttr
   outlined: boolean;
 
-  initialise() {
+  @bindable.number
+  maxlength: number;
+
+  @bindable
+  prefix: string;
+
+  @bindable
+  suffix: string;
+
+  @bindable.booleanAttr
+  required: boolean;
+
+  async initialise() {
     this.leadingIcon_ = (this.root.querySelector('[mdc-text-field-icon][leading]') as any)?.au['mdc-text-field-icon'].viewModel;
     this.trailingIcon_ = (this.root.querySelector('[mdc-text-field-icon][trailing]') as any)?.au['mdc-text-field-icon'].viewModel;
     this.ripple = this.createRipple_((el, foundation) => new MDCRipple(el, foundation));
+    const nextSibling = this.root.nextElementSibling;
+    if (nextSibling?.tagName === cssClasses.HELPER_LINE.toUpperCase()) {
+      this.helperText_ = nextSibling.querySelector<IMdcTextFieldHelperTextElement>(helperTextStrings.ROOT_SELECTOR)?.au.controller.viewModel;
+      this.characterCounter_ = nextSibling.querySelector<IMdcTextFieldCharacterCounterElement>(characterCountStrings.ROOT_SELECTOR)?.au.controller.viewModel;
+      await Promise.all([this.helperText_?.initialised, this.characterCounter_?.initialised]);
+    }
   }
 
   destroy() {
@@ -130,11 +152,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
    */
   private getFoundationMap_(): Partial<MDCTextFieldFoundationMap> {
     return {
-      // characterCounter: this.characterCounter_ ?
-      //     this.characterCounter_.foundationForTextField :
-      //     undefined,
-      // helperText: this.helperText_ ? this.helperText_.foundationForTextField :
-      //                                undefined,
+      characterCounter: this.characterCounter_ ? this.characterCounter_.foundationForTextField : undefined,
+      helperText: this.helperText_ ? this.helperText_.foundationForTextField : undefined,
       leadingIcon: this.leadingIcon_ ? this.leadingIcon_.foundationForTextField : undefined,
       trailingIcon: this.trailingIcon_ ? this.trailingIcon_.foundationForTextField : undefined,
     };

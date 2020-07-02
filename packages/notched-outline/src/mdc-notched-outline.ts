@@ -9,7 +9,7 @@ import { inject, customElement, useView } from 'aurelia-framework';
 export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation> {
   private notchElement_!: HTMLElement; // assigned in html
 
-  initialise() {
+  async initialise() {
     const label = this.root.querySelector<HTMLElement>('.' + MDCFloatingLabelFoundation.cssClasses.ROOT);
     if (label) {
       label.style.transitionDuration = '0s';

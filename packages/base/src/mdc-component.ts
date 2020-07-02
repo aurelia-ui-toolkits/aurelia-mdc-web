@@ -5,12 +5,16 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
 
   foundation: FoundationType;
 
-  initialise() { }
+  initialised = new Promise(r => this.initialisedResolve = r);
+  private initialisedResolve: () => void;
 
-  attached() {
-    this.initialise();
+  async initialise() { }
+
+  async attached() {
+    await this.initialise();
     this.foundation = this.getDefaultFoundation();
     this.foundation.init();
+    this.initialisedResolve();
   }
 
   destroy() { }

@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server",
-    "build": "rimraf dist && webpack --extractCss",
-    "build:ci": "webpack --extractCss --env.production=production --env.stats=verbose",
+    "start": "webpack-dev-server",
+    "prebuild": "rimraf dist",
+    "build": "webpack --extractCss",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
