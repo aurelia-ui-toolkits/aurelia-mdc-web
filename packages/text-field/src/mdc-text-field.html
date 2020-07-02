@@ -4,10 +4,8 @@
   <span class="mdc-text-field__ripple"></span>
   <slot name="leading-icon"></slot>
   <span class="mdc-text-field__affix mdc-text-field__affix--prefix" if.bind="prefix">${prefix}</span>
-  <input class="mdc-text-field__input" type="text" aria-labelledby.bind="id" maxlength.bind="maxlength"
-    required.bind="required" ref="input_" mousedown.trigger="onInputInteraction($event)"
-    touchstart.trigger="onInputInteraction($event)" focus.trigger="onFocus()" input.trigger="onInput($event)" change.trigger="onChange($event)"
-    blur.trigger="onBlur()">
+  <input class="mdc-text-field__input" type="text" aria-labelledby.bind="id" ref="input_"
+    focus.trigger="onFocus()" input.trigger="onInput($event)" change.trigger="onChange($event)" blur.trigger="onBlur()">
   <span class="mdc-text-field__affix mdc-text-field__affix--suffix" if.bind="suffix">${suffix}</span>
   <slot name="trailing-icon"></slot>
   <mdc-floating-label if.bind="label && !outlined" id.bind="id" view-model.ref="label_">${label}</mdc-floating-label>

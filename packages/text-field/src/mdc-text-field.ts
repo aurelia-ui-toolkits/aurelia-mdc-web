@@ -15,14 +15,6 @@ import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './md
 import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
 
-/**
- * Time in milliseconds for which to ignore mouse events, after
- * receiving a touch event. Used to avoid doing double work for
- * touch devices where the browser fires fake mouse events, in
- * addition to touch events.
- */
-const MOUSE_EVENT_IGNORE_TIME = 800;
-
 @inject(Element)
 @useView('./mdc-text-field.html')
 @customElement(cssClasses.ROOT)
@@ -34,6 +26,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element, _instruction: BehaviorInstruction) {
+    // move icons to slots - this allows omitting slot specification
     const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`);
     if (leadingIcon) {
       leadingIcon.setAttribute('slot', 'leading-icon');
@@ -57,17 +50,11 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   helperText_: MdcTextFieldHelperText | undefined;
   characterCounter_: MdcTextFieldCharacterCounter | undefined;
 
-  /** Time in milliseconds when the last touchstart event happened. */
-  private _lastTouchStartEvent: number = 0;
-
   @bindable
   label: string;
 
   @bindable.booleanAttr
   outlined: boolean;
-
-  @bindable.number
-  maxlength: number;
 
   @bindable
   prefix: string;
@@ -77,6 +64,57 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   @bindable.booleanAttr
   required: boolean;
+  requiredChanged() {
+    this.input_.required = this.required;
+  }
+
+  @bindable.booleanAttr
+  disabled: boolean;
+  disabledChanged() {
+    this.input_.disabled = this.disabled;
+  }
+
+  @bindable.booleanAttr
+  readonly: boolean;
+  readonlyChanged() {
+    this.input_.readOnly = this.readonly;
+  }
+
+  @bindable.number
+  maxlength: number;
+  maxlengthChanged() {
+    this.input_.maxLength = this.maxlength;
+  }
+
+  @bindable
+  max: string;
+  maxChanged() {
+    this.input_.max = this.max;
+  }
+
+  @bindable
+  min: string;
+  minChanged() {
+    this.input_.min = this.min;
+  }
+
+  @bindable
+  step: string;
+  stepChanged() {
+    this.input_.step = this.step;
+  }
+
+  @bindable.number
+  tabindex: number;
+  tabindexChanged() {
+    this.input_.tabIndex = this.tabindex;
+  }
+
+  @bindable
+  type: string;
+  typeChanged() {
+    this.input_.type = this.type;
+  }
 
   private initialValue: string;
   get value(): string {
@@ -96,6 +134,22 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
+  bind() {
+    this.requiredChanged();
+    this.disabledChanged();
+    this.readonlyChanged();
+    this.tabindexChanged();
+    this.maxlengthChanged();
+    this.minChanged();
+    this.maxChanged();
+    this.stepChanged();
+    this.typeChanged();
+    // handle the case when attribute value was set, not bound, in html
+    if (this.root.hasAttribute('value')) {
+      this.value = this.root.getAttribute('value') || '';
+    }
+  }
+
   async initialise() {
     this.leadingIcon_ = this.root.querySelector<IMdcTextFieldIconElement>(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`)?.au['mdc-text-field-icon'].viewModel;
     this.trailingIcon_ = this.root.querySelector<IMdcTextFieldIconElement>(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`)?.au['mdc-text-field-icon'].viewModel;
@@ -110,7 +164,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   async attached() {
     await super.attached();
-    this.foundation.setValue(this.initialValue || '');
+    this.value = this.initialValue;
+    // this.foundation.setValue(this.initialValue || '');
   }
 
   destroy() {
@@ -215,21 +270,6 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
         this.input_.removeEventListener(evtType, handler, applyPassive()),
     };
     return rippleFactory(this.root, new MDCRippleFoundation(adapter));
-  }
-
-  onInputInteraction(evt: MouseEvent | TouchEvent) {
-    if (evt instanceof MouseEvent) {
-      const isSyntheticEvent = this._lastTouchStartEvent && Date.now() < this._lastTouchStartEvent + MOUSE_EVENT_IGNORE_TIME;
-
-      if (isSyntheticEvent) {
-        return;
-      }
-    } else {
-      this._lastTouchStartEvent = Date.now();
-    }
-
-    this.foundation.setTransformOrigin(evt);
-    return true;
   }
 
   onInput(evt: Event): void {
