@@ -22375,7 +22375,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             value: {
                 defaultBindingMode: aurelia_framework_1.bindingMode.twoWay,
                 getObserver: function (element) {
-                    return new aurelia_framework_1.ValueAttributeObserver(element, 'value', new aurelia_framework_1.EventSubscriber(['change']));
+                    return new aurelia_framework_1.ValueAttributeObserver(element, 'value', new aurelia_framework_1.EventSubscriber(['change', 'input']));
                 }
             }
         }
@@ -28148,4 +28148,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.c2622763f66654e9a15b.bundle.map
+//# sourceMappingURL=app.26a61f893ec49b3f2152.bundle.map
