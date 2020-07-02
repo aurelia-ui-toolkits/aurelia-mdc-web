@@ -21,7 +21,7 @@ const textFieldConfig = {
     value: {
       defaultBindingMode: bindingMode.twoWay,
       getObserver(element: Element) {
-        return new ValueAttributeObserver(element, 'value', new EventSubscriber(['change']));
+        return new ValueAttributeObserver(element, 'value', new EventSubscriber(['change', 'input']));
       }
     }
   }
