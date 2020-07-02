@@ -90,7 +90,6 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     if (this.foundation) {
       if (this.foundation.getValue() !== value) {
         this.foundation.setValue(value || '');
-        this.foundation.handleInput();
       }
     } else {
       this.initialValue = value;
@@ -236,6 +235,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   onInput(evt: Event): void {
     const value = (<any>evt.target).value;
     this.value = value;
+    this.foundation.handleInput();
     this.emit('input', {}, true);
   }
 
