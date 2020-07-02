@@ -22440,7 +22440,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 if (this.foundation) {
                     if (this.foundation.getValue() !== value) {
                         this.foundation.setValue(value || '');
-                        this.foundation.handleInput();
                     }
                 }
                 else {
@@ -22592,6 +22591,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         MdcTextField.prototype.onInput = function (evt) {
             var value = evt.target.value;
             this.value = value;
+            this.foundation.handleInput();
             this.emit('input', {}, true);
         };
         MdcTextField.prototype.onFocus = function () {
@@ -28148,4 +28148,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.26a61f893ec49b3f2152.bundle.map
+//# sourceMappingURL=app.2db572dda9b8681dcb11.bundle.map
