@@ -7,6 +7,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .developmentLogging()
     .standardConfiguration()
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/form-field'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/line-ripple'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/notched-outline'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'));

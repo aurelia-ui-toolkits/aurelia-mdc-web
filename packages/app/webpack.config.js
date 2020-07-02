@@ -27,6 +27,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         ...([
           'base',
           'floating-label',
+          'form-field',
           'line-ripple',
           'notched-outline',
           'text-field'

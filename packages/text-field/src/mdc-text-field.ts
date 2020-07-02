@@ -25,7 +25,7 @@ const MOUSE_EVENT_IGNORE_TIME = 800;
 
 @inject(Element)
 @useView('./mdc-text-field.html')
-@customElement('mdc-text-field')
+@customElement(cssClasses.ROOT)
 @processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   constructor(root: HTMLElement) {

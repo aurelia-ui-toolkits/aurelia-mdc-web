@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@material/floating-label": "^7.0.0",
+    "@material/form-field": "^7.0.0",
     "@material/line-ripple": "^7.0.0",
     "@material/notched-outline": "^7.0.0",
     "@material/ripple": "^7.0.0",

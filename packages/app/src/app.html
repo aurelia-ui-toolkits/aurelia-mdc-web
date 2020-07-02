@@ -1,5 +1,5 @@
 <template>
-  <div style="display: inline-block">
+  <mdc-form-field>
     <mdc-text-field label="Label" maxlength="100" value.bind="value">
       <i class="material-icons" mdc-text-field-icon leading>event</i>
       <i class="material-icons" mdc-text-field-icon trailing>science</i>
@@ -8,9 +8,9 @@
       <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
       <mdc-text-field-character-counter></mdc-text-field-character-counter>
     </mdc-text-field-helper-line>
-  </div>
+  </mdc-form-field>
 
-  <div style="display: inline-block">
+  <mdc-form-field>
     <mdc-text-field label="Label" outlined value.bind="value" maxlength="100">
       <i class="material-icons" mdc-text-field-icon leading>event</i>
       <i class="material-icons" mdc-text-field-icon trailing>science</i>
@@ -18,6 +18,6 @@
     <mdc-text-field-helper-line>
       <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>
     </mdc-text-field-helper-line>
-  </div>
+  </mdc-form-field>
   <div>${value}</div>
 </template>

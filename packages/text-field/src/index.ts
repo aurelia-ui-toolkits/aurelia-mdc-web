@@ -1,7 +1,7 @@
 import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, EventSubscriber } from 'aurelia-framework';
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 
-export { MdcTextField } from './mdc-text-field';
+export { MdcTextField, IMdcTextFieldElement } from './mdc-text-field';
 
 export function configure(config: FrameworkConfiguration) {
   config.container.get(MdcComponentAdapters).registerMdcElementConfig(textFieldConfig);
