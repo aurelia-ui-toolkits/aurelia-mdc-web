@@ -362,6 +362,289 @@ function supportsPassiveOption(globalObj) {
 
 /***/ }),
 
+/***/ "../../node_modules/@material/dom/focus-trap.js":
+/*!**************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/dom/focus-trap.js ***!
+  \**************************************************************************/
+/*! exports provided: FocusTrap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FocusTrap", function() { return FocusTrap; });
+/**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var FOCUS_SENTINEL_CLASS = 'mdc-dom-focus-sentinel';
+/**
+ * Utility to trap focus in a given root element, e.g. for modal components such
+ * as dialogs. The root should have at least one focusable child element,
+ * for setting initial focus when trapping focus.
+ * Also tracks the previously focused element, and restores focus to that
+ * element when releasing focus.
+ */
+var FocusTrap = /** @class */ (function () {
+    function FocusTrap(root, options) {
+        if (options === void 0) { options = {}; }
+        this.root = root;
+        this.options = options;
+        // Previously focused element before trapping focus.
+        this.elFocusedBeforeTrapFocus = null;
+    }
+    /**
+     * Traps focus in `root`. Also focuses on either `initialFocusEl` if set;
+     * otherwises sets initial focus to the first focusable child element.
+     */
+    FocusTrap.prototype.trapFocus = function () {
+        var focusableEls = this.getFocusableElements(this.root);
+        if (focusableEls.length === 0) {
+            throw new Error('FocusTrap: Element must have at least one focusable child.');
+        }
+        this.elFocusedBeforeTrapFocus =
+            document.activeElement instanceof HTMLElement ? document.activeElement :
+                null;
+        this.wrapTabFocus(this.root, focusableEls);
+        if (!this.options.skipInitialFocus) {
+            this.focusInitialElement(focusableEls, this.options.initialFocusEl);
+        }
+    };
+    /**
+     * Releases focus from `root`. Also restores focus to the previously focused
+     * element.
+     */
+    FocusTrap.prototype.releaseFocus = function () {
+        [].slice.call(this.root.querySelectorAll("." + FOCUS_SENTINEL_CLASS))
+            .forEach(function (sentinelEl) {
+            sentinelEl.parentElement.removeChild(sentinelEl);
+        });
+        if (this.elFocusedBeforeTrapFocus) {
+            this.elFocusedBeforeTrapFocus.focus();
+        }
+    };
+    /**
+     * Wraps tab focus within `el` by adding two hidden sentinel divs which are
+     * used to mark the beginning and the end of the tabbable region. When
+     * focused, these sentinel elements redirect focus to the first/last
+     * children elements of the tabbable region, ensuring that focus is trapped
+     * within that region.
+     */
+    FocusTrap.prototype.wrapTabFocus = function (el, focusableEls) {
+        var sentinelStart = this.createSentinel();
+        var sentinelEnd = this.createSentinel();
+        sentinelStart.addEventListener('focus', function () {
+            if (focusableEls.length > 0) {
+                focusableEls[focusableEls.length - 1].focus();
+            }
+        });
+        sentinelEnd.addEventListener('focus', function () {
+            if (focusableEls.length > 0) {
+                focusableEls[0].focus();
+            }
+        });
+        el.insertBefore(sentinelStart, el.children[0]);
+        el.appendChild(sentinelEnd);
+    };
+    /**
+     * Focuses on `initialFocusEl` if defined and a child of the root element.
+     * Otherwise, focuses on the first focusable child element of the root.
+     */
+    FocusTrap.prototype.focusInitialElement = function (focusableEls, initialFocusEl) {
+        var focusIndex = 0;
+        if (initialFocusEl) {
+            focusIndex = Math.max(focusableEls.indexOf(initialFocusEl), 0);
+        }
+        focusableEls[focusIndex].focus();
+    };
+    FocusTrap.prototype.getFocusableElements = function (root) {
+        var focusableEls = [].slice.call(root.querySelectorAll('[autofocus], [tabindex], a, input, textarea, select, button'));
+        return focusableEls.filter(function (el) {
+            var isDisabledOrHidden = el.getAttribute('aria-disabled') === 'true' ||
+                el.getAttribute('disabled') != null ||
+                el.getAttribute('hidden') != null ||
+                el.getAttribute('aria-hidden') === 'true';
+            var isTabbableAndVisible = el.tabIndex >= 0 &&
+                el.getBoundingClientRect().width > 0 &&
+                !el.classList.contains(FOCUS_SENTINEL_CLASS) && !isDisabledOrHidden;
+            var isProgrammaticallyHidden = false;
+            if (isTabbableAndVisible) {
+                var style = getComputedStyle(el);
+                isProgrammaticallyHidden =
+                    style.display === 'none' || style.visibility === 'hidden';
+            }
+            return isTabbableAndVisible && !isProgrammaticallyHidden;
+        });
+    };
+    FocusTrap.prototype.createSentinel = function () {
+        var sentinel = document.createElement('div');
+        sentinel.setAttribute('tabindex', '0');
+        // Don't announce in screen readers.
+        sentinel.setAttribute('aria-hidden', 'true');
+        sentinel.classList.add(FOCUS_SENTINEL_CLASS);
+        return sentinel;
+    };
+    return FocusTrap;
+}());
+
+//# sourceMappingURL=focus-trap.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/dom/keyboard.js":
+/*!************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/dom/keyboard.js ***!
+  \************************************************************************/
+/*! exports provided: KEY, normalizeKey, isNavigationEvent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KEY", function() { return KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "normalizeKey", function() { return normalizeKey; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNavigationEvent", function() { return isNavigationEvent; });
+/**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+/**
+ * KEY provides normalized string values for keys.
+ */
+var KEY = {
+    UNKNOWN: 'Unknown',
+    BACKSPACE: 'Backspace',
+    ENTER: 'Enter',
+    SPACEBAR: 'Spacebar',
+    PAGE_UP: 'PageUp',
+    PAGE_DOWN: 'PageDown',
+    END: 'End',
+    HOME: 'Home',
+    ARROW_LEFT: 'ArrowLeft',
+    ARROW_UP: 'ArrowUp',
+    ARROW_RIGHT: 'ArrowRight',
+    ARROW_DOWN: 'ArrowDown',
+    DELETE: 'Delete',
+    ESCAPE: 'Escape',
+};
+var normalizedKeys = new Set();
+// IE11 has no support for new Map with iterable so we need to initialize this
+// by hand.
+normalizedKeys.add(KEY.BACKSPACE);
+normalizedKeys.add(KEY.ENTER);
+normalizedKeys.add(KEY.SPACEBAR);
+normalizedKeys.add(KEY.PAGE_UP);
+normalizedKeys.add(KEY.PAGE_DOWN);
+normalizedKeys.add(KEY.END);
+normalizedKeys.add(KEY.HOME);
+normalizedKeys.add(KEY.ARROW_LEFT);
+normalizedKeys.add(KEY.ARROW_UP);
+normalizedKeys.add(KEY.ARROW_RIGHT);
+normalizedKeys.add(KEY.ARROW_DOWN);
+normalizedKeys.add(KEY.DELETE);
+normalizedKeys.add(KEY.ESCAPE);
+var KEY_CODE = {
+    BACKSPACE: 8,
+    ENTER: 13,
+    SPACEBAR: 32,
+    PAGE_UP: 33,
+    PAGE_DOWN: 34,
+    END: 35,
+    HOME: 36,
+    ARROW_LEFT: 37,
+    ARROW_UP: 38,
+    ARROW_RIGHT: 39,
+    ARROW_DOWN: 40,
+    DELETE: 46,
+    ESCAPE: 27,
+};
+var mappedKeyCodes = new Map();
+// IE11 has no support for new Map with iterable so we need to initialize this
+// by hand.
+mappedKeyCodes.set(KEY_CODE.BACKSPACE, KEY.BACKSPACE);
+mappedKeyCodes.set(KEY_CODE.ENTER, KEY.ENTER);
+mappedKeyCodes.set(KEY_CODE.SPACEBAR, KEY.SPACEBAR);
+mappedKeyCodes.set(KEY_CODE.PAGE_UP, KEY.PAGE_UP);
+mappedKeyCodes.set(KEY_CODE.PAGE_DOWN, KEY.PAGE_DOWN);
+mappedKeyCodes.set(KEY_CODE.END, KEY.END);
+mappedKeyCodes.set(KEY_CODE.HOME, KEY.HOME);
+mappedKeyCodes.set(KEY_CODE.ARROW_LEFT, KEY.ARROW_LEFT);
+mappedKeyCodes.set(KEY_CODE.ARROW_UP, KEY.ARROW_UP);
+mappedKeyCodes.set(KEY_CODE.ARROW_RIGHT, KEY.ARROW_RIGHT);
+mappedKeyCodes.set(KEY_CODE.ARROW_DOWN, KEY.ARROW_DOWN);
+mappedKeyCodes.set(KEY_CODE.DELETE, KEY.DELETE);
+mappedKeyCodes.set(KEY_CODE.ESCAPE, KEY.ESCAPE);
+var navigationKeys = new Set();
+// IE11 has no support for new Set with iterable so we need to initialize this
+// by hand.
+navigationKeys.add(KEY.PAGE_UP);
+navigationKeys.add(KEY.PAGE_DOWN);
+navigationKeys.add(KEY.END);
+navigationKeys.add(KEY.HOME);
+navigationKeys.add(KEY.ARROW_LEFT);
+navigationKeys.add(KEY.ARROW_UP);
+navigationKeys.add(KEY.ARROW_RIGHT);
+navigationKeys.add(KEY.ARROW_DOWN);
+/**
+ * normalizeKey returns the normalized string for a navigational action.
+ */
+function normalizeKey(evt) {
+    var key = evt.key;
+    // If the event already has a normalized key, return it
+    if (normalizedKeys.has(key)) {
+        return key;
+    }
+    // tslint:disable-next-line:deprecation
+    var mappedKey = mappedKeyCodes.get(evt.keyCode);
+    if (mappedKey) {
+        return mappedKey;
+    }
+    return KEY.UNKNOWN;
+}
+/**
+ * isNavigationEvent returns whether the event is a navigation event
+ */
+function isNavigationEvent(evt) {
+    return navigationKeys.has(normalizeKey(evt));
+}
+//# sourceMappingURL=keyboard.js.map
+
+/***/ }),
+
 /***/ "../../node_modules/@material/dom/ponyfill.js":
 /*!************************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/dom/ponyfill.js ***!
@@ -445,6 +728,620 @@ function estimateScrollWidth(element) {
     return scrollWidth;
 }
 //# sourceMappingURL=ponyfill.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/drawer/component.js":
+/*!****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/drawer/component.js ***!
+  \****************************************************************************/
+/*! exports provided: MDCDrawer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCDrawer", function() { return MDCDrawer; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_focus_trap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/focus-trap */ "../../node_modules/@material/dom/focus-trap.js");
+/* harmony import */ var _material_list_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/list/component */ "../../node_modules/@material/list/component.js");
+/* harmony import */ var _material_list_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/list/foundation */ "../../node_modules/@material/list/foundation.js");
+/* harmony import */ var _dismissible_foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dismissible/foundation */ "../../node_modules/@material/drawer/dismissible/foundation.js");
+/* harmony import */ var _modal_foundation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal/foundation */ "../../node_modules/@material/drawer/modal/foundation.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util */ "../../node_modules/@material/drawer/util.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+
+
+var cssClasses = _dismissible_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCDismissibleDrawerFoundation"].cssClasses, strings = _dismissible_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCDismissibleDrawerFoundation"].strings;
+/**
+ * @events `MDCDrawer:closed {}` Emits when the navigation drawer has closed.
+ * @events `MDCDrawer:opened {}` Emits when the navigation drawer has opened.
+ */
+var MDCDrawer = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCDrawer, _super);
+    function MDCDrawer() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCDrawer.attachTo = function (root) {
+        return new MDCDrawer(root);
+    };
+    Object.defineProperty(MDCDrawer.prototype, "open", {
+        /**
+         * @return boolean Proxies to the foundation's `open`/`close` methods.
+         * Also returns true if drawer is in the open position.
+         */
+        get: function () {
+            return this.foundation.isOpen();
+        },
+        /**
+         * Toggles the drawer open and closed.
+         */
+        set: function (isOpen) {
+            if (isOpen) {
+                this.foundation.open();
+            }
+            else {
+                this.foundation.close();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCDrawer.prototype, "list", {
+        get: function () {
+            return this.list_;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCDrawer.prototype.initialize = function (focusTrapFactory, listFactory) {
+        if (focusTrapFactory === void 0) { focusTrapFactory = function (el) { return new _material_dom_focus_trap__WEBPACK_IMPORTED_MODULE_2__["FocusTrap"](el); }; }
+        if (listFactory === void 0) { listFactory = function (el) { return new _material_list_component__WEBPACK_IMPORTED_MODULE_3__["MDCList"](el); }; }
+        var listEl = this.root.querySelector("." + _material_list_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCListFoundation"].cssClasses.ROOT);
+        if (listEl) {
+            this.list_ = listFactory(listEl);
+            this.list_.wrapFocus = true;
+        }
+        this.focusTrapFactory_ = focusTrapFactory;
+    };
+    MDCDrawer.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        var MODAL = cssClasses.MODAL;
+        var SCRIM_SELECTOR = strings.SCRIM_SELECTOR;
+        this.scrim_ = this.root.parentNode
+            .querySelector(SCRIM_SELECTOR);
+        if (this.scrim_ && this.root.classList.contains(MODAL)) {
+            this.handleScrimClick_ = function () {
+                return _this.foundation.handleScrimClick();
+            };
+            this.scrim_.addEventListener('click', this.handleScrimClick_);
+            this.focusTrap_ = _util__WEBPACK_IMPORTED_MODULE_7__["createFocusTrapInstance"](this.root, this.focusTrapFactory_);
+        }
+        this.handleKeydown_ = function (evt) { return _this.foundation.handleKeydown(evt); };
+        this.handleTransitionEnd_ = function (evt) {
+            return _this.foundation.handleTransitionEnd(evt);
+        };
+        this.listen('keydown', this.handleKeydown_);
+        this.listen('transitionend', this.handleTransitionEnd_);
+    };
+    MDCDrawer.prototype.destroy = function () {
+        this.unlisten('keydown', this.handleKeydown_);
+        this.unlisten('transitionend', this.handleTransitionEnd_);
+        if (this.list_) {
+            this.list_.destroy();
+        }
+        var MODAL = cssClasses.MODAL;
+        if (this.scrim_ && this.handleScrimClick_ &&
+            this.root.classList.contains(MODAL)) {
+            this.scrim_.removeEventListener('click', this.handleScrimClick_);
+            // Ensure drawer is closed to hide scrim and release focus
+            this.open = false;
+        }
+    };
+    MDCDrawer.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            elementHasClass: function (element, className) {
+                return element.classList.contains(className);
+            },
+            saveFocus: function () { return _this.previousFocus_ = document.activeElement; },
+            restoreFocus: function () {
+                var previousFocus = _this.previousFocus_;
+                if (previousFocus && previousFocus.focus &&
+                    _this.root.contains(document.activeElement)) {
+                    previousFocus.focus();
+                }
+            },
+            focusActiveNavigationItem: function () {
+                var activeNavItemEl = _this.root.querySelector("." + _material_list_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCListFoundation"].cssClasses.LIST_ITEM_ACTIVATED_CLASS);
+                if (activeNavItemEl) {
+                    activeNavItemEl.focus();
+                }
+            },
+            notifyClose: function () {
+                return _this.emit(strings.CLOSE_EVENT, {}, true /* shouldBubble */);
+            },
+            notifyOpen: function () {
+                return _this.emit(strings.OPEN_EVENT, {}, true /* shouldBubble */);
+            },
+            trapFocus: function () { return _this.focusTrap_.trapFocus(); },
+            releaseFocus: function () { return _this.focusTrap_.releaseFocus(); },
+        };
+        // tslint:enable:object-literal-sort-keys
+        var DISMISSIBLE = cssClasses.DISMISSIBLE, MODAL = cssClasses.MODAL;
+        if (this.root.classList.contains(DISMISSIBLE)) {
+            return new _dismissible_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCDismissibleDrawerFoundation"](adapter);
+        }
+        else if (this.root.classList.contains(MODAL)) {
+            return new _modal_foundation__WEBPACK_IMPORTED_MODULE_6__["MDCModalDrawerFoundation"](adapter);
+        }
+        else {
+            throw new Error("MDCDrawer: Failed to instantiate component. Supported variants are " + DISMISSIBLE + " and " + MODAL + ".");
+        }
+    };
+    return MDCDrawer;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/drawer/constants.js":
+/*!****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/drawer/constants.js ***!
+  \****************************************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ANIMATE: 'mdc-drawer--animate',
+    CLOSING: 'mdc-drawer--closing',
+    DISMISSIBLE: 'mdc-drawer--dismissible',
+    MODAL: 'mdc-drawer--modal',
+    OPEN: 'mdc-drawer--open',
+    OPENING: 'mdc-drawer--opening',
+    ROOT: 'mdc-drawer',
+};
+var strings = {
+    APP_CONTENT_SELECTOR: '.mdc-drawer-app-content',
+    CLOSE_EVENT: 'MDCDrawer:closed',
+    OPEN_EVENT: 'MDCDrawer:opened',
+    SCRIM_SELECTOR: '.mdc-drawer-scrim',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/drawer/dismissible/foundation.js":
+/*!*****************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/drawer/dismissible/foundation.js ***!
+  \*****************************************************************************************/
+/*! exports provided: MDCDismissibleDrawerFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCDismissibleDrawerFoundation", function() { return MDCDismissibleDrawerFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "../../node_modules/@material/drawer/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCDismissibleDrawerFoundation, _super);
+    function MDCDismissibleDrawerFoundation(adapter) {
+        var _this = _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCDismissibleDrawerFoundation.defaultAdapter), adapter)) || this;
+        _this.animationFrame_ = 0;
+        _this.animationTimer_ = 0;
+        return _this;
+    }
+    Object.defineProperty(MDCDismissibleDrawerFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCDismissibleDrawerFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCDismissibleDrawerFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                elementHasClass: function () { return false; },
+                notifyClose: function () { return undefined; },
+                notifyOpen: function () { return undefined; },
+                saveFocus: function () { return undefined; },
+                restoreFocus: function () { return undefined; },
+                focusActiveNavigationItem: function () { return undefined; },
+                trapFocus: function () { return undefined; },
+                releaseFocus: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCDismissibleDrawerFoundation.prototype.destroy = function () {
+        if (this.animationFrame_) {
+            cancelAnimationFrame(this.animationFrame_);
+        }
+        if (this.animationTimer_) {
+            clearTimeout(this.animationTimer_);
+        }
+    };
+    /**
+     * Opens the drawer from the closed state.
+     */
+    MDCDismissibleDrawerFoundation.prototype.open = function () {
+        var _this = this;
+        if (this.isOpen() || this.isOpening() || this.isClosing()) {
+            return;
+        }
+        this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPEN);
+        this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ANIMATE);
+        // Wait a frame once display is no longer "none", to establish basis for animation
+        this.runNextAnimationFrame_(function () {
+            _this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPENING);
+        });
+        this.adapter.saveFocus();
+    };
+    /**
+     * Closes the drawer from the open state.
+     */
+    MDCDismissibleDrawerFoundation.prototype.close = function () {
+        if (!this.isOpen() || this.isOpening() || this.isClosing()) {
+            return;
+        }
+        this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CLOSING);
+    };
+    /**
+     * Returns true if the drawer is in the open position.
+     * @return true if drawer is in open state.
+     */
+    MDCDismissibleDrawerFoundation.prototype.isOpen = function () {
+        return this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPEN);
+    };
+    /**
+     * Returns true if the drawer is animating open.
+     * @return true if drawer is animating open.
+     */
+    MDCDismissibleDrawerFoundation.prototype.isOpening = function () {
+        return this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPENING) ||
+            this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ANIMATE);
+    };
+    /**
+     * Returns true if the drawer is animating closed.
+     * @return true if drawer is animating closed.
+     */
+    MDCDismissibleDrawerFoundation.prototype.isClosing = function () {
+        return this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CLOSING);
+    };
+    /**
+     * Keydown handler to close drawer when key is escape.
+     */
+    MDCDismissibleDrawerFoundation.prototype.handleKeydown = function (evt) {
+        var keyCode = evt.keyCode, key = evt.key;
+        var isEscape = key === 'Escape' || keyCode === 27;
+        if (isEscape) {
+            this.close();
+        }
+    };
+    /**
+     * Handles the `transitionend` event when the drawer finishes opening/closing.
+     */
+    MDCDismissibleDrawerFoundation.prototype.handleTransitionEnd = function (evt) {
+        var OPENING = _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPENING, CLOSING = _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CLOSING, OPEN = _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPEN, ANIMATE = _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ANIMATE, ROOT = _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ROOT;
+        // In Edge, transitionend on ripple pseudo-elements yields a target without classList, so check for Element first.
+        var isRootElement = this.isElement_(evt.target) &&
+            this.adapter.elementHasClass(evt.target, ROOT);
+        if (!isRootElement) {
+            return;
+        }
+        if (this.isClosing()) {
+            this.adapter.removeClass(OPEN);
+            this.closed_();
+            this.adapter.restoreFocus();
+            this.adapter.notifyClose();
+        }
+        else {
+            this.adapter.focusActiveNavigationItem();
+            this.opened_();
+            this.adapter.notifyOpen();
+        }
+        this.adapter.removeClass(ANIMATE);
+        this.adapter.removeClass(OPENING);
+        this.adapter.removeClass(CLOSING);
+    };
+    /**
+     * Extension point for when drawer finishes open animation.
+     */
+    MDCDismissibleDrawerFoundation.prototype.opened_ = function () { }; // tslint:disable-line:no-empty
+    /**
+     * Extension point for when drawer finishes close animation.
+     */
+    MDCDismissibleDrawerFoundation.prototype.closed_ = function () { }; // tslint:disable-line:no-empty
+    /**
+     * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
+     */
+    MDCDismissibleDrawerFoundation.prototype.runNextAnimationFrame_ = function (callback) {
+        var _this = this;
+        cancelAnimationFrame(this.animationFrame_);
+        this.animationFrame_ = requestAnimationFrame(function () {
+            _this.animationFrame_ = 0;
+            clearTimeout(_this.animationTimer_);
+            _this.animationTimer_ = setTimeout(callback, 0);
+        });
+    };
+    MDCDismissibleDrawerFoundation.prototype.isElement_ = function (element) {
+        // In Edge, transitionend on ripple pseudo-elements yields a target without classList.
+        return Boolean(element.classList);
+    };
+    return MDCDismissibleDrawerFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCDismissibleDrawerFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/drawer/index.js":
+/*!************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/drawer/index.js ***!
+  \************************************************************************/
+/*! exports provided: util, MDCDrawer, cssClasses, strings, MDCDismissibleDrawerFoundation, MDCModalDrawerFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "../../node_modules/@material/drawer/util.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "util", function() { return _util__WEBPACK_IMPORTED_MODULE_0__; });
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/drawer/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCDrawer", function() { return _component__WEBPACK_IMPORTED_MODULE_1__["MDCDrawer"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/drawer/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/* harmony import */ var _dismissible_foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dismissible/foundation */ "../../node_modules/@material/drawer/dismissible/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCDismissibleDrawerFoundation", function() { return _dismissible_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCDismissibleDrawerFoundation"]; });
+
+/* harmony import */ var _modal_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modal/foundation */ "../../node_modules/@material/drawer/modal/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCModalDrawerFoundation", function() { return _modal_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCModalDrawerFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/drawer/modal/foundation.js":
+/*!***********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/drawer/modal/foundation.js ***!
+  \***********************************************************************************/
+/*! exports provided: MDCModalDrawerFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCModalDrawerFoundation", function() { return MDCModalDrawerFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _dismissible_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dismissible/foundation */ "../../node_modules/@material/drawer/dismissible/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+/* istanbul ignore next: subclass is not a branch statement */
+var MDCModalDrawerFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCModalDrawerFoundation, _super);
+    function MDCModalDrawerFoundation() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Handles click event on scrim.
+     */
+    MDCModalDrawerFoundation.prototype.handleScrimClick = function () {
+        this.close();
+    };
+    /**
+     * Called when drawer finishes open animation.
+     */
+    MDCModalDrawerFoundation.prototype.opened_ = function () {
+        this.adapter.trapFocus();
+    };
+    /**
+     * Called when drawer finishes close animation.
+     */
+    MDCModalDrawerFoundation.prototype.closed_ = function () {
+        this.adapter.releaseFocus();
+    };
+    return MDCModalDrawerFoundation;
+}(_dismissible_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCDismissibleDrawerFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCModalDrawerFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/drawer/util.js":
+/*!***********************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/drawer/util.js ***!
+  \***********************************************************************/
+/*! exports provided: createFocusTrapInstance */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFocusTrapInstance", function() { return createFocusTrapInstance; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+function createFocusTrapInstance(surfaceEl, focusTrapFactory) {
+    return focusTrapFactory(surfaceEl, {
+        // Component handles focusing on active nav item.
+        skipInitialFocus: true,
+    });
+}
+//# sourceMappingURL=util.js.map
 
 /***/ }),
 
@@ -1353,6 +2250,1396 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/list/component.js":
+/*!**************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/list/component.js ***!
+  \**************************************************************************/
+/*! exports provided: MDCList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCList", function() { return MDCList; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/list/constants.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/list/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+var MDCList = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCList, _super);
+    function MDCList() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(MDCList.prototype, "vertical", {
+        set: function (value) {
+            this.foundation.setVerticalOrientation(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCList.prototype, "listElements", {
+        get: function () {
+            return [].slice.call(this.root.querySelectorAll("." + _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_CLASS));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCList.prototype, "wrapFocus", {
+        set: function (value) {
+            this.foundation.setWrapFocus(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCList.prototype, "typeaheadInProgress", {
+        /**
+         * @return Whether typeahead is currently matching a user-specified prefix.
+         */
+        get: function () {
+            return this.foundation.isTypeaheadInProgress();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCList.prototype, "hasTypeahead", {
+        /**
+         * Sets whether typeahead functionality is enabled on the list.
+         * @param hasTypeahead Whether typeahead is enabled.
+         */
+        set: function (hasTypeahead) {
+            this.foundation.setHasTypeahead(hasTypeahead);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCList.prototype, "singleSelection", {
+        set: function (isSingleSelectionList) {
+            this.foundation.setSingleSelection(isSingleSelectionList);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCList.prototype, "selectedIndex", {
+        get: function () {
+            return this.foundation.getSelectedIndex();
+        },
+        set: function (index) {
+            this.foundation.setSelectedIndex(index);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCList.attachTo = function (root) {
+        return new MDCList(root);
+    };
+    MDCList.prototype.initialSyncWithDOM = function () {
+        this.handleClick_ = this.handleClickEvent_.bind(this);
+        this.handleKeydown_ = this.handleKeydownEvent_.bind(this);
+        this.focusInEventListener_ = this.handleFocusInEvent_.bind(this);
+        this.focusOutEventListener_ = this.handleFocusOutEvent_.bind(this);
+        this.listen('keydown', this.handleKeydown_);
+        this.listen('click', this.handleClick_);
+        this.listen('focusin', this.focusInEventListener_);
+        this.listen('focusout', this.focusOutEventListener_);
+        this.layout();
+        this.initializeListType();
+    };
+    MDCList.prototype.destroy = function () {
+        this.unlisten('keydown', this.handleKeydown_);
+        this.unlisten('click', this.handleClick_);
+        this.unlisten('focusin', this.focusInEventListener_);
+        this.unlisten('focusout', this.focusOutEventListener_);
+    };
+    MDCList.prototype.layout = function () {
+        var direction = this.root.getAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_ORIENTATION);
+        this.vertical = direction !== _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_ORIENTATION_HORIZONTAL;
+        // List items need to have at least tabindex=-1 to be focusable.
+        [].slice.call(this.root.querySelectorAll('.mdc-list-item:not([tabindex])'))
+            .forEach(function (el) {
+            el.setAttribute('tabindex', '-1');
+        });
+        // Child button/a elements are not tabbable until the list item is focused.
+        [].slice.call(this.root.querySelectorAll(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].FOCUSABLE_CHILD_ELEMENTS))
+            .forEach(function (el) { return el.setAttribute('tabindex', '-1'); });
+        this.foundation.layout();
+    };
+    /**
+     * Extracts the primary text from a list item.
+     * @param item The list item element.
+     * @return The primary text in the element.
+     */
+    MDCList.prototype.getPrimaryText = function (item) {
+        var primaryText = item.querySelector("." + _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_PRIMARY_TEXT_CLASS);
+        if (primaryText) {
+            return primaryText.textContent || '';
+        }
+        var singleLineText = item.querySelector("." + _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_TEXT_CLASS);
+        return (singleLineText && singleLineText.textContent) || '';
+    };
+    /**
+     * Initialize selectedIndex value based on pre-selected checkbox list items, single selection or radio.
+     */
+    MDCList.prototype.initializeListType = function () {
+        var _this = this;
+        var checkboxListItems = this.root.querySelectorAll(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_ROLE_CHECKBOX_SELECTOR);
+        var singleSelectedListItem = this.root.querySelector("\n      ." + _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_ACTIVATED_CLASS + ",\n      ." + _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_SELECTED_CLASS + "\n    ");
+        var radioSelectedListItem = this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_CHECKED_RADIO_SELECTOR);
+        if (checkboxListItems.length) {
+            var preselectedItems = this.root.querySelectorAll(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_CHECKED_CHECKBOX_SELECTOR);
+            this.selectedIndex =
+                [].map.call(preselectedItems, function (listItem) { return _this.listElements.indexOf(listItem); });
+        }
+        else if (singleSelectedListItem) {
+            if (singleSelectedListItem.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_ACTIVATED_CLASS)) {
+                this.foundation.setUseActivatedClass(true);
+            }
+            this.singleSelection = true;
+            this.selectedIndex = this.listElements.indexOf(singleSelectedListItem);
+        }
+        else if (radioSelectedListItem) {
+            this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
+        }
+    };
+    /**
+     * Updates the list item at itemIndex to the desired isEnabled state.
+     * @param itemIndex Index of the list item
+     * @param isEnabled Sets the list item to enabled or disabled.
+     */
+    MDCList.prototype.setEnabled = function (itemIndex, isEnabled) {
+        this.foundation.setEnabled(itemIndex, isEnabled);
+    };
+    /**
+     * Given the next desired character from the user, adds it to the typeahead
+     * buffer. Then, attempts to find the next option matching the buffer. Wraps
+     * around if at the end of options.
+     *
+     * @param nextChar The next character to add to the prefix buffer.
+     * @param startingIndex The index from which to start matching. Defaults to
+     *     the currently focused index.
+     * @return The index of the matched item.
+     */
+    MDCList.prototype.typeaheadMatchItem = function (nextChar, startingIndex) {
+        return this.foundation.typeaheadMatchItem(nextChar, startingIndex, /** skipFocus */ true);
+    };
+    MDCList.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addClassForElementIndex: function (index, className) {
+                var element = _this.listElements[index];
+                if (element) {
+                    element.classList.add(className);
+                }
+            },
+            focusItemAtIndex: function (index) {
+                var element = _this.listElements[index];
+                if (element) {
+                    element.focus();
+                }
+            },
+            getAttributeForElementIndex: function (index, attr) {
+                return _this.listElements[index].getAttribute(attr);
+            },
+            getFocusedElementIndex: function () {
+                return _this.listElements.indexOf(document.activeElement);
+            },
+            getListItemCount: function () { return _this.listElements.length; },
+            getPrimaryTextAtIndex: function (index) {
+                return _this.getPrimaryText(_this.listElements[index]);
+            },
+            hasCheckboxAtIndex: function (index) {
+                var listItem = _this.listElements[index];
+                return !!listItem.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].CHECKBOX_SELECTOR);
+            },
+            hasRadioAtIndex: function (index) {
+                var listItem = _this.listElements[index];
+                return !!listItem.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].RADIO_SELECTOR);
+            },
+            isCheckboxCheckedAtIndex: function (index) {
+                var listItem = _this.listElements[index];
+                var toggleEl = listItem.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].CHECKBOX_SELECTOR);
+                return toggleEl.checked;
+            },
+            isFocusInsideList: function () {
+                return _this.root.contains(document.activeElement);
+            },
+            isRootFocused: function () { return document.activeElement === _this.root; },
+            listItemAtIndexHasClass: function (index, className) {
+                return _this.listElements[index].classList.contains(className);
+            },
+            notifyAction: function (index) {
+                _this.emit(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ACTION_EVENT, { index: index }, /** shouldBubble */ true);
+            },
+            removeClassForElementIndex: function (index, className) {
+                var element = _this.listElements[index];
+                if (element) {
+                    element.classList.remove(className);
+                }
+            },
+            setAttributeForElementIndex: function (index, attr, value) {
+                var element = _this.listElements[index];
+                if (element) {
+                    element.setAttribute(attr, value);
+                }
+            },
+            setCheckedCheckboxOrRadioAtIndex: function (index, isChecked) {
+                var listItem = _this.listElements[index];
+                var toggleEl = listItem.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].CHECKBOX_RADIO_SELECTOR);
+                toggleEl.checked = isChecked;
+                var event = document.createEvent('Event');
+                event.initEvent('change', true, true);
+                toggleEl.dispatchEvent(event);
+            },
+            setTabIndexForListItemChildren: function (listItemIndex, tabIndexValue) {
+                var element = _this.listElements[listItemIndex];
+                var listItemChildren = [].slice.call(element.querySelectorAll(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].CHILD_ELEMENTS_TO_TOGGLE_TABINDEX));
+                listItemChildren.forEach(function (el) { return el.setAttribute('tabindex', tabIndexValue); });
+            },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_4__["MDCListFoundation"](adapter);
+    };
+    /**
+     * Used to figure out which list item this event is targetting. Or returns -1 if
+     * there is no list item
+     */
+    MDCList.prototype.getListItemIndex_ = function (evt) {
+        var eventTarget = evt.target;
+        var nearestParent = Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__["closest"])(eventTarget, "." + _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_CLASS + ", ." + _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].ROOT);
+        // Get the index of the element if it is a list item.
+        if (nearestParent && Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__["matches"])(nearestParent, "." + _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_CLASS)) {
+            return this.listElements.indexOf(nearestParent);
+        }
+        return -1;
+    };
+    /**
+     * Used to figure out which element was clicked before sending the event to the foundation.
+     */
+    MDCList.prototype.handleFocusInEvent_ = function (evt) {
+        var index = this.getListItemIndex_(evt);
+        this.foundation.handleFocusIn(evt, index);
+    };
+    /**
+     * Used to figure out which element was clicked before sending the event to the foundation.
+     */
+    MDCList.prototype.handleFocusOutEvent_ = function (evt) {
+        var index = this.getListItemIndex_(evt);
+        this.foundation.handleFocusOut(evt, index);
+    };
+    /**
+     * Used to figure out which element was focused when keydown event occurred before sending the event to the
+     * foundation.
+     */
+    MDCList.prototype.handleKeydownEvent_ = function (evt) {
+        var index = this.getListItemIndex_(evt);
+        var target = evt.target;
+        this.foundation.handleKeydown(evt, target.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_CLASS), index);
+    };
+    /**
+     * Used to figure out which element was clicked before sending the event to the foundation.
+     */
+    MDCList.prototype.handleClickEvent_ = function (evt) {
+        var index = this.getListItemIndex_(evt);
+        var target = evt.target;
+        // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
+        var toggleCheckbox = !Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__["matches"])(target, _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].CHECKBOX_RADIO_SELECTOR);
+        this.foundation.handleClick(index, toggleCheckbox);
+    };
+    return MDCList;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/list/constants.js":
+/*!**************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/list/constants.js ***!
+  \**************************************************************************/
+/*! exports provided: strings, cssClasses, numbers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    LIST_ITEM_ACTIVATED_CLASS: 'mdc-list-item--activated',
+    LIST_ITEM_CLASS: 'mdc-list-item',
+    LIST_ITEM_DISABLED_CLASS: 'mdc-list-item--disabled',
+    LIST_ITEM_SELECTED_CLASS: 'mdc-list-item--selected',
+    LIST_ITEM_TEXT_CLASS: 'mdc-list-item__text',
+    LIST_ITEM_PRIMARY_TEXT_CLASS: 'mdc-list-item__primary-text',
+    ROOT: 'mdc-list',
+};
+var strings = {
+    ACTION_EVENT: 'MDCList:action',
+    ARIA_CHECKED: 'aria-checked',
+    ARIA_CHECKED_CHECKBOX_SELECTOR: '[role="checkbox"][aria-checked="true"]',
+    ARIA_CHECKED_RADIO_SELECTOR: '[role="radio"][aria-checked="true"]',
+    ARIA_CURRENT: 'aria-current',
+    ARIA_DISABLED: 'aria-disabled',
+    ARIA_ORIENTATION: 'aria-orientation',
+    ARIA_ORIENTATION_HORIZONTAL: 'horizontal',
+    ARIA_ROLE_CHECKBOX_SELECTOR: '[role="checkbox"]',
+    ARIA_SELECTED: 'aria-selected',
+    CHECKBOX_RADIO_SELECTOR: 'input[type="checkbox"], input[type="radio"]',
+    CHECKBOX_SELECTOR: 'input[type="checkbox"]',
+    CHILD_ELEMENTS_TO_TOGGLE_TABINDEX: "\n    ." + cssClasses.LIST_ITEM_CLASS + " button:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " a\n  ",
+    FOCUSABLE_CHILD_ELEMENTS: "\n    ." + cssClasses.LIST_ITEM_CLASS + " button:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " a,\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"radio\"]:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"checkbox\"]:not(:disabled)\n  ",
+    RADIO_SELECTOR: 'input[type="radio"]',
+};
+var numbers = {
+    UNSET_INDEX: -1,
+    TYPEAHEAD_BUFFER_CLEAR_TIMEOUT_MS: 300
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/list/events.js":
+/*!***********************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/list/events.js ***!
+  \***********************************************************************/
+/*! exports provided: preventDefaultEvent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "preventDefaultEvent", function() { return preventDefaultEvent; });
+/**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var ELEMENTS_KEY_ALLOWED_IN = ['input', 'button', 'textarea', 'select'];
+/**
+ * Ensures that preventDefault is only called if the containing element
+ * doesn't consume the event, and it will cause an unintended scroll.
+ *
+ * @param evt keyboard event to be prevented.
+ */
+var preventDefaultEvent = function (evt) {
+    var target = evt.target;
+    if (!target) {
+        return;
+    }
+    var tagName = ("" + target.tagName).toLowerCase();
+    if (ELEMENTS_KEY_ALLOWED_IN.indexOf(tagName) === -1) {
+        evt.preventDefault();
+    }
+};
+//# sourceMappingURL=events.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/list/foundation.js":
+/*!***************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/list/foundation.js ***!
+  \***************************************************************************/
+/*! exports provided: MDCListFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCListFoundation", function() { return MDCListFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/keyboard */ "../../node_modules/@material/dom/keyboard.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/list/constants.js");
+/* harmony import */ var _typeahead__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./typeahead */ "../../node_modules/@material/list/typeahead.js");
+/* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./events */ "../../node_modules/@material/list/events.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+function isNumberArray(selectedIndex) {
+    return selectedIndex instanceof Array;
+}
+var MDCListFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCListFoundation, _super);
+    function MDCListFoundation(adapter) {
+        var _this = _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCListFoundation.defaultAdapter), adapter)) || this;
+        _this.wrapFocus_ = false;
+        _this.isVertical_ = true;
+        _this.isSingleSelectionList_ = false;
+        _this.selectedIndex_ = _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX;
+        _this.focusedItemIndex = _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX;
+        _this.useActivatedClass_ = false;
+        _this.ariaCurrentAttrValue_ = null;
+        _this.isCheckboxList_ = false;
+        _this.isRadioList_ = false;
+        _this.hasTypeahead = false;
+        // Transiently holds current typeahead prefix from user.
+        _this.typeaheadState = _typeahead__WEBPACK_IMPORTED_MODULE_4__["initState"]();
+        _this.sortedIndexByFirstChar = new Map();
+        return _this;
+    }
+    Object.defineProperty(MDCListFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCListFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCListFoundation, "numbers", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCListFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClassForElementIndex: function () { return undefined; },
+                focusItemAtIndex: function () { return undefined; },
+                getAttributeForElementIndex: function () { return null; },
+                getFocusedElementIndex: function () { return 0; },
+                getListItemCount: function () { return 0; },
+                hasCheckboxAtIndex: function () { return false; },
+                hasRadioAtIndex: function () { return false; },
+                isCheckboxCheckedAtIndex: function () { return false; },
+                isFocusInsideList: function () { return false; },
+                isRootFocused: function () { return false; },
+                listItemAtIndexHasClass: function () { return false; },
+                notifyAction: function () { return undefined; },
+                removeClassForElementIndex: function () { return undefined; },
+                setAttributeForElementIndex: function () { return undefined; },
+                setCheckedCheckboxOrRadioAtIndex: function () { return undefined; },
+                setTabIndexForListItemChildren: function () { return undefined; },
+                getPrimaryTextAtIndex: function () { return ''; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCListFoundation.prototype.layout = function () {
+        if (this.adapter.getListItemCount() === 0) {
+            return;
+        }
+        if (this.adapter.hasCheckboxAtIndex(0)) {
+            this.isCheckboxList_ = true;
+        }
+        else if (this.adapter.hasRadioAtIndex(0)) {
+            this.isRadioList_ = true;
+        }
+        if (this.hasTypeahead) {
+            this.sortedIndexByFirstChar = this.typeaheadInitSortedIndex();
+        }
+    };
+    /**
+     * Sets the private wrapFocus_ variable.
+     */
+    MDCListFoundation.prototype.setWrapFocus = function (value) {
+        this.wrapFocus_ = value;
+    };
+    /**
+     * Sets the isVertical_ private variable.
+     */
+    MDCListFoundation.prototype.setVerticalOrientation = function (value) {
+        this.isVertical_ = value;
+    };
+    /**
+     * Sets the isSingleSelectionList_ private variable.
+     */
+    MDCListFoundation.prototype.setSingleSelection = function (value) {
+        this.isSingleSelectionList_ = value;
+    };
+    /**
+     * Sets whether typeahead is enabled on the list.
+     * @param hasTypeahead Whether typeahead is enabled.
+     */
+    MDCListFoundation.prototype.setHasTypeahead = function (hasTypeahead) {
+        this.hasTypeahead = hasTypeahead;
+        if (hasTypeahead) {
+            this.sortedIndexByFirstChar = this.typeaheadInitSortedIndex();
+        }
+    };
+    /**
+     * @return Whether typeahead is currently matching a user-specified prefix.
+     */
+    MDCListFoundation.prototype.isTypeaheadInProgress = function () {
+        return this.hasTypeahead &&
+            _typeahead__WEBPACK_IMPORTED_MODULE_4__["isTypingInProgress"](this.typeaheadState);
+    };
+    /**
+     * Sets the useActivatedClass_ private variable.
+     */
+    MDCListFoundation.prototype.setUseActivatedClass = function (useActivated) {
+        this.useActivatedClass_ = useActivated;
+    };
+    MDCListFoundation.prototype.getSelectedIndex = function () {
+        return this.selectedIndex_;
+    };
+    MDCListFoundation.prototype.setSelectedIndex = function (index) {
+        if (!this.isIndexValid_(index)) {
+            return;
+        }
+        if (this.isCheckboxList_) {
+            this.setCheckboxAtIndex_(index);
+        }
+        else if (this.isRadioList_) {
+            this.setRadioAtIndex_(index);
+        }
+        else {
+            this.setSingleSelectionAtIndex_(index);
+        }
+    };
+    /**
+     * Focus in handler for the list items.
+     */
+    MDCListFoundation.prototype.handleFocusIn = function (_, listItemIndex) {
+        if (listItemIndex >= 0) {
+            this.focusedItemIndex = listItemIndex;
+            this.adapter.setTabIndexForListItemChildren(listItemIndex, '0');
+        }
+    };
+    /**
+     * Focus out handler for the list items.
+     */
+    MDCListFoundation.prototype.handleFocusOut = function (_, listItemIndex) {
+        var _this = this;
+        if (listItemIndex >= 0) {
+            this.adapter.setTabIndexForListItemChildren(listItemIndex, '-1');
+        }
+        /**
+         * Between Focusout & Focusin some browsers do not have focus on any element. Setting a delay to wait till the focus
+         * is moved to next element.
+         */
+        setTimeout(function () {
+            if (!_this.adapter.isFocusInsideList()) {
+                _this.setTabindexToFirstSelectedItem_();
+            }
+        }, 0);
+    };
+    /**
+     * Key handler for the list.
+     */
+    MDCListFoundation.prototype.handleKeydown = function (event, isRootListItem, listItemIndex) {
+        var _this = this;
+        var isArrowLeft = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === 'ArrowLeft';
+        var isArrowUp = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === 'ArrowUp';
+        var isArrowRight = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === 'ArrowRight';
+        var isArrowDown = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === 'ArrowDown';
+        var isHome = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === 'Home';
+        var isEnd = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === 'End';
+        var isEnter = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === 'Enter';
+        var isSpace = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === 'Spacebar';
+        if (this.adapter.isRootFocused()) {
+            if (isArrowUp || isEnd) {
+                event.preventDefault();
+                this.focusLastElement();
+            }
+            else if (isArrowDown || isHome) {
+                event.preventDefault();
+                this.focusFirstElement();
+            }
+            if (this.hasTypeahead) {
+                var handleKeydownOpts = {
+                    event: event,
+                    focusItemAtIndex: function (index) {
+                        _this.focusItemAtIndex(index);
+                    },
+                    focusedItemIndex: -1,
+                    isTargetListItem: isRootListItem,
+                    sortedIndexByFirstChar: this.sortedIndexByFirstChar,
+                    isItemAtIndexDisabled: function (index) {
+                        return _this.adapter.listItemAtIndexHasClass(index, _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_DISABLED_CLASS);
+                    },
+                };
+                _typeahead__WEBPACK_IMPORTED_MODULE_4__["handleKeydown"](handleKeydownOpts, this.typeaheadState);
+            }
+            return;
+        }
+        var currentIndex = this.adapter.getFocusedElementIndex();
+        if (currentIndex === -1) {
+            currentIndex = listItemIndex;
+            if (currentIndex < 0) {
+                // If this event doesn't have a mdc-list-item ancestor from the
+                // current list (not from a sublist), return early.
+                return;
+            }
+        }
+        if ((this.isVertical_ && isArrowDown) || (!this.isVertical_ && isArrowRight)) {
+            Object(_events__WEBPACK_IMPORTED_MODULE_5__["preventDefaultEvent"])(event);
+            this.focusNextElement(currentIndex);
+        }
+        else if ((this.isVertical_ && isArrowUp) || (!this.isVertical_ && isArrowLeft)) {
+            Object(_events__WEBPACK_IMPORTED_MODULE_5__["preventDefaultEvent"])(event);
+            this.focusPrevElement(currentIndex);
+        }
+        else if (isHome) {
+            Object(_events__WEBPACK_IMPORTED_MODULE_5__["preventDefaultEvent"])(event);
+            this.focusFirstElement();
+        }
+        else if (isEnd) {
+            Object(_events__WEBPACK_IMPORTED_MODULE_5__["preventDefaultEvent"])(event);
+            this.focusLastElement();
+        }
+        else if (isEnter || isSpace) {
+            if (isRootListItem) {
+                // Return early if enter key is pressed on anchor element which triggers synthetic MouseEvent event.
+                var target = event.target;
+                if (target && target.tagName === 'A' && isEnter) {
+                    return;
+                }
+                Object(_events__WEBPACK_IMPORTED_MODULE_5__["preventDefaultEvent"])(event);
+                if (this.adapter.listItemAtIndexHasClass(currentIndex, _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_DISABLED_CLASS)) {
+                    return;
+                }
+                if (!this.isTypeaheadInProgress()) {
+                    if (this.isSelectableList_()) {
+                        this.setSelectedIndexOnAction_(currentIndex);
+                    }
+                    this.adapter.notifyAction(currentIndex);
+                }
+            }
+        }
+        if (this.hasTypeahead) {
+            var handleKeydownOpts = {
+                event: event,
+                focusItemAtIndex: function (index) {
+                    _this.focusItemAtIndex(index);
+                },
+                focusedItemIndex: this.focusedItemIndex,
+                isTargetListItem: isRootListItem,
+                sortedIndexByFirstChar: this.sortedIndexByFirstChar,
+                isItemAtIndexDisabled: function (index) { return _this.adapter.listItemAtIndexHasClass(index, _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_DISABLED_CLASS); },
+            };
+            _typeahead__WEBPACK_IMPORTED_MODULE_4__["handleKeydown"](handleKeydownOpts, this.typeaheadState);
+        }
+    };
+    /**
+     * Click handler for the list.
+     */
+    MDCListFoundation.prototype.handleClick = function (index, toggleCheckbox) {
+        if (index === _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX) {
+            return;
+        }
+        this.setTabindexAtIndex_(index);
+        this.focusedItemIndex = index;
+        if (this.adapter.listItemAtIndexHasClass(index, _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_DISABLED_CLASS)) {
+            return;
+        }
+        if (this.isSelectableList_()) {
+            this.setSelectedIndexOnAction_(index, toggleCheckbox);
+        }
+        this.adapter.notifyAction(index);
+    };
+    /**
+     * Focuses the next element on the list.
+     */
+    MDCListFoundation.prototype.focusNextElement = function (index) {
+        var count = this.adapter.getListItemCount();
+        var nextIndex = index + 1;
+        if (nextIndex >= count) {
+            if (this.wrapFocus_) {
+                nextIndex = 0;
+            }
+            else {
+                // Return early because last item is already focused.
+                return index;
+            }
+        }
+        this.focusItemAtIndex(nextIndex);
+        return nextIndex;
+    };
+    /**
+     * Focuses the previous element on the list.
+     */
+    MDCListFoundation.prototype.focusPrevElement = function (index) {
+        var prevIndex = index - 1;
+        if (prevIndex < 0) {
+            if (this.wrapFocus_) {
+                prevIndex = this.adapter.getListItemCount() - 1;
+            }
+            else {
+                // Return early because first item is already focused.
+                return index;
+            }
+        }
+        this.focusItemAtIndex(prevIndex);
+        return prevIndex;
+    };
+    MDCListFoundation.prototype.focusFirstElement = function () {
+        this.focusItemAtIndex(0);
+        return 0;
+    };
+    MDCListFoundation.prototype.focusLastElement = function () {
+        var lastIndex = this.adapter.getListItemCount() - 1;
+        this.focusItemAtIndex(lastIndex);
+        return lastIndex;
+    };
+    /**
+     * @param itemIndex Index of the list item
+     * @param isEnabled Sets the list item to enabled or disabled.
+     */
+    MDCListFoundation.prototype.setEnabled = function (itemIndex, isEnabled) {
+        if (!this.isIndexValid_(itemIndex)) {
+            return;
+        }
+        if (isEnabled) {
+            this.adapter.removeClassForElementIndex(itemIndex, _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_DISABLED_CLASS);
+            this.adapter.setAttributeForElementIndex(itemIndex, _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_DISABLED, 'false');
+        }
+        else {
+            this.adapter.addClassForElementIndex(itemIndex, _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_DISABLED_CLASS);
+            this.adapter.setAttributeForElementIndex(itemIndex, _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_DISABLED, 'true');
+        }
+    };
+    MDCListFoundation.prototype.setSingleSelectionAtIndex_ = function (index) {
+        if (this.selectedIndex_ === index) {
+            return;
+        }
+        var selectedClassName = _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_SELECTED_CLASS;
+        if (this.useActivatedClass_) {
+            selectedClassName = _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_ACTIVATED_CLASS;
+        }
+        if (this.selectedIndex_ !== _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX) {
+            this.adapter.removeClassForElementIndex(this.selectedIndex_, selectedClassName);
+        }
+        this.adapter.addClassForElementIndex(index, selectedClassName);
+        this.setAriaForSingleSelectionAtIndex_(index);
+        this.selectedIndex_ = index;
+    };
+    /**
+     * Sets aria attribute for single selection at given index.
+     */
+    MDCListFoundation.prototype.setAriaForSingleSelectionAtIndex_ = function (index) {
+        // Detect the presence of aria-current and get the value only during list initialization when it is in unset state.
+        if (this.selectedIndex_ === _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX) {
+            this.ariaCurrentAttrValue_ =
+                this.adapter.getAttributeForElementIndex(index, _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_CURRENT);
+        }
+        var isAriaCurrent = this.ariaCurrentAttrValue_ !== null;
+        var ariaAttribute = isAriaCurrent ? _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_CURRENT : _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_SELECTED;
+        if (this.selectedIndex_ !== _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX) {
+            this.adapter.setAttributeForElementIndex(this.selectedIndex_, ariaAttribute, 'false');
+        }
+        var ariaAttributeValue = isAriaCurrent ? this.ariaCurrentAttrValue_ : 'true';
+        this.adapter.setAttributeForElementIndex(index, ariaAttribute, ariaAttributeValue);
+    };
+    /**
+     * Toggles radio at give index. Radio doesn't change the checked state if it is already checked.
+     */
+    MDCListFoundation.prototype.setRadioAtIndex_ = function (index) {
+        this.adapter.setCheckedCheckboxOrRadioAtIndex(index, true);
+        if (this.selectedIndex_ !== _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX) {
+            this.adapter.setAttributeForElementIndex(this.selectedIndex_, _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_CHECKED, 'false');
+        }
+        this.adapter.setAttributeForElementIndex(index, _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_CHECKED, 'true');
+        this.selectedIndex_ = index;
+    };
+    MDCListFoundation.prototype.setCheckboxAtIndex_ = function (index) {
+        for (var i = 0; i < this.adapter.getListItemCount(); i++) {
+            var isChecked = false;
+            if (index.indexOf(i) >= 0) {
+                isChecked = true;
+            }
+            this.adapter.setCheckedCheckboxOrRadioAtIndex(i, isChecked);
+            this.adapter.setAttributeForElementIndex(i, _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_CHECKED, isChecked ? 'true' : 'false');
+        }
+        this.selectedIndex_ = index;
+    };
+    MDCListFoundation.prototype.setTabindexAtIndex_ = function (index) {
+        if (this.focusedItemIndex === _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX && index !== 0) {
+            // If no list item was selected set first list item's tabindex to -1.
+            // Generally, tabindex is set to 0 on first list item of list that has no preselected items.
+            this.adapter.setAttributeForElementIndex(0, 'tabindex', '-1');
+        }
+        else if (this.focusedItemIndex >= 0 && this.focusedItemIndex !== index) {
+            this.adapter.setAttributeForElementIndex(this.focusedItemIndex, 'tabindex', '-1');
+        }
+        this.adapter.setAttributeForElementIndex(index, 'tabindex', '0');
+    };
+    /**
+     * @return Return true if it is single selectin list, checkbox list or radio list.
+     */
+    MDCListFoundation.prototype.isSelectableList_ = function () {
+        return this.isSingleSelectionList_ || this.isCheckboxList_ || this.isRadioList_;
+    };
+    MDCListFoundation.prototype.setTabindexToFirstSelectedItem_ = function () {
+        var targetIndex = 0;
+        if (this.isSelectableList_()) {
+            if (typeof this.selectedIndex_ === 'number' && this.selectedIndex_ !== _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX) {
+                targetIndex = this.selectedIndex_;
+            }
+            else if (isNumberArray(this.selectedIndex_) && this.selectedIndex_.length > 0) {
+                targetIndex = this.selectedIndex_.reduce(function (currentIndex, minIndex) { return Math.min(currentIndex, minIndex); });
+            }
+        }
+        this.setTabindexAtIndex_(targetIndex);
+    };
+    MDCListFoundation.prototype.isIndexValid_ = function (index) {
+        var _this = this;
+        if (index instanceof Array) {
+            if (!this.isCheckboxList_) {
+                throw new Error('MDCListFoundation: Array of index is only supported for checkbox based list');
+            }
+            if (index.length === 0) {
+                return true;
+            }
+            else {
+                return index.some(function (i) { return _this.isIndexInRange_(i); });
+            }
+        }
+        else if (typeof index === 'number') {
+            if (this.isCheckboxList_) {
+                throw new Error('MDCListFoundation: Expected array of index for checkbox based list but got number: ' + index);
+            }
+            return this.isIndexInRange_(index);
+        }
+        else {
+            return false;
+        }
+    };
+    MDCListFoundation.prototype.isIndexInRange_ = function (index) {
+        var listSize = this.adapter.getListItemCount();
+        return index >= 0 && index < listSize;
+    };
+    /**
+     * Sets selected index on user action, toggles checkbox / radio based on toggleCheckbox value.
+     * User interaction should not toggle list item(s) when disabled.
+     */
+    MDCListFoundation.prototype.setSelectedIndexOnAction_ = function (index, toggleCheckbox) {
+        if (toggleCheckbox === void 0) { toggleCheckbox = true; }
+        if (this.isCheckboxList_) {
+            this.toggleCheckboxAtIndex_(index, toggleCheckbox);
+        }
+        else {
+            this.setSelectedIndex(index);
+        }
+    };
+    MDCListFoundation.prototype.toggleCheckboxAtIndex_ = function (index, toggleCheckbox) {
+        var isChecked = this.adapter.isCheckboxCheckedAtIndex(index);
+        if (toggleCheckbox) {
+            isChecked = !isChecked;
+            this.adapter.setCheckedCheckboxOrRadioAtIndex(index, isChecked);
+        }
+        this.adapter.setAttributeForElementIndex(index, _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_CHECKED, isChecked ? 'true' : 'false');
+        // If none of the checkbox items are selected and selectedIndex is not initialized then provide a default value.
+        var selectedIndexes = this.selectedIndex_ === _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].UNSET_INDEX ? [] : this.selectedIndex_.slice();
+        if (isChecked) {
+            selectedIndexes.push(index);
+        }
+        else {
+            selectedIndexes = selectedIndexes.filter(function (i) { return i !== index; });
+        }
+        this.selectedIndex_ = selectedIndexes;
+    };
+    MDCListFoundation.prototype.focusItemAtIndex = function (index) {
+        this.setTabindexAtIndex_(index);
+        this.adapter.focusItemAtIndex(index);
+        this.focusedItemIndex = index;
+    };
+    /**
+     * Given the next desired character from the user, adds it to the typeahead
+     * buffer. Then, attempts to find the next option matching the buffer. Wraps
+     * around if at the end of options.
+     *
+     * @param nextChar The next character to add to the prefix buffer.
+     * @param startingIndex The index from which to start matching. Only relevant
+     *     when starting a new match sequence. To start a new match sequence,
+     *     clear the buffer using `clearTypeaheadBuffer`, or wait for the buffer
+     *     to clear after a set interval defined in list foundation. Defaults to
+     *     the currently focused index.
+     * @return The index of the matched item, or -1 if no match.
+     */
+    MDCListFoundation.prototype.typeaheadMatchItem = function (nextChar, startingIndex, skipFocus) {
+        var _this = this;
+        if (skipFocus === void 0) { skipFocus = false; }
+        var opts = {
+            focusItemAtIndex: function (index) {
+                _this.focusItemAtIndex(index);
+            },
+            focusedItemIndex: startingIndex ? startingIndex : this.focusedItemIndex,
+            nextChar: nextChar,
+            sortedIndexByFirstChar: this.sortedIndexByFirstChar,
+            skipFocus: skipFocus,
+            isItemAtIndexDisabled: function (index) { return _this.adapter.listItemAtIndexHasClass(index, _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].LIST_ITEM_DISABLED_CLASS); }
+        };
+        return _typeahead__WEBPACK_IMPORTED_MODULE_4__["matchItem"](opts, this.typeaheadState);
+    };
+    /**
+     * Initializes the MDCListTextAndIndex data structure by indexing the current
+     * list items by primary text.
+     *
+     * @return The primary texts of all the list items sorted by first character.
+     */
+    MDCListFoundation.prototype.typeaheadInitSortedIndex = function () {
+        return _typeahead__WEBPACK_IMPORTED_MODULE_4__["initSortedIndex"](this.adapter.getListItemCount(), this.adapter.getPrimaryTextAtIndex);
+    };
+    /**
+     * Clears the typeahead buffer.
+     */
+    MDCListFoundation.prototype.clearTypeaheadBuffer = function () {
+        _typeahead__WEBPACK_IMPORTED_MODULE_4__["clearBuffer"](this.typeaheadState);
+    };
+    return MDCListFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCListFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/list/index.js":
+/*!**********************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/list/index.js ***!
+  \**********************************************************************/
+/*! exports provided: MDCList, strings, cssClasses, numbers, MDCListFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/list/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCList", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCList"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/list/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/list/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCListFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCListFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/list/typeahead.js":
+/*!**************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/list/typeahead.js ***!
+  \**************************************************************************/
+/*! exports provided: initState, initSortedIndex, matchItem, isTypingInProgress, clearBuffer, handleKeydown */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initState", function() { return initState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initSortedIndex", function() { return initSortedIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "matchItem", function() { return matchItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTypingInProgress", function() { return isTypingInProgress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearBuffer", function() { return clearBuffer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleKeydown", function() { return handleKeydown; });
+/* harmony import */ var _material_dom_keyboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material/dom/keyboard */ "../../node_modules/@material/dom/keyboard.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/list/constants.js");
+/* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./events */ "../../node_modules/@material/list/events.js");
+/**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+/**
+ * Initializes a state object for typeahead. Use the same reference for calls to
+ * typeahead functions.
+ *
+ * @return The current state of the typeahead process. Each state reference
+ *     represents a typeahead instance as the reference is typically mutated
+ *     in-place.
+ */
+function initState() {
+    var state = {
+        bufferClearTimeout: 0,
+        currentFirstChar: '',
+        sortedIndexCursor: 0,
+        typeaheadBuffer: '',
+    };
+    return state;
+}
+/**
+ * Initializes typeahead state by indexing the current list items by primary
+ * text into the sortedIndexByFirstChar data structure.
+ *
+ * @param listItemCount numer of items in the list
+ * @param getPrimaryTextByItemIndex function that returns the primary text at a
+ *     given index
+ *
+ * @return Map that maps the first character of the primary text to the full
+ *     list text and it's index
+ */
+function initSortedIndex(listItemCount, getPrimaryTextByItemIndex) {
+    var sortedIndexByFirstChar = new Map();
+    // Aggregate item text to index mapping
+    for (var i = 0; i < listItemCount; i++) {
+        var primaryText = getPrimaryTextByItemIndex(i).trim();
+        if (!primaryText) {
+            continue;
+        }
+        var firstChar = primaryText[0].toLowerCase();
+        if (!sortedIndexByFirstChar.has(firstChar)) {
+            sortedIndexByFirstChar.set(firstChar, []);
+        }
+        sortedIndexByFirstChar.get(firstChar).push({ text: primaryText.toLowerCase(), index: i });
+    }
+    // Sort the mapping
+    // TODO(b/157162694): Investigate replacing forEach with Map.values()
+    sortedIndexByFirstChar.forEach(function (values) {
+        values.sort(function (first, second) {
+            return first.index - second.index;
+        });
+    });
+    return sortedIndexByFirstChar;
+}
+/**
+ * Given the next desired character from the user, it attempts to find the next
+ * list option matching the buffer. Wraps around if at the end of options.
+ *
+ * @param opts Options and accessors
+ *   - nextChar - the next character to match against items
+ *   - sortedIndexByFirstChar - output of `initSortedIndex(...)`
+ *   - focusedItemIndex - the index of the currently focused item
+ *   - focusItemAtIndex - function that focuses a list item at given index
+ *   - skipFocus - whether or not to focus the matched item
+ *   - isItemAtIndexDisabled - function that determines whether an item at a
+ *        given index is disabled
+ * @param state The typeahead state instance. See `initState`.
+ *
+ * @return The index of the matched item, or -1 if no match.
+ */
+function matchItem(opts, state) {
+    var nextChar = opts.nextChar, focusItemAtIndex = opts.focusItemAtIndex, sortedIndexByFirstChar = opts.sortedIndexByFirstChar, focusedItemIndex = opts.focusedItemIndex, skipFocus = opts.skipFocus, isItemAtIndexDisabled = opts.isItemAtIndexDisabled;
+    clearTimeout(state.bufferClearTimeout);
+    state.bufferClearTimeout = setTimeout(function () {
+        clearBuffer(state);
+    }, _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"].TYPEAHEAD_BUFFER_CLEAR_TIMEOUT_MS);
+    state.typeaheadBuffer = state.typeaheadBuffer + nextChar;
+    var index;
+    if (state.typeaheadBuffer.length === 1) {
+        index = matchFirstChar(sortedIndexByFirstChar, focusedItemIndex, isItemAtIndexDisabled, state);
+    }
+    else {
+        index = matchAllChars(sortedIndexByFirstChar, isItemAtIndexDisabled, state);
+    }
+    if (index !== -1 && !skipFocus) {
+        focusItemAtIndex(index);
+    }
+    return index;
+}
+/**
+ * Matches the user's single input character in the buffer to the
+ * next option that begins with such character. Wraps around if at
+ * end of options. Returns -1 if no match is found.
+ */
+function matchFirstChar(sortedIndexByFirstChar, focusedItemIndex, isItemAtIndexDisabled, state) {
+    var firstChar = state.typeaheadBuffer[0];
+    var itemsMatchingFirstChar = sortedIndexByFirstChar.get(firstChar);
+    if (!itemsMatchingFirstChar) {
+        return -1;
+    }
+    // Has the same firstChar been recently matched?
+    // Also, did starting index remain the same between key presses?
+    // If both hold true, simply increment index.
+    if (firstChar === state.currentFirstChar &&
+        itemsMatchingFirstChar[state.sortedIndexCursor].index ===
+            focusedItemIndex) {
+        state.sortedIndexCursor =
+            (state.sortedIndexCursor + 1) % itemsMatchingFirstChar.length;
+        var newIndex = itemsMatchingFirstChar[state.sortedIndexCursor].index;
+        if (!isItemAtIndexDisabled(newIndex)) {
+            return newIndex;
+        }
+    }
+    // If we're here, it means one of the following happened:
+    // - either firstChar or startingIndex has changed, invalidating the
+    // cursor.
+    // - The next item of typeahead is disabled, so we have to look further.
+    state.currentFirstChar = firstChar;
+    var newCursorPosition = -1;
+    var cursorPosition;
+    // Find the first non-disabled item as a fallback.
+    for (cursorPosition = 0; cursorPosition < itemsMatchingFirstChar.length; cursorPosition++) {
+        if (!isItemAtIndexDisabled(itemsMatchingFirstChar[cursorPosition].index)) {
+            newCursorPosition = cursorPosition;
+            break;
+        }
+    }
+    // Advance cursor to first item matching the firstChar that is positioned
+    // after starting item. Cursor is unchanged from fallback if there's no
+    // such item.
+    for (; cursorPosition < itemsMatchingFirstChar.length; cursorPosition++) {
+        if (itemsMatchingFirstChar[cursorPosition].index > focusedItemIndex &&
+            !isItemAtIndexDisabled(itemsMatchingFirstChar[cursorPosition].index)) {
+            newCursorPosition = cursorPosition;
+            break;
+        }
+    }
+    if (newCursorPosition !== -1) {
+        state.sortedIndexCursor = newCursorPosition;
+        return itemsMatchingFirstChar[state.sortedIndexCursor].index;
+    }
+    return -1;
+}
+/**
+ * Attempts to find the next item that matches all of the typeahead buffer.
+ * Wraps around if at end of options. Returns -1 if no match is found.
+ */
+function matchAllChars(sortedIndexByFirstChar, isItemAtIndexDisabled, state) {
+    var firstChar = state.typeaheadBuffer[0];
+    var itemsMatchingFirstChar = sortedIndexByFirstChar.get(firstChar);
+    if (!itemsMatchingFirstChar) {
+        return -1;
+    }
+    // Do nothing if text already matches
+    var startingItem = itemsMatchingFirstChar[state.sortedIndexCursor];
+    if (startingItem.text.lastIndexOf(state.typeaheadBuffer, 0) === 0 &&
+        !isItemAtIndexDisabled(startingItem.index)) {
+        return startingItem.index;
+    }
+    // Find next item that matches completely; if no match, we'll eventually
+    // loop around to same position
+    var cursorPosition = (state.sortedIndexCursor + 1) % itemsMatchingFirstChar.length;
+    var nextCursorPosition = -1;
+    while (cursorPosition !== state.sortedIndexCursor) {
+        var currentItem = itemsMatchingFirstChar[cursorPosition];
+        var matches = currentItem.text.lastIndexOf(state.typeaheadBuffer, 0) === 0;
+        var isEnabled = !isItemAtIndexDisabled(currentItem.index);
+        if (matches && isEnabled) {
+            nextCursorPosition = cursorPosition;
+            break;
+        }
+        cursorPosition = (cursorPosition + 1) % itemsMatchingFirstChar.length;
+    }
+    if (nextCursorPosition !== -1) {
+        state.sortedIndexCursor = nextCursorPosition;
+        return itemsMatchingFirstChar[state.sortedIndexCursor].index;
+    }
+    return -1;
+}
+/**
+ * Whether or not the given typeahead instaance state is currently typing.
+ *
+ * @param state The typeahead state instance. See `initState`.
+ */
+function isTypingInProgress(state) {
+    return state.typeaheadBuffer.length > 0;
+}
+/**
+ * Clears the typeahaed buffer so that it resets item matching to the first
+ * character.
+ *
+ * @param state The typeahead state instance. See `initState`.
+ */
+function clearBuffer(state) {
+    state.typeaheadBuffer = '';
+}
+/**
+ * Given a keydown event, it calculates whether or not to automatically focus a
+ * list item depending on what was typed mimicing the typeahead functionality of
+ * a standard <select> element that is open.
+ *
+ * @param opts Options and accessors
+ *   - event - the KeyboardEvent to handle and parse
+ *   - sortedIndexByFirstChar - output of `initSortedIndex(...)`
+ *   - focusedItemIndex - the index of the currently focused item
+ *   - focusItemAtIndex - function that focuses a list item at given index
+ *   - isItemAtFocusedIndexDisabled - whether or not the currently focused item
+ *      is disabled
+ *   - isTargetListItem - whether or not the event target is a list item
+ * @param state The typeahead state instance. See `initState`.
+ *
+ * @returns index of the item matched by the keydown. -1 if not matched.
+ */
+function handleKeydown(opts, state) {
+    var event = opts.event, isTargetListItem = opts.isTargetListItem, focusedItemIndex = opts.focusedItemIndex, focusItemAtIndex = opts.focusItemAtIndex, sortedIndexByFirstChar = opts.sortedIndexByFirstChar, isItemAtIndexDisabled = opts.isItemAtIndexDisabled;
+    var isArrowLeft = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_0__["normalizeKey"])(event) === 'ArrowLeft';
+    var isArrowUp = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_0__["normalizeKey"])(event) === 'ArrowUp';
+    var isArrowRight = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_0__["normalizeKey"])(event) === 'ArrowRight';
+    var isArrowDown = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_0__["normalizeKey"])(event) === 'ArrowDown';
+    var isHome = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_0__["normalizeKey"])(event) === 'Home';
+    var isEnd = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_0__["normalizeKey"])(event) === 'End';
+    var isEnter = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_0__["normalizeKey"])(event) === 'Enter';
+    var isSpace = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_0__["normalizeKey"])(event) === 'Spacebar';
+    if (isArrowLeft || isArrowUp || isArrowRight || isArrowDown || isHome ||
+        isEnd || isEnter) {
+        return -1;
+    }
+    var isCharacterKey = !isSpace && event.key.length === 1;
+    if (isCharacterKey) {
+        Object(_events__WEBPACK_IMPORTED_MODULE_2__["preventDefaultEvent"])(event);
+        var matchItemOpts = {
+            focusItemAtIndex: focusItemAtIndex,
+            focusedItemIndex: focusedItemIndex,
+            nextChar: event.key.toLowerCase(),
+            sortedIndexByFirstChar: sortedIndexByFirstChar,
+            skipFocus: false,
+            isItemAtIndexDisabled: isItemAtIndexDisabled,
+        };
+        return matchItem(matchItemOpts, state);
+    }
+    if (!isSpace) {
+        return -1;
+    }
+    if (isTargetListItem) {
+        Object(_events__WEBPACK_IMPORTED_MODULE_2__["preventDefaultEvent"])(event);
+    }
+    var typeaheadOnListItem = isTargetListItem && isTypingInProgress(state);
+    if (typeaheadOnListItem) {
+        var matchItemOpts = {
+            focusItemAtIndex: focusItemAtIndex,
+            focusedItemIndex: focusedItemIndex,
+            nextChar: ' ',
+            sortedIndexByFirstChar: sortedIndexByFirstChar,
+            skipFocus: false,
+            isItemAtIndexDisabled: isItemAtIndexDisabled,
+        };
+        // space participates in typeahead matching if in rapid typing mode
+        return matchItem(matchItemOpts, state);
+    }
+    return -1;
+}
+//# sourceMappingURL=typeahead.js.map
 
 /***/ }),
 
@@ -23200,6 +25487,271 @@ module.exports = __webpack_require__(/*! ./src/main.ts */"src/main");
 
 /***/ }),
 
+/***/ "@aurelia-mdc-web/drawer":
+/*!******************************!*\
+  !*** ../drawer/src/index.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! ./mdc-drawer */ "@aurelia-mdc-web/drawer/mdc-drawer")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_framework_1, mdc_drawer_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.configure = void 0;
+    Object.defineProperty(exports, "MdcDrawer", { enumerable: true, get: function () { return mdc_drawer_1.MdcDrawer; } });
+    function configure(config) {
+        config.globalResources([
+            './mdc-drawer',
+            './mdc-drawer-content',
+            './mdc-drawer-app-content',
+            './mdc-drawer-scrim'
+        ]);
+    }
+    exports.configure = configure;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/drawer/mdc-drawer":
+/*!***********************************!*\
+  !*** ../drawer/src/mdc-drawer.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/drawer */ "../../node_modules/@material/drawer/index.js"), __webpack_require__(/*! @material/list */ "../../node_modules/@material/list/index.js"), __webpack_require__(/*! @material/dom/focus-trap */ "../../node_modules/@material/dom/focus-trap.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-pal */ "../../node_modules/aurelia-pal/dist/es2015/aurelia-pal.js"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, drawer_1, list_1, focus_trap_1, aurelia_framework_1, aurelia_pal_1, aurelia_typed_observable_plugin_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcDrawer = void 0;
+    var MdcDrawer = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcDrawer, _super);
+        function MdcDrawer() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Object.defineProperty(MdcDrawer.prototype, "open", {
+            /**
+             * @return boolean Proxies to the foundation's `open`/`close` methods.
+             * Also returns true if drawer is in the open position.
+             */
+            get: function () {
+                return this.foundation.isOpen();
+            },
+            /**
+             * Toggles the drawer open and closed.
+             */
+            set: function (isOpen) {
+                if (isOpen) {
+                    this.foundation.open();
+                }
+                else {
+                    this.foundation.close();
+                }
+            },
+            enumerable: false,
+            configurable: true
+        });
+        MdcDrawer.prototype.initialise = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    // const listEl =
+                    //   this.root.querySelector(`.${MDCListFoundation.cssClasses.ROOT}`);
+                    // if (listEl) {
+                    //   this.list_ = listFactory(listEl);
+                    //   this.list_.wrapFocus = true;
+                    // }
+                    this.focusTrapFactory_ = function (el) { return new focus_trap_1.FocusTrap(el); };
+                    return [2 /*return*/];
+                });
+            });
+        };
+        MdcDrawer.prototype.initialSyncWithDOM = function () {
+            var _this = this;
+            var MODAL = drawer_1.cssClasses.MODAL;
+            var SCRIM_SELECTOR = drawer_1.strings.SCRIM_SELECTOR;
+            this.scrim_ = this.root.parentNode.querySelector(SCRIM_SELECTOR);
+            if (this.scrim_ && this.root.classList.contains(MODAL)) {
+                this.handleScrimClick_ = function () { return _this.foundation.handleScrimClick(); };
+                this.scrim_.addEventListener('click', this.handleScrimClick_);
+                this.focusTrap_ = drawer_1.util.createFocusTrapInstance(this.root, this.focusTrapFactory_);
+            }
+            this.handleKeydown_ = function (evt) { return _this.foundation.handleKeydown(evt); };
+            this.handleTransitionEnd_ = function (evt) { return _this.foundation.handleTransitionEnd(evt); };
+            this.listen('keydown', this.handleKeydown_);
+            this.listen('transitionend', this.handleTransitionEnd_);
+        };
+        MdcDrawer.prototype.destroy = function () {
+            this.unlisten('keydown', this.handleKeydown_);
+            this.unlisten('transitionend', this.handleTransitionEnd_);
+            // if (this.list_) {
+            //   this.list_.destroy();
+            // }
+            var MODAL = drawer_1.cssClasses.MODAL;
+            if (this.scrim_ && this.handleScrimClick_ &&
+                this.root.classList.contains(MODAL)) {
+                this.scrim_.removeEventListener('click', this.handleScrimClick_);
+                // Ensure drawer is closed to hide scrim and release focus
+                this.open = false;
+            }
+        };
+        MdcDrawer.prototype.getDefaultFoundation = function () {
+            var _this = this;
+            // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+            // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+            var adapter = {
+                addClass: function (className) { return _this.root.classList.add(className); },
+                removeClass: function (className) { return _this.root.classList.remove(className); },
+                hasClass: function (className) { return _this.root.classList.contains(className); },
+                elementHasClass: function (element, className) { return element.classList.contains(className); },
+                saveFocus: function () { return _this.previousFocus_ = document.activeElement; },
+                restoreFocus: function () {
+                    var previousFocus = _this.previousFocus_;
+                    if (previousFocus && previousFocus.focus &&
+                        _this.root.contains(document.activeElement)) {
+                        previousFocus.focus();
+                    }
+                },
+                focusActiveNavigationItem: function () {
+                    var activeNavItemEl = _this.root.querySelector("." + list_1.MDCListFoundation.cssClasses.LIST_ITEM_ACTIVATED_CLASS);
+                    if (activeNavItemEl) {
+                        activeNavItemEl.focus();
+                    }
+                },
+                notifyClose: function () { return _this.emit(drawer_1.strings.CLOSE_EVENT, {}, true /* shouldBubble */); },
+                notifyOpen: function () { return _this.emit(drawer_1.strings.OPEN_EVENT, {}, true /* shouldBubble */); },
+                trapFocus: function () { return _this.focusTrap_.trapFocus(); },
+                releaseFocus: function () { return _this.focusTrap_.releaseFocus(); },
+            };
+            var DISMISSIBLE = drawer_1.cssClasses.DISMISSIBLE, MODAL = drawer_1.cssClasses.MODAL;
+            if (this.root.classList.contains(DISMISSIBLE)) {
+                return new drawer_1.MDCDismissibleDrawerFoundation(adapter);
+            }
+            else if (this.root.classList.contains(MODAL)) {
+                return new drawer_1.MDCModalDrawerFoundation(adapter);
+            }
+            else {
+                throw new Error("MDCDrawer: Failed to instantiate component. Supported variants are " + DISMISSIBLE + " and " + MODAL + ".");
+            }
+        };
+        MdcDrawer.prototype.toggle = function () {
+            this.open = !this.open;
+        };
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcDrawer.prototype, "dismissible", void 0);
+        MdcDrawer = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.useView('./mdc-drawer.html'),
+            aurelia_framework_1.customElement(drawer_1.cssClasses.ROOT)
+        ], MdcDrawer);
+        return MdcDrawer;
+    }(base_1.MdcComponent));
+    exports.MdcDrawer = MdcDrawer;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/drawer/mdc-drawer-app-content":
+/*!***********************************************!*\
+  !*** ../drawer/src/mdc-drawer-app-content.ts ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcDrawerAppContent = void 0;
+    var MdcDrawerAppContent = /** @class */ (function () {
+        function MdcDrawerAppContent() {
+        }
+        MdcDrawerAppContent = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inlineView('<template class="mdc-drawer-app-content"><slot></slot></template>'),
+            aurelia_framework_1.customElement('mdc-drawer-app-content')
+        ], MdcDrawerAppContent);
+        return MdcDrawerAppContent;
+    }());
+    exports.MdcDrawerAppContent = MdcDrawerAppContent;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/drawer/mdc-drawer-content":
+/*!*******************************************!*\
+  !*** ../drawer/src/mdc-drawer-content.ts ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcDrawerContent = void 0;
+    var MdcDrawerContent = /** @class */ (function () {
+        function MdcDrawerContent() {
+        }
+        MdcDrawerContent = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inlineView('<template class="mdc-drawer__content"><slot></slot></template>'),
+            aurelia_framework_1.customElement('mdc-drawer-content')
+        ], MdcDrawerContent);
+        return MdcDrawerContent;
+    }());
+    exports.MdcDrawerContent = MdcDrawerContent;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/drawer/mdc-drawer-scrim":
+/*!*****************************************!*\
+  !*** ../drawer/src/mdc-drawer-scrim.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcDrawerScrim = void 0;
+    var MdcDrawerScrim = /** @class */ (function () {
+        function MdcDrawerScrim() {
+        }
+        MdcDrawerScrim = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inlineView('<template class="mdc-drawer-scrim"></template>'),
+            aurelia_framework_1.customElement('mdc-drawer-scrim')
+        ], MdcDrawerScrim);
+        return MdcDrawerScrim;
+    }());
+    exports.MdcDrawerScrim = MdcDrawerScrim;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/drawer/mdc-drawer.html":
+/*!*************************************!*\
+  !*** ../drawer/src/mdc-drawer.html ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template class=\"mdc-drawer ${dismissible ? 'mdc-drawer--dismissible' : 'mdc-drawer--modal'}\">\n  <require from=\"@material/drawer/dist/mdc.drawer.css\"></require>\n  <slot></slot>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
 /***/ "@aurelia-mdc-web/floating-label":
 /*!**************************************!*\
   !*** ../floating-label/src/index.ts ***!
@@ -24243,6 +26795,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             './mdc-top-app-bar-row',
             './mdc-top-app-bar-title',
             './mdc-top-app-bar-section/mdc-top-app-bar-section',
+            './mdc-top-app-bar-fixed-adjust',
             './mdc-top-app-bar-nav-icon',
             './mdc-top-app-bar-action-item'
         ]);
@@ -24403,6 +26956,42 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return MdcTopAppBarActionItem;
     }());
     exports.MdcTopAppBarActionItem = MdcTopAppBarActionItem;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar-fixed-adjust":
+/*!**********************************************************!*\
+  !*** ../top-app-bar/src/mdc-top-app-bar-fixed-adjust.ts ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTopAppBarFixedAdjust = void 0;
+    var MdcTopAppBarFixedAdjust = /** @class */ (function () {
+        function MdcTopAppBarFixedAdjust(root) {
+            this.root = root;
+        }
+        MdcTopAppBarFixedAdjust.prototype.attached = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    this.root.classList.add('mdc-top-app-bar--fixed-adjust');
+                    return [2 /*return*/];
+                });
+            });
+        };
+        MdcTopAppBarFixedAdjust = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.customAttribute('mdc-top-app-bar-fixed-adjust')
+        ], MdcTopAppBarFixedAdjust);
+        return MdcTopAppBarFixedAdjust;
+    }());
+    exports.MdcTopAppBarFixedAdjust = MdcTopAppBarFixedAdjust;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -24570,6 +27159,24 @@ module.exports = code;
 
 /***/ }),
 
+/***/ "@material/drawer/dist/mdc.drawer.css":
+/*!***********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/drawer/dist/mdc.drawer.css ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "/**\n * @license\n * Copyright Google LLC All Rights Reserved.\n *\n * Use of this source code is governed by an MIT-style license that can be\n * found in the LICENSE file at https://github.com/material-components/material-components-web/blob/master/LICENSE\n */\n.mdc-drawer {\n  border-color: rgba(0, 0, 0, 0.12);\n  background-color: #fff;\n  /* @noflip */\n  border-top-left-radius: 0;\n  /* @noflip */\n  border-top-right-radius: 0;\n  /* @alternate */\n  /* @noflip */\n  border-top-right-radius: var(--mdc-shape-large, 0);\n  /* @noflip */\n  border-bottom-right-radius: 0;\n  /* @alternate */\n  /* @noflip */\n  border-bottom-right-radius: var(--mdc-shape-large, 0);\n  /* @noflip */\n  border-bottom-left-radius: 0;\n  z-index: 6;\n  width: 256px;\n  display: flex;\n  flex-direction: column;\n  flex-shrink: 0;\n  box-sizing: border-box;\n  height: 100%;\n  /* @noflip */\n  border-right-width: 1px;\n  /* @noflip */\n  border-right-style: solid;\n  overflow: hidden;\n  transition-property: -webkit-transform;\n  transition-property: transform;\n  transition-property: transform, -webkit-transform;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n}\n.mdc-drawer .mdc-drawer__title {\n  color: rgba(0, 0, 0, 0.87);\n}\n.mdc-drawer .mdc-list-group__subheader {\n  color: rgba(0, 0, 0, 0.6);\n}\n.mdc-drawer .mdc-drawer__subtitle {\n  color: rgba(0, 0, 0, 0.6);\n}\n.mdc-drawer .mdc-list-item__graphic {\n  color: rgba(0, 0, 0, 0.6);\n}\n.mdc-drawer .mdc-list-item {\n  color: rgba(0, 0, 0, 0.87);\n}\n.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {\n  color: #6200ee;\n}\n.mdc-drawer .mdc-list-item--activated {\n  color: rgba(98, 0, 238, 0.87);\n}\n[dir=rtl] .mdc-drawer, .mdc-drawer[dir=rtl] {\n  /* @noflip */\n  border-top-left-radius: 0;\n  /* @alternate */\n  /* @noflip */\n  border-top-left-radius: var(--mdc-shape-large, 0);\n  /* @noflip */\n  border-top-right-radius: 0;\n  /* @noflip */\n  border-bottom-right-radius: 0;\n  /* @noflip */\n  border-bottom-left-radius: 0;\n  /* @alternate */\n  /* @noflip */\n  border-bottom-left-radius: var(--mdc-shape-large, 0);\n}\n.mdc-drawer .mdc-list-item {\n  border-radius: 4px;\n  /* @alternate */\n  border-radius: var(--mdc-shape-small, 4px);\n}\n.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing) + .mdc-drawer-app-content {\n  /* @noflip */\n  margin-left: 256px;\n  /* @noflip */\n  margin-right: 0;\n}\n[dir=rtl] .mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing) + .mdc-drawer-app-content, .mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing) + .mdc-drawer-app-content[dir=rtl] {\n  /* @noflip */\n  margin-left: 0;\n  /* @noflip */\n  margin-right: 256px;\n}\n[dir=rtl] .mdc-drawer, .mdc-drawer[dir=rtl] {\n  /* @noflip */\n  border-right-width: 0;\n  /* @noflip */\n  border-left-width: 1px;\n  /* @noflip */\n  border-right-style: none;\n  /* @noflip */\n  border-left-style: solid;\n}\n.mdc-drawer .mdc-list-item {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-family: Roboto, sans-serif;\n  /* @alternate */\n  font-family: var(--mdc-typography-subtitle2-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));\n  font-size: 0.875rem;\n  /* @alternate */\n  font-size: var(--mdc-typography-subtitle2-font-size, 0.875rem);\n  line-height: 1.375rem;\n  /* @alternate */\n  line-height: var(--mdc-typography-subtitle2-line-height, 1.375rem);\n  font-weight: 500;\n  /* @alternate */\n  font-weight: var(--mdc-typography-subtitle2-font-weight, 500);\n  letter-spacing: 0.0071428571em;\n  /* @alternate */\n  letter-spacing: var(--mdc-typography-subtitle2-letter-spacing, 0.0071428571em);\n  text-decoration: inherit;\n  /* @alternate */\n  -webkit-text-decoration: var(--mdc-typography-subtitle2-text-decoration, inherit);\n          text-decoration: var(--mdc-typography-subtitle2-text-decoration, inherit);\n  text-transform: inherit;\n  /* @alternate */\n  text-transform: var(--mdc-typography-subtitle2-text-transform, inherit);\n  height: calc(48px - 2 * 4px);\n  margin: 8px 8px;\n  padding: 0 8px;\n}\n.mdc-drawer .mdc-list-item:nth-child(1) {\n  margin-top: 2px;\n}\n.mdc-drawer .mdc-list-item:nth-last-child(1) {\n  margin-bottom: 0;\n}\n.mdc-drawer .mdc-list-group__subheader {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-family: Roboto, sans-serif;\n  /* @alternate */\n  font-family: var(--mdc-typography-body2-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));\n  font-size: 0.875rem;\n  /* @alternate */\n  font-size: var(--mdc-typography-body2-font-size, 0.875rem);\n  line-height: 1.25rem;\n  /* @alternate */\n  line-height: var(--mdc-typography-body2-line-height, 1.25rem);\n  font-weight: 400;\n  /* @alternate */\n  font-weight: var(--mdc-typography-body2-font-weight, 400);\n  letter-spacing: 0.0178571429em;\n  /* @alternate */\n  letter-spacing: var(--mdc-typography-body2-letter-spacing, 0.0178571429em);\n  text-decoration: inherit;\n  /* @alternate */\n  -webkit-text-decoration: var(--mdc-typography-body2-text-decoration, inherit);\n          text-decoration: var(--mdc-typography-body2-text-decoration, inherit);\n  text-transform: inherit;\n  /* @alternate */\n  text-transform: var(--mdc-typography-body2-text-transform, inherit);\n  display: block;\n  margin-top: 0;\n  /* @alternate */\n  line-height: normal;\n  margin: 0;\n  padding: 0 16px;\n}\n.mdc-drawer .mdc-list-group__subheader::before {\n  display: inline-block;\n  width: 0;\n  height: 24px;\n  content: \"\";\n  vertical-align: 0;\n}\n.mdc-drawer .mdc-list-divider {\n  margin: 3px 0 4px;\n}\n.mdc-drawer .mdc-list-item__text,\n.mdc-drawer .mdc-list-item__graphic {\n  pointer-events: none;\n}\n\n.mdc-drawer--animate {\n  -webkit-transform: translateX(-100%);\n          transform: translateX(-100%);\n}\n[dir=rtl] .mdc-drawer--animate, .mdc-drawer--animate[dir=rtl] {\n  -webkit-transform: translateX(100%);\n          transform: translateX(100%);\n}\n\n.mdc-drawer--opening {\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n  transition-duration: 250ms;\n}\n[dir=rtl] .mdc-drawer--opening, .mdc-drawer--opening[dir=rtl] {\n  -webkit-transform: translateX(0);\n          transform: translateX(0);\n}\n\n.mdc-drawer--closing {\n  -webkit-transform: translateX(-100%);\n          transform: translateX(-100%);\n  transition-duration: 200ms;\n}\n[dir=rtl] .mdc-drawer--closing, .mdc-drawer--closing[dir=rtl] {\n  -webkit-transform: translateX(100%);\n          transform: translateX(100%);\n}\n\n.mdc-drawer__header {\n  flex-shrink: 0;\n  box-sizing: border-box;\n  min-height: 64px;\n  padding: 0 16px 4px;\n}\n\n.mdc-drawer__title {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-family: Roboto, sans-serif;\n  /* @alternate */\n  font-family: var(--mdc-typography-headline6-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));\n  font-size: 1.25rem;\n  /* @alternate */\n  font-size: var(--mdc-typography-headline6-font-size, 1.25rem);\n  line-height: 2rem;\n  /* @alternate */\n  line-height: var(--mdc-typography-headline6-line-height, 2rem);\n  font-weight: 500;\n  /* @alternate */\n  font-weight: var(--mdc-typography-headline6-font-weight, 500);\n  letter-spacing: 0.0125em;\n  /* @alternate */\n  letter-spacing: var(--mdc-typography-headline6-letter-spacing, 0.0125em);\n  text-decoration: inherit;\n  /* @alternate */\n  -webkit-text-decoration: var(--mdc-typography-headline6-text-decoration, inherit);\n          text-decoration: var(--mdc-typography-headline6-text-decoration, inherit);\n  text-transform: inherit;\n  /* @alternate */\n  text-transform: var(--mdc-typography-headline6-text-transform, inherit);\n  display: block;\n  margin-top: 0;\n  /* @alternate */\n  line-height: normal;\n  margin-bottom: -20px;\n}\n.mdc-drawer__title::before {\n  display: inline-block;\n  width: 0;\n  height: 36px;\n  content: \"\";\n  vertical-align: 0;\n}\n.mdc-drawer__title::after {\n  display: inline-block;\n  width: 0;\n  height: 20px;\n  content: \"\";\n  vertical-align: -20px;\n}\n\n.mdc-drawer__subtitle {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-family: Roboto, sans-serif;\n  /* @alternate */\n  font-family: var(--mdc-typography-body2-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));\n  font-size: 0.875rem;\n  /* @alternate */\n  font-size: var(--mdc-typography-body2-font-size, 0.875rem);\n  line-height: 1.25rem;\n  /* @alternate */\n  line-height: var(--mdc-typography-body2-line-height, 1.25rem);\n  font-weight: 400;\n  /* @alternate */\n  font-weight: var(--mdc-typography-body2-font-weight, 400);\n  letter-spacing: 0.0178571429em;\n  /* @alternate */\n  letter-spacing: var(--mdc-typography-body2-letter-spacing, 0.0178571429em);\n  text-decoration: inherit;\n  /* @alternate */\n  -webkit-text-decoration: var(--mdc-typography-body2-text-decoration, inherit);\n          text-decoration: var(--mdc-typography-body2-text-decoration, inherit);\n  text-transform: inherit;\n  /* @alternate */\n  text-transform: var(--mdc-typography-body2-text-transform, inherit);\n  display: block;\n  margin-top: 0;\n  /* @alternate */\n  line-height: normal;\n  margin-bottom: 0;\n}\n.mdc-drawer__subtitle::before {\n  display: inline-block;\n  width: 0;\n  height: 20px;\n  content: \"\";\n  vertical-align: 0;\n}\n\n.mdc-drawer__content {\n  height: 100%;\n  overflow-y: auto;\n  -webkit-overflow-scrolling: touch;\n}\n\n.mdc-drawer--dismissible {\n  /* @noflip */\n  left: 0;\n  /* @noflip */\n  right: initial;\n  display: none;\n  position: absolute;\n}\n[dir=rtl] .mdc-drawer--dismissible, .mdc-drawer--dismissible[dir=rtl] {\n  /* @noflip */\n  left: initial;\n  /* @noflip */\n  right: 0;\n}\n.mdc-drawer--dismissible.mdc-drawer--open {\n  display: flex;\n}\n\n.mdc-drawer-app-content {\n  /* @noflip */\n  margin-left: 0;\n  /* @noflip */\n  margin-right: 0;\n  position: relative;\n}\n[dir=rtl] .mdc-drawer-app-content, .mdc-drawer-app-content[dir=rtl] {\n  /* @noflip */\n  margin-left: 0;\n  /* @noflip */\n  margin-right: 0;\n}\n\n.mdc-drawer--modal {\n  /* @alternate */\n  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);\n  /* @noflip */\n  left: 0;\n  /* @noflip */\n  right: initial;\n  display: none;\n  position: fixed;\n}\n.mdc-drawer--modal + .mdc-drawer-scrim {\n  background-color: rgba(0, 0, 0, 0.32);\n}\n[dir=rtl] .mdc-drawer--modal, .mdc-drawer--modal[dir=rtl] {\n  /* @noflip */\n  left: initial;\n  /* @noflip */\n  right: 0;\n}\n.mdc-drawer--modal.mdc-drawer--open {\n  display: flex;\n}\n\n.mdc-drawer-scrim {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 5;\n  transition-property: opacity;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n}\n.mdc-drawer--open + .mdc-drawer-scrim {\n  display: block;\n}\n.mdc-drawer--animate + .mdc-drawer-scrim {\n  opacity: 0;\n}\n.mdc-drawer--opening + .mdc-drawer-scrim {\n  transition-duration: 250ms;\n  opacity: 1;\n}\n.mdc-drawer--closing + .mdc-drawer-scrim {\n  transition-duration: 200ms;\n  opacity: 0;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "@material/floating-label/dist/mdc.floating-label.css":
 /*!***************************************************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/floating-label/dist/mdc.floating-label.css ***!
@@ -24714,7 +27321,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = __webpack_require__(/*! ../../../
 var ___HTML_LOADER_IMPORT_0___ = __webpack_require__(/*! ./assets/github-circle-white-transparent.svg */ "./src/assets/github-circle-white-transparent.svg");
 // Module
 var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = "<template>\n  <require from=\"./app.scss\"></require>\n  <mdc-top-app-bar fixed>\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v0.0.1</span>\n        <a role=\"button\" mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\"\n          alt=\"GitHub\" target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-form-field>\n      <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\">\n        <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n        <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n      </mdc-text-field>\n      <mdc-text-field-helper-line>\n        <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n        <mdc-text-field-character-counter></mdc-text-field-character-counter>\n      </mdc-text-field-helper-line>\n    </mdc-form-field>\n\n    <mdc-form-field>\n      <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\" required type=\"number\">\n        <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n        <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n      </mdc-text-field>\n      <mdc-text-field-helper-line>\n        <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n        <mdc-text-field-character-counter></mdc-text-field-character-counter>\n      </mdc-text-field-helper-line>\n    </mdc-form-field>\n    <div>${value}</div>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./app.scss\"></require>\n  <mdc-top-app-bar fixed>\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v0.0.1</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" dismissible mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-content><button>Menu</button></mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust>\n      <mdc-form-field>\n        <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\">\n          <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n          <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n        </mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n          <mdc-text-field-character-counter></mdc-text-field-character-counter>\n        </mdc-text-field-helper-line>\n      </mdc-form-field>\n\n      <mdc-form-field>\n        <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\" required type=\"number\">\n          <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n          <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n        </mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n          <mdc-text-field-character-counter></mdc-text-field-character-counter>\n        </mdc-text-field-helper-line>\n      </mdc-form-field>\n      <div>${value}</div>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -24731,7 +27338,7 @@ module.exports = code;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "body{margin:0;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}body .demo-panel{padding-top:80px}", ""]);
+exports.push([module.i, "body{margin:0;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}body .mdc-top-app-bar{z-index:7}body .demo-panel{display:flex;position:relative;height:100vh;overflow:hidden}body .demo-panel mdc-drawer-app-content{margin:15px}", ""]);
 // Exports
 module.exports = exports;
 
@@ -29849,6 +32456,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             .use
                             .developmentLogging()
                             .standardConfiguration()
+                            .plugin('@aurelia-mdc-web/drawer')
                             .plugin('@aurelia-mdc-web/floating-label')
                             .plugin('@aurelia-mdc-web/form-field')
                             .plugin('@aurelia-mdc-web/line-ripple')
@@ -29875,4 +32483,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.6d07f0cc6c41ca3b5c2d.bundle.map
+//# sourceMappingURL=app.094ae4012f4433bfbc40.bundle.map
