@@ -29,6 +29,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         // alias all packages to src code
         ...([
           'base',
+          'drawer',
           'floating-label',
           'form-field',
           'line-ripple',

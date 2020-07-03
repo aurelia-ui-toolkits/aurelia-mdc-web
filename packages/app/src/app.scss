@@ -2,7 +2,23 @@ body {
   margin: 0;
   font-family: var(--mdc-typography-font-family, Roboto, sans-serif);
 
+  .mdc-top-app-bar {
+    z-index: 7;
+  }
+
   .demo-panel {
-    padding-top: 80px;
+    display: flex;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+
+    mdc-drawer {
+      // padding-top: 64px;
+    }
+
+    mdc-drawer-app-content {
+      // padding-top: 64px;
+      margin: 15px;
+    }
   }
 }

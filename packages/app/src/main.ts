@@ -6,6 +6,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .use
     .developmentLogging()
     .standardConfiguration()
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/drawer'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/form-field'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/line-ripple'))
