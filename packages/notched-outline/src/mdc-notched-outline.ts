@@ -1,7 +1,8 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCNotchedOutlineFoundation, MDCNotchedOutlineAdapter, cssClasses } from '@material/notched-outline';
 import { MDCFloatingLabelFoundation } from '@material/floating-label';
-import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
+import { inject, customElement, useView, PLATFORM, child } from 'aurelia-framework';
+import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-notched-outline.html'))
@@ -9,13 +10,15 @@ import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
 export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation> {
   private notchElement_!: HTMLElement; // assigned in html
 
+  @child(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`)
+  label: MdcFloatingLabel;
+
   async initialise() {
-    const label = this.root.querySelector<HTMLElement>('.' + MDCFloatingLabelFoundation.cssClasses.ROOT);
-    if (label) {
-      label.style.transitionDuration = '0s';
+    if (this.label) {
+      this.label.root.style.transitionDuration = '0s';
       this.root.classList.add(cssClasses.OUTLINE_UPGRADED);
       requestAnimationFrame(() => {
-        label.style.transitionDuration = '';
+        this.label.root.style.transitionDuration = '';
       });
     } else {
       this.root.classList.add(cssClasses.NO_LABEL);
