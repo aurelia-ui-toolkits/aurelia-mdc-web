@@ -770,6 +770,280 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../../node_modules/@material/form-field/component.js":
+/*!********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/form-field/component.js ***!
+  \********************************************************************************/
+/*! exports provided: MDCFormField */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCFormField", function() { return MDCFormField; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/form-field/foundation.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCFormField = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCFormField, _super);
+    function MDCFormField() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCFormField.attachTo = function (root) {
+        return new MDCFormField(root);
+    };
+    MDCFormField.prototype.labelEl = function () {
+        var LABEL_SELECTOR = _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFormFieldFoundation"].strings.LABEL_SELECTOR;
+        return this.root.querySelector(LABEL_SELECTOR);
+    };
+    MDCFormField.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            activateInputRipple: function () {
+                if (_this.input && _this.input.ripple) {
+                    _this.input.ripple.activate();
+                }
+            },
+            deactivateInputRipple: function () {
+                if (_this.input && _this.input.ripple) {
+                    _this.input.ripple.deactivate();
+                }
+            },
+            deregisterInteractionHandler: function (evtType, handler) {
+                var labelEl = _this.labelEl();
+                if (labelEl) {
+                    labelEl.removeEventListener(evtType, handler);
+                }
+            },
+            registerInteractionHandler: function (evtType, handler) {
+                var labelEl = _this.labelEl();
+                if (labelEl) {
+                    labelEl.addEventListener(evtType, handler);
+                }
+            },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFormFieldFoundation"](adapter);
+    };
+    return MDCFormField;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/form-field/constants.js":
+/*!********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/form-field/constants.js ***!
+  \********************************************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ROOT: 'mdc-form-field',
+};
+var strings = {
+    LABEL_SELECTOR: '.mdc-form-field > label',
+};
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/form-field/foundation.js":
+/*!*********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/form-field/foundation.js ***!
+  \*********************************************************************************/
+/*! exports provided: MDCFormFieldFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCFormFieldFoundation", function() { return MDCFormFieldFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/form-field/constants.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCFormFieldFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCFormFieldFoundation, _super);
+    function MDCFormFieldFoundation(adapter) {
+        var _this = _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCFormFieldFoundation.defaultAdapter), adapter)) || this;
+        _this.click = function () {
+            _this.handleClick();
+        };
+        return _this;
+    }
+    Object.defineProperty(MDCFormFieldFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCFormFieldFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCFormFieldFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                activateInputRipple: function () { return undefined; },
+                deactivateInputRipple: function () { return undefined; },
+                deregisterInteractionHandler: function () { return undefined; },
+                registerInteractionHandler: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCFormFieldFoundation.prototype.init = function () {
+        this.adapter.registerInteractionHandler('click', this.click);
+    };
+    MDCFormFieldFoundation.prototype.destroy = function () {
+        this.adapter.deregisterInteractionHandler('click', this.click);
+    };
+    MDCFormFieldFoundation.prototype.handleClick = function () {
+        var _this = this;
+        this.adapter.activateInputRipple();
+        requestAnimationFrame(function () {
+            _this.adapter.deactivateInputRipple();
+        });
+    };
+    return MDCFormFieldFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCFormFieldFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/form-field/index.js":
+/*!****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/form-field/index.js ***!
+  \****************************************************************************/
+/*! exports provided: MDCFormField, cssClasses, strings, MDCFormFieldFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/form-field/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFormField", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCFormField"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/form-field/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/form-field/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFormFieldFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFormFieldFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "../../node_modules/@material/line-ripple/component.js":
 /*!*********************************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/line-ripple/component.js ***!
@@ -4255,6 +4529,762 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/top-app-bar/component.js":
+/*!*********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/top-app-bar/component.js ***!
+  \*********************************************************************************/
+/*! exports provided: MDCTopAppBar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTopAppBar", function() { return MDCTopAppBar; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/ripple/component */ "../../node_modules/@material/ripple/component.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/top-app-bar/constants.js");
+/* harmony import */ var _fixed_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./fixed/foundation */ "../../node_modules/@material/top-app-bar/fixed/foundation.js");
+/* harmony import */ var _short_foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./short/foundation */ "../../node_modules/@material/top-app-bar/short/foundation.js");
+/* harmony import */ var _standard_foundation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./standard/foundation */ "../../node_modules/@material/top-app-bar/standard/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+
+var MDCTopAppBar = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTopAppBar, _super);
+    function MDCTopAppBar() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTopAppBar.attachTo = function (root) {
+        return new MDCTopAppBar(root);
+    };
+    MDCTopAppBar.prototype.initialize = function (rippleFactory) {
+        if (rippleFactory === void 0) { rippleFactory = function (el) { return _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__["MDCRipple"].attachTo(el); }; }
+        this.navIcon_ = this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].NAVIGATION_ICON_SELECTOR);
+        // Get all icons in the toolbar and instantiate the ripples
+        var icons = [].slice.call(this.root.querySelectorAll(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ACTION_ITEM_SELECTOR));
+        if (this.navIcon_) {
+            icons.push(this.navIcon_);
+        }
+        this.iconRipples_ = icons.map(function (icon) {
+            var ripple = rippleFactory(icon);
+            ripple.unbounded = true;
+            return ripple;
+        });
+        this.scrollTarget_ = window;
+    };
+    MDCTopAppBar.prototype.initialSyncWithDOM = function () {
+        this.handleNavigationClick_ =
+            this.foundation.handleNavigationClick.bind(this.foundation);
+        this.handleWindowResize_ =
+            this.foundation.handleWindowResize.bind(this.foundation);
+        this.handleTargetScroll_ =
+            this.foundation.handleTargetScroll.bind(this.foundation);
+        this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_);
+        if (this.navIcon_) {
+            this.navIcon_.addEventListener('click', this.handleNavigationClick_);
+        }
+        var isFixed = this.root.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].FIXED_CLASS);
+        var isShort = this.root.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].SHORT_CLASS);
+        if (!isShort && !isFixed) {
+            window.addEventListener('resize', this.handleWindowResize_);
+        }
+    };
+    MDCTopAppBar.prototype.destroy = function () {
+        this.iconRipples_.forEach(function (iconRipple) { return iconRipple.destroy(); });
+        this.scrollTarget_.removeEventListener('scroll', this.handleTargetScroll_);
+        if (this.navIcon_) {
+            this.navIcon_.removeEventListener('click', this.handleNavigationClick_);
+        }
+        var isFixed = this.root.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].FIXED_CLASS);
+        var isShort = this.root.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].SHORT_CLASS);
+        if (!isShort && !isFixed) {
+            window.removeEventListener('resize', this.handleWindowResize_);
+        }
+        _super.prototype.destroy.call(this);
+    };
+    MDCTopAppBar.prototype.setScrollTarget = function (target) {
+        // Remove scroll handler from the previous scroll target
+        this.scrollTarget_.removeEventListener('scroll', this.handleTargetScroll_);
+        this.scrollTarget_ = target;
+        // Initialize scroll handler on the new scroll target
+        this.handleTargetScroll_ =
+            this.foundation.handleTargetScroll.bind(this.foundation);
+        this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_);
+    };
+    MDCTopAppBar.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            setStyle: function (property, value) {
+                return _this.root.style.setProperty(property, value);
+            },
+            getTopAppBarHeight: function () { return _this.root.clientHeight; },
+            notifyNavigationIconClicked: function () {
+                return _this.emit(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].NAVIGATION_EVENT, {});
+            },
+            getViewportScrollY: function () {
+                var win = _this.scrollTarget_;
+                var el = _this.scrollTarget_;
+                return win.pageYOffset !== undefined ? win.pageYOffset : el.scrollTop;
+            },
+            getTotalActionItems: function () {
+                return _this.root.querySelectorAll(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ACTION_ITEM_SELECTOR).length;
+            },
+        };
+        // tslint:enable:object-literal-sort-keys
+        var foundation;
+        if (this.root.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].SHORT_CLASS)) {
+            foundation = new _short_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCShortTopAppBarFoundation"](adapter);
+        }
+        else if (this.root.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].FIXED_CLASS)) {
+            foundation = new _fixed_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCFixedTopAppBarFoundation"](adapter);
+        }
+        else {
+            foundation = new _standard_foundation__WEBPACK_IMPORTED_MODULE_6__["MDCTopAppBarFoundation"](adapter);
+        }
+        return foundation;
+    };
+    return MDCTopAppBar;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/top-app-bar/constants.js":
+/*!*********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/top-app-bar/constants.js ***!
+  \*********************************************************************************/
+/*! exports provided: cssClasses, numbers, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    FIXED_CLASS: 'mdc-top-app-bar--fixed',
+    FIXED_SCROLLED_CLASS: 'mdc-top-app-bar--fixed-scrolled',
+    SHORT_CLASS: 'mdc-top-app-bar--short',
+    SHORT_COLLAPSED_CLASS: 'mdc-top-app-bar--short-collapsed',
+    SHORT_HAS_ACTION_ITEM_CLASS: 'mdc-top-app-bar--short-has-action-item',
+};
+var numbers = {
+    DEBOUNCE_THROTTLE_RESIZE_TIME_MS: 100,
+    MAX_TOP_APP_BAR_HEIGHT: 128,
+};
+var strings = {
+    ACTION_ITEM_SELECTOR: '.mdc-top-app-bar__action-item',
+    NAVIGATION_EVENT: 'MDCTopAppBar:nav',
+    NAVIGATION_ICON_SELECTOR: '.mdc-top-app-bar__navigation-icon',
+    ROOT_SELECTOR: '.mdc-top-app-bar',
+    TITLE_SELECTOR: '.mdc-top-app-bar__title',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/top-app-bar/fixed/foundation.js":
+/*!****************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/top-app-bar/fixed/foundation.js ***!
+  \****************************************************************************************/
+/*! exports provided: MDCFixedTopAppBarFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCFixedTopAppBarFoundation", function() { return MDCFixedTopAppBarFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "../../node_modules/@material/top-app-bar/constants.js");
+/* harmony import */ var _standard_foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../standard/foundation */ "../../node_modules/@material/top-app-bar/standard/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCFixedTopAppBarFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCFixedTopAppBarFoundation, _super);
+    function MDCFixedTopAppBarFoundation() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        /**
+         * State variable for the previous scroll iteration top app bar state
+         */
+        _this.wasScrolled_ = false;
+        return _this;
+    }
+    /**
+     * Scroll handler for applying/removing the modifier class on the fixed top app bar.
+     * @override
+     */
+    MDCFixedTopAppBarFoundation.prototype.handleTargetScroll = function () {
+        var currentScroll = this.adapter.getViewportScrollY();
+        if (currentScroll <= 0) {
+            if (this.wasScrolled_) {
+                this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"].FIXED_SCROLLED_CLASS);
+                this.wasScrolled_ = false;
+            }
+        }
+        else {
+            if (!this.wasScrolled_) {
+                this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"].FIXED_SCROLLED_CLASS);
+                this.wasScrolled_ = true;
+            }
+        }
+    };
+    return MDCFixedTopAppBarFoundation;
+}(_standard_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTopAppBarFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCFixedTopAppBarFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/top-app-bar/foundation.js":
+/*!**********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/top-app-bar/foundation.js ***!
+  \**********************************************************************************/
+/*! exports provided: MDCTopAppBarBaseFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTopAppBarBaseFoundation", function() { return MDCTopAppBarBaseFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/top-app-bar/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCTopAppBarBaseFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTopAppBarBaseFoundation, _super);
+    /* istanbul ignore next: optional argument is not a branch statement */
+    function MDCTopAppBarBaseFoundation(adapter) {
+        return _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCTopAppBarBaseFoundation.defaultAdapter), adapter)) || this;
+    }
+    Object.defineProperty(MDCTopAppBarBaseFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTopAppBarBaseFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTopAppBarBaseFoundation, "numbers", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTopAppBarBaseFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCTopAppBarAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                setStyle: function () { return undefined; },
+                getTopAppBarHeight: function () { return 0; },
+                notifyNavigationIconClicked: function () { return undefined; },
+                getViewportScrollY: function () { return 0; },
+                getTotalActionItems: function () { return 0; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /** Other variants of TopAppBar foundation overrides this method */
+    MDCTopAppBarBaseFoundation.prototype.handleTargetScroll = function () { }; // tslint:disable-line:no-empty
+    /** Other variants of TopAppBar foundation overrides this method */
+    MDCTopAppBarBaseFoundation.prototype.handleWindowResize = function () { }; // tslint:disable-line:no-empty
+    MDCTopAppBarBaseFoundation.prototype.handleNavigationClick = function () {
+        this.adapter.notifyNavigationIconClicked();
+    };
+    return MDCTopAppBarBaseFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTopAppBarBaseFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/top-app-bar/index.js":
+/*!*****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/top-app-bar/index.js ***!
+  \*****************************************************************************/
+/*! exports provided: MDCTopAppBar, cssClasses, numbers, strings, MDCTopAppBarBaseFoundation, MDCFixedTopAppBarFoundation, MDCShortTopAppBarFoundation, MDCTopAppBarFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/top-app-bar/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTopAppBar", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCTopAppBar"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/top-app-bar/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/top-app-bar/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTopAppBarBaseFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTopAppBarBaseFoundation"]; });
+
+/* harmony import */ var _fixed_foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fixed/foundation */ "../../node_modules/@material/top-app-bar/fixed/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFixedTopAppBarFoundation", function() { return _fixed_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCFixedTopAppBarFoundation"]; });
+
+/* harmony import */ var _short_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./short/foundation */ "../../node_modules/@material/top-app-bar/short/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCShortTopAppBarFoundation", function() { return _short_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCShortTopAppBarFoundation"]; });
+
+/* harmony import */ var _standard_foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./standard/foundation */ "../../node_modules/@material/top-app-bar/standard/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTopAppBarFoundation", function() { return _standard_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTopAppBarFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/top-app-bar/short/foundation.js":
+/*!****************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/top-app-bar/short/foundation.js ***!
+  \****************************************************************************************/
+/*! exports provided: MDCShortTopAppBarFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCShortTopAppBarFoundation", function() { return MDCShortTopAppBarFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "../../node_modules/@material/top-app-bar/constants.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../foundation */ "../../node_modules/@material/top-app-bar/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCShortTopAppBarFoundation, _super);
+    /* istanbul ignore next: optional argument is not a branch statement */
+    function MDCShortTopAppBarFoundation(adapter) {
+        var _this = _super.call(this, adapter) || this;
+        _this.isCollapsed_ = false;
+        _this.isAlwaysCollapsed_ = false;
+        return _this;
+    }
+    Object.defineProperty(MDCShortTopAppBarFoundation.prototype, "isCollapsed", {
+        // Public visibility for backward compatibility.
+        get: function () {
+            return this.isCollapsed_;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCShortTopAppBarFoundation.prototype.init = function () {
+        _super.prototype.init.call(this);
+        if (this.adapter.getTotalActionItems() > 0) {
+            this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"].SHORT_HAS_ACTION_ITEM_CLASS);
+        }
+        // If initialized with SHORT_COLLAPSED_CLASS, the bar should always be collapsed
+        this.setAlwaysCollapsed(this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"].SHORT_COLLAPSED_CLASS));
+    };
+    /**
+     * Set if the short top app bar should always be collapsed.
+     *
+     * @param value When `true`, bar will always be collapsed. When `false`, bar may collapse or expand based on scroll.
+     */
+    MDCShortTopAppBarFoundation.prototype.setAlwaysCollapsed = function (value) {
+        this.isAlwaysCollapsed_ = !!value;
+        if (this.isAlwaysCollapsed_) {
+            this.collapse_();
+        }
+        else {
+            // let maybeCollapseBar_ determine if the bar should be collapsed
+            this.maybeCollapseBar_();
+        }
+    };
+    MDCShortTopAppBarFoundation.prototype.getAlwaysCollapsed = function () {
+        return this.isAlwaysCollapsed_;
+    };
+    /**
+     * Scroll handler for applying/removing the collapsed modifier class on the short top app bar.
+     * @override
+     */
+    MDCShortTopAppBarFoundation.prototype.handleTargetScroll = function () {
+        this.maybeCollapseBar_();
+    };
+    MDCShortTopAppBarFoundation.prototype.maybeCollapseBar_ = function () {
+        if (this.isAlwaysCollapsed_) {
+            return;
+        }
+        var currentScroll = this.adapter.getViewportScrollY();
+        if (currentScroll <= 0) {
+            if (this.isCollapsed_) {
+                this.uncollapse_();
+            }
+        }
+        else {
+            if (!this.isCollapsed_) {
+                this.collapse_();
+            }
+        }
+    };
+    MDCShortTopAppBarFoundation.prototype.uncollapse_ = function () {
+        this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"].SHORT_COLLAPSED_CLASS);
+        this.isCollapsed_ = false;
+    };
+    MDCShortTopAppBarFoundation.prototype.collapse_ = function () {
+        this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"].SHORT_COLLAPSED_CLASS);
+        this.isCollapsed_ = true;
+    };
+    return MDCShortTopAppBarFoundation;
+}(_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTopAppBarBaseFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCShortTopAppBarFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/top-app-bar/standard/foundation.js":
+/*!*******************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/top-app-bar/standard/foundation.js ***!
+  \*******************************************************************************************/
+/*! exports provided: MDCTopAppBarFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTopAppBarFoundation", function() { return MDCTopAppBarFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "../../node_modules/@material/top-app-bar/constants.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../foundation */ "../../node_modules/@material/top-app-bar/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var INITIAL_VALUE = 0;
+var MDCTopAppBarFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTopAppBarFoundation, _super);
+    /* istanbul ignore next: optional argument is not a branch statement */
+    function MDCTopAppBarFoundation(adapter) {
+        var _this = _super.call(this, adapter) || this;
+        /**
+         * Indicates if the top app bar was docked in the previous scroll handler iteration.
+         */
+        _this.wasDocked_ = true;
+        /**
+         * Indicates if the top app bar is docked in the fully shown position.
+         */
+        _this.isDockedShowing_ = true;
+        /**
+         * Variable for current scroll position of the top app bar
+         */
+        _this.currentAppBarOffsetTop_ = 0;
+        /**
+         * Used to prevent the top app bar from being scrolled out of view during resize events
+         */
+        _this.isCurrentlyBeingResized_ = false;
+        /**
+         * The timeout that's used to throttle the resize events
+         */
+        _this.resizeThrottleId_ = INITIAL_VALUE;
+        /**
+         * The timeout that's used to debounce toggling the isCurrentlyBeingResized_ variable after a resize
+         */
+        _this.resizeDebounceId_ = INITIAL_VALUE;
+        _this.lastScrollPosition_ = _this.adapter.getViewportScrollY();
+        _this.topAppBarHeight_ = _this.adapter.getTopAppBarHeight();
+        return _this;
+    }
+    MDCTopAppBarFoundation.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        this.adapter.setStyle('top', '');
+    };
+    /**
+     * Scroll handler for the default scroll behavior of the top app bar.
+     * @override
+     */
+    MDCTopAppBarFoundation.prototype.handleTargetScroll = function () {
+        var currentScrollPosition = Math.max(this.adapter.getViewportScrollY(), 0);
+        var diff = currentScrollPosition - this.lastScrollPosition_;
+        this.lastScrollPosition_ = currentScrollPosition;
+        // If the window is being resized the lastScrollPosition_ needs to be updated but the
+        // current scroll of the top app bar should stay in the same position.
+        if (!this.isCurrentlyBeingResized_) {
+            this.currentAppBarOffsetTop_ -= diff;
+            if (this.currentAppBarOffsetTop_ > 0) {
+                this.currentAppBarOffsetTop_ = 0;
+            }
+            else if (Math.abs(this.currentAppBarOffsetTop_) > this.topAppBarHeight_) {
+                this.currentAppBarOffsetTop_ = -this.topAppBarHeight_;
+            }
+            this.moveTopAppBar_();
+        }
+    };
+    /**
+     * Top app bar resize handler that throttle/debounce functions that execute updates.
+     * @override
+     */
+    MDCTopAppBarFoundation.prototype.handleWindowResize = function () {
+        var _this = this;
+        // Throttle resize events 10 p/s
+        if (!this.resizeThrottleId_) {
+            this.resizeThrottleId_ = setTimeout(function () {
+                _this.resizeThrottleId_ = INITIAL_VALUE;
+                _this.throttledResizeHandler_();
+            }, _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"].DEBOUNCE_THROTTLE_RESIZE_TIME_MS);
+        }
+        this.isCurrentlyBeingResized_ = true;
+        if (this.resizeDebounceId_) {
+            clearTimeout(this.resizeDebounceId_);
+        }
+        this.resizeDebounceId_ = setTimeout(function () {
+            _this.handleTargetScroll();
+            _this.isCurrentlyBeingResized_ = false;
+            _this.resizeDebounceId_ = INITIAL_VALUE;
+        }, _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"].DEBOUNCE_THROTTLE_RESIZE_TIME_MS);
+    };
+    /**
+     * Function to determine if the DOM needs to update.
+     */
+    MDCTopAppBarFoundation.prototype.checkForUpdate_ = function () {
+        var offscreenBoundaryTop = -this.topAppBarHeight_;
+        var hasAnyPixelsOffscreen = this.currentAppBarOffsetTop_ < 0;
+        var hasAnyPixelsOnscreen = this.currentAppBarOffsetTop_ > offscreenBoundaryTop;
+        var partiallyShowing = hasAnyPixelsOffscreen && hasAnyPixelsOnscreen;
+        // If it's partially showing, it can't be docked.
+        if (partiallyShowing) {
+            this.wasDocked_ = false;
+        }
+        else {
+            // Not previously docked and not partially showing, it's now docked.
+            if (!this.wasDocked_) {
+                this.wasDocked_ = true;
+                return true;
+            }
+            else if (this.isDockedShowing_ !== hasAnyPixelsOnscreen) {
+                this.isDockedShowing_ = hasAnyPixelsOnscreen;
+                return true;
+            }
+        }
+        return partiallyShowing;
+    };
+    /**
+     * Function to move the top app bar if needed.
+     */
+    MDCTopAppBarFoundation.prototype.moveTopAppBar_ = function () {
+        if (this.checkForUpdate_()) {
+            // Once the top app bar is fully hidden we use the max potential top app bar height as our offset
+            // so the top app bar doesn't show if the window resizes and the new height > the old height.
+            var offset = this.currentAppBarOffsetTop_;
+            if (Math.abs(offset) >= this.topAppBarHeight_) {
+                offset = -_constants__WEBPACK_IMPORTED_MODULE_1__["numbers"].MAX_TOP_APP_BAR_HEIGHT;
+            }
+            this.adapter.setStyle('top', offset + 'px');
+        }
+    };
+    /**
+     * Throttled function that updates the top app bar scrolled values if the
+     * top app bar height changes.
+     */
+    MDCTopAppBarFoundation.prototype.throttledResizeHandler_ = function () {
+        var currentHeight = this.adapter.getTopAppBarHeight();
+        if (this.topAppBarHeight_ !== currentHeight) {
+            this.wasDocked_ = false;
+            // Since the top app bar has a different height depending on the screen width, this
+            // will ensure that the top app bar remains in the correct location if
+            // completely hidden and a resize makes the top app bar a different height.
+            this.currentAppBarOffsetTop_ -= this.topAppBarHeight_ - currentHeight;
+            this.topAppBarHeight_ = currentHeight;
+        }
+        this.handleTargetScroll();
+    };
+    return MDCTopAppBarFoundation;
+}(_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTopAppBarBaseFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTopAppBarFoundation);
+//# sourceMappingURL=foundation.js.map
 
 /***/ }),
 
@@ -21046,6 +22076,43 @@ function toComment(sourceMap) {
 
 /***/ }),
 
+/***/ "../../node_modules/html-loader/dist/runtime/getUrl.js":
+/*!*********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/html-loader/dist/runtime/getUrl.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    // eslint-disable-next-line no-param-reassign
+    options = {};
+  } // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+
+
+  url = url && url.__esModule ? url.default : url;
+
+  if (typeof url !== 'string') {
+    return url;
+  }
+
+  if (options.hash) {
+    // eslint-disable-next-line no-param-reassign
+    url += options.hash;
+  }
+
+  if (options.maybeNeedQuotes && /[\t\n\f\r "'=<>`]/.test(url)) {
+    return "\"".concat(url, "\"");
+  }
+
+  return url;
+};
+
+/***/ }),
+
 /***/ "../../node_modules/process/browser.js":
 /*!*****************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/process/browser.js ***!
@@ -21983,6 +23050,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 return [2 /*return*/];
             }); });
         };
+        MdcComponent.prototype.initialSyncWithDOM = function () { };
         MdcComponent.prototype.attached = function () {
             return tslib_1.__awaiter(this, void 0, void 0, function () {
                 return tslib_1.__generator(this, function (_a) {
@@ -21993,6 +23061,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             this.foundation = this.getDefaultFoundation();
                             this.foundation.init();
                             this.initialisedResolve();
+                            this.initialSyncWithDOM();
                             return [2 /*return*/];
                     }
                 });
@@ -22033,6 +23102,87 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
+
+/***/ }),
+
+/***/ "../ripple/src/mdc-ripple.ts":
+/*!***********************************!*\
+  !*** ../ripple/src/mdc-ripple.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/ripple */ "../../node_modules/@material/ripple/index.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js"), __webpack_require__(/*! @material/dom/events */ "../../node_modules/@material/dom/events.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, ripple_1, ponyfill_1, events_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcRipple = void 0;
+    var MdcRipple = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcRipple, _super);
+        function MdcRipple() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.disabled = false;
+            return _this;
+        }
+        MdcRipple.createAdapter = function (instance) {
+            return {
+                addClass: function (className) { return instance.root.classList.add(className); },
+                browserSupportsCssVars: function () { return ripple_1.util.supportsCssVariables(window); },
+                computeBoundingRect: function () { return instance.root.getBoundingClientRect(); },
+                containsEventTarget: function (target) { return instance.root.contains(target); },
+                deregisterDocumentInteractionHandler: function (evtType, handler) { return document.documentElement.removeEventListener(evtType, handler, events_1.applyPassive()); },
+                deregisterInteractionHandler: function (evtType, handler) { return instance.root.removeEventListener(evtType, handler, events_1.applyPassive()); },
+                deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
+                getWindowPageOffset: function () { return ({ x: window.pageXOffset, y: window.pageYOffset }); },
+                isSurfaceActive: function () { return ponyfill_1.matches(instance.root, ':active'); },
+                isSurfaceDisabled: function () { return Boolean(instance.disabled); },
+                isUnbounded: function () { return Boolean(instance.unbounded); },
+                registerDocumentInteractionHandler: function (evtType, handler) { return document.documentElement.addEventListener(evtType, handler, events_1.applyPassive()); },
+                registerInteractionHandler: function (evtType, handler) { return instance.root.addEventListener(evtType, handler, events_1.applyPassive()); },
+                registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
+                removeClass: function (className) { return instance.root.classList.remove(className); },
+                updateCssVariable: function (varName, value) { return instance.root.style.setProperty(varName, value); },
+            };
+        };
+        Object.defineProperty(MdcRipple.prototype, "unbounded", {
+            get: function () {
+                return Boolean(this.unbounded_);
+            },
+            set: function (unbounded) {
+                this.unbounded_ = Boolean(unbounded);
+                this.foundation.setUnbounded(Boolean(this.unbounded_));
+            },
+            enumerable: false,
+            configurable: true
+        });
+        MdcRipple.prototype.activate = function () {
+            this.foundation.activate();
+        };
+        MdcRipple.prototype.deactivate = function () {
+            this.foundation.deactivate();
+        };
+        MdcRipple.prototype.layout = function () {
+            this.foundation.layout();
+        };
+        MdcRipple.prototype.getDefaultFoundation = function () {
+            return new ripple_1.MDCRippleFoundation(MdcRipple.createAdapter(this));
+        };
+        return MdcRipple;
+    }(base_1.MdcComponent));
+    exports.MdcRipple = MdcRipple;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "./src/assets/github-circle-white-transparent.svg":
+/*!********************************************************!*\
+  !*** ./src/assets/github-circle-white-transparent.svg ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Z2l0aHViLWNpcmNsZS13aGl0ZS10cmFuc3BhcmVudDwvdGl0bGU+PHBhdGggZD0iTTEwIDBDNC40NzcgMCAwIDQuNDc3IDAgMTBjMCA0LjQyIDIuODcgOC4xNyA2Ljg0IDkuNS41LjA4LjY2LS4yMy42Ni0uNXYtMS42OWMtMi43Ny42LTMuMzYtMS4zNC0zLjM2LTEuMzQtLjQ2LTEuMTYtMS4xMS0xLjQ3LTEuMTEtMS40Ny0uOTEtLjYyLjA3LS42LjA3LS42IDEgLjA3IDEuNTMgMS4wMyAxLjUzIDEuMDMuODcgMS41MiAyLjM0IDEuMDcgMi45MS44My4wOS0uNjUuMzUtMS4wOS42My0xLjM0LTIuMjItLjI1LTQuNTUtMS4xMS00LjU1LTQuOTIgMC0xLjExLjM4LTIgMS4wMy0yLjcxLS4xLS4yNS0uNDUtMS4yOS4xLTIuNjQgMCAwIC44NC0uMjcgMi43NSAxLjAyLjc5LS4yMiAxLjY1LS4zMyAyLjUtLjMzLjg1IDAgMS43MS4xMSAyLjUuMzMgMS45MS0xLjI5IDIuNzUtMS4wMiAyLjc1LTEuMDIuNTUgMS4zNS4yIDIuMzkuMSAyLjY0LjY1LjcxIDEuMDMgMS42IDEuMDMgMi43MSAwIDMuODItMi4zNCA0LjY2LTQuNTcgNC45MS4zNi4zMS42OS45Mi42OSAxLjg1VjE5YzAgLjI3LjE2LjU5LjY3LjVDMTcuMTQgMTguMTYgMjAgMTQuNDIgMjAgMTBBMTAgMTAgMCAwIDAgMTAgMHoiIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg=="
 
 /***/ }),
 
@@ -22144,6 +23294,100 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 // Module
 var code = "<template class=\"mdc-floating-label\">\n  <require from=\"@material/floating-label/dist/mdc.floating-label.css\"></require>\n  <slot></slot>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/form-field":
+/*!**********************************!*\
+  !*** ../form-field/src/index.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! ./mdc-form-field */ "@aurelia-mdc-web/form-field/mdc-form-field")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_framework_1, mdc_form_field_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.configure = void 0;
+    Object.defineProperty(exports, "MdcFormField", { enumerable: true, get: function () { return mdc_form_field_1.MdcFormField; } });
+    function configure(config) {
+        config.globalResources([
+            './mdc-form-field'
+        ]);
+    }
+    exports.configure = configure;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/form-field/mdc-form-field":
+/*!*******************************************!*\
+  !*** ../form-field/src/mdc-form-field.ts ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @material/form-field */ "../../node_modules/@material/form-field/index.js"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, form_field_1, aurelia_typed_observable_plugin_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcFormField = void 0;
+    var MdcFormField = /** @class */ (function () {
+        function MdcFormField() {
+            this.cssClasses = form_field_1.cssClasses;
+        }
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcFormField.prototype, "nowrap", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcFormField.prototype, "alignEnd", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcFormField.prototype, "spaceBetween", void 0);
+        MdcFormField = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.useView('./mdc-form-field.html'),
+            aurelia_framework_1.customElement(form_field_1.cssClasses.ROOT)
+        ], MdcFormField);
+        return MdcFormField;
+    }());
+    exports.MdcFormField = MdcFormField;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/form-field/mdc-form-field.css":
+/*!********************************************!*\
+  !*** ../form-field/src/mdc-form-field.css ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".mdc-form-field--au {\n  display: inline-block;\n}\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/form-field/mdc-form-field.html":
+/*!*********************************************!*\
+  !*** ../form-field/src/mdc-form-field.html ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template class=\"${cssClasses.ROOT}--au ${nowrap ? cssClasses.ROOT + '--nowrap' : ''} ${alignEnd ? cssClasses.ROOT + '--align-end' : ''} ${spaceBetween ? cssClasses.ROOT + '--space-between' : ''}\">\n  <require from=\"./mdc-form-field.css\"></require>\n  <require from=\"@material/form-field/dist/mdc.form-field.css\"></require>\n  <slot></slot>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -22346,6 +23590,23 @@ module.exports = code;
 
 /***/ }),
 
+/***/ "@aurelia-mdc-web/ripple":
+/*!******************************!*\
+  !*** ../ripple/src/index.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./mdc-ripple */ "../ripple/src/mdc-ripple.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, mdc_ripple_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports, "MdcRipple", { enumerable: true, get: function () { return mdc_ripple_1.MdcRipple; } });
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
 /***/ "@aurelia-mdc-web/text-field":
 /*!**********************************!*\
   !*** ../text-field/src/index.ts ***!
@@ -22398,25 +23659,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTextField = void 0;
     ponyfill = tslib_1.__importStar(ponyfill);
-    /**
-     * Time in milliseconds for which to ignore mouse events, after
-     * receiving a touch event. Used to avoid doing double work for
-     * touch devices where the browser fires fake mouse events, in
-     * addition to touch events.
-     */
-    var MOUSE_EVENT_IGNORE_TIME = 800;
     var MdcTextField = /** @class */ (function (_super) {
         tslib_1.__extends(MdcTextField, _super);
         function MdcTextField(root) {
             var _this = _super.call(this, root) || this;
             _this.id = ++MdcTextField_1.id;
-            /** Time in milliseconds when the last touchstart event happened. */
-            _this._lastTouchStartEvent = 0;
             defineMdcTextFieldElementApis(_this.root);
             return _this;
         }
         MdcTextField_1 = MdcTextField;
         MdcTextField.processContent = function (_viewCompiler, _resources, element, _instruction) {
+            // move icons to slots - this allows omitting slot specification
             var leadingIcon = element.querySelector("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.LEADING + "]");
             if (leadingIcon) {
                 leadingIcon.setAttribute('slot', 'leading-icon');
@@ -22426,6 +23679,33 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 trailingIcon.setAttribute('slot', 'trailing-icon');
             }
             return true;
+        };
+        MdcTextField.prototype.requiredChanged = function () {
+            this.input_.required = this.required;
+        };
+        MdcTextField.prototype.disabledChanged = function () {
+            this.input_.disabled = this.disabled;
+        };
+        MdcTextField.prototype.readonlyChanged = function () {
+            this.input_.readOnly = this.readonly;
+        };
+        MdcTextField.prototype.maxlengthChanged = function () {
+            this.input_.maxLength = this.maxlength;
+        };
+        MdcTextField.prototype.maxChanged = function () {
+            this.input_.max = this.max;
+        };
+        MdcTextField.prototype.minChanged = function () {
+            this.input_.min = this.min;
+        };
+        MdcTextField.prototype.stepChanged = function () {
+            this.input_.step = this.step;
+        };
+        MdcTextField.prototype.tabindexChanged = function () {
+            this.input_.tabIndex = this.tabindex;
+        };
+        MdcTextField.prototype.typeChanged = function () {
+            this.input_.type = this.type;
         };
         Object.defineProperty(MdcTextField.prototype, "value", {
             get: function () {
@@ -22449,6 +23729,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             enumerable: false,
             configurable: true
         });
+        MdcTextField.prototype.bind = function () {
+            this.requiredChanged();
+            this.disabledChanged();
+            this.readonlyChanged();
+            this.tabindexChanged();
+            this.maxlengthChanged();
+            this.minChanged();
+            this.maxChanged();
+            this.stepChanged();
+            this.typeChanged();
+            // handle the case when attribute value was set, not bound, in html
+            if (this.root.hasAttribute('value')) {
+                this.value = this.root.getAttribute('value') || '';
+            }
+        };
         MdcTextField.prototype.initialise = function () {
             var _a, _b, _c, _d, _e, _f;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
@@ -22479,7 +23774,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                         case 0: return [4 /*yield*/, _super.prototype.attached.call(this)];
                         case 1:
                             _a.sent();
-                            this.foundation.setValue(this.initialValue || '');
+                            this.value = this.initialValue;
                             return [2 /*return*/];
                     }
                 });
@@ -22575,19 +23870,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 } });
             return rippleFactory(this.root, new ripple_1.MDCRippleFoundation(adapter));
         };
-        MdcTextField.prototype.onInputInteraction = function (evt) {
-            if (evt instanceof MouseEvent) {
-                var isSyntheticEvent = this._lastTouchStartEvent && Date.now() < this._lastTouchStartEvent + MOUSE_EVENT_IGNORE_TIME;
-                if (isSyntheticEvent) {
-                    return;
-                }
-            }
-            else {
-                this._lastTouchStartEvent = Date.now();
-            }
-            this.foundation.setTransformOrigin(evt);
-            return true;
-        };
         MdcTextField.prototype.onInput = function (evt) {
             var value = evt.target.value;
             this.value = value;
@@ -22630,9 +23912,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             aurelia_typed_observable_plugin_1.bindable.booleanAttr
         ], MdcTextField.prototype, "outlined", void 0);
         tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.number
-        ], MdcTextField.prototype, "maxlength", void 0);
-        tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable
         ], MdcTextField.prototype, "prefix", void 0);
         tslib_1.__decorate([
@@ -22641,10 +23920,34 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable.booleanAttr
         ], MdcTextField.prototype, "required", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcTextField.prototype, "disabled", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcTextField.prototype, "readonly", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.number
+        ], MdcTextField.prototype, "maxlength", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable
+        ], MdcTextField.prototype, "max", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable
+        ], MdcTextField.prototype, "min", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable
+        ], MdcTextField.prototype, "step", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.number
+        ], MdcTextField.prototype, "tabindex", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable
+        ], MdcTextField.prototype, "type", void 0);
         MdcTextField = MdcTextField_1 = tslib_1.__decorate([
             aurelia_framework_1.inject(Element),
             aurelia_framework_1.useView('./mdc-text-field.html'),
-            aurelia_framework_1.customElement('mdc-text-field'),
+            aurelia_framework_1.customElement(textfield_1.cssClasses.ROOT),
             aurelia_framework_1.processContent(MdcTextField_1.processContent)
         ], MdcTextField);
         return MdcTextField;
@@ -22916,7 +24219,352 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template\n  class=\"mdc-text-field mdc-text-field--${outlined ? 'outlined' : 'filled'} ${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''} ${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}\">\n  <require from='@material/textfield/dist/mdc.textfield.css'></require>\n  <span class=\"mdc-text-field__ripple\"></span>\n  <slot name=\"leading-icon\"></slot>\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--prefix\" if.bind=\"prefix\">${prefix}</span>\n  <input class=\"mdc-text-field__input\" type=\"text\" aria-labelledby.bind=\"id\" maxlength.bind=\"maxlength\"\n    required.bind=\"required\" ref=\"input_\" mousedown.trigger=\"onInputInteraction($event)\"\n    touchstart.trigger=\"onInputInteraction($event)\" focus.trigger=\"onFocus()\" input.trigger=\"onInput($event)\" change.trigger=\"onChange($event)\"\n    blur.trigger=\"onBlur()\">\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--suffix\" if.bind=\"suffix\">${suffix}</span>\n  <slot name=\"trailing-icon\"></slot>\n  <mdc-floating-label if.bind=\"label && !outlined\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple_\"></mdc-line-ripple>\n  <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline_\">\n    <mdc-floating-label if.bind=\"label\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  </mdc-notched-outline>\n</template>\n";
+var code = "<template\n  class=\"mdc-text-field mdc-text-field--${outlined ? 'outlined' : 'filled'} ${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''} ${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}\">\n  <require from='@material/textfield/dist/mdc.textfield.css'></require>\n  <span class=\"mdc-text-field__ripple\"></span>\n  <slot name=\"leading-icon\"></slot>\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--prefix\" if.bind=\"prefix\">${prefix}</span>\n  <input class=\"mdc-text-field__input\" type=\"text\" aria-labelledby.bind=\"id\" ref=\"input_\"\n    focus.trigger=\"onFocus()\" input.trigger=\"onInput($event)\" change.trigger=\"onChange($event)\" blur.trigger=\"onBlur()\">\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--suffix\" if.bind=\"suffix\">${suffix}</span>\n  <slot name=\"trailing-icon\"></slot>\n  <mdc-floating-label if.bind=\"label && !outlined\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple_\"></mdc-line-ripple>\n  <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline_\">\n    <mdc-floating-label if.bind=\"label\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  </mdc-notched-outline>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar":
+/*!***********************************!*\
+  !*** ../top-app-bar/src/index.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! ./mdc-top-app-bar */ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_framework_1, mdc_top_app_bar_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.configure = void 0;
+    Object.defineProperty(exports, "MdcTopAppBar", { enumerable: true, get: function () { return mdc_top_app_bar_1.MdcTopAppBar; } });
+    function configure(config) {
+        config.globalResources([
+            './mdc-top-app-bar',
+            './mdc-top-app-bar-row',
+            './mdc-top-app-bar-title',
+            './mdc-top-app-bar-section/mdc-top-app-bar-section',
+            './mdc-top-app-bar-nav-icon',
+            './mdc-top-app-bar-action-item'
+        ]);
+    }
+    exports.configure = configure;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar":
+/*!*********************************************!*\
+  !*** ../top-app-bar/src/mdc-top-app-bar.ts ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/top-app-bar */ "../../node_modules/@material/top-app-bar/index.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, top_app_bar_1, aurelia_framework_1, aurelia_typed_observable_plugin_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTopAppBar = void 0;
+    var MdcTopAppBar = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcTopAppBar, _super);
+        function MdcTopAppBar() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        MdcTopAppBar.prototype.initialise = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    this.scrollTarget_ = window;
+                    return [2 /*return*/];
+                });
+            });
+        };
+        MdcTopAppBar.prototype.initialSyncWithDOM = function () {
+            this.handleNavigationClick_ = this.foundation.handleNavigationClick.bind(this.foundation);
+            this.handleWindowResize_ = this.foundation.handleWindowResize.bind(this.foundation);
+            this.handleTargetScroll_ = this.foundation.handleTargetScroll.bind(this.foundation);
+            this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_);
+            this.hasActionItems = !!this.root.querySelector(top_app_bar_1.strings.ACTION_ITEM_SELECTOR);
+            this.navIcon_ = this.root.querySelector(top_app_bar_1.strings.NAVIGATION_ICON_SELECTOR);
+            if (this.navIcon_) {
+                this.navIcon_.addEventListener('click', this.handleNavigationClick_);
+            }
+            var isFixed = this.root.classList.contains(top_app_bar_1.cssClasses.FIXED_CLASS);
+            var isShort = this.root.classList.contains(top_app_bar_1.cssClasses.SHORT_CLASS);
+            if (!isShort && !isFixed) {
+                window.addEventListener('resize', this.handleWindowResize_);
+            }
+        };
+        MdcTopAppBar.prototype.setScrollTarget = function (target) {
+            // Remove scroll handler from the previous scroll target
+            this.scrollTarget_.removeEventListener('scroll', this.handleTargetScroll_);
+            this.scrollTarget_ = target;
+            // Initialize scroll handler on the new scroll target
+            this.handleTargetScroll_ = this.foundation.handleTargetScroll.bind(this.foundation);
+            this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_);
+        };
+        MdcTopAppBar.prototype.getDefaultFoundation = function () {
+            var _this = this;
+            // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+            // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+            var adapter = {
+                hasClass: function (className) { return _this.root.classList.contains(className); },
+                addClass: function (className) { return _this.root.classList.add(className); },
+                removeClass: function (className) { return _this.root.classList.remove(className); },
+                setStyle: function (property, value) { return _this.root.style.setProperty(property, value); },
+                getTopAppBarHeight: function () { return _this.root.clientHeight; },
+                notifyNavigationIconClicked: function () { return _this.emit(top_app_bar_1.strings.NAVIGATION_EVENT, {}); },
+                getViewportScrollY: function () {
+                    var win = _this.scrollTarget_;
+                    var el = _this.scrollTarget_;
+                    return win.pageYOffset !== undefined ? win.pageYOffset : el.scrollTop;
+                },
+                getTotalActionItems: function () { return _this.root.querySelectorAll(top_app_bar_1.strings.ACTION_ITEM_SELECTOR).length; },
+            };
+            var foundation;
+            if (this.root.classList.contains(top_app_bar_1.cssClasses.SHORT_CLASS)) {
+                foundation = new top_app_bar_1.MDCTopAppBarBaseFoundation(adapter);
+            }
+            else if (this.root.classList.contains(top_app_bar_1.cssClasses.FIXED_CLASS)) {
+                foundation = new top_app_bar_1.MDCTopAppBarBaseFoundation(adapter);
+            }
+            else {
+                foundation = new top_app_bar_1.MDCTopAppBarFoundation(adapter);
+            }
+            return foundation;
+        };
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcTopAppBar.prototype, "short", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcTopAppBar.prototype, "collapsed", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcTopAppBar.prototype, "fixed", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcTopAppBar.prototype, "prominent", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr
+        ], MdcTopAppBar.prototype, "dense", void 0);
+        MdcTopAppBar = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.useView('./mdc-top-app-bar.html'),
+            aurelia_framework_1.customElement('mdc-top-app-bar')
+        ], MdcTopAppBar);
+        return MdcTopAppBar;
+    }(base_1.MdcComponent));
+    exports.MdcTopAppBar = MdcTopAppBar;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar-action-item":
+/*!*********************************************************!*\
+  !*** ../top-app-bar/src/mdc-top-app-bar-action-item.ts ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @aurelia-mdc-web/ripple */ "@aurelia-mdc-web/ripple")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, ripple_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTopAppBarActionItem = void 0;
+    var MdcTopAppBarActionItem = /** @class */ (function () {
+        function MdcTopAppBarActionItem(root) {
+            this.root = root;
+        }
+        MdcTopAppBarActionItem.prototype.attached = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            this.root.setAttribute('role', 'button');
+                            this.root.classList.add('mdc-top-app-bar__action-item', 'mdc-icon-button');
+                            this.ripple = new ripple_1.MdcRipple(this.root);
+                            return [4 /*yield*/, this.ripple.attached()];
+                        case 1:
+                            _a.sent();
+                            this.ripple.unbounded = true;
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        MdcTopAppBarActionItem.prototype.detached = function () {
+            this.ripple.detached();
+        };
+        MdcTopAppBarActionItem = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.customAttribute('mdc-top-app-bar-action-item')
+        ], MdcTopAppBarActionItem);
+        return MdcTopAppBarActionItem;
+    }());
+    exports.MdcTopAppBarActionItem = MdcTopAppBarActionItem;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar-nav-icon":
+/*!******************************************************!*\
+  !*** ../top-app-bar/src/mdc-top-app-bar-nav-icon.ts ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @aurelia-mdc-web/ripple */ "@aurelia-mdc-web/ripple")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, ripple_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTopAppBarNavIcon = void 0;
+    var MdcTopAppBarNavIcon = /** @class */ (function () {
+        function MdcTopAppBarNavIcon(root) {
+            this.root = root;
+        }
+        MdcTopAppBarNavIcon.prototype.attached = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            this.root.setAttribute('role', 'button');
+                            this.root.classList.add('mdc-top-app-bar__navigation-icon', 'mdc-icon-button');
+                            this.ripple = new ripple_1.MdcRipple(this.root);
+                            return [4 /*yield*/, this.ripple.attached()];
+                        case 1:
+                            _a.sent();
+                            this.ripple.unbounded = true;
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        MdcTopAppBarNavIcon.prototype.detached = function () {
+            this.ripple.detached();
+        };
+        MdcTopAppBarNavIcon = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.customAttribute('mdc-top-app-bar-nav-icon')
+        ], MdcTopAppBarNavIcon);
+        return MdcTopAppBarNavIcon;
+    }());
+    exports.MdcTopAppBarNavIcon = MdcTopAppBarNavIcon;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar-row":
+/*!*************************************************!*\
+  !*** ../top-app-bar/src/mdc-top-app-bar-row.ts ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTopAppBarRow = void 0;
+    var MdcTopAppBarRow = /** @class */ (function () {
+        function MdcTopAppBarRow() {
+        }
+        MdcTopAppBarRow = tslib_1.__decorate([
+            aurelia_framework_1.inlineView('<template class="mdc-top-app-bar__row"><slot></slot></template>'),
+            aurelia_framework_1.customElement('mdc-top-app-bar-row')
+        ], MdcTopAppBarRow);
+        return MdcTopAppBarRow;
+    }());
+    exports.MdcTopAppBarRow = MdcTopAppBarRow;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar-section/mdc-top-app-bar-section":
+/*!*****************************************************************************!*\
+  !*** ../top-app-bar/src/mdc-top-app-bar-section/mdc-top-app-bar-section.ts ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, aurelia_typed_observable_plugin_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTopAppBarSection = void 0;
+    var MdcTopAppBarSection = /** @class */ (function () {
+        function MdcTopAppBarSection() {
+            this.align = 'start';
+        }
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable
+        ], MdcTopAppBarSection.prototype, "align", void 0);
+        MdcTopAppBarSection = tslib_1.__decorate([
+            aurelia_framework_1.useView('./mdc-top-app-bar-section.html'),
+            aurelia_framework_1.customElement('mdc-top-app-bar-section')
+        ], MdcTopAppBarSection);
+        return MdcTopAppBarSection;
+    }());
+    exports.MdcTopAppBarSection = MdcTopAppBarSection;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar-section/mdc-top-app-bar-section.html":
+/*!*******************************************************************************!*\
+  !*** ../top-app-bar/src/mdc-top-app-bar-section/mdc-top-app-bar-section.html ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template class=\"mdc-top-app-bar__section mdc-top-app-bar__section--align-${align}\" role=\"toolbar\">\n  <slot></slot>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar-title":
+/*!***************************************************!*\
+  !*** ../top-app-bar/src/mdc-top-app-bar-title.ts ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTopAppBarTitle = void 0;
+    var MdcTopAppBarTitle = /** @class */ (function () {
+        function MdcTopAppBarTitle() {
+        }
+        MdcTopAppBarTitle = tslib_1.__decorate([
+            aurelia_framework_1.inlineView('<template class="mdc-top-app-bar__title"><slot></slot></template>'),
+            aurelia_framework_1.customElement('mdc-top-app-bar-title')
+        ], MdcTopAppBarTitle);
+        return MdcTopAppBarTitle;
+    }());
+    exports.MdcTopAppBarTitle = MdcTopAppBarTitle;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/top-app-bar/mdc-top-app-bar.html":
+/*!***********************************************!*\
+  !*** ../top-app-bar/src/mdc-top-app-bar.html ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template class=\"mdc-top-app-bar\n  ${short ? 'mdc-top-app-bar--short' : ''}\n  ${short && collapsed ? 'mdc-top-app-bar--short-collapsed' : ''}\n  ${fixed ? 'mdc-top-app-bar--fixed' : ''}\n  ${prominent ? 'mdc-top-app-bar--prominent' : ''}\n  ${dense ? 'mdc-top-app-bar--dense' : ''}\n  ${hasActionItems ? 'mdc-top-app-bar--short-has-action-item' : ''}\">\n  <require from=\"@material/top-app-bar/dist/mdc.top-app-bar.css\"></require>\n  <require from=\"@material/icon-button/dist/mdc.icon-button.css\"></require>\n  <slot></slot>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -22934,6 +24582,42 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../css-loader/di
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.i, "/**\n * @license\n * Copyright Google LLC All Rights Reserved.\n *\n * Use of this source code is governed by an MIT-style license that can be\n * found in the LICENSE file at https://github.com/material-components/material-components-web/blob/master/LICENSE\n */\n.mdc-floating-label {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-family: Roboto, sans-serif;\n  /* @alternate */\n  font-family: var(--mdc-typography-subtitle1-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));\n  font-size: 1rem;\n  /* @alternate */\n  font-size: var(--mdc-typography-subtitle1-font-size, 1rem);\n  font-weight: 400;\n  /* @alternate */\n  font-weight: var(--mdc-typography-subtitle1-font-weight, 400);\n  letter-spacing: 0.009375em;\n  /* @alternate */\n  letter-spacing: var(--mdc-typography-subtitle1-letter-spacing, 0.009375em);\n  text-decoration: inherit;\n  /* @alternate */\n  -webkit-text-decoration: var(--mdc-typography-subtitle1-text-decoration, inherit);\n          text-decoration: var(--mdc-typography-subtitle1-text-decoration, inherit);\n  text-transform: inherit;\n  /* @alternate */\n  text-transform: var(--mdc-typography-subtitle1-text-transform, inherit);\n  position: absolute;\n  /* @noflip */\n  left: 0;\n  /* @noflip */\n  -webkit-transform-origin: left top;\n          transform-origin: left top;\n  line-height: 1.15rem;\n  text-align: left;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  cursor: text;\n  overflow: hidden;\n  /* @alternate */\n  will-change: transform;\n  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1);\n  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1);\n  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n[dir=rtl] .mdc-floating-label, .mdc-floating-label[dir=rtl] {\n  /* @noflip */\n  right: 0;\n  /* @noflip */\n  left: auto;\n  /* @noflip */\n  -webkit-transform-origin: right top;\n          transform-origin: right top;\n  /* @noflip */\n  text-align: right;\n}\n\n.mdc-floating-label--float-above {\n  cursor: auto;\n}\n\n.mdc-floating-label--required::after {\n  /* @noflip */\n  margin-left: 1px;\n  /* @noflip */\n  margin-right: 0px;\n  content: \"*\";\n}\n[dir=rtl] .mdc-floating-label--required::after, .mdc-floating-label--required[dir=rtl]::after {\n  /* @noflip */\n  margin-left: 0;\n  /* @noflip */\n  margin-right: 1px;\n}\n\n.mdc-floating-label--float-above {\n  -webkit-transform: translateY(-106%) scale(0.75);\n          transform: translateY(-106%) scale(0.75);\n}\n\n.mdc-floating-label--shake {\n  -webkit-animation: mdc-floating-label-shake-float-above-standard 250ms 1;\n          animation: mdc-floating-label-shake-float-above-standard 250ms 1;\n}\n\n@-webkit-keyframes mdc-floating-label-shake-float-above-standard {\n  0% {\n    -webkit-transform: translateX(calc(0 - 0%)) translateY(-106%) scale(0.75);\n            transform: translateX(calc(0 - 0%)) translateY(-106%) scale(0.75);\n  }\n  33% {\n    -webkit-animation-timing-function: cubic-bezier(0.5, 0, 0.701732, 0.495819);\n            animation-timing-function: cubic-bezier(0.5, 0, 0.701732, 0.495819);\n    -webkit-transform: translateX(calc(4% - 0%)) translateY(-106%) scale(0.75);\n            transform: translateX(calc(4% - 0%)) translateY(-106%) scale(0.75);\n  }\n  66% {\n    -webkit-animation-timing-function: cubic-bezier(0.302435, 0.381352, 0.55, 0.956352);\n            animation-timing-function: cubic-bezier(0.302435, 0.381352, 0.55, 0.956352);\n    -webkit-transform: translateX(calc(-4% - 0%)) translateY(-106%) scale(0.75);\n            transform: translateX(calc(-4% - 0%)) translateY(-106%) scale(0.75);\n  }\n  100% {\n    -webkit-transform: translateX(calc(0 - 0%)) translateY(-106%) scale(0.75);\n            transform: translateX(calc(0 - 0%)) translateY(-106%) scale(0.75);\n  }\n}\n\n@keyframes mdc-floating-label-shake-float-above-standard {\n  0% {\n    -webkit-transform: translateX(calc(0 - 0%)) translateY(-106%) scale(0.75);\n            transform: translateX(calc(0 - 0%)) translateY(-106%) scale(0.75);\n  }\n  33% {\n    -webkit-animation-timing-function: cubic-bezier(0.5, 0, 0.701732, 0.495819);\n            animation-timing-function: cubic-bezier(0.5, 0, 0.701732, 0.495819);\n    -webkit-transform: translateX(calc(4% - 0%)) translateY(-106%) scale(0.75);\n            transform: translateX(calc(4% - 0%)) translateY(-106%) scale(0.75);\n  }\n  66% {\n    -webkit-animation-timing-function: cubic-bezier(0.302435, 0.381352, 0.55, 0.956352);\n            animation-timing-function: cubic-bezier(0.302435, 0.381352, 0.55, 0.956352);\n    -webkit-transform: translateX(calc(-4% - 0%)) translateY(-106%) scale(0.75);\n            transform: translateX(calc(-4% - 0%)) translateY(-106%) scale(0.75);\n  }\n  100% {\n    -webkit-transform: translateX(calc(0 - 0%)) translateY(-106%) scale(0.75);\n            transform: translateX(calc(0 - 0%)) translateY(-106%) scale(0.75);\n  }\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "@material/form-field/dist/mdc.form-field.css":
+/*!*******************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/form-field/dist/mdc.form-field.css ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "/**\n * @license\n * Copyright Google LLC All Rights Reserved.\n *\n * Use of this source code is governed by an MIT-style license that can be\n * found in the LICENSE file at https://github.com/material-components/material-components-web/blob/master/LICENSE\n */\n.mdc-form-field {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-family: Roboto, sans-serif;\n  /* @alternate */\n  font-family: var(--mdc-typography-body2-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));\n  font-size: 0.875rem;\n  /* @alternate */\n  font-size: var(--mdc-typography-body2-font-size, 0.875rem);\n  line-height: 1.25rem;\n  /* @alternate */\n  line-height: var(--mdc-typography-body2-line-height, 1.25rem);\n  font-weight: 400;\n  /* @alternate */\n  font-weight: var(--mdc-typography-body2-font-weight, 400);\n  letter-spacing: 0.0178571429em;\n  /* @alternate */\n  letter-spacing: var(--mdc-typography-body2-letter-spacing, 0.0178571429em);\n  text-decoration: inherit;\n  /* @alternate */\n  -webkit-text-decoration: var(--mdc-typography-body2-text-decoration, inherit);\n          text-decoration: var(--mdc-typography-body2-text-decoration, inherit);\n  text-transform: inherit;\n  /* @alternate */\n  text-transform: var(--mdc-typography-body2-text-transform, inherit);\n  color: rgba(0, 0, 0, 0.87);\n  /* @alternate */\n  color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87));\n  display: inline-flex;\n  align-items: center;\n  vertical-align: middle;\n}\n.mdc-form-field > label {\n  /* @noflip */\n  margin-left: 0;\n  /* @noflip */\n  margin-right: auto;\n  /* @noflip */\n  padding-left: 4px;\n  /* @noflip */\n  padding-right: 0;\n  order: 0;\n}\n[dir=rtl] .mdc-form-field > label, .mdc-form-field > label[dir=rtl] {\n  /* @noflip */\n  margin-left: auto;\n  /* @noflip */\n  margin-right: 0;\n}\n[dir=rtl] .mdc-form-field > label, .mdc-form-field > label[dir=rtl] {\n  /* @noflip */\n  padding-left: 0;\n  /* @noflip */\n  padding-right: 4px;\n}\n\n.mdc-form-field--nowrap > label {\n  text-overflow: ellipsis;\n  overflow: hidden;\n  white-space: nowrap;\n}\n\n.mdc-form-field--align-end > label {\n  /* @noflip */\n  margin-left: auto;\n  /* @noflip */\n  margin-right: 0;\n  /* @noflip */\n  padding-left: 0;\n  /* @noflip */\n  padding-right: 4px;\n  order: -1;\n}\n[dir=rtl] .mdc-form-field--align-end > label, .mdc-form-field--align-end > label[dir=rtl] {\n  /* @noflip */\n  margin-left: 0;\n  /* @noflip */\n  margin-right: auto;\n}\n[dir=rtl] .mdc-form-field--align-end > label, .mdc-form-field--align-end > label[dir=rtl] {\n  /* @noflip */\n  padding-left: 4px;\n  /* @noflip */\n  padding-right: 0;\n}\n\n.mdc-form-field--space-between {\n  justify-content: space-between;\n}\n.mdc-form-field--space-between > label {\n  margin: 0;\n}\n[dir=rtl] .mdc-form-field--space-between > label, .mdc-form-field--space-between > label[dir=rtl] {\n  margin: 0;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "@material/icon-button/dist/mdc.icon-button.css":
+/*!*********************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/icon-button/dist/mdc.icon-button.css ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "/**\n * @license\n * Copyright Google LLC All Rights Reserved.\n *\n * Use of this source code is governed by an MIT-style license that can be\n * found in the LICENSE file at https://github.com/material-components/material-components-web/blob/master/LICENSE\n */\n.mdc-icon-button {\n  display: inline-block;\n  position: relative;\n  box-sizing: border-box;\n  border: none;\n  outline: none;\n  background-color: transparent;\n  fill: currentColor;\n  color: inherit;\n  font-size: 24px;\n  text-decoration: none;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  width: 48px;\n  height: 48px;\n  padding: 12px;\n}\n.mdc-icon-button svg,\n.mdc-icon-button img {\n  width: 24px;\n  height: 24px;\n}\n.mdc-icon-button:disabled {\n  color: rgba(0, 0, 0, 0.38);\n  /* @alternate */\n  color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38));\n}\n.mdc-icon-button:disabled {\n  cursor: default;\n  pointer-events: none;\n}\n\n.mdc-icon-button__icon {\n  display: inline-block;\n}\n.mdc-icon-button__icon.mdc-icon-button__icon--on {\n  display: none;\n}\n\n.mdc-icon-button--on .mdc-icon-button__icon {\n  display: none;\n}\n.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on {\n  display: inline-block;\n}\n\n@-webkit-keyframes mdc-ripple-fg-radius-in {\n  from {\n    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n    -webkit-transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);\n            transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);\n  }\n  to {\n    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));\n            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));\n  }\n}\n\n@keyframes mdc-ripple-fg-radius-in {\n  from {\n    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n    -webkit-transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);\n            transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);\n  }\n  to {\n    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));\n            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));\n  }\n}\n@-webkit-keyframes mdc-ripple-fg-opacity-in {\n  from {\n    -webkit-animation-timing-function: linear;\n            animation-timing-function: linear;\n    opacity: 0;\n  }\n  to {\n    opacity: var(--mdc-ripple-fg-opacity, 0);\n  }\n}\n@keyframes mdc-ripple-fg-opacity-in {\n  from {\n    -webkit-animation-timing-function: linear;\n            animation-timing-function: linear;\n    opacity: 0;\n  }\n  to {\n    opacity: var(--mdc-ripple-fg-opacity, 0);\n  }\n}\n@-webkit-keyframes mdc-ripple-fg-opacity-out {\n  from {\n    -webkit-animation-timing-function: linear;\n            animation-timing-function: linear;\n    opacity: var(--mdc-ripple-fg-opacity, 0);\n  }\n  to {\n    opacity: 0;\n  }\n}\n@keyframes mdc-ripple-fg-opacity-out {\n  from {\n    -webkit-animation-timing-function: linear;\n            animation-timing-function: linear;\n    opacity: var(--mdc-ripple-fg-opacity, 0);\n  }\n  to {\n    opacity: 0;\n  }\n}\n.mdc-icon-button {\n  --mdc-ripple-fg-size: 0;\n  --mdc-ripple-left: 0;\n  --mdc-ripple-top: 0;\n  --mdc-ripple-fg-scale: 1;\n  --mdc-ripple-fg-translate-end: 0;\n  --mdc-ripple-fg-translate-start: 0;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.mdc-icon-button::before, .mdc-icon-button::after {\n  position: absolute;\n  border-radius: 50%;\n  opacity: 0;\n  pointer-events: none;\n  content: \"\";\n}\n.mdc-icon-button::before {\n  transition: opacity 15ms linear, background-color 15ms linear;\n  z-index: 1;\n}\n.mdc-icon-button.mdc-ripple-upgraded::before {\n  -webkit-transform: scale(var(--mdc-ripple-fg-scale, 1));\n          transform: scale(var(--mdc-ripple-fg-scale, 1));\n}\n.mdc-icon-button.mdc-ripple-upgraded::after {\n  top: 0;\n  /* @noflip */\n  left: 0;\n  -webkit-transform: scale(0);\n          transform: scale(0);\n  -webkit-transform-origin: center center;\n          transform-origin: center center;\n}\n.mdc-icon-button.mdc-ripple-upgraded--unbounded::after {\n  top: var(--mdc-ripple-top, 0);\n  /* @noflip */\n  left: var(--mdc-ripple-left, 0);\n}\n.mdc-icon-button.mdc-ripple-upgraded--foreground-activation::after {\n  -webkit-animation: mdc-ripple-fg-radius-in 225ms forwards, mdc-ripple-fg-opacity-in 75ms forwards;\n          animation: mdc-ripple-fg-radius-in 225ms forwards, mdc-ripple-fg-opacity-in 75ms forwards;\n}\n.mdc-icon-button.mdc-ripple-upgraded--foreground-deactivation::after {\n  -webkit-animation: mdc-ripple-fg-opacity-out 150ms;\n          animation: mdc-ripple-fg-opacity-out 150ms;\n  -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));\n          transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));\n}\n.mdc-icon-button::before, .mdc-icon-button::after {\n  top: calc(50% - 50%);\n  /* @noflip */\n  left: calc(50% - 50%);\n  width: 100%;\n  height: 100%;\n}\n.mdc-icon-button.mdc-ripple-upgraded::before, .mdc-icon-button.mdc-ripple-upgraded::after {\n  top: var(--mdc-ripple-top, calc(50% - 50%));\n  /* @noflip */\n  left: var(--mdc-ripple-left, calc(50% - 50%));\n  width: var(--mdc-ripple-fg-size, 100%);\n  height: var(--mdc-ripple-fg-size, 100%);\n}\n.mdc-icon-button.mdc-ripple-upgraded::after {\n  width: var(--mdc-ripple-fg-size, 100%);\n  height: var(--mdc-ripple-fg-size, 100%);\n}\n.mdc-icon-button::before, .mdc-icon-button::after {\n  background-color: #000;\n}\n.mdc-icon-button:hover::before {\n  opacity: 0.04;\n}\n.mdc-icon-button.mdc-ripple-upgraded--background-focused::before, .mdc-icon-button:not(.mdc-ripple-upgraded):focus::before {\n  transition-duration: 75ms;\n  opacity: 0.12;\n}\n.mdc-icon-button:not(.mdc-ripple-upgraded)::after {\n  transition: opacity 150ms linear;\n}\n.mdc-icon-button:not(.mdc-ripple-upgraded):active::after {\n  transition-duration: 75ms;\n  opacity: 0.12;\n}\n.mdc-icon-button.mdc-ripple-upgraded {\n  --mdc-ripple-fg-opacity: 0.12;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -22976,6 +24660,24 @@ module.exports = exports;
 
 /***/ }),
 
+/***/ "@material/top-app-bar/dist/mdc.top-app-bar.css":
+/*!*********************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/top-app-bar/dist/mdc.top-app-bar.css ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "/**\n * @license\n * Copyright Google LLC All Rights Reserved.\n *\n * Use of this source code is governed by an MIT-style license that can be\n * found in the LICENSE file at https://github.com/material-components/material-components-web/blob/master/LICENSE\n */\n.mdc-top-app-bar {\n  background-color: #6200ee;\n  /* @alternate */\n  background-color: var(--mdc-theme-primary, #6200ee);\n  color: white;\n  display: flex;\n  position: fixed;\n  flex-direction: column;\n  justify-content: space-between;\n  box-sizing: border-box;\n  width: 100%;\n  z-index: 4;\n}\n.mdc-top-app-bar .mdc-top-app-bar__action-item,\n.mdc-top-app-bar .mdc-top-app-bar__navigation-icon {\n  color: #fff;\n  /* @alternate */\n  color: var(--mdc-theme-on-primary, #fff);\n}\n.mdc-top-app-bar .mdc-top-app-bar__action-item::before, .mdc-top-app-bar .mdc-top-app-bar__action-item::after,\n.mdc-top-app-bar .mdc-top-app-bar__navigation-icon::before,\n.mdc-top-app-bar .mdc-top-app-bar__navigation-icon::after {\n  background-color: #fff;\n  /* @alternate */\n  background-color: var(--mdc-theme-on-primary, #fff);\n}\n.mdc-top-app-bar .mdc-top-app-bar__action-item:hover::before,\n.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:hover::before {\n  opacity: 0.08;\n}\n.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded--background-focused::before, .mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):focus::before,\n.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded--background-focused::before,\n.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):focus::before {\n  transition-duration: 75ms;\n  opacity: 0.24;\n}\n.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded)::after,\n.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded)::after {\n  transition: opacity 150ms linear;\n}\n.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):active::after,\n.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):active::after {\n  transition-duration: 75ms;\n  opacity: 0.24;\n}\n.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded,\n.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded {\n  --mdc-ripple-fg-opacity: 0.24;\n}\n.mdc-top-app-bar__row {\n  display: flex;\n  position: relative;\n  box-sizing: border-box;\n  width: 100%;\n  height: 64px;\n}\n.mdc-top-app-bar__section {\n  display: inline-flex;\n  flex: 1 1 auto;\n  align-items: center;\n  min-width: 0;\n  padding: 8px 12px;\n  z-index: 1;\n}\n.mdc-top-app-bar__section--align-start {\n  justify-content: flex-start;\n  order: -1;\n}\n.mdc-top-app-bar__section--align-end {\n  justify-content: flex-end;\n  order: 1;\n}\n.mdc-top-app-bar__title {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-family: Roboto, sans-serif;\n  /* @alternate */\n  font-family: var(--mdc-typography-headline6-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));\n  font-size: 1.25rem;\n  /* @alternate */\n  font-size: var(--mdc-typography-headline6-font-size, 1.25rem);\n  line-height: 2rem;\n  /* @alternate */\n  line-height: var(--mdc-typography-headline6-line-height, 2rem);\n  font-weight: 500;\n  /* @alternate */\n  font-weight: var(--mdc-typography-headline6-font-weight, 500);\n  letter-spacing: 0.0125em;\n  /* @alternate */\n  letter-spacing: var(--mdc-typography-headline6-letter-spacing, 0.0125em);\n  text-decoration: inherit;\n  /* @alternate */\n  -webkit-text-decoration: var(--mdc-typography-headline6-text-decoration, inherit);\n          text-decoration: var(--mdc-typography-headline6-text-decoration, inherit);\n  text-transform: inherit;\n  /* @alternate */\n  text-transform: var(--mdc-typography-headline6-text-transform, inherit);\n  /* @noflip */\n  padding-left: 20px;\n  /* @noflip */\n  padding-right: 0;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  z-index: 1;\n}\n[dir=rtl] .mdc-top-app-bar__title, .mdc-top-app-bar__title[dir=rtl] {\n  /* @noflip */\n  padding-left: 0;\n  /* @noflip */\n  padding-right: 20px;\n}\n\n.mdc-top-app-bar--short-collapsed {\n  /* @noflip */\n  border-top-left-radius: 0;\n  /* @noflip */\n  border-top-right-radius: 0;\n  /* @noflip */\n  border-bottom-right-radius: 24px;\n  /* @noflip */\n  border-bottom-left-radius: 0;\n}\n[dir=rtl] .mdc-top-app-bar--short-collapsed, .mdc-top-app-bar--short-collapsed[dir=rtl] {\n  /* @noflip */\n  border-top-left-radius: 0;\n  /* @noflip */\n  border-top-right-radius: 0;\n  /* @noflip */\n  border-bottom-right-radius: 0;\n  /* @noflip */\n  border-bottom-left-radius: 24px;\n}\n\n.mdc-top-app-bar--short {\n  top: 0;\n  /* @noflip */\n  right: auto;\n  /* @noflip */\n  left: 0;\n  width: 100%;\n  transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n[dir=rtl] .mdc-top-app-bar--short, .mdc-top-app-bar--short[dir=rtl] {\n  /* @noflip */\n  right: 0;\n  /* @noflip */\n  left: auto;\n}\n.mdc-top-app-bar--short .mdc-top-app-bar__row {\n  height: 56px;\n}\n.mdc-top-app-bar--short .mdc-top-app-bar__section {\n  padding: 4px;\n}\n.mdc-top-app-bar--short .mdc-top-app-bar__title {\n  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);\n  opacity: 1;\n}\n\n.mdc-top-app-bar--short-collapsed {\n  /* @alternate */\n  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);\n  width: 56px;\n  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__title {\n  display: none;\n}\n.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__action-item {\n  transition: padding 150ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item {\n  width: 112px;\n}\n.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end {\n  /* @noflip */\n  padding-left: 0;\n  /* @noflip */\n  padding-right: 12px;\n}\n[dir=rtl] .mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end, .mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end[dir=rtl] {\n  /* @noflip */\n  padding-left: 12px;\n  /* @noflip */\n  padding-right: 0;\n}\n\n.mdc-top-app-bar--dense .mdc-top-app-bar__row {\n  height: 48px;\n}\n.mdc-top-app-bar--dense .mdc-top-app-bar__section {\n  padding: 0 4px;\n}\n.mdc-top-app-bar--dense .mdc-top-app-bar__title {\n  /* @noflip */\n  padding-left: 12px;\n  /* @noflip */\n  padding-right: 0;\n}\n[dir=rtl] .mdc-top-app-bar--dense .mdc-top-app-bar__title, .mdc-top-app-bar--dense .mdc-top-app-bar__title[dir=rtl] {\n  /* @noflip */\n  padding-left: 0;\n  /* @noflip */\n  padding-right: 12px;\n}\n\n.mdc-top-app-bar--prominent .mdc-top-app-bar__row {\n  height: 128px;\n}\n.mdc-top-app-bar--prominent .mdc-top-app-bar__title {\n  align-self: flex-end;\n  padding-bottom: 2px;\n}\n.mdc-top-app-bar--prominent .mdc-top-app-bar__action-item,\n.mdc-top-app-bar--prominent .mdc-top-app-bar__navigation-icon {\n  align-self: flex-start;\n}\n\n.mdc-top-app-bar--fixed {\n  transition: box-shadow 200ms linear;\n}\n\n.mdc-top-app-bar--fixed-scrolled {\n  /* @alternate */\n  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);\n  transition: box-shadow 200ms linear;\n}\n\n.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__row {\n  height: 96px;\n}\n.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__section {\n  padding: 0 12px;\n}\n.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title {\n  /* @noflip */\n  padding-left: 20px;\n  /* @noflip */\n  padding-right: 0;\n  padding-bottom: 9px;\n}\n[dir=rtl] .mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title, .mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title[dir=rtl] {\n  /* @noflip */\n  padding-left: 0;\n  /* @noflip */\n  padding-right: 20px;\n}\n\n.mdc-top-app-bar--fixed-adjust {\n  padding-top: 64px;\n}\n\n.mdc-top-app-bar--dense-fixed-adjust {\n  padding-top: 48px;\n}\n\n.mdc-top-app-bar--short-fixed-adjust {\n  padding-top: 56px;\n}\n\n.mdc-top-app-bar--prominent-fixed-adjust {\n  padding-top: 128px;\n}\n\n.mdc-top-app-bar--dense-prominent-fixed-adjust {\n  padding-top: 96px;\n}\n\n@media (max-width: 599px) {\n  .mdc-top-app-bar__row {\n    height: 56px;\n  }\n\n  .mdc-top-app-bar__section {\n    padding: 4px;\n  }\n\n  .mdc-top-app-bar--short {\n    transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1);\n  }\n\n  .mdc-top-app-bar--short-collapsed {\n    transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);\n  }\n  .mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end {\n    /* @noflip */\n    padding-left: 0;\n    /* @noflip */\n    padding-right: 12px;\n  }\n  [dir=rtl] .mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end, .mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end[dir=rtl] {\n    /* @noflip */\n    padding-left: 12px;\n    /* @noflip */\n    padding-right: 0;\n  }\n\n  .mdc-top-app-bar--prominent .mdc-top-app-bar__title {\n    padding-bottom: 6px;\n  }\n\n  .mdc-top-app-bar--fixed-adjust {\n    padding-top: 56px;\n  }\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "app":
 /*!********************!*\
   !*** ./src/app.ts ***!
@@ -23005,12 +24707,34 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
   !*** ./src/app.html ***!
   \**********************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+// Imports
+var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = __webpack_require__(/*! ../../../node_modules/html-loader/dist/runtime/getUrl.js */ "../../node_modules/html-loader/dist/runtime/getUrl.js");
+var ___HTML_LOADER_IMPORT_0___ = __webpack_require__(/*! ./assets/github-circle-white-transparent.svg */ "./src/assets/github-circle-white-transparent.svg");
 // Module
-var code = "<template>\n  <div style=\"display: inline-block\">\n    <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\">\n      <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n      <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n    </mdc-text-field>\n    <mdc-text-field-helper-line>\n      <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n      <mdc-text-field-character-counter></mdc-text-field-character-counter>\n    </mdc-text-field-helper-line>\n  </div>\n\n  <div style=\"display: inline-block\">\n    <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\">\n      <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n      <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n    </mdc-text-field>\n    <mdc-text-field-helper-line>\n      <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n    </mdc-text-field-helper-line>\n  </div>\n  <div>${value}</div>\n</template>\n";
+var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
+var code = "<template>\n  <require from=\"./app.scss\"></require>\n  <mdc-top-app-bar fixed>\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v0.0.1</span>\n        <a role=\"button\" mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\"\n          alt=\"GitHub\" target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-form-field>\n      <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\">\n        <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n        <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n      </mdc-text-field>\n      <mdc-text-field-helper-line>\n        <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n        <mdc-text-field-character-counter></mdc-text-field-character-counter>\n      </mdc-text-field-helper-line>\n    </mdc-form-field>\n\n    <mdc-form-field>\n      <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\" required type=\"number\">\n        <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n        <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n      </mdc-text-field>\n      <mdc-text-field-helper-line>\n        <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n        <mdc-text-field-character-counter></mdc-text-field-character-counter>\n      </mdc-text-field-helper-line>\n    </mdc-form-field>\n    <div>${value}</div>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
+
+/***/ }),
+
+/***/ "app.scss":
+/*!**********************!*\
+  !*** ./src/app.scss ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "body{margin:0;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}body .demo-panel{padding-top:80px}", ""]);
+// Exports
+module.exports = exports;
+
 
 /***/ }),
 
@@ -28126,8 +29850,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             .developmentLogging()
                             .standardConfiguration()
                             .plugin('@aurelia-mdc-web/floating-label')
+                            .plugin('@aurelia-mdc-web/form-field')
                             .plugin('@aurelia-mdc-web/line-ripple')
                             .plugin('@aurelia-mdc-web/notched-outline')
+                            .plugin('@aurelia-mdc-web/top-app-bar')
+                            .plugin('@aurelia-mdc-web/ripple')
                             .plugin('@aurelia-mdc-web/text-field');
                         return [4 /*yield*/, aurelia.start()];
                     case 1:
@@ -28148,4 +29875,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.2db572dda9b8681dcb11.bundle.map
+//# sourceMappingURL=app.6d07f0cc6c41ca3b5c2d.bundle.map
