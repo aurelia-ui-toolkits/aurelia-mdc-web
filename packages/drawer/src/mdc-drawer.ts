@@ -15,6 +15,9 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
   @bindable.booleanAttr
   dismissible: boolean;
 
+  @bindable.booleanAttr
+  modal: boolean;
+
   /**
    * @return boolean Proxies to the foundation's `open`/`close` methods.
    * Also returns true if drawer is in the open position.
@@ -115,8 +118,8 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
       },
       notifyClose: () => this.emit(strings.CLOSE_EVENT, {}, true /* shouldBubble */),
       notifyOpen: () => this.emit(strings.OPEN_EVENT, {}, true /* shouldBubble */),
-      trapFocus: () => this.focusTrap_!.trapFocus(),
-      releaseFocus: () => this.focusTrap_!.releaseFocus(),
+      trapFocus: () => this.focusTrap_?.trapFocus(),
+      releaseFocus: () => this.focusTrap_?.releaseFocus(),
     };
 
     const { DISMISSIBLE, MODAL } = cssClasses;

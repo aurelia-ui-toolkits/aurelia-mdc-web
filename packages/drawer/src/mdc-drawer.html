@@ -1,4 +1,4 @@
-<template class="mdc-drawer ${dismissible ? 'mdc-drawer--dismissible' : 'mdc-drawer--modal'}">
+<template class="mdc-drawer ${dismissible ? 'mdc-drawer--dismissible' : ''} ${modal ? 'mdc-drawer--modal' : ''}">
   <require from="@material/drawer/dist/mdc.drawer.css"></require>
   <slot></slot>
 </template>
