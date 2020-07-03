@@ -10,11 +10,14 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
 
   async initialise() { }
 
+  initialSyncWithDOM() { }
+
   async attached() {
     await this.initialise();
     this.foundation = this.getDefaultFoundation();
     this.foundation.init();
     this.initialisedResolve();
+    this.initialSyncWithDOM();
   }
 
   destroy() { }

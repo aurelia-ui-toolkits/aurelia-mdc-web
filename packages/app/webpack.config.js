@@ -8,6 +8,9 @@ const outDir = path.resolve(__dirname, 'dist');
  * @returns {import('webpack').Configuration}
  */
 module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
+  const cssLoaders = ['css-loader', 'postcss-loader'];
+  const scssLoaders = [...cssLoaders, 'sass-loader'];
+
   return {
     mode: production === 'production' ? 'production' : 'development',
     devtool: production ? false : 'source-map',
@@ -30,6 +33,8 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'form-field',
           'line-ripple',
           'notched-outline',
+          'ripple',
+          'top-app-bar',
           'text-field'
         ].reduce((map, packageName) => {
           const mappedPackagedName = `@aurelia-mdc-web/${packageName}`;
@@ -44,22 +49,15 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
     },
     module: {
       rules: [
+        { test: /\.(woff|woff2)(\?|$)/, loader: 'url-loader?limit=1' },
+        { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000, esModule: false } } },
+        { test: /\.ts$/, loader: 'ts-loader' },
+        { test: /\.html$/, loader: 'html-loader' },
+        { test: /\.scss$/i, issuer: /(\.html|empty-entry\.js)$/i, use: scssLoaders },
+        { test: /\.scss$/i, issuer: /\.ts$/i, use: ['style-loader', ...scssLoaders] },
+        { test: /\.css$/i, issuer: [{ not: [{ test: /\.html$/i }] }], use: ['style-loader', 'css-loader'] },
         {
-          test: /\.ts$/,
-          loader: 'ts-loader'
-        },
-        {
-          test: /\.html$/,
-          loader: 'html-loader'
-        },
-        {
-          test: /\.css$/i,
-          issuer: [{ not: [{ test: /\.html$/i }] }],
-          use: ['style-loader', 'css-loader']
-        },
-        {
-          test: /\.css$/i,
-          issuer: [{ test: /\.html$/i }],
+          test: /\.css$/i, issuer: [{ test: /\.html$/i }],
           // CSS required in templates cannot be extracted safely
           // because Aurelia would try to require it again in runtime
           use: ['css-loader']

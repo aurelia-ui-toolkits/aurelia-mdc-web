@@ -1,10 +1,10 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCNotchedOutlineFoundation, MDCNotchedOutlineAdapter, cssClasses } from '@material/notched-outline';
 import { MDCFloatingLabelFoundation } from '@material/floating-label';
-import { inject, customElement, useView } from 'aurelia-framework';
+import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
 
 @inject(Element)
-@useView('./mdc-notched-outline.html')
+@useView(PLATFORM.moduleName('./mdc-notched-outline.html'))
 @customElement('mdc-notched-outline')
 export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation> {
   private notchElement_!: HTMLElement; // assigned in html

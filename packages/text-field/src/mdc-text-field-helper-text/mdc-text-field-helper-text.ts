@@ -1,10 +1,10 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTextFieldHelperTextFoundation, MDCTextFieldHelperTextAdapter, helperTextCssClasses } from '@material/textfield';
-import { inject, customElement, useView } from 'aurelia-framework';
+import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 @inject(Element)
-@useView('./mdc-text-field-helper-text.html')
+@useView(PLATFORM.moduleName('./mdc-text-field-helper-text.html'))
 @customElement(helperTextCssClasses.ROOT)
 export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextFoundation> {
   helperTextCssClasses = helperTextCssClasses;

@@ -1,4 +1,4 @@
-import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, BehaviorInstruction } from 'aurelia-framework';
+import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, BehaviorInstruction, PLATFORM } from 'aurelia-framework';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
   MDCTextFieldLineRippleAdapter, cssClasses, MDCTextFieldOutlineAdapter, helperTextStrings, characterCountStrings
@@ -16,7 +16,7 @@ import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-te
 import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
 
 @inject(Element)
-@useView('./mdc-text-field.html')
+@useView(PLATFORM.moduleName('./mdc-text-field.html'))
 @customElement(cssClasses.ROOT)
 @processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
