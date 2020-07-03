@@ -23,7 +23,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
    * Also returns true if drawer is in the open position.
    */
   get open(): boolean {
-    return this.foundation.isOpen();
+    return this.foundation!.isOpen();
   }
 
   /**
@@ -31,9 +31,9 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
    */
   set open(isOpen: boolean) {
     if (isOpen) {
-      this.foundation.open();
+      this.foundation?.open();
     } else {
-      this.foundation.close();
+      this.foundation?.close();
     }
   }
 
@@ -44,8 +44,6 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
   private focusTrapFactory_!: MDCDrawerFocusTrapFactory; // assigned in initialize()
 
   private handleScrimClick_?: SpecificEventListener<'click'>; // initialized in initialSyncWithDOM()
-  private handleKeydown_!: SpecificEventListener<'keydown'>; // initialized in initialSyncWithDOM()
-  private handleTransitionEnd_!: SpecificEventListener<'transitionend'>; // initialized in initialSyncWithDOM()
 
   async initialise() {
     // const listEl =
@@ -68,25 +66,23 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
       this.scrim_.addEventListener('click', this.handleScrimClick_);
       this.focusTrap_ = util.createFocusTrapInstance(this.root as HTMLElement, this.focusTrapFactory_);
     }
+  }
 
-    this.handleKeydown_ = (evt) => this.foundation.handleKeydown(evt);
-    this.handleTransitionEnd_ = (evt) => this.foundation.handleTransitionEnd(evt);
+  handleKeydown_(evt: KeyboardEvent) {
+    this.foundation?.handleKeydown(evt);
+  }
 
-    this.listen('keydown', this.handleKeydown_);
-    this.listen('transitionend', this.handleTransitionEnd_);
+  handleTransitionEnd_(evt: TransitionEvent) {
+    this.foundation?.handleTransitionEnd(evt);
   }
 
   destroy() {
-    this.unlisten('keydown', this.handleKeydown_);
-    this.unlisten('transitionend', this.handleTransitionEnd_);
-
     // if (this.list_) {
     //   this.list_.destroy();
     // }
 
     const { MODAL } = cssClasses;
-    if (this.scrim_ && this.handleScrimClick_ &&
-      this.root.classList.contains(MODAL)) {
+    if (this.scrim_ && this.handleScrimClick_ && this.root.classList.contains(MODAL)) {
       this.scrim_.removeEventListener('click', this.handleScrimClick_);
       // Ensure drawer is closed to hide scrim and release focus
       this.open = false;
@@ -132,7 +128,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
     }
   }
 
-  toggle(){
+  toggle() {
     this.open = !this.open;
   }
 }

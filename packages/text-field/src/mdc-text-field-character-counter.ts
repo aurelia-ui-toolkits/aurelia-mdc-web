@@ -8,7 +8,7 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 export class MdcTextFieldCharacterCounter extends MdcComponent<MDCTextFieldCharacterCounterFoundation> {
   // Provided for access by MDCTextField component
   get foundationForTextField(): MDCTextFieldCharacterCounterFoundation {
-    return this.foundation;
+    return this.foundation!;
   }
 
   getDefaultFoundation() {

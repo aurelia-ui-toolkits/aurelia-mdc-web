@@ -23,7 +23,7 @@
       <mdc-drawer-content><button>Menu</button></mdc-drawer-content>
     </mdc-drawer>
     <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust>
-      <mdc-form-field>
+      <mdc-form-field if.bind="!checked">
         <mdc-text-field label="Label" maxlength="100" value.bind="value">
           <i class="material-icons" mdc-text-field-icon leading>event</i>
           <i class="material-icons" mdc-text-field-icon trailing>science</i>
@@ -45,6 +45,7 @@
         </mdc-text-field-helper-line>
       </mdc-form-field>
       <div>${value}</div>
+      <input type="checkbox" checked.bind="checked">Hide</input>
     </mdc-drawer-app-content>
   </div>
 </template>

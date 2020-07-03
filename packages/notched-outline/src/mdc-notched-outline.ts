@@ -27,14 +27,14 @@ export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation>
    * @param notchWidth The notch width in the outline.
    */
   notch(notchWidth: number) {
-    this.foundation.notch(notchWidth);
+    this.foundation?.notch(notchWidth);
   }
 
   /**
    * Updates classes and styles to close the notch.
    */
   closeNotch() {
-    this.foundation.closeNotch();
+    this.foundation?.closeNotch();
   }
 
   getDefaultFoundation() {

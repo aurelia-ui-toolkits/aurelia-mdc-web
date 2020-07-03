@@ -17,7 +17,7 @@ export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextF
 
   // Provided for access by MDCTextField component
   get foundationForTextField(): MDCTextFieldHelperTextFoundation {
-    return this.foundation;
+    return this.foundation!;
   }
 
   getDefaultFoundation() {

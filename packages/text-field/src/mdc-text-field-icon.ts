@@ -23,7 +23,7 @@ export class MdcTextFieldIcon extends MdcComponent<MDCTextFieldIconFoundation> {
 
   // Provided for access by MDCTextField component
   get foundationForTextField(): MDCTextFieldIconFoundation {
-    return this.foundation;
+    return this.foundation!;
   }
 
   getDefaultFoundation() {
