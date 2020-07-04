@@ -25436,8 +25436,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             './mdc-drawer',
             './mdc-drawer-content',
             './mdc-drawer-app-content',
-            './mdc-drawer-header/mdc-drawer-header',
-            './mdc-drawer-scrim'
+            './mdc-drawer-header/mdc-drawer-header'
         ]);
     }
     exports.configure = configure;
@@ -25454,14 +25453,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/drawer */ "../../node_modules/@material/drawer/index.js"), __webpack_require__(/*! @material/list */ "../../node_modules/@material/list/index.js"), __webpack_require__(/*! @material/dom/focus-trap */ "../../node_modules/@material/dom/focus-trap.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-pal */ "../../node_modules/aurelia-pal/dist/es2015/aurelia-pal.js"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, drawer_1, list_1, focus_trap_1, aurelia_framework_1, aurelia_pal_1, aurelia_typed_observable_plugin_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/drawer */ "../../node_modules/@material/drawer/index.js"), __webpack_require__(/*! @material/list */ "../../node_modules/@material/list/index.js"), __webpack_require__(/*! @material/dom/focus-trap */ "../../node_modules/@material/dom/focus-trap.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-pal */ "../../node_modules/aurelia-pal/dist/es2015/aurelia-pal.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, drawer_1, list_1, focus_trap_1, aurelia_framework_1, aurelia_pal_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcDrawer = void 0;
     var MdcDrawer = /** @class */ (function (_super) {
         tslib_1.__extends(MdcDrawer, _super);
         function MdcDrawer() {
-            return _super !== null && _super.apply(this, arguments) || this;
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.type = 'standard';
+            return _this;
         }
         Object.defineProperty(MdcDrawer.prototype, "open", {
             /**
@@ -25496,19 +25497,27 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     //   this.list_.wrapFocus = true;
                     // }
                     this.focusTrapFactory_ = function (el) { return new focus_trap_1.FocusTrap(el); };
+                    if (this.root.parentElement.clientWidth < 900) {
+                        this.type = 'modal';
+                    }
                     return [2 /*return*/];
                 });
             });
         };
         MdcDrawer.prototype.initialSyncWithDOM = function () {
             var _this = this;
-            var MODAL = drawer_1.cssClasses.MODAL;
-            var SCRIM_SELECTOR = drawer_1.strings.SCRIM_SELECTOR;
-            this.scrim_ = this.root.parentNode.querySelector(SCRIM_SELECTOR);
-            if (this.scrim_ && this.root.classList.contains(MODAL)) {
-                this.handleScrimClick_ = function () { return _this.foundation.handleScrimClick(); };
-                this.scrim_.addEventListener('click', this.handleScrimClick_);
-                this.focusTrap_ = drawer_1.util.createFocusTrapInstance(this.root, this.focusTrapFactory_);
+            if (this.type === 'modal') {
+                this.scrim_ = document.createElement('div');
+                this.scrim_.classList.add('mdc-drawer-scrim');
+                this.root.insertAdjacentElement('afterend', this.scrim_);
+                if (this.scrim_) {
+                    this.handleScrimClick_ = function () {
+                        _this.open = false;
+                        return _this.foundation.handleScrimClick();
+                    };
+                    this.scrim_.addEventListener('click', this.handleScrimClick_);
+                    this.focusTrap_ = drawer_1.util.createFocusTrapInstance(this.root, this.focusTrapFactory_);
+                }
             }
         };
         MdcDrawer.prototype.handleKeydown_ = function (evt) {
@@ -25558,26 +25567,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 trapFocus: function () { var _a; return (_a = _this.focusTrap_) === null || _a === void 0 ? void 0 : _a.trapFocus(); },
                 releaseFocus: function () { var _a; return (_a = _this.focusTrap_) === null || _a === void 0 ? void 0 : _a.releaseFocus(); },
             };
-            var DISMISSIBLE = drawer_1.cssClasses.DISMISSIBLE, MODAL = drawer_1.cssClasses.MODAL;
-            if (this.root.classList.contains(DISMISSIBLE)) {
-                return new drawer_1.MDCDismissibleDrawerFoundation(adapter);
-            }
-            else if (this.root.classList.contains(MODAL)) {
+            if (this.type === 'modal') {
                 return new drawer_1.MDCModalDrawerFoundation(adapter);
             }
             else {
-                throw new Error("MDCDrawer: Failed to instantiate component. Supported variants are " + DISMISSIBLE + " and " + MODAL + ".");
+                return new drawer_1.MDCDismissibleDrawerFoundation(adapter);
             }
         };
         MdcDrawer.prototype.toggle = function () {
             this.open = !this.open;
         };
         tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr
-        ], MdcDrawer.prototype, "dismissible", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr
-        ], MdcDrawer.prototype, "modal", void 0);
+            aurelia_framework_1.bindable
+        ], MdcDrawer.prototype, "type", void 0);
         MdcDrawer = tslib_1.__decorate([
             aurelia_framework_1.inject(Element),
             aurelia_framework_1.useView('./mdc-drawer.html'),
@@ -25696,34 +25698,6 @@ module.exports = code;
 
 /***/ }),
 
-/***/ "@aurelia-mdc-web/drawer/mdc-drawer-scrim":
-/*!*****************************************!*\
-  !*** ../drawer/src/mdc-drawer-scrim.ts ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.MdcDrawerScrim = void 0;
-    var MdcDrawerScrim = /** @class */ (function () {
-        function MdcDrawerScrim() {
-        }
-        MdcDrawerScrim = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.inlineView('<template class="mdc-drawer-scrim"></template>'),
-            aurelia_framework_1.customElement('mdc-drawer-scrim')
-        ], MdcDrawerScrim);
-        return MdcDrawerScrim;
-    }());
-    exports.MdcDrawerScrim = MdcDrawerScrim;
-}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-
-/***/ }),
-
 /***/ "@aurelia-mdc-web/drawer/mdc-drawer.html":
 /*!*************************************!*\
   !*** ../drawer/src/mdc-drawer.html ***!
@@ -25732,7 +25706,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template class=\"mdc-drawer ${dismissible ? 'mdc-drawer--dismissible' : ''} ${modal ? 'mdc-drawer--modal' : ''}\"\n  transitionend.delegate=\"handleTransitionEnd_($event)\" keydown.delegate=\"handleKeydown_($event)\">\n  <require from=\"@material/drawer/dist/mdc.drawer.css\"></require>\n  <slot></slot>\n</template>\n";
+var code = "<template class=\"mdc-drawer\n  ${type === 'dismissible' ? 'mdc-drawer--dismissible' : ''}\n  ${ type === 'modal' ? 'mdc-drawer--modal' : ''}\" transitionend.delegate=\"handleTransitionEnd_($event)\"\n  keydown.delegate=\"handleKeydown_($event)\">\n  <require from=\"@material/drawer/dist/mdc.drawer.css\"></require>\n  <slot></slot>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -27387,7 +27361,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = __webpack_require__(/*! ../../../
 var ___HTML_LOADER_IMPORT_0___ = __webpack_require__(/*! ./assets/github-circle-white-transparent.svg */ "./src/assets/github-circle-white-transparent.svg");
 // Module
 var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = "<template>\n  <require from=\"./app.scss\"></require>\n  <mdc-top-app-bar fixed>\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v0.0.1</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" dismissible mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content><button>Menu</button></mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust>\n      <mdc-form-field if.bind=\"!checked\">\n        <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\">\n          <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n          <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n        </mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n          <mdc-text-field-character-counter></mdc-text-field-character-counter>\n        </mdc-text-field-helper-line>\n      </mdc-form-field>\n\n      <mdc-form-field>\n        <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\" required type=\"number\">\n          <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n          <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n        </mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n          <mdc-text-field-character-counter></mdc-text-field-character-counter>\n        </mdc-text-field-helper-line>\n      </mdc-form-field>\n      <div>${value}</div>\n      <input type=\"checkbox\" checked.bind=\"checked\">Hide</input>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./app.scss\"></require>\n  <mdc-top-app-bar fixed>\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v0.0.1</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content><button>Menu</button></mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust>\n      <mdc-form-field if.bind=\"!checked\">\n        <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\">\n          <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n          <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n        </mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n          <mdc-text-field-character-counter></mdc-text-field-character-counter>\n        </mdc-text-field-helper-line>\n      </mdc-form-field>\n\n      <mdc-form-field>\n        <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\" required type=\"number\">\n          <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n          <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n        </mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n          <mdc-text-field-character-counter></mdc-text-field-character-counter>\n        </mdc-text-field-helper-line>\n      </mdc-form-field>\n      <div>${value}</div>\n      <input type=\"checkbox\" checked.bind=\"checked\">Hide</input>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -32549,4 +32523,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.0cb915ad1030398ff243.bundle.map
+//# sourceMappingURL=app.2b9bb0961dc30a358444.bundle.map
