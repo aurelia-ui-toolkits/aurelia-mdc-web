@@ -4,19 +4,16 @@ import { MDCDrawerFocusTrapFactory } from '@material/drawer/util';
 import { SpecificEventListener } from '@material/base';
 import { MDCListFoundation } from '@material/list';
 import { FocusTrap } from '@material/dom/focus-trap';
-import { inject, useView, customElement } from 'aurelia-framework';
+import { inject, useView, customElement, bindable } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
-import { bindable } from 'aurelia-typed-observable-plugin';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-drawer.html'))
 @customElement(cssClasses.ROOT)
 export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
-  @bindable.booleanAttr
-  dismissible: boolean;
 
-  @bindable.booleanAttr
-  modal: boolean;
+  @bindable
+  type: 'standard' | 'dismissible' | 'modal' = 'standard';
 
   /**
    * @return boolean Proxies to the foundation's `open`/`close` methods.
@@ -38,7 +35,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
   }
 
   private previousFocus_?: Element | null;
-  private scrim_!: HTMLElement | null; // assigned in initialSyncWithDOM()
+  private scrim_?: HTMLElement | null; // assigned in initialSyncWithDOM()
 
   private focusTrap_?: FocusTrap; // assigned in initialSyncWithDOM()
   private focusTrapFactory_!: MDCDrawerFocusTrapFactory; // assigned in initialize()
@@ -53,18 +50,25 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
     //   this.list_.wrapFocus = true;
     // }
     this.focusTrapFactory_ = el => new FocusTrap(el);
+    if (this.root.parentElement!.clientWidth < 900) {
+      this.type = 'modal';
+    }
   }
 
   initialSyncWithDOM() {
-    const { MODAL } = cssClasses;
-    const { SCRIM_SELECTOR } = strings;
+    if (this.type === 'modal') {
+      this.scrim_ = document.createElement('div');
+      this.scrim_.classList.add('mdc-drawer-scrim');
+      this.root.insertAdjacentElement('afterend', this.scrim_);
 
-    this.scrim_ = (this.root.parentNode as Element).querySelector<HTMLElement>(SCRIM_SELECTOR);
-
-    if (this.scrim_ && this.root.classList.contains(MODAL)) {
-      this.handleScrimClick_ = () => (this.foundation as MDCModalDrawerFoundation).handleScrimClick();
-      this.scrim_.addEventListener('click', this.handleScrimClick_);
-      this.focusTrap_ = util.createFocusTrapInstance(this.root as HTMLElement, this.focusTrapFactory_);
+      if (this.scrim_) {
+        this.handleScrimClick_ = () => {
+          this.open = false;
+          return (this.foundation as MDCModalDrawerFoundation).handleScrimClick();
+        };
+        this.scrim_.addEventListener('click', this.handleScrimClick_);
+        this.focusTrap_ = util.createFocusTrapInstance(this.root as HTMLElement, this.focusTrapFactory_);
+      }
     }
   }
 
@@ -118,13 +122,10 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
       releaseFocus: () => this.focusTrap_?.releaseFocus(),
     };
 
-    const { DISMISSIBLE, MODAL } = cssClasses;
-    if (this.root.classList.contains(DISMISSIBLE)) {
-      return new MDCDismissibleDrawerFoundation(adapter);
-    } else if (this.root.classList.contains(MODAL)) {
+    if (this.type === 'modal') {
       return new MDCModalDrawerFoundation(adapter);
     } else {
-      throw new Error(`MDCDrawer: Failed to instantiate component. Supported variants are ${DISMISSIBLE} and ${MODAL}.`);
+      return new MDCDismissibleDrawerFoundation(adapter);
     }
   }
 

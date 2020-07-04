@@ -10,7 +10,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> implements MDCR
   disabled = false;
 
   @bindable
-  input: HTMLInputElement;
+  input?: HTMLInputElement;
 
   private unbounded_?: boolean;
 
