@@ -1,0 +1,6 @@
+<template class="${cssClasses.ROOT}" keydown.delegate="handleKeydownEvent_($event)" click.delegate="handleClickEvent_($event)"
+  focusin.delegate="handleFocusInEvent_($event)" focusout.delegate="handleFocusOutEvent_($event)">
+  <require from="@material/list/dist/mdc.list.css"></require>
+  <require from="./mdc-list.css"></require>
+  <slot></slot>
+</template>

@@ -1,4 +1,5 @@
 import { PLATFORM, FrameworkConfiguration } from 'aurelia-framework';
+import '@material/ripple/dist/mdc.ripple.css';
 
 export { MdcRipple } from './mdc-ripple';
 

@@ -1,15 +1,19 @@
 const path = require('path');
+const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AureliaWebpackPlugin = require('aurelia-webpack-plugin');
 
 const outDir = path.resolve(__dirname, 'dist');
-/**
- * @param {{ production?: string; stats?: import('webpack').Stats.ToStringOptions }} param0
- * @returns {import('webpack').Configuration}
- */
 module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
   const cssLoaders = ['css-loader', 'postcss-loader'];
-  const scssLoaders = [...cssLoaders, 'sass-loader'];
+  const scssLoaders = [...cssLoaders, {
+    loader: 'sass-loader', options: {
+      webpackImporter: false,
+      sassOptions: {
+        includePaths: [path.resolve('../../node_modules/')],
+      }
+    }
+  }];
 
   return {
     mode: production === 'production' ? 'production' : 'development',
@@ -33,6 +37,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'floating-label',
           'form-field',
           'line-ripple',
+          'list',
           'notched-outline',
           'ripple',
           'top-app-bar',

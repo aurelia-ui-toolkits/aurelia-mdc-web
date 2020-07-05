@@ -35,6 +35,7 @@
     "build-assets:cjs": "copyfiles -u 1 src/**/*.html src/**/*.css dist/commonjs",
     "build-assets:ntv": "copyfiles -u 1 src/**/*.html src/**/*.css dist/native-modules",
     "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css dist/es2015",
+    "build-sass": "node ../../build-sass.js ./src/mdc-list.scss ./src/mdc-list.css",
     "prebuild": "rimraf dist",
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\"",
     "_predoc": "cross-env rimraf doc/api.json && rimraf dist/doc-temp && tsc --project tsconfig.json --outFile dist/doc-temp/aurelia-ux.js && node doc/shape-defs && copyfiles tsconfig.json dist/doc-temp",
@@ -48,21 +49,15 @@
   },
   "peerDependencies": {
     "@aurelia-mdc-web/base": "^0.0.1",
-    "@aurelia-mdc-web/floating-label": "^0.0.1",
-    "@aurelia-mdc-web/line-ripple": "^0.0.1",
-    "@aurelia-mdc-web/notched-outline": "^0.0.1",
-    "@material/ripple": "^7.0.0",
-    "@material/textfield": "^7.0.0"
+    "@material/list": "^7.0.0"
   },
   "devDependencies": {
     "@aurelia-mdc-web/base": "^0.0.1",
-    "@aurelia-mdc-web/floating-label": "^0.0.1",
-    "@aurelia-mdc-web/line-ripple": "^0.0.1",
-    "@aurelia-mdc-web/notched-outline": "^0.0.1",
     "concurrently": "^5.2.0",
     "conventional-changelog-cli": "^2.0.34",
     "copyfiles": "^1.2.0",
     "cross-env": "^7.0.2",
+    "sass": "^1.26.9",
     "rimraf": "^3.0.2",
     "typescript": "^3.9.5"
   }

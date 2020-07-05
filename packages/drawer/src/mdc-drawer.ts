@@ -10,7 +10,7 @@ import { PLATFORM } from 'aurelia-pal';
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-drawer.html'))
 @customElement(cssClasses.ROOT)
-export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation> {
+export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDCModalDrawerFoundation> {
 
   @bindable
   type: 'standard' | 'dismissible' | 'modal' = 'standard';
