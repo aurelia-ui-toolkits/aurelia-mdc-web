@@ -1,8 +1,0 @@
-@use '@material/ripple';
-
-.mdc-list-item {
-  @include ripple.surface;
-  @include ripple.radius-bounded;
-  @include ripple.states-base-color(black);
-  @include ripple.states-opacities((hover: .1, focus: .3, press: .4));
-}

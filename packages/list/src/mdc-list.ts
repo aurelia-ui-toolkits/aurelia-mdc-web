@@ -3,6 +3,7 @@ import { MDCListFoundation, MDCListAdapter, MDCListActionEventDetail, strings, c
 import { inject, useView, customElement } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { closest, matches } from '@material/dom/ponyfill';
+import { bindable } from 'aurelia-typed-observable-plugin';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-list.html'))
@@ -10,6 +11,23 @@ import { closest, matches } from '@material/dom/ponyfill';
 export class MdcList extends MdcComponent<MDCListFoundation>{
 
   cssClasses = cssClasses;
+
+  @bindable.booleanAttr
+  twoLine: boolean;
+
+  @bindable.booleanAttr
+  singleSelection: boolean;
+  async singleSelectionChanged(){
+    await this.initialised;
+    this.foundation?.setSingleSelection(this.singleSelection);
+  }
+
+  @bindable.booleanAttr
+  activated: boolean;
+  async activatedChanged(){
+    await this.initialised;
+    this.foundation?.setUseActivatedClass(this.activated);
+  }
 
   get listElements(): Element[] {
     return [].slice.call(this.root.querySelectorAll(`.${cssClasses.LIST_ITEM_CLASS}`));

@@ -1,7 +1,6 @@
 <template class="mdc-text-field mdc-text-field--${outlined ? 'outlined' : 'filled'}
 ${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''}
 ${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}" mdc-ripple="input.bind: input_">
-  <require from='@material/textfield/dist/mdc.textfield.css'></require>
   <span class="mdc-text-field__ripple"></span>
   <slot name="leading-icon"></slot>
   <span class="mdc-text-field__affix mdc-text-field__affix--prefix" if.bind="prefix">${prefix}</span>

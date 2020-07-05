@@ -1,3 +1,14 @@
+@use "@material/list/mdc-list";
+@use "@material/icon-button/mdc-icon-button";
+@use "@material/top-app-bar/mdc-top-app-bar";
+@use "@material/drawer/mdc-drawer";
+@use "@material/textfield/mdc-text-field";
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/form-field/mdc-form-field";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/ripple/mdc-ripple";
+
 body {
   margin: 0;
   font-family: var(--mdc-typography-font-family, Roboto, sans-serif);

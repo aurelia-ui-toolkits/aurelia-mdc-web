@@ -2,6 +2,5 @@
   ${type === 'dismissible' ? 'mdc-drawer--dismissible' : ''}
   ${ type === 'modal' ? 'mdc-drawer--modal' : ''}" transitionend.delegate="handleTransitionEnd_($event)"
   keydown.delegate="handleKeydown_($event)">
-  <require from="@material/drawer/dist/mdc.drawer.css"></require>
   <slot></slot>
 </template>

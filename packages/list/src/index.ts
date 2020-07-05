@@ -5,6 +5,7 @@ export { MdcList } from './mdc-list';
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([
     PLATFORM.moduleName('./mdc-list'),
-    PLATFORM.moduleName('./mdc-list-item/mdc-list-item')
+    PLATFORM.moduleName('./mdc-list-item/mdc-list-item'),
+    PLATFORM.moduleName('./mdc-list-divider'),
   ]);
 }
