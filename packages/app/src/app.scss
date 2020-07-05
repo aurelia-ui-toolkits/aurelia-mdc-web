@@ -9,6 +9,10 @@
 @use "@material/notched-outline/mdc-notched-outline";
 @use "@material/ripple/mdc-ripple";
 
+.mdc-list {
+  display: block;
+}
+
 body {
   margin: 0;
   font-family: var(--mdc-typography-font-family, Roboto, sans-serif);

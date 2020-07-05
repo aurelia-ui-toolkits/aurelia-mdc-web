@@ -47,11 +47,12 @@
       <div>${value}</div>
       <input type="checkbox" checked.bind="checked">Hide</input>
       <br>
-      <mdc-list single-selection activated>
-        <mdc-list-item>Item 1</mdc-list-item>
+      <mdc-list has-typeahead single-selection activated>
+        <mdc-list-item tabindex="0">Item 1</mdc-list-item>
         <mdc-list-divider></mdc-list-divider>
         <mdc-list-item>Item 2</mdc-list-item>
       </mdc-list>
+      <button>Test</button>
     </mdc-drawer-app-content>
   </div>
 </template>

@@ -8,10 +8,11 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @inject(Element)
 @customAttribute('mdc-ripple')
 export class MdcRipple extends MdcComponent<MDCRippleFoundation> implements MDCRippleCapableSurface {
-  disabled = false;
-
   @bindable
   input?: HTMLInputElement;
+
+  @bindable.booleanAttr
+  disabled: boolean;
 
   @bindable.booleanAttr
   unbounded: boolean;

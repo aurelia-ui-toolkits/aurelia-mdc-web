@@ -1,9 +1,10 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCListFoundation, MDCListAdapter, MDCListActionEventDetail, strings, cssClasses } from '@material/list';
-import { inject, useView, customElement } from 'aurelia-framework';
+import { inject, useView, customElement, children } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { closest, matches } from '@material/dom/ponyfill';
 import { bindable } from 'aurelia-typed-observable-plugin';
+import { MdcListItem } from './mdc-list-item/mdc-list-item';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-list.html'))
@@ -27,6 +28,39 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   async activatedChanged(){
     await this.initialised;
     this.foundation?.setUseActivatedClass(this.activated);
+  }
+
+  @bindable.booleanAttr
+  vertical: boolean = true;
+
+  @bindable.booleanAttr
+  dense: boolean;
+
+  @bindable.booleanAttr
+  avatar: boolean;
+
+  @bindable.booleanAttr
+  hasTypeahead: boolean;
+  async hasTypeaheadChanged(){
+    await this.initialised;
+    this.foundation?.setHasTypeahead(this.hasTypeahead);
+  }
+
+  @bindable.booleanAttr
+  nonInteractive: boolean;
+
+  @bindable.booleanAttr
+  wrapFocus: boolean;
+  async wrapFocusChanged(){
+    await this.initialised;
+    this.foundation?.setWrapFocus(this.wrapFocus);
+  }
+
+  @children('mdc-list-item')
+  items: MdcListItem[];
+
+  initialSyncWithDOM(){
+    this.foundation?.setHasTypeahead(this.hasTypeahead);
   }
 
   get listElements(): Element[] {
@@ -82,8 +116,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
         return toggleEl!.checked;
       },
       isFocusInsideList: () => {
-        return this.root !== document.activeElement &&
-          this.root.contains(document.activeElement);
+        return this.root !== document.activeElement && this.root.contains(document.activeElement);
       },
       isRootFocused: () => document.activeElement === this.root,
       listItemAtIndexHasClass: (index, className) => this.listElements[index].classList.contains(className),
@@ -161,6 +194,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
     const index = this.getListItemIndex_(evt);
     const target = evt.target as Element;
     this.foundation?.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
+    return true;
   }
 
   /**
