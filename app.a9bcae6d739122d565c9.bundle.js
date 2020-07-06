@@ -52437,10 +52437,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         MdcTabScroller.prototype.handleInteraction_ = function () {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleInteraction();
+            return true;
         };
         MdcTabScroller.prototype.handleTransitionEnd_ = function (evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTransitionEnd(evt);
+            return true;
         };
         /**
          * Returns the current visual scroll position
@@ -59485,4 +59487,4 @@ module.exports = code;
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.eb445f7b677c7c13e486.bundle.map
+//# sourceMappingURL=app.a9bcae6d739122d565c9.bundle.map
