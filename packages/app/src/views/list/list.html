@@ -1,3 +1,9 @@
 <template>
-  <component-viewer template.bind="template"></component-viewer>
+  <component-viewer template.bind="template">
+    <mdc-list has-typeahead single-selection activated>
+      <mdc-list-item tabindex="0">Item 1</mdc-list-item>
+      <mdc-list-divider></mdc-list-divider>
+      <mdc-list-item>Item 2</mdc-list-item>
+    </mdc-list>
+  </component-viewer>
 </template>

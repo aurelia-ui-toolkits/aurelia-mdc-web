@@ -14,6 +14,7 @@ export class Root {
       { route: 'form-field' },
       { route: 'list' },
       { route: 'ripple' },
+      { route: 'tabs' },
       { route: 'text-field' },
       { route: 'top-app-bar' },
     ];

@@ -28,7 +28,7 @@
           <i class="material-icons mdc-button__icon">link</i> ${mdcUrl.name}
         </a>
       </div>
-
+      <slot></slot>
       <!-- <mdc-tab-bar activeTabRouter [activeTabIndex]="-1" if.bind="template?.tabs">
       <mdc-tab-scroller>
         <mdc-tab *ngFor="let tab of template.tabs" [label]="tab.label" [routerLink]="tab.route" class="viewer-tab">

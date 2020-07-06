@@ -23,7 +23,8 @@
       <mdc-drawer-content>
         <mdc-list single-selection activated wrap-focus>
           <template repeat.for="m of navModels">
-            <mdc-list-item tabindex.bind="$index ? -1 : 0"} click.delegate="navigateTo(m)" activated.bind="m.isActive">${m.title}</mdc-list-item>
+            <mdc-list-item tabindex.bind="$index ? -1 : 0" } click.delegate="navigateTo(m)" activated.bind="m.isActive">
+              ${m.title}</mdc-list-item>
             <mdc-list-divider if.bind="m.config.divider"></mdc-list-divider>
           </template>
         </mdc-list>
@@ -31,36 +32,6 @@
     </mdc-drawer>
     <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class="demo-panel-section">
       <router-view></router-view>
-      <!-- <mdc-form-field if.bind="!checked">
-        <mdc-text-field label="Label" maxlength="100" value.bind="value">
-          <i class="material-icons" mdc-text-field-icon leading>event</i>
-          <i class="material-icons" mdc-text-field-icon trailing>science</i>
-        </mdc-text-field>
-        <mdc-text-field-helper-line>
-          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
-          <mdc-text-field-character-counter></mdc-text-field-character-counter>
-        </mdc-text-field-helper-line>
-      </mdc-form-field>
-
-      <mdc-form-field>
-        <mdc-text-field label="Label" outlined value.bind="value" maxlength="100" required type="number">
-          <i class="material-icons" mdc-text-field-icon leading>event</i>
-          <i class="material-icons" mdc-text-field-icon trailing>science</i>
-        </mdc-text-field>
-        <mdc-text-field-helper-line>
-          <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>
-          <mdc-text-field-character-counter></mdc-text-field-character-counter>
-        </mdc-text-field-helper-line>
-      </mdc-form-field>
-      <div>${value}</div>
-      <input type="checkbox" checked.bind="checked">Hide</input>
-      <br>
-      <mdc-list has-typeahead single-selection activated>
-        <mdc-list-item tabindex="0">Item 1</mdc-list-item>
-        <mdc-list-divider></mdc-list-divider>
-        <mdc-list-item>Item 2</mdc-list-item>
-      </mdc-list>
-      <button>Test</button> -->
     </mdc-drawer-app-content>
   </div>
 </template>

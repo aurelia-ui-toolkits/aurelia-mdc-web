@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCRippleFoundation, MDCRippleCapableSurface, MDCRippleAdapter, util } from '@material/ripple';
+import { MDCRippleFoundation, MDCRippleAdapter, util } from '@material/ripple';
 import { matches } from '@material/dom/ponyfill';
 import { applyPassive } from '@material/dom/events';
 import { inject, customAttribute } from 'aurelia-framework';
@@ -7,9 +7,12 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 
 @inject(Element)
 @customAttribute('mdc-ripple')
-export class MdcRipple extends MdcComponent<MDCRippleFoundation> implements MDCRippleCapableSurface {
+export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   @bindable
   input?: HTMLInputElement;
+
+  @bindable
+  surface?: HTMLElement;
 
   @bindable.booleanAttr
   disabled: boolean;
@@ -38,7 +41,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> implements MDCR
 
   createAdapter(): MDCRippleAdapter {
     return {
-      addClass: (className) => this.root.classList.add(className),
+      addClass: (className) => (this.surface || this.root).classList.add(className),
       browserSupportsCssVars: () => util.supportsCssVariables(window),
       computeBoundingRect: () => this.root.getBoundingClientRect(),
       containsEventTarget: (target) => this.root.contains(target as Node),
@@ -52,8 +55,8 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> implements MDCR
       registerDocumentInteractionHandler: (evtType, handler) => document.documentElement.addEventListener(evtType, handler, applyPassive()),
       registerInteractionHandler: (evtType, handler) => (this.input ?? this.root).addEventListener(evtType, handler, applyPassive()),
       registerResizeHandler: (handler) => window.addEventListener('resize', handler),
-      removeClass: (className) => this.root.classList.remove(className),
-      updateCssVariable: (varName, value) => (this.root as HTMLElement).style.setProperty(varName, value),
+      removeClass: (className) => (this.surface || this.root).classList.remove(className),
+      updateCssVariable: (varName, value) => (this.surface || this.root).style.setProperty(varName, value),
     };
   }
 

@@ -41,6 +41,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'list',
           'notched-outline',
           'ripple',
+          'tab-bar',
           'top-app-bar',
           'text-field'
         ].reduce((map, packageName) => {

@@ -68,10 +68,12 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
 
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
+    return true;
   }
 
   handleTransitionEnd_(evt: TransitionEvent) {
     this.foundation?.handleTransitionEnd(evt);
+    return true;
   }
 
   destroy() {
