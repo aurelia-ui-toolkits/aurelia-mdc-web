@@ -1,0 +1,13 @@
+<template class="
+    mdc-button
+    ${touch ? 'mdc-button--touch' : ''}
+    ${raised ? 'mdc-button--raised' : ''}
+    ${unelevated ? 'mdc-button--unelevated' : ''}
+    ${outlined ? 'mdc-button--outlined' : ''}
+  " tabindex.bind="disabled ? -1 : 0"
+  click.delegate="onClick($event)">
+  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__label" if.bind="label">${label}</span>
+  <div class="mdc-button__touch" if.bind="touch"></div>
+  <slot></slot>
+</template>

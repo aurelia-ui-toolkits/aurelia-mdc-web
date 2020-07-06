@@ -1,3 +1,4 @@
+@use "@material/button/mdc-button";
 @use "@material/list/mdc-list";
 @use "@material/icon-button/mdc-icon-button";
 @use "@material/top-app-bar/mdc-top-app-bar";
@@ -9,6 +10,8 @@
 @use "@material/notched-outline/mdc-notched-outline";
 @use "@material/ripple/mdc-ripple";
 
+@use "./layout";
+
 .mdc-list {
   display: block;
 }
@@ -16,19 +19,4 @@
 body {
   margin: 0;
   font-family: var(--mdc-typography-font-family, Roboto, sans-serif);
-
-  .mdc-top-app-bar {
-    z-index: 7;
-  }
-
-  .demo-panel {
-    display: flex;
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-
-    mdc-drawer-app-content {
-      margin: 15px;
-    }
-  }
 }

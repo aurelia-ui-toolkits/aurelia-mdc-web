@@ -1,6 +1,6 @@
 <template>
-  <require from="./app.scss"></require>
-  <mdc-top-app-bar fixed>
+  <require from="./root.scss"></require>
+  <mdc-top-app-bar fixed class="demo-top-app-bar">
     <mdc-top-app-bar-row>
       <mdc-top-app-bar-section>
         <button mdc-top-app-bar-nav-icon click.delegate="drawer.toggle()"><i class="material-icons">menu</i></button>
@@ -11,7 +11,7 @@
         <a mdc-top-app-bar-action-item href="https://github.com/aurelia-ui-toolkits/aurelia-mdc-web" alt="GitHub"
           target="_blank" rel="noopener">
           <i class="material-icons" aria-hidden="true" role="img">
-            <img src="./assets/github-circle-white-transparent.svg" height="24">
+            <img src="../../assets/github-circle-white-transparent.svg" height="24">
           </i>
         </a>
       </mdc-top-app-bar-section>
@@ -20,10 +20,18 @@
   <div class="demo-panel">
     <mdc-drawer view-model.ref="drawer" type="dismissible" mdc-top-app-bar-fixed-adjust>
       <mdc-drawer-header title="Aurelia" subtitle="Material Components Web"></mdc-drawer-header>
-      <mdc-drawer-content><button>Menu</button></mdc-drawer-content>
+      <mdc-drawer-content>
+        <mdc-list single-selection activated wrap-focus>
+          <template repeat.for="m of navModels">
+            <mdc-list-item tabindex.bind="$index ? -1 : 0"} click.delegate="navigateTo(m)" activated.bind="m.isActive">${m.title}</mdc-list-item>
+            <mdc-list-divider if.bind="m.config.divider"></mdc-list-divider>
+          </template>
+        </mdc-list>
+      </mdc-drawer-content>
     </mdc-drawer>
-    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust>
-      <mdc-form-field if.bind="!checked">
+    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class="demo-panel-section">
+      <router-view></router-view>
+      <!-- <mdc-form-field if.bind="!checked">
         <mdc-text-field label="Label" maxlength="100" value.bind="value">
           <i class="material-icons" mdc-text-field-icon leading>event</i>
           <i class="material-icons" mdc-text-field-icon trailing>science</i>
@@ -52,7 +60,7 @@
         <mdc-list-divider></mdc-list-divider>
         <mdc-list-item>Item 2</mdc-list-item>
       </mdc-list>
-      <button>Test</button>
+      <button>Test</button> -->
     </mdc-drawer-app-content>
   </div>
 </template>

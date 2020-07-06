@@ -33,6 +33,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         // alias all packages to src code
         ...([
           'base',
+          'button',
           'drawer',
           'floating-label',
           'form-field',
@@ -76,6 +77,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         dist: 'es2015',
         viewsFor: '{**/!(tslib)*.{ts,js},../**/*.{ts,js}}'
       }),
+      new AureliaWebpackPlugin.GlobDependenciesPlugin({ 'main': ['src/{views,elements,converters,attributes}/**/*.{ts,html}'] }),
       new HtmlWebpackPlugin({ template: './index.ejs' })
     ]
   };

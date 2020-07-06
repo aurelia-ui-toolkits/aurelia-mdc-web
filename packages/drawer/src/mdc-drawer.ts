@@ -43,12 +43,6 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
   private handleScrimClick_?: SpecificEventListener<'click'>; // initialized in initialSyncWithDOM()
 
   async initialise() {
-    // const listEl =
-    //   this.root.querySelector(`.${MDCListFoundation.cssClasses.ROOT}`);
-    // if (listEl) {
-    //   this.list_ = listFactory(listEl);
-    //   this.list_.wrapFocus = true;
-    // }
     this.focusTrapFactory_ = el => new FocusTrap(el);
     if (this.root.parentElement!.clientWidth < 900) {
       this.type = 'modal';
@@ -81,10 +75,6 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
   }
 
   destroy() {
-    // if (this.list_) {
-    //   this.list_.destroy();
-    // }
-
     const { MODAL } = cssClasses;
     if (this.scrim_ && this.handleScrimClick_ && this.root.classList.contains(MODAL)) {
       this.scrim_.removeEventListener('click', this.handleScrimClick_);

@@ -21,6 +21,9 @@ export class MdcListItem {
   @bindable.booleanAttr
   disabled: boolean;
 
+  @bindable.booleanAttr
+  activated: boolean;
+
   onKeydown(evt: KeyboardEvent) {
     if ((evt.keyCode === ENTER || evt.keyCode === SPACE) && !this.disabled) {
       this.root.dispatchEvent(new CustomEvent('selection-change', { detail: { item: this } }));

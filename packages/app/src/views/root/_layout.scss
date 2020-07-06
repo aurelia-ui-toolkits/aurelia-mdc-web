@@ -1,0 +1,163 @@
+@use '@material/typography';
+@use "@material/shape";
+@use "@material/top-app-bar/mixins" as top-app-bar;
+@use "@material/theme";
+
+//
+// Row
+//
+
+.demo-layout__row {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: .8rem;
+}
+
+.demo-layout__row--no-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+//
+// Column
+//
+
+.demo-layout__column {
+  display: flex;
+  flex-direction: column;
+}
+
+//
+// Modifiers
+//
+
+.demo-layout--start {
+  align-self: flex-start;
+}
+
+.demo-layout--end {
+  flex-grow: 1;
+  align-self: flex-end;
+}
+
+.demo-layout--center {
+  display: flex;
+  align-content: flex-end;
+  align-items: center;
+  justify-content: center;
+}
+
+//
+// Containers
+//
+
+.demo-panel {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.demo-panel-section {
+  width: 100%;
+  max-width: 100%;
+}
+
+.demo-panel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+  overflow: auto;
+
+  @media (max-width: 900px) {
+    width: unset;
+    padding: 12px;
+  }
+}
+
+.demo-panel-transition {
+  width: 100%;
+  max-width: 1200px;
+  padding-bottom: 60px;  
+}
+
+.demo-panel-title {
+  @include typography.typography(headline4);
+
+  margin: 16px 16px 16px 0;
+  line-height: 1.25;
+  padding-bottom: .3em;
+  border-bottom: 1px solid #eaecef;  
+  font-weight: 500;  
+}
+
+.demo-panel-heading {
+  @include typography.typography(headline6);
+
+  margin: 24px 16px 16px 0;
+  line-height: 1.25;
+  padding-bottom: .3em;
+  border-bottom: 1px solid #eaecef;
+}
+
+.demo-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-width: 200px;
+  padding: 10px;
+}
+
+.hljs {
+  border-radius: .45rem;
+  padding: 9px;
+  display: inline-block;
+}
+
+.demo-content {
+  @include shape.radius(12px);
+
+  border: 1px solid rgba(0, 0, 0, .15);
+  margin: 1.5rem 1rem;
+  padding: 1rem;
+
+  &__headline {
+    @include typography.typography(headline6);
+
+    margin-top: .1em;
+    margin-bottom: .3em;
+  }
+}
+
+.demo-content--block {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+//
+// Demo top-app-bar
+//
+
+.demo-top-app-bar {
+  @include top-app-bar.fill-color(#363640);
+
+  // only apply this style if below top app bar
+  z-index: 7;
+}
+
+//
+// Demo drawer
+//
+
+.demo-drawer {
+  position: fixed;
+
+  .mdc-list-item {
+    cursor: pointer;
+  }
+}

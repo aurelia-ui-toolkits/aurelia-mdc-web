@@ -6,6 +6,11 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .use
     .developmentLogging()
     .standardConfiguration()
+    .globalResources([
+      'attributes/highlight',
+      'elements/component-viewer/component-viewer'
+    ])
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/drawer'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/form-field'))
@@ -17,5 +22,5 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'));
 
   await aurelia.start();
-  await aurelia.setRoot(PLATFORM.moduleName('app'));
+  await aurelia.setRoot(PLATFORM.moduleName('views/root/root'));
 }

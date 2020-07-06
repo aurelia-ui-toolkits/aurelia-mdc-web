@@ -15,6 +15,7 @@
     "strictNullChecks": true,
     "declaration": false,
     "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noEmitHelpers": true,
     "importHelpers": true,
