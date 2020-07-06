@@ -30,10 +30,12 @@ export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
 
   handleInteraction_() {
     this.foundation?.handleInteraction();
+    return true;
   }
 
   handleTransitionEnd_(evt: Event) {
     this.foundation?.handleTransitionEnd(evt);
+    return true;
   }
 
   /**
