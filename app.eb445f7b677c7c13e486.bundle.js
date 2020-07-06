@@ -4766,6 +4766,2467 @@ function getNormalizedEventCoords(evt, pageOffset, clientRect) {
 
 /***/ }),
 
+/***/ "../../node_modules/@material/tab-bar/component.js":
+/*!*****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-bar/component.js ***!
+  \*****************************************************************************/
+/*! exports provided: MDCTabBar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabBar", function() { return MDCTabBar; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _material_tab_scroller_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/tab-scroller/component */ "../../node_modules/@material/tab-scroller/component.js");
+/* harmony import */ var _material_tab_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/tab/component */ "../../node_modules/@material/tab/component.js");
+/* harmony import */ var _material_tab_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/tab/foundation */ "../../node_modules/@material/tab/foundation.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab-bar/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var strings = _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabBarFoundation"].strings;
+var tabIdCounter = 0;
+var MDCTabBar = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabBar, _super);
+    function MDCTabBar() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabBar.attachTo = function (root) {
+        return new MDCTabBar(root);
+    };
+    Object.defineProperty(MDCTabBar.prototype, "focusOnActivate", {
+        set: function (focusOnActivate) {
+            this.tabList_.forEach(function (tab) { return tab.focusOnActivate = focusOnActivate; });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabBar.prototype, "useAutomaticActivation", {
+        set: function (useAutomaticActivation) {
+            this.foundation.setUseAutomaticActivation(useAutomaticActivation);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTabBar.prototype.initialize = function (tabFactory, tabScrollerFactory) {
+        if (tabFactory === void 0) { tabFactory = function (el) { return new _material_tab_component__WEBPACK_IMPORTED_MODULE_3__["MDCTab"](el); }; }
+        if (tabScrollerFactory === void 0) { tabScrollerFactory = function (el) { return new _material_tab_scroller_component__WEBPACK_IMPORTED_MODULE_2__["MDCTabScroller"](el); }; }
+        this.tabList_ = this.instantiateTabs_(tabFactory);
+        this.tabScroller_ = this.instantiateTabScroller_(tabScrollerFactory);
+    };
+    MDCTabBar.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleTabInteraction_ = function (evt) {
+            return _this.foundation.handleTabInteraction(evt);
+        };
+        this.handleKeyDown_ = function (evt) { return _this.foundation.handleKeyDown(evt); };
+        this.listen(_material_tab_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabFoundation"].strings.INTERACTED_EVENT, this.handleTabInteraction_);
+        this.listen('keydown', this.handleKeyDown_);
+        for (var i = 0; i < this.tabList_.length; i++) {
+            if (this.tabList_[i].active) {
+                this.scrollIntoView(i);
+                break;
+            }
+        }
+    };
+    MDCTabBar.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        this.unlisten(_material_tab_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabFoundation"].strings.INTERACTED_EVENT, this.handleTabInteraction_);
+        this.unlisten('keydown', this.handleKeyDown_);
+        this.tabList_.forEach(function (tab) { return tab.destroy(); });
+        if (this.tabScroller_) {
+            this.tabScroller_.destroy();
+        }
+    };
+    MDCTabBar.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            scrollTo: function (scrollX) { return _this.tabScroller_.scrollTo(scrollX); },
+            incrementScroll: function (scrollXIncrement) {
+                return _this.tabScroller_.incrementScroll(scrollXIncrement);
+            },
+            getScrollPosition: function () { return _this.tabScroller_.getScrollPosition(); },
+            getScrollContentWidth: function () { return _this.tabScroller_.getScrollContentWidth(); },
+            getOffsetWidth: function () { return _this.root.offsetWidth; },
+            isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
+            setActiveTab: function (index) { return _this.foundation.activateTab(index); },
+            activateTabAtIndex: function (index, clientRect) {
+                return _this.tabList_[index].activate(clientRect);
+            },
+            deactivateTabAtIndex: function (index) { return _this.tabList_[index].deactivate(); },
+            focusTabAtIndex: function (index) { return _this.tabList_[index].focus(); },
+            getTabIndicatorClientRectAtIndex: function (index) {
+                return _this.tabList_[index].computeIndicatorClientRect();
+            },
+            getTabDimensionsAtIndex: function (index) {
+                return _this.tabList_[index].computeDimensions();
+            },
+            getPreviousActiveTabIndex: function () {
+                for (var i = 0; i < _this.tabList_.length; i++) {
+                    if (_this.tabList_[i].active) {
+                        return i;
+                    }
+                }
+                return -1;
+            },
+            getFocusedTabIndex: function () {
+                var tabElements = _this.getTabElements_();
+                var activeElement = document.activeElement;
+                return tabElements.indexOf(activeElement);
+            },
+            getIndexOfTabById: function (id) {
+                for (var i = 0; i < _this.tabList_.length; i++) {
+                    if (_this.tabList_[i].id === id) {
+                        return i;
+                    }
+                }
+                return -1;
+            },
+            getTabListLength: function () { return _this.tabList_.length; },
+            notifyTabActivated: function (index) { return _this.emit(strings.TAB_ACTIVATED_EVENT, { index: index }, true); },
+        };
+        // tslint:enable:object-literal-sort-keys
+        return new _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabBarFoundation"](adapter);
+    };
+    /**
+     * Activates the tab at the given index
+     * @param index The index of the tab
+     */
+    MDCTabBar.prototype.activateTab = function (index) {
+        this.foundation.activateTab(index);
+    };
+    /**
+     * Scrolls the tab at the given index into view
+     * @param index THe index of the tab
+     */
+    MDCTabBar.prototype.scrollIntoView = function (index) {
+        this.foundation.scrollIntoView(index);
+    };
+    /**
+     * Returns all the tab elements in a nice clean array
+     */
+    MDCTabBar.prototype.getTabElements_ = function () {
+        return [].slice.call(this.root.querySelectorAll(strings.TAB_SELECTOR));
+    };
+    /**
+     * Instantiates tab components on all child tab elements
+     */
+    MDCTabBar.prototype.instantiateTabs_ = function (tabFactory) {
+        return this.getTabElements_().map(function (el) {
+            el.id = el.id || "mdc-tab-" + ++tabIdCounter;
+            return tabFactory(el);
+        });
+    };
+    /**
+     * Instantiates tab scroller component on the child tab scroller element
+     */
+    MDCTabBar.prototype.instantiateTabScroller_ = function (tabScrollerFactory) {
+        var tabScrollerElement = this.root.querySelector(strings.TAB_SCROLLER_SELECTOR);
+        if (tabScrollerElement) {
+            return tabScrollerFactory(tabScrollerElement);
+        }
+        return null;
+    };
+    return MDCTabBar;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-bar/constants.js":
+/*!*****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-bar/constants.js ***!
+  \*****************************************************************************/
+/*! exports provided: numbers, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var strings = {
+    ARROW_LEFT_KEY: 'ArrowLeft',
+    ARROW_RIGHT_KEY: 'ArrowRight',
+    END_KEY: 'End',
+    ENTER_KEY: 'Enter',
+    HOME_KEY: 'Home',
+    SPACE_KEY: 'Space',
+    TAB_ACTIVATED_EVENT: 'MDCTabBar:activated',
+    TAB_SCROLLER_SELECTOR: '.mdc-tab-scroller',
+    TAB_SELECTOR: '.mdc-tab',
+};
+var numbers = {
+    ARROW_LEFT_KEYCODE: 37,
+    ARROW_RIGHT_KEYCODE: 39,
+    END_KEYCODE: 35,
+    ENTER_KEYCODE: 13,
+    EXTRA_SCROLL_AMOUNT: 20,
+    HOME_KEYCODE: 36,
+    SPACE_KEYCODE: 32,
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-bar/foundation.js":
+/*!******************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-bar/foundation.js ***!
+  \******************************************************************************/
+/*! exports provided: MDCTabBarFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabBarFoundation", function() { return MDCTabBarFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/tab-bar/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var ACCEPTABLE_KEYS = new Set();
+// IE11 has no support for new Set with iterable so we need to initialize this by hand
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].END_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].HOME_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ENTER_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].SPACE_KEY);
+var KEYCODE_MAP = new Map();
+// IE11 has no support for new Map with iterable so we need to initialize this by hand
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].ARROW_LEFT_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].ARROW_RIGHT_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].END_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].END_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].HOME_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].HOME_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].ENTER_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ENTER_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].SPACE_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].SPACE_KEY);
+var MDCTabBarFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabBarFoundation, _super);
+    function MDCTabBarFoundation(adapter) {
+        var _this = _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCTabBarFoundation.defaultAdapter), adapter)) || this;
+        _this.useAutomaticActivation_ = false;
+        return _this;
+    }
+    Object.defineProperty(MDCTabBarFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabBarFoundation, "numbers", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabBarFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                scrollTo: function () { return undefined; },
+                incrementScroll: function () { return undefined; },
+                getScrollPosition: function () { return 0; },
+                getScrollContentWidth: function () { return 0; },
+                getOffsetWidth: function () { return 0; },
+                isRTL: function () { return false; },
+                setActiveTab: function () { return undefined; },
+                activateTabAtIndex: function () { return undefined; },
+                deactivateTabAtIndex: function () { return undefined; },
+                focusTabAtIndex: function () { return undefined; },
+                getTabIndicatorClientRectAtIndex: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                getTabDimensionsAtIndex: function () { return ({ rootLeft: 0, rootRight: 0, contentLeft: 0, contentRight: 0 }); },
+                getPreviousActiveTabIndex: function () { return -1; },
+                getFocusedTabIndex: function () { return -1; },
+                getIndexOfTabById: function () { return -1; },
+                getTabListLength: function () { return 0; },
+                notifyTabActivated: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Switches between automatic and manual activation modes.
+     * See https://www.w3.org/TR/wai-aria-practices/#tabpanel for examples.
+     */
+    MDCTabBarFoundation.prototype.setUseAutomaticActivation = function (useAutomaticActivation) {
+        this.useAutomaticActivation_ = useAutomaticActivation;
+    };
+    MDCTabBarFoundation.prototype.activateTab = function (index) {
+        var previousActiveIndex = this.adapter.getPreviousActiveTabIndex();
+        if (!this.indexIsInRange_(index) || index === previousActiveIndex) {
+            return;
+        }
+        var previousClientRect;
+        if (previousActiveIndex !== -1) {
+            this.adapter.deactivateTabAtIndex(previousActiveIndex);
+            previousClientRect =
+                this.adapter.getTabIndicatorClientRectAtIndex(previousActiveIndex);
+        }
+        this.adapter.activateTabAtIndex(index, previousClientRect);
+        this.scrollIntoView(index);
+        this.adapter.notifyTabActivated(index);
+    };
+    MDCTabBarFoundation.prototype.handleKeyDown = function (evt) {
+        // Get the key from the event
+        var key = this.getKeyFromEvent_(evt);
+        // Early exit if the event key isn't one of the keyboard navigation keys
+        if (key === undefined) {
+            return;
+        }
+        // Prevent default behavior for movement keys, but not for activation keys, since :active is used to apply ripple
+        if (!this.isActivationKey_(key)) {
+            evt.preventDefault();
+        }
+        if (this.useAutomaticActivation_) {
+            if (this.isActivationKey_(key)) {
+                return;
+            }
+            var index = this.determineTargetFromKey_(this.adapter.getPreviousActiveTabIndex(), key);
+            this.adapter.setActiveTab(index);
+            this.scrollIntoView(index);
+        }
+        else {
+            var focusedTabIndex = this.adapter.getFocusedTabIndex();
+            if (this.isActivationKey_(key)) {
+                this.adapter.setActiveTab(focusedTabIndex);
+            }
+            else {
+                var index = this.determineTargetFromKey_(focusedTabIndex, key);
+                this.adapter.focusTabAtIndex(index);
+                this.scrollIntoView(index);
+            }
+        }
+    };
+    /**
+     * Handles the MDCTab:interacted event
+     */
+    MDCTabBarFoundation.prototype.handleTabInteraction = function (evt) {
+        this.adapter.setActiveTab(this.adapter.getIndexOfTabById(evt.detail.tabId));
+    };
+    /**
+     * Scrolls the tab at the given index into view
+     * @param index The tab index to make visible
+     */
+    MDCTabBarFoundation.prototype.scrollIntoView = function (index) {
+        // Early exit if the index is out of range
+        if (!this.indexIsInRange_(index)) {
+            return;
+        }
+        // Always scroll to 0 if scrolling to the 0th index
+        if (index === 0) {
+            return this.adapter.scrollTo(0);
+        }
+        // Always scroll to the max value if scrolling to the Nth index
+        // MDCTabScroller.scrollTo() will never scroll past the max possible value
+        if (index === this.adapter.getTabListLength() - 1) {
+            return this.adapter.scrollTo(this.adapter.getScrollContentWidth());
+        }
+        if (this.isRTL_()) {
+            return this.scrollIntoViewRTL_(index);
+        }
+        this.scrollIntoView_(index);
+    };
+    /**
+     * Private method for determining the index of the destination tab based on what key was pressed
+     * @param origin The original index from which to determine the destination
+     * @param key The name of the key
+     */
+    MDCTabBarFoundation.prototype.determineTargetFromKey_ = function (origin, key) {
+        var isRTL = this.isRTL_();
+        var maxIndex = this.adapter.getTabListLength() - 1;
+        var shouldGoToEnd = key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].END_KEY;
+        var shouldDecrement = key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY && !isRTL || key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY && isRTL;
+        var shouldIncrement = key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY && !isRTL || key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY && isRTL;
+        var index = origin;
+        if (shouldGoToEnd) {
+            index = maxIndex;
+        }
+        else if (shouldDecrement) {
+            index -= 1;
+        }
+        else if (shouldIncrement) {
+            index += 1;
+        }
+        else {
+            index = 0;
+        }
+        if (index < 0) {
+            index = maxIndex;
+        }
+        else if (index > maxIndex) {
+            index = 0;
+        }
+        return index;
+    };
+    /**
+     * Calculates the scroll increment that will make the tab at the given index visible
+     * @param index The index of the tab
+     * @param nextIndex The index of the next tab
+     * @param scrollPosition The current scroll position
+     * @param barWidth The width of the Tab Bar
+     */
+    MDCTabBarFoundation.prototype.calculateScrollIncrement_ = function (index, nextIndex, scrollPosition, barWidth) {
+        var nextTabDimensions = this.adapter.getTabDimensionsAtIndex(nextIndex);
+        var relativeContentLeft = nextTabDimensions.contentLeft - scrollPosition - barWidth;
+        var relativeContentRight = nextTabDimensions.contentRight - scrollPosition;
+        var leftIncrement = relativeContentRight - _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].EXTRA_SCROLL_AMOUNT;
+        var rightIncrement = relativeContentLeft + _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].EXTRA_SCROLL_AMOUNT;
+        if (nextIndex < index) {
+            return Math.min(leftIncrement, 0);
+        }
+        return Math.max(rightIncrement, 0);
+    };
+    /**
+     * Calculates the scroll increment that will make the tab at the given index visible in RTL
+     * @param index The index of the tab
+     * @param nextIndex The index of the next tab
+     * @param scrollPosition The current scroll position
+     * @param barWidth The width of the Tab Bar
+     * @param scrollContentWidth The width of the scroll content
+     */
+    MDCTabBarFoundation.prototype.calculateScrollIncrementRTL_ = function (index, nextIndex, scrollPosition, barWidth, scrollContentWidth) {
+        var nextTabDimensions = this.adapter.getTabDimensionsAtIndex(nextIndex);
+        var relativeContentLeft = scrollContentWidth - nextTabDimensions.contentLeft - scrollPosition;
+        var relativeContentRight = scrollContentWidth - nextTabDimensions.contentRight - scrollPosition - barWidth;
+        var leftIncrement = relativeContentRight + _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].EXTRA_SCROLL_AMOUNT;
+        var rightIncrement = relativeContentLeft - _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].EXTRA_SCROLL_AMOUNT;
+        if (nextIndex > index) {
+            return Math.max(leftIncrement, 0);
+        }
+        return Math.min(rightIncrement, 0);
+    };
+    /**
+     * Determines the index of the adjacent tab closest to either edge of the Tab Bar
+     * @param index The index of the tab
+     * @param tabDimensions The dimensions of the tab
+     * @param scrollPosition The current scroll position
+     * @param barWidth The width of the tab bar
+     */
+    MDCTabBarFoundation.prototype.findAdjacentTabIndexClosestToEdge_ = function (index, tabDimensions, scrollPosition, barWidth) {
+        /**
+         * Tabs are laid out in the Tab Scroller like this:
+         *
+         *    Scroll Position
+         *    +---+
+         *    |   |   Bar Width
+         *    |   +-----------------------------------+
+         *    |   |                                   |
+         *    |   V                                   V
+         *    |   +-----------------------------------+
+         *    V   |             Tab Scroller          |
+         *    +------------+--------------+-------------------+
+         *    |    Tab     |      Tab     |        Tab        |
+         *    +------------+--------------+-------------------+
+         *        |                                   |
+         *        +-----------------------------------+
+         *
+         * To determine the next adjacent index, we look at the Tab root left and
+         * Tab root right, both relative to the scroll position. If the Tab root
+         * left is less than 0, then we know it's out of view to the left. If the
+         * Tab root right minus the bar width is greater than 0, we know the Tab is
+         * out of view to the right. From there, we either increment or decrement
+         * the index.
+         */
+        var relativeRootLeft = tabDimensions.rootLeft - scrollPosition;
+        var relativeRootRight = tabDimensions.rootRight - scrollPosition - barWidth;
+        var relativeRootDelta = relativeRootLeft + relativeRootRight;
+        var leftEdgeIsCloser = relativeRootLeft < 0 || relativeRootDelta < 0;
+        var rightEdgeIsCloser = relativeRootRight > 0 || relativeRootDelta > 0;
+        if (leftEdgeIsCloser) {
+            return index - 1;
+        }
+        if (rightEdgeIsCloser) {
+            return index + 1;
+        }
+        return -1;
+    };
+    /**
+     * Determines the index of the adjacent tab closest to either edge of the Tab Bar in RTL
+     * @param index The index of the tab
+     * @param tabDimensions The dimensions of the tab
+     * @param scrollPosition The current scroll position
+     * @param barWidth The width of the tab bar
+     * @param scrollContentWidth The width of the scroller content
+     */
+    MDCTabBarFoundation.prototype.findAdjacentTabIndexClosestToEdgeRTL_ = function (index, tabDimensions, scrollPosition, barWidth, scrollContentWidth) {
+        var rootLeft = scrollContentWidth - tabDimensions.rootLeft - barWidth - scrollPosition;
+        var rootRight = scrollContentWidth - tabDimensions.rootRight - scrollPosition;
+        var rootDelta = rootLeft + rootRight;
+        var leftEdgeIsCloser = rootLeft > 0 || rootDelta > 0;
+        var rightEdgeIsCloser = rootRight < 0 || rootDelta < 0;
+        if (leftEdgeIsCloser) {
+            return index + 1;
+        }
+        if (rightEdgeIsCloser) {
+            return index - 1;
+        }
+        return -1;
+    };
+    /**
+     * Returns the key associated with a keydown event
+     * @param evt The keydown event
+     */
+    MDCTabBarFoundation.prototype.getKeyFromEvent_ = function (evt) {
+        if (ACCEPTABLE_KEYS.has(evt.key)) {
+            return evt.key;
+        }
+        return KEYCODE_MAP.get(evt.keyCode);
+    };
+    MDCTabBarFoundation.prototype.isActivationKey_ = function (key) {
+        return key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].SPACE_KEY || key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ENTER_KEY;
+    };
+    /**
+     * Returns whether a given index is inclusively between the ends
+     * @param index The index to test
+     */
+    MDCTabBarFoundation.prototype.indexIsInRange_ = function (index) {
+        return index >= 0 && index < this.adapter.getTabListLength();
+    };
+    /**
+     * Returns the view's RTL property
+     */
+    MDCTabBarFoundation.prototype.isRTL_ = function () {
+        return this.adapter.isRTL();
+    };
+    /**
+     * Scrolls the tab at the given index into view for left-to-right user agents.
+     * @param index The index of the tab to scroll into view
+     */
+    MDCTabBarFoundation.prototype.scrollIntoView_ = function (index) {
+        var scrollPosition = this.adapter.getScrollPosition();
+        var barWidth = this.adapter.getOffsetWidth();
+        var tabDimensions = this.adapter.getTabDimensionsAtIndex(index);
+        var nextIndex = this.findAdjacentTabIndexClosestToEdge_(index, tabDimensions, scrollPosition, barWidth);
+        if (!this.indexIsInRange_(nextIndex)) {
+            return;
+        }
+        var scrollIncrement = this.calculateScrollIncrement_(index, nextIndex, scrollPosition, barWidth);
+        this.adapter.incrementScroll(scrollIncrement);
+    };
+    /**
+     * Scrolls the tab at the given index into view in RTL
+     * @param index The tab index to make visible
+     */
+    MDCTabBarFoundation.prototype.scrollIntoViewRTL_ = function (index) {
+        var scrollPosition = this.adapter.getScrollPosition();
+        var barWidth = this.adapter.getOffsetWidth();
+        var tabDimensions = this.adapter.getTabDimensionsAtIndex(index);
+        var scrollWidth = this.adapter.getScrollContentWidth();
+        var nextIndex = this.findAdjacentTabIndexClosestToEdgeRTL_(index, tabDimensions, scrollPosition, barWidth, scrollWidth);
+        if (!this.indexIsInRange_(nextIndex)) {
+            return;
+        }
+        var scrollIncrement = this.calculateScrollIncrementRTL_(index, nextIndex, scrollPosition, barWidth, scrollWidth);
+        this.adapter.incrementScroll(scrollIncrement);
+    };
+    return MDCTabBarFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabBarFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-bar/index.js":
+/*!*************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-bar/index.js ***!
+  \*************************************************************************/
+/*! exports provided: MDCTabBar, numbers, strings, MDCTabBarFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/tab-bar/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabBar", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCTabBar"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/tab-bar/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab-bar/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabBarFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTabBarFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-indicator/component.js":
+/*!***********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-indicator/component.js ***!
+  \***********************************************************************************/
+/*! exports provided: MDCTabIndicator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabIndicator", function() { return MDCTabIndicator; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _fading_foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fading-foundation */ "../../node_modules/@material/tab-indicator/fading-foundation.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab-indicator/foundation.js");
+/* harmony import */ var _sliding_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sliding-foundation */ "../../node_modules/@material/tab-indicator/sliding-foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+var MDCTabIndicator = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabIndicator, _super);
+    function MDCTabIndicator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabIndicator.attachTo = function (root) {
+        return new MDCTabIndicator(root);
+    };
+    MDCTabIndicator.prototype.initialize = function () {
+        this.content_ = this.root.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCTabIndicatorFoundation"].strings.CONTENT_SELECTOR);
+    };
+    MDCTabIndicator.prototype.computeContentClientRect = function () {
+        return this.foundation.computeContentClientRect();
+    };
+    MDCTabIndicator.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            computeContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
+            setContentStyleProperty: function (prop, value) {
+                return _this.content_.style.setProperty(prop, value);
+            },
+        };
+        // tslint:enable:object-literal-sort-keys
+        if (this.root.classList.contains(_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCTabIndicatorFoundation"].cssClasses.FADE)) {
+            return new _fading_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFadingTabIndicatorFoundation"](adapter);
+        }
+        // Default to the sliding indicator
+        return new _sliding_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCSlidingTabIndicatorFoundation"](adapter);
+    };
+    MDCTabIndicator.prototype.activate = function (previousIndicatorClientRect) {
+        this.foundation.activate(previousIndicatorClientRect);
+    };
+    MDCTabIndicator.prototype.deactivate = function () {
+        this.foundation.deactivate();
+    };
+    return MDCTabIndicator;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-indicator/constants.js":
+/*!***********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-indicator/constants.js ***!
+  \***********************************************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ACTIVE: 'mdc-tab-indicator--active',
+    FADE: 'mdc-tab-indicator--fade',
+    NO_TRANSITION: 'mdc-tab-indicator--no-transition',
+};
+var strings = {
+    CONTENT_SELECTOR: '.mdc-tab-indicator__content',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-indicator/fading-foundation.js":
+/*!*******************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-indicator/fading-foundation.js ***!
+  \*******************************************************************************************/
+/*! exports provided: MDCFadingTabIndicatorFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCFadingTabIndicatorFoundation", function() { return MDCFadingTabIndicatorFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab-indicator/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+/* istanbul ignore next: subclass is not a branch statement */
+var MDCFadingTabIndicatorFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCFadingTabIndicatorFoundation, _super);
+    function MDCFadingTabIndicatorFoundation() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCFadingTabIndicatorFoundation.prototype.activate = function () {
+        this.adapter.addClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+    };
+    MDCFadingTabIndicatorFoundation.prototype.deactivate = function () {
+        this.adapter.removeClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+    };
+    return MDCFadingTabIndicatorFoundation;
+}(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCFadingTabIndicatorFoundation);
+//# sourceMappingURL=fading-foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-indicator/foundation.js":
+/*!************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-indicator/foundation.js ***!
+  \************************************************************************************/
+/*! exports provided: MDCTabIndicatorFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabIndicatorFoundation", function() { return MDCTabIndicatorFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/tab-indicator/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCTabIndicatorFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabIndicatorFoundation, _super);
+    function MDCTabIndicatorFoundation(adapter) {
+        return _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCTabIndicatorFoundation.defaultAdapter), adapter)) || this;
+    }
+    Object.defineProperty(MDCTabIndicatorFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabIndicatorFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabIndicatorFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                computeContentClientRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                setContentStyleProperty: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTabIndicatorFoundation.prototype.computeContentClientRect = function () {
+        return this.adapter.computeContentClientRect();
+    };
+    return MDCTabIndicatorFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabIndicatorFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-indicator/index.js":
+/*!*******************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-indicator/index.js ***!
+  \*******************************************************************************/
+/*! exports provided: MDCTabIndicator, cssClasses, strings, MDCTabIndicatorFoundation, MDCFadingTabIndicatorFoundation, MDCSlidingTabIndicatorFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/tab-indicator/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabIndicator", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCTabIndicator"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/tab-indicator/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab-indicator/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabIndicatorFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTabIndicatorFoundation"]; });
+
+/* harmony import */ var _fading_foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fading-foundation */ "../../node_modules/@material/tab-indicator/fading-foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFadingTabIndicatorFoundation", function() { return _fading_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCFadingTabIndicatorFoundation"]; });
+
+/* harmony import */ var _sliding_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sliding-foundation */ "../../node_modules/@material/tab-indicator/sliding-foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSlidingTabIndicatorFoundation", function() { return _sliding_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCSlidingTabIndicatorFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-indicator/sliding-foundation.js":
+/*!********************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-indicator/sliding-foundation.js ***!
+  \********************************************************************************************/
+/*! exports provided: MDCSlidingTabIndicatorFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSlidingTabIndicatorFoundation", function() { return MDCSlidingTabIndicatorFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab-indicator/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+/* istanbul ignore next: subclass is not a branch statement */
+var MDCSlidingTabIndicatorFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCSlidingTabIndicatorFoundation, _super);
+    function MDCSlidingTabIndicatorFoundation() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCSlidingTabIndicatorFoundation.prototype.activate = function (previousIndicatorClientRect) {
+        // Early exit if no indicator is present to handle cases where an indicator
+        // may be activated without a prior indicator state
+        if (!previousIndicatorClientRect) {
+            this.adapter.addClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+            return;
+        }
+        // This animation uses the FLIP approach. You can read more about it at the link below:
+        // https://aerotwist.com/blog/flip-your-animations/
+        // Calculate the dimensions based on the dimensions of the previous indicator
+        var currentClientRect = this.computeContentClientRect();
+        var widthDelta = previousIndicatorClientRect.width / currentClientRect.width;
+        var xPosition = previousIndicatorClientRect.left - currentClientRect.left;
+        this.adapter.addClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.NO_TRANSITION);
+        this.adapter.setContentStyleProperty('transform', "translateX(" + xPosition + "px) scaleX(" + widthDelta + ")");
+        // Force repaint before updating classes and transform to ensure the transform properly takes effect
+        this.computeContentClientRect();
+        this.adapter.removeClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.NO_TRANSITION);
+        this.adapter.addClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+        this.adapter.setContentStyleProperty('transform', '');
+    };
+    MDCSlidingTabIndicatorFoundation.prototype.deactivate = function () {
+        this.adapter.removeClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+    };
+    return MDCSlidingTabIndicatorFoundation;
+}(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCSlidingTabIndicatorFoundation);
+//# sourceMappingURL=sliding-foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-scroller/component.js":
+/*!**********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-scroller/component.js ***!
+  \**********************************************************************************/
+/*! exports provided: MDCTabScroller */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScroller", function() { return MDCTabScroller; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/events */ "../../node_modules/@material/dom/events.js");
+/* harmony import */ var _material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab-scroller/foundation.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "../../node_modules/@material/tab-scroller/util.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var MDCTabScroller = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabScroller, _super);
+    function MDCTabScroller() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabScroller.attachTo = function (root) {
+        return new MDCTabScroller(root);
+    };
+    MDCTabScroller.prototype.initialize = function () {
+        this.area_ = this.root.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabScrollerFoundation"].strings.AREA_SELECTOR);
+        this.content_ = this.root.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabScrollerFoundation"].strings.CONTENT_SELECTOR);
+    };
+    MDCTabScroller.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleInteraction_ = function () { return _this.foundation.handleInteraction(); };
+        this.handleTransitionEnd_ = function (evt) { return _this.foundation.handleTransitionEnd(evt); };
+        this.area_.addEventListener('wheel', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.addEventListener('touchstart', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.addEventListener('pointerdown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.addEventListener('mousedown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.addEventListener('keydown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.content_.addEventListener('transitionend', this.handleTransitionEnd_);
+    };
+    MDCTabScroller.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        this.area_.removeEventListener('wheel', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.removeEventListener('touchstart', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.removeEventListener('pointerdown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.removeEventListener('mousedown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.removeEventListener('keydown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.content_.removeEventListener('transitionend', this.handleTransitionEnd_);
+    };
+    MDCTabScroller.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            eventTargetMatchesSelector: function (evtTarget, selector) {
+                return Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_3__["matches"])(evtTarget, selector);
+            },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            addScrollAreaClass: function (className) { return _this.area_.classList.add(className); },
+            setScrollAreaStyleProperty: function (prop, value) {
+                return _this.area_.style.setProperty(prop, value);
+            },
+            setScrollContentStyleProperty: function (prop, value) {
+                return _this.content_.style.setProperty(prop, value);
+            },
+            getScrollContentStyleValue: function (propName) {
+                return window.getComputedStyle(_this.content_).getPropertyValue(propName);
+            },
+            setScrollAreaScrollLeft: function (scrollX) { return _this.area_.scrollLeft = scrollX; },
+            getScrollAreaScrollLeft: function () { return _this.area_.scrollLeft; },
+            getScrollContentOffsetWidth: function () { return _this.content_.offsetWidth; },
+            getScrollAreaOffsetWidth: function () { return _this.area_.offsetWidth; },
+            computeScrollAreaClientRect: function () { return _this.area_.getBoundingClientRect(); },
+            computeScrollContentClientRect: function () {
+                return _this.content_.getBoundingClientRect();
+            },
+            computeHorizontalScrollbarHeight: function () {
+                return _util__WEBPACK_IMPORTED_MODULE_5__["computeHorizontalScrollbarHeight"](document);
+            },
+        };
+        // tslint:enable:object-literal-sort-keys
+        return new _foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabScrollerFoundation"](adapter);
+    };
+    /**
+     * Returns the current visual scroll position
+     */
+    MDCTabScroller.prototype.getScrollPosition = function () {
+        return this.foundation.getScrollPosition();
+    };
+    /**
+     * Returns the width of the scroll content
+     */
+    MDCTabScroller.prototype.getScrollContentWidth = function () {
+        return this.content_.offsetWidth;
+    };
+    /**
+     * Increments the scroll value by the given amount
+     * @param scrollXIncrement The pixel value by which to increment the scroll value
+     */
+    MDCTabScroller.prototype.incrementScroll = function (scrollXIncrement) {
+        this.foundation.incrementScroll(scrollXIncrement);
+    };
+    /**
+     * Scrolls to the given pixel position
+     * @param scrollX The pixel value to scroll to
+     */
+    MDCTabScroller.prototype.scrollTo = function (scrollX) {
+        this.foundation.scrollTo(scrollX);
+    };
+    return MDCTabScroller;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-scroller/constants.js":
+/*!**********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-scroller/constants.js ***!
+  \**********************************************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ANIMATING: 'mdc-tab-scroller--animating',
+    SCROLL_AREA_SCROLL: 'mdc-tab-scroller__scroll-area--scroll',
+    SCROLL_TEST: 'mdc-tab-scroller__test',
+};
+var strings = {
+    AREA_SELECTOR: '.mdc-tab-scroller__scroll-area',
+    CONTENT_SELECTOR: '.mdc-tab-scroller__scroll-content',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-scroller/foundation.js":
+/*!***********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-scroller/foundation.js ***!
+  \***********************************************************************************/
+/*! exports provided: MDCTabScrollerFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerFoundation", function() { return MDCTabScrollerFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/tab-scroller/constants.js");
+/* harmony import */ var _rtl_default_scroller__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./rtl-default-scroller */ "../../node_modules/@material/tab-scroller/rtl-default-scroller.js");
+/* harmony import */ var _rtl_negative_scroller__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./rtl-negative-scroller */ "../../node_modules/@material/tab-scroller/rtl-negative-scroller.js");
+/* harmony import */ var _rtl_reverse_scroller__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./rtl-reverse-scroller */ "../../node_modules/@material/tab-scroller/rtl-reverse-scroller.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var MDCTabScrollerFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabScrollerFoundation, _super);
+    function MDCTabScrollerFoundation(adapter) {
+        var _this = _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCTabScrollerFoundation.defaultAdapter), adapter)) || this;
+        /**
+         * Controls whether we should handle the transitionend and interaction events during the animation.
+         */
+        _this.isAnimating_ = false;
+        return _this;
+    }
+    Object.defineProperty(MDCTabScrollerFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabScrollerFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabScrollerFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                eventTargetMatchesSelector: function () { return false; },
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                addScrollAreaClass: function () { return undefined; },
+                setScrollAreaStyleProperty: function () { return undefined; },
+                setScrollContentStyleProperty: function () { return undefined; },
+                getScrollContentStyleValue: function () { return ''; },
+                setScrollAreaScrollLeft: function () { return undefined; },
+                getScrollAreaScrollLeft: function () { return 0; },
+                getScrollContentOffsetWidth: function () { return 0; },
+                getScrollAreaOffsetWidth: function () { return 0; },
+                computeScrollAreaClientRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                computeScrollContentClientRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                computeHorizontalScrollbarHeight: function () { return 0; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTabScrollerFoundation.prototype.init = function () {
+        // Compute horizontal scrollbar height on scroller with overflow initially hidden, then update overflow to scroll
+        // and immediately adjust bottom margin to avoid the scrollbar initially appearing before JS runs.
+        var horizontalScrollbarHeight = this.adapter.computeHorizontalScrollbarHeight();
+        this.adapter.setScrollAreaStyleProperty('margin-bottom', -horizontalScrollbarHeight + 'px');
+        this.adapter.addScrollAreaClass(MDCTabScrollerFoundation.cssClasses.SCROLL_AREA_SCROLL);
+    };
+    /**
+     * Computes the current visual scroll position
+     */
+    MDCTabScrollerFoundation.prototype.getScrollPosition = function () {
+        if (this.isRTL_()) {
+            return this.computeCurrentScrollPositionRTL_();
+        }
+        var currentTranslateX = this.calculateCurrentTranslateX_();
+        var scrollLeft = this.adapter.getScrollAreaScrollLeft();
+        return scrollLeft - currentTranslateX;
+    };
+    /**
+     * Handles interaction events that occur during transition
+     */
+    MDCTabScrollerFoundation.prototype.handleInteraction = function () {
+        // Early exit if we aren't animating
+        if (!this.isAnimating_) {
+            return;
+        }
+        // Prevent other event listeners from handling this event
+        this.stopScrollAnimation_();
+    };
+    /**
+     * Handles the transitionend event
+     */
+    MDCTabScrollerFoundation.prototype.handleTransitionEnd = function (evt) {
+        // Early exit if we aren't animating or the event was triggered by a different element.
+        var evtTarget = evt.target;
+        if (!this.isAnimating_ ||
+            !this.adapter.eventTargetMatchesSelector(evtTarget, MDCTabScrollerFoundation.strings.CONTENT_SELECTOR)) {
+            return;
+        }
+        this.isAnimating_ = false;
+        this.adapter.removeClass(MDCTabScrollerFoundation.cssClasses.ANIMATING);
+    };
+    /**
+     * Increment the scroll value by the scrollXIncrement using animation.
+     * @param scrollXIncrement The value by which to increment the scroll position
+     */
+    MDCTabScrollerFoundation.prototype.incrementScroll = function (scrollXIncrement) {
+        // Early exit for non-operational increment values
+        if (scrollXIncrement === 0) {
+            return;
+        }
+        this.animate_(this.getIncrementScrollOperation_(scrollXIncrement));
+    };
+    /**
+     * Increment the scroll value by the scrollXIncrement without animation.
+     * @param scrollXIncrement The value by which to increment the scroll position
+     */
+    MDCTabScrollerFoundation.prototype.incrementScrollImmediate = function (scrollXIncrement) {
+        // Early exit for non-operational increment values
+        if (scrollXIncrement === 0) {
+            return;
+        }
+        var operation = this.getIncrementScrollOperation_(scrollXIncrement);
+        if (operation.scrollDelta === 0) {
+            return;
+        }
+        this.stopScrollAnimation_();
+        this.adapter.setScrollAreaScrollLeft(operation.finalScrollPosition);
+    };
+    /**
+     * Scrolls to the given scrollX value
+     */
+    MDCTabScrollerFoundation.prototype.scrollTo = function (scrollX) {
+        if (this.isRTL_()) {
+            return this.scrollToRTL_(scrollX);
+        }
+        this.scrollTo_(scrollX);
+    };
+    /**
+     * @return Browser-specific {@link MDCTabScrollerRTL} instance.
+     */
+    MDCTabScrollerFoundation.prototype.getRTLScroller = function () {
+        if (!this.rtlScrollerInstance_) {
+            this.rtlScrollerInstance_ = this.rtlScrollerFactory_();
+        }
+        return this.rtlScrollerInstance_;
+    };
+    /**
+     * @return translateX value from a CSS matrix transform function string.
+     */
+    MDCTabScrollerFoundation.prototype.calculateCurrentTranslateX_ = function () {
+        var transformValue = this.adapter.getScrollContentStyleValue('transform');
+        // Early exit if no transform is present
+        if (transformValue === 'none') {
+            return 0;
+        }
+        // The transform value comes back as a matrix transformation in the form
+        // of `matrix(a, b, c, d, tx, ty)`. We only care about tx (translateX) so
+        // we're going to grab all the parenthesized values, strip out tx, and
+        // parse it.
+        var match = /\((.+?)\)/.exec(transformValue);
+        if (!match) {
+            return 0;
+        }
+        var matrixParams = match[1];
+        // tslint:disable-next-line:ban-ts-ignore "Unused vars" should be a linter warning, not a compiler error.
+        // @ts-ignore These unused variables should retain their semantic names for clarity.
+        var _a = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__read"])(matrixParams.split(','), 6), a = _a[0], b = _a[1], c = _a[2], d = _a[3], tx = _a[4], ty = _a[5];
+        return parseFloat(tx); // tslint:disable-line:ban
+    };
+    /**
+     * Calculates a safe scroll value that is > 0 and < the max scroll value
+     * @param scrollX The distance to scroll
+     */
+    MDCTabScrollerFoundation.prototype.clampScrollValue_ = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        return Math.min(Math.max(edges.left, scrollX), edges.right);
+    };
+    MDCTabScrollerFoundation.prototype.computeCurrentScrollPositionRTL_ = function () {
+        var translateX = this.calculateCurrentTranslateX_();
+        return this.getRTLScroller().getScrollPositionRTL(translateX);
+    };
+    MDCTabScrollerFoundation.prototype.calculateScrollEdges_ = function () {
+        var contentWidth = this.adapter.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter.getScrollAreaOffsetWidth();
+        return {
+            left: 0,
+            right: contentWidth - rootWidth,
+        };
+    };
+    /**
+     * Internal scroll method
+     * @param scrollX The new scroll position
+     */
+    MDCTabScrollerFoundation.prototype.scrollTo_ = function (scrollX) {
+        var currentScrollX = this.getScrollPosition();
+        var safeScrollX = this.clampScrollValue_(scrollX);
+        var scrollDelta = safeScrollX - currentScrollX;
+        this.animate_({
+            finalScrollPosition: safeScrollX,
+            scrollDelta: scrollDelta,
+        });
+    };
+    /**
+     * Internal RTL scroll method
+     * @param scrollX The new scroll position
+     */
+    MDCTabScrollerFoundation.prototype.scrollToRTL_ = function (scrollX) {
+        var animation = this.getRTLScroller().scrollToRTL(scrollX);
+        this.animate_(animation);
+    };
+    /**
+     * Internal method to compute the increment scroll operation values.
+     * @param scrollX The desired scroll position increment
+     * @return MDCTabScrollerAnimation with the sanitized values for performing the scroll operation.
+     */
+    MDCTabScrollerFoundation.prototype.getIncrementScrollOperation_ = function (scrollX) {
+        if (this.isRTL_()) {
+            return this.getRTLScroller().incrementScrollRTL(scrollX);
+        }
+        var currentScrollX = this.getScrollPosition();
+        var targetScrollX = scrollX + currentScrollX;
+        var safeScrollX = this.clampScrollValue_(targetScrollX);
+        var scrollDelta = safeScrollX - currentScrollX;
+        return {
+            finalScrollPosition: safeScrollX,
+            scrollDelta: scrollDelta,
+        };
+    };
+    /**
+     * Animates the tab scrolling
+     * @param animation The animation to apply
+     */
+    MDCTabScrollerFoundation.prototype.animate_ = function (animation) {
+        var _this = this;
+        // Early exit if translateX is 0, which means there's no animation to perform
+        if (animation.scrollDelta === 0) {
+            return;
+        }
+        this.stopScrollAnimation_();
+        // This animation uses the FLIP approach.
+        // Read more here: https://aerotwist.com/blog/flip-your-animations/
+        this.adapter.setScrollAreaScrollLeft(animation.finalScrollPosition);
+        this.adapter.setScrollContentStyleProperty('transform', "translateX(" + animation.scrollDelta + "px)");
+        // Force repaint
+        this.adapter.computeScrollAreaClientRect();
+        requestAnimationFrame(function () {
+            _this.adapter.addClass(MDCTabScrollerFoundation.cssClasses.ANIMATING);
+            _this.adapter.setScrollContentStyleProperty('transform', 'none');
+        });
+        this.isAnimating_ = true;
+    };
+    /**
+     * Stops scroll animation
+     */
+    MDCTabScrollerFoundation.prototype.stopScrollAnimation_ = function () {
+        this.isAnimating_ = false;
+        var currentScrollPosition = this.getAnimatingScrollPosition_();
+        this.adapter.removeClass(MDCTabScrollerFoundation.cssClasses.ANIMATING);
+        this.adapter.setScrollContentStyleProperty('transform', 'translateX(0px)');
+        this.adapter.setScrollAreaScrollLeft(currentScrollPosition);
+    };
+    /**
+     * Gets the current scroll position during animation
+     */
+    MDCTabScrollerFoundation.prototype.getAnimatingScrollPosition_ = function () {
+        var currentTranslateX = this.calculateCurrentTranslateX_();
+        var scrollLeft = this.adapter.getScrollAreaScrollLeft();
+        if (this.isRTL_()) {
+            return this.getRTLScroller().getAnimatingScrollPosition(scrollLeft, currentTranslateX);
+        }
+        return scrollLeft - currentTranslateX;
+    };
+    /**
+     * Determines the RTL Scroller to use
+     */
+    MDCTabScrollerFoundation.prototype.rtlScrollerFactory_ = function () {
+        // Browsers have three different implementations of scrollLeft in RTL mode,
+        // dependent on the browser. The behavior is based off the max LTR
+        // scrollLeft value and 0.
+        //
+        // * Default scrolling in RTL *
+        //    - Left-most value: 0
+        //    - Right-most value: Max LTR scrollLeft value
+        //
+        // * Negative scrolling in RTL *
+        //    - Left-most value: Negated max LTR scrollLeft value
+        //    - Right-most value: 0
+        //
+        // * Reverse scrolling in RTL *
+        //    - Left-most value: Max LTR scrollLeft value
+        //    - Right-most value: 0
+        //
+        // We use those principles below to determine which RTL scrollLeft
+        // behavior is implemented in the current browser.
+        var initialScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        this.adapter.setScrollAreaScrollLeft(initialScrollLeft - 1);
+        var newScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        // If the newScrollLeft value is negative,then we know that the browser has
+        // implemented negative RTL scrolling, since all other implementations have
+        // only positive values.
+        if (newScrollLeft < 0) {
+            // Undo the scrollLeft test check
+            this.adapter.setScrollAreaScrollLeft(initialScrollLeft);
+            return new _rtl_negative_scroller__WEBPACK_IMPORTED_MODULE_4__["MDCTabScrollerRTLNegative"](this.adapter);
+        }
+        var rootClientRect = this.adapter.computeScrollAreaClientRect();
+        var contentClientRect = this.adapter.computeScrollContentClientRect();
+        var rightEdgeDelta = Math.round(contentClientRect.right - rootClientRect.right);
+        // Undo the scrollLeft test check
+        this.adapter.setScrollAreaScrollLeft(initialScrollLeft);
+        // By calculating the clientRect of the root element and the clientRect of
+        // the content element, we can determine how much the scroll value changed
+        // when we performed the scrollLeft subtraction above.
+        if (rightEdgeDelta === newScrollLeft) {
+            return new _rtl_reverse_scroller__WEBPACK_IMPORTED_MODULE_5__["MDCTabScrollerRTLReverse"](this.adapter);
+        }
+        return new _rtl_default_scroller__WEBPACK_IMPORTED_MODULE_3__["MDCTabScrollerRTLDefault"](this.adapter);
+    };
+    MDCTabScrollerFoundation.prototype.isRTL_ = function () {
+        return this.adapter.getScrollContentStyleValue('direction') === 'rtl';
+    };
+    return MDCTabScrollerFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-scroller/index.js":
+/*!******************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-scroller/index.js ***!
+  \******************************************************************************/
+/*! exports provided: util, MDCTabScroller, cssClasses, strings, MDCTabScrollerFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "../../node_modules/@material/tab-scroller/util.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "util", function() { return _util__WEBPACK_IMPORTED_MODULE_0__; });
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/tab-scroller/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabScroller", function() { return _component__WEBPACK_IMPORTED_MODULE_1__["MDCTabScroller"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/tab-scroller/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab-scroller/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_3__["MDCTabScrollerFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-scroller/rtl-default-scroller.js":
+/*!*********************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-scroller/rtl-default-scroller.js ***!
+  \*********************************************************************************************/
+/*! exports provided: MDCTabScrollerRTLDefault, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerRTLDefault", function() { return MDCTabScrollerRTLDefault; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _rtl_scroller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rtl-scroller */ "../../node_modules/@material/tab-scroller/rtl-scroller.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabScrollerRTLDefault, _super);
+    function MDCTabScrollerRTLDefault() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabScrollerRTLDefault.prototype.getScrollPositionRTL = function () {
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        var right = this.calculateScrollEdges_().right;
+        // Scroll values on most browsers are ints instead of floats so we round
+        return Math.round(right - currentScrollLeft);
+    };
+    MDCTabScrollerRTLDefault.prototype.scrollToRTL = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(edges.right - scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLDefault.prototype.incrementScrollRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLDefault.prototype.getAnimatingScrollPosition = function (scrollX) {
+        return scrollX;
+    };
+    MDCTabScrollerRTLDefault.prototype.calculateScrollEdges_ = function () {
+        var contentWidth = this.adapter.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter.getScrollAreaOffsetWidth();
+        return {
+            left: 0,
+            right: contentWidth - rootWidth,
+        };
+    };
+    MDCTabScrollerRTLDefault.prototype.clampScrollValue_ = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        return Math.min(Math.max(edges.left, scrollX), edges.right);
+    };
+    return MDCTabScrollerRTLDefault;
+}(_rtl_scroller__WEBPACK_IMPORTED_MODULE_1__["MDCTabScrollerRTL"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerRTLDefault);
+//# sourceMappingURL=rtl-default-scroller.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-scroller/rtl-negative-scroller.js":
+/*!**********************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-scroller/rtl-negative-scroller.js ***!
+  \**********************************************************************************************/
+/*! exports provided: MDCTabScrollerRTLNegative, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerRTLNegative", function() { return MDCTabScrollerRTLNegative; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _rtl_scroller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rtl-scroller */ "../../node_modules/@material/tab-scroller/rtl-scroller.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabScrollerRTLNegative, _super);
+    function MDCTabScrollerRTLNegative() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabScrollerRTLNegative.prototype.getScrollPositionRTL = function (translateX) {
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        return Math.round(translateX - currentScrollLeft);
+    };
+    MDCTabScrollerRTLNegative.prototype.scrollToRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(-scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLNegative.prototype.incrementScrollRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLNegative.prototype.getAnimatingScrollPosition = function (scrollX, translateX) {
+        return scrollX - translateX;
+    };
+    MDCTabScrollerRTLNegative.prototype.calculateScrollEdges_ = function () {
+        var contentWidth = this.adapter.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter.getScrollAreaOffsetWidth();
+        return {
+            left: rootWidth - contentWidth,
+            right: 0,
+        };
+    };
+    MDCTabScrollerRTLNegative.prototype.clampScrollValue_ = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        return Math.max(Math.min(edges.right, scrollX), edges.left);
+    };
+    return MDCTabScrollerRTLNegative;
+}(_rtl_scroller__WEBPACK_IMPORTED_MODULE_1__["MDCTabScrollerRTL"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerRTLNegative);
+//# sourceMappingURL=rtl-negative-scroller.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-scroller/rtl-reverse-scroller.js":
+/*!*********************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-scroller/rtl-reverse-scroller.js ***!
+  \*********************************************************************************************/
+/*! exports provided: MDCTabScrollerRTLReverse, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerRTLReverse", function() { return MDCTabScrollerRTLReverse; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _rtl_scroller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rtl-scroller */ "../../node_modules/@material/tab-scroller/rtl-scroller.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+var MDCTabScrollerRTLReverse = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabScrollerRTLReverse, _super);
+    function MDCTabScrollerRTLReverse() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabScrollerRTLReverse.prototype.getScrollPositionRTL = function (translateX) {
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        // Scroll values on most browsers are ints instead of floats so we round
+        return Math.round(currentScrollLeft - translateX);
+    };
+    MDCTabScrollerRTLReverse.prototype.scrollToRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: currentScrollLeft - clampedScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLReverse.prototype.incrementScrollRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft + scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: currentScrollLeft - clampedScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLReverse.prototype.getAnimatingScrollPosition = function (scrollX, translateX) {
+        return scrollX + translateX;
+    };
+    MDCTabScrollerRTLReverse.prototype.calculateScrollEdges_ = function () {
+        var contentWidth = this.adapter.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter.getScrollAreaOffsetWidth();
+        return {
+            left: contentWidth - rootWidth,
+            right: 0,
+        };
+    };
+    MDCTabScrollerRTLReverse.prototype.clampScrollValue_ = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        return Math.min(Math.max(edges.right, scrollX), edges.left);
+    };
+    return MDCTabScrollerRTLReverse;
+}(_rtl_scroller__WEBPACK_IMPORTED_MODULE_1__["MDCTabScrollerRTL"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerRTLReverse);
+//# sourceMappingURL=rtl-reverse-scroller.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-scroller/rtl-scroller.js":
+/*!*************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-scroller/rtl-scroller.js ***!
+  \*************************************************************************************/
+/*! exports provided: MDCTabScrollerRTL, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerRTL", function() { return MDCTabScrollerRTL; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var MDCTabScrollerRTL = /** @class */ (function () {
+    function MDCTabScrollerRTL(adapter) {
+        this.adapter = adapter;
+    }
+    return MDCTabScrollerRTL;
+}());
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerRTL);
+//# sourceMappingURL=rtl-scroller.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab-scroller/util.js":
+/*!*****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab-scroller/util.js ***!
+  \*****************************************************************************/
+/*! exports provided: computeHorizontalScrollbarHeight */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "computeHorizontalScrollbarHeight", function() { return computeHorizontalScrollbarHeight; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/tab-scroller/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/**
+ * Stores result from computeHorizontalScrollbarHeight to avoid redundant processing.
+ */
+var horizontalScrollbarHeight_;
+/**
+ * Computes the height of browser-rendered horizontal scrollbars using a self-created test element.
+ * May return 0 (e.g. on OS X browsers under default configuration).
+ */
+function computeHorizontalScrollbarHeight(documentObj, shouldCacheResult) {
+    if (shouldCacheResult === void 0) { shouldCacheResult = true; }
+    if (shouldCacheResult && typeof horizontalScrollbarHeight_ !== 'undefined') {
+        return horizontalScrollbarHeight_;
+    }
+    var el = documentObj.createElement('div');
+    el.classList.add(_constants__WEBPACK_IMPORTED_MODULE_0__["cssClasses"].SCROLL_TEST);
+    documentObj.body.appendChild(el);
+    var horizontalScrollbarHeight = el.offsetHeight - el.clientHeight;
+    documentObj.body.removeChild(el);
+    if (shouldCacheResult) {
+        horizontalScrollbarHeight_ = horizontalScrollbarHeight;
+    }
+    return horizontalScrollbarHeight;
+}
+//# sourceMappingURL=util.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab/component.js":
+/*!*************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab/component.js ***!
+  \*************************************************************************/
+/*! exports provided: MDCTab */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTab", function() { return MDCTab; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/ripple/component */ "../../node_modules/@material/ripple/component.js");
+/* harmony import */ var _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/ripple/foundation */ "../../node_modules/@material/ripple/foundation.js");
+/* harmony import */ var _material_tab_indicator_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/tab-indicator/component */ "../../node_modules/@material/tab-indicator/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var MDCTab = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTab, _super);
+    function MDCTab() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTab.attachTo = function (root) {
+        return new MDCTab(root);
+    };
+    MDCTab.prototype.initialize = function (rippleFactory, tabIndicatorFactory) {
+        if (rippleFactory === void 0) { rippleFactory = function (el, foundation) { return new _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__["MDCRipple"](el, foundation); }; }
+        if (tabIndicatorFactory === void 0) { tabIndicatorFactory = function (el) { return new _material_tab_indicator_component__WEBPACK_IMPORTED_MODULE_4__["MDCTabIndicator"](el); }; }
+        this.id = this.root.id;
+        var rippleSurface = this.root.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"].strings.RIPPLE_SELECTOR);
+        var rippleAdapter = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__["MDCRipple"].createAdapter(this)), { addClass: function (className) { return rippleSurface.classList.add(className); }, removeClass: function (className) { return rippleSurface.classList.remove(className); }, updateCssVariable: function (varName, value) { return rippleSurface.style.setProperty(varName, value); } });
+        var rippleFoundation = new _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCRippleFoundation"](rippleAdapter);
+        this.ripple_ = rippleFactory(this.root, rippleFoundation);
+        var tabIndicatorElement = this.root.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"].strings.TAB_INDICATOR_SELECTOR);
+        this.tabIndicator_ = tabIndicatorFactory(tabIndicatorElement);
+        this.content_ = this.root.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"].strings.CONTENT_SELECTOR);
+    };
+    MDCTab.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleClick_ = function () { return _this.foundation.handleClick(); };
+        this.listen('click', this.handleClick_);
+    };
+    MDCTab.prototype.destroy = function () {
+        this.unlisten('click', this.handleClick_);
+        this.ripple_.destroy();
+        _super.prototype.destroy.call(this);
+    };
+    MDCTab.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            activateIndicator: function (previousIndicatorClientRect) {
+                return _this.tabIndicator_.activate(previousIndicatorClientRect);
+            },
+            deactivateIndicator: function () { return _this.tabIndicator_.deactivate(); },
+            notifyInteracted: function () { return _this.emit(_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"].strings.INTERACTED_EVENT, { tabId: _this.id }, true /* bubble */); },
+            getOffsetLeft: function () { return _this.root.offsetLeft; },
+            getOffsetWidth: function () { return _this.root.offsetWidth; },
+            getContentOffsetLeft: function () { return _this.content_.offsetLeft; },
+            getContentOffsetWidth: function () { return _this.content_.offsetWidth; },
+            focus: function () { return _this.root.focus(); },
+        };
+        // tslint:enable:object-literal-sort-keys
+        return new _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"](adapter);
+    };
+    Object.defineProperty(MDCTab.prototype, "active", {
+        /**
+         * Getter for the active state of the tab
+         */
+        get: function () {
+            return this.foundation.isActive();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTab.prototype, "focusOnActivate", {
+        set: function (focusOnActivate) {
+            this.foundation.setFocusOnActivate(focusOnActivate);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Activates the tab
+     */
+    MDCTab.prototype.activate = function (computeIndicatorClientRect) {
+        this.foundation.activate(computeIndicatorClientRect);
+    };
+    /**
+     * Deactivates the tab
+     */
+    MDCTab.prototype.deactivate = function () {
+        this.foundation.deactivate();
+    };
+    /**
+     * Returns the indicator's client rect
+     */
+    MDCTab.prototype.computeIndicatorClientRect = function () {
+        return this.tabIndicator_.computeContentClientRect();
+    };
+    MDCTab.prototype.computeDimensions = function () {
+        return this.foundation.computeDimensions();
+    };
+    /**
+     * Focuses the tab
+     */
+    MDCTab.prototype.focus = function () {
+        this.root.focus();
+    };
+    return MDCTab;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab/constants.js":
+/*!*************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab/constants.js ***!
+  \*************************************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ACTIVE: 'mdc-tab--active',
+};
+var strings = {
+    ARIA_SELECTED: 'aria-selected',
+    CONTENT_SELECTOR: '.mdc-tab__content',
+    INTERACTED_EVENT: 'MDCTab:interacted',
+    RIPPLE_SELECTOR: '.mdc-tab__ripple',
+    TABINDEX: 'tabIndex',
+    TAB_INDICATOR_SELECTOR: '.mdc-tab-indicator',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab/foundation.js":
+/*!**************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab/foundation.js ***!
+  \**************************************************************************/
+/*! exports provided: MDCTabFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabFoundation", function() { return MDCTabFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/tab/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCTabFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCTabFoundation, _super);
+    function MDCTabFoundation(adapter) {
+        var _this = _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCTabFoundation.defaultAdapter), adapter)) || this;
+        _this.focusOnActivate_ = true;
+        return _this;
+    }
+    Object.defineProperty(MDCTabFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                setAttr: function () { return undefined; },
+                activateIndicator: function () { return undefined; },
+                deactivateIndicator: function () { return undefined; },
+                notifyInteracted: function () { return undefined; },
+                getOffsetLeft: function () { return 0; },
+                getOffsetWidth: function () { return 0; },
+                getContentOffsetLeft: function () { return 0; },
+                getContentOffsetWidth: function () { return 0; },
+                focus: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTabFoundation.prototype.handleClick = function () {
+        // It's up to the parent component to keep track of the active Tab and
+        // ensure we don't activate a Tab that's already active.
+        this.adapter.notifyInteracted();
+    };
+    MDCTabFoundation.prototype.isActive = function () {
+        return this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ACTIVE);
+    };
+    /**
+     * Sets whether the tab should focus itself when activated
+     */
+    MDCTabFoundation.prototype.setFocusOnActivate = function (focusOnActivate) {
+        this.focusOnActivate_ = focusOnActivate;
+    };
+    /**
+     * Activates the Tab
+     */
+    MDCTabFoundation.prototype.activate = function (previousIndicatorClientRect) {
+        this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ACTIVE);
+        this.adapter.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_SELECTED, 'true');
+        this.adapter.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TABINDEX, '0');
+        this.adapter.activateIndicator(previousIndicatorClientRect);
+        if (this.focusOnActivate_) {
+            this.adapter.focus();
+        }
+    };
+    /**
+     * Deactivates the Tab
+     */
+    MDCTabFoundation.prototype.deactivate = function () {
+        // Early exit
+        if (!this.isActive()) {
+            return;
+        }
+        this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ACTIVE);
+        this.adapter.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_SELECTED, 'false');
+        this.adapter.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TABINDEX, '-1');
+        this.adapter.deactivateIndicator();
+    };
+    /**
+     * Returns the dimensions of the Tab
+     */
+    MDCTabFoundation.prototype.computeDimensions = function () {
+        var rootWidth = this.adapter.getOffsetWidth();
+        var rootLeft = this.adapter.getOffsetLeft();
+        var contentWidth = this.adapter.getContentOffsetWidth();
+        var contentLeft = this.adapter.getContentOffsetLeft();
+        return {
+            contentLeft: rootLeft + contentLeft,
+            contentRight: rootLeft + contentLeft + contentWidth,
+            rootLeft: rootLeft,
+            rootRight: rootLeft + rootWidth,
+        };
+    };
+    return MDCTabFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/tab/index.js":
+/*!*********************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/tab/index.js ***!
+  \*********************************************************************/
+/*! exports provided: MDCTab, cssClasses, strings, MDCTabFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/tab/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTab", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCTab"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/tab/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/tab/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTabFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "../../node_modules/@material/textfield/character-counter/component.js":
 /*!*************************************************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/textfield/character-counter/component.js ***!
@@ -48549,10 +51010,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         MdcDrawer.prototype.handleKeydown_ = function (evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
+            return true;
         };
         MdcDrawer.prototype.handleTransitionEnd_ = function (evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTransitionEnd(evt);
+            return true;
         };
         MdcDrawer.prototype.destroy = function () {
             var MODAL = drawer_1.cssClasses.MODAL;
@@ -49608,7 +52071,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         MdcRipple.prototype.createAdapter = function () {
             var _this = this;
             return {
-                addClass: function (className) { return _this.root.classList.add(className); },
+                addClass: function (className) { return (_this.surface || _this.root).classList.add(className); },
                 browserSupportsCssVars: function () { return ripple_1.util.supportsCssVariables(window); },
                 computeBoundingRect: function () { return _this.root.getBoundingClientRect(); },
                 containsEventTarget: function (target) { return _this.root.contains(target); },
@@ -49622,14 +52085,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 registerDocumentInteractionHandler: function (evtType, handler) { return document.documentElement.addEventListener(evtType, handler, events_1.applyPassive()); },
                 registerInteractionHandler: function (evtType, handler) { var _a; return ((_a = _this.input) !== null && _a !== void 0 ? _a : _this.root).addEventListener(evtType, handler, events_1.applyPassive()); },
                 registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                updateCssVariable: function (varName, value) { return _this.root.style.setProperty(varName, value); },
+                removeClass: function (className) { return (_this.surface || _this.root).classList.remove(className); },
+                updateCssVariable: function (varName, value) { return (_this.surface || _this.root).style.setProperty(varName, value); },
             };
         };
         tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable,
             tslib_1.__metadata("design:type", HTMLInputElement)
         ], MdcRipple.prototype, "input", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", HTMLElement)
+        ], MdcRipple.prototype, "surface", void 0);
         tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
             tslib_1.__metadata("design:type", Boolean)
@@ -49648,6 +52115,516 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/tab-bar":
+/*!*******************************!*\
+  !*** ../tab-bar/src/index.ts ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! ./mdc-tab-bar */ "@aurelia-mdc-web/tab-bar/mdc-tab-bar")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_framework_1, mdc_tab_bar_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.configure = void 0;
+    Object.defineProperty(exports, "MdcTabBar", { enumerable: true, get: function () { return mdc_tab_bar_1.MdcTabBar; } });
+    function configure(config) {
+        config.globalResources([
+            './mdc-tab-bar',
+            './tab/mdc-tab',
+            './scroller/mdc-tab-scroller',
+            './indicator/mdc-tab-indicator',
+        ]);
+    }
+    exports.configure = configure;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/tab-bar/indicator/mdc-tab-indicator":
+/*!*****************************************************!*\
+  !*** ../tab-bar/src/indicator/mdc-tab-indicator.ts ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/tab-indicator */ "../../node_modules/@material/tab-indicator/index.js"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-pal */ "../../node_modules/aurelia-pal/dist/es2015/aurelia-pal.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, tab_indicator_1, aurelia_typed_observable_plugin_1, aurelia_framework_1, aurelia_pal_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTabIndicator = void 0;
+    var MdcTabIndicator = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcTabIndicator, _super);
+        function MdcTabIndicator() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        MdcTabIndicator.prototype.computeContentClientRect = function () {
+            return this.foundation.computeContentClientRect();
+        };
+        MdcTabIndicator.prototype.getDefaultFoundation = function () {
+            var _this = this;
+            // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+            // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+            var adapter = {
+                addClass: function (className) { return _this.root.classList.add(className); },
+                removeClass: function (className) { return _this.root.classList.remove(className); },
+                computeContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
+                setContentStyleProperty: function (prop, value) { return _this.content_.style.setProperty(prop, value); },
+            };
+            if (this.root.classList.contains(tab_indicator_1.MDCTabIndicatorFoundation.cssClasses.FADE)) {
+                return new tab_indicator_1.MDCFadingTabIndicatorFoundation(adapter);
+            }
+            // Default to the sliding indicator
+            return new tab_indicator_1.MDCSlidingTabIndicatorFoundation(adapter);
+        };
+        MdcTabIndicator.prototype.activate = function (previousIndicatorClientRect) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate(previousIndicatorClientRect);
+        };
+        MdcTabIndicator.prototype.deactivate = function () {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
+        };
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcTabIndicator.prototype, "fade", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcTabIndicator.prototype, "active", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", String)
+        ], MdcTabIndicator.prototype, "icon", void 0);
+        MdcTabIndicator = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.useView('./mdc-tab-indicator.html'),
+            aurelia_framework_1.customElement('mdc-tab-indicator')
+        ], MdcTabIndicator);
+        return MdcTabIndicator;
+    }(base_1.MdcComponent));
+    exports.MdcTabIndicator = MdcTabIndicator;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/tab-bar/indicator/mdc-tab-indicator.html":
+/*!*******************************************************!*\
+  !*** ../tab-bar/src/indicator/mdc-tab-indicator.html ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template class=\"\n    mdc-tab-indicator\n    ${fade ? 'mdc-tab-indicator--fade' : ''}\n    ${active ? 'mdc-tab-indicator--active' : ''}\n  \">\n  <span class=\"mdc-tab-indicator__content mdc-tab-indicator__content--${icon ? 'icon' : 'underline'} ${icon ? 'material-icons' : ''}\"\n    aria-hidden=\"true\" ref=\"content_\">${icon}</span>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/tab-bar/mdc-tab-bar":
+/*!*************************************!*\
+  !*** ../tab-bar/src/mdc-tab-bar.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/tab-bar */ "../../node_modules/@material/tab-bar/index.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js"), __webpack_require__(/*! @material/tab */ "../../node_modules/@material/tab/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, tab_bar_1, aurelia_framework_1, aurelia_typed_observable_plugin_1, tab_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTabBar = void 0;
+    var MdcTabBar = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcTabBar, _super);
+        function MdcTabBar() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        MdcTabBar.prototype.focusOnActivateChanged = function () {
+            var _this = this;
+            this.tabList_.forEach(function (tab) { return tab.focusOnActivate = _this.focusOnActivate; });
+        };
+        MdcTabBar.prototype.useAutomaticActivationChanged = function () {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0: return [4 /*yield*/, this.initialised];
+                        case 1:
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUseAutomaticActivation(this.useAutomaticActivation);
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        MdcTabBar.prototype.initialise = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            this.tabList_ = this.getTabElements_().map(function (x) { return x.au.controller.viewModel; });
+                            return [4 /*yield*/, Promise.all(this.tabList_.map(function (x) { return x.initialised; }))];
+                        case 1:
+                            _a.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        MdcTabBar.prototype.initialSyncWithDOM = function () {
+            var _this = this;
+            this.handleTabInteraction_ = function (evt) { var _a; return (_a = _this.foundation) === null || _a === void 0 ? void 0 : _a.handleTabInteraction(evt); };
+            this.listen(tab_1.MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
+            for (var i = 0; i < this.tabList_.length; i++) {
+                if (this.tabList_[i].active) {
+                    this.scrollIntoView(i);
+                    break;
+                }
+            }
+        };
+        MdcTabBar.prototype.destroy = function () {
+            this.unlisten(tab_1.MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
+        };
+        MdcTabBar.prototype.handleKeyDown_ = function (evt) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeyDown(evt);
+            return true;
+        };
+        MdcTabBar.prototype.getDefaultFoundation = function () {
+            var _this = this;
+            // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+            // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+            var adapter = {
+                scrollTo: function (scrollX) { return _this.tabScroller_.scrollTo(scrollX); },
+                incrementScroll: function (scrollXIncrement) { return _this.tabScroller_.incrementScroll(scrollXIncrement); },
+                getScrollPosition: function () { return _this.tabScroller_.getScrollPosition(); },
+                getScrollContentWidth: function () { return _this.tabScroller_.getScrollContentWidth(); },
+                getOffsetWidth: function () { return _this.root.offsetWidth; },
+                isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
+                setActiveTab: function (index) { var _a; return (_a = _this.foundation) === null || _a === void 0 ? void 0 : _a.activateTab(index); },
+                activateTabAtIndex: function (index, clientRect) { return _this.tabList_[index].activate(clientRect); },
+                deactivateTabAtIndex: function (index) { return _this.tabList_[index].deactivate(); },
+                focusTabAtIndex: function (index) { return _this.tabList_[index].focus(); },
+                getTabIndicatorClientRectAtIndex: function (index) { return _this.tabList_[index].computeIndicatorClientRect(); },
+                getTabDimensionsAtIndex: function (index) { return _this.tabList_[index].computeDimensions(); },
+                getPreviousActiveTabIndex: function () {
+                    for (var i = 0; i < _this.tabList_.length; i++) {
+                        if (_this.tabList_[i].active) {
+                            return i;
+                        }
+                    }
+                    return -1;
+                },
+                getFocusedTabIndex: function () {
+                    var tabElements = _this.getTabElements_();
+                    var activeElement = document.activeElement;
+                    return tabElements.indexOf(activeElement);
+                },
+                getIndexOfTabById: function (id) {
+                    for (var i = 0; i < _this.tabList_.length; i++) {
+                        if (_this.tabList_[i].id === id) {
+                            return i;
+                        }
+                    }
+                    return -1;
+                },
+                getTabListLength: function () { return _this.tabList_.length; },
+                notifyTabActivated: function (index) { return _this.emit(tab_bar_1.strings.TAB_ACTIVATED_EVENT, { index: index }, true); },
+            };
+            return new tab_bar_1.MDCTabBarFoundation(adapter);
+        };
+        /**
+         * Activates the tab at the given index
+         * @param index The index of the tab
+         */
+        MdcTabBar.prototype.activateTab = function (index) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activateTab(index);
+        };
+        /**
+         * Scrolls the tab at the given index into view
+         * @param index THe index of the tab
+         */
+        MdcTabBar.prototype.scrollIntoView = function (index) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.scrollIntoView(index);
+        };
+        /**
+         * Returns all the tab elements in a nice clean array
+         */
+        MdcTabBar.prototype.getTabElements_ = function () {
+            return [].slice.call(this.root.querySelectorAll(tab_bar_1.strings.TAB_SELECTOR));
+        };
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcTabBar.prototype, "focusOnActivate", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcTabBar.prototype, "useAutomaticActivation", void 0);
+        MdcTabBar = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.useView('./mdc-tab-bar.html'),
+            aurelia_framework_1.customElement('mdc-tab-bar')
+        ], MdcTabBar);
+        return MdcTabBar;
+    }(base_1.MdcComponent));
+    exports.MdcTabBar = MdcTabBar;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/tab-bar/mdc-tab-bar.html":
+/*!***************************************!*\
+  !*** ../tab-bar/src/mdc-tab-bar.html ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template class=\"mdc-tab-bar\" role=\"tablist\" keydown.trigger=\"handleKeyDown_($event)\">\n  <mdc-tab-scroller view-model.ref=\"tabScroller_\">\n    <slot></slot>\n  </mdc-tab-scroller>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/tab-bar/scroller/mdc-tab-scroller":
+/*!***************************************************!*\
+  !*** ../tab-bar/src/scroller/mdc-tab-scroller.ts ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/tab-scroller */ "../../node_modules/@material/tab-scroller/index.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, tab_scroller_1, ponyfill_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTabScroller = void 0;
+    var MdcTabScroller = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcTabScroller, _super);
+        function MdcTabScroller() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        MdcTabScroller.prototype.getDefaultFoundation = function () {
+            var _this = this;
+            // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+            // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+            var adapter = {
+                eventTargetMatchesSelector: function (evtTarget, selector) { return ponyfill_1.matches(evtTarget, selector); },
+                addClass: function (className) { return _this.root.classList.add(className); },
+                removeClass: function (className) { return _this.root.classList.remove(className); },
+                addScrollAreaClass: function (className) { return _this.area_.classList.add(className); },
+                setScrollAreaStyleProperty: function (prop, value) { return _this.area_.style.setProperty(prop, value); },
+                setScrollContentStyleProperty: function (prop, value) { return _this.content_.style.setProperty(prop, value); },
+                getScrollContentStyleValue: function (propName) { return window.getComputedStyle(_this.content_).getPropertyValue(propName); },
+                setScrollAreaScrollLeft: function (scrollX) { return _this.area_.scrollLeft = scrollX; },
+                getScrollAreaScrollLeft: function () { return _this.area_.scrollLeft; },
+                getScrollContentOffsetWidth: function () { return _this.content_.offsetWidth; },
+                getScrollAreaOffsetWidth: function () { return _this.area_.offsetWidth; },
+                computeScrollAreaClientRect: function () { return _this.area_.getBoundingClientRect(); },
+                computeScrollContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
+                computeHorizontalScrollbarHeight: function () { return tab_scroller_1.util.computeHorizontalScrollbarHeight(document); },
+            };
+            return new tab_scroller_1.MDCTabScrollerFoundation(adapter);
+        };
+        MdcTabScroller.prototype.handleInteraction_ = function () {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleInteraction();
+        };
+        MdcTabScroller.prototype.handleTransitionEnd_ = function (evt) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTransitionEnd(evt);
+        };
+        /**
+         * Returns the current visual scroll position
+         */
+        MdcTabScroller.prototype.getScrollPosition = function () {
+            return this.foundation.getScrollPosition();
+        };
+        /**
+         * Returns the width of the scroll content
+         */
+        MdcTabScroller.prototype.getScrollContentWidth = function () {
+            return this.content_.offsetWidth;
+        };
+        /**
+         * Increments the scroll value by the given amount
+         * @param scrollXIncrement The pixel value by which to increment the scroll value
+         */
+        MdcTabScroller.prototype.incrementScroll = function (scrollXIncrement) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.incrementScroll(scrollXIncrement);
+        };
+        /**
+         * Scrolls to the given pixel position
+         * @param scrollX The pixel value to scroll to
+         */
+        MdcTabScroller.prototype.scrollTo = function (scrollX) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.scrollTo(scrollX);
+        };
+        return MdcTabScroller;
+    }(base_1.MdcComponent));
+    exports.MdcTabScroller = MdcTabScroller;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/tab-bar/scroller/mdc-tab-scroller.html":
+/*!*****************************************************!*\
+  !*** ../tab-bar/src/scroller/mdc-tab-scroller.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template class=\"mdc-tab-scroller\" wheel.trigger=\"handleInteraction_()\" touchstart.trigger=\"handleInteraction_()\"\n  pointerdown.trigger=\"handleInteraction_()\" mousedown.trigger=\"handleInteraction_()\"\n  keydown.trigger=\"handleInteraction_()\" transitionend.trigger=\"handleTransitionEnd_($event)\">\n  <div class=\" mdc-tab-scroller__scroll-area\" ref=\"area_\">\n    <div class=\"mdc-tab-scroller__scroll-content\" ref=\"content_\">\n      <slot></slot>\n    </div>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/tab-bar/tab/mdc-tab":
+/*!*************************************!*\
+  !*** ../tab-bar/src/tab/mdc-tab.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/tab */ "../../node_modules/@material/tab/index.js"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-pal */ "../../node_modules/aurelia-pal/dist/es2015/aurelia-pal.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, tab_1, aurelia_typed_observable_plugin_1, aurelia_framework_1, aurelia_pal_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcTab = void 0;
+    var tabId = 0;
+    var MdcTab = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcTab, _super);
+        function MdcTab() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.id = "mdc-tab-" + ++tabId;
+            return _this;
+        }
+        MdcTab.prototype.handleClick_ = function () {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick();
+            return true;
+        };
+        MdcTab.prototype.getDefaultFoundation = function () {
+            var _this = this;
+            // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+            // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+            var adapter = {
+                setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+                addClass: function (className) { return _this.root.classList.add(className); },
+                removeClass: function (className) { return _this.root.classList.remove(className); },
+                hasClass: function (className) { return _this.root.classList.contains(className); },
+                activateIndicator: function (previousIndicatorClientRect) { return _this.tabIndicator_.activate(previousIndicatorClientRect); },
+                deactivateIndicator: function () { return _this.tabIndicator_.deactivate(); },
+                notifyInteracted: function () { return _this.emit(tab_1.MDCTabFoundation.strings.INTERACTED_EVENT, { tabId: _this.id }, true /* bubble */); },
+                getOffsetLeft: function () { return _this.root.offsetLeft; },
+                getOffsetWidth: function () { return _this.root.offsetWidth; },
+                getContentOffsetLeft: function () { return _this.content_.offsetLeft; },
+                getContentOffsetWidth: function () { return _this.content_.offsetWidth; },
+                focus: function () { return _this.root.focus(); },
+            };
+            return new tab_1.MDCTabFoundation(adapter);
+        };
+        Object.defineProperty(MdcTab.prototype, "active", {
+            /**
+             * Getter for the active state of the tab
+             */
+            get: function () {
+                return this.foundation.isActive();
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(MdcTab.prototype, "focusOnActivate", {
+            set: function (focusOnActivate) {
+                var _a;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setFocusOnActivate(focusOnActivate);
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Activates the tab
+         */
+        MdcTab.prototype.activate = function (computeIndicatorClientRect) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate(computeIndicatorClientRect);
+        };
+        /**
+         * Deactivates the tab
+         */
+        MdcTab.prototype.deactivate = function () {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
+        };
+        /**
+         * Returns the indicator's client rect
+         */
+        MdcTab.prototype.computeIndicatorClientRect = function () {
+            return this.tabIndicator_.computeContentClientRect();
+        };
+        MdcTab.prototype.computeDimensions = function () {
+            return this.foundation.computeDimensions();
+        };
+        /**
+         * Focuses the tab
+         */
+        MdcTab.prototype.focus = function () {
+            this.root.focus();
+        };
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", String)
+        ], MdcTab.prototype, "id", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcTab.prototype, "fixed", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", String)
+        ], MdcTab.prototype, "icon", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", String)
+        ], MdcTab.prototype, "label", void 0);
+        MdcTab = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.useView('./mdc-tab.html'),
+            aurelia_framework_1.customElement('mdc-tab')
+        ], MdcTab);
+        return MdcTab;
+    }(base_1.MdcComponent));
+    exports.MdcTab = MdcTab;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/tab-bar/tab/mdc-tab.html":
+/*!***************************************!*\
+  !*** ../tab-bar/src/tab/mdc-tab.html ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template class=\"mdc-tab\" role=\"tab\" aria-selected=\"false\" tabindex=\"-1\" mdc-ripple=\"surface.bind: rippleSurface\"\n  click.trigger=\"handleClick_()\">\n  <span class=\"mdc-tab__content\" ref=\"content_\">\n    <span class=\"mdc-tab__icon material-icons\" aria-hidden=\"true\" if.bind=\"icon\">${icon}</span>\n    <span class=\"mdc-tab__text-label\" if.bind=\"label\">${label}</span>\n    <mdc-tab-indicator if.bind=\"fixed\" view-model.ref=\"tabIndicator_\"></mdc-tab-indicator>\n  </span>\n  <mdc-tab-indicator if.bind=\"!fixed\" view-model.ref=\"tabIndicator_\"></mdc-tab-indicator>\n  <span class=\"mdc-tab__ripple\" ref=\"rippleSurface\"></span>\n</template>\n";
+// Exports
+module.exports = code;
 
 /***/ }),
 
@@ -55839,7 +58816,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-panel-content\">\n    <div class=\"demo-panel-transition\">\n      <h1 class=\"demo-panel-title\">${template.title}</h1>\n      ${template.description}\n\n      <div if.bind=\"template.references\">\n        <h2 class=\"demo-panel-heading\">References</h2>\n        <div repeat.for=\"ref of template.references\">\n          <button as-element=\"mdc-button\" href.bind=\"ref.url\" target=\"_blank\" rel=\"noopener\">\n            <i class=\"material-icons mdc-button__icon\">link</i> ${ref.name}\n          </button>\n        </div>\n      </div>\n\n      <div if.bind=\"template.code\">\n        <h2 class=\"demo-panel-heading\">Module</h2>\n        <pre if.bind=\"template.code\"><code class=\"typescript\" highlight>${template.code}</code></pre>\n      </div>\n\n      <div if.bind=\"template.sass\">\n        <h2 class=\"demo-panel-heading\">Styles</h2>\n        <pre if.bind=\"template.sass\"><code class=\"sass\" highlight>${template.sass}</code></pre>\n      </div>\n\n      <div repeat.for=\"mdcUrl of template.mdcUrls\" class=\"viewer-mdc-urls\">\n        <a as-element=\"mdc-button\" href.bind=\"mdcUrl.url\" target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons mdc-button__icon\">link</i> ${mdcUrl.name}\n        </a>\n      </div>\n\n      <!-- <mdc-tab-bar activeTabRouter [activeTabIndex]=\"-1\" if.bind=\"template?.tabs\">\n      <mdc-tab-scroller>\n        <mdc-tab *ngFor=\"let tab of template.tabs\" [label]=\"tab.label\" [routerLink]=\"tab.route\" class=\"viewer-tab\">\n        </mdc-tab>\n      </mdc-tab-scroller>\n    </mdc-tab-bar>\n    <ng-content></ng-content>\n    <router-outlet></router-outlet> -->\n    </div>\n  </div>\n</template>\n";
+var code = "<template>\n  <div class=\"demo-panel-content\">\n    <div class=\"demo-panel-transition\">\n      <h1 class=\"demo-panel-title\">${template.title}</h1>\n      ${template.description}\n\n      <div if.bind=\"template.references\">\n        <h2 class=\"demo-panel-heading\">References</h2>\n        <div repeat.for=\"ref of template.references\">\n          <button as-element=\"mdc-button\" href.bind=\"ref.url\" target=\"_blank\" rel=\"noopener\">\n            <i class=\"material-icons mdc-button__icon\">link</i> ${ref.name}\n          </button>\n        </div>\n      </div>\n\n      <div if.bind=\"template.code\">\n        <h2 class=\"demo-panel-heading\">Module</h2>\n        <pre if.bind=\"template.code\"><code class=\"typescript\" highlight>${template.code}</code></pre>\n      </div>\n\n      <div if.bind=\"template.sass\">\n        <h2 class=\"demo-panel-heading\">Styles</h2>\n        <pre if.bind=\"template.sass\"><code class=\"sass\" highlight>${template.sass}</code></pre>\n      </div>\n\n      <div repeat.for=\"mdcUrl of template.mdcUrls\" class=\"viewer-mdc-urls\">\n        <a as-element=\"mdc-button\" href.bind=\"mdcUrl.url\" target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons mdc-button__icon\">link</i> ${mdcUrl.name}\n        </a>\n      </div>\n      <slot></slot>\n      <!-- <mdc-tab-bar activeTabRouter [activeTabIndex]=\"-1\" if.bind=\"template?.tabs\">\n      <mdc-tab-scroller>\n        <mdc-tab *ngFor=\"let tab of template.tabs\" [label]=\"tab.label\" [routerLink]=\"tab.route\" class=\"viewer-tab\">\n        </mdc-tab>\n      </mdc-tab-scroller>\n    </mdc-tab-bar>\n    <ng-content></ng-content>\n    <router-outlet></router-outlet> -->\n    </div>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -55878,6 +58855,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             .plugin('@aurelia-mdc-web/notched-outline')
                             .plugin('@aurelia-mdc-web/top-app-bar')
                             .plugin('@aurelia-mdc-web/ripple')
+                            .plugin('@aurelia-mdc-web/tab-bar')
                             .plugin('@aurelia-mdc-web/text-field');
                         return [4 /*yield*/, aurelia.start()];
                     case 1:
@@ -56178,7 +59156,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <component-viewer template.bind=\"template\"></component-viewer>\n</template>\n";
+var code = "<template>\n  <component-viewer template.bind=\"template\">\n    <mdc-list has-typeahead single-selection activated>\n      <mdc-list-item tabindex=\"0\">Item 1</mdc-list-item>\n      <mdc-list-divider></mdc-list-divider>\n      <mdc-list-item>Item 2</mdc-list-item>\n    </mdc-list>\n  </component-viewer>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -56259,6 +59237,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 { route: 'form-field' },
                 { route: 'list' },
                 { route: 'ripple' },
+                { route: 'tabs' },
                 { route: 'text-field' },
                 { route: 'top-app-bar' },
             ];
@@ -56307,7 +59286,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = __webpack_require__(/*! ../../../
 var ___HTML_LOADER_IMPORT_0___ = __webpack_require__(/*! ../../assets/github-circle-white-transparent.svg */ "./src/assets/github-circle-white-transparent.svg");
 // Module
 var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v0.0.1</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list single-selection activated wrap-focus>\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item tabindex.bind=\"$index ? -1 : 0\"} click.delegate=\"navigateTo(m)\" activated.bind=\"m.isActive\">${m.title}</mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n      <!-- <mdc-form-field if.bind=\"!checked\">\n        <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\">\n          <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n          <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n        </mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n          <mdc-text-field-character-counter></mdc-text-field-character-counter>\n        </mdc-text-field-helper-line>\n      </mdc-form-field>\n\n      <mdc-form-field>\n        <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\" required type=\"number\">\n          <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n          <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n        </mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n          <mdc-text-field-character-counter></mdc-text-field-character-counter>\n        </mdc-text-field-helper-line>\n      </mdc-form-field>\n      <div>${value}</div>\n      <input type=\"checkbox\" checked.bind=\"checked\">Hide</input>\n      <br>\n      <mdc-list has-typeahead single-selection activated>\n        <mdc-list-item tabindex=\"0\">Item 1</mdc-list-item>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-list-item>Item 2</mdc-list-item>\n      </mdc-list>\n      <button>Test</button> -->\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v0.0.1</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list single-selection activated wrap-focus>\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item tabindex.bind=\"$index ? -1 : 0\" } click.delegate=\"navigateTo(m)\" activated.bind=\"m.isActive\">\n              ${m.title}</mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -56324,10 +59303,75 @@ module.exports = code;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;opacity:0;pointer-events:none;transition:opacity .28s cubic-bezier(.4,0,.2,1);background-color:#fff}.mdc-button{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);padding:0 8px;position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;border-radius:4px;border-radius:var(--mdc-shape-small,4px);height:36px}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-button:disabled,.mdc-button:not(:disabled){background-color:transparent}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;width:18px;height:18px;font-size:18px;vertical-align:top}.mdc-button .mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button .mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button .mdc-button__touch{position:absolute;top:50%;right:0;height:48px;left:0;transform:translateY(-50%)}.mdc-button:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-button:disabled{color:rgba(0,0,0,.38)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button__label+.mdc-button__icon{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--outlined .mdc-button__icon,.mdc-button--raised .mdc-button__icon,.mdc-button--unelevated .mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--outlined .mdc-button__icon[dir=rtl],.mdc-button--outlined .mdc-button__label+.mdc-button__icon,.mdc-button--raised .mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon,.mdc-button--unelevated .mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--outlined .mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__icon{margin-left:8px;margin-right:-4px}.mdc-button--outlined .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button--outlined .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__label+.mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--raised,.mdc-button--unelevated{padding:0 16px}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{background-color:rgba(0,0,0,.12);color:rgba(0,0,0,.38)}.mdc-button--raised{box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);transition:box-shadow .28s cubic-bezier(.4,0,.2,1)}.mdc-button--raised:focus,.mdc-button--raised:hover{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)}.mdc-button--raised:active{box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mdc-button--raised:disabled{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)}.mdc-button--outlined{padding:0 15px;border-width:1px;border-style:solid}.mdc-button--outlined .mdc-button__ripple{top:-1px;left:-1px;border:1px solid transparent}.mdc-button--outlined .mdc-button__touch{left:-1px;width:calc(100% + 2px)}.mdc-button--outlined:disabled,.mdc-button--outlined:not(:disabled){border-color:rgba(0,0,0,.12)}.mdc-button--touch{margin-top:6px;margin-bottom:6px}@keyframes mdc-ripple-fg-radius-in{0%{animation-timing-function:cubic-bezier(.4,0,.2,1);transform:translate(var(--mdc-ripple-fg-translate-start,0)) scale(1)}to{transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}}@keyframes mdc-ripple-fg-opacity-in{0%{animation-timing-function:linear;opacity:0}to{opacity:var(--mdc-ripple-fg-opacity,0)}}@keyframes mdc-ripple-fg-opacity-out{0%{animation-timing-function:linear;opacity:var(--mdc-ripple-fg-opacity,0)}to{opacity:0}}.mdc-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-button .mdc-button__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-button.mdc-ripple-upgraded--unbounded .mdc-button__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-button.mdc-ripple-upgraded--foreground-activation .mdc-button__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-button.mdc-ripple-upgraded--foreground-deactivation .mdc-button__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-button:hover .mdc-button__ripple:before{opacity:.04}.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.12}.mdc-button:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.12}.mdc-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-button .mdc-button__ripple{position:absolute;box-sizing:content-box;width:100%;height:100%;overflow:hidden}.mdc-button:not(.mdc-button--outlined) .mdc-button__ripple{top:0;left:0}.mdc-button--raised .mdc-button__ripple:after,.mdc-button--raised .mdc-button__ripple:before,.mdc-button--unelevated .mdc-button__ripple:after,.mdc-button--unelevated .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:hover .mdc-button__ripple:before,.mdc-button--unelevated:hover .mdc-button__ripple:before{opacity:.08}.mdc-button--raised.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--raised:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before,.mdc-button--unelevated.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--unelevated:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.mdc-button--raised:not(.mdc-ripple-upgraded) .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button--raised:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.mdc-button--raised.mdc-ripple-upgraded,.mdc-button--unelevated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-list{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);line-height:1.5rem;margin:0;padding:8px 0;list-style-type:none;color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list:focus{outline:none}.mdc-list-item__secondary-text{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))}.mdc-list-item__graphic{background-color:transparent;color:rgba(0,0,0,.38);color:var(--mdc-theme-text-icon-on-background,rgba(0,0,0,.38))}.mdc-list-item__meta{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-hint-on-background,rgba(0,0,0,.38))}.mdc-list-group__subheader{color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list-item--disabled .mdc-list-item__text{opacity:.38}.mdc-list-item--disabled .mdc-list-item__primary-text,.mdc-list-item--disabled .mdc-list-item__secondary-text,.mdc-list-item--disabled .mdc-list-item__text{color:#000;color:var(--mdc-theme-on-surface,#000)}.mdc-list-item--activated,.mdc-list-item--activated .mdc-list-item__graphic,.mdc-list-item--selected,.mdc-list-item--selected .mdc-list-item__graphic{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-list--dense{padding-top:4px;padding-bottom:4px;font-size:.812rem}.mdc-list-item{display:flex;position:relative;align-items:center;justify-content:flex-start;overflow:hidden;padding:0 16px;height:48px}.mdc-list-item:focus{outline:none}.mdc-list-item:not(.mdc-list-item--selected):focus:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:\"\"}.mdc-list-item.mdc-list-item--selected:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:3px double transparent;border-radius:inherit;content:\"\"}.mdc-list--icon-list .mdc-list-item,.mdc-list-item[dir=rtl],[dir=rtl] .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--icon-list .mdc-list-item{height:56px}.mdc-list--icon-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--avatar-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--thumbnail-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px;height:72px}.mdc-list--image-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--video-list .mdc-list-item{padding-left:0;padding-right:16px;height:72px}.mdc-list--video-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item{padding-left:16px;padding-right:0}.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:20px;height:20px}.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list-item__graphic{flex-shrink:0;align-items:center;justify-content:center;fill:currentColor;object-fit:cover;margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--icon-list .mdc-list-item__graphic{margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list--icon-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--avatar-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px;border-radius:50%}.mdc-list--avatar-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px}.mdc-list--thumbnail-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--image-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:56px;height:56px}.mdc-list--image-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--video-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:100px;height:56px}.mdc-list--video-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list .mdc-list-item__graphic{display:inline-flex}.mdc-list-item__meta{margin-left:auto;margin-right:0}.mdc-list-item__meta:not(.material-icons){-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit)}.mdc-list-item[dir=rtl] .mdc-list-item__meta,[dir=rtl] .mdc-list-item .mdc-list-item__meta{margin-left:0;margin-right:auto}.mdc-list-item__text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.mdc-list-item__text[for]{pointer-events:none}.mdc-list-item__primary-text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list-item__primary-text:before{display:inline-block;width:0;height:28px;content:\"\";vertical-align:0}.mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text,.mdc-list--icon-list .mdc-list-item__primary-text,.mdc-list--image-list .mdc-list-item__primary-text,.mdc-list--thumbnail-list .mdc-list-item__primary-text,.mdc-list--video-list .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text:before,.mdc-list--icon-list .mdc-list-item__primary-text:before,.mdc-list--image-list .mdc-list-item__primary-text:before,.mdc-list--thumbnail-list .mdc-list-item__primary-text:before,.mdc-list--video-list .mdc-list-item__primary-text:before{display:inline-block;width:0;height:32px;content:\"\";vertical-align:0}.mdc-list--avatar-list .mdc-list-item__primary-text:after,.mdc-list--icon-list .mdc-list-item__primary-text:after,.mdc-list--image-list .mdc-list-item__primary-text:after,.mdc-list--thumbnail-list .mdc-list-item__primary-text:after,.mdc-list--video-list .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--dense .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--dense .mdc-list-item__primary-text:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list-item__secondary-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal}.mdc-list-item__secondary-text:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__secondary-text{font-size:inherit}.mdc-list--dense .mdc-list-item{height:40px}.mdc-list--two-line .mdc-list-item__text{align-self:flex-start}.mdc-list--two-line .mdc-list-item{height:64px}.mdc-list--two-line.mdc-list--avatar-list .mdc-list-item,.mdc-list--two-line.mdc-list--icon-list .mdc-list-item,.mdc-list--two-line.mdc-list--image-list .mdc-list-item,.mdc-list--two-line.mdc-list--thumbnail-list .mdc-list-item,.mdc-list--two-line.mdc-list--video-list .mdc-list-item{height:72px}.mdc-list--two-line.mdc-list--icon-list .mdc-list-item__graphic{align-self:flex-start;margin-top:16px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item,.mdc-list--two-line.mdc-list--dense .mdc-list-item{height:60px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:36px;height:36px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}:not(.mdc-list-item--disabled).mdc-list-item{cursor:pointer}a.mdc-list-item{color:inherit;text-decoration:none}.mdc-list-divider{height:0;margin:0;border:none;border-bottom:1px solid;border-bottom-color:rgba(0,0,0,.12)}.mdc-list-divider--padded{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--padded{margin-left:0;margin-right:16px}.mdc-list-divider--inset{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list-divider--inset[dir=rtl],[dir=rtl] .mdc-list-divider--inset{margin-left:0;margin-right:72px}.mdc-list-divider--inset.mdc-list-divider--padded{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list-divider--inset.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--inset.mdc-list-divider--padded{margin-left:0;margin-right:72px}.mdc-list .mdc-list-divider--inset-leading{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--icon-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:88px;margin-right:0;width:calc(100% - 88px)}.mdc-list--image-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:88px;margin-right:0;width:calc(100% - 104px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:116px;margin-right:0;width:calc(100% - 116px)}.mdc-list--video-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:116px;margin-right:0;width:calc(100% - 132px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0;width:100%}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0;width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0}.mdc-list-group .mdc-list{padding:0}.mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);margin:.75rem 16px}:not(.mdc-list-item--disabled).mdc-list-item{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{background-color:#000}:not(.mdc-list-item--disabled).mdc-list-item:hover .mdc-list-item__ripple:before{opacity:.04}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--activated:hover .mdc-list-item__ripple:before{opacity:.16}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{opacity:.08}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--selected:hover .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.2}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-list-item--disabled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-list-item--disabled .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-list-item--disabled.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{background-color:#000}.mdc-list-item--disabled.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,.mdc-list-item--disabled:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}.mdc-list-item--disabled .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;font-size:24px;text-decoration:none;cursor:pointer;user-select:none;width:48px;height:48px;padding:12px}.mdc-icon-button img,.mdc-icon-button svg{width:24px;height:24px}.mdc-icon-button:disabled{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-disabled-on-light,rgba(0,0,0,.38));cursor:default;pointer-events:none}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button--on .mdc-icon-button__icon,.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-icon-button:after,.mdc-icon-button:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-icon-button:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-icon-button.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-icon-button.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-icon-button.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-icon-button.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button:after,.mdc-icon-button:before{top:0;left:0;width:100%;height:100%}.mdc-icon-button.mdc-ripple-upgraded:after,.mdc-icon-button.mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button:after,.mdc-icon-button:before{background-color:#000}.mdc-icon-button:hover:before{opacity:.04}.mdc-icon-button.mdc-ripple-upgraded--background-focused:before,.mdc-icon-button:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-icon-button:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-icon-button:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-icon-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-top-app-bar{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;display:flex;position:fixed;flex-direction:column;justify-content:space-between;box-sizing:border-box;width:100%;z-index:4}.mdc-top-app-bar .mdc-top-app-bar__action-item,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon{color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:after,.mdc-top-app-bar .mdc-top-app-bar__action-item:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:hover:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:hover:before{opacity:.08}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):focus:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):active:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-top-app-bar__row{display:flex;position:relative;box-sizing:border-box;width:100%;height:64px}.mdc-top-app-bar__section{display:inline-flex;flex:1 1 auto;align-items:center;min-width:0;padding:8px 12px;z-index:1}.mdc-top-app-bar__section--align-start{justify-content:flex-start;order:-1}.mdc-top-app-bar__section--align-end{justify-content:flex-end;order:1}.mdc-top-app-bar__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);padding-left:20px;padding-right:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;z-index:1}.mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:24px;border-bottom-left-radius:0}.mdc-top-app-bar--short-collapsed[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:24px}.mdc-top-app-bar--short{top:0;right:auto;left:0;width:100%;transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short[dir=rtl],[dir=rtl] .mdc-top-app-bar--short{right:0;left:auto}.mdc-top-app-bar--short .mdc-top-app-bar__row{height:56px}.mdc-top-app-bar--short .mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short .mdc-top-app-bar__title{transition:opacity .2s cubic-bezier(.4,0,.2,1);opacity:1}.mdc-top-app-bar--short-collapsed{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);width:56px;transition:width .3s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__title{display:none}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__action-item{transition:padding .15s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item{width:112px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__row{height:48px}.mdc-top-app-bar--dense .mdc-top-app-bar__section{padding:0 4px}.mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:0;padding-right:12px}.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:128px}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{align-self:flex-end;padding-bottom:2px}.mdc-top-app-bar--prominent .mdc-top-app-bar__action-item,.mdc-top-app-bar--prominent .mdc-top-app-bar__navigation-icon{align-self:flex-start}.mdc-top-app-bar--fixed{transition:box-shadow .2s linear}.mdc-top-app-bar--fixed-scrolled{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);transition:box-shadow .2s linear}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:96px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__section{padding:0 12px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:20px;padding-right:0;padding-bottom:9px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--fixed-adjust{padding-top:64px}.mdc-top-app-bar--dense-fixed-adjust{padding-top:48px}.mdc-top-app-bar--short-fixed-adjust{padding-top:56px}.mdc-top-app-bar--prominent-fixed-adjust{padding-top:128px}.mdc-top-app-bar--dense-prominent-fixed-adjust{padding-top:96px}@media (max-width:599px){.mdc-top-app-bar__row{height:56px}.mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short{transition:width .2s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed{transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-bottom:6px}.mdc-top-app-bar--fixed-adjust{padding-top:56px}}.mdc-drawer{background-color:#fff;border-top-left-radius:0;border-top-right-radius:0;border-top-right-radius:var(--mdc-shape-large,0);border-bottom-right-radius:0;border-bottom-right-radius:var(--mdc-shape-large,0);border-bottom-left-radius:0;z-index:6;width:256px;display:flex;flex-direction:column;flex-shrink:0;box-sizing:border-box;height:100%;border-right:1px solid;border-color:rgba(0,0,0,.12);overflow:hidden;transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer .mdc-drawer__title{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-drawer__subtitle,.mdc-drawer .mdc-list-group__subheader,.mdc-drawer .mdc-list-item__graphic{color:rgba(0,0,0,.6)}.mdc-drawer .mdc-list-item{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{color:#6200ee}.mdc-drawer .mdc-list-item--activated{color:rgba(98,0,238,.87)}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-top-left-radius:0;border-top-left-radius:var(--mdc-shape-large,0);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:0;border-bottom-left-radius:var(--mdc-shape-large,0)}.mdc-drawer .mdc-list-item{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:256px;margin-right:0}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:0;margin-right:256px}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-right-width:0;border-left-width:1px;border-right-style:none;border-left-style:solid}.mdc-drawer .mdc-list-item{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-subtitle2-font-size,.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height,1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight,500);letter-spacing:.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing,.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform,inherit);height:40px;margin:8px;padding:0 8px}.mdc-drawer .mdc-list-item:first-child{margin-top:2px}.mdc-drawer .mdc-list-item:last-child{margin-bottom:0}.mdc-drawer .mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;line-height:normal;margin:0;padding:0 16px}.mdc-drawer .mdc-list-group__subheader:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-drawer .mdc-list-divider{margin:3px 0 4px}.mdc-drawer .mdc-list-item__graphic,.mdc-drawer .mdc-list-item__text{pointer-events:none}.mdc-drawer--animate{transform:translateX(-100%)}.mdc-drawer--animate[dir=rtl],[dir=rtl] .mdc-drawer--animate{transform:translateX(100%)}.mdc-drawer--opening{transition-duration:.25s}.mdc-drawer--opening,.mdc-drawer--opening[dir=rtl],[dir=rtl] .mdc-drawer--opening{transform:translateX(0)}.mdc-drawer--closing{transform:translateX(-100%);transition-duration:.2s}.mdc-drawer--closing[dir=rtl],[dir=rtl] .mdc-drawer--closing{transform:translateX(100%)}.mdc-drawer__header{flex-shrink:0;box-sizing:border-box;min-height:64px;padding:0 16px 4px}.mdc-drawer__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-drawer__title:before{display:inline-block;width:0;height:36px;content:\"\";vertical-align:0}.mdc-drawer__title:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-drawer__subtitle{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:0}.mdc-drawer__subtitle:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-drawer__content{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}.mdc-drawer--dismissible{left:0;right:auto;display:none;position:absolute}.mdc-drawer--dismissible[dir=rtl],[dir=rtl] .mdc-drawer--dismissible{left:auto;right:0}.mdc-drawer--dismissible.mdc-drawer--open{display:flex}.mdc-drawer-app-content{position:relative}.mdc-drawer-app-content,.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer-app-content{margin-left:0;margin-right:0}.mdc-drawer--modal{box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12);left:0;right:auto;display:none;position:fixed}.mdc-drawer--modal+.mdc-drawer-scrim{background-color:rgba(0,0,0,.32)}.mdc-drawer--modal[dir=rtl],[dir=rtl] .mdc-drawer--modal{left:auto;right:0}.mdc-drawer--modal.mdc-drawer--open{display:flex}.mdc-drawer-scrim{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:5;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer--open+.mdc-drawer-scrim{display:block}.mdc-drawer--animate+.mdc-drawer-scrim{opacity:0}.mdc-drawer--opening+.mdc-drawer-scrim{transition-duration:.25s;opacity:1}.mdc-drawer--closing+.mdc-drawer-scrim{transition-duration:.2s;opacity:0}.mdc-floating-label{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);position:absolute;left:0;transform-origin:left top;line-height:1.15rem;text-align:left;text-overflow:ellipsis;white-space:nowrap;cursor:text;overflow:hidden;will-change:transform;transition:transform .15s cubic-bezier(.4,0,.2,1),color .15s cubic-bezier(.4,0,.2,1)}.mdc-floating-label[dir=rtl],[dir=rtl] .mdc-floating-label{right:0;left:auto;transform-origin:right top;text-align:right}.mdc-floating-label--float-above{cursor:auto}.mdc-floating-label--required:after{margin-left:1px;margin-right:0;content:\"*\"}.mdc-floating-label--required[dir=rtl]:after,[dir=rtl] .mdc-floating-label--required:after{margin-left:0;margin-right:1px}.mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-standard .25s 1}@keyframes mdc-floating-label-shake-float-above-standard{0%{transform:translateX(0) translateY(-106%) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-106%) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-106%) scale(.75)}to{transform:translateX(0) translateY(-106%) scale(.75)}}.mdc-line-ripple:after,.mdc-line-ripple:before{position:absolute;bottom:0;left:0;width:100%;border-bottom-style:solid;content:\"\"}.mdc-line-ripple:before{border-bottom-width:1px;z-index:1}.mdc-line-ripple:after{transform:scaleX(0);border-bottom-width:2px;opacity:0;z-index:2;transition:transform .18s cubic-bezier(.4,0,.2,1),opacity .18s cubic-bezier(.4,0,.2,1)}.mdc-line-ripple--active:after{transform:scaleX(1);opacity:1}.mdc-line-ripple--deactivating:after{opacity:0}.mdc-notched-outline{display:flex;position:absolute;top:0;right:0;left:0;box-sizing:border-box;width:100%;max-width:100%;height:100%;text-align:left;pointer-events:none}.mdc-notched-outline[dir=rtl],[dir=rtl] .mdc-notched-outline{text-align:right}.mdc-notched-outline__leading,.mdc-notched-outline__notch,.mdc-notched-outline__trailing{box-sizing:border-box;height:100%;border-top:1px solid;border-bottom:1px solid;pointer-events:none}.mdc-notched-outline__leading{border-left:1px solid;border-right:none;width:12px}.mdc-notched-outline__leading[dir=rtl],.mdc-notched-outline__trailing,[dir=rtl] .mdc-notched-outline__leading{border-left:none;border-right:1px solid}.mdc-notched-outline__trailing{flex-grow:1}.mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-notched-outline__trailing{border-left:1px solid;border-right:none}.mdc-notched-outline__notch{flex:0 0 auto;width:auto;max-width:calc(100% - 24px)}.mdc-notched-outline .mdc-floating-label{display:inline-block;position:relative;max-width:100%}.mdc-notched-outline .mdc-floating-label--float-above{text-overflow:clip}.mdc-notched-outline--upgraded .mdc-floating-label--float-above{max-width:133.33333%}.mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:0;padding-right:8px;border-top:none}.mdc-notched-outline--notched .mdc-notched-outline__notch[dir=rtl],[dir=rtl] .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:8px;padding-right:0}.mdc-notched-outline--no-label .mdc-notched-outline__notch{padding:0}.mdc-text-field--filled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-text-field--filled .mdc-text-field__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-text-field--filled.mdc-ripple-upgraded--unbounded .mdc-text-field__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-activation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-deactivation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-text-field__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-text-field{border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:0;border-bottom-left-radius:0;padding:0 16px;display:inline-flex;align-items:baseline;position:relative;box-sizing:border-box;overflow:hidden;will-change:opacity,transform,color}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{color:rgba(0,0,0,.87)}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder{color:rgba(0,0,0,.54)}}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.54)}}.mdc-text-field .mdc-text-field__input{caret-color:#6200ee;caret-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field-character-counter{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:rgba(0,0,0,.54)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--prefix,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--suffix{color:rgba(0,0,0,.6)}.mdc-text-field .mdc-floating-label{top:50%;transform:translateY(-50%);pointer-events:none}.mdc-text-field.mdc-text-field--with-leading-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon[dir=rtl],.mdc-text-field.mdc-text-field--with-trailing-icon,[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon{padding-left:16px;padding-right:0}.mdc-text-field.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon,.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:0}.mdc-text-field__input{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);width:100%;min-width:0;border:none;border-radius:0;background:none;appearance:none;padding:0}.mdc-text-field__input::-ms-clear{display:none}.mdc-text-field__input:focus{outline:none}.mdc-text-field__input:invalid{box-shadow:none}.mdc-text-field__input:-webkit-autofill{z-index:auto!important}@media all{.mdc-text-field__input::placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field__input:-ms-input-placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field--focused .mdc-text-field__input::placeholder,.mdc-text-field--fullwidth .mdc-text-field__input::placeholder,.mdc-text-field--no-label .mdc-text-field__input::placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}@media all{.mdc-text-field--focused .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--fullwidth .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--no-label .mdc-text-field__input:-ms-input-placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}.mdc-text-field__affix{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);opacity:0;white-space:nowrap}.mdc-text-field--label-floating .mdc-text-field__affix,.mdc-text-field--no-label .mdc-text-field__affix{opacity:1}.mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field__affix--prefix[dir=rtl],[dir=rtl] .mdc-text-field__affix--prefix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix[dir=rtl],.mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:12px;padding-right:0}.mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field__affix--suffix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:0;padding-right:2px}.mdc-text-field__input:-webkit-autofill+.mdc-floating-label{transform:translateY(-50%) scale(.75);cursor:auto}.mdc-text-field--filled{height:56px}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{background-color:rgba(0,0,0,.87)}.mdc-text-field--filled:hover .mdc-text-field__ripple:before{opacity:.04}.mdc-text-field--filled.mdc-ripple-upgraded--background-focused .mdc-text-field__ripple:before,.mdc-text-field--filled:not(.mdc-ripple-upgraded):focus .mdc-text-field__ripple:before{transition-duration:75ms;opacity:.12}.mdc-text-field--filled:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-text-field--filled:not(.mdc-text-field--disabled){background-color:#f5f5f5}.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.87)}.mdc-text-field--filled .mdc-line-ripple:after{border-bottom-color:#6200ee;border-bottom-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--filled .mdc-floating-label{left:16px;right:auto}.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--filled .mdc-floating-label{left:auto;right:16px}.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{height:100%}.mdc-text-field--filled.mdc-text-field--no-label .mdc-floating-label,.mdc-text-field--filled.mdc-text-field--no-label:before{display:none}.mdc-text-field--outlined{height:56px;overflow:visible}.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) scale(1);font-size:.75rem}.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) scale(.75);font-size:1rem}.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined{0%{transform:translateX(0) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-34.75px) scale(.75)}to{transform:translateX(0) translateY(-34.75px) scale(.75)}}.mdc-text-field--outlined .mdc-text-field__input{height:100%}.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.38)}.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.87)}.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing,[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:0}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:1px}.mdc-text-field--outlined .mdc-text-field__ripple:after,.mdc-text-field--outlined .mdc-text-field__ripple:before{content:none}.mdc-text-field--outlined .mdc-floating-label{left:4px;right:auto}.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-floating-label{left:auto;right:4px}.mdc-text-field--outlined .mdc-text-field__input{display:flex;border:none!important;background-color:transparent}.mdc-text-field--textarea{flex-direction:column;align-items:center;width:auto;height:auto;padding:0;transition:none}.mdc-text-field--textarea .mdc-floating-label{top:19px}.mdc-text-field--textarea .mdc-floating-label:not(.mdc-floating-label--float-above){transform:none}.mdc-text-field--textarea .mdc-text-field__input{flex-grow:1;height:auto;min-height:1.5rem;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;resize:none;padding:0 16px;line-height:1.5rem}.mdc-text-field--textarea.mdc-text-field--filled:before{display:none}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-10.25px) scale(.75)}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-filled .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-filled{0%{transform:translateX(0) translateY(-10.25px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-10.25px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-10.25px) scale(.75)}to{transform:translateX(0) translateY(-10.25px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--filled .mdc-text-field__input{margin-top:23px;margin-bottom:9px}.mdc-text-field--textarea.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-27.25px) scale(1);font-size:.75rem}.mdc-text-field--textarea.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-24.75px) scale(.75);font-size:1rem}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-outlined{0%{transform:translateX(0) translateY(-24.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-24.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-24.75px) scale(.75)}to{transform:translateX(0) translateY(-24.75px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label{top:18px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field__input{margin-bottom:2px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter{align-self:flex-end;padding:0 16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:after{display:inline-block;width:0;height:16px;content:\"\";vertical-align:-16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:before{display:none}.mdc-text-field__resizer{align-self:stretch;display:inline-flex;flex-direction:column;flex-grow:1;max-height:100%;max-width:100%;min-height:56px;min-width:fit-content;min-width:-moz-available;min-width:-webkit-fill-available;overflow:hidden;resize:both}.mdc-text-field--filled .mdc-text-field__resizer{transform:translateY(-1px)}.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field__input{transform:translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(-1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(1px) translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter[dir=rtl],.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(-1px) translateY(1px)}.mdc-text-field--fullwidth{padding:0;width:100%}.mdc-text-field--fullwidth.mdc-text-field--disabled .mdc-line-ripple:before,.mdc-text-field--fullwidth:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea){display:flex}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__input{height:100%}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-floating-label,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):before{display:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:after,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:before{content:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):not(.mdc-text-field--disabled){background-color:transparent}.mdc-text-field--fullwidth.mdc-text-field--textarea .mdc-text-field__resizer{resize:vertical}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 48px);left:48px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{left:auto;right:48px}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:36px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:auto;right:36px}.mdc-text-field--with-leading-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(-32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(-32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon{0%{transform:translateX(-32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(-32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon-rtl{0%{transform:translateX(32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 64px)}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-trailing-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 96px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 128px)}.mdc-text-field-helper-line{display:flex;justify-content:space-between;box-sizing:border-box}.mdc-text-field+.mdc-text-field-helper-line{padding-right:16px;padding-left:16px}.mdc-form-field>.mdc-text-field+label{align-self:flex-start}.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(98,0,238,.87)}.mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--focused .mdc-notched-outline__trailing{border-width:2px}.mdc-text-field--focused+.mdc-text-field-helper-line .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--validation-msg){opacity:1}.mdc-text-field--focused.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:2px}.mdc-text-field--focused.mdc-text-field--outlined.mdc-text-field--textarea .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after,.mdc-text-field--invalid:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid .mdc-text-field__input{caret-color:#b00020;caret-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{opacity:1}.mdc-text-field--disabled{pointer-events:none}.mdc-text-field--disabled .mdc-text-field__input{color:rgba(0,0,0,.38)}@media all{.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:rgba(0,0,0,.38)}}@media all{.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.38)}}.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:rgba(0,0,0,.3)}.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.06)}.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.06)}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter,.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix,.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:GrayText}}.mdc-text-field--disabled .mdc-floating-label{cursor:default}.mdc-text-field--disabled.mdc-text-field--filled{background-color:#fafafa}.mdc-text-field--disabled.mdc-text-field--filled .mdc-text-field__ripple{display:none}.mdc-text-field--disabled .mdc-text-field__input{pointer-events:auto}.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--end-aligned .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__input{text-align:left}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix,.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{direction:ltr}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{padding-left:12px;padding-right:0}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--leading,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--leading{order:1}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{order:2}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{order:3}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{order:4}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--trailing,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--trailing{order:5}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-right:12px}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px}.mdc-text-field-helper-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;line-height:normal;margin:0;opacity:0;will-change:opacity;transition:opacity .15s cubic-bezier(.4,0,.2,1)}.mdc-text-field-helper-text:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-helper-text--persistent{transition:none;opacity:1;will-change:auto}.mdc-text-field-character-counter{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-left:auto;margin-right:0;padding-left:16px;padding-right:0;white-space:nowrap}.mdc-text-field-character-counter:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-character-counter[dir=rtl],[dir=rtl] .mdc-text-field-character-counter{margin-left:0;margin-right:auto;padding-left:0;padding-right:16px}.mdc-text-field__icon{align-self:center;cursor:pointer}.mdc-text-field__icon:not([tabindex]),.mdc-text-field__icon[tabindex=\"-1\"]{cursor:default;pointer-events:none}.mdc-text-field__icon svg{display:block}.mdc-text-field__icon--leading{margin-left:16px;margin-right:8px}.mdc-text-field__icon--leading[dir=rtl],[dir=rtl] .mdc-text-field__icon--leading{margin-left:8px;margin-right:16px}.mdc-text-field__icon--trailing,.mdc-text-field__icon--trailing[dir=rtl],[dir=rtl] .mdc-text-field__icon--trailing{margin-left:12px;margin-right:12px}.mdc-form-field{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87));display:inline-flex;align-items:center;vertical-align:middle}.mdc-form-field>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0;order:0}.mdc-form-field>label[dir=rtl],[dir=rtl] .mdc-form-field>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px}.mdc-form-field--nowrap>label{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.mdc-form-field--align-end>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px;order:-1}.mdc-form-field--align-end>label[dir=rtl],[dir=rtl] .mdc-form-field--align-end>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0}.mdc-form-field--space-between{justify-content:space-between}.mdc-form-field--space-between>label,.mdc-form-field--space-between>label[dir=rtl],[dir=rtl] .mdc-form-field--space-between>label{margin:0}.mdc-ripple-surface{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:relative;outline:none;overflow:hidden}.mdc-ripple-surface:after,.mdc-ripple-surface:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-ripple-surface:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-ripple-surface.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-ripple-surface.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface:after,.mdc-ripple-surface:before{background-color:#000}.mdc-ripple-surface:hover:before{opacity:.04}.mdc-ripple-surface.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface:after,.mdc-ripple-surface:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-ripple-surface.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]{overflow:visible}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:before{top:0;left:0;width:100%;height:100%}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface--primary:after,.mdc-ripple-surface--primary:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-ripple-surface--primary:hover:before{opacity:.04}.mdc-ripple-surface--primary.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface--accent:after,.mdc-ripple-surface--accent:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-ripple-surface--accent:hover:before{opacity:.04}.mdc-ripple-surface--accent.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.demo-layout__row{display:flex;flex-flow:row wrap;margin-top:.8rem}.demo-layout__row--no-wrap{display:flex;flex-direction:row}.demo-layout__column{display:flex;flex-direction:column}.demo-layout--start{align-self:flex-start}.demo-layout--end{flex-grow:1;align-self:flex-end}.demo-layout--center{display:flex;align-content:flex-end;align-items:center;justify-content:center}.demo-panel{display:flex;position:relative;height:100vh;overflow:hidden}.demo-panel-content,.demo-panel-section{width:100%;max-width:100%}.demo-panel-content{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;overflow:auto}@media (max-width:900px){.demo-panel-content{width:unset;padding:12px}}.demo-panel-transition{width:100%;max-width:1200px;padding-bottom:60px}.demo-panel-title{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline4-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:2.125rem;font-size:var(--mdc-typography-headline4-font-size,2.125rem);line-height:2.5rem;line-height:var(--mdc-typography-headline4-line-height,2.5rem);font-weight:400;font-weight:var(--mdc-typography-headline4-font-weight,400);letter-spacing:.0073529412em;letter-spacing:var(--mdc-typography-headline4-letter-spacing,.0073529412em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline4-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline4-text-transform,inherit);margin:16px 16px 16px 0;line-height:1.25}.demo-panel-heading,.demo-panel-title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;padding-bottom:.3em;border-bottom:1px solid #eaecef;font-weight:500}.demo-panel-heading{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin:24px 16px 16px 0;line-height:1.25}.demo-container{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;min-width:200px;padding:10px}.hljs{border-radius:.45rem;padding:9px;display:inline-block}.demo-content{border-radius:12px;border:1px solid rgba(0,0,0,.15);margin:1.5rem 1rem;padding:1rem}.demo-content__headline{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin-top:.1em;margin-bottom:.3em}.demo-content--block{display:inline-block;margin-right:5px}.demo-top-app-bar{background-color:#363640;z-index:7}.demo-drawer{position:fixed}.demo-drawer .mdc-list-item{cursor:pointer}.mdc-list{display:block}body{margin:0;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}", ""]);
+exports.push([module.i, ".mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;opacity:0;pointer-events:none;transition:opacity .28s cubic-bezier(.4,0,.2,1);background-color:#fff}.mdc-button{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);padding:0 8px;position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;border-radius:4px;border-radius:var(--mdc-shape-small,4px);height:36px}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-button:disabled,.mdc-button:not(:disabled){background-color:transparent}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;width:18px;height:18px;font-size:18px;vertical-align:top}.mdc-button .mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button .mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button .mdc-button__touch{position:absolute;top:50%;right:0;height:48px;left:0;transform:translateY(-50%)}.mdc-button:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-button:disabled{color:rgba(0,0,0,.38)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button__label+.mdc-button__icon{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--outlined .mdc-button__icon,.mdc-button--raised .mdc-button__icon,.mdc-button--unelevated .mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--outlined .mdc-button__icon[dir=rtl],.mdc-button--outlined .mdc-button__label+.mdc-button__icon,.mdc-button--raised .mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon,.mdc-button--unelevated .mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--outlined .mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__icon{margin-left:8px;margin-right:-4px}.mdc-button--outlined .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button--outlined .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__label+.mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--raised,.mdc-button--unelevated{padding:0 16px}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{background-color:rgba(0,0,0,.12);color:rgba(0,0,0,.38)}.mdc-button--raised{box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);transition:box-shadow .28s cubic-bezier(.4,0,.2,1)}.mdc-button--raised:focus,.mdc-button--raised:hover{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)}.mdc-button--raised:active{box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mdc-button--raised:disabled{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)}.mdc-button--outlined{padding:0 15px;border-width:1px;border-style:solid}.mdc-button--outlined .mdc-button__ripple{top:-1px;left:-1px;border:1px solid transparent}.mdc-button--outlined .mdc-button__touch{left:-1px;width:calc(100% + 2px)}.mdc-button--outlined:disabled,.mdc-button--outlined:not(:disabled){border-color:rgba(0,0,0,.12)}.mdc-button--touch{margin-top:6px;margin-bottom:6px}@keyframes mdc-ripple-fg-radius-in{0%{animation-timing-function:cubic-bezier(.4,0,.2,1);transform:translate(var(--mdc-ripple-fg-translate-start,0)) scale(1)}to{transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}}@keyframes mdc-ripple-fg-opacity-in{0%{animation-timing-function:linear;opacity:0}to{opacity:var(--mdc-ripple-fg-opacity,0)}}@keyframes mdc-ripple-fg-opacity-out{0%{animation-timing-function:linear;opacity:var(--mdc-ripple-fg-opacity,0)}to{opacity:0}}.mdc-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-button .mdc-button__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-button.mdc-ripple-upgraded--unbounded .mdc-button__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-button.mdc-ripple-upgraded--foreground-activation .mdc-button__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-button.mdc-ripple-upgraded--foreground-deactivation .mdc-button__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-button:hover .mdc-button__ripple:before{opacity:.04}.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.12}.mdc-button:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.12}.mdc-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-button .mdc-button__ripple{position:absolute;box-sizing:content-box;width:100%;height:100%;overflow:hidden}.mdc-button:not(.mdc-button--outlined) .mdc-button__ripple{top:0;left:0}.mdc-button--raised .mdc-button__ripple:after,.mdc-button--raised .mdc-button__ripple:before,.mdc-button--unelevated .mdc-button__ripple:after,.mdc-button--unelevated .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:hover .mdc-button__ripple:before,.mdc-button--unelevated:hover .mdc-button__ripple:before{opacity:.08}.mdc-button--raised.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--raised:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before,.mdc-button--unelevated.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--unelevated:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.mdc-button--raised:not(.mdc-ripple-upgraded) .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button--raised:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.mdc-button--raised.mdc-ripple-upgraded,.mdc-button--unelevated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-list{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);line-height:1.5rem;margin:0;padding:8px 0;list-style-type:none;color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list:focus{outline:none}.mdc-list-item__secondary-text{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))}.mdc-list-item__graphic{background-color:transparent;color:rgba(0,0,0,.38);color:var(--mdc-theme-text-icon-on-background,rgba(0,0,0,.38))}.mdc-list-item__meta{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-hint-on-background,rgba(0,0,0,.38))}.mdc-list-group__subheader{color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list-item--disabled .mdc-list-item__text{opacity:.38}.mdc-list-item--disabled .mdc-list-item__primary-text,.mdc-list-item--disabled .mdc-list-item__secondary-text,.mdc-list-item--disabled .mdc-list-item__text{color:#000;color:var(--mdc-theme-on-surface,#000)}.mdc-list-item--activated,.mdc-list-item--activated .mdc-list-item__graphic,.mdc-list-item--selected,.mdc-list-item--selected .mdc-list-item__graphic{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-list--dense{padding-top:4px;padding-bottom:4px;font-size:.812rem}.mdc-list-item{display:flex;position:relative;align-items:center;justify-content:flex-start;overflow:hidden;padding:0 16px;height:48px}.mdc-list-item:focus{outline:none}.mdc-list-item:not(.mdc-list-item--selected):focus:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:\"\"}.mdc-list-item.mdc-list-item--selected:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:3px double transparent;border-radius:inherit;content:\"\"}.mdc-list--icon-list .mdc-list-item,.mdc-list-item[dir=rtl],[dir=rtl] .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--icon-list .mdc-list-item{height:56px}.mdc-list--icon-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--avatar-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--thumbnail-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px;height:72px}.mdc-list--image-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--video-list .mdc-list-item{padding-left:0;padding-right:16px;height:72px}.mdc-list--video-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item{padding-left:16px;padding-right:0}.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:20px;height:20px}.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list-item__graphic{flex-shrink:0;align-items:center;justify-content:center;fill:currentColor;object-fit:cover;margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--icon-list .mdc-list-item__graphic{margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list--icon-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--avatar-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px;border-radius:50%}.mdc-list--avatar-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px}.mdc-list--thumbnail-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--image-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:56px;height:56px}.mdc-list--image-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--video-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:100px;height:56px}.mdc-list--video-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list .mdc-list-item__graphic{display:inline-flex}.mdc-list-item__meta{margin-left:auto;margin-right:0}.mdc-list-item__meta:not(.material-icons){-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit)}.mdc-list-item[dir=rtl] .mdc-list-item__meta,[dir=rtl] .mdc-list-item .mdc-list-item__meta{margin-left:0;margin-right:auto}.mdc-list-item__text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.mdc-list-item__text[for]{pointer-events:none}.mdc-list-item__primary-text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list-item__primary-text:before{display:inline-block;width:0;height:28px;content:\"\";vertical-align:0}.mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text,.mdc-list--icon-list .mdc-list-item__primary-text,.mdc-list--image-list .mdc-list-item__primary-text,.mdc-list--thumbnail-list .mdc-list-item__primary-text,.mdc-list--video-list .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text:before,.mdc-list--icon-list .mdc-list-item__primary-text:before,.mdc-list--image-list .mdc-list-item__primary-text:before,.mdc-list--thumbnail-list .mdc-list-item__primary-text:before,.mdc-list--video-list .mdc-list-item__primary-text:before{display:inline-block;width:0;height:32px;content:\"\";vertical-align:0}.mdc-list--avatar-list .mdc-list-item__primary-text:after,.mdc-list--icon-list .mdc-list-item__primary-text:after,.mdc-list--image-list .mdc-list-item__primary-text:after,.mdc-list--thumbnail-list .mdc-list-item__primary-text:after,.mdc-list--video-list .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--dense .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--dense .mdc-list-item__primary-text:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list-item__secondary-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal}.mdc-list-item__secondary-text:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__secondary-text{font-size:inherit}.mdc-list--dense .mdc-list-item{height:40px}.mdc-list--two-line .mdc-list-item__text{align-self:flex-start}.mdc-list--two-line .mdc-list-item{height:64px}.mdc-list--two-line.mdc-list--avatar-list .mdc-list-item,.mdc-list--two-line.mdc-list--icon-list .mdc-list-item,.mdc-list--two-line.mdc-list--image-list .mdc-list-item,.mdc-list--two-line.mdc-list--thumbnail-list .mdc-list-item,.mdc-list--two-line.mdc-list--video-list .mdc-list-item{height:72px}.mdc-list--two-line.mdc-list--icon-list .mdc-list-item__graphic{align-self:flex-start;margin-top:16px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item,.mdc-list--two-line.mdc-list--dense .mdc-list-item{height:60px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:36px;height:36px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}:not(.mdc-list-item--disabled).mdc-list-item{cursor:pointer}a.mdc-list-item{color:inherit;text-decoration:none}.mdc-list-divider{height:0;margin:0;border:none;border-bottom:1px solid;border-bottom-color:rgba(0,0,0,.12)}.mdc-list-divider--padded{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--padded{margin-left:0;margin-right:16px}.mdc-list-divider--inset{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list-divider--inset[dir=rtl],[dir=rtl] .mdc-list-divider--inset{margin-left:0;margin-right:72px}.mdc-list-divider--inset.mdc-list-divider--padded{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list-divider--inset.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--inset.mdc-list-divider--padded{margin-left:0;margin-right:72px}.mdc-list .mdc-list-divider--inset-leading{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--icon-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:88px;margin-right:0;width:calc(100% - 88px)}.mdc-list--image-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:88px;margin-right:0;width:calc(100% - 104px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:116px;margin-right:0;width:calc(100% - 116px)}.mdc-list--video-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:116px;margin-right:0;width:calc(100% - 132px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0;width:100%}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0;width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0}.mdc-list-group .mdc-list{padding:0}.mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);margin:.75rem 16px}:not(.mdc-list-item--disabled).mdc-list-item{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{background-color:#000}:not(.mdc-list-item--disabled).mdc-list-item:hover .mdc-list-item__ripple:before{opacity:.04}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--activated:hover .mdc-list-item__ripple:before{opacity:.16}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{opacity:.08}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--selected:hover .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.2}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-list-item--disabled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-list-item--disabled .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-list-item--disabled.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{background-color:#000}.mdc-list-item--disabled.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,.mdc-list-item--disabled:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}.mdc-list-item--disabled .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;font-size:24px;text-decoration:none;cursor:pointer;user-select:none;width:48px;height:48px;padding:12px}.mdc-icon-button img,.mdc-icon-button svg{width:24px;height:24px}.mdc-icon-button:disabled{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-disabled-on-light,rgba(0,0,0,.38));cursor:default;pointer-events:none}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button--on .mdc-icon-button__icon,.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-icon-button:after,.mdc-icon-button:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-icon-button:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-icon-button.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-icon-button.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-icon-button.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-icon-button.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button:after,.mdc-icon-button:before{top:0;left:0;width:100%;height:100%}.mdc-icon-button.mdc-ripple-upgraded:after,.mdc-icon-button.mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button:after,.mdc-icon-button:before{background-color:#000}.mdc-icon-button:hover:before{opacity:.04}.mdc-icon-button.mdc-ripple-upgraded--background-focused:before,.mdc-icon-button:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-icon-button:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-icon-button:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-icon-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-top-app-bar{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;display:flex;position:fixed;flex-direction:column;justify-content:space-between;box-sizing:border-box;width:100%;z-index:4}.mdc-top-app-bar .mdc-top-app-bar__action-item,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon{color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:after,.mdc-top-app-bar .mdc-top-app-bar__action-item:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:hover:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:hover:before{opacity:.08}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):focus:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):active:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-top-app-bar__row{display:flex;position:relative;box-sizing:border-box;width:100%;height:64px}.mdc-top-app-bar__section{display:inline-flex;flex:1 1 auto;align-items:center;min-width:0;padding:8px 12px;z-index:1}.mdc-top-app-bar__section--align-start{justify-content:flex-start;order:-1}.mdc-top-app-bar__section--align-end{justify-content:flex-end;order:1}.mdc-top-app-bar__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);padding-left:20px;padding-right:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;z-index:1}.mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:24px;border-bottom-left-radius:0}.mdc-top-app-bar--short-collapsed[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:24px}.mdc-top-app-bar--short{top:0;right:auto;left:0;width:100%;transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short[dir=rtl],[dir=rtl] .mdc-top-app-bar--short{right:0;left:auto}.mdc-top-app-bar--short .mdc-top-app-bar__row{height:56px}.mdc-top-app-bar--short .mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short .mdc-top-app-bar__title{transition:opacity .2s cubic-bezier(.4,0,.2,1);opacity:1}.mdc-top-app-bar--short-collapsed{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);width:56px;transition:width .3s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__title{display:none}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__action-item{transition:padding .15s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item{width:112px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__row{height:48px}.mdc-top-app-bar--dense .mdc-top-app-bar__section{padding:0 4px}.mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:0;padding-right:12px}.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:128px}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{align-self:flex-end;padding-bottom:2px}.mdc-top-app-bar--prominent .mdc-top-app-bar__action-item,.mdc-top-app-bar--prominent .mdc-top-app-bar__navigation-icon{align-self:flex-start}.mdc-top-app-bar--fixed{transition:box-shadow .2s linear}.mdc-top-app-bar--fixed-scrolled{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);transition:box-shadow .2s linear}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:96px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__section{padding:0 12px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:20px;padding-right:0;padding-bottom:9px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--fixed-adjust{padding-top:64px}.mdc-top-app-bar--dense-fixed-adjust{padding-top:48px}.mdc-top-app-bar--short-fixed-adjust{padding-top:56px}.mdc-top-app-bar--prominent-fixed-adjust{padding-top:128px}.mdc-top-app-bar--dense-prominent-fixed-adjust{padding-top:96px}@media (max-width:599px){.mdc-top-app-bar__row{height:56px}.mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short{transition:width .2s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed{transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-bottom:6px}.mdc-top-app-bar--fixed-adjust{padding-top:56px}}.mdc-drawer{background-color:#fff;border-top-left-radius:0;border-top-right-radius:0;border-top-right-radius:var(--mdc-shape-large,0);border-bottom-right-radius:0;border-bottom-right-radius:var(--mdc-shape-large,0);border-bottom-left-radius:0;z-index:6;width:256px;display:flex;flex-direction:column;flex-shrink:0;box-sizing:border-box;height:100%;border-right:1px solid;border-color:rgba(0,0,0,.12);overflow:hidden;transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer .mdc-drawer__title{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-drawer__subtitle,.mdc-drawer .mdc-list-group__subheader,.mdc-drawer .mdc-list-item__graphic{color:rgba(0,0,0,.6)}.mdc-drawer .mdc-list-item{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{color:#6200ee}.mdc-drawer .mdc-list-item--activated{color:rgba(98,0,238,.87)}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-top-left-radius:0;border-top-left-radius:var(--mdc-shape-large,0);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:0;border-bottom-left-radius:var(--mdc-shape-large,0)}.mdc-drawer .mdc-list-item{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:256px;margin-right:0}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:0;margin-right:256px}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-right-width:0;border-left-width:1px;border-right-style:none;border-left-style:solid}.mdc-drawer .mdc-list-item{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-subtitle2-font-size,.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height,1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight,500);letter-spacing:.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing,.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform,inherit);height:40px;margin:8px;padding:0 8px}.mdc-drawer .mdc-list-item:first-child{margin-top:2px}.mdc-drawer .mdc-list-item:last-child{margin-bottom:0}.mdc-drawer .mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;line-height:normal;margin:0;padding:0 16px}.mdc-drawer .mdc-list-group__subheader:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-drawer .mdc-list-divider{margin:3px 0 4px}.mdc-drawer .mdc-list-item__graphic,.mdc-drawer .mdc-list-item__text{pointer-events:none}.mdc-drawer--animate{transform:translateX(-100%)}.mdc-drawer--animate[dir=rtl],[dir=rtl] .mdc-drawer--animate{transform:translateX(100%)}.mdc-drawer--opening{transition-duration:.25s}.mdc-drawer--opening,.mdc-drawer--opening[dir=rtl],[dir=rtl] .mdc-drawer--opening{transform:translateX(0)}.mdc-drawer--closing{transform:translateX(-100%);transition-duration:.2s}.mdc-drawer--closing[dir=rtl],[dir=rtl] .mdc-drawer--closing{transform:translateX(100%)}.mdc-drawer__header{flex-shrink:0;box-sizing:border-box;min-height:64px;padding:0 16px 4px}.mdc-drawer__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-drawer__title:before{display:inline-block;width:0;height:36px;content:\"\";vertical-align:0}.mdc-drawer__title:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-drawer__subtitle{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:0}.mdc-drawer__subtitle:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-drawer__content{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}.mdc-drawer--dismissible{left:0;right:auto;display:none;position:absolute}.mdc-drawer--dismissible[dir=rtl],[dir=rtl] .mdc-drawer--dismissible{left:auto;right:0}.mdc-drawer--dismissible.mdc-drawer--open{display:flex}.mdc-drawer-app-content{position:relative}.mdc-drawer-app-content,.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer-app-content{margin-left:0;margin-right:0}.mdc-drawer--modal{box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12);left:0;right:auto;display:none;position:fixed}.mdc-drawer--modal+.mdc-drawer-scrim{background-color:rgba(0,0,0,.32)}.mdc-drawer--modal[dir=rtl],[dir=rtl] .mdc-drawer--modal{left:auto;right:0}.mdc-drawer--modal.mdc-drawer--open{display:flex}.mdc-drawer-scrim{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:5;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer--open+.mdc-drawer-scrim{display:block}.mdc-drawer--animate+.mdc-drawer-scrim{opacity:0}.mdc-drawer--opening+.mdc-drawer-scrim{transition-duration:.25s;opacity:1}.mdc-drawer--closing+.mdc-drawer-scrim{transition-duration:.2s;opacity:0}.mdc-floating-label{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);position:absolute;left:0;transform-origin:left top;line-height:1.15rem;text-align:left;text-overflow:ellipsis;white-space:nowrap;cursor:text;overflow:hidden;will-change:transform;transition:transform .15s cubic-bezier(.4,0,.2,1),color .15s cubic-bezier(.4,0,.2,1)}.mdc-floating-label[dir=rtl],[dir=rtl] .mdc-floating-label{right:0;left:auto;transform-origin:right top;text-align:right}.mdc-floating-label--float-above{cursor:auto}.mdc-floating-label--required:after{margin-left:1px;margin-right:0;content:\"*\"}.mdc-floating-label--required[dir=rtl]:after,[dir=rtl] .mdc-floating-label--required:after{margin-left:0;margin-right:1px}.mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-standard .25s 1}@keyframes mdc-floating-label-shake-float-above-standard{0%{transform:translateX(0) translateY(-106%) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-106%) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-106%) scale(.75)}to{transform:translateX(0) translateY(-106%) scale(.75)}}.mdc-line-ripple:after,.mdc-line-ripple:before{position:absolute;bottom:0;left:0;width:100%;border-bottom-style:solid;content:\"\"}.mdc-line-ripple:before{border-bottom-width:1px;z-index:1}.mdc-line-ripple:after{transform:scaleX(0);border-bottom-width:2px;opacity:0;z-index:2;transition:transform .18s cubic-bezier(.4,0,.2,1),opacity .18s cubic-bezier(.4,0,.2,1)}.mdc-line-ripple--active:after{transform:scaleX(1);opacity:1}.mdc-line-ripple--deactivating:after{opacity:0}.mdc-notched-outline{display:flex;position:absolute;top:0;right:0;left:0;box-sizing:border-box;width:100%;max-width:100%;height:100%;text-align:left;pointer-events:none}.mdc-notched-outline[dir=rtl],[dir=rtl] .mdc-notched-outline{text-align:right}.mdc-notched-outline__leading,.mdc-notched-outline__notch,.mdc-notched-outline__trailing{box-sizing:border-box;height:100%;border-top:1px solid;border-bottom:1px solid;pointer-events:none}.mdc-notched-outline__leading{border-left:1px solid;border-right:none;width:12px}.mdc-notched-outline__leading[dir=rtl],.mdc-notched-outline__trailing,[dir=rtl] .mdc-notched-outline__leading{border-left:none;border-right:1px solid}.mdc-notched-outline__trailing{flex-grow:1}.mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-notched-outline__trailing{border-left:1px solid;border-right:none}.mdc-notched-outline__notch{flex:0 0 auto;width:auto;max-width:calc(100% - 24px)}.mdc-notched-outline .mdc-floating-label{display:inline-block;position:relative;max-width:100%}.mdc-notched-outline .mdc-floating-label--float-above{text-overflow:clip}.mdc-notched-outline--upgraded .mdc-floating-label--float-above{max-width:133.33333%}.mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:0;padding-right:8px;border-top:none}.mdc-notched-outline--notched .mdc-notched-outline__notch[dir=rtl],[dir=rtl] .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:8px;padding-right:0}.mdc-notched-outline--no-label .mdc-notched-outline__notch{padding:0}.mdc-text-field--filled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-text-field--filled .mdc-text-field__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-text-field--filled.mdc-ripple-upgraded--unbounded .mdc-text-field__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-activation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-deactivation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-text-field__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-text-field{border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:0;border-bottom-left-radius:0;padding:0 16px;display:inline-flex;align-items:baseline;position:relative;box-sizing:border-box;overflow:hidden;will-change:opacity,transform,color}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{color:rgba(0,0,0,.87)}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder{color:rgba(0,0,0,.54)}}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.54)}}.mdc-text-field .mdc-text-field__input{caret-color:#6200ee;caret-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field-character-counter{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:rgba(0,0,0,.54)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--prefix,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--suffix{color:rgba(0,0,0,.6)}.mdc-text-field .mdc-floating-label{top:50%;transform:translateY(-50%);pointer-events:none}.mdc-text-field.mdc-text-field--with-leading-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon[dir=rtl],.mdc-text-field.mdc-text-field--with-trailing-icon,[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon{padding-left:16px;padding-right:0}.mdc-text-field.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon,.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:0}.mdc-text-field__input{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);width:100%;min-width:0;border:none;border-radius:0;background:none;appearance:none;padding:0}.mdc-text-field__input::-ms-clear{display:none}.mdc-text-field__input:focus{outline:none}.mdc-text-field__input:invalid{box-shadow:none}.mdc-text-field__input:-webkit-autofill{z-index:auto!important}@media all{.mdc-text-field__input::placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field__input:-ms-input-placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field--focused .mdc-text-field__input::placeholder,.mdc-text-field--fullwidth .mdc-text-field__input::placeholder,.mdc-text-field--no-label .mdc-text-field__input::placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}@media all{.mdc-text-field--focused .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--fullwidth .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--no-label .mdc-text-field__input:-ms-input-placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}.mdc-text-field__affix{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);opacity:0;white-space:nowrap}.mdc-text-field--label-floating .mdc-text-field__affix,.mdc-text-field--no-label .mdc-text-field__affix{opacity:1}.mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field__affix--prefix[dir=rtl],[dir=rtl] .mdc-text-field__affix--prefix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix[dir=rtl],.mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:12px;padding-right:0}.mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field__affix--suffix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:0;padding-right:2px}.mdc-text-field__input:-webkit-autofill+.mdc-floating-label{transform:translateY(-50%) scale(.75);cursor:auto}.mdc-text-field--filled{height:56px}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{background-color:rgba(0,0,0,.87)}.mdc-text-field--filled:hover .mdc-text-field__ripple:before{opacity:.04}.mdc-text-field--filled.mdc-ripple-upgraded--background-focused .mdc-text-field__ripple:before,.mdc-text-field--filled:not(.mdc-ripple-upgraded):focus .mdc-text-field__ripple:before{transition-duration:75ms;opacity:.12}.mdc-text-field--filled:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-text-field--filled:not(.mdc-text-field--disabled){background-color:#f5f5f5}.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.87)}.mdc-text-field--filled .mdc-line-ripple:after{border-bottom-color:#6200ee;border-bottom-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--filled .mdc-floating-label{left:16px;right:auto}.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--filled .mdc-floating-label{left:auto;right:16px}.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{height:100%}.mdc-text-field--filled.mdc-text-field--no-label .mdc-floating-label,.mdc-text-field--filled.mdc-text-field--no-label:before{display:none}.mdc-text-field--outlined{height:56px;overflow:visible}.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) scale(1);font-size:.75rem}.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) scale(.75);font-size:1rem}.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined{0%{transform:translateX(0) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-34.75px) scale(.75)}to{transform:translateX(0) translateY(-34.75px) scale(.75)}}.mdc-text-field--outlined .mdc-text-field__input{height:100%}.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.38)}.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.87)}.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing,[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:0}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:1px}.mdc-text-field--outlined .mdc-text-field__ripple:after,.mdc-text-field--outlined .mdc-text-field__ripple:before{content:none}.mdc-text-field--outlined .mdc-floating-label{left:4px;right:auto}.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-floating-label{left:auto;right:4px}.mdc-text-field--outlined .mdc-text-field__input{display:flex;border:none!important;background-color:transparent}.mdc-text-field--textarea{flex-direction:column;align-items:center;width:auto;height:auto;padding:0;transition:none}.mdc-text-field--textarea .mdc-floating-label{top:19px}.mdc-text-field--textarea .mdc-floating-label:not(.mdc-floating-label--float-above){transform:none}.mdc-text-field--textarea .mdc-text-field__input{flex-grow:1;height:auto;min-height:1.5rem;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;resize:none;padding:0 16px;line-height:1.5rem}.mdc-text-field--textarea.mdc-text-field--filled:before{display:none}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-10.25px) scale(.75)}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-filled .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-filled{0%{transform:translateX(0) translateY(-10.25px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-10.25px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-10.25px) scale(.75)}to{transform:translateX(0) translateY(-10.25px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--filled .mdc-text-field__input{margin-top:23px;margin-bottom:9px}.mdc-text-field--textarea.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-27.25px) scale(1);font-size:.75rem}.mdc-text-field--textarea.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-24.75px) scale(.75);font-size:1rem}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-outlined{0%{transform:translateX(0) translateY(-24.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-24.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-24.75px) scale(.75)}to{transform:translateX(0) translateY(-24.75px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label{top:18px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field__input{margin-bottom:2px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter{align-self:flex-end;padding:0 16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:after{display:inline-block;width:0;height:16px;content:\"\";vertical-align:-16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:before{display:none}.mdc-text-field__resizer{align-self:stretch;display:inline-flex;flex-direction:column;flex-grow:1;max-height:100%;max-width:100%;min-height:56px;min-width:fit-content;min-width:-moz-available;min-width:-webkit-fill-available;overflow:hidden;resize:both}.mdc-text-field--filled .mdc-text-field__resizer{transform:translateY(-1px)}.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field__input{transform:translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(-1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(1px) translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter[dir=rtl],.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(-1px) translateY(1px)}.mdc-text-field--fullwidth{padding:0;width:100%}.mdc-text-field--fullwidth.mdc-text-field--disabled .mdc-line-ripple:before,.mdc-text-field--fullwidth:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea){display:flex}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__input{height:100%}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-floating-label,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):before{display:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:after,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:before{content:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):not(.mdc-text-field--disabled){background-color:transparent}.mdc-text-field--fullwidth.mdc-text-field--textarea .mdc-text-field__resizer{resize:vertical}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 48px);left:48px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{left:auto;right:48px}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:36px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:auto;right:36px}.mdc-text-field--with-leading-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(-32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(-32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon{0%{transform:translateX(-32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(-32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon-rtl{0%{transform:translateX(32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 64px)}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-trailing-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 96px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 128px)}.mdc-text-field-helper-line{display:flex;justify-content:space-between;box-sizing:border-box}.mdc-text-field+.mdc-text-field-helper-line{padding-right:16px;padding-left:16px}.mdc-form-field>.mdc-text-field+label{align-self:flex-start}.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(98,0,238,.87)}.mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--focused .mdc-notched-outline__trailing{border-width:2px}.mdc-text-field--focused+.mdc-text-field-helper-line .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--validation-msg){opacity:1}.mdc-text-field--focused.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:2px}.mdc-text-field--focused.mdc-text-field--outlined.mdc-text-field--textarea .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after,.mdc-text-field--invalid:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid .mdc-text-field__input{caret-color:#b00020;caret-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{opacity:1}.mdc-text-field--disabled{pointer-events:none}.mdc-text-field--disabled .mdc-text-field__input{color:rgba(0,0,0,.38)}@media all{.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:rgba(0,0,0,.38)}}@media all{.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.38)}}.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:rgba(0,0,0,.3)}.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.06)}.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.06)}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter,.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix,.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:GrayText}}.mdc-text-field--disabled .mdc-floating-label{cursor:default}.mdc-text-field--disabled.mdc-text-field--filled{background-color:#fafafa}.mdc-text-field--disabled.mdc-text-field--filled .mdc-text-field__ripple{display:none}.mdc-text-field--disabled .mdc-text-field__input{pointer-events:auto}.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--end-aligned .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__input{text-align:left}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix,.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{direction:ltr}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{padding-left:12px;padding-right:0}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--leading,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--leading{order:1}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{order:2}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{order:3}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{order:4}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--trailing,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--trailing{order:5}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-right:12px}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px}.mdc-text-field-helper-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;line-height:normal;margin:0;opacity:0;will-change:opacity;transition:opacity .15s cubic-bezier(.4,0,.2,1)}.mdc-text-field-helper-text:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-helper-text--persistent{transition:none;opacity:1;will-change:auto}.mdc-text-field-character-counter{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-left:auto;margin-right:0;padding-left:16px;padding-right:0;white-space:nowrap}.mdc-text-field-character-counter:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-character-counter[dir=rtl],[dir=rtl] .mdc-text-field-character-counter{margin-left:0;margin-right:auto;padding-left:0;padding-right:16px}.mdc-text-field__icon{align-self:center;cursor:pointer}.mdc-text-field__icon:not([tabindex]),.mdc-text-field__icon[tabindex=\"-1\"]{cursor:default;pointer-events:none}.mdc-text-field__icon svg{display:block}.mdc-text-field__icon--leading{margin-left:16px;margin-right:8px}.mdc-text-field__icon--leading[dir=rtl],[dir=rtl] .mdc-text-field__icon--leading{margin-left:8px;margin-right:16px}.mdc-text-field__icon--trailing,.mdc-text-field__icon--trailing[dir=rtl],[dir=rtl] .mdc-text-field__icon--trailing{margin-left:12px;margin-right:12px}.mdc-form-field{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87));display:inline-flex;align-items:center;vertical-align:middle}.mdc-form-field>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0;order:0}.mdc-form-field>label[dir=rtl],[dir=rtl] .mdc-form-field>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px}.mdc-form-field--nowrap>label{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.mdc-form-field--align-end>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px;order:-1}.mdc-form-field--align-end>label[dir=rtl],[dir=rtl] .mdc-form-field--align-end>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0}.mdc-form-field--space-between{justify-content:space-between}.mdc-form-field--space-between>label,.mdc-form-field--space-between>label[dir=rtl],[dir=rtl] .mdc-form-field--space-between>label{margin:0}.mdc-ripple-surface{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:relative;outline:none;overflow:hidden}.mdc-ripple-surface:after,.mdc-ripple-surface:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-ripple-surface:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-ripple-surface.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-ripple-surface.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface:after,.mdc-ripple-surface:before{background-color:#000}.mdc-ripple-surface:hover:before{opacity:.04}.mdc-ripple-surface.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface:after,.mdc-ripple-surface:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-ripple-surface.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]{overflow:visible}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:before{top:0;left:0;width:100%;height:100%}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface--primary:after,.mdc-ripple-surface--primary:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-ripple-surface--primary:hover:before{opacity:.04}.mdc-ripple-surface--primary.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface--accent:after,.mdc-ripple-surface--accent:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-ripple-surface--accent:hover:before{opacity:.04}.mdc-ripple-surface--accent.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-tab-bar{width:100%}.mdc-tab{height:48px}.mdc-tab--stacked{height:72px}.mdc-tab-scroller{overflow-y:hidden}.mdc-tab-scroller.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-scroller__test{position:absolute;top:-9999px;width:100px;height:100px;overflow-x:scroll}.mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:touch;display:flex;overflow-x:hidden}.mdc-tab-scroller__scroll-area::-webkit-scrollbar,.mdc-tab-scroller__test::-webkit-scrollbar{display:none}.mdc-tab-scroller__scroll-area--scroll{overflow-x:scroll}.mdc-tab-scroller__scroll-content{position:relative;display:flex;flex:1 0 auto;transform:none;will-change:transform}.mdc-tab-scroller--align-start .mdc-tab-scroller__scroll-content{justify-content:flex-start}.mdc-tab-scroller--align-end .mdc-tab-scroller__scroll-content{justify-content:flex-end}.mdc-tab-scroller--align-center .mdc-tab-scroller__scroll-content{justify-content:center}.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:auto}.mdc-tab-indicator{display:flex;position:absolute;top:0;left:0;justify-content:center;width:100%;height:100%;pointer-events:none;z-index:1}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab-indicator .mdc-tab-indicator__content--icon{color:#018786;color:var(--mdc-theme-secondary,#018786)}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-top-width:2px}.mdc-tab-indicator .mdc-tab-indicator__content--icon{height:34px;font-size:34px}.mdc-tab-indicator__content{transform-origin:left;opacity:0}.mdc-tab-indicator__content--underline{align-self:flex-end;box-sizing:border-box;width:100%;border-top-style:solid}.mdc-tab-indicator__content--icon{align-self:center;margin:0 auto}.mdc-tab-indicator--active .mdc-tab-indicator__content{opacity:1}.mdc-tab-indicator .mdc-tab-indicator__content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-indicator--no-transition .mdc-tab-indicator__content{transition:none}.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition:opacity .15s linear}.mdc-tab-indicator--active.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition-delay:.1s}.mdc-tab{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);position:relative;display:flex;flex:1 0 auto;justify-content:center;box-sizing:border-box;margin:0;padding:0 24px;border:none;outline:none;background:none;text-align:center;white-space:nowrap;cursor:pointer;-webkit-appearance:none;z-index:1}.mdc-tab .mdc-tab__text-label{color:rgba(0,0,0,.6)}.mdc-tab .mdc-tab__icon{color:rgba(0,0,0,.54);fill:currentColor}.mdc-tab::-moz-focus-inner{padding:0;border:0}.mdc-tab--min-width{flex:0 1 auto}.mdc-tab__content{position:relative;display:flex;align-items:center;justify-content:center;height:inherit;pointer-events:none}.mdc-tab__text-label{display:inline-block;line-height:1}.mdc-tab__icon,.mdc-tab__text-label{transition:color .15s linear;z-index:2}.mdc-tab__icon{width:24px;height:24px;font-size:24px}.mdc-tab--stacked .mdc-tab__content{flex-direction:column;align-items:center;justify-content:center}.mdc-tab--stacked .mdc-tab__text-label{padding-top:6px;padding-bottom:4px}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-tab--active .mdc-tab__icon{fill:currentColor}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{transition-delay:.1s}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:8px;padding-right:0}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label[dir=rtl],[dir=rtl] .mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:0;padding-right:8px}.mdc-tab__ripple{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}.mdc-tab__ripple:after,.mdc-tab__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-tab__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-tab__ripple.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-tab__ripple.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple:after,.mdc-tab__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-tab__ripple.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-tab__ripple:after,.mdc-tab__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab__ripple:hover:before{opacity:.04}.mdc-tab__ripple.mdc-ripple-upgraded--background-focused:before,.mdc-tab__ripple:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-tab__ripple:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-tab__ripple:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-tab__ripple.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.demo-layout__row{display:flex;flex-flow:row wrap;margin-top:.8rem}.demo-layout__row--no-wrap{display:flex;flex-direction:row}.demo-layout__column{display:flex;flex-direction:column}.demo-layout--start{align-self:flex-start}.demo-layout--end{flex-grow:1;align-self:flex-end}.demo-layout--center{display:flex;align-content:flex-end;align-items:center;justify-content:center}.demo-panel{display:flex;position:relative;height:100vh;overflow:hidden}.demo-panel-content,.demo-panel-section{width:100%;max-width:100%}.demo-panel-content{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;overflow:auto}@media (max-width:900px){.demo-panel-content{width:unset;padding:12px}}.demo-panel-transition{width:100%;max-width:1200px;padding-bottom:60px}.demo-panel-title{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline4-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:2.125rem;font-size:var(--mdc-typography-headline4-font-size,2.125rem);line-height:2.5rem;line-height:var(--mdc-typography-headline4-line-height,2.5rem);font-weight:400;font-weight:var(--mdc-typography-headline4-font-weight,400);letter-spacing:.0073529412em;letter-spacing:var(--mdc-typography-headline4-letter-spacing,.0073529412em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline4-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline4-text-transform,inherit);margin:16px 16px 16px 0;line-height:1.25}.demo-panel-heading,.demo-panel-title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;padding-bottom:.3em;border-bottom:1px solid #eaecef;font-weight:500}.demo-panel-heading{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin:24px 16px 16px 0;line-height:1.25}.demo-container{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;min-width:200px;padding:10px}.hljs{border-radius:.45rem;padding:9px;display:inline-block}.demo-content{border-radius:12px;border:1px solid rgba(0,0,0,.15);margin:1.5rem 1rem;padding:1rem}.demo-content__headline{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin-top:.1em;margin-bottom:.3em}.demo-content--block{display:inline-block;margin-right:5px}.demo-top-app-bar{background-color:#363640;z-index:7}.demo-drawer{position:fixed}.demo-drawer .mdc-list-item{cursor:pointer}.mdc-list{display:block}body{margin:0;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}", ""]);
 // Exports
 module.exports = exports;
 
+
+/***/ }),
+
+/***/ "views/tabs/tabs":
+/*!********************************!*\
+  !*** ./src/views/tabs/tabs.ts ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Tabs = void 0;
+    var Tabs = /** @class */ (function () {
+        function Tabs() {
+            this.template = {
+                title: 'Tabs',
+                description: 'Tabs organize content across different screens, data sets, and other interactions.',
+                references: [{
+                        name: 'Material Design guidelines: Tabs',
+                        url: 'https://material.io/design/components/tabs.html'
+                    }, {
+                        name: 'Material Components Web: Tab Bar',
+                        url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-bar/README.md'
+                    }, {
+                        name: 'Material Components Web: Tab Scroller',
+                        url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-scroller/README.md'
+                    }, {
+                        name: 'Material Components Web: Tab',
+                        url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab/README.md'
+                    }, {
+                        name: 'Material Components Web: Tab Indicator',
+                        url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-indicator/README.md'
+                    }],
+                mdcUrls: [
+                    { name: 'Tab Bar Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-bar/README.md#sass-mixins' },
+                    { name: 'Scroller Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-scroller/README.md#sass-mixins' },
+                    { name: 'Tab Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab/README.md#sass-mixins' },
+                    { name: 'Indicator Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-indicator/README.md#sass-mixins' },
+                ],
+                code: "import {MdcTabBarModule} from '@angular-mdc/web/tab-bar';",
+                sass: "@use '@material/tab-bar/mdc-tab-bar';\n@use '@material/tab-bar';\n@use '@material/tab-scroller/mdc-tab-scroller';\n@use '@material/tab-scroller';\n@use '@material/tab-indicator/mdc-tab-indicator';\n@use '@material/tab-indicator';\n@use '@material/tab/mdc-tab';\n@use '@material/tab';"
+            };
+        }
+        return Tabs;
+    }());
+    exports.Tabs = Tabs;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "views/tabs/tabs.html":
+/*!**********************************!*\
+  !*** ./src/views/tabs/tabs.html ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <component-viewer template.bind=\"template\">\n    <mdc-tab-bar>\n      <mdc-tab label=\"Flights\"></mdc-tab>\n      <mdc-tab label=\"Hotel\"></mdc-tab>\n      <mdc-tab label=\"Favorites\"></mdc-tab>\n    </mdc-tab-bar>\n  </component-viewer>\n</template>\n";
+// Exports
+module.exports = code;
 
 /***/ }),
 
@@ -56381,7 +59425,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <component-viewer template.bind=\"template\"></component-viewer>\n</template>\n";
+var code = "<template>\n  <component-viewer template.bind=\"template\">\n    <mdc-form-field if.bind=\"!checked\">\n      <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\">\n        <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n        <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n      </mdc-text-field>\n      <mdc-text-field-helper-line>\n        <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n        <mdc-text-field-character-counter></mdc-text-field-character-counter>\n      </mdc-text-field-helper-line>\n    </mdc-form-field>\n\n    <mdc-form-field>\n      <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\" required type=\"number\">\n        <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n        <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n      </mdc-text-field>\n      <mdc-text-field-helper-line>\n        <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n        <mdc-text-field-character-counter></mdc-text-field-character-counter>\n      </mdc-text-field-helper-line>\n    </mdc-form-field>\n    <div>${value}</div>\n  </component-viewer>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -56441,4 +59485,4 @@ module.exports = code;
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.d0dbc8c9919912b57a8c.bundle.map
+//# sourceMappingURL=app.eb445f7b677c7c13e486.bundle.map
