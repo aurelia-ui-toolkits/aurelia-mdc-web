@@ -51,11 +51,6 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   initialSyncWithDOM() {
     const parentEl = this.root.parentElement;
     this.anchorElement = parentEl && parentEl.classList.contains(cssClasses.ANCHOR) ? parentEl : null;
-
-    if (this.root.classList.contains(cssClasses.FIXED)) {
-      this.setFixedPosition(true);
-    }
-
     this.listen('keydown', this);
   }
 
@@ -100,10 +95,6 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     }
     await this.initialised;
     this.foundation.setFixedPosition(this.fixed);
-  }
-
-  /** Sets the menu-surface to position: fixed. */
-  setFixedPosition(isFixed: boolean) {
   }
 
   /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */

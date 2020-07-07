@@ -21,6 +21,9 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   @child('mdc-list')
   private list_?: MdcList; // assigned in initialSyncWithDOM()
 
+  @bindable.booleanAttr
+  fixed: boolean;
+
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation.handleKeydown(evt);
     return true;
@@ -226,10 +229,6 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
       return this.list_.getPrimaryText(item) || '';
     }
     return '';
-  }
-
-  setFixedPosition(isFixed: boolean) {
-    this.menuSurface_.setFixedPosition(isFixed);
   }
 
   setIsHoisted(isHoisted: boolean) {

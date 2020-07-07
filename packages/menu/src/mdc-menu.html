@@ -1,4 +1,5 @@
-<template class="mdc-menu" mdc-menu-surface mdc-menu-surface.ref="menuSurface_" keydown.trigger="handleKeydown_($event)"
-  mdcmenusurface:opened.trigger="handleMenuSurfaceOpened_()" mdclist:action.trigger="handleItemAction_($event)">
+<template class="mdc-menu" mdc-menu-surface="fixed.bind: fixed" mdc-menu-surface.ref="menuSurface_"
+  keydown.trigger="handleKeydown_($event)" mdcmenusurface:opened.trigger="handleMenuSurfaceOpened_()"
+  mdclist:action.trigger="handleItemAction_($event)">
   <slot></slot>
 </template>
