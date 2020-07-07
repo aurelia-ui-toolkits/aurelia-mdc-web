@@ -1,3 +1,29 @@
 <template>
-  Coming soon...
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Character Counter</h3>
+    <div class="demo-layout__row">
+      <mdc-form-field if.bind="!checked" class="au-form-field-text-field">
+        <mdc-text-field label="Label" maxlength="100" value.bind="value">
+          <i class="material-icons" mdc-text-field-icon leading>event</i>
+          <i class="material-icons" mdc-text-field-icon trailing>science</i>
+        </mdc-text-field>
+        <mdc-text-field-helper-line>
+          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
+          <mdc-text-field-character-counter></mdc-text-field-character-counter>
+        </mdc-text-field-helper-line>
+      </mdc-form-field>
+
+      <mdc-form-field class="au-form-field-text-field">
+        <mdc-text-field label="Label" outlined value.bind="value" maxlength="100" required type="number">
+          <i class="material-icons" mdc-text-field-icon leading>event</i>
+          <i class="material-icons" mdc-text-field-icon trailing>science</i>
+        </mdc-text-field>
+        <mdc-text-field-helper-line>
+          <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>
+          <mdc-text-field-character-counter></mdc-text-field-character-counter>
+        </mdc-text-field-helper-line>
+      </mdc-form-field>
+      <div>${value}</div>
+        </div>
+  </div>
 </template>
