@@ -30,7 +30,7 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   label: string;
 
   handleClick_() {
-    this.foundation?.handleClick();
+    this.foundation.handleClick();
     return true;
   }
 
@@ -55,25 +55,25 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   }
 
   isActive(): boolean {
-    return this.foundation!.isActive();
+    return this.foundation.isActive();
   }
 
   set focusOnActivate(focusOnActivate: boolean) {
-    this.foundation?.setFocusOnActivate(focusOnActivate);
+    this.foundation.setFocusOnActivate(focusOnActivate);
   }
 
   /**
    * Activates the tab
    */
   activate(computeIndicatorClientRect?: ClientRect) {
-    this.foundation?.activate(computeIndicatorClientRect);
+    this.foundation.activate(computeIndicatorClientRect);
   }
 
   /**
    * Deactivates the tab
    */
   deactivate() {
-    this.foundation?.deactivate();
+    this.foundation.deactivate();
   }
 
   /**
@@ -84,7 +84,7 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   }
 
   computeDimensions(): MDCTabDimensions {
-    return this.foundation!.computeDimensions();
+    return this.foundation.computeDimensions();
   }
 
   /**

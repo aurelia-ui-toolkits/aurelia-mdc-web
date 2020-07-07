@@ -10,11 +10,11 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   private previousFocus?: HTMLElement | SVGElement | null;
 
   handleKeydown(evt: KeyboardEvent) {
-    this.foundation?.handleKeydown(evt);
+    this.foundation.handleKeydown(evt);
   }
 
   handleBodyClick(evt: MouseEvent) {
-    this.foundation?.handleBodyClick(evt);
+    this.foundation.handleBodyClick(evt);
   }
 
   async initialise() {
@@ -65,24 +65,24 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   }
 
   isOpen(): boolean {
-    return this.foundation!.isOpen();
+    return this.foundation.isOpen();
   }
 
   open() {
-    this.foundation?.open();
+    this.foundation.open();
   }
 
   close(skipRestoreFocus = false) {
-    this.foundation?.close(skipRestoreFocus);
+    this.foundation.close(skipRestoreFocus);
   }
 
   set quickOpen(quickOpen: boolean) {
-    this.foundation?.setQuickOpen(quickOpen);
+    this.foundation.setQuickOpen(quickOpen);
   }
 
   /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
   setIsHoisted(isHoisted: boolean) {
-    this.foundation?.setIsHoisted(isHoisted);
+    this.foundation.setIsHoisted(isHoisted);
   }
 
   /** Sets the element that the menu-surface is anchored to. */
@@ -99,7 +99,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       this.root.classList.remove(cssClasses.FIXED);
     }
     await this.initialised;
-    this.foundation?.setFixedPosition(this.fixed);
+    this.foundation.setFixedPosition(this.fixed);
   }
 
   /** Sets the menu-surface to position: fixed. */
@@ -108,7 +108,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
 
   /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
   setAbsolutePosition(x: number, y: number) {
-    this.foundation?.setAbsolutePosition(x, y);
+    this.foundation.setAbsolutePosition(x, y);
     this.setIsHoisted(true);
   }
 
@@ -116,11 +116,11 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
    * @param corner Default anchor corner alignment of top-left surface corner.
    */
   setAnchorCorner(corner: Corner) {
-    this.foundation?.setAnchorCorner(corner);
+    this.foundation.setAnchorCorner(corner);
   }
 
   setAnchorMargin(margin: Partial<MDCMenuDistance>) {
-    this.foundation?.setAnchorMargin(margin);
+    this.foundation.setAnchorMargin(margin);
   }
 
   getDefaultFoundation() {

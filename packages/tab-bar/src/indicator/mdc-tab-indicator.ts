@@ -20,7 +20,7 @@ export class MdcTabIndicator extends MdcComponent<MDCTabIndicatorFoundation> {
   icon: string;
 
   computeContentClientRect(): ClientRect {
-    return this.foundation!.computeContentClientRect();
+    return this.foundation.computeContentClientRect();
   }
 
   getDefaultFoundation() {
@@ -43,11 +43,11 @@ export class MdcTabIndicator extends MdcComponent<MDCTabIndicatorFoundation> {
   }
 
   activate(previousIndicatorClientRect?: ClientRect) {
-    this.foundation?.activate(previousIndicatorClientRect);
+    this.foundation.activate(previousIndicatorClientRect);
   }
 
   deactivate() {
-    this.foundation?.deactivate();
+    this.foundation.deactivate();
   }
 
 }

@@ -22,17 +22,17 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   private list_?: MdcList; // assigned in initialSyncWithDOM()
 
   handleKeydown_(evt: KeyboardEvent) {
-    this.foundation?.handleKeydown(evt);
+    this.foundation.handleKeydown(evt);
     return true;
   }
 
   handleItemAction_(evt: MDCListActionEvent) {
-    this.foundation?.handleItemAction(this.items[evt.detail.index]);
+    this.foundation.handleItemAction(this.items[evt.detail.index]);
     return true;
   }
 
   handleMenuSurfaceOpened_() {
-    this.foundation?.handleMenuSurfaceOpened();
+    this.foundation.handleMenuSurfaceOpened();
     return true;
   }
 
@@ -162,7 +162,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   defaultFocusState: 'NONE' | 'LIST_ROOT' | 'FIRST_ITEM' | 'LAST_ITEM' = 'LIST_ROOT';
   async defaultFocusStateChanged() {
     await this.initialised;
-    this.foundation?.setDefaultFocusState(DefaultFocusState[this.defaultFocusState]);
+    this.foundation.setDefaultFocusState(DefaultFocusState[this.defaultFocusState]);
   }
 
   /**
@@ -172,7 +172,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
    * @param focusState Default focus state.
    */
   setDefaultFocusState(focusState: DefaultFocusState) {
-    this.foundation?.setDefaultFocusState(focusState);
+    this.foundation.setDefaultFocusState(focusState);
   }
 
   /**
@@ -191,7 +191,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
    * @param index Index of list item within menu.
    */
   setSelectedIndex(index: number) {
-    this.foundation?.setSelectedIndex(index);
+    this.foundation.setSelectedIndex(index);
   }
 
   /**
@@ -200,7 +200,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
    * @param isEnabled The desired enabled state of the menu item.
    */
   setEnabled(index: number, isEnabled: boolean): void {
-    this.foundation?.setEnabled(index, isEnabled);
+    this.foundation.setEnabled(index, isEnabled);
   }
 
   /**

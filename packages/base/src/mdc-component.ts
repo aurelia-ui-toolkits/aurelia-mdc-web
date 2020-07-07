@@ -3,7 +3,7 @@ import { MDCFoundation } from '@material/base';
 export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   constructor(public root: HTMLElement) { }
 
-  foundation?: FoundationType;
+  foundation: FoundationType;
 
   initialised = this.createInitiliasedPromise();
   private initialisedResolve: () => void;
@@ -28,8 +28,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
 
   detached() {
     this.destroy();
-    this.foundation?.destroy();
-    this.foundation = undefined;
+    this.foundation.destroy();
     this.initialised = this.createInitiliasedPromise();
   }
 

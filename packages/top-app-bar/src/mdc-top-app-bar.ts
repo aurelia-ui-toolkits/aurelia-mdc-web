@@ -36,9 +36,9 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
   }
 
   initialSyncWithDOM() {
-    this.handleNavigationClick_ = this.foundation?.handleNavigationClick.bind(this.foundation);
-    this.handleWindowResize_ = this.foundation?.handleWindowResize.bind(this.foundation);
-    this.handleTargetScroll_ = this.foundation?.handleTargetScroll.bind(this.foundation);
+    this.handleNavigationClick_ = this.foundation.handleNavigationClick.bind(this.foundation);
+    this.handleWindowResize_ = this.foundation.handleWindowResize.bind(this.foundation);
+    this.handleTargetScroll_ = this.foundation.handleTargetScroll.bind(this.foundation);
 
     this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_ as EventListener);
 
@@ -63,7 +63,7 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
     this.scrollTarget_ = target;
 
     // Initialize scroll handler on the new scroll target
-    this.handleTargetScroll_ = this.foundation?.handleTargetScroll.bind(this.foundation);
+    this.handleTargetScroll_ = this.foundation.handleTargetScroll.bind(this.foundation);
     this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_ as EventListener);
   }
 

@@ -11,14 +11,14 @@ export class MdcLineRipple extends MdcComponent<MDCLineRippleFoundation> {
    * Activates the line ripple
    */
   activate() {
-    this.foundation?.activate();
+    this.foundation.activate();
   }
 
   /**
    * Deactivates the line ripple
    */
   deactivate() {
-    this.foundation?.deactivate();
+    this.foundation.deactivate();
   }
 
   /**
@@ -26,7 +26,7 @@ export class MdcLineRipple extends MdcComponent<MDCLineRippleFoundation> {
    * The `rippleCenter` is the x-coordinate of the middle of the ripple.
    */
   setRippleCenter(xCoordinate: number) {
-    this.foundation?.setRippleCenter(xCoordinate);
+    this.foundation.setRippleCenter(xCoordinate);
   }
 
   getDefaultFoundation() {

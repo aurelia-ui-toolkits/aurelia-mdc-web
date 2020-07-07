@@ -34,12 +34,12 @@ export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   }
 
   handleInteraction_() {
-    this.foundation?.handleInteraction();
+    this.foundation.handleInteraction();
     return true;
   }
 
   handleTransitionEnd_(evt: Event) {
-    this.foundation?.handleTransitionEnd(evt);
+    this.foundation.handleTransitionEnd(evt);
     return true;
   }
 
@@ -47,7 +47,7 @@ export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
    * Returns the current visual scroll position
    */
   getScrollPosition(): number {
-    return this.foundation!.getScrollPosition();
+    return this.foundation.getScrollPosition();
   }
 
   /**
@@ -62,7 +62,7 @@ export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
    * @param scrollXIncrement The pixel value by which to increment the scroll value
    */
   incrementScroll(scrollXIncrement: number) {
-    this.foundation?.incrementScroll(scrollXIncrement);
+    this.foundation.incrementScroll(scrollXIncrement);
   }
 
   /**
@@ -70,6 +70,6 @@ export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
    * @param scrollX The pixel value to scroll to
    */
   scrollTo(scrollX: number) {
-    this.foundation?.scrollTo(scrollX);
+    this.foundation.scrollTo(scrollX);
   }
 }

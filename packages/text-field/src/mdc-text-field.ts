@@ -253,13 +253,13 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   onInput(evt: Event): void {
     const value = (<any>evt.target).value;
     this.value = value;
-    this.foundation?.handleInput();
+    this.foundation.handleInput();
     this.emit('input', {}, true);
   }
 
   async onFocus() {
     await this.initialised;
-    this.foundation?.activateFocus();
+    this.foundation.activateFocus();
   }
 
   onChange(evt: Event): void {
@@ -269,7 +269,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 
   onBlur(): void {
-    this.foundation?.deactivateFocus();
+    this.foundation.deactivateFocus();
   }
 
   focus() {
