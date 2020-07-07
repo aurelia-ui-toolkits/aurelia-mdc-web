@@ -1,11 +1,19 @@
 import { RouterConfiguration, RouteConfig, NavModel, Router } from 'aurelia-router';
-import { autoinject } from 'aurelia-framework';
+import { autoinject, observable } from 'aurelia-framework';
+import { MdcDrawer } from '@aurelia-mdc-web/drawer';
 
 @autoinject
 export class Root {
   constructor(private router: Router) { }
 
   navModels: NavModel[];
+
+  @observable
+  drawer: MdcDrawer;
+  async drawerChanged(){
+    await this.drawer.initialised;
+    this.drawer.open = true;
+  }
 
   configureRouter(config: RouterConfiguration) {
     const exampleRoutes: RouteConfig[] = [
