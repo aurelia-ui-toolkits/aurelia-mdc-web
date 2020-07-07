@@ -1,0 +1,16 @@
+<template>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Basic</h3>
+    <div mdc-menu-surface-anchor>
+      <button mdc-button raised click1.trigger="menu.toggle()" style="width: 200px" ref="button">Open</button>
+      <mdc-menu view-model.ref="menu">
+        <mdc-list>
+          <mdc-list-item>Cats</mdc-list-item>
+          <mdc-list-item>Dogs</mdc-list-item>
+        </mdc-list>
+      </mdc-menu>
+    </div>
+  </div>
+
+
+</template>

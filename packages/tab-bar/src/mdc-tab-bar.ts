@@ -1,11 +1,13 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTabBarFoundation, MDCTabBarAdapter, MDCTabBarActivatedEventDetail, strings } from '@material/tab-bar';
-import { MdcTab, IMdcTabElement } from './tab/mdc-tab';
+import { IMdcTabElement } from './tab/mdc-tab';
 import { MdcTabScroller } from './scroller/mdc-tab-scroller';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MDCTabInteractionEvent, MDCTabFoundation } from '@material/tab';
-import { CustomEventListener } from '@material/base/types';
+
+// aurelia is case insensitive
+MDCTabFoundation.strings.INTERACTED_EVENT = 'mdctab:interacted';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-tab-bar.html'))
@@ -31,27 +33,22 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
     await Promise.all(this.tabScroller_!.tabs.map(x => x.initialised));
   }
 
-  private handleTabInteraction_!: CustomEventListener<MDCTabInteractionEvent>; // assigned in initialSyncWithDOM()
-
   initialSyncWithDOM() {
-    this.handleTabInteraction_ = (evt) => this.foundation?.handleTabInteraction(evt);
-    this.listen(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
     for (let i = 0; i < this.tabScroller_!.tabs.length; i++) {
       if (this.tabScroller_!.tabs[i].active) {
         this.scrollIntoView(i);
         break;
       }
     }
-
-  }
-
-  destroy() {
-    this.unlisten(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
   }
 
   handleKeyDown_(evt: KeyboardEvent) {
     this.foundation?.handleKeyDown(evt);
     return true;
+  }
+
+  handleTabInteraction_(evt: MDCTabInteractionEvent) {
+    this.foundation?.handleTabInteraction(evt);
   }
 
   getDefaultFoundation() {

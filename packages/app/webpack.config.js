@@ -39,6 +39,8 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'form-field',
           'line-ripple',
           'list',
+          'menu',
+          'menu-surface',
           'notched-outline',
           'ripple',
           'tab-bar',

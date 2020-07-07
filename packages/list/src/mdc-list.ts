@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCListFoundation, MDCListAdapter, MDCListActionEventDetail, strings, cssClasses } from '@material/list';
+import { MDCListFoundation, MDCListAdapter, MDCListActionEventDetail, strings, cssClasses, MDCListIndex } from '@material/list';
 import { inject, useView, customElement, children } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { closest, matches } from '@material/dom/ponyfill';
@@ -18,14 +18,14 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
 
   @bindable.booleanAttr
   singleSelection: boolean;
-  async singleSelectionChanged(){
+  async singleSelectionChanged() {
     await this.initialised;
     this.foundation?.setSingleSelection(this.singleSelection);
   }
 
   @bindable.booleanAttr
   activated: boolean;
-  async activatedChanged(){
+  async activatedChanged() {
     await this.initialised;
     this.foundation?.setUseActivatedClass(this.activated);
   }
@@ -39,11 +39,12 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   @bindable.booleanAttr
   avatar: boolean;
 
-  @bindable.booleanAttr
-  hasTypeahead: boolean;
-  async hasTypeaheadChanged(){
-    await this.initialised;
-    this.foundation?.setHasTypeahead(this.hasTypeahead);
+  /**
+   * Sets whether typeahead functionality is enabled on the list.
+   * @param hasTypeahead Whether typeahead is enabled.
+   */
+  set hasTypeahead(hasTypeahead: boolean) {
+    this.foundation?.setHasTypeahead(hasTypeahead);
   }
 
   @bindable.booleanAttr
@@ -51,7 +52,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
 
   @bindable.booleanAttr
   wrapFocus: boolean;
-  async wrapFocusChanged(){
+  async wrapFocusChanged() {
     await this.initialised;
     this.foundation?.setWrapFocus(this.wrapFocus);
   }
@@ -59,8 +60,9 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   @children('mdc-list-item')
   items: MdcListItem[];
 
-  initialSyncWithDOM(){
-    this.foundation?.setHasTypeahead(this.hasTypeahead);
+  initialSyncWithDOM() {
+    this.layout();
+    this.initializeListType();
   }
 
   get listElements(): Element[] {
@@ -207,6 +209,71 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
     // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
     const toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
     this.foundation?.handleClick(index, toggleCheckbox);
+  }
+
+  /**
+   * @return Whether typeahead is currently matching a user-specified prefix.
+   */
+  get typeaheadInProgress(): boolean {
+    return this.foundation!.isTypeaheadInProgress();
+  }
+
+  /**
+   * Given the next desired character from the user, adds it to the typeahead
+   * buffer. Then, attempts to find the next option matching the buffer. Wraps
+   * around if at the end of options.
+   *
+   * @param nextChar The next character to add to the prefix buffer.
+   * @param startingIndex The index from which to start matching. Defaults to
+   *     the currently focused index.
+   * @return The index of the matched item.
+   */
+  typeaheadMatchItem(nextChar: string, startingIndex?: number): number {
+    return this.foundation!.typeaheadMatchItem(nextChar, startingIndex, /** skipFocus */ true);
+  }
+
+  layout() {
+    const direction = this.root.getAttribute(strings.ARIA_ORIENTATION);
+    this.vertical = direction !== strings.ARIA_ORIENTATION_HORIZONTAL;
+
+    // List items need to have at least tabindex=-1 to be focusable.
+    [].slice.call(this.root.querySelectorAll('.mdc-list-item:not([tabindex])'))
+        .forEach((el: Element) => {
+          el.setAttribute('tabindex', '-1');
+        });
+
+    // Child button/a elements are not tabbable until the list item is focused.
+    [].slice.call(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
+        .forEach((el: Element) => el.setAttribute('tabindex', '-1'));
+
+    this.foundation?.layout();
+  }
+
+  get selectedIndex(): MDCListIndex {
+    return this.foundation!.getSelectedIndex();
+  }
+
+  set selectedIndex(index: MDCListIndex) {
+    this.foundation!.setSelectedIndex(index);
+  }
+
+  /**
+   * Initialize selectedIndex value based on pre-selected checkbox list items, single selection or radio.
+   */
+  initializeListType() {
+    const checkboxListItems =
+        this.root.querySelectorAll(strings.ARIA_ROLE_CHECKBOX_SELECTOR);
+    const radioSelectedListItem =
+        this.root.querySelector(strings.ARIA_CHECKED_RADIO_SELECTOR);
+
+    if (checkboxListItems.length) {
+      const preselectedItems =
+          this.root.querySelectorAll(strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
+      this.selectedIndex =
+          [].map.call(preselectedItems, (listItem: Element) => this.listElements.indexOf(listItem)) as number[];
+    } else if (radioSelectedListItem) {
+      this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
+    }
   }
 
 }

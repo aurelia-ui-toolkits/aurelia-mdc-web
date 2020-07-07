@@ -19,6 +19,8 @@
     "@aurelia-mdc-web/form-field": "^0.0.1",
     "@aurelia-mdc-web/line-ripple": "^0.0.1",
     "@aurelia-mdc-web/list": "^0.0.1",
+    "@aurelia-mdc-web/menu": "^0.0.1",
+    "@aurelia-mdc-web/menu-surface": "^0.0.1",
     "@aurelia-mdc-web/notched-outline": "^0.0.1",
     "@aurelia-mdc-web/ripple": "^0.0.1",
     "@aurelia-mdc-web/text-field": "^0.0.1",

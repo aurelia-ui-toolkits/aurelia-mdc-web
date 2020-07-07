@@ -3,4 +3,4 @@ import { useView, PLATFORM, autoinject } from 'aurelia-framework';
 
 @autoinject
 @useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
-export class Button extends ComponentViewer { }
+export class Menu extends ComponentViewer { }

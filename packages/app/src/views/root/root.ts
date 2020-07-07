@@ -12,6 +12,7 @@ export class Root {
       { route: 'button' },
       { route: 'drawer' },
       { route: 'form-field' },
+      { route: 'menu' },
       { route: 'list' },
       { route: 'ripple' },
       { route: 'tabs' },
