@@ -1,13 +1,9 @@
 import { RouterConfiguration, Router, RouteConfig } from 'aurelia-router';
+import { templates } from './templates';
 
 interface IReference {
   name: string;
   url: string;
-}
-
-interface ITab {
-  label?: string;
-  route: string;
 }
 
 export interface IComponentTemplate {
@@ -19,10 +15,10 @@ export interface IComponentTemplate {
   mdcUrls?: IReference[];
 }
 
-export abstract class ComponentViewer {
+export class ComponentViewer {
   constructor() { }
 
-  abstract template: IComponentTemplate;
+  template: IComponentTemplate;
 
   router: Router;
 
@@ -31,7 +27,7 @@ export abstract class ComponentViewer {
     config.map([
       { route: '', redirect: 'examples' },
       { route: 'examples', name: 'examples', title: 'Examples', moduleId: './examples' },
-      { route: 'api', name: 'api', title: 'Api', moduleId: './api' }
+      { route: 'api', name: 'api', title: 'Api', moduleId: '../api-viewer/api-viewer' }
     ]);
   }
 
@@ -39,6 +35,7 @@ export abstract class ComponentViewer {
 
   attached() {
     this.tabs = this.router.routes.filter(x => !x.redirect);
+    this.template = templates[this.router.parent.currentInstruction.config.name!];
   }
 
   navigateTo(tab: RouteConfig) {
