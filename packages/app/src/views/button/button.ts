@@ -1,6 +1,10 @@
-import { IComponentTemplate } from '../../elements/component-viewer/component-viewer';
+import { Router, RouterConfiguration } from 'aurelia-router';
+import { ComponentViewer, IComponentTemplate } from '../component-viewer/component-viewer';
+import { useView, PLATFORM, autoinject } from 'aurelia-framework';
 
-export class Button {
+@autoinject
+@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+export class Button extends ComponentViewer {
   template: IComponentTemplate = {
     title: 'Button',
     description: 'Buttons allow users to take actions, and make choices, with a single tap.',
@@ -17,5 +21,4 @@ export class Button {
     code: `import {MdcButtonModule} from '@angular-mdc/web/button';`,
     sass: `@use '@material/button/mdc-button';`
   };
-
 }

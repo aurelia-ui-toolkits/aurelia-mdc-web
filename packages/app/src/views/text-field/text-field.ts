@@ -1,6 +1,10 @@
-import { IComponentTemplate } from '../../elements/component-viewer/component-viewer';
+import { useView } from 'aurelia-framework';
+import { PLATFORM } from 'aurelia-pal';
+import { ComponentViewer, IComponentTemplate } from '../component-viewer/component-viewer';
+import { Router } from 'aurelia-router';
 
-export class TextField {
+@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+export class TextField extends ComponentViewer {
   template: IComponentTemplate = {
     title: 'Text Field',
     description: 'Text fields let users enter and edit text.',

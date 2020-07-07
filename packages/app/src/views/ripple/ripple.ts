@@ -1,6 +1,10 @@
-import { IComponentTemplate } from '../../elements/component-viewer/component-viewer';
+import { useView } from 'aurelia-framework';
+import { PLATFORM } from 'aurelia-pal';
+import { ComponentViewer, IComponentTemplate } from '../component-viewer/component-viewer';
+import { Router } from 'aurelia-router';
 
-export class Ripple {
+@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+export class Ripple extends ComponentViewer {
   template: IComponentTemplate = {
     title: 'Ripple',
     description: 'Ripple provides components (or any element) with a material "ink ripple" interaction effect.',

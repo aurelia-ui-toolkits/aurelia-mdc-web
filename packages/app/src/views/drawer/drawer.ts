@@ -1,6 +1,9 @@
-import { IComponentTemplate } from '../../elements/component-viewer/component-viewer';
+import { ComponentViewer, IComponentTemplate } from '../component-viewer/component-viewer';
+import { Router } from 'aurelia-router';
+import { useView, PLATFORM } from 'aurelia-framework';
 
-export class Drawer {
+@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+export class Drawer extends ComponentViewer {
   template: IComponentTemplate = {
     title: 'Drawers',
     description: 'The MDC Navigation Drawer is used to organize access to destinations and other functionality on an app.',

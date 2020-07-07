@@ -1,6 +1,10 @@
-import { IComponentTemplate } from '../../elements/component-viewer/component-viewer';
+import { useView } from 'aurelia-framework';
+import { PLATFORM } from 'aurelia-pal';
+import { ComponentViewer, IComponentTemplate } from '../component-viewer/component-viewer';
+import { Router } from 'aurelia-router';
 
-export class TopAppBar {
+@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+export class TopAppBar extends ComponentViewer {
   template: IComponentTemplate = {
     title: 'Top App Bar',
     description: 'The top app bar displays information and actions relating to the current screen.',

@@ -8,7 +8,6 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .standardConfiguration()
     .globalResources([
       'attributes/highlight',
-      'elements/component-viewer/component-viewer'
     ])
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/drawer'))

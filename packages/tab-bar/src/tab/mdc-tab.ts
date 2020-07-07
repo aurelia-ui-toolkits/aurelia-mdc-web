@@ -20,6 +20,9 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   @bindable.booleanAttr
   fixed: boolean;
 
+  @bindable.booleanAttr
+  active: boolean;
+
   @bindable
   icon: string;
 
@@ -51,10 +54,7 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
     return new MDCTabFoundation(adapter);
   }
 
-  /**
-   * Getter for the active state of the tab
-   */
-  get active(): boolean {
+  isActive(): boolean {
     return this.foundation!.isActive();
   }
 

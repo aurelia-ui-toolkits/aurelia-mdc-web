@@ -1,6 +1,10 @@
-import { IComponentTemplate } from '../../elements/component-viewer/component-viewer';
+import { useView } from 'aurelia-framework';
+import { PLATFORM } from 'aurelia-pal';
+import { ComponentViewer, IComponentTemplate } from '../component-viewer/component-viewer';
+import { Router } from 'aurelia-router';
 
-export class List {
+@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+export class List extends ComponentViewer {
   template: IComponentTemplate = {
     title: 'Lists',
     description: 'Lists are continuous, vertical indexes of text or images.',

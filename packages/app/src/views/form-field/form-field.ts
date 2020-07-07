@@ -1,6 +1,10 @@
-import { IComponentTemplate } from '../../elements/component-viewer/component-viewer';
+import { IComponentTemplate, ComponentViewer } from '../component-viewer/component-viewer';
+import { useView } from 'aurelia-framework';
+import { PLATFORM } from 'aurelia-pal';
+import { Router } from 'aurelia-router';
 
-export class FormField {
+@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+export class FormField extends ComponentViewer {
   template: IComponentTemplate = {
     title: 'Form Fields',
     description: `MDC Form Field aligns an MDC Web form field (for example, a checkbox)
@@ -12,14 +16,7 @@ export class FormField {
     }],
     code: `import {MdcFormFieldModule} from '@angular-mdc/web/form-field';`,
     sass: `@use '@material/form-field/mdc-form-field';
-@use '@material/form-field/_index' as form-field;`,
-    tabs: [{
-      label: 'Api',
-      route: './api'
-    }, {
-      label: 'Examples',
-      route: './examples'
-    }]
+@use '@material/form-field/_index' as form-field;`
   };
 
 }

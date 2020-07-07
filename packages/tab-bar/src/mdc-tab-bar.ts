@@ -2,7 +2,7 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTabBarFoundation, MDCTabBarAdapter, MDCTabBarActivatedEventDetail, strings } from '@material/tab-bar';
 import { MdcTab, IMdcTabElement } from './tab/mdc-tab';
 import { MdcTabScroller } from './scroller/mdc-tab-scroller';
-import { inject, useView, PLATFORM, customElement, children } from 'aurelia-framework';
+import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MDCTabInteractionEvent, MDCTabFoundation } from '@material/tab';
 import { CustomEventListener } from '@material/base/types';
@@ -11,13 +11,12 @@ import { CustomEventListener } from '@material/base/types';
 @useView(PLATFORM.moduleName('./mdc-tab-bar.html'))
 @customElement('mdc-tab-bar')
 export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
-  private tabList_: MdcTab[];
   private tabScroller_?: MdcTabScroller; // assigned in html
 
   @bindable.booleanAttr
   focusOnActivate: boolean;
   focusOnActivateChanged() {
-    this.tabList_.forEach((tab) => tab.focusOnActivate = this.focusOnActivate);
+    this.tabScroller_?.tabs.forEach((tab) => tab.focusOnActivate = this.focusOnActivate);
   }
 
   @bindable.booleanAttr
@@ -28,8 +27,8 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
   }
 
   async initialise() {
-    this.tabList_ = this.getTabElements_().map(x => x.au.controller.viewModel);
-    await Promise.all(this.tabList_.map(x => x.initialised));
+    await this.tabScroller_!.initialised;
+    await Promise.all(this.tabScroller_!.tabs.map(x => x.initialised));
   }
 
   private handleTabInteraction_!: CustomEventListener<MDCTabInteractionEvent>; // assigned in initialSyncWithDOM()
@@ -37,8 +36,8 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
   initialSyncWithDOM() {
     this.handleTabInteraction_ = (evt) => this.foundation?.handleTabInteraction(evt);
     this.listen(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
-    for (let i = 0; i < this.tabList_.length; i++) {
-      if (this.tabList_[i].active) {
+    for (let i = 0; i < this.tabScroller_!.tabs.length; i++) {
+      if (this.tabScroller_!.tabs[i].active) {
         this.scrollIntoView(i);
         break;
       }
@@ -66,14 +65,14 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
       getOffsetWidth: () => (this.root as HTMLElement).offsetWidth,
       isRTL: () => window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
       setActiveTab: (index) => this.foundation?.activateTab(index),
-      activateTabAtIndex: (index, clientRect) => this.tabList_[index].activate(clientRect),
-      deactivateTabAtIndex: (index) => this.tabList_[index].deactivate(),
-      focusTabAtIndex: (index) => this.tabList_[index].focus(),
-      getTabIndicatorClientRectAtIndex: (index) => this.tabList_[index].computeIndicatorClientRect(),
-      getTabDimensionsAtIndex: (index) => this.tabList_[index].computeDimensions(),
+      activateTabAtIndex: (index, clientRect) => this.tabScroller_!.tabs[index].activate(clientRect),
+      deactivateTabAtIndex: (index) => this.tabScroller_!.tabs[index].deactivate(),
+      focusTabAtIndex: (index) => this.tabScroller_!.tabs[index].focus(),
+      getTabIndicatorClientRectAtIndex: (index) => this.tabScroller_!.tabs[index].computeIndicatorClientRect(),
+      getTabDimensionsAtIndex: (index) => this.tabScroller_!.tabs[index].computeDimensions(),
       getPreviousActiveTabIndex: () => {
-        for (let i = 0; i < this.tabList_.length; i++) {
-          if (this.tabList_[i].active) {
+        for (let i = 0; i < this.tabScroller_!.tabs.length; i++) {
+          if (this.tabScroller_!.tabs[i].isActive()) {
             return i;
           }
         }
@@ -85,14 +84,14 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
         return tabElements.indexOf(activeElement);
       },
       getIndexOfTabById: (id) => {
-        for (let i = 0; i < this.tabList_.length; i++) {
-          if (this.tabList_[i].id === id) {
+        for (let i = 0; i < this.tabScroller_!.tabs.length; i++) {
+          if (this.tabScroller_!.tabs[i].id === id) {
             return i;
           }
         }
         return -1;
       },
-      getTabListLength: () => this.tabList_.length,
+      getTabListLength: () => this.tabScroller_!.tabs.length,
       notifyTabActivated: (index) => this.emit<MDCTabBarActivatedEventDetail>(strings.TAB_ACTIVATED_EVENT, { index }, true),
     };
     return new MDCTabBarFoundation(adapter);

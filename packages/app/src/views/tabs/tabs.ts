@@ -1,6 +1,10 @@
-import { IComponentTemplate } from '../../elements/component-viewer/component-viewer';
+import { useView } from 'aurelia-framework';
+import { PLATFORM } from 'aurelia-pal';
+import { ComponentViewer, IComponentTemplate } from '../component-viewer/component-viewer';
+import { Router } from 'aurelia-router';
 
-export class Tabs {
+@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+export class Tabs extends ComponentViewer {
   template: IComponentTemplate = {
     title: 'Tabs',
     description: 'Tabs organize content across different screens, data sets, and other interactions.',

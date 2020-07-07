@@ -1,10 +1,15 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTabScrollerFoundation, MDCTabScrollerAdapter, util } from '@material/tab-scroller';
 import { matches } from '@material/dom/ponyfill';
+import { children } from 'aurelia-framework';
+import { MdcTab } from '../tab/mdc-tab';
 
 export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   private content_: HTMLElement; // assigned in html
   private area_: HTMLElement; // assigned in html
+
+  @children('mdc-tab')
+  tabs: MdcTab[];
 
   getDefaultFoundation() {
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
