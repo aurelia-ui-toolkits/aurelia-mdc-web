@@ -18,7 +18,7 @@ export class Button extends ComponentViewer {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-button/README.md#sass-mixins' },
     ],
-    code: `import {MdcButtonModule} from '@angular-mdc/web/button';`,
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));`,
     sass: `@use '@material/button/mdc-button';`
   };
 }
