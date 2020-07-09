@@ -4,9 +4,9 @@
     <div mdc-menu-surface-anchor>
       <button mdc-button raised click.trigger="menu.toggle()" style="width: 200px" ref="button">Open</button>
       <mdc-menu view-model.ref="menu">
-        <mdc-list>
-          <mdc-list-item>Cats</mdc-list-item>
-          <mdc-list-item>Dogs</mdc-list-item>
+        <mdc-list role="menu">
+          <mdc-list-item role="menuitem">Cats</mdc-list-item>
+          <mdc-list-item role="menuitem">Dogs</mdc-list-item>
         </mdc-list>
       </mdc-menu>
     </div>

@@ -5,7 +5,7 @@
     ${avatar ? cssClasses.ROOT + '--avatar-list' : ''}
     ${nonInteractive ? cssClasses.ROOT + '--non-interactive' : ''}
   " keydown.trigger="handleKeydownEvent_($event)" click.trigger="handleClickEvent_($event)"
-  focusin.trigger="handleFocusInEvent_($event)" focusout.trigger="handleFocusOutEvent_($event)" role="list"
+  focusin.trigger="handleFocusInEvent_($event)" focusout.trigger="handleFocusOutEvent_($event)"
   aria-orientation="${vertical ? 'vertical' : 'horizontal' }">
   <require from="./mdc-list.css"></require>
   <slot></slot>

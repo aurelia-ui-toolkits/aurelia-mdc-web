@@ -16,6 +16,9 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   @bindable.booleanAttr
   twoLine: boolean;
 
+  @bindable
+  role: string;
+
   @bindable.booleanAttr
   singleSelection: boolean;
   async singleSelectionChanged() {
@@ -39,6 +42,9 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   @bindable.booleanAttr
   avatar: boolean;
 
+  @children('mdc-list-item')
+  items: MdcListItem[];
+
   /**
    * Sets whether typeahead functionality is enabled on the list.
    * @param hasTypeahead Whether typeahead is enabled.
@@ -57,12 +63,12 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
     this.foundation.setWrapFocus(this.wrapFocus);
   }
 
-  @children('mdc-list-item')
-  items: MdcListItem[];
-
   initialSyncWithDOM() {
     this.layout();
     this.initializeListType();
+    if (this.role) {
+      this.root.setAttribute('role', this.role);
+    }
   }
 
   get listElements(): Element[] {
@@ -238,13 +244,13 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
 
     // List items need to have at least tabindex=-1 to be focusable.
     [].slice.call(this.root.querySelectorAll('.mdc-list-item:not([tabindex])'))
-        .forEach((el: Element) => {
-          el.setAttribute('tabindex', '-1');
-        });
+      .forEach((el: Element) => {
+        el.setAttribute('tabindex', '-1');
+      });
 
     // Child button/a elements are not tabbable until the list item is focused.
     [].slice.call(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
-        .forEach((el: Element) => el.setAttribute('tabindex', '-1'));
+      .forEach((el: Element) => el.setAttribute('tabindex', '-1'));
 
     this.foundation.layout();
   }
@@ -261,16 +267,12 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
    * Initialize selectedIndex value based on pre-selected checkbox list items, single selection or radio.
    */
   initializeListType() {
-    const checkboxListItems =
-        this.root.querySelectorAll(strings.ARIA_ROLE_CHECKBOX_SELECTOR);
-    const radioSelectedListItem =
-        this.root.querySelector(strings.ARIA_CHECKED_RADIO_SELECTOR);
+    const checkboxListItems = this.root.querySelectorAll(strings.ARIA_ROLE_CHECKBOX_SELECTOR);
+    const radioSelectedListItem = this.root.querySelector(strings.ARIA_CHECKED_RADIO_SELECTOR);
 
     if (checkboxListItems.length) {
-      const preselectedItems =
-          this.root.querySelectorAll(strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
-      this.selectedIndex =
-          [].map.call(preselectedItems, (listItem: Element) => this.listElements.indexOf(listItem)) as number[];
+      const preselectedItems = this.root.querySelectorAll(strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
+      this.selectedIndex = [].map.call(preselectedItems, (listItem: Element) => this.listElements.indexOf(listItem)) as number[];
     } else if (radioSelectedListItem) {
       this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
     }
