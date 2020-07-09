@@ -6,7 +6,7 @@ import { MDCListActionEvent, MDCListFoundation, MDCListIndex } from '@material/l
 import { MDCMenuSurfaceFoundation, MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
-import { child, inject, customElement } from 'aurelia-framework';
+import { child, inject, customElement, bindingMode } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 // aurelia is case insensitive
@@ -19,10 +19,13 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   private menuSurface_!: MdcMenuSurface; // assigned in html
 
   @child('mdc-list')
-  private list_?: MdcList; // assigned in initialSyncWithDOM()
+  private list_?: MdcList;
 
   @bindable.booleanAttr
   fixed: boolean;
+
+  @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
+  hoistToBody: boolean;
 
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation.handleKeydown(evt);
@@ -162,32 +165,17 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   }
 
   @bindable
-  defaultFocusState: 'NONE' | 'LIST_ROOT' | 'FIRST_ITEM' | 'LAST_ITEM' = 'LIST_ROOT';
+  defaultFocusState: keyof typeof DefaultFocusState = 'LIST_ROOT';
   async defaultFocusStateChanged() {
     await this.initialised;
     this.foundation.setDefaultFocusState(DefaultFocusState[this.defaultFocusState]);
   }
 
-  /**
-   * Sets default focus state where the menu should focus every time when menu
-   * is opened. Focuses the list root (`DefaultFocusState.LIST_ROOT`) element by
-   * default.
-   * @param focusState Default focus state.
-   */
-  setDefaultFocusState(focusState: DefaultFocusState) {
-    this.foundation.setDefaultFocusState(focusState);
-  }
+  @bindable
+  anchorCorner: keyof typeof Corner;
 
-  /**
-   * @param corner Default anchor corner alignment of top-left menu corner.
-   */
-  setAnchorCorner(corner: Corner) {
-    this.menuSurface_.setAnchorCorner(corner);
-  }
-
-  setAnchorMargin(margin: Partial<MDCMenuDistance>) {
-    this.menuSurface_.setAnchorMargin(margin);
-  }
+  @bindable
+  anchorMargin: Partial<MDCMenuDistance>;
 
   /**
    * Sets the list item as the selected row at the specified index.
@@ -229,10 +217,6 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
       return this.list_.getPrimaryText(item) || '';
     }
     return '';
-  }
-
-  setIsHoisted(isHoisted: boolean) {
-    this.menuSurface_.setIsHoisted(isHoisted);
   }
 
   setAbsolutePosition(x: number, y: number) {

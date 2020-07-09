@@ -1,11 +1,12 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCMenuSurfaceFoundation, MDCMenuSurfaceAdapter, cssClasses, Corner, MDCMenuDistance, util } from '@material/menu-surface';
-import { inject, customAttribute } from 'aurelia-framework';
+import { inject, customAttribute, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 @inject(Element)
 @customAttribute('mdc-menu-surface')
 export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> implements EventListenerObject {
+  originalParent: HTMLElement | null;
   anchorElement?: Element | null; // assigned in initialSyncWithDOM()
   private previousFocus?: HTMLElement | SVGElement | null;
 
@@ -56,6 +57,9 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
 
   destroy() {
     this.unlisten('keydown', this);
+    if(this.originalParent) {
+      this.originalParent.appendChild(document.body.removeChild(this.root));
+    }
     super.destroy();
   }
 
@@ -76,8 +80,17 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   }
 
   /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
-  setIsHoisted(isHoisted: boolean) {
-    this.foundation.setIsHoisted(isHoisted);
+  @bindable.booleanAttr
+  hoistToBody: boolean;
+  async hoistToBodyChanged() {
+    await this.initialised;
+    if (this.hoistToBody) {
+      this.originalParent = this.root.parentElement;
+      if (this.originalParent) {
+        document.body.appendChild(this.originalParent.removeChild(this.root));
+        this.foundation.setIsHoisted(true);
+      }
+    }
   }
 
   /** Sets the element that the menu-surface is anchored to. */
@@ -87,7 +100,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
 
   @bindable.booleanAttr
   fixed: boolean;
-  async fixedChanged(){
+  async fixedChanged() {
     if (this.fixed) {
       this.root.classList.add(cssClasses.FIXED);
     } else {
@@ -100,17 +113,20 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
   setAbsolutePosition(x: number, y: number) {
     this.foundation.setAbsolutePosition(x, y);
-    this.setIsHoisted(true);
+    this.hoistToBody = true;
   }
 
-  /**
-   * @param corner Default anchor corner alignment of top-left surface corner.
-   */
-  setAnchorCorner(corner: Corner) {
-    this.foundation.setAnchorCorner(corner);
+  @bindable
+  anchorCorner: keyof typeof Corner;
+  async anchorCornerChanged() {
+    await this.initialised;
+    this.foundation.setAnchorCorner(Corner[this.anchorCorner]);
   }
 
-  setAnchorMargin(margin: Partial<MDCMenuDistance>) {
+  @bindable
+  anchorMargin: Partial<MDCMenuDistance>;
+  async anchorMarginChanged(margin: Partial<MDCMenuDistance>) {
+    await this.initialised;
     this.foundation.setAnchorMargin(margin);
   }
 
