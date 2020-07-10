@@ -54163,6 +54163,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MDCSelectFoundationAurelia = void 0;
+    /**
+     * This is almost a complete copy of the default foundation with exception to handling values.
+     * It supports values of unknown types which must be bound to mdc-list-item.value.
+     */
     var MDCSelectFoundationAurelia = /** @class */ (function (_super) {
         tslib_1.__extends(MDCSelectFoundationAurelia, _super);
         /* istanbul ignore next: optional argument is not a branch statement */
@@ -54287,13 +54291,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 this.handleChange();
             }
         };
+        // !!! MODIFIED FOR AURELIA !!!
         MDCSelectFoundationAurelia.prototype.setValue = function (value) {
             var index = this.adapter.getMenuItemValues().indexOf(value);
             this.setSelectedIndex(index);
         };
+        // !!! MODIFIED FOR AURELIA !!!
         MDCSelectFoundationAurelia.prototype.getValue = function () {
+            var _a;
             var listItem = this.adapter.getSelectedMenuItem();
-            return listItem === null || listItem === void 0 ? void 0 : listItem.au.controller.viewModel.value;
+            return (_a = listItem === null || listItem === void 0 ? void 0 : listItem.au) === null || _a === void 0 ? void 0 : _a.controller.viewModel.value;
         };
         MDCSelectFoundationAurelia.prototype.getDisabled = function () {
             return this.disabled;
@@ -54341,7 +54348,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          */
         MDCSelectFoundationAurelia.prototype.layout = function () {
             if (this.adapter.hasLabel()) {
-                var optionHasValue = !!this.getValue();
+                var optionHasValue = !!this.getValue(); // !!! MODIFIED FOR AURELIA !!!
                 var isFocused = this.adapter.hasClass(select_1.cssClasses.FOCUSED);
                 var shouldFloatAndNotch = optionHasValue || isFocused;
                 var isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
@@ -55279,6 +55286,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.configure = void 0;
     Object.defineProperty(exports, "MdcList", { enumerable: true, get: function () { return mdc_list_1.MdcList; } });
+    Object.defineProperty(exports, "mdcListStrings", { enumerable: true, get: function () { return mdc_list_1.mdcListStrings; } });
     Object.defineProperty(exports, "MdcListItem", { enumerable: true, get: function () { return mdc_list_item_1.MdcListItem; } });
     function configure(config) {
         config.globalResources([
@@ -55309,8 +55317,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/list */ "../../node_modules/@material/list/index.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-pal */ "../../node_modules/aurelia-pal/dist/es2015/aurelia-pal.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, list_1, aurelia_framework_1, aurelia_pal_1, ponyfill_1, aurelia_typed_observable_plugin_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.MdcList = void 0;
+    exports.MdcList = exports.mdcListStrings = void 0;
     list_1.strings.ACTION_EVENT = list_1.strings.ACTION_EVENT.toLowerCase();
+    exports.mdcListStrings = {
+        ITEMS_CHANGED: 'mdclist:itemschanged'
+    };
     var MdcList = /** @class */ (function (_super) {
         tslib_1.__extends(MdcList, _super);
         function MdcList() {
@@ -55346,6 +55357,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     }
                 });
             });
+        };
+        MdcList.prototype.itemsChanged = function () {
+            this.emit(exports.mdcListStrings.ITEMS_CHANGED, { items: this.items }, true);
         };
         MdcList.prototype.typeaheadChanged = function (hasTypeahead) {
             var _a;
@@ -57155,6 +57169,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleMenuClosed();
         };
+        MdcSelect.prototype.handleItemsChanged = function () {
+            var _a, _b;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.layoutOptions();
+            (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.layout();
+        };
         MdcSelect.prototype.focus = function () {
             this.selectAnchor.focus();
         };
@@ -57199,6 +57218,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
             tslib_1.__metadata("design:type", Boolean)
         ], MdcSelect.prototype, "outlined", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcSelect.prototype, "required", void 0);
         MdcSelect = MdcSelect_1 = tslib_1.__decorate([
             aurelia_framework_1.inject(Element),
             aurelia_framework_1.useView('./mdc-select.html'),
@@ -57388,7 +57411,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"\n    mdc-select\n    mdc-select--${outlined ? 'outlined' : 'filled'}\n    ${leadingIcon ? 'mdc-select--with-leading-icon' : ''}\n  \" id=\"${id}\">\n  <div class=\"mdc-select__anchor\" ref=\"selectAnchor\" mdc-ripple change.trigger=\"handleChange()\"\n    focus.trigger=\"handleFocus()\" blur.call=\"handleBlur()\" keydown.trigger=\"handleKeydown($event)\"\n    click.trigger=\"handleClick($event)\">\n    <span class=\"mdc-select__ripple\" if.bind=\"!outlined\"></span>\n    <slot name=\"leading-icon\"></slot>\n    <span class=\"mdc-select__selected-text\" ref=\"selectedText\"></span>\n    <span class=\"mdc-select__dropdown-icon\">\n      <svg class=\"mdc-select__dropdown-icon-graphic\" viewBox=\"7 10 10 5\">\n        <polygon class=\"mdc-select__dropdown-icon-inactive\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 10 12 15 17 10\">\n        </polygon>\n        <polygon class=\"mdc-select__dropdown-icon-active\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 15 12 10 17 15\">\n        </polygon>\n      </svg>\n    </span>\n    <mdc-floating-label if.bind=\"label && !outlined\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}\n    </mdc-floating-label>\n    <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple\"></mdc-line-ripple>\n    <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline\">\n      <mdc-floating-label if.bind=\"label\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}</mdc-floating-label>\n    </mdc-notched-outline>\n  </div>\n\n  <mdc-menu class=\"mdc-select__menu ${fullWidth ? 'mdc-menu-surface--fullwidth' : ''}\" view-model.ref=\"menu\"\n    ref=\"menuElement\" typeahead mdcmenusurface:closed.trigger=\"handleMenuClosed()\"\n    mdcmenusurface:opened.trigger=\"handleMenuOpened()\" mdcmenu:selected.trigger=\"handleMenuItemAction($event)\">\n    <mdc-list>\n      <slot></slot>\n    </mdc-list>\n  </mdc-menu>\n</template>\n";
+var code = "<template class=\"\n    mdc-select\n    mdc-select--${outlined ? 'outlined' : 'filled'}\n    ${leadingIcon ? 'mdc-select--with-leading-icon' : ''}\n    ${required ? 'mdc-select--required' : ''}\n  \" id=\"${id}\">\n  <div class=\"mdc-select__anchor\" ref=\"selectAnchor\" mdc-ripple change.trigger=\"handleChange()\"\n    focus.trigger=\"handleFocus()\" blur.call=\"handleBlur()\" keydown.trigger=\"handleKeydown($event)\"\n    click.trigger=\"handleClick($event)\" aria-required=\"true\">\n    <span class=\"mdc-select__ripple\" if.bind=\"!outlined\"></span>\n    <slot name=\"leading-icon\"></slot>\n    <span class=\"mdc-select__selected-text\" ref=\"selectedText\"></span>\n    <span class=\"mdc-select__dropdown-icon\">\n      <svg class=\"mdc-select__dropdown-icon-graphic\" viewBox=\"7 10 10 5\">\n        <polygon class=\"mdc-select__dropdown-icon-inactive\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 10 12 15 17 10\">\n        </polygon>\n        <polygon class=\"mdc-select__dropdown-icon-active\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 15 12 10 17 15\">\n        </polygon>\n      </svg>\n    </span>\n    <mdc-floating-label if.bind=\"label && !outlined\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}\n    </mdc-floating-label>\n    <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple\"></mdc-line-ripple>\n    <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline\">\n      <mdc-floating-label if.bind=\"label\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}</mdc-floating-label>\n    </mdc-notched-outline>\n  </div>\n\n  <mdc-menu class=\"mdc-select__menu ${fullWidth ? 'mdc-menu-surface--fullwidth' : ''}\" view-model.ref=\"menu\"\n    ref=\"menuElement\" typeahead mdcmenusurface:closed.trigger=\"handleMenuClosed()\"\n    mdcmenusurface:opened.trigger=\"handleMenuOpened()\" mdcmenu:selected.trigger=\"handleMenuItemAction($event)\"\n    mdclist:itemschanged.trigger=\"handleItemsChanged($event)\">\n    <mdc-list>\n      <slot></slot>\n    </mdc-list>\n  </mdc-menu>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -65030,7 +65053,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Basic</h3>\n\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <mdc-select label=\"Make your choice\" value.bind=\"value\">\n          <i class=\"material-icons\" mdc-select-icon>pets</i>\n          <mdc-list-item repeat.for=\"o of options\" value.bind=\"o\">${o.name}</mdc-list-item>\n        </mdc-select>\n      </div>\n      <!-- <div class=\"demo-container\">\n        <mdc-select label=\"Make your choice\" value.bind=\"value\" outlined>\n          <i class=\"material-icons\" mdc-select-icon>pets</i>\n          <mdc-list-item repeat.for=\"o of options\" data-value.bind=\"1\" value.bind=\"o\">${o.name}</mdc-list-item>\n        </mdc-select>\n      </div> -->\n      <br>\n      You've selected ${value.name}\n      <button mdc-button click.delegate=\"addOption()\">Add option</button>\n      <button mdc-button click.delegate=\"removeOption()\">Remove option</button>\n  </div>\n    <!-- <example-viewer [example]=\"exampleDefault\"></example-viewer> -->\n  </div>\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Basic</h3>\n\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <mdc-field>\n          <mdc-select label=\"Make your choice\" value.bind=\"value\" required>\n            <i class=\"material-icons\" mdc-select-icon>pets</i>\n            <mdc-list-item value.bind=\"undefined\"></mdc-list-item>\n            <mdc-list-item repeat.for=\"o of options\" value.bind=\"o\">${o.name}</mdc-list-item>\n          </mdc-select>\n          <mdc-select-helper-text validation>Required</mdc-select-helper-text>\n        </mdc-field>\n      </div>\n      <!-- <div class=\"demo-container\">\n        <mdc-select label=\"Make your choice\" value.bind=\"value\" outlined>\n          <i class=\"material-icons\" mdc-select-icon>pets</i>\n          <mdc-list-item repeat.for=\"o of options\" data-value.bind=\"1\" value.bind=\"o\">${o.name}</mdc-list-item>\n        </mdc-select>\n      </div> -->\n      <br>\n      You've selected ${value.name}\n      <button mdc-button click.delegate=\"addOption()\">Add option</button>\n      <button mdc-button click.delegate=\"removeOption()\">Remove option</button>\n    </div>\n    <!-- <example-viewer [example]=\"exampleDefault\"></example-viewer> -->\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -65261,4 +65284,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.db436ed2881a5ce05c3a.bundle.map
+//# sourceMappingURL=app.b695ef088aafaa40a263.bundle.map
