@@ -43,6 +43,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'menu-surface',
           'notched-outline',
           'ripple',
+          'select',
           'tab-bar',
           'top-app-bar',
           'text-field'

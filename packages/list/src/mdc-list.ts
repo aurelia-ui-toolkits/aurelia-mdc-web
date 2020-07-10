@@ -6,6 +6,8 @@ import { closest, matches } from '@material/dom/ponyfill';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcListItem } from './mdc-list-item/mdc-list-item';
 
+strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
+
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-list.html'))
 @customElement(cssClasses.ROOT)
@@ -23,14 +25,14 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   singleSelection: boolean;
   async singleSelectionChanged() {
     await this.initialised;
-    this.foundation.setSingleSelection(this.singleSelection);
+    this.foundation?.setSingleSelection(this.singleSelection);
   }
 
   @bindable.booleanAttr
   activated: boolean;
   async activatedChanged() {
     await this.initialised;
-    this.foundation.setUseActivatedClass(this.activated);
+    this.foundation?.setUseActivatedClass(this.activated);
   }
 
   @bindable.booleanAttr
@@ -45,12 +47,11 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   @children('mdc-list-item')
   items: MdcListItem[];
 
-  /**
-   * Sets whether typeahead functionality is enabled on the list.
-   * @param hasTypeahead Whether typeahead is enabled.
-   */
-  set hasTypeahead(hasTypeahead: boolean) {
-    this.foundation.setHasTypeahead(hasTypeahead);
+  @bindable.booleanAttr
+  typeahead: boolean;
+  async typeaheadChanged(hasTypeahead: boolean) {
+    await this.initialised;
+    this.foundation?.setHasTypeahead(hasTypeahead);
   }
 
   @bindable.booleanAttr
@@ -60,7 +61,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   wrapFocus: boolean;
   async wrapFocusChanged() {
     await this.initialised;
-    this.foundation.setWrapFocus(this.wrapFocus);
+    this.foundation?.setWrapFocus(this.wrapFocus);
   }
 
   initialSyncWithDOM() {
@@ -183,7 +184,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
    */
   handleFocusInEvent_(evt: FocusEvent) {
     const index = this.getListItemIndex_(evt);
-    this.foundation.handleFocusIn(evt, index);
+    this.foundation?.handleFocusIn(evt, index);
   }
 
   /**
@@ -191,7 +192,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
    */
   handleFocusOutEvent_(evt: FocusEvent) {
     const index = this.getListItemIndex_(evt);
-    this.foundation.handleFocusOut(evt, index);
+    this.foundation?.handleFocusOut(evt, index);
   }
 
   /**
@@ -201,7 +202,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   handleKeydownEvent_(evt: KeyboardEvent) {
     const index = this.getListItemIndex_(evt);
     const target = evt.target as Element;
-    this.foundation.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
+    this.foundation?.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
     return true;
   }
 
@@ -214,14 +215,14 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
 
     // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
     const toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
-    this.foundation.handleClick(index, toggleCheckbox);
+    this.foundation?.handleClick(index, toggleCheckbox);
   }
 
   /**
    * @return Whether typeahead is currently matching a user-specified prefix.
    */
   get typeaheadInProgress(): boolean {
-    return this.foundation.isTypeaheadInProgress();
+    return this.foundation!.isTypeaheadInProgress();
   }
 
   /**
@@ -235,7 +236,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
    * @return The index of the matched item.
    */
   typeaheadMatchItem(nextChar: string, startingIndex?: number): number {
-    return this.foundation.typeaheadMatchItem(nextChar, startingIndex, /** skipFocus */ true);
+    return this.foundation!.typeaheadMatchItem(nextChar, startingIndex, /** skipFocus */ true);
   }
 
   layout() {
@@ -252,15 +253,15 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
     [].slice.call(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
       .forEach((el: Element) => el.setAttribute('tabindex', '-1'));
 
-    this.foundation.layout();
+    this.foundation?.layout();
   }
 
   get selectedIndex(): MDCListIndex {
-    return this.foundation.getSelectedIndex();
+    return this.foundation!.getSelectedIndex();
   }
 
   set selectedIndex(index: MDCListIndex) {
-    this.foundation.setSelectedIndex(index);
+    this.foundation?.setSelectedIndex(index);
   }
 
   /**

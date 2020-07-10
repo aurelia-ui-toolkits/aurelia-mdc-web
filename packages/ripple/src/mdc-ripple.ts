@@ -21,19 +21,19 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   unbounded: boolean;
   async unboundedChanged(){
     await this.initialised;
-    this.foundation.setUnbounded(Boolean(this.unbounded));
+    this.foundation?.setUnbounded(Boolean(this.unbounded));
   }
 
   activate() {
-    this.foundation.activate();
+    this.foundation?.activate();
   }
 
   deactivate() {
-    this.foundation.deactivate();
+    this.foundation?.deactivate();
   }
 
   layout() {
-    this.foundation.layout();
+    this.foundation?.layout();
   }
 
   getDefaultFoundation() {

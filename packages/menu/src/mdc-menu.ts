@@ -2,43 +2,53 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuItemComponentEventDetail, strings, cssClasses } from '@material/menu';
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
 import { MdcList } from '@aurelia-mdc-web/list';
-import { MDCListActionEvent, MDCListFoundation, MDCListIndex } from '@material/list';
-import { MDCMenuSurfaceFoundation, MDCMenuDistance } from '@material/menu-surface';
+import { MDCListActionEvent, MDCListIndex } from '@material/list';
+import { MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
 import { child, inject, customElement, bindingMode } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
-// aurelia is case insensitive
-MDCMenuSurfaceFoundation.strings.OPENED_EVENT = MDCMenuSurfaceFoundation.strings.OPENED_EVENT.toLowerCase();
-MDCListFoundation.strings.ACTION_EVENT = MDCListFoundation.strings.ACTION_EVENT.toLowerCase();
+strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
 
 @inject(Element)
 @customElement('mdc-menu')
 export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
-  private menuSurface_!: MdcMenuSurface; // assigned in html
+  private menuSurface_: MdcMenuSurface; // assigned in html
 
   @child('mdc-list')
-  private list_?: MdcList;
+  list_?: MdcList;
 
   @bindable.booleanAttr
   fixed: boolean;
 
+  @bindable.booleanAttr
+  typeahead: boolean;
+  async typeaheadChanged() {
+    await this.initialised;
+    if (this.list_) {
+      this.list_.typeahead = this.typeahead;
+    }
+  }
+
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
+  @bindable
+  anchor?: Element | null;
+
   handleKeydown_(evt: KeyboardEvent) {
-    this.foundation.handleKeydown(evt);
+    this.foundation?.handleKeydown(evt);
     return true;
   }
 
   handleItemAction_(evt: MDCListActionEvent) {
-    this.foundation.handleItemAction(this.items[evt.detail.index]);
+    this.foundation?.handleItemAction(this.items[evt.detail.index]);
     return true;
   }
 
   handleMenuSurfaceOpened_() {
-    this.foundation.handleMenuSurfaceOpened();
+    this.foundation?.handleMenuSurfaceOpened();
     return true;
   }
 
@@ -65,16 +75,6 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   set wrapFocus(value: boolean) {
     if (this.list_) {
       this.list_.wrapFocus = value;
-    }
-  }
-
-  /**
-   * Sets whether the menu has typeahead functionality.
-   * @param value Whether typeahead is enabled.
-   */
-  set hasTypeahead(value: boolean) {
-    if (this.list_) {
-      this.list_.hasTypeahead = value;
     }
   }
 
@@ -160,6 +160,13 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     }
   }
 
+  /**
+   * @param corner Default anchor corner alignment of top-left menu corner.
+   */
+  setAnchorCorner(corner: Corner) {
+    this.menuSurface_.setAnchorCorner(corner);
+  }
+
   set quickOpen(quickOpen: boolean) {
     this.menuSurface_.quickOpen = quickOpen;
   }
@@ -168,7 +175,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   defaultFocusState: keyof typeof DefaultFocusState = 'LIST_ROOT';
   async defaultFocusStateChanged() {
     await this.initialised;
-    this.foundation.setDefaultFocusState(DefaultFocusState[this.defaultFocusState]);
+    this.foundation?.setDefaultFocusState(DefaultFocusState[this.defaultFocusState]);
   }
 
   @bindable
@@ -182,7 +189,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
    * @param index Index of list item within menu.
    */
   setSelectedIndex(index: number) {
-    this.foundation.setSelectedIndex(index);
+    this.foundation?.setSelectedIndex(index);
   }
 
   /**
@@ -191,7 +198,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
    * @param isEnabled The desired enabled state of the menu item.
    */
   setEnabled(index: number, isEnabled: boolean): void {
-    this.foundation.setEnabled(index, isEnabled);
+    this.foundation?.setEnabled(index, isEnabled);
   }
 
   /**

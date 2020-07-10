@@ -8,9 +8,9 @@ ${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}" mdc-ripple="input.
     input.trigger="onInput($event)" change.trigger="onChange($event)" blur.trigger="onBlur()" >
   <span class="mdc-text-field__affix mdc-text-field__affix--suffix" if.bind="suffix">${suffix}</span>
   <slot name="trailing-icon"></slot>
-  <mdc-floating-label if.bind="label && !outlined" id.bind="id" view-model.ref="label_">${label}</mdc-floating-label>
+  <mdc-floating-label if.bind="label && !outlined" id="${id}" view-model.ref="label_">${label}</mdc-floating-label>
   <mdc-line-ripple if.bind="!outlined" view-model.ref="lineRipple_"></mdc-line-ripple>
   <mdc-notched-outline if.bind="outlined" view-model.ref="outline_">
-    <mdc-floating-label if.bind="label" id.bind="id" view-model.ref="label_">${label}</mdc-floating-label>
+    <mdc-floating-label if.bind="label" id="${id}" view-model.ref="label_">${label}</mdc-floating-label>
   </mdc-notched-outline>
 </template>

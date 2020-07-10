@@ -27,6 +27,9 @@ export class MdcListItem {
   @bindable.booleanAttr
   activated: boolean;
 
+  @bindable
+  value: unknown;
+
   initialSyncWithDOM() {
     if (this.role) {
       this.root.setAttribute('role', this.role);
@@ -40,4 +43,12 @@ export class MdcListItem {
     return true;
   }
 
+}
+
+export interface IMdcListItemElement extends HTMLElement {
+  au: {
+    controller: {
+      viewModel: MdcListItem;
+    }
+  }
 }

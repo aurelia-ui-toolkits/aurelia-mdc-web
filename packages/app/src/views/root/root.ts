@@ -23,6 +23,7 @@ export class Root {
       { route: 'menu' },
       { route: 'list' },
       { route: 'ripple' },
+      { route: 'select' },
       { route: 'tabs' },
       { route: 'text-field' },
       { route: 'top-app-bar' },

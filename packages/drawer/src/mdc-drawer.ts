@@ -20,7 +20,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
    * Also returns true if drawer is in the open position.
    */
   get open(): boolean {
-    return this.foundation.isOpen();
+    return this.foundation!.isOpen();
   }
 
   /**
@@ -28,9 +28,9 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
    */
   set open(isOpen: boolean) {
     if (isOpen) {
-      this.foundation.open();
+      this.foundation?.open();
     } else {
-      this.foundation.close();
+      this.foundation?.close();
     }
   }
 
@@ -67,12 +67,12 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
   }
 
   handleKeydown_(evt: KeyboardEvent) {
-    this.foundation.handleKeydown(evt);
+    this.foundation?.handleKeydown(evt);
     return true;
   }
 
   handleTransitionEnd_(evt: TransitionEvent) {
-    this.foundation.handleTransitionEnd(evt);
+    this.foundation?.handleTransitionEnd(evt);
     return true;
   }
 

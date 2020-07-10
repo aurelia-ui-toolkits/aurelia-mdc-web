@@ -30,6 +30,7 @@
     "@material/menu-surface": "^7.0.0",
     "@material/notched-outline": "^7.0.0",
     "@material/ripple": "^7.0.0",
+    "@material/select": "^7.0.0",
     "@material/tab": "^7.0.0",
     "@material/tab-bar": "^7.0.0",
     "@material/tab-indicator": "^7.0.0",

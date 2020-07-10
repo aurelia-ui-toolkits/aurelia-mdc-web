@@ -1,21 +1,27 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCMenuSurfaceFoundation, MDCMenuSurfaceAdapter, cssClasses, Corner, MDCMenuDistance, util } from '@material/menu-surface';
-import { inject, customAttribute, PLATFORM } from 'aurelia-framework';
+import { MDCMenuSurfaceFoundation, MDCMenuSurfaceAdapter, cssClasses, Corner, MDCMenuDistance, util, strings } from '@material/menu-surface';
+import { inject, customAttribute } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
+
+strings.OPENED_EVENT = strings.OPENED_EVENT.toLowerCase();
+strings.CLOSED_EVENT = strings.CLOSED_EVENT.toLowerCase();
 
 @inject(Element)
 @customAttribute('mdc-menu-surface')
 export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> implements EventListenerObject {
   originalParent: HTMLElement | null;
-  anchorElement?: Element | null; // assigned in initialSyncWithDOM()
+
+  @bindable
+  anchor?: Element | null;
+
   private previousFocus?: HTMLElement | SVGElement | null;
 
   handleKeydown(evt: KeyboardEvent) {
-    this.foundation.handleKeydown(evt);
+    this.foundation?.handleKeydown(evt);
   }
 
   handleBodyClick(evt: MouseEvent) {
-    this.foundation.handleBodyClick(evt);
+    this.foundation?.handleBodyClick(evt);
   }
 
   async initialise() {
@@ -51,32 +57,34 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
 
   initialSyncWithDOM() {
     const parentEl = this.root.parentElement;
-    this.anchorElement = parentEl && parentEl.classList.contains(cssClasses.ANCHOR) ? parentEl : null;
+    if (!this.anchor) {
+      this.anchor = parentEl && parentEl.classList.contains(cssClasses.ANCHOR) ? parentEl : null;
+    }
     this.listen('keydown', this);
   }
 
   destroy() {
     this.unlisten('keydown', this);
-    if(this.originalParent) {
+    if (this.originalParent) {
       this.originalParent.appendChild(document.body.removeChild(this.root));
     }
     super.destroy();
   }
 
   isOpen(): boolean {
-    return this.foundation.isOpen();
+    return this.foundation!.isOpen();
   }
 
   open() {
-    this.foundation.open();
+    this.foundation?.open();
   }
 
   close(skipRestoreFocus = false) {
-    this.foundation.close(skipRestoreFocus);
+    this.foundation?.close(skipRestoreFocus);
   }
 
   set quickOpen(quickOpen: boolean) {
-    this.foundation.setQuickOpen(quickOpen);
+    this.foundation?.setQuickOpen(quickOpen);
   }
 
   /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
@@ -88,14 +96,9 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       this.originalParent = this.root.parentElement;
       if (this.originalParent) {
         document.body.appendChild(this.originalParent.removeChild(this.root));
-        this.foundation.setIsHoisted(true);
+        this.foundation?.setIsHoisted(true);
       }
     }
-  }
-
-  /** Sets the element that the menu-surface is anchored to. */
-  setMenuSurfaceAnchorElement(element: Element) {
-    this.anchorElement = element;
   }
 
   @bindable.booleanAttr
@@ -107,12 +110,12 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       this.root.classList.remove(cssClasses.FIXED);
     }
     await this.initialised;
-    this.foundation.setFixedPosition(this.fixed);
+    this.foundation?.setFixedPosition(this.fixed);
   }
 
   /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
   setAbsolutePosition(x: number, y: number) {
-    this.foundation.setAbsolutePosition(x, y);
+    this.foundation?.setAbsolutePosition(x, y);
     this.hoistToBody = true;
   }
 
@@ -120,14 +123,21 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   anchorCorner: keyof typeof Corner;
   async anchorCornerChanged() {
     await this.initialised;
-    this.foundation.setAnchorCorner(Corner[this.anchorCorner]);
+    this.foundation?.setAnchorCorner(Corner[this.anchorCorner]);
+  }
+
+  /**
+   * @param corner Default anchor corner alignment of top-left surface corner.
+   */
+  setAnchorCorner(corner: Corner) {
+    this.foundation?.setAnchorCorner(corner);
   }
 
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
   async anchorMarginChanged(margin: Partial<MDCMenuDistance>) {
     await this.initialised;
-    this.foundation.setAnchorMargin(margin);
+    this.foundation?.setAnchorMargin(margin);
   }
 
   getDefaultFoundation() {
@@ -137,7 +147,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
       hasClass: (className) => this.root.classList.contains(className),
-      hasAnchor: () => !!this.anchorElement,
+      hasAnchor: () => !!this.anchor,
       notifyClose: () => {
         this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
         this.deregisterBodyClickListener();
@@ -169,7 +179,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
           height: (this.root as HTMLElement).offsetHeight
         };
       },
-      getAnchorDimensions: () => this.anchorElement ? this.anchorElement.getBoundingClientRect() : null,
+      getAnchorDimensions: () => this.anchor ? this.anchor.getBoundingClientRect() : null,
       getWindowDimensions: () => {
         return { width: window.innerWidth, height: window.innerHeight };
       },

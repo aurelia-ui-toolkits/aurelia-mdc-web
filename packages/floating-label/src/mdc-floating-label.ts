@@ -8,7 +8,7 @@ import { estimateScrollWidth } from '@material/dom/ponyfill';
 @useView(PLATFORM.moduleName('./mdc-floating-label.html'))
 export class MdcFloatingLabel extends MdcComponent<MDCFloatingLabelFoundation> {
   shake(shouldShake: boolean) {
-    this.foundation.shake(shouldShake);
+    this.foundation?.shake(shouldShake);
   }
 
   /**
@@ -16,7 +16,7 @@ export class MdcFloatingLabel extends MdcComponent<MDCFloatingLabelFoundation> {
    * @param shouldFloat If true, floats the label by adding a CSS class; otherwise, docks it by removing the class.
    */
   float(shouldFloat: boolean) {
-    this.foundation.float(shouldFloat);
+    this.foundation?.float(shouldFloat);
   }
 
   /**
@@ -24,11 +24,11 @@ export class MdcFloatingLabel extends MdcComponent<MDCFloatingLabelFoundation> {
    * @param isRequired If true, adds an asterisk to the label, indicating that it is required.
    */
   setRequired(isRequired: boolean) {
-    this.foundation.setRequired(isRequired);
+    this.foundation?.setRequired(isRequired);
   }
 
   getWidth(): number {
-    return this.foundation.getWidth();
+    return this.foundation!.getWidth();
   }
 
   getDefaultFoundation() {

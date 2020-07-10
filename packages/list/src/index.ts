@@ -1,6 +1,7 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
 export { MdcList } from './mdc-list';
+export { MdcListItem, IMdcListItemElement } from './mdc-list-item/mdc-list-item';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([

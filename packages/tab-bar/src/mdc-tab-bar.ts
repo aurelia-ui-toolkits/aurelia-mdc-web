@@ -26,7 +26,7 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
   useAutomaticActivation: boolean;
   async useAutomaticActivationChanged() {
     await this.initialised;
-    this.foundation.setUseAutomaticActivation(this.useAutomaticActivation);
+    this.foundation?.setUseAutomaticActivation(this.useAutomaticActivation);
   }
 
   async initialise() {
@@ -44,12 +44,12 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
   }
 
   handleKeyDown_(evt: KeyboardEvent) {
-    this.foundation.handleKeyDown(evt);
+    this.foundation?.handleKeyDown(evt);
     return true;
   }
 
   handleTabInteraction_(evt: MDCTabInteractionEvent) {
-    this.foundation.handleTabInteraction(evt);
+    this.foundation?.handleTabInteraction(evt);
   }
 
   getDefaultFoundation() {
@@ -62,7 +62,7 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
       getScrollContentWidth: () => this.tabScroller_!.getScrollContentWidth(),
       getOffsetWidth: () => (this.root as HTMLElement).offsetWidth,
       isRTL: () => window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
-      setActiveTab: (index) => this.foundation.activateTab(index),
+      setActiveTab: (index) => this.foundation?.activateTab(index),
       activateTabAtIndex: (index, clientRect) => this.tabScroller_!.tabs[index].activate(clientRect),
       deactivateTabAtIndex: (index) => this.tabScroller_!.tabs[index].deactivate(),
       focusTabAtIndex: (index) => this.tabScroller_!.tabs[index].focus(),
@@ -100,7 +100,7 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
    * @param index The index of the tab
    */
   activateTab(index: number) {
-    this.foundation.activateTab(index);
+    this.foundation?.activateTab(index);
   }
 
   /**
@@ -108,7 +108,7 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
    * @param index THe index of the tab
    */
   scrollIntoView(index: number) {
-    this.foundation.scrollIntoView(index);
+    this.foundation?.scrollIntoView(index);
   }
 
   /**

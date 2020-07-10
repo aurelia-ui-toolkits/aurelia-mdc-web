@@ -1,0 +1,25 @@
+<template>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Basic</h3>
+
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <mdc-select label="Make your choice" value.bind="value">
+          <i class="material-icons" mdc-select-icon>pets</i>
+          <mdc-list-item repeat.for="o of options" value.bind="o">${o.name}</mdc-list-item>
+        </mdc-select>
+      </div>
+      <!-- <div class="demo-container">
+        <mdc-select label="Make your choice" value.bind="value" outlined>
+          <i class="material-icons" mdc-select-icon>pets</i>
+          <mdc-list-item repeat.for="o of options" data-value.bind="1" value.bind="o">${o.name}</mdc-list-item>
+        </mdc-select>
+      </div> -->
+      <br>
+      You've selected ${value.name}
+      <button mdc-button click.delegate="addOption()">Add option</button>
+      <button mdc-button click.delegate="removeOption()">Remove option</button>
+  </div>
+    <!-- <example-viewer [example]="exampleDefault"></example-viewer> -->
+  </div>
+</template>

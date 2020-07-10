@@ -13,6 +13,8 @@ import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './md
 import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
 
+let textFieldId = 0;
+
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-text-field.html'))
 @customElement(cssClasses.ROOT)
@@ -26,18 +28,13 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element, _instruction: BehaviorInstruction) {
     // move icons to slots - this allows omitting slot specification
     const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`);
-    if (leadingIcon) {
-      leadingIcon.setAttribute('slot', 'leading-icon');
-    }
+    leadingIcon?.setAttribute('slot', 'leading-icon');
     const trailingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`);
-    if (trailingIcon) {
-      trailingIcon.setAttribute('slot', 'trailing-icon');
-    }
+    trailingIcon?.setAttribute('slot', 'trailing-icon');
     return true;
   }
 
-  static id = 0;
-  id: number = ++MdcTextField.id;
+  id: string = `mdc-text-field-${++textFieldId}`;
   input_: HTMLInputElement;
   label_: MdcFloatingLabel;
   lineRipple_: MdcLineRipple;
@@ -253,13 +250,13 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   onInput(evt: Event): void {
     const value = (<any>evt.target).value;
     this.value = value;
-    this.foundation.handleInput();
+    this.foundation?.handleInput();
     this.emit('input', {}, true);
   }
 
   async onFocus() {
     await this.initialised;
-    this.foundation.activateFocus();
+    this.foundation?.activateFocus();
   }
 
   onChange(evt: Event): void {
@@ -269,7 +266,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 
   onBlur(): void {
-    this.foundation.deactivateFocus();
+    this.foundation?.deactivateFocus();
   }
 
   focus() {
