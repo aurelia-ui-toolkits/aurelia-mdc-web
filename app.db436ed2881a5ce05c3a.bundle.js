@@ -293,6 +293,49 @@ var MDCFoundation = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../node_modules/@material/base/index.js":
+/*!**********************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/base/index.js ***!
+  \**********************************************************************/
+/*! exports provided: MDCComponent, MDCFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/base/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCComponent", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCComponent"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "../../node_modules/@material/dom/events.js":
 /*!**********************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/dom/events.js ***!
@@ -6373,6 +6416,1701 @@ function getNormalizedEventCoords(evt, pageOffset, clientRect) {
     return { x: normalizedX, y: normalizedY };
 }
 //# sourceMappingURL=util.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/component.js":
+/*!****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/component.js ***!
+  \****************************************************************************/
+/*! exports provided: MDCSelect */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSelect", function() { return MDCSelect; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _material_floating_label_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/floating-label/component */ "../../node_modules/@material/floating-label/component.js");
+/* harmony import */ var _material_line_ripple_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/line-ripple/component */ "../../node_modules/@material/line-ripple/component.js");
+/* harmony import */ var _material_menu_surface_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/menu-surface/constants */ "../../node_modules/@material/menu-surface/constants.js");
+/* harmony import */ var _material_menu_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material/menu/component */ "../../node_modules/@material/menu/component.js");
+/* harmony import */ var _material_menu_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material/menu/constants */ "../../node_modules/@material/menu/constants.js");
+/* harmony import */ var _material_notched_outline_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material/notched-outline/component */ "../../node_modules/@material/notched-outline/component.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material/ripple/component */ "../../node_modules/@material/ripple/component.js");
+/* harmony import */ var _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material/ripple/foundation */ "../../node_modules/@material/ripple/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/select/constants.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/select/foundation.js");
+/* harmony import */ var _helper_text_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./helper-text/component */ "../../node_modules/@material/select/helper-text/component.js");
+/* harmony import */ var _icon_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./icon/component */ "../../node_modules/@material/select/icon/component.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var MDCSelect = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCSelect, _super);
+    function MDCSelect() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCSelect.attachTo = function (root) {
+        return new MDCSelect(root);
+    };
+    MDCSelect.prototype.initialize = function (labelFactory, lineRippleFactory, outlineFactory, menuFactory, iconFactory, helperTextFactory) {
+        if (labelFactory === void 0) { labelFactory = function (el) { return new _material_floating_label_component__WEBPACK_IMPORTED_MODULE_2__["MDCFloatingLabel"](el); }; }
+        if (lineRippleFactory === void 0) { lineRippleFactory = function (el) { return new _material_line_ripple_component__WEBPACK_IMPORTED_MODULE_3__["MDCLineRipple"](el); }; }
+        if (outlineFactory === void 0) { outlineFactory = function (el) { return new _material_notched_outline_component__WEBPACK_IMPORTED_MODULE_7__["MDCNotchedOutline"](el); }; }
+        if (menuFactory === void 0) { menuFactory = function (el) { return new _material_menu_component__WEBPACK_IMPORTED_MODULE_5__["MDCMenu"](el); }; }
+        if (iconFactory === void 0) { iconFactory = function (el) { return new _icon_component__WEBPACK_IMPORTED_MODULE_13__["MDCSelectIcon"](el); }; }
+        if (helperTextFactory === void 0) { helperTextFactory = function (el) { return new _helper_text_component__WEBPACK_IMPORTED_MODULE_12__["MDCSelectHelperText"](el); }; }
+        this.selectAnchor =
+            this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].SELECT_ANCHOR_SELECTOR);
+        this.selectedText =
+            this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].SELECTED_TEXT_SELECTOR);
+        if (!this.selectedText) {
+            throw new Error('MDCSelect: Missing required element: The following selector must be present: ' +
+                ("'" + _constants__WEBPACK_IMPORTED_MODULE_10__["strings"].SELECTED_TEXT_SELECTOR + "'"));
+        }
+        if (this.selectAnchor.hasAttribute(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].ARIA_CONTROLS)) {
+            var helperTextElement = document.getElementById(this.selectAnchor.getAttribute(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].ARIA_CONTROLS));
+            if (helperTextElement) {
+                this.helperText = helperTextFactory(helperTextElement);
+            }
+        }
+        this.menuSetup(menuFactory);
+        var labelElement = this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].LABEL_SELECTOR);
+        this.label = labelElement ? labelFactory(labelElement) : null;
+        var lineRippleElement = this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].LINE_RIPPLE_SELECTOR);
+        this.lineRipple =
+            lineRippleElement ? lineRippleFactory(lineRippleElement) : null;
+        var outlineElement = this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].OUTLINE_SELECTOR);
+        this.outline = outlineElement ? outlineFactory(outlineElement) : null;
+        var leadingIcon = this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].LEADING_ICON_SELECTOR);
+        if (leadingIcon) {
+            this.leadingIcon = iconFactory(leadingIcon);
+        }
+        if (!this.root.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_10__["cssClasses"].OUTLINED)) {
+            this.ripple = this.createRipple();
+        }
+    };
+    /**
+     * Initializes the select's event listeners and internal state based
+     * on the environment's state.
+     */
+    MDCSelect.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleChange = function () {
+            _this.foundation.handleChange();
+        };
+        this.handleFocus = function () {
+            _this.foundation.handleFocus();
+        };
+        this.handleBlur = function () {
+            _this.foundation.handleBlur();
+        };
+        this.handleClick = function (evt) {
+            _this.selectAnchor.focus();
+            _this.foundation.handleClick(_this.getNormalizedXCoordinate(evt));
+        };
+        this.handleKeydown = function (evt) {
+            _this.foundation.handleKeydown(evt);
+        };
+        this.handleMenuItemAction = function (evt) {
+            _this.foundation.handleMenuItemAction(evt.detail.index);
+        };
+        this.handleMenuOpened = function () {
+            _this.foundation.handleMenuOpened();
+        };
+        this.handleMenuClosed = function () {
+            _this.foundation.handleMenuClosed();
+        };
+        this.selectAnchor.addEventListener('focus', this.handleFocus);
+        this.selectAnchor.addEventListener('blur', this.handleBlur);
+        this.selectAnchor.addEventListener('click', this.handleClick);
+        this.selectAnchor.addEventListener('keydown', this.handleKeydown);
+        this.menu.listen(_material_menu_surface_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].CLOSED_EVENT, this.handleMenuClosed);
+        this.menu.listen(_material_menu_surface_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].OPENED_EVENT, this.handleMenuOpened);
+        this.menu.listen(_material_menu_constants__WEBPACK_IMPORTED_MODULE_6__["strings"].SELECTED_EVENT, this.handleMenuItemAction);
+    };
+    MDCSelect.prototype.destroy = function () {
+        this.selectAnchor.removeEventListener('change', this.handleChange);
+        this.selectAnchor.removeEventListener('focus', this.handleFocus);
+        this.selectAnchor.removeEventListener('blur', this.handleBlur);
+        this.selectAnchor.removeEventListener('keydown', this.handleKeydown);
+        this.selectAnchor.removeEventListener('click', this.handleClick);
+        this.menu.unlisten(_material_menu_surface_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].CLOSED_EVENT, this.handleMenuClosed);
+        this.menu.unlisten(_material_menu_surface_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].OPENED_EVENT, this.handleMenuOpened);
+        this.menu.unlisten(_material_menu_constants__WEBPACK_IMPORTED_MODULE_6__["strings"].SELECTED_EVENT, this.handleMenuItemAction);
+        this.menu.destroy();
+        if (this.ripple) {
+            this.ripple.destroy();
+        }
+        if (this.outline) {
+            this.outline.destroy();
+        }
+        if (this.leadingIcon) {
+            this.leadingIcon.destroy();
+        }
+        if (this.helperText) {
+            this.helperText.destroy();
+        }
+        _super.prototype.destroy.call(this);
+    };
+    Object.defineProperty(MDCSelect.prototype, "value", {
+        get: function () {
+            return this.foundation.getValue();
+        },
+        set: function (value) {
+            this.foundation.setValue(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelect.prototype, "selectedIndex", {
+        get: function () {
+            return this.foundation.getSelectedIndex();
+        },
+        set: function (selectedIndex) {
+            this.foundation.setSelectedIndex(selectedIndex, /** closeMenu */ true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelect.prototype, "disabled", {
+        get: function () {
+            return this.foundation.getDisabled();
+        },
+        set: function (disabled) {
+            this.foundation.setDisabled(disabled);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelect.prototype, "leadingIconAriaLabel", {
+        set: function (label) {
+            this.foundation.setLeadingIconAriaLabel(label);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelect.prototype, "leadingIconContent", {
+        /**
+         * Sets the text content of the leading icon.
+         */
+        set: function (content) {
+            this.foundation.setLeadingIconContent(content);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelect.prototype, "helperTextContent", {
+        /**
+         * Sets the text content of the helper text.
+         */
+        set: function (content) {
+            this.foundation.setHelperTextContent(content);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelect.prototype, "useDefaultValidation", {
+        /**
+         * Enables or disables the default validation scheme where a required select
+         * must be non-empty. Set to false for custom validation.
+         * @param useDefaultValidation Set this to false to ignore default
+         *     validation scheme.
+         */
+        set: function (useDefaultValidation) {
+            this.foundation.setUseDefaultValidation(useDefaultValidation);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelect.prototype, "valid", {
+        /**
+         * Checks if the select is in a valid state.
+         */
+        get: function () {
+            return this.foundation.isValid();
+        },
+        /**
+         * Sets the current invalid state of the select.
+         */
+        set: function (isValid) {
+            this.foundation.setValid(isValid);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelect.prototype, "required", {
+        /**
+         * Returns whether the select is required.
+         */
+        get: function () {
+            return this.foundation.getRequired();
+        },
+        /**
+         * Sets the control to the required state.
+         */
+        set: function (isRequired) {
+            this.foundation.setRequired(isRequired);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Re-calculates if the notched outline should be notched and if the label
+     * should float.
+     */
+    MDCSelect.prototype.layout = function () {
+        this.foundation.layout();
+    };
+    /**
+     * Synchronizes the list of options with the state of the foundation. Call
+     * this whenever menu options are dynamically updated.
+     */
+    MDCSelect.prototype.layoutOptions = function () {
+        this.foundation.layoutOptions();
+        this.menu.layout();
+    };
+    MDCSelect.prototype.getDefaultFoundation = function () {
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, this.getSelectAdapterMethods()), this.getCommonAdapterMethods()), this.getOutlineAdapterMethods()), this.getLabelAdapterMethods());
+        return new _foundation__WEBPACK_IMPORTED_MODULE_11__["MDCSelectFoundation"](adapter, this.getFoundationMap());
+    };
+    /**
+     * Handles setup for the menu.
+     */
+    MDCSelect.prototype.menuSetup = function (menuFactory) {
+        this.menuElement = this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].MENU_SELECTOR);
+        this.menu = menuFactory(this.menuElement);
+        this.menu.hasTypeahead = true;
+    };
+    MDCSelect.prototype.createRipple = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _material_ripple_component__WEBPACK_IMPORTED_MODULE_8__["MDCRipple"].createAdapter({ root: this.selectAnchor })), { registerInteractionHandler: function (evtType, handler) {
+                _this.selectAnchor.addEventListener(evtType, handler);
+            }, deregisterInteractionHandler: function (evtType, handler) {
+                _this.selectAnchor.removeEventListener(evtType, handler);
+            } });
+        // tslint:enable:object-literal-sort-keys
+        return new _material_ripple_component__WEBPACK_IMPORTED_MODULE_8__["MDCRipple"](this.selectAnchor, new _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_9__["MDCRippleFoundation"](adapter));
+    };
+    MDCSelect.prototype.getSelectAdapterMethods = function () {
+        var _this = this;
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        return {
+            getSelectedMenuItem: function () {
+                return _this.menuElement.querySelector(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].SELECTED_ITEM_SELECTOR);
+            },
+            getMenuItemAttr: function (menuItem, attr) {
+                return menuItem.getAttribute(attr);
+            },
+            setSelectedText: function (text) {
+                _this.selectedText.textContent = text;
+            },
+            isSelectAnchorFocused: function () { return document.activeElement === _this.selectAnchor; },
+            getSelectAnchorAttr: function (attr) {
+                return _this.selectAnchor.getAttribute(attr);
+            },
+            setSelectAnchorAttr: function (attr, value) {
+                _this.selectAnchor.setAttribute(attr, value);
+            },
+            removeSelectAnchorAttr: function (attr) {
+                _this.selectAnchor.removeAttribute(attr);
+            },
+            addMenuClass: function (className) {
+                _this.menuElement.classList.add(className);
+            },
+            removeMenuClass: function (className) {
+                _this.menuElement.classList.remove(className);
+            },
+            openMenu: function () {
+                _this.menu.open = true;
+            },
+            closeMenu: function () {
+                _this.menu.open = false;
+            },
+            getAnchorElement: function () {
+                return _this.root.querySelector(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].SELECT_ANCHOR_SELECTOR);
+            },
+            setMenuAnchorElement: function (anchorEl) {
+                _this.menu.setAnchorElement(anchorEl);
+            },
+            setMenuAnchorCorner: function (anchorCorner) {
+                _this.menu.setAnchorCorner(anchorCorner);
+            },
+            setMenuWrapFocus: function (wrapFocus) {
+                _this.menu.wrapFocus = wrapFocus;
+            },
+            setAttributeAtIndex: function (index, attributeName, attributeValue) {
+                _this.menu.items[index].setAttribute(attributeName, attributeValue);
+            },
+            removeAttributeAtIndex: function (index, attributeName) {
+                _this.menu.items[index].removeAttribute(attributeName);
+            },
+            focusMenuItemAtIndex: function (index) {
+                _this.menu.items[index].focus();
+            },
+            getMenuItemCount: function () { return _this.menu.items.length; },
+            getMenuItemValues: function () { return _this.menu.items.map(function (el) { return el.getAttribute(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].VALUE_ATTR) || ''; }); },
+            getMenuItemTextAtIndex: function (index) {
+                return _this.menu.getPrimaryTextAtIndex(index);
+            },
+            addClassAtIndex: function (index, className) {
+                _this.menu.items[index].classList.add(className);
+            },
+            removeClassAtIndex: function (index, className) {
+                _this.menu.items[index].classList.remove(className);
+            },
+            isTypeaheadInProgress: function () { return _this.menu.typeaheadInProgress; },
+            typeaheadMatchItem: function (nextChar, startingIndex) {
+                return _this.menu.typeaheadMatchItem(nextChar, startingIndex);
+            },
+        };
+        // tslint:enable:object-literal-sort-keys
+    };
+    MDCSelect.prototype.getCommonAdapterMethods = function () {
+        var _this = this;
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        return {
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
+            },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            setRippleCenter: function (normalizedX) {
+                _this.lineRipple && _this.lineRipple.setRippleCenter(normalizedX);
+            },
+            activateBottomLine: function () {
+                _this.lineRipple && _this.lineRipple.activate();
+            },
+            deactivateBottomLine: function () {
+                _this.lineRipple && _this.lineRipple.deactivate();
+            },
+            notifyChange: function (value) {
+                var index = _this.selectedIndex;
+                _this.emit(_constants__WEBPACK_IMPORTED_MODULE_10__["strings"].CHANGE_EVENT, { value: value, index: index }, true /* shouldBubble  */);
+            },
+        };
+        // tslint:enable:object-literal-sort-keys
+    };
+    MDCSelect.prototype.getOutlineAdapterMethods = function () {
+        var _this = this;
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        return {
+            hasOutline: function () { return Boolean(_this.outline); },
+            notchOutline: function (labelWidth) {
+                _this.outline && _this.outline.notch(labelWidth);
+            },
+            closeOutline: function () {
+                _this.outline && _this.outline.closeNotch();
+            },
+        };
+        // tslint:enable:object-literal-sort-keys
+    };
+    MDCSelect.prototype.getLabelAdapterMethods = function () {
+        var _this = this;
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        return {
+            hasLabel: function () { return !!_this.label; },
+            floatLabel: function (shouldFloat) {
+                _this.label && _this.label.float(shouldFloat);
+            },
+            getLabelWidth: function () { return _this.label ? _this.label.getWidth() : 0; },
+            setLabelRequired: function (isRequired) {
+                _this.label && _this.label.setRequired(isRequired);
+            },
+        };
+        // tslint:enable:object-literal-sort-keys
+    };
+    /**
+     * Calculates where the line ripple should start based on the x coordinate within the component.
+     */
+    MDCSelect.prototype.getNormalizedXCoordinate = function (evt) {
+        var targetClientRect = evt.target.getBoundingClientRect();
+        var xCoordinate = this.isTouchEvent(evt) ? evt.touches[0].clientX : evt.clientX;
+        return xCoordinate - targetClientRect.left;
+    };
+    MDCSelect.prototype.isTouchEvent = function (evt) {
+        return Boolean(evt.touches);
+    };
+    /**
+     * Returns a map of all subcomponents to subfoundations.
+     */
+    MDCSelect.prototype.getFoundationMap = function () {
+        return {
+            helperText: this.helperText ? this.helperText.foundationForSelect :
+                undefined,
+            leadingIcon: this.leadingIcon ? this.leadingIcon.foundationForSelect :
+                undefined,
+        };
+    };
+    return MDCSelect;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/constants.js":
+/*!****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/constants.js ***!
+  \****************************************************************************/
+/*! exports provided: cssClasses, strings, numbers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ACTIVATED: 'mdc-select--activated',
+    DISABLED: 'mdc-select--disabled',
+    FOCUSED: 'mdc-select--focused',
+    INVALID: 'mdc-select--invalid',
+    MENU_INVALID: 'mdc-select__menu--invalid',
+    OUTLINED: 'mdc-select--outlined',
+    REQUIRED: 'mdc-select--required',
+    ROOT: 'mdc-select',
+    SELECTED_ITEM_CLASS: 'mdc-list-item--selected',
+    WITH_LEADING_ICON: 'mdc-select--with-leading-icon',
+};
+var strings = {
+    ARIA_CONTROLS: 'aria-controls',
+    ARIA_SELECTED_ATTR: 'aria-selected',
+    CHANGE_EVENT: 'MDCSelect:change',
+    LABEL_SELECTOR: '.mdc-floating-label',
+    LEADING_ICON_SELECTOR: '.mdc-select__icon',
+    LINE_RIPPLE_SELECTOR: '.mdc-line-ripple',
+    MENU_SELECTOR: '.mdc-select__menu',
+    OUTLINE_SELECTOR: '.mdc-notched-outline',
+    SELECTED_ITEM_SELECTOR: "." + cssClasses.SELECTED_ITEM_CLASS,
+    SELECTED_TEXT_SELECTOR: '.mdc-select__selected-text',
+    SELECT_ANCHOR_SELECTOR: '.mdc-select__anchor',
+    VALUE_ATTR: 'data-value',
+};
+var numbers = {
+    LABEL_SCALE: 0.75,
+    UNSET_INDEX: -1,
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/foundation.js":
+/*!*****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/foundation.js ***!
+  \*****************************************************************************/
+/*! exports provided: MDCSelectFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSelectFoundation", function() { return MDCSelectFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/keyboard */ "../../node_modules/@material/dom/keyboard.js");
+/* harmony import */ var _material_menu_surface_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/menu-surface/constants */ "../../node_modules/@material/menu-surface/constants.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/select/constants.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+var MDCSelectFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCSelectFoundation, _super);
+    /* istanbul ignore next: optional argument is not a branch statement */
+    /**
+     * @param adapter
+     * @param foundationMap Map from subcomponent names to their subfoundations.
+     */
+    function MDCSelectFoundation(adapter, foundationMap) {
+        if (foundationMap === void 0) { foundationMap = {}; }
+        var _this = _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCSelectFoundation.defaultAdapter), adapter)) || this;
+        // Index of the currently selected menu item.
+        _this.selectedIndex = _constants__WEBPACK_IMPORTED_MODULE_4__["numbers"].UNSET_INDEX;
+        // VALUE_ATTR values of the menu items.
+        _this.menuItemValues = [];
+        // Disabled state
+        _this.disabled = false;
+        // isMenuOpen is used to track the state of the menu by listening to the
+        // MDCMenuSurface:closed event For reference, menu.open will return false if
+        // the menu is still closing, but isMenuOpen returns false only after the menu
+        // has closed
+        _this.isMenuOpen = false;
+        // By default, select is invalid if it is required but no value is selected.
+        _this.useDefaultValidation = true;
+        _this.customValidity = true;
+        _this.leadingIcon = foundationMap.leadingIcon;
+        _this.helperText = foundationMap.helperText;
+        return _this;
+    }
+    Object.defineProperty(MDCSelectFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelectFoundation, "numbers", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_4__["numbers"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelectFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_4__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelectFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCSelectAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                activateBottomLine: function () { return undefined; },
+                deactivateBottomLine: function () { return undefined; },
+                getSelectedMenuItem: function () { return null; },
+                hasLabel: function () { return false; },
+                floatLabel: function () { return undefined; },
+                getLabelWidth: function () { return 0; },
+                setLabelRequired: function () { return undefined; },
+                hasOutline: function () { return false; },
+                notchOutline: function () { return undefined; },
+                closeOutline: function () { return undefined; },
+                setRippleCenter: function () { return undefined; },
+                notifyChange: function () { return undefined; },
+                setSelectedText: function () { return undefined; },
+                isSelectAnchorFocused: function () { return false; },
+                getSelectAnchorAttr: function () { return ''; },
+                setSelectAnchorAttr: function () { return undefined; },
+                removeSelectAnchorAttr: function () { return undefined; },
+                addMenuClass: function () { return undefined; },
+                removeMenuClass: function () { return undefined; },
+                openMenu: function () { return undefined; },
+                closeMenu: function () { return undefined; },
+                getAnchorElement: function () { return null; },
+                setMenuAnchorElement: function () { return undefined; },
+                setMenuAnchorCorner: function () { return undefined; },
+                setMenuWrapFocus: function () { return undefined; },
+                setAttributeAtIndex: function () { return undefined; },
+                focusMenuItemAtIndex: function () { return undefined; },
+                getMenuItemCount: function () { return 0; },
+                getMenuItemValues: function () { return []; },
+                getMenuItemTextAtIndex: function () { return ''; },
+                getMenuItemAttr: function () { return ''; },
+                addClassAtIndex: function () { return undefined; },
+                removeClassAtIndex: function () { return undefined; },
+                isTypeaheadInProgress: function () { return false; },
+                typeaheadMatchItem: function () { return -1; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /** Returns the index of the currently selected menu item, or -1 if none. */
+    MDCSelectFoundation.prototype.getSelectedIndex = function () {
+        return this.selectedIndex;
+    };
+    MDCSelectFoundation.prototype.setSelectedIndex = function (index, closeMenu) {
+        if (closeMenu === void 0) { closeMenu = false; }
+        if (index >= this.adapter.getMenuItemCount()) {
+            return;
+        }
+        this.removeSelectionAtIndex(this.selectedIndex);
+        this.setSelectionAtIndex(index);
+        if (closeMenu) {
+            this.adapter.closeMenu();
+        }
+        this.handleChange();
+    };
+    MDCSelectFoundation.prototype.setValue = function (value) {
+        var index = this.menuItemValues.indexOf(value);
+        this.setSelectedIndex(index);
+    };
+    MDCSelectFoundation.prototype.getValue = function () {
+        var listItem = this.adapter.getSelectedMenuItem();
+        if (listItem) {
+            return this.adapter.getMenuItemAttr(listItem, _constants__WEBPACK_IMPORTED_MODULE_4__["strings"].VALUE_ATTR) || '';
+        }
+        return '';
+    };
+    MDCSelectFoundation.prototype.getDisabled = function () {
+        return this.disabled;
+    };
+    MDCSelectFoundation.prototype.setDisabled = function (isDisabled) {
+        this.disabled = isDisabled;
+        if (this.disabled) {
+            this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].DISABLED);
+            this.adapter.closeMenu();
+        }
+        else {
+            this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].DISABLED);
+        }
+        if (this.leadingIcon) {
+            this.leadingIcon.setDisabled(this.disabled);
+        }
+        if (this.disabled) {
+            // Prevent click events from focusing select. Simply pointer-events: none
+            // is not enough since screenreader clicks may bypass this.
+            this.adapter.removeSelectAnchorAttr('tabindex');
+        }
+        else {
+            this.adapter.setSelectAnchorAttr('tabindex', '0');
+        }
+        this.adapter.setSelectAnchorAttr('aria-disabled', this.disabled.toString());
+    };
+    /** Opens the menu. */
+    MDCSelectFoundation.prototype.openMenu = function () {
+        this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].ACTIVATED);
+        this.adapter.openMenu();
+        this.isMenuOpen = true;
+        this.adapter.setSelectAnchorAttr('aria-expanded', 'true');
+    };
+    /**
+     * @param content Sets the content of the helper text.
+     */
+    MDCSelectFoundation.prototype.setHelperTextContent = function (content) {
+        if (this.helperText) {
+            this.helperText.setContent(content);
+        }
+    };
+    /**
+     * Re-calculates if the notched outline should be notched and if the label
+     * should float.
+     */
+    MDCSelectFoundation.prototype.layout = function () {
+        if (this.adapter.hasLabel()) {
+            var optionHasValue = this.getValue().length > 0;
+            var isFocused = this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].FOCUSED);
+            var shouldFloatAndNotch = optionHasValue || isFocused;
+            var isRequired = this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].REQUIRED);
+            this.notchOutline(shouldFloatAndNotch);
+            this.adapter.floatLabel(shouldFloatAndNotch);
+            this.adapter.setLabelRequired(isRequired);
+        }
+    };
+    /**
+     * Synchronizes the list of options with the state of the foundation. Call
+     * this whenever menu options are dynamically updated.
+     */
+    MDCSelectFoundation.prototype.layoutOptions = function () {
+        this.menuItemValues = this.adapter.getMenuItemValues();
+        var selectedIndex = this.menuItemValues.indexOf(this.getValue());
+        this.setSelectionAtIndex(selectedIndex);
+    };
+    MDCSelectFoundation.prototype.handleMenuOpened = function () {
+        if (this.menuItemValues.length === 0) {
+            return;
+        }
+        // Menu should open to the last selected element, should open to first menu item otherwise.
+        var focusItemIndex = this.selectedIndex >= 0 ? this.selectedIndex : 0;
+        this.adapter.focusMenuItemAtIndex(focusItemIndex);
+    };
+    MDCSelectFoundation.prototype.handleMenuClosed = function () {
+        this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].ACTIVATED);
+        this.isMenuOpen = false;
+        this.adapter.setSelectAnchorAttr('aria-expanded', 'false');
+        // Unfocus the select if menu is closed without a selection
+        if (!this.adapter.isSelectAnchorFocused()) {
+            this.blur();
+        }
+    };
+    /**
+     * Handles value changes, via change event or programmatic updates.
+     */
+    MDCSelectFoundation.prototype.handleChange = function () {
+        this.layout();
+        this.adapter.notifyChange(this.getValue());
+        var isRequired = this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].REQUIRED);
+        if (isRequired && this.useDefaultValidation) {
+            this.setValid(this.isValid());
+            if (this.helperText) {
+                this.helperText.setValidity(this.isValid());
+            }
+        }
+    };
+    MDCSelectFoundation.prototype.handleMenuItemAction = function (index) {
+        this.setSelectedIndex(index, /** closeMenu */ true);
+    };
+    /**
+     * Handles focus events from select element.
+     */
+    MDCSelectFoundation.prototype.handleFocus = function () {
+        this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].FOCUSED);
+        this.layout();
+        this.adapter.activateBottomLine();
+    };
+    /**
+     * Handles blur events from select element.
+     */
+    MDCSelectFoundation.prototype.handleBlur = function () {
+        if (this.isMenuOpen) {
+            return;
+        }
+        this.blur();
+    };
+    MDCSelectFoundation.prototype.handleClick = function (normalizedX) {
+        if (this.disabled) {
+            return;
+        }
+        if (this.isMenuOpen) {
+            this.adapter.closeMenu();
+            return;
+        }
+        this.adapter.setRippleCenter(normalizedX);
+        this.openMenu();
+    };
+    /**
+     * Handles keydown events on select element. Depending on the type of
+     * character typed, does typeahead matching or opens menu.
+     */
+    MDCSelectFoundation.prototype.handleKeydown = function (event) {
+        if (this.isMenuOpen || !this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].FOCUSED)) {
+            return;
+        }
+        var isEnter = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === _material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["KEY"].ENTER;
+        var isSpace = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === _material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["KEY"].SPACEBAR;
+        var arrowUp = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === _material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["KEY"].ARROW_UP;
+        var arrowDown = Object(_material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["normalizeKey"])(event) === _material_dom_keyboard__WEBPACK_IMPORTED_MODULE_2__["KEY"].ARROW_DOWN;
+        // Typeahead
+        if (!isSpace && event.key && event.key.length === 1 ||
+            isSpace && this.adapter.isTypeaheadInProgress()) {
+            var key = isSpace ? ' ' : event.key;
+            var typeaheadNextIndex = this.adapter.typeaheadMatchItem(key, this.selectedIndex);
+            if (typeaheadNextIndex >= 0) {
+                this.setSelectedIndex(typeaheadNextIndex);
+            }
+            event.preventDefault();
+            return;
+        }
+        if (!isEnter && !isSpace && !arrowUp && !arrowDown) {
+            return;
+        }
+        // Increment/decrement index as necessary and open menu.
+        if (arrowUp && this.selectedIndex > 0) {
+            this.setSelectedIndex(this.selectedIndex - 1);
+        }
+        else if (arrowDown && this.selectedIndex < this.adapter.getMenuItemCount() - 1) {
+            this.setSelectedIndex(this.selectedIndex + 1);
+        }
+        this.openMenu();
+        event.preventDefault();
+    };
+    /**
+     * Opens/closes the notched outline.
+     */
+    MDCSelectFoundation.prototype.notchOutline = function (openNotch) {
+        if (!this.adapter.hasOutline()) {
+            return;
+        }
+        var isFocused = this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].FOCUSED);
+        if (openNotch) {
+            var labelScale = _constants__WEBPACK_IMPORTED_MODULE_4__["numbers"].LABEL_SCALE;
+            var labelWidth = this.adapter.getLabelWidth() * labelScale;
+            this.adapter.notchOutline(labelWidth);
+        }
+        else if (!isFocused) {
+            this.adapter.closeOutline();
+        }
+    };
+    /**
+     * Sets the aria label of the leading icon.
+     */
+    MDCSelectFoundation.prototype.setLeadingIconAriaLabel = function (label) {
+        if (this.leadingIcon) {
+            this.leadingIcon.setAriaLabel(label);
+        }
+    };
+    /**
+     * Sets the text content of the leading icon.
+     */
+    MDCSelectFoundation.prototype.setLeadingIconContent = function (content) {
+        if (this.leadingIcon) {
+            this.leadingIcon.setContent(content);
+        }
+    };
+    MDCSelectFoundation.prototype.setUseDefaultValidation = function (useDefaultValidation) {
+        this.useDefaultValidation = useDefaultValidation;
+    };
+    MDCSelectFoundation.prototype.setValid = function (isValid) {
+        if (!this.useDefaultValidation) {
+            this.customValidity = isValid;
+        }
+        this.adapter.setSelectAnchorAttr('aria-invalid', (!isValid).toString());
+        if (isValid) {
+            this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].INVALID);
+            this.adapter.removeMenuClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].MENU_INVALID);
+        }
+        else {
+            this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].INVALID);
+            this.adapter.addMenuClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].MENU_INVALID);
+        }
+    };
+    MDCSelectFoundation.prototype.isValid = function () {
+        if (this.useDefaultValidation &&
+            this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].REQUIRED) &&
+            !this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].DISABLED)) {
+            // See notes for required attribute under https://www.w3.org/TR/html52/sec-forms.html#the-select-element
+            // TL;DR: Invalid if no index is selected, or if the first index is selected and has an empty value.
+            return this.selectedIndex !== _constants__WEBPACK_IMPORTED_MODULE_4__["numbers"].UNSET_INDEX &&
+                (this.selectedIndex !== 0 || Boolean(this.getValue()));
+        }
+        return this.customValidity;
+    };
+    MDCSelectFoundation.prototype.setRequired = function (isRequired) {
+        if (isRequired) {
+            this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].REQUIRED);
+        }
+        else {
+            this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].REQUIRED);
+        }
+        this.adapter.setSelectAnchorAttr('aria-required', isRequired.toString());
+        this.adapter.setLabelRequired(isRequired);
+    };
+    MDCSelectFoundation.prototype.getRequired = function () {
+        return this.adapter.getSelectAnchorAttr('aria-required') === 'true';
+    };
+    MDCSelectFoundation.prototype.init = function () {
+        var anchorEl = this.adapter.getAnchorElement();
+        if (anchorEl) {
+            this.adapter.setMenuAnchorElement(anchorEl);
+            this.adapter.setMenuAnchorCorner(_material_menu_surface_constants__WEBPACK_IMPORTED_MODULE_3__["Corner"].BOTTOM_START);
+        }
+        this.adapter.setMenuWrapFocus(false);
+        this.setDisabled(this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].DISABLED));
+        this.layoutOptions();
+        this.layout();
+    };
+    /**
+     * Unfocuses the select component.
+     */
+    MDCSelectFoundation.prototype.blur = function () {
+        this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].FOCUSED);
+        this.layout();
+        this.adapter.deactivateBottomLine();
+        var isRequired = this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].REQUIRED);
+        if (isRequired && this.useDefaultValidation) {
+            this.setValid(this.isValid());
+            if (this.helperText) {
+                this.helperText.setValidity(this.isValid());
+            }
+        }
+    };
+    MDCSelectFoundation.prototype.setSelectionAtIndex = function (index) {
+        this.selectedIndex = index;
+        if (index === _constants__WEBPACK_IMPORTED_MODULE_4__["numbers"].UNSET_INDEX) {
+            this.adapter.setSelectedText('');
+            return;
+        }
+        this.adapter.setSelectedText(this.adapter.getMenuItemTextAtIndex(index).trim());
+        this.adapter.addClassAtIndex(index, _constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].SELECTED_ITEM_CLASS);
+        this.adapter.setAttributeAtIndex(index, _constants__WEBPACK_IMPORTED_MODULE_4__["strings"].ARIA_SELECTED_ATTR, 'true');
+    };
+    MDCSelectFoundation.prototype.removeSelectionAtIndex = function (index) {
+        if (index !== _constants__WEBPACK_IMPORTED_MODULE_4__["numbers"].UNSET_INDEX) {
+            this.adapter.removeClassAtIndex(index, _constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].SELECTED_ITEM_CLASS);
+            this.adapter.setAttributeAtIndex(index, _constants__WEBPACK_IMPORTED_MODULE_4__["strings"].ARIA_SELECTED_ATTR, 'false');
+        }
+    };
+    return MDCSelectFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCSelectFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/helper-text/component.js":
+/*!****************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/helper-text/component.js ***!
+  \****************************************************************************************/
+/*! exports provided: MDCSelectHelperText */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSelectHelperText", function() { return MDCSelectHelperText; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/select/helper-text/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCSelectHelperText = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCSelectHelperText, _super);
+    function MDCSelectHelperText() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCSelectHelperText.attachTo = function (root) {
+        return new MDCSelectHelperText(root);
+    };
+    Object.defineProperty(MDCSelectHelperText.prototype, "foundationForSelect", {
+        // Provided for access by MDCSelect component
+        get: function () {
+            return this.foundation;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCSelectHelperText.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+            removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
+            setContent: function (content) {
+                _this.root.textContent = content;
+            },
+        };
+        // tslint:enable:object-literal-sort-keys
+        return new _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCSelectHelperTextFoundation"](adapter);
+    };
+    return MDCSelectHelperText;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/helper-text/constants.js":
+/*!****************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/helper-text/constants.js ***!
+  \****************************************************************************************/
+/*! exports provided: strings, cssClasses */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var strings = {
+    ARIA_HIDDEN: 'aria-hidden',
+    ROLE: 'role',
+};
+var cssClasses = {
+    HELPER_TEXT_VALIDATION_MSG: 'mdc-select-helper-text--validation-msg',
+    HELPER_TEXT_VALIDATION_MSG_PERSISTENT: 'mdc-select-helper-text--validation-msg-persistent',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/helper-text/foundation.js":
+/*!*****************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/helper-text/foundation.js ***!
+  \*****************************************************************************************/
+/*! exports provided: MDCSelectHelperTextFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSelectHelperTextFoundation", function() { return MDCSelectHelperTextFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/select/helper-text/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCSelectHelperTextFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCSelectHelperTextFoundation, _super);
+    function MDCSelectHelperTextFoundation(adapter) {
+        return _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCSelectHelperTextFoundation.defaultAdapter), adapter)) || this;
+    }
+    Object.defineProperty(MDCSelectHelperTextFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelectHelperTextFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelectHelperTextFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCSelectHelperTextAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                setAttr: function () { return undefined; },
+                removeAttr: function () { return undefined; },
+                setContent: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Sets the content of the helper text field.
+     */
+    MDCSelectHelperTextFoundation.prototype.setContent = function (content) {
+        this.adapter.setContent(content);
+    };
+    /**
+     * Sets the helper text to act as a validation message.
+     * By default, validation messages are hidden when the select is valid and
+     * visible when the select is invalid.
+     *
+     * @param isValidation True to make the helper text act as an error validation
+     *     message.
+     */
+    MDCSelectHelperTextFoundation.prototype.setValidation = function (isValidation) {
+        if (isValidation) {
+            this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].HELPER_TEXT_VALIDATION_MSG);
+        }
+        else {
+            this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].HELPER_TEXT_VALIDATION_MSG);
+        }
+    };
+    /**
+     * Sets the persistency of the validation helper text.
+     * This keeps the validation message visible even if the select is valid,
+     * though it will be displayed in the normal (grey) color.
+     */
+    MDCSelectHelperTextFoundation.prototype.setValidationMsgPersistent = function (isPersistent) {
+        if (isPersistent) {
+            this.adapter.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].HELPER_TEXT_VALIDATION_MSG_PERSISTENT);
+        }
+        else {
+            this.adapter.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].HELPER_TEXT_VALIDATION_MSG_PERSISTENT);
+        }
+    };
+    /**
+     * Makes the helper text visible to screen readers.
+     */
+    MDCSelectHelperTextFoundation.prototype.showToScreenReader = function () {
+        this.adapter.removeAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_HIDDEN);
+    };
+    /**
+     * When acting as a validation message, shows/hides the helper text and
+     * triggers alerts as necessary based on the select's validity.
+     */
+    MDCSelectHelperTextFoundation.prototype.setValidity = function (selectIsValid) {
+        var isValidationMsg = this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].HELPER_TEXT_VALIDATION_MSG);
+        if (!isValidationMsg) {
+            // Non-validating helper-text is always displayed and does not participate
+            // in validation logic.
+            return;
+        }
+        var isPersistentValidationMsg = this.adapter.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].HELPER_TEXT_VALIDATION_MSG_PERSISTENT);
+        // Validating helper text is displayed if select is invalid, unless it is
+        // set as persistent, in which case it always displays.
+        var msgShouldDisplay = !selectIsValid || isPersistentValidationMsg;
+        if (msgShouldDisplay) {
+            this.showToScreenReader();
+            // In addition to displaying, also trigger an alert if the select
+            // has become invalid.
+            if (!selectIsValid) {
+                this.adapter.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ROLE, 'alert');
+            }
+            else {
+                this.adapter.removeAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ROLE);
+            }
+            return;
+        }
+        // Hide everything.
+        this.adapter.removeAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ROLE);
+        this.hide();
+    };
+    /**
+     * Hides the help text from screen readers.
+     */
+    MDCSelectHelperTextFoundation.prototype.hide = function () {
+        this.adapter.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_HIDDEN, 'true');
+    };
+    return MDCSelectHelperTextFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCSelectHelperTextFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/helper-text/index.js":
+/*!************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/helper-text/index.js ***!
+  \************************************************************************************/
+/*! exports provided: MDCSelectHelperText, MDCSelectHelperTextFoundation, helperTextCssClasses, helperTextStrings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/select/helper-text/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelectHelperText", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCSelectHelperText"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/select/helper-text/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelectHelperTextFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_1__["MDCSelectHelperTextFoundation"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/select/helper-text/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "helperTextCssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "helperTextStrings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/icon/component.js":
+/*!*********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/icon/component.js ***!
+  \*********************************************************************************/
+/*! exports provided: MDCSelectIcon */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSelectIcon", function() { return MDCSelectIcon; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "../../node_modules/@material/base/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/select/icon/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCSelectIcon = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCSelectIcon, _super);
+    function MDCSelectIcon() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCSelectIcon.attachTo = function (root) {
+        return new MDCSelectIcon(root);
+    };
+    Object.defineProperty(MDCSelectIcon.prototype, "foundationForSelect", {
+        // Provided for access by MDCSelect component
+        get: function () {
+            return this.foundation;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCSelectIcon.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            getAttr: function (attr) { return _this.root.getAttribute(attr); },
+            setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+            removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
+            setContent: function (content) {
+                _this.root.textContent = content;
+            },
+            registerInteractionHandler: function (evtType, handler) {
+                return _this.listen(evtType, handler);
+            },
+            deregisterInteractionHandler: function (evtType, handler) {
+                return _this.unlisten(evtType, handler);
+            },
+            notifyIconAction: function () { return _this.emit(_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCSelectIconFoundation"].strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */); },
+        };
+        // tslint:enable:object-literal-sort-keys
+        return new _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCSelectIconFoundation"](adapter);
+    };
+    return MDCSelectIcon;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/icon/constants.js":
+/*!*********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/icon/constants.js ***!
+  \*********************************************************************************/
+/*! exports provided: strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var strings = {
+    ICON_EVENT: 'MDCSelect:icon',
+    ICON_ROLE: 'button',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/icon/foundation.js":
+/*!**********************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/icon/foundation.js ***!
+  \**********************************************************************************/
+/*! exports provided: MDCSelectIconFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSelectIconFoundation", function() { return MDCSelectIconFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "../../node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/select/icon/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var INTERACTION_EVENTS = ['click', 'keydown'];
+var MDCSelectIconFoundation = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MDCSelectIconFoundation, _super);
+    function MDCSelectIconFoundation(adapter) {
+        var _this = _super.call(this, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, MDCSelectIconFoundation.defaultAdapter), adapter)) || this;
+        _this.savedTabIndex_ = null;
+        _this.interactionHandler_ = function (evt) { return _this.handleInteraction(evt); };
+        return _this;
+    }
+    Object.defineProperty(MDCSelectIconFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelectIconFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCSelectIconAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                getAttr: function () { return null; },
+                setAttr: function () { return undefined; },
+                removeAttr: function () { return undefined; },
+                setContent: function () { return undefined; },
+                registerInteractionHandler: function () { return undefined; },
+                deregisterInteractionHandler: function () { return undefined; },
+                notifyIconAction: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCSelectIconFoundation.prototype.init = function () {
+        var _this = this;
+        this.savedTabIndex_ = this.adapter.getAttr('tabindex');
+        INTERACTION_EVENTS.forEach(function (evtType) {
+            _this.adapter.registerInteractionHandler(evtType, _this.interactionHandler_);
+        });
+    };
+    MDCSelectIconFoundation.prototype.destroy = function () {
+        var _this = this;
+        INTERACTION_EVENTS.forEach(function (evtType) {
+            _this.adapter.deregisterInteractionHandler(evtType, _this.interactionHandler_);
+        });
+    };
+    MDCSelectIconFoundation.prototype.setDisabled = function (disabled) {
+        if (!this.savedTabIndex_) {
+            return;
+        }
+        if (disabled) {
+            this.adapter.setAttr('tabindex', '-1');
+            this.adapter.removeAttr('role');
+        }
+        else {
+            this.adapter.setAttr('tabindex', this.savedTabIndex_);
+            this.adapter.setAttr('role', _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ICON_ROLE);
+        }
+    };
+    MDCSelectIconFoundation.prototype.setAriaLabel = function (label) {
+        this.adapter.setAttr('aria-label', label);
+    };
+    MDCSelectIconFoundation.prototype.setContent = function (content) {
+        this.adapter.setContent(content);
+    };
+    MDCSelectIconFoundation.prototype.handleInteraction = function (evt) {
+        var isEnterKey = evt.key === 'Enter' || evt.keyCode === 13;
+        if (evt.type === 'click' || isEnterKey) {
+            this.adapter.notifyIconAction();
+        }
+    };
+    return MDCSelectIconFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCSelectIconFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/icon/index.js":
+/*!*****************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/icon/index.js ***!
+  \*****************************************************************************/
+/*! exports provided: MDCSelectIcon, MDCSelectIconFoundation, iconStrings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/select/icon/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelectIcon", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCSelectIcon"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/select/icon/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelectIconFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_1__["MDCSelectIconFoundation"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/select/icon/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "iconStrings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../node_modules/@material/select/index.js":
+/*!************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/select/index.js ***!
+  \************************************************************************/
+/*! exports provided: MDCSelect, cssClasses, strings, numbers, MDCSelectFoundation, MDCSelectHelperText, MDCSelectHelperTextFoundation, helperTextCssClasses, helperTextStrings, MDCSelectIcon, MDCSelectIconFoundation, iconStrings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "../../node_modules/@material/select/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelect", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCSelect"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "../../node_modules/@material/select/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "../../node_modules/@material/select/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelectFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCSelectFoundation"]; });
+
+/* harmony import */ var _helper_text_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helper-text/index */ "../../node_modules/@material/select/helper-text/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelectHelperText", function() { return _helper_text_index__WEBPACK_IMPORTED_MODULE_3__["MDCSelectHelperText"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelectHelperTextFoundation", function() { return _helper_text_index__WEBPACK_IMPORTED_MODULE_3__["MDCSelectHelperTextFoundation"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "helperTextCssClasses", function() { return _helper_text_index__WEBPACK_IMPORTED_MODULE_3__["helperTextCssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "helperTextStrings", function() { return _helper_text_index__WEBPACK_IMPORTED_MODULE_3__["helperTextStrings"]; });
+
+/* harmony import */ var _icon_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./icon/index */ "../../node_modules/@material/select/icon/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelectIcon", function() { return _icon_index__WEBPACK_IMPORTED_MODULE_4__["MDCSelectIcon"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSelectIconFoundation", function() { return _icon_index__WEBPACK_IMPORTED_MODULE_4__["MDCSelectIconFoundation"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "iconStrings", function() { return _icon_index__WEBPACK_IMPORTED_MODULE_4__["iconStrings"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -52378,6 +54116,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         MdcComponent.prototype.detached = function () {
             this.destroy();
             this.foundation.destroy();
+            this.foundation = undefined;
             this.initialised = this.createInitiliasedPromise();
         };
         MdcComponent.prototype.listen = function (evtType, handler, options) {
@@ -52407,6 +54146,422 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return MdcComponent;
     }());
     exports.MdcComponent = MdcComponent;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "../select/src/mdc-select-fundation-aurelia.ts":
+/*!*****************************************************!*\
+  !*** ../select/src/mdc-select-fundation-aurelia.ts ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @material/select */ "../../node_modules/@material/select/index.js"), __webpack_require__(/*! @material/menu */ "../../node_modules/@material/menu/index.js"), __webpack_require__(/*! @material/base */ "../../node_modules/@material/base/index.js"), __webpack_require__(/*! @material/dom/keyboard */ "../../node_modules/@material/dom/keyboard.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, select_1, menu_1, base_1, keyboard_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MDCSelectFoundationAurelia = void 0;
+    var MDCSelectFoundationAurelia = /** @class */ (function (_super) {
+        tslib_1.__extends(MDCSelectFoundationAurelia, _super);
+        /* istanbul ignore next: optional argument is not a branch statement */
+        /**
+         * @param adapter
+         * @param foundationMap Map from subcomponent names to their subfoundations.
+         */
+        function MDCSelectFoundationAurelia(adapter, foundationMap) {
+            if (foundationMap === void 0) { foundationMap = {}; }
+            var _this = _super.call(this, tslib_1.__assign(tslib_1.__assign({}, MDCSelectFoundationAurelia.defaultAdapter), adapter)) || this;
+            // bound values of the menu items.
+            _this.menuItemValues = [];
+            // Disabled state
+            _this.disabled = false;
+            // isMenuOpen is used to track the state of the menu by listening to the
+            // MDCMenuSurface:closed event For reference, menu.open will return false if
+            // the menu is still closing, but isMenuOpen returns false only after the menu
+            // has closed
+            _this.isMenuOpen = false;
+            // By default, select is invalid if it is required but no value is selected.
+            _this.useDefaultValidation = true;
+            _this.customValidity = true;
+            _this.leadingIcon = foundationMap.leadingIcon;
+            _this.helperText = foundationMap.helperText;
+            return _this;
+        }
+        Object.defineProperty(MDCSelectFoundationAurelia, "cssClasses", {
+            get: function () {
+                return select_1.cssClasses;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(MDCSelectFoundationAurelia, "numbers", {
+            get: function () {
+                return select_1.numbers;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(MDCSelectFoundationAurelia, "strings", {
+            get: function () {
+                return select_1.strings;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(MDCSelectFoundationAurelia, "defaultAdapter", {
+            /**
+             * See {@link MDCSelectAdapter} for typing information on parameters and return types.
+             */
+            get: function () {
+                // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+                return {
+                    addClass: function () { return undefined; },
+                    removeClass: function () { return undefined; },
+                    hasClass: function () { return false; },
+                    activateBottomLine: function () { return undefined; },
+                    deactivateBottomLine: function () { return undefined; },
+                    getSelectedMenuItem: function () { return null; },
+                    getSelectedIndex: function () { return -1; },
+                    setSelectedIndex: function () { return undefined; },
+                    hasLabel: function () { return false; },
+                    floatLabel: function () { return undefined; },
+                    getLabelWidth: function () { return 0; },
+                    setLabelRequired: function () { return undefined; },
+                    hasOutline: function () { return false; },
+                    notchOutline: function () { return undefined; },
+                    closeOutline: function () { return undefined; },
+                    setRippleCenter: function () { return undefined; },
+                    notifyChange: function () { return undefined; },
+                    setSelectedText: function () { return undefined; },
+                    isSelectAnchorFocused: function () { return false; },
+                    getSelectAnchorAttr: function () { return ''; },
+                    setSelectAnchorAttr: function () { return undefined; },
+                    removeSelectAnchorAttr: function () { return undefined; },
+                    addMenuClass: function () { return undefined; },
+                    removeMenuClass: function () { return undefined; },
+                    openMenu: function () { return undefined; },
+                    closeMenu: function () { return undefined; },
+                    getAnchorElement: function () { return null; },
+                    setMenuAnchorElement: function () { return undefined; },
+                    setMenuAnchorCorner: function () { return undefined; },
+                    setMenuWrapFocus: function () { return undefined; },
+                    setAttributeAtIndex: function () { return undefined; },
+                    focusMenuItemAtIndex: function () { return undefined; },
+                    getMenuItemCount: function () { return 0; },
+                    getMenuItemValues: function () { return []; },
+                    getMenuItemTextAtIndex: function () { return ''; },
+                    getMenuItemAttr: function () { return ''; },
+                    addClassAtIndex: function () { return undefined; },
+                    removeClassAtIndex: function () { return undefined; },
+                    isTypeaheadInProgress: function () { return false; },
+                    typeaheadMatchItem: function () { return -1; },
+                };
+                // tslint:enable:object-literal-sort-keys
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /** Returns the index of the currently selected menu item, or -1 if none. */
+        MDCSelectFoundationAurelia.prototype.getSelectedIndex = function () {
+            return this.adapter.getSelectedIndex();
+        };
+        MDCSelectFoundationAurelia.prototype.setSelectedIndex = function (index, closeMenu, skipNotify) {
+            if (closeMenu === void 0) { closeMenu = false; }
+            if (skipNotify === void 0) { skipNotify = false; }
+            if (index >= this.adapter.getMenuItemCount()) {
+                return;
+            }
+            if (index === select_1.numbers.UNSET_INDEX) {
+                this.adapter.setSelectedText('');
+            }
+            else {
+                this.adapter.setSelectedText(this.adapter.getMenuItemTextAtIndex(index).trim());
+            }
+            this.adapter.setSelectedIndex(index);
+            if (closeMenu) {
+                this.adapter.closeMenu();
+            }
+            if (!skipNotify) {
+                this.handleChange();
+            }
+        };
+        MDCSelectFoundationAurelia.prototype.setValue = function (value) {
+            var index = this.adapter.getMenuItemValues().indexOf(value);
+            this.setSelectedIndex(index);
+        };
+        MDCSelectFoundationAurelia.prototype.getValue = function () {
+            var listItem = this.adapter.getSelectedMenuItem();
+            return listItem === null || listItem === void 0 ? void 0 : listItem.au.controller.viewModel.value;
+        };
+        MDCSelectFoundationAurelia.prototype.getDisabled = function () {
+            return this.disabled;
+        };
+        MDCSelectFoundationAurelia.prototype.setDisabled = function (isDisabled) {
+            this.disabled = isDisabled;
+            if (this.disabled) {
+                this.adapter.addClass(select_1.cssClasses.DISABLED);
+                this.adapter.closeMenu();
+            }
+            else {
+                this.adapter.removeClass(select_1.cssClasses.DISABLED);
+            }
+            if (this.leadingIcon) {
+                this.leadingIcon.setDisabled(this.disabled);
+            }
+            if (this.disabled) {
+                // Prevent click events from focusing select. Simply pointer-events: none
+                // is not enough since screenreader clicks may bypass this.
+                this.adapter.removeSelectAnchorAttr('tabindex');
+            }
+            else {
+                this.adapter.setSelectAnchorAttr('tabindex', '0');
+            }
+            this.adapter.setSelectAnchorAttr('aria-disabled', this.disabled.toString());
+        };
+        /** Opens the menu. */
+        MDCSelectFoundationAurelia.prototype.openMenu = function () {
+            this.adapter.addClass(select_1.cssClasses.ACTIVATED);
+            this.adapter.openMenu();
+            this.isMenuOpen = true;
+            this.adapter.setSelectAnchorAttr('aria-expanded', 'true');
+        };
+        /**
+         * @param content Sets the content of the helper text.
+         */
+        MDCSelectFoundationAurelia.prototype.setHelperTextContent = function (content) {
+            if (this.helperText) {
+                this.helperText.setContent(content);
+            }
+        };
+        /**
+         * Re-calculates if the notched outline should be notched and if the label
+         * should float.
+         */
+        MDCSelectFoundationAurelia.prototype.layout = function () {
+            if (this.adapter.hasLabel()) {
+                var optionHasValue = !!this.getValue();
+                var isFocused = this.adapter.hasClass(select_1.cssClasses.FOCUSED);
+                var shouldFloatAndNotch = optionHasValue || isFocused;
+                var isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
+                this.notchOutline(shouldFloatAndNotch);
+                this.adapter.floatLabel(shouldFloatAndNotch);
+                this.adapter.setLabelRequired(isRequired);
+            }
+        };
+        /**
+         * Synchronizes the list of options with the state of the foundation. Call
+         * this whenever menu options are dynamically updated.
+         */
+        MDCSelectFoundationAurelia.prototype.layoutOptions = function () {
+            this.menuItemValues = this.adapter.getMenuItemValues();
+            var selectedIndex = this.menuItemValues.indexOf(this.getValue());
+            this.setSelectedIndex(selectedIndex, /** closeMenu */ false, /** skipNotify */ true);
+        };
+        MDCSelectFoundationAurelia.prototype.handleMenuOpened = function () {
+            if (this.adapter.getMenuItemValues().length === 0) {
+                return;
+            }
+            // Menu should open to the last selected element, should open to first menu item otherwise.
+            var selectedIndex = this.getSelectedIndex();
+            var focusItemIndex = selectedIndex >= 0 ? selectedIndex : 0;
+            this.adapter.focusMenuItemAtIndex(focusItemIndex);
+        };
+        MDCSelectFoundationAurelia.prototype.handleMenuClosed = function () {
+            this.adapter.removeClass(select_1.cssClasses.ACTIVATED);
+            this.isMenuOpen = false;
+            this.adapter.setSelectAnchorAttr('aria-expanded', 'false');
+            // Unfocus the select if menu is closed without a selection
+            if (!this.adapter.isSelectAnchorFocused()) {
+                this.blur();
+            }
+        };
+        /**
+         * Handles value changes, via change event or programmatic updates.
+         */
+        MDCSelectFoundationAurelia.prototype.handleChange = function () {
+            this.layout();
+            this.adapter.notifyChange(this.getValue());
+            var isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
+            if (isRequired && this.useDefaultValidation) {
+                this.setValid(this.isValid());
+                if (this.helperText) {
+                    this.helperText.setValidity(this.isValid());
+                }
+            }
+        };
+        MDCSelectFoundationAurelia.prototype.handleMenuItemAction = function (index) {
+            this.setSelectedIndex(index, /** closeMenu */ true);
+        };
+        /**
+         * Handles focus events from select element.
+         */
+        MDCSelectFoundationAurelia.prototype.handleFocus = function () {
+            this.adapter.addClass(select_1.cssClasses.FOCUSED);
+            this.layout();
+            this.adapter.activateBottomLine();
+        };
+        /**
+         * Handles blur events from select element.
+         */
+        MDCSelectFoundationAurelia.prototype.handleBlur = function () {
+            if (this.isMenuOpen) {
+                return;
+            }
+            this.blur();
+        };
+        MDCSelectFoundationAurelia.prototype.handleClick = function (normalizedX) {
+            if (this.disabled) {
+                return;
+            }
+            if (this.isMenuOpen) {
+                this.adapter.closeMenu();
+                return;
+            }
+            this.adapter.setRippleCenter(normalizedX);
+            this.openMenu();
+        };
+        /**
+         * Handles keydown events on select element. Depending on the type of
+         * character typed, does typeahead matching or opens menu.
+         */
+        MDCSelectFoundationAurelia.prototype.handleKeydown = function (event) {
+            if (this.isMenuOpen || !this.adapter.hasClass(select_1.cssClasses.FOCUSED)) {
+                return;
+            }
+            var isEnter = keyboard_1.normalizeKey(event) === keyboard_1.KEY.ENTER;
+            var isSpace = keyboard_1.normalizeKey(event) === keyboard_1.KEY.SPACEBAR;
+            var arrowUp = keyboard_1.normalizeKey(event) === keyboard_1.KEY.ARROW_UP;
+            var arrowDown = keyboard_1.normalizeKey(event) === keyboard_1.KEY.ARROW_DOWN;
+            // Typeahead
+            if (!isSpace && event.key && event.key.length === 1 ||
+                isSpace && this.adapter.isTypeaheadInProgress()) {
+                var key = isSpace ? ' ' : event.key;
+                var typeaheadNextIndex = this.adapter.typeaheadMatchItem(key, this.getSelectedIndex());
+                if (typeaheadNextIndex >= 0) {
+                    this.setSelectedIndex(typeaheadNextIndex);
+                }
+                event.preventDefault();
+                return;
+            }
+            if (!isEnter && !isSpace && !arrowUp && !arrowDown) {
+                return;
+            }
+            // Increment/decrement index as necessary and open menu.
+            if (arrowUp && this.getSelectedIndex() > 0) {
+                this.setSelectedIndex(this.getSelectedIndex() - 1);
+            }
+            else if (arrowDown &&
+                this.getSelectedIndex() < this.adapter.getMenuItemCount() - 1) {
+                this.setSelectedIndex(this.getSelectedIndex() + 1);
+            }
+            this.openMenu();
+            event.preventDefault();
+        };
+        /**
+         * Opens/closes the notched outline.
+         */
+        MDCSelectFoundationAurelia.prototype.notchOutline = function (openNotch) {
+            if (!this.adapter.hasOutline()) {
+                return;
+            }
+            var isFocused = this.adapter.hasClass(select_1.cssClasses.FOCUSED);
+            if (openNotch) {
+                var labelScale = select_1.numbers.LABEL_SCALE;
+                var labelWidth = this.adapter.getLabelWidth() * labelScale;
+                this.adapter.notchOutline(labelWidth);
+            }
+            else if (!isFocused) {
+                this.adapter.closeOutline();
+            }
+        };
+        /**
+         * Sets the aria label of the leading icon.
+         */
+        MDCSelectFoundationAurelia.prototype.setLeadingIconAriaLabel = function (label) {
+            if (this.leadingIcon) {
+                this.leadingIcon.setAriaLabel(label);
+            }
+        };
+        /**
+         * Sets the text content of the leading icon.
+         */
+        MDCSelectFoundationAurelia.prototype.setLeadingIconContent = function (content) {
+            if (this.leadingIcon) {
+                this.leadingIcon.setContent(content);
+            }
+        };
+        MDCSelectFoundationAurelia.prototype.setUseDefaultValidation = function (useDefaultValidation) {
+            this.useDefaultValidation = useDefaultValidation;
+        };
+        MDCSelectFoundationAurelia.prototype.setValid = function (isValid) {
+            if (!this.useDefaultValidation) {
+                this.customValidity = isValid;
+            }
+            this.adapter.setSelectAnchorAttr('aria-invalid', (!isValid).toString());
+            if (isValid) {
+                this.adapter.removeClass(select_1.cssClasses.INVALID);
+                this.adapter.removeMenuClass(select_1.cssClasses.MENU_INVALID);
+            }
+            else {
+                this.adapter.addClass(select_1.cssClasses.INVALID);
+                this.adapter.addMenuClass(select_1.cssClasses.MENU_INVALID);
+            }
+        };
+        MDCSelectFoundationAurelia.prototype.isValid = function () {
+            if (this.useDefaultValidation &&
+                this.adapter.hasClass(select_1.cssClasses.REQUIRED) &&
+                !this.adapter.hasClass(select_1.cssClasses.DISABLED)) {
+                // See notes for required attribute under https://www.w3.org/TR/html52/sec-forms.html#the-select-element
+                // TL;DR: Invalid if no index is selected, or if the first index is selected and has an empty value.
+                return this.getSelectedIndex() !== select_1.numbers.UNSET_INDEX &&
+                    (this.getSelectedIndex() !== 0 || Boolean(this.getValue()));
+            }
+            return this.customValidity;
+        };
+        MDCSelectFoundationAurelia.prototype.setRequired = function (isRequired) {
+            if (isRequired) {
+                this.adapter.addClass(select_1.cssClasses.REQUIRED);
+            }
+            else {
+                this.adapter.removeClass(select_1.cssClasses.REQUIRED);
+            }
+            this.adapter.setSelectAnchorAttr('aria-required', isRequired.toString());
+            this.adapter.setLabelRequired(isRequired);
+        };
+        MDCSelectFoundationAurelia.prototype.getRequired = function () {
+            return this.adapter.getSelectAnchorAttr('aria-required') === 'true';
+        };
+        MDCSelectFoundationAurelia.prototype.init = function () {
+            var anchorEl = this.adapter.getAnchorElement();
+            if (anchorEl) {
+                this.adapter.setMenuAnchorElement(anchorEl);
+                this.adapter.setMenuAnchorCorner(menu_1.Corner.BOTTOM_START);
+            }
+            this.adapter.setMenuWrapFocus(false);
+            this.setDisabled(this.adapter.hasClass(select_1.cssClasses.DISABLED));
+            this.layout();
+            this.layoutOptions();
+        };
+        /**
+         * Unfocuses the select component.
+         */
+        MDCSelectFoundationAurelia.prototype.blur = function () {
+            this.adapter.removeClass(select_1.cssClasses.FOCUSED);
+            this.layout();
+            this.adapter.deactivateBottomLine();
+            var isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
+            if (isRequired && this.useDefaultValidation) {
+                this.setValid(this.isValid());
+                if (this.helperText) {
+                    this.helperText.setValidity(this.isValid());
+                }
+            }
+        };
+        return MDCSelectFoundationAurelia;
+    }(base_1.MDCFoundation));
+    exports.MDCSelectFoundationAurelia = MDCSelectFoundationAurelia;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -52611,11 +54766,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
              * Toggles the drawer open and closed.
              */
             set: function (isOpen) {
+                var _a, _b;
                 if (isOpen) {
-                    this.foundation.open();
+                    (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.open();
                 }
                 else {
-                    this.foundation.close();
+                    (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.close();
                 }
             },
             enumerable: false,
@@ -52649,11 +54805,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
         };
         MdcDrawer.prototype.handleKeydown_ = function (evt) {
-            this.foundation.handleKeydown(evt);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
             return true;
         };
         MdcDrawer.prototype.handleTransitionEnd_ = function (evt) {
-            this.foundation.handleTransitionEnd(evt);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTransitionEnd(evt);
             return true;
         };
         MdcDrawer.prototype.destroy = function () {
@@ -52881,21 +55039,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return _super !== null && _super.apply(this, arguments) || this;
         }
         MdcFloatingLabel.prototype.shake = function (shouldShake) {
-            this.foundation.shake(shouldShake);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.shake(shouldShake);
         };
         /**
          * Styles the label to float/dock.
          * @param shouldFloat If true, floats the label by adding a CSS class; otherwise, docks it by removing the class.
          */
         MdcFloatingLabel.prototype.float = function (shouldFloat) {
-            this.foundation.float(shouldFloat);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.float(shouldFloat);
         };
         /**
          * Styles the label as required.
          * @param isRequired If true, adds an asterisk to the label, indicating that it is required.
          */
         MdcFloatingLabel.prototype.setRequired = function (isRequired) {
-            this.foundation.setRequired(isRequired);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setRequired(isRequired);
         };
         MdcFloatingLabel.prototype.getWidth = function () {
             return this.foundation.getWidth();
@@ -53062,20 +55223,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          * Activates the line ripple
          */
         MdcLineRipple.prototype.activate = function () {
-            this.foundation.activate();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate();
         };
         /**
          * Deactivates the line ripple
          */
         MdcLineRipple.prototype.deactivate = function () {
-            this.foundation.deactivate();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
         };
         /**
          * Sets the transform origin given a user's click location.
          * The `rippleCenter` is the x-coordinate of the middle of the ripple.
          */
         MdcLineRipple.prototype.setRippleCenter = function (xCoordinate) {
-            this.foundation.setRippleCenter(xCoordinate);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setRippleCenter(xCoordinate);
         };
         MdcLineRipple.prototype.getDefaultFoundation = function () {
             var _this = this;
@@ -53110,16 +55274,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! ./mdc-list */ "@aurelia-mdc-web/list/mdc-list")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_framework_1, mdc_list_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! ./mdc-list */ "@aurelia-mdc-web/list/mdc-list"), __webpack_require__(/*! ./mdc-list-item/mdc-list-item */ "@aurelia-mdc-web/list/mdc-list-item/mdc-list-item")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_framework_1, mdc_list_1, mdc_list_item_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.configure = void 0;
     Object.defineProperty(exports, "MdcList", { enumerable: true, get: function () { return mdc_list_1.MdcList; } });
+    Object.defineProperty(exports, "MdcListItem", { enumerable: true, get: function () { return mdc_list_item_1.MdcListItem; } });
     function configure(config) {
         config.globalResources([
             './mdc-list',
             './mdc-list-item/mdc-list-item',
-            './mdc-list-divider',
+            './mdc-list-item-primary-text',
+            './mdc-list-item-secondary-text',
+            './mdc-list-item-graphic',
+            './mdc-list-item-meta',
+            './mdc-list-divider/mdc-list-divider',
+            './mdc-list-group',
         ]);
     }
     exports.configure = configure;
@@ -53140,6 +55310,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcList = void 0;
+    list_1.strings.ACTION_EVENT = list_1.strings.ACTION_EVENT.toLowerCase();
     var MdcList = /** @class */ (function (_super) {
         tslib_1.__extends(MdcList, _super);
         function MdcList() {
@@ -53149,50 +55320,56 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return _this;
         }
         MdcList.prototype.singleSelectionChanged = function () {
+            var _a;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0: return [4 /*yield*/, this.initialised];
                         case 1:
-                            _a.sent();
-                            this.foundation.setSingleSelection(this.singleSelection);
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSingleSelection(this.singleSelection);
                             return [2 /*return*/];
                     }
                 });
             });
         };
         MdcList.prototype.activatedChanged = function () {
+            var _a;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0: return [4 /*yield*/, this.initialised];
                         case 1:
-                            _a.sent();
-                            this.foundation.setUseActivatedClass(this.activated);
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUseActivatedClass(this.activated);
                             return [2 /*return*/];
                     }
                 });
             });
         };
-        Object.defineProperty(MdcList.prototype, "hasTypeahead", {
-            /**
-             * Sets whether typeahead functionality is enabled on the list.
-             * @param hasTypeahead Whether typeahead is enabled.
-             */
-            set: function (hasTypeahead) {
-                this.foundation.setHasTypeahead(hasTypeahead);
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcList.prototype.wrapFocusChanged = function () {
+        MdcList.prototype.typeaheadChanged = function (hasTypeahead) {
+            var _a;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0: return [4 /*yield*/, this.initialised];
                         case 1:
-                            _a.sent();
-                            this.foundation.setWrapFocus(this.wrapFocus);
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setHasTypeahead(hasTypeahead);
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        MdcList.prototype.wrapFocusChanged = function () {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0: return [4 /*yield*/, this.initialised];
+                        case 1:
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setWrapFocus(this.wrapFocus);
                             return [2 /*return*/];
                     }
                 });
@@ -53201,6 +55378,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         MdcList.prototype.initialSyncWithDOM = function () {
             this.layout();
             this.initializeListType();
+            if (this.role) {
+                this.root.setAttribute('role', this.role);
+            }
         };
         Object.defineProperty(MdcList.prototype, "listElements", {
             get: function () {
@@ -53309,35 +55489,39 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          * Used to figure out which element was clicked before sending the event to the foundation.
          */
         MdcList.prototype.handleFocusInEvent_ = function (evt) {
+            var _a;
             var index = this.getListItemIndex_(evt);
-            this.foundation.handleFocusIn(evt, index);
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleFocusIn(evt, index);
         };
         /**
          * Used to figure out which element was clicked before sending the event to the foundation.
          */
         MdcList.prototype.handleFocusOutEvent_ = function (evt) {
+            var _a;
             var index = this.getListItemIndex_(evt);
-            this.foundation.handleFocusOut(evt, index);
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleFocusOut(evt, index);
         };
         /**
          * Used to figure out which element was focused when keydown event occurred before sending the event to the
          * foundation.
          */
         MdcList.prototype.handleKeydownEvent_ = function (evt) {
+            var _a;
             var index = this.getListItemIndex_(evt);
             var target = evt.target;
-            this.foundation.handleKeydown(evt, target.classList.contains(list_1.cssClasses.LIST_ITEM_CLASS), index);
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt, target.classList.contains(list_1.cssClasses.LIST_ITEM_CLASS), index);
             return true;
         };
         /**
          * Used to figure out which element was clicked before sending the event to the foundation.
          */
         MdcList.prototype.handleClickEvent_ = function (evt) {
+            var _a;
             var index = this.getListItemIndex_(evt);
             var target = evt.target;
             // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
             var toggleCheckbox = !ponyfill_1.matches(target, list_1.strings.CHECKBOX_RADIO_SELECTOR);
-            this.foundation.handleClick(index, toggleCheckbox);
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick(index, toggleCheckbox);
         };
         Object.defineProperty(MdcList.prototype, "typeaheadInProgress", {
             /**
@@ -53363,6 +55547,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return this.foundation.typeaheadMatchItem(nextChar, startingIndex, /** skipFocus */ true);
         };
         MdcList.prototype.layout = function () {
+            var _a;
             var direction = this.root.getAttribute(list_1.strings.ARIA_ORIENTATION);
             this.vertical = direction !== list_1.strings.ARIA_ORIENTATION_HORIZONTAL;
             // List items need to have at least tabindex=-1 to be focusable.
@@ -53373,14 +55558,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             // Child button/a elements are not tabbable until the list item is focused.
             [].slice.call(this.root.querySelectorAll(list_1.strings.FOCUSABLE_CHILD_ELEMENTS))
                 .forEach(function (el) { return el.setAttribute('tabindex', '-1'); });
-            this.foundation.layout();
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.layout();
         };
         Object.defineProperty(MdcList.prototype, "selectedIndex", {
             get: function () {
                 return this.foundation.getSelectedIndex();
             },
             set: function (index) {
-                this.foundation.setSelectedIndex(index);
+                var _a;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSelectedIndex(index);
             },
             enumerable: false,
             configurable: true
@@ -53394,8 +55580,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             var radioSelectedListItem = this.root.querySelector(list_1.strings.ARIA_CHECKED_RADIO_SELECTOR);
             if (checkboxListItems.length) {
                 var preselectedItems = this.root.querySelectorAll(list_1.strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
-                this.selectedIndex =
-                    [].map.call(preselectedItems, function (listItem) { return _this.listElements.indexOf(listItem); });
+                this.selectedIndex = [].map.call(preselectedItems, function (listItem) { return _this.listElements.indexOf(listItem); });
             }
             else if (radioSelectedListItem) {
                 this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
@@ -53405,6 +55590,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
             tslib_1.__metadata("design:type", Boolean)
         ], MdcList.prototype, "twoLine", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", String)
+        ], MdcList.prototype, "role", void 0);
         tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
             tslib_1.__metadata("design:type", Boolean)
@@ -53426,6 +55615,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             tslib_1.__metadata("design:type", Boolean)
         ], MdcList.prototype, "avatar", void 0);
         tslib_1.__decorate([
+            aurelia_framework_1.children('mdc-list-item'),
+            tslib_1.__metadata("design:type", Array)
+        ], MdcList.prototype, "items", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcList.prototype, "typeahead", void 0);
+        tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
             tslib_1.__metadata("design:type", Boolean)
         ], MdcList.prototype, "nonInteractive", void 0);
@@ -53433,10 +55630,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
             tslib_1.__metadata("design:type", Boolean)
         ], MdcList.prototype, "wrapFocus", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.children('mdc-list-item'),
-            tslib_1.__metadata("design:type", Array)
-        ], MdcList.prototype, "items", void 0);
         MdcList = tslib_1.__decorate([
             aurelia_framework_1.inject(Element),
             aurelia_framework_1.useView('./mdc-list.html'),
@@ -53451,27 +55644,191 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 /***/ }),
 
-/***/ "@aurelia-mdc-web/list/mdc-list-divider":
-/*!***************************************!*\
-  !*** ../list/src/mdc-list-divider.ts ***!
-  \***************************************/
+/***/ "@aurelia-mdc-web/list/mdc-list-divider/mdc-list-divider":
+/*!********************************************************!*\
+  !*** ../list/src/mdc-list-divider/mdc-list-divider.ts ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, aurelia_typed_observable_plugin_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcListDivider = void 0;
     var MdcListDivider = /** @class */ (function () {
         function MdcListDivider() {
         }
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcListDivider.prototype, "padded", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcListDivider.prototype, "inset", void 0);
         MdcListDivider = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template role="separator" class="mdc-list-divider"></template>'),
+            aurelia_framework_1.useView('./mdc-list-divider.html'),
             aurelia_framework_1.customElement('mdc-list-divider')
         ], MdcListDivider);
         return MdcListDivider;
     }());
     exports.MdcListDivider = MdcListDivider;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/list/mdc-list-divider/mdc-list-divider.html":
+/*!**********************************************************!*\
+  !*** ../list/src/mdc-list-divider/mdc-list-divider.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template role=\"separator\"\n  class=\"mdc-list-divider ${padded ? 'mdc-list-divider--padded' : ''} ${inset ? 'mdc-list-divider--inset' : ''}\">\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/list/mdc-list-group":
+/*!*************************************!*\
+  !*** ../list/src/mdc-list-group.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcListGroup = void 0;
+    var MdcListGroup = /** @class */ (function () {
+        function MdcListGroup() {
+        }
+        MdcListGroup.prototype.headersChanged = function () {
+            this.headers.forEach(function (x) { return x.classList.add('mdc-list-group__subheader'); });
+        };
+        tslib_1.__decorate([
+            aurelia_framework_1.children('h1,h2,h3,h4,h5,h6'),
+            tslib_1.__metadata("design:type", Array)
+        ], MdcListGroup.prototype, "headers", void 0);
+        MdcListGroup = tslib_1.__decorate([
+            aurelia_framework_1.inlineView('<template class="mdc-list-group"><slot></slot></template>'),
+            aurelia_framework_1.customElement('mdc-list-group')
+        ], MdcListGroup);
+        return MdcListGroup;
+    }());
+    exports.MdcListGroup = MdcListGroup;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/list/mdc-list-item-graphic":
+/*!********************************************!*\
+  !*** ../list/src/mdc-list-item-graphic.ts ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcListItemGraphic = void 0;
+    var MdcListItemGraphic = /** @class */ (function () {
+        function MdcListItemGraphic() {
+        }
+        MdcListItemGraphic = tslib_1.__decorate([
+            aurelia_framework_1.inlineView('<template class="mdc-list-item__graphic"><slot></slot></template>'),
+            aurelia_framework_1.customElement('mdc-list-item-graphic')
+        ], MdcListItemGraphic);
+        return MdcListItemGraphic;
+    }());
+    exports.MdcListItemGraphic = MdcListItemGraphic;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/list/mdc-list-item-meta":
+/*!*****************************************!*\
+  !*** ../list/src/mdc-list-item-meta.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcListItemMeta = void 0;
+    var MdcListItemMeta = /** @class */ (function () {
+        function MdcListItemMeta() {
+        }
+        MdcListItemMeta = tslib_1.__decorate([
+            aurelia_framework_1.inlineView('<template class="mdc-list-item__meta"><slot></slot></template>'),
+            aurelia_framework_1.customElement('mdc-list-item-meta')
+        ], MdcListItemMeta);
+        return MdcListItemMeta;
+    }());
+    exports.MdcListItemMeta = MdcListItemMeta;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/list/mdc-list-item-primary-text":
+/*!*************************************************!*\
+  !*** ../list/src/mdc-list-item-primary-text.ts ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcListItemPrimaryText = void 0;
+    var MdcListItemPrimaryText = /** @class */ (function () {
+        function MdcListItemPrimaryText() {
+        }
+        MdcListItemPrimaryText = tslib_1.__decorate([
+            aurelia_framework_1.inlineView('<template class="mdc-list-item__primary-text"><slot></slot></template>'),
+            aurelia_framework_1.customElement('mdc-list-item-primary-text')
+        ], MdcListItemPrimaryText);
+        return MdcListItemPrimaryText;
+    }());
+    exports.MdcListItemPrimaryText = MdcListItemPrimaryText;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/list/mdc-list-item-secondary-text":
+/*!***************************************************!*\
+  !*** ../list/src/mdc-list-item-secondary-text.ts ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcListItemPrimaryText = void 0;
+    var MdcListItemPrimaryText = /** @class */ (function () {
+        function MdcListItemPrimaryText() {
+        }
+        MdcListItemPrimaryText = tslib_1.__decorate([
+            aurelia_framework_1.inlineView('<template class="mdc-list-item__secondary-text"><slot></slot></template>'),
+            aurelia_framework_1.customElement('mdc-list-item-secondary-text')
+        ], MdcListItemPrimaryText);
+        return MdcListItemPrimaryText;
+    }());
+    exports.MdcListItemPrimaryText = MdcListItemPrimaryText;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -53498,12 +55855,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.cssClasses = list_1.cssClasses;
             this.id = ++listItemId;
         }
+        MdcListItem.prototype.initialSyncWithDOM = function () {
+            if (this.role) {
+                this.root.setAttribute('role', this.role);
+            }
+        };
         MdcListItem.prototype.onKeydown = function (evt) {
             if ((evt.keyCode === ENTER || evt.keyCode === SPACE) && !this.disabled) {
                 this.root.dispatchEvent(new CustomEvent('selection-change', { detail: { item: this } }));
             }
             return true;
         };
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", String)
+        ], MdcListItem.prototype, "role", void 0);
         tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
             tslib_1.__metadata("design:type", Boolean)
@@ -53512,6 +55878,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
             tslib_1.__metadata("design:type", Boolean)
         ], MdcListItem.prototype, "activated", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", Object)
+        ], MdcListItem.prototype, "value", void 0);
         MdcListItem = tslib_1.__decorate([
             aurelia_framework_1.inject(Element),
             aurelia_framework_1.useView('./mdc-list-item.html'),
@@ -53535,7 +55905,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"\n    ${cssClasses.LIST_ITEM_CLASS}\n    ${disabled ? cssClasses.LIST_ITEM_CLASS + '--disabled' : ''}\n    ${activated ? cssClasses.LIST_ITEM_CLASS + '--activated' : ''}\n  \" id=\"mdc-list-item-${id}\" mdc-ripple=\"disabled.bind: disabled\" keydown.trigger=\"onKeydown($event)\">\n  <div class=\"mdc-list-item__ripple\"></div>\n  <!-- <span class=\"${cssClasses.LIST_ITEM_TEXT_CLASS}\"><slot></slot></span> -->\n  <slot></slot>\n</template>\n";
+var code = "<template class=\"\n    ${cssClasses.LIST_ITEM_CLASS}\n    ${disabled ? cssClasses.LIST_ITEM_CLASS + '--disabled' : ''}\n    ${activated ? cssClasses.LIST_ITEM_CLASS + '--activated' : ''}\n  \" id=\"mdc-list-item-${id}\" mdc-ripple=\"disabled.bind: disabled\" keydown.trigger=\"onKeydown($event)\">\n  <div class=\"mdc-list-item__ripple\"></div>\n  <span class=\"${cssClasses.LIST_ITEM_TEXT_CLASS}\">\n    <slot></slot>\n  </span>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -53567,7 +55937,7 @@ module.exports = exports;
 /***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template class=\"\n    ${cssClasses.ROOT}\n    ${twoLine ? cssClasses.ROOT + '--two-line' : ''}\n    ${dense ? cssClasses.ROOT + '--dense' : ''}\n    ${avatar ? cssClasses.ROOT + '--avatar-list' : ''}\n    ${nonInteractive ? cssClasses.ROOT + '--non-interactive' : ''}\n  \" keydown.trigger=\"handleKeydownEvent_($event)\" click.trigger=\"handleClickEvent_($event)\"\n  focusin.trigger=\"handleFocusInEvent_($event)\" focusout.trigger=\"handleFocusOutEvent_($event)\" role=\"list\"\n  aria-orientation=\"${vertical ? 'vertical' : 'horizontal' }\">\n  <require from=\"./mdc-list.css\"></require>\n  <slot></slot>\n</template>\n";
+var code = "<template class=\"\n    ${cssClasses.ROOT}\n    ${twoLine ? cssClasses.ROOT + '--two-line' : ''}\n    ${dense ? cssClasses.ROOT + '--dense' : ''}\n    ${avatar ? cssClasses.ROOT + '--avatar-list' : ''}\n    ${nonInteractive ? cssClasses.ROOT + '--non-interactive' : ''}\n  \" keydown.trigger=\"handleKeydownEvent_($event)\" click.trigger=\"handleClickEvent_($event)\"\n  focusin.trigger=\"handleFocusInEvent_($event)\" focusout.trigger=\"handleFocusOutEvent_($event)\"\n  aria-orientation=\"${vertical ? 'vertical' : 'horizontal' }\">\n  <require from=\"./mdc-list.css\"></require>\n  <slot></slot>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -53633,16 +56003,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcMenuSurface = void 0;
+    menu_surface_1.strings.OPENED_EVENT = menu_surface_1.strings.OPENED_EVENT.toLowerCase();
+    menu_surface_1.strings.CLOSED_EVENT = menu_surface_1.strings.CLOSED_EVENT.toLowerCase();
     var MdcMenuSurface = /** @class */ (function (_super) {
         tslib_1.__extends(MdcMenuSurface, _super);
         function MdcMenuSurface() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         MdcMenuSurface.prototype.handleKeydown = function (evt) {
-            this.foundation.handleKeydown(evt);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
         };
         MdcMenuSurface.prototype.handleBodyClick = function (evt) {
-            this.foundation.handleBodyClick(evt);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleBodyClick(evt);
         };
         MdcMenuSurface.prototype.initialise = function () {
             return tslib_1.__awaiter(this, void 0, void 0, function () {
@@ -53684,42 +56058,63 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         ;
         MdcMenuSurface.prototype.initialSyncWithDOM = function () {
             var parentEl = this.root.parentElement;
-            this.anchorElement = parentEl && parentEl.classList.contains(menu_surface_1.cssClasses.ANCHOR) ? parentEl : null;
+            if (!this.anchor) {
+                this.anchor = parentEl && parentEl.classList.contains(menu_surface_1.cssClasses.ANCHOR) ? parentEl : null;
+            }
             this.listen('keydown', this);
         };
         MdcMenuSurface.prototype.destroy = function () {
             this.unlisten('keydown', this);
+            if (this.originalParent) {
+                this.originalParent.appendChild(document.body.removeChild(this.root));
+            }
             _super.prototype.destroy.call(this);
         };
         MdcMenuSurface.prototype.isOpen = function () {
             return this.foundation.isOpen();
         };
         MdcMenuSurface.prototype.open = function () {
-            this.foundation.open();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.open();
         };
         MdcMenuSurface.prototype.close = function (skipRestoreFocus) {
+            var _a;
             if (skipRestoreFocus === void 0) { skipRestoreFocus = false; }
-            this.foundation.close(skipRestoreFocus);
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.close(skipRestoreFocus);
         };
         Object.defineProperty(MdcMenuSurface.prototype, "quickOpen", {
             set: function (quickOpen) {
-                this.foundation.setQuickOpen(quickOpen);
+                var _a;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setQuickOpen(quickOpen);
             },
             enumerable: false,
             configurable: true
         });
-        /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
-        MdcMenuSurface.prototype.setIsHoisted = function (isHoisted) {
-            this.foundation.setIsHoisted(isHoisted);
-        };
-        /** Sets the element that the menu-surface is anchored to. */
-        MdcMenuSurface.prototype.setMenuSurfaceAnchorElement = function (element) {
-            this.anchorElement = element;
+        MdcMenuSurface.prototype.hoistToBodyChanged = function () {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0: return [4 /*yield*/, this.initialised];
+                        case 1:
+                            _b.sent();
+                            if (this.hoistToBody) {
+                                this.originalParent = this.root.parentElement;
+                                if (this.originalParent) {
+                                    document.body.appendChild(this.originalParent.removeChild(this.root));
+                                    (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setIsHoisted(true);
+                                }
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
         };
         MdcMenuSurface.prototype.fixedChanged = function () {
+            var _a;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0:
                             if (this.fixed) {
                                 this.root.classList.add(menu_surface_1.cssClasses.FIXED);
@@ -53729,8 +56124,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             }
                             return [4 /*yield*/, this.initialised];
                         case 1:
-                            _a.sent();
-                            this.foundation.setFixedPosition(this.fixed);
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setFixedPosition(this.fixed);
                             return [2 /*return*/];
                     }
                 });
@@ -53738,17 +56133,44 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         };
         /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
         MdcMenuSurface.prototype.setAbsolutePosition = function (x, y) {
-            this.foundation.setAbsolutePosition(x, y);
-            this.setIsHoisted(true);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAbsolutePosition(x, y);
+            this.hoistToBody = true;
+        };
+        MdcMenuSurface.prototype.anchorCornerChanged = function () {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0: return [4 /*yield*/, this.initialised];
+                        case 1:
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAnchorCorner(menu_surface_1.Corner[this.anchorCorner]);
+                            return [2 /*return*/];
+                    }
+                });
+            });
         };
         /**
          * @param corner Default anchor corner alignment of top-left surface corner.
          */
         MdcMenuSurface.prototype.setAnchorCorner = function (corner) {
-            this.foundation.setAnchorCorner(corner);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAnchorCorner(corner);
         };
-        MdcMenuSurface.prototype.setAnchorMargin = function (margin) {
-            this.foundation.setAnchorMargin(margin);
+        MdcMenuSurface.prototype.anchorMarginChanged = function (margin) {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0: return [4 /*yield*/, this.initialised];
+                        case 1:
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAnchorMargin(margin);
+                            return [2 /*return*/];
+                    }
+                });
+            });
         };
         MdcMenuSurface.prototype.getDefaultFoundation = function () {
             var _this = this;
@@ -53758,7 +56180,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 addClass: function (className) { return _this.root.classList.add(className); },
                 removeClass: function (className) { return _this.root.classList.remove(className); },
                 hasClass: function (className) { return _this.root.classList.contains(className); },
-                hasAnchor: function () { return !!_this.anchorElement; },
+                hasAnchor: function () { return !!_this.anchor; },
                 notifyClose: function () {
                     _this.emit(menu_surface_1.MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
                     _this.deregisterBodyClickListener();
@@ -53790,7 +56212,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                         height: _this.root.offsetHeight
                     };
                 },
-                getAnchorDimensions: function () { return _this.anchorElement ? _this.anchorElement.getBoundingClientRect() : null; },
+                getAnchorDimensions: function () { return _this.anchor ? _this.anchor.getBoundingClientRect() : null; },
                 getWindowDimensions: function () {
                     return { width: window.innerWidth, height: window.innerHeight };
                 },
@@ -53814,9 +56236,25 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return new menu_surface_1.MDCMenuSurfaceFoundation(adapter);
         };
         tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", Object)
+        ], MdcMenuSurface.prototype, "anchor", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcMenuSurface.prototype, "hoistToBody", void 0);
+        tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
             tslib_1.__metadata("design:type", Boolean)
         ], MdcMenuSurface.prototype, "fixed", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", Object)
+        ], MdcMenuSurface.prototype, "anchorCorner", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", Object)
+        ], MdcMenuSurface.prototype, "anchorMargin", void 0);
         MdcMenuSurface = tslib_1.__decorate([
             aurelia_framework_1.inject(Element),
             aurelia_framework_1.customAttribute('mdc-menu-surface')
@@ -53869,13 +56307,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/menu */ "../../node_modules/@material/menu/index.js"), __webpack_require__(/*! @aurelia-mdc-web/list */ "@aurelia-mdc-web/list"), __webpack_require__(/*! @material/list */ "../../node_modules/@material/list/index.js"), __webpack_require__(/*! @material/menu-surface */ "../../node_modules/@material/menu-surface/index.js"), __webpack_require__(/*! @material/list/constants */ "../../node_modules/@material/list/constants.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, menu_1, list_1, list_2, menu_surface_1, constants_1, ponyfill_1, aurelia_framework_1, aurelia_typed_observable_plugin_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/menu */ "../../node_modules/@material/menu/index.js"), __webpack_require__(/*! @aurelia-mdc-web/list */ "@aurelia-mdc-web/list"), __webpack_require__(/*! @material/list/constants */ "../../node_modules/@material/list/constants.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, menu_1, list_1, constants_1, ponyfill_1, aurelia_framework_1, aurelia_typed_observable_plugin_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcMenu = void 0;
-    // aurelia is case insensitive
-    menu_surface_1.MDCMenuSurfaceFoundation.strings.OPENED_EVENT = menu_surface_1.MDCMenuSurfaceFoundation.strings.OPENED_EVENT.toLowerCase();
-    list_2.MDCListFoundation.strings.ACTION_EVENT = list_2.MDCListFoundation.strings.ACTION_EVENT.toLowerCase();
+    menu_1.strings.SELECTED_EVENT = menu_1.strings.SELECTED_EVENT.toLowerCase();
     var MdcMenu = /** @class */ (function (_super) {
         tslib_1.__extends(MdcMenu, _super);
         function MdcMenu() {
@@ -53883,16 +56319,34 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             _this.defaultFocusState = 'LIST_ROOT';
             return _this;
         }
+        MdcMenu.prototype.typeaheadChanged = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.initialised];
+                        case 1:
+                            _a.sent();
+                            if (this.list_) {
+                                this.list_.typeahead = this.typeahead;
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
         MdcMenu.prototype.handleKeydown_ = function (evt) {
-            this.foundation.handleKeydown(evt);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
             return true;
         };
         MdcMenu.prototype.handleItemAction_ = function (evt) {
-            this.foundation.handleItemAction(this.items[evt.detail.index]);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleItemAction(this.items[evt.detail.index]);
             return true;
         };
         MdcMenu.prototype.handleMenuSurfaceOpened_ = function () {
-            this.foundation.handleMenuSurfaceOpened();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleMenuSurfaceOpened();
             return true;
         };
         Object.defineProperty(MdcMenu.prototype, "open", {
@@ -53920,19 +56374,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             set: function (value) {
                 if (this.list_) {
                     this.list_.wrapFocus = value;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcMenu.prototype, "hasTypeahead", {
-            /**
-             * Sets whether the menu has typeahead functionality.
-             * @param value Whether typeahead is enabled.
-             */
-            set: function (value) {
-                if (this.list_) {
-                    this.list_.hasTypeahead = value;
                 }
             },
             enumerable: false,
@@ -54037,6 +56478,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param corner Default anchor corner alignment of top-left menu corner.
+         */
+        MdcMenu.prototype.setAnchorCorner = function (corner) {
+            this.menuSurface_.setAnchorCorner(corner);
+        };
         Object.defineProperty(MdcMenu.prototype, "quickOpen", {
             set: function (quickOpen) {
                 this.menuSurface_.quickOpen = quickOpen;
@@ -54045,42 +56492,26 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             configurable: true
         });
         MdcMenu.prototype.defaultFocusStateChanged = function () {
+            var _a;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0: return [4 /*yield*/, this.initialised];
                         case 1:
-                            _a.sent();
-                            this.foundation.setDefaultFocusState(menu_1.DefaultFocusState[this.defaultFocusState]);
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setDefaultFocusState(menu_1.DefaultFocusState[this.defaultFocusState]);
                             return [2 /*return*/];
                     }
                 });
             });
         };
         /**
-         * Sets default focus state where the menu should focus every time when menu
-         * is opened. Focuses the list root (`DefaultFocusState.LIST_ROOT`) element by
-         * default.
-         * @param focusState Default focus state.
-         */
-        MdcMenu.prototype.setDefaultFocusState = function (focusState) {
-            this.foundation.setDefaultFocusState(focusState);
-        };
-        /**
-         * @param corner Default anchor corner alignment of top-left menu corner.
-         */
-        MdcMenu.prototype.setAnchorCorner = function (corner) {
-            this.menuSurface_.setAnchorCorner(corner);
-        };
-        MdcMenu.prototype.setAnchorMargin = function (margin) {
-            this.menuSurface_.setAnchorMargin(margin);
-        };
-        /**
          * Sets the list item as the selected row at the specified index.
          * @param index Index of list item within menu.
          */
         MdcMenu.prototype.setSelectedIndex = function (index) {
-            this.foundation.setSelectedIndex(index);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSelectedIndex(index);
         };
         /**
          * Sets the enabled state to isEnabled for the menu item at the given index.
@@ -54088,7 +56519,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          * @param isEnabled The desired enabled state of the menu item.
          */
         MdcMenu.prototype.setEnabled = function (index, isEnabled) {
-            this.foundation.setEnabled(index, isEnabled);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setEnabled(index, isEnabled);
         };
         /**
          * @return The item within the menu at the index specified.
@@ -54112,9 +56544,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 return this.list_.getPrimaryText(item) || '';
             }
             return '';
-        };
-        MdcMenu.prototype.setIsHoisted = function (isHoisted) {
-            this.menuSurface_.setIsHoisted(isHoisted);
         };
         MdcMenu.prototype.setAbsolutePosition = function (x, y) {
             this.menuSurface_.setAbsolutePosition(x, y);
@@ -54165,9 +56594,29 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             tslib_1.__metadata("design:type", Boolean)
         ], MdcMenu.prototype, "fixed", void 0);
         tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcMenu.prototype, "typeahead", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr({ defaultBindingMode: aurelia_framework_1.bindingMode.oneTime }),
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcMenu.prototype, "hoistToBody", void 0);
+        tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
+            tslib_1.__metadata("design:type", Object)
+        ], MdcMenu.prototype, "anchor", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", Object)
         ], MdcMenu.prototype, "defaultFocusState", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", Object)
+        ], MdcMenu.prototype, "anchorCorner", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", Object)
+        ], MdcMenu.prototype, "anchorMargin", void 0);
         MdcMenu = tslib_1.__decorate([
             aurelia_framework_1.inject(Element),
             aurelia_framework_1.customElement('mdc-menu')
@@ -54189,7 +56638,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"mdc-menu\" mdc-menu-surface=\"fixed.bind: fixed\" mdc-menu-surface.ref=\"menuSurface_\"\n  keydown.trigger=\"handleKeydown_($event)\" mdcmenusurface:opened.trigger=\"handleMenuSurfaceOpened_()\"\n  mdclist:action.trigger=\"handleItemAction_($event)\">\n  <slot></slot>\n</template>\n";
+var code = "<template class=\"mdc-menu\"\n  mdc-menu-surface=\"fixed.bind: fixed; anchor-corner.bind: anchorCorner; anchor-margin.bind: anchorMargin; hoist-to-body.bind: hoistToBody; anchor.bind: anchor\"\n  mdc-menu-surface.ref=\"menuSurface_\" keydown.trigger=\"handleKeydown_($event)\"\n  mdcmenusurface:opened.trigger=\"handleMenuSurfaceOpened_()\" mdclist:action.trigger=\"handleItemAction_($event)\">\n  <slot></slot>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -54258,13 +56707,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          * @param notchWidth The notch width in the outline.
          */
         MdcNotchedOutline.prototype.notch = function (notchWidth) {
-            this.foundation.notch(notchWidth);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.notch(notchWidth);
         };
         /**
          * Updates classes and styles to close the notch.
          */
         MdcNotchedOutline.prototype.closeNotch = function () {
-            this.foundation.closeNotch();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.closeNotch();
         };
         MdcNotchedOutline.prototype.getDefaultFoundation = function () {
             var _this = this;
@@ -54351,26 +56802,30 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return _super !== null && _super.apply(this, arguments) || this;
         }
         MdcRipple.prototype.unboundedChanged = function () {
+            var _a;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0: return [4 /*yield*/, this.initialised];
                         case 1:
-                            _a.sent();
-                            this.foundation.setUnbounded(Boolean(this.unbounded));
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUnbounded(Boolean(this.unbounded));
                             return [2 /*return*/];
                     }
                 });
             });
         };
         MdcRipple.prototype.activate = function () {
-            this.foundation.activate();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate();
         };
         MdcRipple.prototype.deactivate = function () {
-            this.foundation.deactivate();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
         };
         MdcRipple.prototype.layout = function () {
-            this.foundation.layout();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.layout();
         };
         MdcRipple.prototype.getDefaultFoundation = function () {
             return new ripple_1.MDCRippleFoundation(this.createAdapter());
@@ -54422,6 +56877,520 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/select":
+/*!******************************!*\
+  !*** ../select/src/index.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/select */ "../../node_modules/@material/select/index.js"), __webpack_require__(/*! ./mdc-select */ "@aurelia-mdc-web/select/mdc-select")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_framework_1, base_1, select_1, mdc_select_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.configure = void 0;
+    Object.defineProperty(exports, "MdcSelect", { enumerable: true, get: function () { return mdc_select_1.MdcSelect; } });
+    function configure(config) {
+        config.container.get(base_1.MdcComponentAdapters).registerMdcElementConfig(selectConfig);
+        config.globalResources([
+            './mdc-select',
+            './mdc-select-icon',
+            './mdc-select-helper-text/mdc-select-helper-text'
+        ]);
+    }
+    exports.configure = configure;
+    var selectConfig = {
+        tagName: 'mdc-select',
+        properties: {
+            value: {
+                defaultBindingMode: aurelia_framework_1.bindingMode.twoWay,
+                getObserver: function (element) {
+                    return new aurelia_framework_1.ValueAttributeObserver(element, 'value', new aurelia_framework_1.EventSubscriber([select_1.strings.CHANGE_EVENT]));
+                }
+            }
+        }
+    };
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/select/mdc-select":
+/*!***********************************!*\
+  !*** ../select/src/mdc-select.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/select */ "../../node_modules/@material/select/index.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-pal */ "../../node_modules/aurelia-pal/dist/es2015/aurelia-pal.js"), __webpack_require__(/*! ./mdc-select-icon */ "@aurelia-mdc-web/select/mdc-select-icon"), __webpack_require__(/*! ./mdc-select-helper-text/mdc-select-helper-text */ "@aurelia-mdc-web/select/mdc-select-helper-text/mdc-select-helper-text"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js"), __webpack_require__(/*! @aurelia-mdc-web/list */ "@aurelia-mdc-web/list"), __webpack_require__(/*! ./mdc-select-fundation-aurelia */ "../select/src/mdc-select-fundation-aurelia.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, select_1, aurelia_framework_1, aurelia_pal_1, mdc_select_icon_1, mdc_select_helper_text_1, aurelia_typed_observable_plugin_1, list_1, mdc_select_fundation_aurelia_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcSelect = void 0;
+    select_1.strings.CHANGE_EVENT = select_1.strings.CHANGE_EVENT.toLowerCase();
+    var selectId = 0;
+    var MdcSelect = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcSelect, _super);
+        function MdcSelect(root) {
+            var _this = _super.call(this, root) || this;
+            _this.id = "mdc-select-" + ++selectId;
+            defineMdcSelectElementApis(_this.root);
+            return _this;
+        }
+        MdcSelect_1 = MdcSelect;
+        MdcSelect.processContent = function (_viewCompiler, _resources, element, _instruction) {
+            // move icon to the slot - this allows omitting slot specification
+            var leadingIcon = element.querySelector("[" + mdc_select_icon_1.mdcIconStrings.ATTRIBUTE + "]");
+            leadingIcon === null || leadingIcon === void 0 ? void 0 : leadingIcon.setAttribute('slot', 'leading-icon');
+            return true;
+        };
+        Object.defineProperty(MdcSelect.prototype, "value", {
+            get: function () {
+                if (this.foundation) {
+                    return this.foundation.getValue();
+                }
+                else {
+                    return this.initialValue;
+                }
+            },
+            set: function (value) {
+                if (this.foundation) {
+                    this.foundation.setValue(value);
+                    this.foundation.layout();
+                }
+                else {
+                    this.initialValue = value;
+                }
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(MdcSelect.prototype, "selectedIndex", {
+            get: function () {
+                return this.foundation.getSelectedIndex();
+            },
+            set: function (selectedIndex) {
+                var _a;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSelectedIndex(selectedIndex, /** closeMenu */ true);
+            },
+            enumerable: false,
+            configurable: true
+        });
+        MdcSelect.prototype.initialise = function () {
+            var _a, _b;
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                var nextSibling;
+                return tslib_1.__generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            this.leadingIcon = (_a = this.leadingIconEl) === null || _a === void 0 ? void 0 : _a.au['mdc-select-icon'].viewModel;
+                            nextSibling = this.root.nextElementSibling;
+                            if ((nextSibling === null || nextSibling === void 0 ? void 0 : nextSibling.tagName) === mdc_select_helper_text_1.mdcHelperTextCssClasses.ROOT.toUpperCase()) {
+                                this.helperText = nextSibling.au.controller.viewModel;
+                            }
+                            return [4 /*yield*/, Promise.all([(_b = this.helperText) === null || _b === void 0 ? void 0 : _b.initialised, this.menu.initialised].filter(function (x) { return x; }))];
+                        case 1:
+                            _c.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        MdcSelect.prototype.initialSyncWithDOM = function () {
+            this.value = this.initialValue;
+        };
+        MdcSelect.prototype.getDefaultFoundation = function () {
+            // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+            // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+            var adapter = tslib_1.__assign(tslib_1.__assign(tslib_1.__assign(tslib_1.__assign({}, this.getSelectAdapterMethods()), this.getCommonAdapterMethods()), this.getOutlineAdapterMethods()), this.getLabelAdapterMethods());
+            return new mdc_select_fundation_aurelia_1.MDCSelectFoundationAurelia(adapter, this.getFoundationMap());
+        };
+        MdcSelect.prototype.getSelectAdapterMethods = function () {
+            var _this = this;
+            return {
+                getSelectedMenuItem: function () { return _this.menuElement.querySelector(select_1.strings.SELECTED_ITEM_SELECTOR); },
+                getMenuItemAttr: function (menuItem, attr) { return menuItem.getAttribute(attr); },
+                setSelectedText: function (text) {
+                    _this.selectedText.textContent = text;
+                },
+                isSelectAnchorFocused: function () { return document.activeElement === _this.selectAnchor; },
+                getSelectAnchorAttr: function (attr) { return _this.selectAnchor.getAttribute(attr); },
+                setSelectAnchorAttr: function (attr, value) {
+                    _this.selectAnchor.setAttribute(attr, value);
+                },
+                removeSelectAnchorAttr: function (attr) {
+                    _this.selectAnchor.removeAttribute(attr);
+                },
+                addMenuClass: function (className) {
+                    _this.menuElement.classList.add(className);
+                },
+                removeMenuClass: function (className) {
+                    _this.menuElement.classList.remove(className);
+                },
+                openMenu: function () { _this.menu.open = true; },
+                closeMenu: function () { _this.menu.open = false; },
+                getAnchorElement: function () { return _this.root.querySelector(select_1.strings.SELECT_ANCHOR_SELECTOR); },
+                setMenuAnchorElement: function (anchorEl) {
+                    _this.menu.anchor = anchorEl;
+                },
+                setMenuAnchorCorner: function (anchorCorner) {
+                    _this.menu.setAnchorCorner(anchorCorner);
+                },
+                setMenuWrapFocus: function (wrapFocus) {
+                    _this.menu.wrapFocus = wrapFocus;
+                },
+                getSelectedIndex: function () {
+                    var index = _this.menu.selectedIndex;
+                    return index instanceof Array ? index[0] : index;
+                },
+                setSelectedIndex: function (index) {
+                    _this.menu.selectedIndex = index;
+                },
+                setAttributeAtIndex: function (index, attributeName, attributeValue) {
+                    _this.menu.items[index].setAttribute(attributeName, attributeValue);
+                },
+                removeAttributeAtIndex: function (index, attributeName) {
+                    _this.menu.items[index].removeAttribute(attributeName);
+                },
+                focusMenuItemAtIndex: function (index) {
+                    _this.menu.items[index].focus();
+                },
+                getMenuItemCount: function () { return _this.menu.items.length; },
+                getMenuItemValues: function () { return _this.menu.items.map(function (x) { return x.au.controller.viewModel.value; }); },
+                getMenuItemTextAtIndex: function (index) { return _this.menu.getPrimaryTextAtIndex(index); },
+                addClassAtIndex: function (index, className) {
+                    _this.menu.items[index].classList.add(className);
+                },
+                removeClassAtIndex: function (index, className) {
+                    _this.menu.items[index].classList.remove(className);
+                },
+                isTypeaheadInProgress: function () { return _this.menu.typeaheadInProgress; },
+                typeaheadMatchItem: function (nextChar, startingIndex) { return _this.menu.typeaheadMatchItem(nextChar, startingIndex); },
+            };
+        };
+        MdcSelect.prototype.getCommonAdapterMethods = function () {
+            var _this = this;
+            return {
+                addClass: function (className) {
+                    _this.root.classList.add(className);
+                },
+                removeClass: function (className) {
+                    _this.root.classList.remove(className);
+                },
+                hasClass: function (className) { return _this.root.classList.contains(className); },
+                setRippleCenter: function (normalizedX) {
+                    _this.lineRipple && _this.lineRipple.setRippleCenter(normalizedX);
+                },
+                activateBottomLine: function () {
+                    _this.lineRipple && _this.lineRipple.activate();
+                },
+                deactivateBottomLine: function () {
+                    _this.lineRipple && _this.lineRipple.deactivate();
+                },
+                notifyChange: function (value) {
+                    var index = _this.selectedIndex;
+                    _this.emit(select_1.strings.CHANGE_EVENT, { value: value, index: index }, true /* shouldBubble  */);
+                },
+            };
+        };
+        MdcSelect.prototype.getOutlineAdapterMethods = function () {
+            var _this = this;
+            return {
+                hasOutline: function () { return Boolean(_this.outline); },
+                notchOutline: function (labelWidth) {
+                    _this.outline && _this.outline.notch(labelWidth);
+                },
+                closeOutline: function () {
+                    _this.outline && _this.outline.closeNotch();
+                },
+            };
+        };
+        MdcSelect.prototype.getLabelAdapterMethods = function () {
+            var _this = this;
+            return {
+                hasLabel: function () { return !!_this.mdcLabel; },
+                floatLabel: function (shouldFloat) {
+                    _this.mdcLabel && _this.mdcLabel.float(shouldFloat);
+                },
+                getLabelWidth: function () { return _this.mdcLabel ? _this.mdcLabel.getWidth() : 0; },
+                setLabelRequired: function (isRequired) {
+                    _this.mdcLabel && _this.mdcLabel.setRequired(isRequired);
+                },
+            };
+        };
+        MdcSelect.prototype.handleChange = function () {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleChange();
+        };
+        ;
+        MdcSelect.prototype.handleFocus = function () {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleFocus();
+        };
+        MdcSelect.prototype.handleBlur = function () {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleBlur();
+        };
+        MdcSelect.prototype.handleClick = function (evt) {
+            var _a;
+            this.selectAnchor.focus();
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick(this.getNormalizedXCoordinate(evt));
+        };
+        MdcSelect.prototype.handleKeydown = function (evt) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
+            return true;
+        };
+        MdcSelect.prototype.handleMenuItemAction = function (evt) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleMenuItemAction(evt.detail.index);
+        };
+        MdcSelect.prototype.handleMenuOpened = function () {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleMenuOpened();
+        };
+        MdcSelect.prototype.handleMenuClosed = function () {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleMenuClosed();
+        };
+        MdcSelect.prototype.focus = function () {
+            this.selectAnchor.focus();
+        };
+        MdcSelect.prototype.blur = function () {
+            this.selectAnchor.blur();
+        };
+        /**
+         * Calculates where the line ripple should start based on the x coordinate within the component.
+         */
+        MdcSelect.prototype.getNormalizedXCoordinate = function (evt) {
+            var targetClientRect = evt.target.getBoundingClientRect();
+            var xCoordinate = this.isTouchEvent(evt) ? evt.touches[0].clientX : evt.clientX;
+            return xCoordinate - targetClientRect.left;
+        };
+        MdcSelect.prototype.isTouchEvent = function (evt) {
+            return Boolean(evt.touches);
+        };
+        /**
+         * Returns a map of all subcomponents to subfoundations.
+         */
+        MdcSelect.prototype.getFoundationMap = function () {
+            var _a, _b;
+            return {
+                helperText: (_a = this.helperText) === null || _a === void 0 ? void 0 : _a.foundation,
+                leadingIcon: (_b = this.leadingIcon) === null || _b === void 0 ? void 0 : _b.foundation
+            };
+        };
+        var MdcSelect_1;
+        tslib_1.__decorate([
+            aurelia_framework_1.child("[" + mdc_select_icon_1.mdcIconStrings.ATTRIBUTE + "]"),
+            tslib_1.__metadata("design:type", Object)
+        ], MdcSelect.prototype, "leadingIconEl", void 0);
+        tslib_1.__decorate([
+            aurelia_framework_1.children('mdc-list-items'),
+            tslib_1.__metadata("design:type", list_1.MdcListItem)
+        ], MdcSelect.prototype, "items", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable,
+            tslib_1.__metadata("design:type", String)
+        ], MdcSelect.prototype, "label", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcSelect.prototype, "outlined", void 0);
+        MdcSelect = MdcSelect_1 = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.useView('./mdc-select.html'),
+            aurelia_framework_1.customElement(select_1.cssClasses.ROOT),
+            aurelia_framework_1.processContent(MdcSelect_1.processContent),
+            tslib_1.__metadata("design:paramtypes", [HTMLElement])
+        ], MdcSelect);
+        return MdcSelect;
+    }(base_1.MdcComponent));
+    exports.MdcSelect = MdcSelect;
+    function defineMdcSelectElementApis(element) {
+        Object.defineProperties(element, {
+            value: {
+                get: function () {
+                    return this.au.controller.viewModel.value;
+                },
+                set: function (value) {
+                    this.au.controller.viewModel.value = value;
+                },
+                configurable: true
+            },
+            focus: {
+                value: function () {
+                    this.au.controller.viewModel.focus();
+                },
+                configurable: true
+            },
+            blur: {
+                value: function () {
+                    this.au.controller.viewModel.blur();
+                },
+                configurable: true
+            }
+        });
+    }
+    ;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/select/mdc-select-helper-text/mdc-select-helper-text":
+/*!**********************************************************************!*\
+  !*** ../select/src/mdc-select-helper-text/mdc-select-helper-text.ts ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/select */ "../../node_modules/@material/select/index.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, select_1, aurelia_framework_1, aurelia_typed_observable_plugin_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcSelectHelperText = exports.mdcHelperTextCssClasses = void 0;
+    exports.mdcHelperTextCssClasses = {
+        ROOT: 'mdc-select-helper-text'
+    };
+    var MdcSelectHelperText = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcSelectHelperText, _super);
+        function MdcSelectHelperText() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.helperTextCssClasses = select_1.helperTextCssClasses;
+            _this.ROOT = exports.mdcHelperTextCssClasses.ROOT;
+            return _this;
+        }
+        Object.defineProperty(MdcSelectHelperText.prototype, "foundationForTextField", {
+            // Provided for access by MDCTextField component
+            get: function () {
+                return this.foundation;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        MdcSelectHelperText.prototype.getDefaultFoundation = function () {
+            var _this = this;
+            // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+            // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+            var adapter = {
+                addClass: function (className) { return _this.root.classList.add(className); },
+                removeClass: function (className) { return _this.root.classList.remove(className); },
+                hasClass: function (className) { return _this.root.classList.contains(className); },
+                setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+                removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
+                setContent: function (content) {
+                    _this.root.textContent = content;
+                },
+            };
+            return new select_1.MDCSelectHelperTextFoundation(adapter);
+        };
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcSelectHelperText.prototype, "persistent", void 0);
+        tslib_1.__decorate([
+            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+            tslib_1.__metadata("design:type", Boolean)
+        ], MdcSelectHelperText.prototype, "validation", void 0);
+        MdcSelectHelperText = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.useView('./mdc-select-helper-text.html'),
+            aurelia_framework_1.customElement(exports.mdcHelperTextCssClasses.ROOT)
+        ], MdcSelectHelperText);
+        return MdcSelectHelperText;
+    }(base_1.MdcComponent));
+    exports.MdcSelectHelperText = MdcSelectHelperText;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/select/mdc-select-helper-text/mdc-select-helper-text.html":
+/*!************************************************************************!*\
+  !*** ../select/src/mdc-select-helper-text/mdc-select-helper-text.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template class=\"\n    ${ROOT} ${persistent ? helperTextCssClasses.HELPER_TEXT_VALIDATION_MSG_PERSISTENT : ''}\n    ${validation ? helperTextCssClasses.HELPER_TEXT_VALIDATION_MSG : ''}\">\n  <slot></slot>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/select/mdc-select-icon":
+/*!****************************************!*\
+  !*** ../select/src/mdc-select-icon.ts ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @aurelia-mdc-web/base */ "../base/src/index.ts"), __webpack_require__(/*! @material/select */ "../../node_modules/@material/select/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, base_1, select_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcSelectIcon = exports.mdcIconStrings = void 0;
+    exports.mdcIconStrings = {
+        ATTRIBUTE: 'mdc-select-icon'
+    };
+    var MdcSelectIcon = /** @class */ (function (_super) {
+        tslib_1.__extends(MdcSelectIcon, _super);
+        function MdcSelectIcon() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        MdcSelectIcon.prototype.initialise = function () {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    this.root.classList.add('mdc-select__icon');
+                    return [2 /*return*/];
+                });
+            });
+        };
+        MdcSelectIcon.prototype.getDefaultFoundation = function () {
+            var _this = this;
+            // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+            // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+            var adapter = {
+                getAttr: function (attr) { return _this.root.getAttribute(attr); },
+                setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+                removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
+                setContent: function (content) {
+                    _this.root.textContent = content;
+                },
+                registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
+                deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
+                notifyIconAction: function () { return _this.emit(select_1.MDCSelectIconFoundation.strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */); },
+            };
+            return new select_1.MDCSelectIconFoundation(adapter);
+        };
+        MdcSelectIcon = tslib_1.__decorate([
+            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.customAttribute(exports.mdcIconStrings.ATTRIBUTE)
+        ], MdcSelectIcon);
+        return MdcSelectIcon;
+    }(base_1.MdcComponent));
+    exports.MdcSelectIcon = MdcSelectIcon;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/select/mdc-select.html":
+/*!*************************************!*\
+  !*** ../select/src/mdc-select.html ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template class=\"\n    mdc-select\n    mdc-select--${outlined ? 'outlined' : 'filled'}\n    ${leadingIcon ? 'mdc-select--with-leading-icon' : ''}\n  \" id=\"${id}\">\n  <div class=\"mdc-select__anchor\" ref=\"selectAnchor\" mdc-ripple change.trigger=\"handleChange()\"\n    focus.trigger=\"handleFocus()\" blur.call=\"handleBlur()\" keydown.trigger=\"handleKeydown($event)\"\n    click.trigger=\"handleClick($event)\">\n    <span class=\"mdc-select__ripple\" if.bind=\"!outlined\"></span>\n    <slot name=\"leading-icon\"></slot>\n    <span class=\"mdc-select__selected-text\" ref=\"selectedText\"></span>\n    <span class=\"mdc-select__dropdown-icon\">\n      <svg class=\"mdc-select__dropdown-icon-graphic\" viewBox=\"7 10 10 5\">\n        <polygon class=\"mdc-select__dropdown-icon-inactive\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 10 12 15 17 10\">\n        </polygon>\n        <polygon class=\"mdc-select__dropdown-icon-active\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 15 12 10 17 15\">\n        </polygon>\n      </svg>\n    </span>\n    <mdc-floating-label if.bind=\"label && !outlined\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}\n    </mdc-floating-label>\n    <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple\"></mdc-line-ripple>\n    <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline\">\n      <mdc-floating-label if.bind=\"label\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}</mdc-floating-label>\n    </mdc-notched-outline>\n  </div>\n\n  <mdc-menu class=\"mdc-select__menu ${fullWidth ? 'mdc-menu-surface--fullwidth' : ''}\" view-model.ref=\"menu\"\n    ref=\"menuElement\" typeahead mdcmenusurface:closed.trigger=\"handleMenuClosed()\"\n    mdcmenusurface:opened.trigger=\"handleMenuOpened()\" mdcmenu:selected.trigger=\"handleMenuItemAction($event)\">\n    <mdc-list>\n      <slot></slot>\n    </mdc-list>\n  </mdc-menu>\n</template>\n";
+// Exports
+module.exports = code;
 
 /***/ }),
 
@@ -54488,10 +57457,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return new tab_indicator_1.MDCSlidingTabIndicatorFoundation(adapter);
         };
         MdcTabIndicator.prototype.activate = function (previousIndicatorClientRect) {
-            this.foundation.activate(previousIndicatorClientRect);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate(previousIndicatorClientRect);
         };
         MdcTabIndicator.prototype.deactivate = function () {
-            this.foundation.deactivate();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
         };
         tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable.booleanAttr,
@@ -54567,13 +57538,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             });
         };
         MdcTabBar.prototype.useAutomaticActivationChanged = function () {
+            var _a;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0: return [4 /*yield*/, this.initialised];
                         case 1:
-                            _a.sent();
-                            this.foundation.setUseAutomaticActivation(this.useAutomaticActivation);
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUseAutomaticActivation(this.useAutomaticActivation);
                             return [2 /*return*/];
                     }
                 });
@@ -54603,11 +57575,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
         };
         MdcTabBar.prototype.handleKeyDown_ = function (evt) {
-            this.foundation.handleKeyDown(evt);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeyDown(evt);
             return true;
         };
         MdcTabBar.prototype.handleTabInteraction_ = function (evt) {
-            this.foundation.handleTabInteraction(evt);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTabInteraction(evt);
         };
         MdcTabBar.prototype.getDefaultFoundation = function () {
             var _this = this;
@@ -54620,7 +57594,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 getScrollContentWidth: function () { return _this.tabScroller_.getScrollContentWidth(); },
                 getOffsetWidth: function () { return _this.root.offsetWidth; },
                 isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
-                setActiveTab: function (index) { return _this.foundation.activateTab(index); },
+                setActiveTab: function (index) { var _a; return (_a = _this.foundation) === null || _a === void 0 ? void 0 : _a.activateTab(index); },
                 activateTabAtIndex: function (index, clientRect) { return _this.tabScroller_.tabs[index].activate(clientRect); },
                 deactivateTabAtIndex: function (index) { return _this.tabScroller_.tabs[index].deactivate(); },
                 focusTabAtIndex: function (index) { return _this.tabScroller_.tabs[index].focus(); },
@@ -54657,14 +57631,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          * @param index The index of the tab
          */
         MdcTabBar.prototype.activateTab = function (index) {
-            this.foundation.activateTab(index);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activateTab(index);
         };
         /**
          * Scrolls the tab at the given index into view
          * @param index THe index of the tab
          */
         MdcTabBar.prototype.scrollIntoView = function (index) {
-            this.foundation.scrollIntoView(index);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.scrollIntoView(index);
         };
         /**
          * Returns all the tab elements in a nice clean array
@@ -54747,11 +57723,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return new tab_scroller_1.MDCTabScrollerFoundation(adapter);
         };
         MdcTabScroller.prototype.handleInteraction_ = function () {
-            this.foundation.handleInteraction();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleInteraction();
             return true;
         };
         MdcTabScroller.prototype.handleTransitionEnd_ = function (evt) {
-            this.foundation.handleTransitionEnd(evt);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTransitionEnd(evt);
             return true;
         };
         /**
@@ -54771,14 +57749,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          * @param scrollXIncrement The pixel value by which to increment the scroll value
          */
         MdcTabScroller.prototype.incrementScroll = function (scrollXIncrement) {
-            this.foundation.incrementScroll(scrollXIncrement);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.incrementScroll(scrollXIncrement);
         };
         /**
          * Scrolls to the given pixel position
          * @param scrollX The pixel value to scroll to
          */
         MdcTabScroller.prototype.scrollTo = function (scrollX) {
-            this.foundation.scrollTo(scrollX);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.scrollTo(scrollX);
         };
         tslib_1.__decorate([
             aurelia_framework_1.children('mdc-tab'),
@@ -54827,7 +57807,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return _this;
         }
         MdcTab.prototype.handleClick_ = function () {
-            this.foundation.handleClick();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick();
             return true;
         };
         MdcTab.prototype.getDefaultFoundation = function () {
@@ -54855,7 +57836,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         };
         Object.defineProperty(MdcTab.prototype, "focusOnActivate", {
             set: function (focusOnActivate) {
-                this.foundation.setFocusOnActivate(focusOnActivate);
+                var _a;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setFocusOnActivate(focusOnActivate);
             },
             enumerable: false,
             configurable: true
@@ -54864,13 +57846,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          * Activates the tab
          */
         MdcTab.prototype.activate = function (computeIndicatorClientRect) {
-            this.foundation.activate(computeIndicatorClientRect);
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate(computeIndicatorClientRect);
         };
         /**
          * Deactivates the tab
          */
         MdcTab.prototype.deactivate = function () {
-            this.foundation.deactivate();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
         };
         /**
          * Returns the indicator's client rect
@@ -54986,11 +57970,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTextField = void 0;
+    var textFieldId = 0;
     var MdcTextField = /** @class */ (function (_super) {
         tslib_1.__extends(MdcTextField, _super);
         function MdcTextField(root) {
             var _this = _super.call(this, root) || this;
-            _this.id = ++MdcTextField_1.id;
+            _this.id = "mdc-text-field-" + ++textFieldId;
             defineMdcTextFieldElementApis(_this.root);
             return _this;
         }
@@ -54998,13 +57983,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         MdcTextField.processContent = function (_viewCompiler, _resources, element, _instruction) {
             // move icons to slots - this allows omitting slot specification
             var leadingIcon = element.querySelector("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.LEADING + "]");
-            if (leadingIcon) {
-                leadingIcon.setAttribute('slot', 'leading-icon');
-            }
+            leadingIcon === null || leadingIcon === void 0 ? void 0 : leadingIcon.setAttribute('slot', 'leading-icon');
             var trailingIcon = element.querySelector("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.TRAILING + "]");
-            if (trailingIcon) {
-                trailingIcon.setAttribute('slot', 'trailing-icon');
-            }
+            trailingIcon === null || trailingIcon === void 0 ? void 0 : trailingIcon.setAttribute('slot', 'trailing-icon');
             return true;
         };
         MdcTextField.prototype.requiredChanged = function () {
@@ -55169,19 +58150,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             };
         };
         MdcTextField.prototype.onInput = function (evt) {
+            var _a;
             var value = evt.target.value;
             this.value = value;
-            this.foundation.handleInput();
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleInput();
             this.emit('input', {}, true);
         };
         MdcTextField.prototype.onFocus = function () {
+            var _a;
             return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
+                return tslib_1.__generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0: return [4 /*yield*/, this.initialised];
                         case 1:
-                            _a.sent();
-                            this.foundation.activateFocus();
+                            _b.sent();
+                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activateFocus();
                             return [2 /*return*/];
                     }
                 });
@@ -55193,7 +58176,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.emit('change', {}, true);
         };
         MdcTextField.prototype.onBlur = function () {
-            this.foundation.deactivateFocus();
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivateFocus();
         };
         MdcTextField.prototype.focus = function () {
             this.input_.focus();
@@ -55202,7 +58186,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.input_.blur();
         };
         var MdcTextField_1;
-        MdcTextField.id = 0;
         tslib_1.__decorate([
             aurelia_typed_observable_plugin_1.bindable,
             tslib_1.__metadata("design:type", String)
@@ -55454,7 +58437,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"${helperTextCssClasses.ROOT} ${persistent ? helperTextCssClasses.ROOT + '--persistent' : ''} ${validation ? helperTextCssClasses.ROOT + '--validation-msg' : ''}\">\n  <slot></slot>\n</template>\n";
+var code = "<template class=\"\n    ${helperTextCssClasses.ROOT} ${persistent ? helperTextCssClasses.ROOT + '--persistent' : ''}\n    ${validation ? helperTextCssClasses.ROOT + '--validation-msg' : ''}\">\n  <slot></slot>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -55541,7 +58524,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"mdc-text-field mdc-text-field--${outlined ? 'outlined' : 'filled'}\n${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''}\n${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}\" mdc-ripple=\"input.bind: input_\">\n  <span class=\"mdc-text-field__ripple\"></span>\n  <slot name=\"leading-icon\"></slot>\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--prefix\" if.bind=\"prefix\">${prefix}</span>\n  <input class=\"mdc-text-field__input\" type=\"text\" aria-labelledby.bind=\"id\" ref=\"input_\" focus.trigger=\"onFocus()\"\n    input.trigger=\"onInput($event)\" change.trigger=\"onChange($event)\" blur.trigger=\"onBlur()\" >\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--suffix\" if.bind=\"suffix\">${suffix}</span>\n  <slot name=\"trailing-icon\"></slot>\n  <mdc-floating-label if.bind=\"label && !outlined\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple_\"></mdc-line-ripple>\n  <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline_\">\n    <mdc-floating-label if.bind=\"label\" id.bind=\"id\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  </mdc-notched-outline>\n</template>\n";
+var code = "<template class=\"mdc-text-field mdc-text-field--${outlined ? 'outlined' : 'filled'}\n${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''}\n${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}\" mdc-ripple=\"input.bind: input_\">\n  <span class=\"mdc-text-field__ripple\"></span>\n  <slot name=\"leading-icon\"></slot>\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--prefix\" if.bind=\"prefix\">${prefix}</span>\n  <input class=\"mdc-text-field__input\" type=\"text\" aria-labelledby.bind=\"id\" ref=\"input_\" focus.trigger=\"onFocus()\"\n    input.trigger=\"onInput($event)\" change.trigger=\"onChange($event)\" blur.trigger=\"onBlur()\" >\n  <span class=\"mdc-text-field__affix mdc-text-field__affix--suffix\" if.bind=\"suffix\">${suffix}</span>\n  <slot name=\"trailing-icon\"></slot>\n  <mdc-floating-label if.bind=\"label && !outlined\" id=\"${id}\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple_\"></mdc-line-ripple>\n  <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline_\">\n    <mdc-floating-label if.bind=\"label\" id=\"${id}\" view-model.ref=\"label_\">${label}</mdc-floating-label>\n  </mdc-notched-outline>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -55637,9 +58620,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             });
         };
         MdcTopAppBar.prototype.initialSyncWithDOM = function () {
-            this.handleNavigationClick_ = this.foundation.handleNavigationClick.bind(this.foundation);
-            this.handleWindowResize_ = this.foundation.handleWindowResize.bind(this.foundation);
-            this.handleTargetScroll_ = this.foundation.handleTargetScroll.bind(this.foundation);
+            var _a, _b, _c;
+            this.handleNavigationClick_ = (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleNavigationClick.bind(this.foundation);
+            this.handleWindowResize_ = (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.handleWindowResize.bind(this.foundation);
+            this.handleTargetScroll_ = (_c = this.foundation) === null || _c === void 0 ? void 0 : _c.handleTargetScroll.bind(this.foundation);
             this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_);
             this.hasActionItems = !!this.root.querySelector(top_app_bar_1.strings.ACTION_ITEM_SELECTOR);
             this.navIcon_ = this.root.querySelector(top_app_bar_1.strings.NAVIGATION_ICON_SELECTOR);
@@ -55653,11 +58637,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
         };
         MdcTopAppBar.prototype.setScrollTarget = function (target) {
+            var _a;
             // Remove scroll handler from the previous scroll target
             this.scrollTarget_.removeEventListener('scroll', this.handleTargetScroll_);
             this.scrollTarget_ = target;
             // Initialize scroll handler on the new scroll target
-            this.handleTargetScroll_ = this.foundation.handleTargetScroll.bind(this.foundation);
+            this.handleTargetScroll_ = (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTargetScroll.bind(this.foundation);
             this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_);
         };
         MdcTopAppBar.prototype.getDefaultFoundation = function () {
@@ -61108,6 +64093,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             .plugin('@aurelia-mdc-web/notched-outline')
                             .plugin('@aurelia-mdc-web/top-app-bar')
                             .plugin('@aurelia-mdc-web/ripple')
+                            .plugin('@aurelia-mdc-web/select')
                             .plugin('@aurelia-mdc-web/tab-bar')
                             .plugin('@aurelia-mdc-web/text-field');
                         return [4 /*yield*/, aurelia.start()];
@@ -61402,6 +64388,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             ],
             code: "import {MdcRippleModule} from '@angular-mdc/web/ripple';",
             sass: "@use '@material/ripple/mdc-ripple';\n@use '@material/ripple';"
+        },
+        select: {
+            title: 'Select Menus',
+            description: 'MDC Select provides Material Design single-option select menus, using the MDC menu.',
+            references: [{
+                    name: 'Material Design guidelines: Menus',
+                    url: 'https://material.io/guidelines/components/menus.html'
+                }, {
+                    name: 'Material Components Web',
+                    url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/README.md'
+                }],
+            mdcUrls: [
+                { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/README.md#sass-mixins' },
+                { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/helper-text/README.md#sass-mixins' },
+                { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/icon/README.md#sass-mixins' },
+            ],
+            code: "import {MdcSelectModule} from '@angular-mdc/web/select';",
+            sass: "@use '@material/select/mdc-select';\n@use '@material/select/_index' as select;\n@use '@material/list/mdc-list';\n@use '@material/menu-surface/mdc-menu-surface';\n@use '@material/menu/mdc-menu';"
         },
         tabs: {
             title: 'Tabs',
@@ -61708,7 +64712,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  Coming soon...\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">List Groups</h3>\n\n    <mdc-list-group>\n      <h3>List 1</h3>\n      <mdc-list>\n        <mdc-list-item tabindex=\"0\">line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n      </mdc-list>\n      <h3>List 2</h3>\n      <mdc-list>\n        <mdc-list-item tabindex=\"0\">line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n      </mdc-list>\n    </mdc-list-group>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -61773,7 +64777,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Basic</h3>\n    <div mdc-menu-surface-anchor>\n      <button mdc-button raised click.trigger=\"menu.toggle()\" style=\"width: 200px\" ref=\"button\">Open</button>\n      <mdc-menu view-model.ref=\"menu\">\n        <mdc-list>\n          <mdc-list-item>Cats</mdc-list-item>\n          <mdc-list-item>Dogs</mdc-list-item>\n        </mdc-list>\n      </mdc-menu>\n    </div>\n  </div>\n\n\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Basic</h3>\n    <div mdc-menu-surface-anchor>\n      <button mdc-button raised click.trigger=\"menu.toggle()\" style=\"width: 200px\" ref=\"button\">Open</button>\n      <mdc-menu view-model.ref=\"menu\">\n        <mdc-list role=\"menu\">\n          <mdc-list-item role=\"menuitem\">Cats</mdc-list-item>\n          <mdc-list-item role=\"menuitem\">Dogs</mdc-list-item>\n        </mdc-list>\n      </mdc-menu>\n    </div>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -61909,6 +64913,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 { route: 'menu' },
                 { route: 'list' },
                 { route: 'ripple' },
+                { route: 'select' },
                 { route: 'tabs' },
                 { route: 'text-field' },
                 { route: 'top-app-bar' },
@@ -61979,9 +64984,83 @@ module.exports = code;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;opacity:0;pointer-events:none;transition:opacity .28s cubic-bezier(.4,0,.2,1);background-color:#fff}.mdc-button{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);padding:0 8px;position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;border-radius:4px;border-radius:var(--mdc-shape-small,4px);height:36px}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-button:disabled,.mdc-button:not(:disabled){background-color:transparent}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;width:18px;height:18px;font-size:18px;vertical-align:top}.mdc-button .mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button .mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button .mdc-button__touch{position:absolute;top:50%;right:0;height:48px;left:0;transform:translateY(-50%)}.mdc-button:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-button:disabled{color:rgba(0,0,0,.38)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button__label+.mdc-button__icon{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--outlined .mdc-button__icon,.mdc-button--raised .mdc-button__icon,.mdc-button--unelevated .mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--outlined .mdc-button__icon[dir=rtl],.mdc-button--outlined .mdc-button__label+.mdc-button__icon,.mdc-button--raised .mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon,.mdc-button--unelevated .mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--outlined .mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__icon{margin-left:8px;margin-right:-4px}.mdc-button--outlined .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button--outlined .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__label+.mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--raised,.mdc-button--unelevated{padding:0 16px}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{background-color:rgba(0,0,0,.12);color:rgba(0,0,0,.38)}.mdc-button--raised{box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);transition:box-shadow .28s cubic-bezier(.4,0,.2,1)}.mdc-button--raised:focus,.mdc-button--raised:hover{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)}.mdc-button--raised:active{box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mdc-button--raised:disabled{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)}.mdc-button--outlined{padding:0 15px;border-width:1px;border-style:solid}.mdc-button--outlined .mdc-button__ripple{top:-1px;left:-1px;border:1px solid transparent}.mdc-button--outlined .mdc-button__touch{left:-1px;width:calc(100% + 2px)}.mdc-button--outlined:disabled,.mdc-button--outlined:not(:disabled){border-color:rgba(0,0,0,.12)}.mdc-button--touch{margin-top:6px;margin-bottom:6px}@keyframes mdc-ripple-fg-radius-in{0%{animation-timing-function:cubic-bezier(.4,0,.2,1);transform:translate(var(--mdc-ripple-fg-translate-start,0)) scale(1)}to{transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}}@keyframes mdc-ripple-fg-opacity-in{0%{animation-timing-function:linear;opacity:0}to{opacity:var(--mdc-ripple-fg-opacity,0)}}@keyframes mdc-ripple-fg-opacity-out{0%{animation-timing-function:linear;opacity:var(--mdc-ripple-fg-opacity,0)}to{opacity:0}}.mdc-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-button .mdc-button__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-button.mdc-ripple-upgraded--unbounded .mdc-button__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-button.mdc-ripple-upgraded--foreground-activation .mdc-button__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-button.mdc-ripple-upgraded--foreground-deactivation .mdc-button__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-button:hover .mdc-button__ripple:before{opacity:.04}.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.12}.mdc-button:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.12}.mdc-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-button .mdc-button__ripple{position:absolute;box-sizing:content-box;width:100%;height:100%;overflow:hidden}.mdc-button:not(.mdc-button--outlined) .mdc-button__ripple{top:0;left:0}.mdc-button--raised .mdc-button__ripple:after,.mdc-button--raised .mdc-button__ripple:before,.mdc-button--unelevated .mdc-button__ripple:after,.mdc-button--unelevated .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:hover .mdc-button__ripple:before,.mdc-button--unelevated:hover .mdc-button__ripple:before{opacity:.08}.mdc-button--raised.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--raised:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before,.mdc-button--unelevated.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--unelevated:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.mdc-button--raised:not(.mdc-ripple-upgraded) .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button--raised:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.mdc-button--raised.mdc-ripple-upgraded,.mdc-button--unelevated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-list{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);line-height:1.5rem;margin:0;padding:8px 0;list-style-type:none;color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list:focus{outline:none}.mdc-list-item__secondary-text{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))}.mdc-list-item__graphic{background-color:transparent;color:rgba(0,0,0,.38);color:var(--mdc-theme-text-icon-on-background,rgba(0,0,0,.38))}.mdc-list-item__meta{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-hint-on-background,rgba(0,0,0,.38))}.mdc-list-group__subheader{color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list-item--disabled .mdc-list-item__text{opacity:.38}.mdc-list-item--disabled .mdc-list-item__primary-text,.mdc-list-item--disabled .mdc-list-item__secondary-text,.mdc-list-item--disabled .mdc-list-item__text{color:#000;color:var(--mdc-theme-on-surface,#000)}.mdc-list-item--activated,.mdc-list-item--activated .mdc-list-item__graphic,.mdc-list-item--selected,.mdc-list-item--selected .mdc-list-item__graphic{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-list--dense{padding-top:4px;padding-bottom:4px;font-size:.812rem}.mdc-list-item{display:flex;position:relative;align-items:center;justify-content:flex-start;overflow:hidden;padding:0 16px;height:48px}.mdc-list-item:focus{outline:none}.mdc-list-item:not(.mdc-list-item--selected):focus:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:\"\"}.mdc-list-item.mdc-list-item--selected:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:3px double transparent;border-radius:inherit;content:\"\"}.mdc-list--icon-list .mdc-list-item,.mdc-list-item[dir=rtl],[dir=rtl] .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--icon-list .mdc-list-item{height:56px}.mdc-list--icon-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--avatar-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--thumbnail-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px;height:72px}.mdc-list--image-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--video-list .mdc-list-item{padding-left:0;padding-right:16px;height:72px}.mdc-list--video-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item{padding-left:16px;padding-right:0}.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:20px;height:20px}.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list-item__graphic{flex-shrink:0;align-items:center;justify-content:center;fill:currentColor;object-fit:cover;margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--icon-list .mdc-list-item__graphic{margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list--icon-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--avatar-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px;border-radius:50%}.mdc-list--avatar-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px}.mdc-list--thumbnail-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--image-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:56px;height:56px}.mdc-list--image-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--video-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:100px;height:56px}.mdc-list--video-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list .mdc-list-item__graphic{display:inline-flex}.mdc-list-item__meta{margin-left:auto;margin-right:0}.mdc-list-item__meta:not(.material-icons){-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit)}.mdc-list-item[dir=rtl] .mdc-list-item__meta,[dir=rtl] .mdc-list-item .mdc-list-item__meta{margin-left:0;margin-right:auto}.mdc-list-item__text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.mdc-list-item__text[for]{pointer-events:none}.mdc-list-item__primary-text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list-item__primary-text:before{display:inline-block;width:0;height:28px;content:\"\";vertical-align:0}.mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text,.mdc-list--icon-list .mdc-list-item__primary-text,.mdc-list--image-list .mdc-list-item__primary-text,.mdc-list--thumbnail-list .mdc-list-item__primary-text,.mdc-list--video-list .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text:before,.mdc-list--icon-list .mdc-list-item__primary-text:before,.mdc-list--image-list .mdc-list-item__primary-text:before,.mdc-list--thumbnail-list .mdc-list-item__primary-text:before,.mdc-list--video-list .mdc-list-item__primary-text:before{display:inline-block;width:0;height:32px;content:\"\";vertical-align:0}.mdc-list--avatar-list .mdc-list-item__primary-text:after,.mdc-list--icon-list .mdc-list-item__primary-text:after,.mdc-list--image-list .mdc-list-item__primary-text:after,.mdc-list--thumbnail-list .mdc-list-item__primary-text:after,.mdc-list--video-list .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--dense .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--dense .mdc-list-item__primary-text:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list-item__secondary-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal}.mdc-list-item__secondary-text:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__secondary-text{font-size:inherit}.mdc-list--dense .mdc-list-item{height:40px}.mdc-list--two-line .mdc-list-item__text{align-self:flex-start}.mdc-list--two-line .mdc-list-item{height:64px}.mdc-list--two-line.mdc-list--avatar-list .mdc-list-item,.mdc-list--two-line.mdc-list--icon-list .mdc-list-item,.mdc-list--two-line.mdc-list--image-list .mdc-list-item,.mdc-list--two-line.mdc-list--thumbnail-list .mdc-list-item,.mdc-list--two-line.mdc-list--video-list .mdc-list-item{height:72px}.mdc-list--two-line.mdc-list--icon-list .mdc-list-item__graphic{align-self:flex-start;margin-top:16px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item,.mdc-list--two-line.mdc-list--dense .mdc-list-item{height:60px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:36px;height:36px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}:not(.mdc-list-item--disabled).mdc-list-item{cursor:pointer}a.mdc-list-item{color:inherit;text-decoration:none}.mdc-list-divider{height:0;margin:0;border:none;border-bottom:1px solid;border-bottom-color:rgba(0,0,0,.12)}.mdc-list-divider--padded{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--padded{margin-left:0;margin-right:16px}.mdc-list-divider--inset{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list-divider--inset[dir=rtl],[dir=rtl] .mdc-list-divider--inset{margin-left:0;margin-right:72px}.mdc-list-divider--inset.mdc-list-divider--padded{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list-divider--inset.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--inset.mdc-list-divider--padded{margin-left:0;margin-right:72px}.mdc-list .mdc-list-divider--inset-leading{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--icon-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:88px;margin-right:0;width:calc(100% - 88px)}.mdc-list--image-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:88px;margin-right:0;width:calc(100% - 104px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:116px;margin-right:0;width:calc(100% - 116px)}.mdc-list--video-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:116px;margin-right:0;width:calc(100% - 132px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0;width:100%}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0;width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0}.mdc-list-group .mdc-list{padding:0}.mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);margin:.75rem 16px}:not(.mdc-list-item--disabled).mdc-list-item{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{background-color:#000}:not(.mdc-list-item--disabled).mdc-list-item:hover .mdc-list-item__ripple:before{opacity:.04}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--activated:hover .mdc-list-item__ripple:before{opacity:.16}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{opacity:.08}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--selected:hover .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.2}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-list-item--disabled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-list-item--disabled .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-list-item--disabled.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{background-color:#000}.mdc-list-item--disabled.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,.mdc-list-item--disabled:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}.mdc-list-item--disabled .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;font-size:24px;text-decoration:none;cursor:pointer;user-select:none;width:48px;height:48px;padding:12px}.mdc-icon-button img,.mdc-icon-button svg{width:24px;height:24px}.mdc-icon-button:disabled{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-disabled-on-light,rgba(0,0,0,.38));cursor:default;pointer-events:none}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button--on .mdc-icon-button__icon,.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-icon-button:after,.mdc-icon-button:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-icon-button:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-icon-button.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-icon-button.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-icon-button.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-icon-button.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button:after,.mdc-icon-button:before{top:0;left:0;width:100%;height:100%}.mdc-icon-button.mdc-ripple-upgraded:after,.mdc-icon-button.mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button:after,.mdc-icon-button:before{background-color:#000}.mdc-icon-button:hover:before{opacity:.04}.mdc-icon-button.mdc-ripple-upgraded--background-focused:before,.mdc-icon-button:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-icon-button:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-icon-button:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-icon-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-top-app-bar{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;display:flex;position:fixed;flex-direction:column;justify-content:space-between;box-sizing:border-box;width:100%;z-index:4}.mdc-top-app-bar .mdc-top-app-bar__action-item,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon{color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:after,.mdc-top-app-bar .mdc-top-app-bar__action-item:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:hover:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:hover:before{opacity:.08}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):focus:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):active:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-top-app-bar__row{display:flex;position:relative;box-sizing:border-box;width:100%;height:64px}.mdc-top-app-bar__section{display:inline-flex;flex:1 1 auto;align-items:center;min-width:0;padding:8px 12px;z-index:1}.mdc-top-app-bar__section--align-start{justify-content:flex-start;order:-1}.mdc-top-app-bar__section--align-end{justify-content:flex-end;order:1}.mdc-top-app-bar__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);padding-left:20px;padding-right:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;z-index:1}.mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:24px;border-bottom-left-radius:0}.mdc-top-app-bar--short-collapsed[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:24px}.mdc-top-app-bar--short{top:0;right:auto;left:0;width:100%;transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short[dir=rtl],[dir=rtl] .mdc-top-app-bar--short{right:0;left:auto}.mdc-top-app-bar--short .mdc-top-app-bar__row{height:56px}.mdc-top-app-bar--short .mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short .mdc-top-app-bar__title{transition:opacity .2s cubic-bezier(.4,0,.2,1);opacity:1}.mdc-top-app-bar--short-collapsed{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);width:56px;transition:width .3s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__title{display:none}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__action-item{transition:padding .15s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item{width:112px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__row{height:48px}.mdc-top-app-bar--dense .mdc-top-app-bar__section{padding:0 4px}.mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:0;padding-right:12px}.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:128px}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{align-self:flex-end;padding-bottom:2px}.mdc-top-app-bar--prominent .mdc-top-app-bar__action-item,.mdc-top-app-bar--prominent .mdc-top-app-bar__navigation-icon{align-self:flex-start}.mdc-top-app-bar--fixed{transition:box-shadow .2s linear}.mdc-top-app-bar--fixed-scrolled{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);transition:box-shadow .2s linear}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:96px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__section{padding:0 12px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:20px;padding-right:0;padding-bottom:9px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--fixed-adjust{padding-top:64px}.mdc-top-app-bar--dense-fixed-adjust{padding-top:48px}.mdc-top-app-bar--short-fixed-adjust{padding-top:56px}.mdc-top-app-bar--prominent-fixed-adjust{padding-top:128px}.mdc-top-app-bar--dense-prominent-fixed-adjust{padding-top:96px}@media (max-width:599px){.mdc-top-app-bar__row{height:56px}.mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short{transition:width .2s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed{transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-bottom:6px}.mdc-top-app-bar--fixed-adjust{padding-top:56px}}.mdc-drawer{background-color:#fff;border-top-left-radius:0;border-top-right-radius:0;border-top-right-radius:var(--mdc-shape-large,0);border-bottom-right-radius:0;border-bottom-right-radius:var(--mdc-shape-large,0);border-bottom-left-radius:0;z-index:6;width:256px;display:flex;flex-direction:column;flex-shrink:0;box-sizing:border-box;height:100%;border-right:1px solid;border-color:rgba(0,0,0,.12);overflow:hidden;transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer .mdc-drawer__title{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-drawer__subtitle,.mdc-drawer .mdc-list-group__subheader,.mdc-drawer .mdc-list-item__graphic{color:rgba(0,0,0,.6)}.mdc-drawer .mdc-list-item{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{color:#6200ee}.mdc-drawer .mdc-list-item--activated{color:rgba(98,0,238,.87)}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-top-left-radius:0;border-top-left-radius:var(--mdc-shape-large,0);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:0;border-bottom-left-radius:var(--mdc-shape-large,0)}.mdc-drawer .mdc-list-item{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:256px;margin-right:0}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:0;margin-right:256px}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-right-width:0;border-left-width:1px;border-right-style:none;border-left-style:solid}.mdc-drawer .mdc-list-item{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-subtitle2-font-size,.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height,1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight,500);letter-spacing:.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing,.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform,inherit);height:40px;margin:8px;padding:0 8px}.mdc-drawer .mdc-list-item:first-child{margin-top:2px}.mdc-drawer .mdc-list-item:last-child{margin-bottom:0}.mdc-drawer .mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;line-height:normal;margin:0;padding:0 16px}.mdc-drawer .mdc-list-group__subheader:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-drawer .mdc-list-divider{margin:3px 0 4px}.mdc-drawer .mdc-list-item__graphic,.mdc-drawer .mdc-list-item__text{pointer-events:none}.mdc-drawer--animate{transform:translateX(-100%)}.mdc-drawer--animate[dir=rtl],[dir=rtl] .mdc-drawer--animate{transform:translateX(100%)}.mdc-drawer--opening{transition-duration:.25s}.mdc-drawer--opening,.mdc-drawer--opening[dir=rtl],[dir=rtl] .mdc-drawer--opening{transform:translateX(0)}.mdc-drawer--closing{transform:translateX(-100%);transition-duration:.2s}.mdc-drawer--closing[dir=rtl],[dir=rtl] .mdc-drawer--closing{transform:translateX(100%)}.mdc-drawer__header{flex-shrink:0;box-sizing:border-box;min-height:64px;padding:0 16px 4px}.mdc-drawer__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-drawer__title:before{display:inline-block;width:0;height:36px;content:\"\";vertical-align:0}.mdc-drawer__title:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-drawer__subtitle{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:0}.mdc-drawer__subtitle:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-drawer__content{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}.mdc-drawer--dismissible{left:0;right:auto;display:none;position:absolute}.mdc-drawer--dismissible[dir=rtl],[dir=rtl] .mdc-drawer--dismissible{left:auto;right:0}.mdc-drawer--dismissible.mdc-drawer--open{display:flex}.mdc-drawer-app-content{position:relative}.mdc-drawer-app-content,.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer-app-content{margin-left:0;margin-right:0}.mdc-drawer--modal{box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12);left:0;right:auto;display:none;position:fixed}.mdc-drawer--modal+.mdc-drawer-scrim{background-color:rgba(0,0,0,.32)}.mdc-drawer--modal[dir=rtl],[dir=rtl] .mdc-drawer--modal{left:auto;right:0}.mdc-drawer--modal.mdc-drawer--open{display:flex}.mdc-drawer-scrim{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:5;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer--open+.mdc-drawer-scrim{display:block}.mdc-drawer--animate+.mdc-drawer-scrim{opacity:0}.mdc-drawer--opening+.mdc-drawer-scrim{transition-duration:.25s;opacity:1}.mdc-drawer--closing+.mdc-drawer-scrim{transition-duration:.2s;opacity:0}.mdc-floating-label{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);position:absolute;left:0;transform-origin:left top;line-height:1.15rem;text-align:left;text-overflow:ellipsis;white-space:nowrap;cursor:text;overflow:hidden;will-change:transform;transition:transform .15s cubic-bezier(.4,0,.2,1),color .15s cubic-bezier(.4,0,.2,1)}.mdc-floating-label[dir=rtl],[dir=rtl] .mdc-floating-label{right:0;left:auto;transform-origin:right top;text-align:right}.mdc-floating-label--float-above{cursor:auto}.mdc-floating-label--required:after{margin-left:1px;margin-right:0;content:\"*\"}.mdc-floating-label--required[dir=rtl]:after,[dir=rtl] .mdc-floating-label--required:after{margin-left:0;margin-right:1px}.mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-standard .25s 1}@keyframes mdc-floating-label-shake-float-above-standard{0%{transform:translateX(0) translateY(-106%) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-106%) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-106%) scale(.75)}to{transform:translateX(0) translateY(-106%) scale(.75)}}.mdc-line-ripple:after,.mdc-line-ripple:before{position:absolute;bottom:0;left:0;width:100%;border-bottom-style:solid;content:\"\"}.mdc-line-ripple:before{border-bottom-width:1px;z-index:1}.mdc-line-ripple:after{transform:scaleX(0);border-bottom-width:2px;opacity:0;z-index:2;transition:transform .18s cubic-bezier(.4,0,.2,1),opacity .18s cubic-bezier(.4,0,.2,1)}.mdc-line-ripple--active:after{transform:scaleX(1);opacity:1}.mdc-line-ripple--deactivating:after{opacity:0}.mdc-notched-outline{display:flex;position:absolute;top:0;right:0;left:0;box-sizing:border-box;width:100%;max-width:100%;height:100%;text-align:left;pointer-events:none}.mdc-notched-outline[dir=rtl],[dir=rtl] .mdc-notched-outline{text-align:right}.mdc-notched-outline__leading,.mdc-notched-outline__notch,.mdc-notched-outline__trailing{box-sizing:border-box;height:100%;border-top:1px solid;border-bottom:1px solid;pointer-events:none}.mdc-notched-outline__leading{border-left:1px solid;border-right:none;width:12px}.mdc-notched-outline__leading[dir=rtl],.mdc-notched-outline__trailing,[dir=rtl] .mdc-notched-outline__leading{border-left:none;border-right:1px solid}.mdc-notched-outline__trailing{flex-grow:1}.mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-notched-outline__trailing{border-left:1px solid;border-right:none}.mdc-notched-outline__notch{flex:0 0 auto;width:auto;max-width:calc(100% - 24px)}.mdc-notched-outline .mdc-floating-label{display:inline-block;position:relative;max-width:100%}.mdc-notched-outline .mdc-floating-label--float-above{text-overflow:clip}.mdc-notched-outline--upgraded .mdc-floating-label--float-above{max-width:133.33333%}.mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:0;padding-right:8px;border-top:none}.mdc-notched-outline--notched .mdc-notched-outline__notch[dir=rtl],[dir=rtl] .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:8px;padding-right:0}.mdc-notched-outline--no-label .mdc-notched-outline__notch{padding:0}.mdc-text-field--filled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-text-field--filled .mdc-text-field__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-text-field--filled.mdc-ripple-upgraded--unbounded .mdc-text-field__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-activation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-deactivation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-text-field__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-text-field{border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:0;border-bottom-left-radius:0;padding:0 16px;display:inline-flex;align-items:baseline;position:relative;box-sizing:border-box;overflow:hidden;will-change:opacity,transform,color}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{color:rgba(0,0,0,.87)}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder{color:rgba(0,0,0,.54)}}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.54)}}.mdc-text-field .mdc-text-field__input{caret-color:#6200ee;caret-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field-character-counter{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:rgba(0,0,0,.54)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--prefix,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--suffix{color:rgba(0,0,0,.6)}.mdc-text-field .mdc-floating-label{top:50%;transform:translateY(-50%);pointer-events:none}.mdc-text-field.mdc-text-field--with-leading-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon[dir=rtl],.mdc-text-field.mdc-text-field--with-trailing-icon,[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon{padding-left:16px;padding-right:0}.mdc-text-field.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon,.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:0}.mdc-text-field__input{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);width:100%;min-width:0;border:none;border-radius:0;background:none;appearance:none;padding:0}.mdc-text-field__input::-ms-clear{display:none}.mdc-text-field__input:focus{outline:none}.mdc-text-field__input:invalid{box-shadow:none}.mdc-text-field__input:-webkit-autofill{z-index:auto!important}@media all{.mdc-text-field__input::placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field__input:-ms-input-placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field--focused .mdc-text-field__input::placeholder,.mdc-text-field--fullwidth .mdc-text-field__input::placeholder,.mdc-text-field--no-label .mdc-text-field__input::placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}@media all{.mdc-text-field--focused .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--fullwidth .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--no-label .mdc-text-field__input:-ms-input-placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}.mdc-text-field__affix{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);opacity:0;white-space:nowrap}.mdc-text-field--label-floating .mdc-text-field__affix,.mdc-text-field--no-label .mdc-text-field__affix{opacity:1}.mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field__affix--prefix[dir=rtl],[dir=rtl] .mdc-text-field__affix--prefix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix[dir=rtl],.mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:12px;padding-right:0}.mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field__affix--suffix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:0;padding-right:2px}.mdc-text-field__input:-webkit-autofill+.mdc-floating-label{transform:translateY(-50%) scale(.75);cursor:auto}.mdc-text-field--filled{height:56px}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{background-color:rgba(0,0,0,.87)}.mdc-text-field--filled:hover .mdc-text-field__ripple:before{opacity:.04}.mdc-text-field--filled.mdc-ripple-upgraded--background-focused .mdc-text-field__ripple:before,.mdc-text-field--filled:not(.mdc-ripple-upgraded):focus .mdc-text-field__ripple:before{transition-duration:75ms;opacity:.12}.mdc-text-field--filled:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-text-field--filled:not(.mdc-text-field--disabled){background-color:#f5f5f5}.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.87)}.mdc-text-field--filled .mdc-line-ripple:after{border-bottom-color:#6200ee;border-bottom-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--filled .mdc-floating-label{left:16px;right:auto}.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--filled .mdc-floating-label{left:auto;right:16px}.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{height:100%}.mdc-text-field--filled.mdc-text-field--no-label .mdc-floating-label,.mdc-text-field--filled.mdc-text-field--no-label:before{display:none}.mdc-text-field--outlined{height:56px;overflow:visible}.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) scale(1);font-size:.75rem}.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) scale(.75);font-size:1rem}.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined{0%{transform:translateX(0) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-34.75px) scale(.75)}to{transform:translateX(0) translateY(-34.75px) scale(.75)}}.mdc-text-field--outlined .mdc-text-field__input{height:100%}.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.38)}.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.87)}.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing,[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:0}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:1px}.mdc-text-field--outlined .mdc-text-field__ripple:after,.mdc-text-field--outlined .mdc-text-field__ripple:before{content:none}.mdc-text-field--outlined .mdc-floating-label{left:4px;right:auto}.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-floating-label{left:auto;right:4px}.mdc-text-field--outlined .mdc-text-field__input{display:flex;border:none!important;background-color:transparent}.mdc-text-field--textarea{flex-direction:column;align-items:center;width:auto;height:auto;padding:0;transition:none}.mdc-text-field--textarea .mdc-floating-label{top:19px}.mdc-text-field--textarea .mdc-floating-label:not(.mdc-floating-label--float-above){transform:none}.mdc-text-field--textarea .mdc-text-field__input{flex-grow:1;height:auto;min-height:1.5rem;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;resize:none;padding:0 16px;line-height:1.5rem}.mdc-text-field--textarea.mdc-text-field--filled:before{display:none}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-10.25px) scale(.75)}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-filled .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-filled{0%{transform:translateX(0) translateY(-10.25px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-10.25px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-10.25px) scale(.75)}to{transform:translateX(0) translateY(-10.25px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--filled .mdc-text-field__input{margin-top:23px;margin-bottom:9px}.mdc-text-field--textarea.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-27.25px) scale(1);font-size:.75rem}.mdc-text-field--textarea.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-24.75px) scale(.75);font-size:1rem}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-outlined{0%{transform:translateX(0) translateY(-24.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-24.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-24.75px) scale(.75)}to{transform:translateX(0) translateY(-24.75px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label{top:18px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field__input{margin-bottom:2px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter{align-self:flex-end;padding:0 16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:after{display:inline-block;width:0;height:16px;content:\"\";vertical-align:-16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:before{display:none}.mdc-text-field__resizer{align-self:stretch;display:inline-flex;flex-direction:column;flex-grow:1;max-height:100%;max-width:100%;min-height:56px;min-width:fit-content;min-width:-moz-available;min-width:-webkit-fill-available;overflow:hidden;resize:both}.mdc-text-field--filled .mdc-text-field__resizer{transform:translateY(-1px)}.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field__input{transform:translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(-1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(1px) translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter[dir=rtl],.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(-1px) translateY(1px)}.mdc-text-field--fullwidth{padding:0;width:100%}.mdc-text-field--fullwidth.mdc-text-field--disabled .mdc-line-ripple:before,.mdc-text-field--fullwidth:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea){display:flex}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__input{height:100%}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-floating-label,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):before{display:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:after,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:before{content:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):not(.mdc-text-field--disabled){background-color:transparent}.mdc-text-field--fullwidth.mdc-text-field--textarea .mdc-text-field__resizer{resize:vertical}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 48px);left:48px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{left:auto;right:48px}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:36px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:auto;right:36px}.mdc-text-field--with-leading-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(-32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(-32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon{0%{transform:translateX(-32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(-32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon-rtl{0%{transform:translateX(32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 64px)}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-trailing-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 96px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 128px)}.mdc-text-field-helper-line{display:flex;justify-content:space-between;box-sizing:border-box}.mdc-text-field+.mdc-text-field-helper-line{padding-right:16px;padding-left:16px}.mdc-form-field>.mdc-text-field+label{align-self:flex-start}.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(98,0,238,.87)}.mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--focused .mdc-notched-outline__trailing{border-width:2px}.mdc-text-field--focused+.mdc-text-field-helper-line .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--validation-msg){opacity:1}.mdc-text-field--focused.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:2px}.mdc-text-field--focused.mdc-text-field--outlined.mdc-text-field--textarea .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after,.mdc-text-field--invalid:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid .mdc-text-field__input{caret-color:#b00020;caret-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{opacity:1}.mdc-text-field--disabled{pointer-events:none}.mdc-text-field--disabled .mdc-text-field__input{color:rgba(0,0,0,.38)}@media all{.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:rgba(0,0,0,.38)}}@media all{.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.38)}}.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:rgba(0,0,0,.3)}.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.06)}.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.06)}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter,.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix,.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:GrayText}}.mdc-text-field--disabled .mdc-floating-label{cursor:default}.mdc-text-field--disabled.mdc-text-field--filled{background-color:#fafafa}.mdc-text-field--disabled.mdc-text-field--filled .mdc-text-field__ripple{display:none}.mdc-text-field--disabled .mdc-text-field__input{pointer-events:auto}.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--end-aligned .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__input{text-align:left}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix,.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{direction:ltr}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{padding-left:12px;padding-right:0}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--leading,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--leading{order:1}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{order:2}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{order:3}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{order:4}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--trailing,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--trailing{order:5}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-right:12px}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px}.mdc-text-field-helper-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;line-height:normal;margin:0;opacity:0;will-change:opacity;transition:opacity .15s cubic-bezier(.4,0,.2,1)}.mdc-text-field-helper-text:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-helper-text--persistent{transition:none;opacity:1;will-change:auto}.mdc-text-field-character-counter{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-left:auto;margin-right:0;padding-left:16px;padding-right:0;white-space:nowrap}.mdc-text-field-character-counter:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-character-counter[dir=rtl],[dir=rtl] .mdc-text-field-character-counter{margin-left:0;margin-right:auto;padding-left:0;padding-right:16px}.mdc-text-field__icon{align-self:center;cursor:pointer}.mdc-text-field__icon:not([tabindex]),.mdc-text-field__icon[tabindex=\"-1\"]{cursor:default;pointer-events:none}.mdc-text-field__icon svg{display:block}.mdc-text-field__icon--leading{margin-left:16px;margin-right:8px}.mdc-text-field__icon--leading[dir=rtl],[dir=rtl] .mdc-text-field__icon--leading{margin-left:8px;margin-right:16px}.mdc-text-field__icon--trailing,.mdc-text-field__icon--trailing[dir=rtl],[dir=rtl] .mdc-text-field__icon--trailing{margin-left:12px;margin-right:12px}.mdc-form-field{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87));display:inline-flex;align-items:center;vertical-align:middle}.mdc-form-field>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0;order:0}.mdc-form-field>label[dir=rtl],[dir=rtl] .mdc-form-field>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px}.mdc-form-field--nowrap>label{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.mdc-form-field--align-end>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px;order:-1}.mdc-form-field--align-end>label[dir=rtl],[dir=rtl] .mdc-form-field--align-end>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0}.mdc-form-field--space-between{justify-content:space-between}.mdc-form-field--space-between>label,.mdc-form-field--space-between>label[dir=rtl],[dir=rtl] .mdc-form-field--space-between>label{margin:0}.mdc-ripple-surface{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:relative;outline:none;overflow:hidden}.mdc-ripple-surface:after,.mdc-ripple-surface:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-ripple-surface:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-ripple-surface.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-ripple-surface.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface:after,.mdc-ripple-surface:before{background-color:#000}.mdc-ripple-surface:hover:before{opacity:.04}.mdc-ripple-surface.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface:after,.mdc-ripple-surface:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-ripple-surface.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]{overflow:visible}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:before{top:0;left:0;width:100%;height:100%}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface--primary:after,.mdc-ripple-surface--primary:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-ripple-surface--primary:hover:before{opacity:.04}.mdc-ripple-surface--primary.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface--accent:after,.mdc-ripple-surface--accent:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-ripple-surface--accent:hover:before{opacity:.04}.mdc-ripple-surface--accent.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-tab-bar{width:100%}.mdc-tab{height:48px}.mdc-tab--stacked{height:72px}.mdc-tab-scroller{overflow-y:hidden}.mdc-tab-scroller.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-scroller__test{position:absolute;top:-9999px;width:100px;height:100px;overflow-x:scroll}.mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:touch;display:flex;overflow-x:hidden}.mdc-tab-scroller__scroll-area::-webkit-scrollbar,.mdc-tab-scroller__test::-webkit-scrollbar{display:none}.mdc-tab-scroller__scroll-area--scroll{overflow-x:scroll}.mdc-tab-scroller__scroll-content{position:relative;display:flex;flex:1 0 auto;transform:none;will-change:transform}.mdc-tab-scroller--align-start .mdc-tab-scroller__scroll-content{justify-content:flex-start}.mdc-tab-scroller--align-end .mdc-tab-scroller__scroll-content{justify-content:flex-end}.mdc-tab-scroller--align-center .mdc-tab-scroller__scroll-content{justify-content:center}.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:auto}.mdc-tab-indicator{display:flex;position:absolute;top:0;left:0;justify-content:center;width:100%;height:100%;pointer-events:none;z-index:1}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab-indicator .mdc-tab-indicator__content--icon{color:#018786;color:var(--mdc-theme-secondary,#018786)}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-top-width:2px}.mdc-tab-indicator .mdc-tab-indicator__content--icon{height:34px;font-size:34px}.mdc-tab-indicator__content{transform-origin:left;opacity:0}.mdc-tab-indicator__content--underline{align-self:flex-end;box-sizing:border-box;width:100%;border-top-style:solid}.mdc-tab-indicator__content--icon{align-self:center;margin:0 auto}.mdc-tab-indicator--active .mdc-tab-indicator__content{opacity:1}.mdc-tab-indicator .mdc-tab-indicator__content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-indicator--no-transition .mdc-tab-indicator__content{transition:none}.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition:opacity .15s linear}.mdc-tab-indicator--active.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition-delay:.1s}.mdc-tab{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);position:relative;display:flex;flex:1 0 auto;justify-content:center;box-sizing:border-box;margin:0;padding:0 24px;border:none;outline:none;background:none;text-align:center;white-space:nowrap;cursor:pointer;-webkit-appearance:none;z-index:1}.mdc-tab .mdc-tab__text-label{color:rgba(0,0,0,.6)}.mdc-tab .mdc-tab__icon{color:rgba(0,0,0,.54);fill:currentColor}.mdc-tab::-moz-focus-inner{padding:0;border:0}.mdc-tab--min-width{flex:0 1 auto}.mdc-tab__content{position:relative;display:flex;align-items:center;justify-content:center;height:inherit;pointer-events:none}.mdc-tab__text-label{display:inline-block;line-height:1}.mdc-tab__icon,.mdc-tab__text-label{transition:color .15s linear;z-index:2}.mdc-tab__icon{width:24px;height:24px;font-size:24px}.mdc-tab--stacked .mdc-tab__content{flex-direction:column;align-items:center;justify-content:center}.mdc-tab--stacked .mdc-tab__text-label{padding-top:6px;padding-bottom:4px}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-tab--active .mdc-tab__icon{fill:currentColor}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{transition-delay:.1s}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:8px;padding-right:0}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label[dir=rtl],[dir=rtl] .mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:0;padding-right:8px}.mdc-tab__ripple{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}.mdc-tab__ripple:after,.mdc-tab__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-tab__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-tab__ripple.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-tab__ripple.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple:after,.mdc-tab__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-tab__ripple.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-tab__ripple:after,.mdc-tab__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab__ripple:hover:before{opacity:.04}.mdc-tab__ripple.mdc-ripple-upgraded--background-focused:before,.mdc-tab__ripple:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-tab__ripple:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-tab__ripple:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-tab__ripple.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-menu{min-width:112px}.mdc-menu .mdc-list,.mdc-menu .mdc-list-item__graphic,.mdc-menu .mdc-list-item__meta{color:rgba(0,0,0,.87)}.mdc-menu .mdc-list{position:relative}.mdc-menu .mdc-list .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-menu .mdc-list-divider{margin:8px 0}.mdc-menu .mdc-list-item{user-select:none}.mdc-menu .mdc-list-item--disabled{cursor:auto}.mdc-menu a.mdc-list-item .mdc-list-item__graphic,.mdc-menu a.mdc-list-item .mdc-list-item__text{pointer-events:none}.mdc-menu__selection-group{padding:0;fill:currentColor}.mdc-menu__selection-group .mdc-list-item{padding-left:56px;padding-right:16px}.mdc-menu__selection-group .mdc-list-item[dir=rtl],[dir=rtl] .mdc-menu__selection-group .mdc-list-item{padding-left:16px;padding-right:56px}.mdc-menu__selection-group .mdc-menu__selection-group-icon{left:16px;right:auto;display:none;position:absolute;top:50%;transform:translateY(-50%)}.mdc-menu__selection-group .mdc-menu__selection-group-icon[dir=rtl],[dir=rtl] .mdc-menu__selection-group .mdc-menu__selection-group-icon{left:auto;right:16px}.mdc-menu-item--selected .mdc-menu__selection-group-icon{display:inline}.mdc-menu-surface{display:none;position:absolute;box-sizing:border-box;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);margin:0;padding:0;transform:scale(1);transform-origin:top left;opacity:0;overflow:auto;will-change:transform,opacity;z-index:8;transition:opacity .03s linear,transform .12s cubic-bezier(0,0,.2,1);box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);background-color:#fff;background-color:var(--mdc-theme-surface,#fff);color:#000;color:var(--mdc-theme-on-surface,#000);border-radius:4px;border-radius:var(--mdc-shape-medium,4px);transform-origin-left:top left;transform-origin-right:top right}.mdc-menu-surface:focus{outline:none}.mdc-menu-surface--open{display:inline-block;transform:scale(1);opacity:1}.mdc-menu-surface--animating-open{display:inline-block;transform:scale(.8);opacity:0}.mdc-menu-surface--animating-closed{display:inline-block;opacity:0;transition:opacity 75ms linear}.mdc-menu-surface[dir=rtl],[dir=rtl] .mdc-menu-surface{transform-origin-left:top right;transform-origin-right:top left}.mdc-menu-surface--anchor{position:relative;overflow:visible}.mdc-menu-surface--fixed{position:fixed}.mdc-menu-surface--fullwidth{width:100%}.big-round-shape-button,.big-round-shape-button .mdc-button__ripple{border-radius:8px}.demo-thick-outline-button{padding:0 12px;border-width:4px}.demo-thick-outline-button .mdc-button__ripple{top:-4px;left:-4px;border:4px solid transparent}.demo-thick-outline-button .mdc-button__touch{left:-4px;width:calc(100% + 8px)}.demo-button-ink-color:not(:disabled){background-color:#9c27b0}.demo-button-ink-color:not(:disabled) .mdc-button__icon{color:#fff}.demo-button-ink-color:not(:disabled){color:orange}.demo-button-ink-color:after,.demo-button-ink-color:before{background-color:orange}.demo-button-ink-color:hover:before{opacity:.08}.demo-button-ink-color.mdc-ripple-upgraded--background-focused:before,.demo-button-ink-color:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.demo-button-ink-color:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-button-ink-color:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.demo-button-ink-color.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-button-icon-color:not(:disabled) .mdc-button__icon{color:orange}.demo-button-primary:not(:disabled){background-color:#6200ee;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-primary .mdc-button__ripple:after,.demo-button-primary .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-primary:hover .mdc-button__ripple:before{opacity:.08}.demo-button-primary.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.demo-button-primary:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.demo-button-primary:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.demo-button-primary:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.demo-button-primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-button-secondary:not(:disabled){background-color:#018786;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-secondary .mdc-button__ripple:after,.demo-button-secondary .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-secondary:hover .mdc-button__ripple:before{opacity:.08}.demo-button-secondary.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.demo-button-secondary:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.demo-button-secondary:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.demo-button-secondary:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.demo-button-secondary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-density-button{height:24px;margin-top:0;margin-bottom:0}.demo-density-button .mdc-button__touch{display:none}.demo-layout__row{display:flex;flex-flow:row wrap;margin-top:.8rem}.demo-layout__row--no-wrap{display:flex;flex-direction:row}.demo-layout__column{display:flex;flex-direction:column}.demo-layout--start{align-self:flex-start}.demo-layout--end{flex-grow:1;align-self:flex-end}.demo-layout--center{display:flex;align-content:flex-end;align-items:center;justify-content:center}.demo-panel{display:flex;position:relative;height:100vh;overflow:hidden}.demo-panel-content,.demo-panel-section{width:100%;max-width:100%}.demo-panel-content{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;overflow:auto}@media (max-width:900px){.demo-panel-content{width:unset;padding:12px}}.demo-panel-transition{width:100%;max-width:1200px;padding-bottom:60px}.demo-panel-title{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline4-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:2.125rem;font-size:var(--mdc-typography-headline4-font-size,2.125rem);line-height:2.5rem;line-height:var(--mdc-typography-headline4-line-height,2.5rem);font-weight:400;font-weight:var(--mdc-typography-headline4-font-weight,400);letter-spacing:.0073529412em;letter-spacing:var(--mdc-typography-headline4-letter-spacing,.0073529412em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline4-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline4-text-transform,inherit);margin:16px 16px 16px 0;line-height:1.25}.demo-panel-heading,.demo-panel-title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;padding-bottom:.3em;border-bottom:1px solid #eaecef;font-weight:500}.demo-panel-heading{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin:24px 16px 16px 0;line-height:1.25}.demo-container{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;min-width:200px;padding:10px}.hljs{border-radius:.45rem;padding:9px;display:inline-block}.demo-content{border-radius:12px;border:1px solid rgba(0,0,0,.15);margin:1.5rem 1rem;padding:1rem}.demo-content__headline{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin-top:.1em;margin-bottom:.3em}.demo-content--block{display:inline-block;margin-right:5px}.demo-top-app-bar{background-color:#363640;z-index:7}.demo-drawer{position:fixed}.demo-drawer .mdc-list-item{cursor:pointer}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:#00f}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#00f}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text{color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__icon--leading{color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading{color:#00f}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.38)}.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:#00f}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__input{color:orange}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.5)}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(255,165,0,.38)}.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.87)}.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:orange}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.38)}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:#00f}.demo-fullwidth-input:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(255,165,0,.38)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__input{color:orange}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.5)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:orange}.demo-fullwidth-input.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.87)}.demo-fullwidth-input.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:orange}.demo-shaped-text-field{border-top-left-radius:28px;border-top-right-radius:28px;border-bottom-right-radius:0;border-bottom-left-radius:0}.demo-shaped-text-field--outline{padding-left:32px;padding-right:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:28px;width:28px}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:28px;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__notch{max-width:calc(100% - 56px)}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:0;border-top-right-radius:28px;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:28px}.demo-shaped-text-field--outline[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline{padding-left:0;padding-right:32px}.demo-shaped-text-field--outline+.mdc-text-field-helper-line{padding-left:32px;padding-right:28px}.demo-shaped-text-field--outline+.mdc-text-field-helper-line[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline+.mdc-text-field-helper-line{padding-left:28px;padding-right:32px}.demo-density-text-field{height:52px}.demo-density-outlined-text-field{height:44px}.demo-density-outlined-text-field .mdc-floating-label--float-above{transform:translateY(-31.25px) scale(1);font-size:.75rem}.demo-density-outlined-text-field.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) scale(.75);font-size:1rem}.demo-density-outlined-text-field .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-44px .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-44px{0%{transform:translateX(0) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-28.75px) scale(.75)}to{transform:translateX(0) translateY(-28.75px) scale(.75)}}.demo-density-outlined-text-field-with-leading-icon{height:44px}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-31.25px) translateX(-32px) scale(1)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-31.25px) translateX(32px) scale(1)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) translateX(-32px) scale(.75)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) translateX(32px) scale(.75)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above- .25s 1}@keyframes mdc-floating-label-shake-float-above-{0%{transform:translateX(-32px) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-28.75px) scale(.75)}to{transform:translateX(-32px) translateY(-28.75px) scale(.75)}}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above- .25s 1}@keyframes mdc-floating-label-shake-float-above--rtl{0%{transform:translateX(32px) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-28.75px) scale(.75)}to{transform:translateX(32px) translateY(-28.75px) scale(.75)}}.au-form-field-select,.au-form-field-text-field{height:87px}.demo-layout__row .au-form-field-select+mdc-form-field,.demo-layout__row .au-form-field-text-field+mdc-form-field{padding-left:14px}.mdc-form-field{align-self:flex-start}.mdc-list{display:block}body{margin:0;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";.mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;opacity:0;pointer-events:none;transition:opacity .28s cubic-bezier(.4,0,.2,1);background-color:#fff}.mdc-button{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);padding:0 8px;position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;border-radius:4px;border-radius:var(--mdc-shape-small,4px);height:36px}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-button:disabled,.mdc-button:not(:disabled){background-color:transparent}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;width:18px;height:18px;font-size:18px;vertical-align:top}.mdc-button .mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button .mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button .mdc-button__touch{position:absolute;top:50%;right:0;height:48px;left:0;transform:translateY(-50%)}.mdc-button:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-button:disabled{color:rgba(0,0,0,.38)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button__label+.mdc-button__icon{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--outlined .mdc-button__icon,.mdc-button--raised .mdc-button__icon,.mdc-button--unelevated .mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--outlined .mdc-button__icon[dir=rtl],.mdc-button--outlined .mdc-button__label+.mdc-button__icon,.mdc-button--raised .mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon,.mdc-button--unelevated .mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--outlined .mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__icon{margin-left:8px;margin-right:-4px}.mdc-button--outlined .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button--outlined .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__label+.mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--raised,.mdc-button--unelevated{padding:0 16px}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{background-color:rgba(0,0,0,.12);color:rgba(0,0,0,.38)}.mdc-button--raised{box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);transition:box-shadow .28s cubic-bezier(.4,0,.2,1)}.mdc-button--raised:focus,.mdc-button--raised:hover{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)}.mdc-button--raised:active{box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mdc-button--raised:disabled{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)}.mdc-button--outlined{padding:0 15px;border-width:1px;border-style:solid}.mdc-button--outlined .mdc-button__ripple{top:-1px;left:-1px;border:1px solid transparent}.mdc-button--outlined .mdc-button__touch{left:-1px;width:calc(100% + 2px)}.mdc-button--outlined:disabled,.mdc-button--outlined:not(:disabled){border-color:rgba(0,0,0,.12)}.mdc-button--touch{margin-top:6px;margin-bottom:6px}@keyframes mdc-ripple-fg-radius-in{0%{animation-timing-function:cubic-bezier(.4,0,.2,1);transform:translate(var(--mdc-ripple-fg-translate-start,0)) scale(1)}to{transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}}@keyframes mdc-ripple-fg-opacity-in{0%{animation-timing-function:linear;opacity:0}to{opacity:var(--mdc-ripple-fg-opacity,0)}}@keyframes mdc-ripple-fg-opacity-out{0%{animation-timing-function:linear;opacity:var(--mdc-ripple-fg-opacity,0)}to{opacity:0}}.mdc-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-button .mdc-button__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-button.mdc-ripple-upgraded--unbounded .mdc-button__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-button.mdc-ripple-upgraded--foreground-activation .mdc-button__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-button.mdc-ripple-upgraded--foreground-deactivation .mdc-button__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-button:hover .mdc-button__ripple:before{opacity:.04}.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.12}.mdc-button:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.12}.mdc-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-button .mdc-button__ripple{position:absolute;box-sizing:content-box;width:100%;height:100%;overflow:hidden}.mdc-button:not(.mdc-button--outlined) .mdc-button__ripple{top:0;left:0}.mdc-button--raised .mdc-button__ripple:after,.mdc-button--raised .mdc-button__ripple:before,.mdc-button--unelevated .mdc-button__ripple:after,.mdc-button--unelevated .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:hover .mdc-button__ripple:before,.mdc-button--unelevated:hover .mdc-button__ripple:before{opacity:.08}.mdc-button--raised.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--raised:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before,.mdc-button--unelevated.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--unelevated:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.mdc-button--raised:not(.mdc-ripple-upgraded) .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button--raised:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.mdc-button--raised.mdc-ripple-upgraded,.mdc-button--unelevated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-list{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);line-height:1.5rem;margin:0;padding:8px 0;list-style-type:none;color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list:focus{outline:none}.mdc-list-item__secondary-text{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))}.mdc-list-item__graphic{background-color:transparent;color:rgba(0,0,0,.38);color:var(--mdc-theme-text-icon-on-background,rgba(0,0,0,.38))}.mdc-list-item__meta{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-hint-on-background,rgba(0,0,0,.38))}.mdc-list-group__subheader{color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list-item--disabled .mdc-list-item__text{opacity:.38}.mdc-list-item--disabled .mdc-list-item__primary-text,.mdc-list-item--disabled .mdc-list-item__secondary-text,.mdc-list-item--disabled .mdc-list-item__text{color:#000;color:var(--mdc-theme-on-surface,#000)}.mdc-list-item--activated,.mdc-list-item--activated .mdc-list-item__graphic,.mdc-list-item--selected,.mdc-list-item--selected .mdc-list-item__graphic{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-list--dense{padding-top:4px;padding-bottom:4px;font-size:.812rem}.mdc-list-item{display:flex;position:relative;align-items:center;justify-content:flex-start;overflow:hidden;padding:0 16px;height:48px}.mdc-list-item:focus{outline:none}.mdc-list-item:not(.mdc-list-item--selected):focus:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:\"\"}.mdc-list-item.mdc-list-item--selected:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:3px double transparent;border-radius:inherit;content:\"\"}.mdc-list--icon-list .mdc-list-item,.mdc-list-item[dir=rtl],[dir=rtl] .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--icon-list .mdc-list-item{height:56px}.mdc-list--icon-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--avatar-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--thumbnail-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px;height:72px}.mdc-list--image-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--video-list .mdc-list-item{padding-left:0;padding-right:16px;height:72px}.mdc-list--video-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item{padding-left:16px;padding-right:0}.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:20px;height:20px}.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list-item__graphic{flex-shrink:0;align-items:center;justify-content:center;fill:currentColor;object-fit:cover;margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--icon-list .mdc-list-item__graphic{margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list--icon-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--avatar-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px;border-radius:50%}.mdc-list--avatar-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px}.mdc-list--thumbnail-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--image-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:56px;height:56px}.mdc-list--image-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--video-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:100px;height:56px}.mdc-list--video-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list .mdc-list-item__graphic{display:inline-flex}.mdc-list-item__meta{margin-left:auto;margin-right:0}.mdc-list-item__meta:not(.material-icons){-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit)}.mdc-list-item[dir=rtl] .mdc-list-item__meta,[dir=rtl] .mdc-list-item .mdc-list-item__meta{margin-left:0;margin-right:auto}.mdc-list-item__text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.mdc-list-item__text[for]{pointer-events:none}.mdc-list-item__primary-text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list-item__primary-text:before{display:inline-block;width:0;height:28px;content:\"\";vertical-align:0}.mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text,.mdc-list--icon-list .mdc-list-item__primary-text,.mdc-list--image-list .mdc-list-item__primary-text,.mdc-list--thumbnail-list .mdc-list-item__primary-text,.mdc-list--video-list .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text:before,.mdc-list--icon-list .mdc-list-item__primary-text:before,.mdc-list--image-list .mdc-list-item__primary-text:before,.mdc-list--thumbnail-list .mdc-list-item__primary-text:before,.mdc-list--video-list .mdc-list-item__primary-text:before{display:inline-block;width:0;height:32px;content:\"\";vertical-align:0}.mdc-list--avatar-list .mdc-list-item__primary-text:after,.mdc-list--icon-list .mdc-list-item__primary-text:after,.mdc-list--image-list .mdc-list-item__primary-text:after,.mdc-list--thumbnail-list .mdc-list-item__primary-text:after,.mdc-list--video-list .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--dense .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--dense .mdc-list-item__primary-text:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list-item__secondary-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal}.mdc-list-item__secondary-text:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__secondary-text{font-size:inherit}.mdc-list--dense .mdc-list-item{height:40px}.mdc-list--two-line .mdc-list-item__text{align-self:flex-start}.mdc-list--two-line .mdc-list-item{height:64px}.mdc-list--two-line.mdc-list--avatar-list .mdc-list-item,.mdc-list--two-line.mdc-list--icon-list .mdc-list-item,.mdc-list--two-line.mdc-list--image-list .mdc-list-item,.mdc-list--two-line.mdc-list--thumbnail-list .mdc-list-item,.mdc-list--two-line.mdc-list--video-list .mdc-list-item{height:72px}.mdc-list--two-line.mdc-list--icon-list .mdc-list-item__graphic{align-self:flex-start;margin-top:16px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item,.mdc-list--two-line.mdc-list--dense .mdc-list-item{height:60px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:36px;height:36px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}:not(.mdc-list-item--disabled).mdc-list-item{cursor:pointer}a.mdc-list-item{color:inherit;text-decoration:none}.mdc-list-divider{height:0;margin:0;border:none;border-bottom:1px solid;border-bottom-color:rgba(0,0,0,.12)}.mdc-list-divider--padded{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--padded{margin-left:0;margin-right:16px}.mdc-list-divider--inset{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list-divider--inset[dir=rtl],[dir=rtl] .mdc-list-divider--inset{margin-left:0;margin-right:72px}.mdc-list-divider--inset.mdc-list-divider--padded{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list-divider--inset.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--inset.mdc-list-divider--padded{margin-left:0;margin-right:72px}.mdc-list .mdc-list-divider--inset-leading{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--icon-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:88px;margin-right:0;width:calc(100% - 88px)}.mdc-list--image-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:88px;margin-right:0;width:calc(100% - 104px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:116px;margin-right:0;width:calc(100% - 116px)}.mdc-list--video-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:116px;margin-right:0;width:calc(100% - 132px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0;width:100%}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0;width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0}.mdc-list-group .mdc-list{padding:0}.mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);margin:.75rem 16px}:not(.mdc-list-item--disabled).mdc-list-item{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{background-color:#000}:not(.mdc-list-item--disabled).mdc-list-item:hover .mdc-list-item__ripple:before{opacity:.04}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--activated:hover .mdc-list-item__ripple:before{opacity:.16}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{opacity:.08}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--selected:hover .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.2}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-list-item--disabled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-list-item--disabled .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-list-item--disabled.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{background-color:#000}.mdc-list-item--disabled.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,.mdc-list-item--disabled:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}.mdc-list-item--disabled .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;font-size:24px;text-decoration:none;cursor:pointer;user-select:none;width:48px;height:48px;padding:12px}.mdc-icon-button img,.mdc-icon-button svg{width:24px;height:24px}.mdc-icon-button:disabled{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-disabled-on-light,rgba(0,0,0,.38));cursor:default;pointer-events:none}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button--on .mdc-icon-button__icon,.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-icon-button:after,.mdc-icon-button:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-icon-button:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-icon-button.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-icon-button.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-icon-button.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-icon-button.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button:after,.mdc-icon-button:before{top:0;left:0;width:100%;height:100%}.mdc-icon-button.mdc-ripple-upgraded:after,.mdc-icon-button.mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button:after,.mdc-icon-button:before{background-color:#000}.mdc-icon-button:hover:before{opacity:.04}.mdc-icon-button.mdc-ripple-upgraded--background-focused:before,.mdc-icon-button:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-icon-button:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-icon-button:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-icon-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-top-app-bar{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;display:flex;position:fixed;flex-direction:column;justify-content:space-between;box-sizing:border-box;width:100%;z-index:4}.mdc-top-app-bar .mdc-top-app-bar__action-item,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon{color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:after,.mdc-top-app-bar .mdc-top-app-bar__action-item:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:hover:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:hover:before{opacity:.08}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):focus:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):active:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-top-app-bar__row{display:flex;position:relative;box-sizing:border-box;width:100%;height:64px}.mdc-top-app-bar__section{display:inline-flex;flex:1 1 auto;align-items:center;min-width:0;padding:8px 12px;z-index:1}.mdc-top-app-bar__section--align-start{justify-content:flex-start;order:-1}.mdc-top-app-bar__section--align-end{justify-content:flex-end;order:1}.mdc-top-app-bar__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);padding-left:20px;padding-right:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;z-index:1}.mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:24px;border-bottom-left-radius:0}.mdc-top-app-bar--short-collapsed[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:24px}.mdc-top-app-bar--short{top:0;right:auto;left:0;width:100%;transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short[dir=rtl],[dir=rtl] .mdc-top-app-bar--short{right:0;left:auto}.mdc-top-app-bar--short .mdc-top-app-bar__row{height:56px}.mdc-top-app-bar--short .mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short .mdc-top-app-bar__title{transition:opacity .2s cubic-bezier(.4,0,.2,1);opacity:1}.mdc-top-app-bar--short-collapsed{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);width:56px;transition:width .3s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__title{display:none}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__action-item{transition:padding .15s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item{width:112px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__row{height:48px}.mdc-top-app-bar--dense .mdc-top-app-bar__section{padding:0 4px}.mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:0;padding-right:12px}.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:128px}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{align-self:flex-end;padding-bottom:2px}.mdc-top-app-bar--prominent .mdc-top-app-bar__action-item,.mdc-top-app-bar--prominent .mdc-top-app-bar__navigation-icon{align-self:flex-start}.mdc-top-app-bar--fixed{transition:box-shadow .2s linear}.mdc-top-app-bar--fixed-scrolled{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);transition:box-shadow .2s linear}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:96px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__section{padding:0 12px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:20px;padding-right:0;padding-bottom:9px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--fixed-adjust{padding-top:64px}.mdc-top-app-bar--dense-fixed-adjust{padding-top:48px}.mdc-top-app-bar--short-fixed-adjust{padding-top:56px}.mdc-top-app-bar--prominent-fixed-adjust{padding-top:128px}.mdc-top-app-bar--dense-prominent-fixed-adjust{padding-top:96px}@media (max-width:599px){.mdc-top-app-bar__row{height:56px}.mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short{transition:width .2s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed{transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-bottom:6px}.mdc-top-app-bar--fixed-adjust{padding-top:56px}}.mdc-drawer{background-color:#fff;border-top-left-radius:0;border-top-right-radius:0;border-top-right-radius:var(--mdc-shape-large,0);border-bottom-right-radius:0;border-bottom-right-radius:var(--mdc-shape-large,0);border-bottom-left-radius:0;z-index:6;width:256px;display:flex;flex-direction:column;flex-shrink:0;box-sizing:border-box;height:100%;border-right:1px solid;border-color:rgba(0,0,0,.12);overflow:hidden;transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer .mdc-drawer__title{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-drawer__subtitle,.mdc-drawer .mdc-list-group__subheader,.mdc-drawer .mdc-list-item__graphic{color:rgba(0,0,0,.6)}.mdc-drawer .mdc-list-item{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{color:#6200ee}.mdc-drawer .mdc-list-item--activated{color:rgba(98,0,238,.87)}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-top-left-radius:0;border-top-left-radius:var(--mdc-shape-large,0);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:0;border-bottom-left-radius:var(--mdc-shape-large,0)}.mdc-drawer .mdc-list-item{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:256px;margin-right:0}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:0;margin-right:256px}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-right-width:0;border-left-width:1px;border-right-style:none;border-left-style:solid}.mdc-drawer .mdc-list-item{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-subtitle2-font-size,.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height,1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight,500);letter-spacing:.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing,.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform,inherit);height:40px;margin:8px;padding:0 8px}.mdc-drawer .mdc-list-item:first-child{margin-top:2px}.mdc-drawer .mdc-list-item:last-child{margin-bottom:0}.mdc-drawer .mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;line-height:normal;margin:0;padding:0 16px}.mdc-drawer .mdc-list-group__subheader:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-drawer .mdc-list-divider{margin:3px 0 4px}.mdc-drawer .mdc-list-item__graphic,.mdc-drawer .mdc-list-item__text{pointer-events:none}.mdc-drawer--animate{transform:translateX(-100%)}.mdc-drawer--animate[dir=rtl],[dir=rtl] .mdc-drawer--animate{transform:translateX(100%)}.mdc-drawer--opening{transition-duration:.25s}.mdc-drawer--opening,.mdc-drawer--opening[dir=rtl],[dir=rtl] .mdc-drawer--opening{transform:translateX(0)}.mdc-drawer--closing{transform:translateX(-100%);transition-duration:.2s}.mdc-drawer--closing[dir=rtl],[dir=rtl] .mdc-drawer--closing{transform:translateX(100%)}.mdc-drawer__header{flex-shrink:0;box-sizing:border-box;min-height:64px;padding:0 16px 4px}.mdc-drawer__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-drawer__title:before{display:inline-block;width:0;height:36px;content:\"\";vertical-align:0}.mdc-drawer__title:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-drawer__subtitle{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:0}.mdc-drawer__subtitle:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-drawer__content{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}.mdc-drawer--dismissible{left:0;right:auto;display:none;position:absolute}.mdc-drawer--dismissible[dir=rtl],[dir=rtl] .mdc-drawer--dismissible{left:auto;right:0}.mdc-drawer--dismissible.mdc-drawer--open{display:flex}.mdc-drawer-app-content{position:relative}.mdc-drawer-app-content,.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer-app-content{margin-left:0;margin-right:0}.mdc-drawer--modal{box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12);left:0;right:auto;display:none;position:fixed}.mdc-drawer--modal+.mdc-drawer-scrim{background-color:rgba(0,0,0,.32)}.mdc-drawer--modal[dir=rtl],[dir=rtl] .mdc-drawer--modal{left:auto;right:0}.mdc-drawer--modal.mdc-drawer--open{display:flex}.mdc-drawer-scrim{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:5;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer--open+.mdc-drawer-scrim{display:block}.mdc-drawer--animate+.mdc-drawer-scrim{opacity:0}.mdc-drawer--opening+.mdc-drawer-scrim{transition-duration:.25s;opacity:1}.mdc-drawer--closing+.mdc-drawer-scrim{transition-duration:.2s;opacity:0}.mdc-floating-label{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);position:absolute;left:0;transform-origin:left top;line-height:1.15rem;text-align:left;text-overflow:ellipsis;white-space:nowrap;cursor:text;overflow:hidden;will-change:transform;transition:transform .15s cubic-bezier(.4,0,.2,1),color .15s cubic-bezier(.4,0,.2,1)}.mdc-floating-label[dir=rtl],[dir=rtl] .mdc-floating-label{right:0;left:auto;transform-origin:right top;text-align:right}.mdc-floating-label--float-above{cursor:auto}.mdc-floating-label--required:after{margin-left:1px;margin-right:0;content:\"*\"}.mdc-floating-label--required[dir=rtl]:after,[dir=rtl] .mdc-floating-label--required:after{margin-left:0;margin-right:1px}.mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-standard .25s 1}@keyframes mdc-floating-label-shake-float-above-standard{0%{transform:translateX(0) translateY(-106%) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-106%) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-106%) scale(.75)}to{transform:translateX(0) translateY(-106%) scale(.75)}}.mdc-line-ripple:after,.mdc-line-ripple:before{position:absolute;bottom:0;left:0;width:100%;border-bottom-style:solid;content:\"\"}.mdc-line-ripple:before{border-bottom-width:1px;z-index:1}.mdc-line-ripple:after{transform:scaleX(0);border-bottom-width:2px;opacity:0;z-index:2;transition:transform .18s cubic-bezier(.4,0,.2,1),opacity .18s cubic-bezier(.4,0,.2,1)}.mdc-line-ripple--active:after{transform:scaleX(1);opacity:1}.mdc-line-ripple--deactivating:after{opacity:0}.mdc-notched-outline{display:flex;position:absolute;top:0;right:0;left:0;box-sizing:border-box;width:100%;max-width:100%;height:100%;text-align:left;pointer-events:none}.mdc-notched-outline[dir=rtl],[dir=rtl] .mdc-notched-outline{text-align:right}.mdc-notched-outline__leading,.mdc-notched-outline__notch,.mdc-notched-outline__trailing{box-sizing:border-box;height:100%;border-top:1px solid;border-bottom:1px solid;pointer-events:none}.mdc-notched-outline__leading{border-left:1px solid;border-right:none;width:12px}.mdc-notched-outline__leading[dir=rtl],.mdc-notched-outline__trailing,[dir=rtl] .mdc-notched-outline__leading{border-left:none;border-right:1px solid}.mdc-notched-outline__trailing{flex-grow:1}.mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-notched-outline__trailing{border-left:1px solid;border-right:none}.mdc-notched-outline__notch{flex:0 0 auto;width:auto;max-width:calc(100% - 24px)}.mdc-notched-outline .mdc-floating-label{display:inline-block;position:relative;max-width:100%}.mdc-notched-outline .mdc-floating-label--float-above{text-overflow:clip}.mdc-notched-outline--upgraded .mdc-floating-label--float-above{max-width:133.33333%}.mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:0;padding-right:8px;border-top:none}.mdc-notched-outline--notched .mdc-notched-outline__notch[dir=rtl],[dir=rtl] .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:8px;padding-right:0}.mdc-notched-outline--no-label .mdc-notched-outline__notch{padding:0}.mdc-text-field--filled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-text-field--filled .mdc-text-field__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-text-field--filled.mdc-ripple-upgraded--unbounded .mdc-text-field__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-activation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-deactivation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-text-field__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-text-field{border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:0;border-bottom-left-radius:0;padding:0 16px;display:inline-flex;align-items:baseline;position:relative;box-sizing:border-box;overflow:hidden;will-change:opacity,transform,color}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{color:rgba(0,0,0,.87)}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder{color:rgba(0,0,0,.54)}}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.54)}}.mdc-text-field .mdc-text-field__input{caret-color:#6200ee;caret-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field-character-counter{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:rgba(0,0,0,.54)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--prefix,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--suffix{color:rgba(0,0,0,.6)}.mdc-text-field .mdc-floating-label{top:50%;transform:translateY(-50%);pointer-events:none}.mdc-text-field.mdc-text-field--with-leading-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon[dir=rtl],.mdc-text-field.mdc-text-field--with-trailing-icon,[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon{padding-left:16px;padding-right:0}.mdc-text-field.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon,.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:0}.mdc-text-field__input{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);width:100%;min-width:0;border:none;border-radius:0;background:none;appearance:none;padding:0}.mdc-text-field__input::-ms-clear{display:none}.mdc-text-field__input:focus{outline:none}.mdc-text-field__input:invalid{box-shadow:none}.mdc-text-field__input:-webkit-autofill{z-index:auto!important}@media all{.mdc-text-field__input::placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field__input:-ms-input-placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field--focused .mdc-text-field__input::placeholder,.mdc-text-field--fullwidth .mdc-text-field__input::placeholder,.mdc-text-field--no-label .mdc-text-field__input::placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}@media all{.mdc-text-field--focused .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--fullwidth .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--no-label .mdc-text-field__input:-ms-input-placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}.mdc-text-field__affix{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);opacity:0;white-space:nowrap}.mdc-text-field--label-floating .mdc-text-field__affix,.mdc-text-field--no-label .mdc-text-field__affix{opacity:1}.mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field__affix--prefix[dir=rtl],[dir=rtl] .mdc-text-field__affix--prefix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix[dir=rtl],.mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:12px;padding-right:0}.mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field__affix--suffix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:0;padding-right:2px}.mdc-text-field__input:-webkit-autofill+.mdc-floating-label{transform:translateY(-50%) scale(.75);cursor:auto}.mdc-text-field--filled{height:56px}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{background-color:rgba(0,0,0,.87)}.mdc-text-field--filled:hover .mdc-text-field__ripple:before{opacity:.04}.mdc-text-field--filled.mdc-ripple-upgraded--background-focused .mdc-text-field__ripple:before,.mdc-text-field--filled:not(.mdc-ripple-upgraded):focus .mdc-text-field__ripple:before{transition-duration:75ms;opacity:.12}.mdc-text-field--filled:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-text-field--filled:not(.mdc-text-field--disabled){background-color:#f5f5f5}.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.87)}.mdc-text-field--filled .mdc-line-ripple:after{border-bottom-color:#6200ee;border-bottom-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--filled .mdc-floating-label{left:16px;right:auto}.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--filled .mdc-floating-label{left:auto;right:16px}.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{height:100%}.mdc-text-field--filled.mdc-text-field--no-label .mdc-floating-label,.mdc-text-field--filled.mdc-text-field--no-label:before{display:none}.mdc-text-field--outlined{height:56px;overflow:visible}.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) scale(1);font-size:.75rem}.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) scale(.75);font-size:1rem}.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined{0%{transform:translateX(0) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-34.75px) scale(.75)}to{transform:translateX(0) translateY(-34.75px) scale(.75)}}.mdc-text-field--outlined .mdc-text-field__input{height:100%}.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.38)}.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.87)}.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing,[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:0}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:1px}.mdc-text-field--outlined .mdc-text-field__ripple:after,.mdc-text-field--outlined .mdc-text-field__ripple:before{content:none}.mdc-text-field--outlined .mdc-floating-label{left:4px;right:auto}.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-floating-label{left:auto;right:4px}.mdc-text-field--outlined .mdc-text-field__input{display:flex;border:none!important;background-color:transparent}.mdc-text-field--textarea{flex-direction:column;align-items:center;width:auto;height:auto;padding:0;transition:none}.mdc-text-field--textarea .mdc-floating-label{top:19px}.mdc-text-field--textarea .mdc-floating-label:not(.mdc-floating-label--float-above){transform:none}.mdc-text-field--textarea .mdc-text-field__input{flex-grow:1;height:auto;min-height:1.5rem;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;resize:none;padding:0 16px;line-height:1.5rem}.mdc-text-field--textarea.mdc-text-field--filled:before{display:none}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-10.25px) scale(.75)}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-filled .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-filled{0%{transform:translateX(0) translateY(-10.25px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-10.25px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-10.25px) scale(.75)}to{transform:translateX(0) translateY(-10.25px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--filled .mdc-text-field__input{margin-top:23px;margin-bottom:9px}.mdc-text-field--textarea.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-27.25px) scale(1);font-size:.75rem}.mdc-text-field--textarea.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-24.75px) scale(.75);font-size:1rem}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-outlined{0%{transform:translateX(0) translateY(-24.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-24.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-24.75px) scale(.75)}to{transform:translateX(0) translateY(-24.75px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label{top:18px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field__input{margin-bottom:2px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter{align-self:flex-end;padding:0 16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:after{display:inline-block;width:0;height:16px;content:\"\";vertical-align:-16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:before{display:none}.mdc-text-field__resizer{align-self:stretch;display:inline-flex;flex-direction:column;flex-grow:1;max-height:100%;max-width:100%;min-height:56px;min-width:fit-content;min-width:-moz-available;min-width:-webkit-fill-available;overflow:hidden;resize:both}.mdc-text-field--filled .mdc-text-field__resizer{transform:translateY(-1px)}.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field__input{transform:translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(-1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(1px) translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter[dir=rtl],.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(-1px) translateY(1px)}.mdc-text-field--fullwidth{padding:0;width:100%}.mdc-text-field--fullwidth.mdc-text-field--disabled .mdc-line-ripple:before,.mdc-text-field--fullwidth:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea){display:flex}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__input{height:100%}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-floating-label,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):before{display:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:after,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:before{content:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):not(.mdc-text-field--disabled){background-color:transparent}.mdc-text-field--fullwidth.mdc-text-field--textarea .mdc-text-field__resizer{resize:vertical}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 48px);left:48px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{left:auto;right:48px}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:36px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:auto;right:36px}.mdc-text-field--with-leading-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(-32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(-32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon{0%{transform:translateX(-32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(-32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon-rtl{0%{transform:translateX(32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 64px)}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-trailing-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 96px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 128px)}.mdc-text-field-helper-line{display:flex;justify-content:space-between;box-sizing:border-box}.mdc-text-field+.mdc-text-field-helper-line{padding-right:16px;padding-left:16px}.mdc-form-field>.mdc-text-field+label{align-self:flex-start}.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(98,0,238,.87)}.mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--focused .mdc-notched-outline__trailing{border-width:2px}.mdc-text-field--focused+.mdc-text-field-helper-line .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--validation-msg){opacity:1}.mdc-text-field--focused.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:2px}.mdc-text-field--focused.mdc-text-field--outlined.mdc-text-field--textarea .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after,.mdc-text-field--invalid:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid .mdc-text-field__input{caret-color:#b00020;caret-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{opacity:1}.mdc-text-field--disabled{pointer-events:none}.mdc-text-field--disabled .mdc-text-field__input{color:rgba(0,0,0,.38)}@media all{.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:rgba(0,0,0,.38)}}@media all{.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.38)}}.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:rgba(0,0,0,.3)}.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.06)}.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.06)}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter,.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix,.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:GrayText}}.mdc-text-field--disabled .mdc-floating-label{cursor:default}.mdc-text-field--disabled.mdc-text-field--filled{background-color:#fafafa}.mdc-text-field--disabled.mdc-text-field--filled .mdc-text-field__ripple{display:none}.mdc-text-field--disabled .mdc-text-field__input{pointer-events:auto}.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--end-aligned .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__input{text-align:left}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix,.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{direction:ltr}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{padding-left:12px;padding-right:0}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--leading,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--leading{order:1}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{order:2}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{order:3}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{order:4}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--trailing,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--trailing{order:5}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-right:12px}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px}.mdc-text-field-helper-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;line-height:normal;margin:0;opacity:0;will-change:opacity;transition:opacity .15s cubic-bezier(.4,0,.2,1)}.mdc-text-field-helper-text:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-helper-text--persistent{transition:none;opacity:1;will-change:auto}.mdc-text-field-character-counter{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-left:auto;margin-right:0;padding-left:16px;padding-right:0;white-space:nowrap}.mdc-text-field-character-counter:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-character-counter[dir=rtl],[dir=rtl] .mdc-text-field-character-counter{margin-left:0;margin-right:auto;padding-left:0;padding-right:16px}.mdc-text-field__icon{align-self:center;cursor:pointer}.mdc-text-field__icon:not([tabindex]),.mdc-text-field__icon[tabindex=\"-1\"]{cursor:default;pointer-events:none}.mdc-text-field__icon svg{display:block}.mdc-text-field__icon--leading{margin-left:16px;margin-right:8px}.mdc-text-field__icon--leading[dir=rtl],[dir=rtl] .mdc-text-field__icon--leading{margin-left:8px;margin-right:16px}.mdc-text-field__icon--trailing,.mdc-text-field__icon--trailing[dir=rtl],[dir=rtl] .mdc-text-field__icon--trailing{margin-left:12px;margin-right:12px}.mdc-form-field{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87));display:inline-flex;align-items:center;vertical-align:middle}.mdc-form-field>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0;order:0}.mdc-form-field>label[dir=rtl],[dir=rtl] .mdc-form-field>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px}.mdc-form-field--nowrap>label{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.mdc-form-field--align-end>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px;order:-1}.mdc-form-field--align-end>label[dir=rtl],[dir=rtl] .mdc-form-field--align-end>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0}.mdc-form-field--space-between{justify-content:space-between}.mdc-form-field--space-between>label,.mdc-form-field--space-between>label[dir=rtl],[dir=rtl] .mdc-form-field--space-between>label{margin:0}.mdc-ripple-surface{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:relative;outline:none;overflow:hidden}.mdc-ripple-surface:after,.mdc-ripple-surface:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-ripple-surface:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-ripple-surface.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-ripple-surface.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface:after,.mdc-ripple-surface:before{background-color:#000}.mdc-ripple-surface:hover:before{opacity:.04}.mdc-ripple-surface.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface:after,.mdc-ripple-surface:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-ripple-surface.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]{overflow:visible}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:before{top:0;left:0;width:100%;height:100%}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface--primary:after,.mdc-ripple-surface--primary:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-ripple-surface--primary:hover:before{opacity:.04}.mdc-ripple-surface--primary.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface--accent:after,.mdc-ripple-surface--accent:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-ripple-surface--accent:hover:before{opacity:.04}.mdc-ripple-surface--accent.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-tab-bar{width:100%}.mdc-tab{height:48px}.mdc-tab--stacked{height:72px}.mdc-tab-scroller{overflow-y:hidden}.mdc-tab-scroller.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-scroller__test{position:absolute;top:-9999px;width:100px;height:100px;overflow-x:scroll}.mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:touch;display:flex;overflow-x:hidden}.mdc-tab-scroller__scroll-area::-webkit-scrollbar,.mdc-tab-scroller__test::-webkit-scrollbar{display:none}.mdc-tab-scroller__scroll-area--scroll{overflow-x:scroll}.mdc-tab-scroller__scroll-content{position:relative;display:flex;flex:1 0 auto;transform:none;will-change:transform}.mdc-tab-scroller--align-start .mdc-tab-scroller__scroll-content{justify-content:flex-start}.mdc-tab-scroller--align-end .mdc-tab-scroller__scroll-content{justify-content:flex-end}.mdc-tab-scroller--align-center .mdc-tab-scroller__scroll-content{justify-content:center}.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:auto}.mdc-tab-indicator{display:flex;position:absolute;top:0;left:0;justify-content:center;width:100%;height:100%;pointer-events:none;z-index:1}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab-indicator .mdc-tab-indicator__content--icon{color:#018786;color:var(--mdc-theme-secondary,#018786)}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-top-width:2px}.mdc-tab-indicator .mdc-tab-indicator__content--icon{height:34px;font-size:34px}.mdc-tab-indicator__content{transform-origin:left;opacity:0}.mdc-tab-indicator__content--underline{align-self:flex-end;box-sizing:border-box;width:100%;border-top-style:solid}.mdc-tab-indicator__content--icon{align-self:center;margin:0 auto}.mdc-tab-indicator--active .mdc-tab-indicator__content{opacity:1}.mdc-tab-indicator .mdc-tab-indicator__content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-indicator--no-transition .mdc-tab-indicator__content{transition:none}.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition:opacity .15s linear}.mdc-tab-indicator--active.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition-delay:.1s}.mdc-tab{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);position:relative;display:flex;flex:1 0 auto;justify-content:center;box-sizing:border-box;margin:0;padding:0 24px;border:none;outline:none;background:none;text-align:center;white-space:nowrap;cursor:pointer;-webkit-appearance:none;z-index:1}.mdc-tab .mdc-tab__text-label{color:rgba(0,0,0,.6)}.mdc-tab .mdc-tab__icon{color:rgba(0,0,0,.54);fill:currentColor}.mdc-tab::-moz-focus-inner{padding:0;border:0}.mdc-tab--min-width{flex:0 1 auto}.mdc-tab__content{position:relative;display:flex;align-items:center;justify-content:center;height:inherit;pointer-events:none}.mdc-tab__text-label{display:inline-block;line-height:1}.mdc-tab__icon,.mdc-tab__text-label{transition:color .15s linear;z-index:2}.mdc-tab__icon{width:24px;height:24px;font-size:24px}.mdc-tab--stacked .mdc-tab__content{flex-direction:column;align-items:center;justify-content:center}.mdc-tab--stacked .mdc-tab__text-label{padding-top:6px;padding-bottom:4px}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-tab--active .mdc-tab__icon{fill:currentColor}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{transition-delay:.1s}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:8px;padding-right:0}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label[dir=rtl],[dir=rtl] .mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:0;padding-right:8px}.mdc-tab__ripple{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}.mdc-tab__ripple:after,.mdc-tab__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-tab__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-tab__ripple.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-tab__ripple.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple:after,.mdc-tab__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-tab__ripple.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-tab__ripple:after,.mdc-tab__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab__ripple:hover:before{opacity:.04}.mdc-tab__ripple.mdc-ripple-upgraded--background-focused:before,.mdc-tab__ripple:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-tab__ripple:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-tab__ripple:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-tab__ripple.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-menu{min-width:112px}.mdc-menu .mdc-list,.mdc-menu .mdc-list-item__graphic,.mdc-menu .mdc-list-item__meta{color:rgba(0,0,0,.87)}.mdc-menu .mdc-list{position:relative}.mdc-menu .mdc-list .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-menu .mdc-list-divider{margin:8px 0}.mdc-menu .mdc-list-item{user-select:none}.mdc-menu .mdc-list-item--disabled{cursor:auto}.mdc-menu a.mdc-list-item .mdc-list-item__graphic,.mdc-menu a.mdc-list-item .mdc-list-item__text{pointer-events:none}.mdc-menu__selection-group{padding:0;fill:currentColor}.mdc-menu__selection-group .mdc-list-item{padding-left:56px;padding-right:16px}.mdc-menu__selection-group .mdc-list-item[dir=rtl],[dir=rtl] .mdc-menu__selection-group .mdc-list-item{padding-left:16px;padding-right:56px}.mdc-menu__selection-group .mdc-menu__selection-group-icon{left:16px;right:auto;display:none;position:absolute;top:50%;transform:translateY(-50%)}.mdc-menu__selection-group .mdc-menu__selection-group-icon[dir=rtl],[dir=rtl] .mdc-menu__selection-group .mdc-menu__selection-group-icon{left:auto;right:16px}.mdc-menu-item--selected .mdc-menu__selection-group-icon{display:inline}.mdc-menu-surface{display:none;position:absolute;box-sizing:border-box;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);margin:0;padding:0;transform:scale(1);transform-origin:top left;opacity:0;overflow:auto;will-change:transform,opacity;z-index:8;transition:opacity .03s linear,transform .12s cubic-bezier(0,0,.2,1);box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);background-color:#fff;background-color:var(--mdc-theme-surface,#fff);color:#000;color:var(--mdc-theme-on-surface,#000);border-radius:4px;border-radius:var(--mdc-shape-medium,4px);transform-origin-left:top left;transform-origin-right:top right}.mdc-menu-surface:focus{outline:none}.mdc-menu-surface--open{display:inline-block;transform:scale(1);opacity:1}.mdc-menu-surface--animating-open{display:inline-block;transform:scale(.8);opacity:0}.mdc-menu-surface--animating-closed{display:inline-block;opacity:0;transition:opacity 75ms linear}.mdc-menu-surface[dir=rtl],[dir=rtl] .mdc-menu-surface{transform-origin-left:top right;transform-origin-right:top left}.mdc-menu-surface--anchor{position:relative;overflow:visible}.mdc-menu-surface--fixed{position:fixed}.mdc-menu-surface--fullwidth{width:100%}.mdc-select-helper-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;margin:0 16px;line-height:normal}.mdc-select-helper-text[dir=rtl],[dir=rtl] .mdc-select-helper-text{margin-left:16px;margin-right:16px}.mdc-select-helper-text:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-select-helper-text--validation-msg{opacity:0;transition:opacity .18s cubic-bezier(.4,0,.2,1)}.mdc-select--invalid+.mdc-select-helper-text--validation-msg,.mdc-select-helper-text--validation-msg-persistent{opacity:1}.mdc-select--with-leading-icon .mdc-select__icon{display:inline-block;box-sizing:border-box;border:none;text-decoration:none;cursor:pointer;user-select:none;flex-shrink:0;align-self:center;background-color:transparent;fill:currentColor;margin-left:12px;margin-right:12px}.mdc-select--with-leading-icon .mdc-select__icon[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon .mdc-select__icon{margin-left:12px;margin-right:12px}.mdc-select__icon:not([tabindex]),.mdc-select__icon[tabindex=\"-1\"]{cursor:default;pointer-events:none}.mdc-select__anchor{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-select__anchor .mdc-select__ripple:after,.mdc-select__anchor .mdc-select__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-select__anchor .mdc-select__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-select__anchor.mdc-ripple-upgraded .mdc-select__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-select__anchor.mdc-ripple-upgraded .mdc-select__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-select__anchor.mdc-ripple-upgraded--unbounded .mdc-select__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-select__anchor.mdc-ripple-upgraded--foreground-activation .mdc-select__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-select__anchor.mdc-ripple-upgraded--foreground-deactivation .mdc-select__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-select__anchor .mdc-select__ripple:after,.mdc-select__anchor .mdc-select__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-select__anchor.mdc-ripple-upgraded .mdc-select__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-select__anchor .mdc-select__ripple:after,.mdc-select__anchor .mdc-select__ripple:before{background-color:rgba(0,0,0,.87)}.mdc-select__anchor:hover .mdc-select__ripple:before{opacity:.04}.mdc-select__anchor.mdc-ripple-upgraded--background-focused .mdc-select__ripple:before,.mdc-select__anchor:not(.mdc-ripple-upgraded):focus .mdc-select__ripple:before{transition-duration:75ms;opacity:.12}.mdc-select__anchor .mdc-select__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-select__menu .mdc-list .mdc-list-item--selected .mdc-list-item__ripple:after,.mdc-select__menu .mdc-list .mdc-list-item--selected .mdc-list-item__ripple:before{background-color:#000;background-color:var(--mdc-theme-on-surface,#000)}.mdc-select__menu .mdc-list .mdc-list-item--selected:hover .mdc-list-item__ripple:before{opacity:.04}.mdc-select__menu .mdc-list .mdc-list-item--selected.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,.mdc-select__menu .mdc-list .mdc-list-item--selected:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}.mdc-select__menu .mdc-list .mdc-list-item--selected:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}.mdc-select__menu .mdc-list .mdc-list-item--selected:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.12}.mdc-select__menu .mdc-list .mdc-list-item--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-select{min-width:200px;display:inline-flex;position:relative}.mdc-select:not(.mdc-select--disabled) .mdc-select__anchor{background-color:#f5f5f5}.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text{color:rgba(0,0,0,.87)}.mdc-select:not(.mdc-select--disabled) .mdc-floating-label{color:rgba(0,0,0,.6)}.mdc-select:not(.mdc-select--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-select:not(.mdc-select--disabled) .mdc-select__dropdown-icon{fill:rgba(0,0,0,.54)}.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-select__dropdown-icon{fill:#6200ee;fill:var(--mdc-theme-primary,#6200ee)}.mdc-select:not(.mdc-select--disabled)+.mdc-select-helper-text{color:rgba(0,0,0,.6)}.mdc-select:not(.mdc-select--disabled) .mdc-select__icon{color:rgba(0,0,0,.54)}.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-line-ripple:after{border-bottom-color:#6200ee;border-bottom-color:var(--mdc-theme-primary,#6200ee)}.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label{color:rgba(98,0,238,.87)}.mdc-select:not(.mdc-select--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.87)}.mdc-select.mdc-select--disabled .mdc-select__anchor{background-color:#fafafa}.mdc-select.mdc-select--disabled .mdc-floating-label{color:rgba(0,0,0,.38)}.mdc-select.mdc-select--disabled .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.06)}.mdc-select.mdc-select--disabled .mdc-select__dropdown-icon{fill:rgba(0,0,0,.38)}.mdc-select.mdc-select--disabled+.mdc-select-helper-text,.mdc-select.mdc-select--disabled .mdc-select__icon,.mdc-select.mdc-select--disabled .mdc-select__selected-text{color:rgba(0,0,0,.38)}@media screen and (-ms-high-contrast:active){.mdc-select.mdc-select--disabled .mdc-select__selected-text{color:GrayText}.mdc-select.mdc-select--disabled .mdc-select__dropdown-icon{fill:red}.mdc-select.mdc-select--disabled .mdc-floating-label{color:GrayText}.mdc-select.mdc-select--disabled .mdc-line-ripple:before{border-bottom-color:GrayText}.mdc-select.mdc-select--disabled .mdc-notched-outline__leading,.mdc-select.mdc-select--disabled .mdc-notched-outline__notch,.mdc-select.mdc-select--disabled .mdc-notched-outline__trailing{border-color:GrayText}.mdc-select.mdc-select--disabled+.mdc-select-helper-text,.mdc-select.mdc-select--disabled .mdc-select__icon{color:GrayText}}.mdc-select .mdc-floating-label{left:16px;right:auto;top:50%;transform:translateY(-50%);pointer-events:none}.mdc-select .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select .mdc-floating-label{left:auto;right:16px}.mdc-select.mdc-select--filled .mdc-floating-label{max-width:calc(100% - 64px)}.mdc-select.mdc-select--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-select.mdc-select--outlined .mdc-floating-label{left:4px;right:auto}.mdc-select.mdc-select--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select.mdc-select--outlined .mdc-floating-label{left:auto;right:4px}.mdc-select .mdc-select__anchor{height:56px;display:flex;align-items:baseline}.mdc-select .mdc-select__anchor:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-select.mdc-select--no-label .mdc-select__anchor .mdc-select__selected-text:before{content:\"​\"}.mdc-select.mdc-select--no-label .mdc-select__anchor .mdc-select__selected-text{height:100%;display:inline-flex;align-items:center}.mdc-select.mdc-select--no-label .mdc-select__anchor:before{display:none}.mdc-select .mdc-select__anchor{border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:0;border-bottom-left-radius:0;padding-left:16px;padding-right:0}.mdc-select .mdc-select__anchor[dir=rtl],[dir=rtl] .mdc-select .mdc-select__anchor{padding-left:0;padding-right:16px}.mdc-select.mdc-select--with-leading-icon .mdc-select__anchor,.mdc-select.mdc-select--with-leading-icon .mdc-select__anchor[dir=rtl],[dir=rtl] .mdc-select.mdc-select--with-leading-icon .mdc-select__anchor{padding-left:0;padding-right:0}.mdc-select .mdc-select__icon{width:24px;height:24px;font-size:24px}.mdc-select .mdc-select__dropdown-icon{width:24px;height:24px}.mdc-select .mdc-select__menu .mdc-list-item,.mdc-select .mdc-select__menu .mdc-list-item[dir=rtl],[dir=rtl] .mdc-select .mdc-select__menu .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-select .mdc-select__menu .mdc-list-item__graphic{margin-left:0;margin-right:12px}.mdc-select .mdc-select__menu .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-select .mdc-select__menu .mdc-list-item__graphic{margin-left:12px;margin-right:0}.mdc-select__dropdown-icon{margin-left:12px;margin-right:12px;display:inline-flex;position:relative;align-self:center;align-items:center;justify-content:center;flex-shrink:0;pointer-events:none}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-active,.mdc-select__dropdown-icon .mdc-select__dropdown-icon-inactive{position:absolute;top:0;left:0}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-graphic{width:41.6666666667%;height:20.8333333333%}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-inactive{opacity:1;transition:opacity 75ms linear 75ms}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-active{opacity:0;transition:opacity 75ms linear}.mdc-select__dropdown-icon[dir=rtl],[dir=rtl] .mdc-select__dropdown-icon{margin-left:12px;margin-right:12px}.mdc-select--activated .mdc-select__dropdown-icon .mdc-select__dropdown-icon-inactive{opacity:0;transition:opacity 49.5ms linear}.mdc-select--activated .mdc-select__dropdown-icon .mdc-select__dropdown-icon-active{opacity:1;transition:opacity .1005s linear 49.5ms}.mdc-select__anchor{width:100%;position:relative;box-sizing:border-box;overflow:hidden;outline:none;cursor:pointer}.mdc-select__anchor .mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-select__anchor.mdc-select--focused.mdc-line-ripple:after{transform:scaleY(2);opacity:1}.mdc-select__selected-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);box-sizing:border-box;width:auto;flex-grow:1;height:28px;border:none;outline:none;padding:0;white-space:nowrap;appearance:none;pointer-events:none;overflow:hidden;background-color:transparent;color:inherit}.mdc-select__selected-text::-ms-expand{display:none}.mdc-select__selected-text::-ms-value{background-color:transparent;color:inherit}.mdc-select--outlined{border:none}.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading,.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch,.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.38)}.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.87)}.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__trailing{border-width:2px;border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-select--outlined.mdc-select--disabled .mdc-notched-outline__leading,.mdc-select--outlined.mdc-select--disabled .mdc-notched-outline__notch,.mdc-select--outlined.mdc-select--disabled .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.06)}.mdc-select--outlined.mdc-select--disabled .mdc-select__anchor{background-color:transparent}.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__trailing,[dir=rtl] .mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:0}.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-select--outlined .mdc-select__selected-text{border-radius:4px}.mdc-select--outlined:not(.mdc-select--disabled) .mdc-select__anchor{background-color:transparent}.mdc-select--outlined .mdc-select__anchor :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-select--outlined .mdc-select__anchor{overflow:visible}.mdc-select--outlined .mdc-select__anchor .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-select-outlined .25s 1}.mdc-select--outlined .mdc-select__anchor .mdc-floating-label--float-above{transform:translateY(-37.25px) scale(1);font-size:.75rem}.mdc-select--outlined .mdc-select__anchor.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-select--outlined .mdc-select__anchor .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) scale(.75);font-size:1rem}.mdc-select--outlined .mdc-select__anchor .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:1px}.mdc-select--outlined .mdc-select__anchor .mdc-select__selected-text:before{content:\"​\"}.mdc-select--outlined .mdc-select__anchor .mdc-select__selected-text{height:100%;display:inline-flex;align-items:center}.mdc-select--outlined .mdc-select__anchor:before{display:none}.mdc-select--outlined .mdc-select__selected-text{display:flex;border:none;z-index:1;background-color:transparent}.mdc-select--outlined .mdc-select__icon{z-index:2}.mdc-select--outlined .mdc-floating-label{line-height:1.15rem}.mdc-select--outlined.mdc-select--focused .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:2px}.mdc-select--invalid:not(.mdc-select--disabled) .mdc-floating-label{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled) .mdc-line-ripple:before,.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--focused .mdc-line-ripple:after{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label{color:#b00020}.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--invalid+.mdc-select-helper-text--validation-msg{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--focused .mdc-select__dropdown-icon,.mdc-select--invalid:not(.mdc-select--disabled) .mdc-select__dropdown-icon{fill:#b00020;fill:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled):hover .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__trailing{border-width:2px;border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-select--disabled{cursor:default;pointer-events:none}.mdc-select--with-leading-icon .mdc-floating-label{left:48px;right:auto}.mdc-select--with-leading-icon .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon .mdc-floating-label{left:auto;right:48px}.mdc-select--with-leading-icon .mdc-select__menu .mdc-list-item,.mdc-select--with-leading-icon .mdc-select__menu .mdc-list-item[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon .mdc-select__menu .mdc-list-item{padding-left:12px;padding-right:12px}.mdc-select--with-leading-icon.mdc-select--filled .mdc-floating-label{max-width:calc(100% - 96px)}.mdc-select--with-leading-icon.mdc-select--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 128px)}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label{left:36px;right:auto}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label{left:auto;right:36px}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(-32px) scale(1)}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(32px) scale(1)}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above{font-size:.75rem}.mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(-32px) scale(.75)}.mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(32px) scale(.75)}.mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px .25s 1}@keyframes mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px{0%{transform:translateX(-32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(-32px) translateY(-34.75px) scale(.75)}}.mdc-select--with-leading-icon.mdc-select--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px .25s 1}@keyframes mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px-rtl{0%{transform:translateX(32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(32px) translateY(-34.75px) scale(.75)}}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-select__anchor :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 96px)}.mdc-select--filled .mdc-menu-surface--is-open-below{border-top-left-radius:0;border-top-right-radius:0}.mdc-select__menu .mdc-select__icon,.mdc-select__menu .mdc-select__icon[dir=rtl],[dir=rtl] .mdc-select__menu .mdc-select__icon{margin-left:0;margin-right:0}.mdc-select__menu .mdc-list .mdc-list-item--activated,.mdc-select__menu .mdc-list .mdc-list-item--activated .mdc-list-item__graphic,.mdc-select__menu .mdc-list .mdc-list-item--selected,.mdc-select__menu .mdc-list .mdc-list-item--selected .mdc-list-item__graphic{color:#000;color:var(--mdc-theme-on-surface,#000)}.big-round-shape-button,.big-round-shape-button .mdc-button__ripple{border-radius:8px}.demo-thick-outline-button{padding:0 12px;border-width:4px}.demo-thick-outline-button .mdc-button__ripple{top:-4px;left:-4px;border:4px solid transparent}.demo-thick-outline-button .mdc-button__touch{left:-4px;width:calc(100% + 8px)}.demo-button-ink-color:not(:disabled){background-color:#9c27b0}.demo-button-ink-color:not(:disabled) .mdc-button__icon{color:#fff}.demo-button-ink-color:not(:disabled){color:orange}.demo-button-ink-color:after,.demo-button-ink-color:before{background-color:orange}.demo-button-ink-color:hover:before{opacity:.08}.demo-button-ink-color.mdc-ripple-upgraded--background-focused:before,.demo-button-ink-color:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.demo-button-ink-color:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-button-ink-color:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.demo-button-ink-color.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-button-icon-color:not(:disabled) .mdc-button__icon{color:orange}.demo-button-primary:not(:disabled){background-color:#6200ee;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-primary .mdc-button__ripple:after,.demo-button-primary .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-primary:hover .mdc-button__ripple:before{opacity:.08}.demo-button-primary.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.demo-button-primary:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.demo-button-primary:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.demo-button-primary:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.demo-button-primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-button-secondary:not(:disabled){background-color:#018786;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-secondary .mdc-button__ripple:after,.demo-button-secondary .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-secondary:hover .mdc-button__ripple:before{opacity:.08}.demo-button-secondary.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.demo-button-secondary:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.demo-button-secondary:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.demo-button-secondary:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.demo-button-secondary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-density-button{height:24px;margin-top:0;margin-bottom:0}.demo-density-button .mdc-button__touch{display:none}.demo-layout__row{display:flex;flex-flow:row wrap;margin-top:.8rem}.demo-layout__row--no-wrap{display:flex;flex-direction:row}.demo-layout__column{display:flex;flex-direction:column}.demo-layout--start{align-self:flex-start}.demo-layout--end{flex-grow:1;align-self:flex-end}.demo-layout--center{display:flex;align-content:flex-end;align-items:center;justify-content:center}.demo-panel{display:flex;position:relative;height:100vh;overflow:hidden}.demo-panel-content,.demo-panel-section{width:100%;max-width:100%}.demo-panel-content{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;overflow:auto}@media (max-width:900px){.demo-panel-content{width:unset;padding:12px}}.demo-panel-transition{width:100%;max-width:1200px;padding-bottom:60px}.demo-panel-title{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline4-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:2.125rem;font-size:var(--mdc-typography-headline4-font-size,2.125rem);line-height:2.5rem;line-height:var(--mdc-typography-headline4-line-height,2.5rem);font-weight:400;font-weight:var(--mdc-typography-headline4-font-weight,400);letter-spacing:.0073529412em;letter-spacing:var(--mdc-typography-headline4-letter-spacing,.0073529412em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline4-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline4-text-transform,inherit);margin:16px 16px 16px 0;line-height:1.25}.demo-panel-heading,.demo-panel-title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;padding-bottom:.3em;border-bottom:1px solid #eaecef;font-weight:500}.demo-panel-heading{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin:24px 16px 16px 0;line-height:1.25}.demo-container{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;min-width:200px;padding:10px}.hljs{border-radius:.45rem;padding:9px;display:inline-block}.demo-content{border-radius:12px;border:1px solid rgba(0,0,0,.15);margin:1.5rem 1rem;padding:1rem}.demo-content__headline{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin-top:.1em;margin-bottom:.3em}.demo-content--block{display:inline-block;margin-right:5px}.demo-top-app-bar{background-color:#363640;z-index:7}.demo-drawer{position:fixed}.demo-drawer .mdc-list-item{cursor:pointer}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:#00f}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#00f}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text{color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__icon--leading{color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading{color:#00f}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.38)}.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:#00f}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__input{color:orange}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.5)}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(255,165,0,.38)}.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.87)}.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:orange}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.38)}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:#00f}.demo-fullwidth-input:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(255,165,0,.38)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__input{color:orange}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.5)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:orange}.demo-fullwidth-input.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.87)}.demo-fullwidth-input.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:orange}.demo-shaped-text-field{border-top-left-radius:28px;border-top-right-radius:28px;border-bottom-right-radius:0;border-bottom-left-radius:0}.demo-shaped-text-field--outline{padding-left:32px;padding-right:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:28px;width:28px}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:28px;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__notch{max-width:calc(100% - 56px)}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:0;border-top-right-radius:28px;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:28px}.demo-shaped-text-field--outline[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline{padding-left:0;padding-right:32px}.demo-shaped-text-field--outline+.mdc-text-field-helper-line{padding-left:32px;padding-right:28px}.demo-shaped-text-field--outline+.mdc-text-field-helper-line[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline+.mdc-text-field-helper-line{padding-left:28px;padding-right:32px}.demo-density-text-field{height:52px}.demo-density-outlined-text-field{height:44px}.demo-density-outlined-text-field .mdc-floating-label--float-above{transform:translateY(-31.25px) scale(1);font-size:.75rem}.demo-density-outlined-text-field.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) scale(.75);font-size:1rem}.demo-density-outlined-text-field .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-44px .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-44px{0%{transform:translateX(0) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-28.75px) scale(.75)}to{transform:translateX(0) translateY(-28.75px) scale(.75)}}.demo-density-outlined-text-field-with-leading-icon{height:44px}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-31.25px) translateX(-32px) scale(1)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-31.25px) translateX(32px) scale(1)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) translateX(-32px) scale(.75)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) translateX(32px) scale(.75)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above- .25s 1}@keyframes mdc-floating-label-shake-float-above-{0%{transform:translateX(-32px) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-28.75px) scale(.75)}to{transform:translateX(-32px) translateY(-28.75px) scale(.75)}}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above- .25s 1}@keyframes mdc-floating-label-shake-float-above--rtl{0%{transform:translateX(32px) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-28.75px) scale(.75)}to{transform:translateX(32px) translateY(-28.75px) scale(.75)}}.au-form-field-select,.au-form-field-text-field{height:87px}.demo-layout__row .au-form-field-select+mdc-form-field,.demo-layout__row .au-form-field-text-field+mdc-form-field{padding-left:14px}.mdc-form-field{align-self:flex-start}.mdc-list{display:block}body{margin:0;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}", ""]);
 // Exports
 module.exports = exports;
+
+
+/***/ }),
+
+/***/ "views/select/examples":
+/*!**************************************!*\
+  !*** ./src/views/select/examples.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Examples = void 0;
+    var Examples = /** @class */ (function () {
+        function Examples() {
+            this.options = [{ id: 1, name: 'Cats' }, { id: 2, name: 'Dogs' }];
+            this.value = this.options[1];
+        }
+        Examples.prototype.addOption = function () {
+            this.options.push({ id: 3, name: 'Fish' });
+        };
+        Examples.prototype.removeOption = function () {
+            this.options.pop();
+        };
+        return Examples;
+    }());
+    exports.Examples = Examples;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "views/select/examples.html":
+/*!****************************************!*\
+  !*** ./src/views/select/examples.html ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Basic</h3>\n\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <mdc-select label=\"Make your choice\" value.bind=\"value\">\n          <i class=\"material-icons\" mdc-select-icon>pets</i>\n          <mdc-list-item repeat.for=\"o of options\" value.bind=\"o\">${o.name}</mdc-list-item>\n        </mdc-select>\n      </div>\n      <!-- <div class=\"demo-container\">\n        <mdc-select label=\"Make your choice\" value.bind=\"value\" outlined>\n          <i class=\"material-icons\" mdc-select-icon>pets</i>\n          <mdc-list-item repeat.for=\"o of options\" data-value.bind=\"1\" value.bind=\"o\">${o.name}</mdc-list-item>\n        </mdc-select>\n      </div> -->\n      <br>\n      You've selected ${value.name}\n      <button mdc-button click.delegate=\"addOption()\">Add option</button>\n      <button mdc-button click.delegate=\"removeOption()\">Remove option</button>\n  </div>\n    <!-- <example-viewer [example]=\"exampleDefault\"></example-viewer> -->\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/select/select":
+/*!************************************!*\
+  !*** ./src/views/select/select.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! ../component-viewer/component-viewer */ "views/component-viewer/component-viewer"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, component_viewer_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Select = void 0;
+    var Select = /** @class */ (function (_super) {
+        tslib_1.__extends(Select, _super);
+        function Select() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Select = tslib_1.__decorate([
+            aurelia_framework_1.autoinject,
+            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+        ], Select);
+        return Select;
+    }(component_viewer_1.ComponentViewer));
+    exports.Select = Select;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 
 /***/ }),
@@ -62182,4 +65261,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.4e60403007b8fe4623ee.bundle.map
+//# sourceMappingURL=app.db436ed2881a5ce05c3a.bundle.map
