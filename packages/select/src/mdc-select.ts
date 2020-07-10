@@ -62,6 +62,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   @bindable.booleanAttr
   outlined: boolean;
 
+  @bindable.booleanAttr
+  required: boolean;
+
   private initialValue: unknown;
   get value(): unknown {
     if (this.foundation) {
@@ -258,6 +261,11 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   handleMenuClosed() {
     this.foundation?.handleMenuClosed();
+  }
+
+  handleItemsChanged() {
+    this.foundation?.layoutOptions();
+    this.foundation?.layout();
   }
 
   focus() {

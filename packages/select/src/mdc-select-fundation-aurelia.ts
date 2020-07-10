@@ -5,6 +5,10 @@ import { Corner } from '@material/menu';
 import { MDCFoundation } from '@material/base';
 import { KEY, normalizeKey } from '@material/dom/keyboard';
 
+/**
+ * This is almost a complete copy of the default foundation with exception to handling values.
+ * It supports values of unknown types which must be bound to mdc-list-item.value.
+ */
 export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAurelia> {
   static get cssClasses() {
     return cssClasses;
@@ -124,14 +128,16 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
     }
   }
 
+  // !!! MODIFIED FOR AURELIA !!!
   setValue(value: unknown) {
     const index = this.adapter.getMenuItemValues().indexOf(value);
     this.setSelectedIndex(index);
   }
 
+  // !!! MODIFIED FOR AURELIA !!!
   getValue() {
     const listItem = this.adapter.getSelectedMenuItem() as IMdcListItemElement;
-    return listItem?.au.controller.viewModel.value;
+    return listItem?.au?.controller.viewModel.value;
   }
 
   getDisabled() {
@@ -185,7 +191,7 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
    */
   layout() {
     if (this.adapter.hasLabel()) {
-      const optionHasValue = !!this.getValue();
+      const optionHasValue = !!this.getValue(); // !!! MODIFIED FOR AURELIA !!!
       const isFocused = this.adapter.hasClass(cssClasses.FOCUSED);
       const shouldFloatAndNotch = optionHasValue || isFocused;
       const isRequired = this.adapter.hasClass(cssClasses.REQUIRED);

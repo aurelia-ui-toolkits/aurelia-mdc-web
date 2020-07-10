@@ -8,6 +8,10 @@ import { MdcListItem } from './mdc-list-item/mdc-list-item';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
 
+export const mdcListStrings = {
+  ITEMS_CHANGED: 'mdclist:itemschanged'
+}
+
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-list.html'))
 @customElement(cssClasses.ROOT)
@@ -46,6 +50,9 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
 
   @children('mdc-list-item')
   items: MdcListItem[];
+  itemsChanged() {
+    this.emit(mdcListStrings.ITEMS_CHANGED, { items: this.items }, true);
+  }
 
   @bindable.booleanAttr
   typeahead: boolean;

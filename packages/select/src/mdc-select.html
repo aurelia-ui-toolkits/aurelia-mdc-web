@@ -2,10 +2,11 @@
     mdc-select
     mdc-select--${outlined ? 'outlined' : 'filled'}
     ${leadingIcon ? 'mdc-select--with-leading-icon' : ''}
+    ${required ? 'mdc-select--required' : ''}
   " id="${id}">
   <div class="mdc-select__anchor" ref="selectAnchor" mdc-ripple change.trigger="handleChange()"
     focus.trigger="handleFocus()" blur.call="handleBlur()" keydown.trigger="handleKeydown($event)"
-    click.trigger="handleClick($event)">
+    click.trigger="handleClick($event)" aria-required="true">
     <span class="mdc-select__ripple" if.bind="!outlined"></span>
     <slot name="leading-icon"></slot>
     <span class="mdc-select__selected-text" ref="selectedText"></span>
@@ -27,7 +28,8 @@
 
   <mdc-menu class="mdc-select__menu ${fullWidth ? 'mdc-menu-surface--fullwidth' : ''}" view-model.ref="menu"
     ref="menuElement" typeahead mdcmenusurface:closed.trigger="handleMenuClosed()"
-    mdcmenusurface:opened.trigger="handleMenuOpened()" mdcmenu:selected.trigger="handleMenuItemAction($event)">
+    mdcmenusurface:opened.trigger="handleMenuOpened()" mdcmenu:selected.trigger="handleMenuItemAction($event)"
+    mdclist:itemschanged.trigger="handleItemsChanged($event)">
     <mdc-list>
       <slot></slot>
     </mdc-list>

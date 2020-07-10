@@ -73,6 +73,7 @@ export interface MDCSelectAdapterAurelia {
 
   /**
    * Emits a change event when an element is selected.
+   * !!! MODIFIED FOR AURELIA !!!
    */
   notifyChange(value: unknown): void;
 
@@ -159,6 +160,7 @@ export interface MDCSelectAdapterAurelia {
 
   /**
    * Returns an array representing the VALUE_ATTR attributes of each menu item.
+   * !!! MODIFIED FOR AURELIA !!!
    */
   getMenuItemValues(): unknown[];
 
