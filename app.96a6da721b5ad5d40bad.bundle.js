@@ -54277,7 +54277,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             if (index >= this.adapter.getMenuItemCount()) {
                 return;
             }
-            if (index === select_1.numbers.UNSET_INDEX) {
+            // !!! MODIFIED FOR AURELIA TO SUPPORT TEXT IN "EMPTY" ITEMS !!!
+            if (index === select_1.numbers.UNSET_INDEX || this.menuItemValues[index] === undefined || this.menuItemValues[index] === null) {
                 this.adapter.setSelectedText('');
             }
             else {
@@ -54999,7 +55000,7 @@ module.exports = code;
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"mdc-drawer\n  ${type === 'dismissible' ? 'mdc-drawer--dismissible' : ''}\n  ${ type === 'modal' ? 'mdc-drawer--modal' : ''}\" transitionend.delegate=\"handleTransitionEnd_($event)\"\n  keydown.delegate=\"handleKeydown_($event)\">\n  <slot></slot>\n</template>\n";
+var code = "<template class=\"mdc-drawer\n  ${type === 'dismissible' ? 'mdc-drawer--dismissible' : ''}\n  ${ type === 'modal' ? 'mdc-drawer--modal' : ''}\" transitionend.trigger=\"handleTransitionEnd_($event)\"\n  keydown.trigger=\"handleKeydown_($event)\">\n  <slot></slot>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -57239,7 +57240,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     return this.au.controller.viewModel.value;
                 },
                 set: function (value) {
-                    this.au.controller.viewModel.value = value;
+                    // aurelia binding converts "undefined" and "null" into empty string
+                    // this does not translate well into "empty" menu items when several selects are bound to the same field
+                    this.au.controller.viewModel.value = value === "" ? undefined : value;
                 },
                 configurable: true
             },
@@ -57411,7 +57414,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"\n    mdc-select\n    mdc-select--${outlined ? 'outlined' : 'filled'}\n    ${leadingIcon ? 'mdc-select--with-leading-icon' : ''}\n    ${required ? 'mdc-select--required' : ''}\n  \" id=\"${id}\">\n  <div class=\"mdc-select__anchor\" ref=\"selectAnchor\" mdc-ripple change.trigger=\"handleChange()\"\n    focus.trigger=\"handleFocus()\" blur.call=\"handleBlur()\" keydown.trigger=\"handleKeydown($event)\"\n    click.trigger=\"handleClick($event)\" aria-required=\"true\">\n    <span class=\"mdc-select__ripple\" if.bind=\"!outlined\"></span>\n    <slot name=\"leading-icon\"></slot>\n    <span class=\"mdc-select__selected-text\" ref=\"selectedText\"></span>\n    <span class=\"mdc-select__dropdown-icon\">\n      <svg class=\"mdc-select__dropdown-icon-graphic\" viewBox=\"7 10 10 5\">\n        <polygon class=\"mdc-select__dropdown-icon-inactive\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 10 12 15 17 10\">\n        </polygon>\n        <polygon class=\"mdc-select__dropdown-icon-active\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 15 12 10 17 15\">\n        </polygon>\n      </svg>\n    </span>\n    <mdc-floating-label if.bind=\"label && !outlined\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}\n    </mdc-floating-label>\n    <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple\"></mdc-line-ripple>\n    <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline\">\n      <mdc-floating-label if.bind=\"label\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}</mdc-floating-label>\n    </mdc-notched-outline>\n  </div>\n\n  <mdc-menu class=\"mdc-select__menu ${fullWidth ? 'mdc-menu-surface--fullwidth' : ''}\" view-model.ref=\"menu\"\n    ref=\"menuElement\" typeahead mdcmenusurface:closed.trigger=\"handleMenuClosed()\"\n    mdcmenusurface:opened.trigger=\"handleMenuOpened()\" mdcmenu:selected.trigger=\"handleMenuItemAction($event)\"\n    mdclist:itemschanged.trigger=\"handleItemsChanged($event)\">\n    <mdc-list>\n      <slot></slot>\n    </mdc-list>\n  </mdc-menu>\n</template>\n";
+var code = "<template class=\"\n    mdc-select\n    mdc-select--${outlined ? 'outlined' : 'filled'}\n    ${leadingIcon ? 'mdc-select--with-leading-icon' : ''}\n    ${required ? 'mdc-select--required' : ''}\n  \" id=\"${id}\">\n  <div class=\"mdc-select__anchor\" ref=\"selectAnchor\" mdc-ripple change.trigger=\"handleChange()\"\n    focus.trigger=\"handleFocus()\" blur.trigger=\"handleBlur()\" keydown.trigger=\"handleKeydown($event)\"\n    click.trigger=\"handleClick($event)\" aria-required=\"true\">\n    <span class=\"mdc-select__ripple\" if.bind=\"!outlined\"></span>\n    <slot name=\"leading-icon\"></slot>\n    <span class=\"mdc-select__selected-text\" ref=\"selectedText\"></span>\n    <span class=\"mdc-select__dropdown-icon\">\n      <svg class=\"mdc-select__dropdown-icon-graphic\" viewBox=\"7 10 10 5\">\n        <polygon class=\"mdc-select__dropdown-icon-inactive\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 10 12 15 17 10\">\n        </polygon>\n        <polygon class=\"mdc-select__dropdown-icon-active\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 15 12 10 17 15\">\n        </polygon>\n      </svg>\n    </span>\n    <mdc-floating-label if.bind=\"label && !outlined\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}\n    </mdc-floating-label>\n    <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple\"></mdc-line-ripple>\n    <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline\">\n      <mdc-floating-label if.bind=\"label\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}</mdc-floating-label>\n    </mdc-notched-outline>\n  </div>\n\n  <mdc-menu class=\"mdc-select__menu ${fullWidth ? 'mdc-menu-surface--fullwidth' : ''}\" view-model.ref=\"menu\"\n    ref=\"menuElement\" typeahead mdcmenusurface:closed.trigger=\"handleMenuClosed()\"\n    mdcmenusurface:opened.trigger=\"handleMenuOpened()\" mdcmenu:selected.trigger=\"handleMenuItemAction($event)\"\n    mdclist:itemschanged.trigger=\"handleItemsChanged($event)\">\n    <mdc-list>\n      <slot></slot>\n    </mdc-list>\n  </mdc-menu>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -57701,7 +57704,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"mdc-tab-bar\" role=\"tablist\" keydown.trigger=\"handleKeyDown_($event)\" mdctab:interacted.delegate=\"handleTabInteraction_($event)\">\n  <mdc-tab-scroller view-model.ref=\"tabScroller_\">\n    <slot></slot>\n  </mdc-tab-scroller>\n</template>\n";
+var code = "<template class=\"mdc-tab-bar\" role=\"tablist\" keydown.trigger=\"handleKeyDown_($event)\" mdctab:interacted.trigger=\"handleTabInteraction_($event)\">\n  <mdc-tab-scroller view-model.ref=\"tabScroller_\">\n    <slot></slot>\n  </mdc-tab-scroller>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -64286,7 +64289,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template>\n  <require from=\"./component-viewer.scss\"></require>\n  <div class=\"demo-panel-content\">\n    <div class=\"demo-panel-transition\">\n      <h1 class=\"demo-panel-title\">${template.title}</h1>\n      ${template.description}\n\n      <div if.bind=\"template.references\">\n        <h2 class=\"demo-panel-heading\">References</h2>\n        <div repeat.for=\"ref of template.references\">\n          <a mdc-button href.bind=\"ref.url\" target=\"_blank\" rel=\"noopener\">\n            <i class=\"material-icons mdc-button__icon\">link</i> ${ref.name}\n          </a>\n        </div>\n      </div>\n\n      <div if.bind=\"template.code\">\n        <h2 class=\"demo-panel-heading\">Module</h2>\n        <pre if.bind=\"template.code\"><code class=\"typescript\" highlight>${template.code}</code></pre>\n      </div>\n\n      <div if.bind=\"template.sass\">\n        <h2 class=\"demo-panel-heading\">Styles</h2>\n        <pre if.bind=\"template.sass\"><code class=\"sass\" highlight>${template.sass}</code></pre>\n      </div>\n\n      <div repeat.for=\"mdcUrl of template.mdcUrls\" class=\"viewer-mdc-urls\">\n        <a mdc-button href.bind=\"mdcUrl.url\" target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons mdc-button__icon\">link</i> ${mdcUrl.name}\n        </a>\n      </div>\n      <mdc-tab-bar if.bind=\"tabs.length\">\n        <mdc-tab repeat.for=\"tab of tabs\" label.bind=\"tab.title\" click.delegate=\"navigateTo(tab)\" class=\"viewer-tab\" active.bind=\"tab.navModel.isActive\">\n        </mdc-tab>\n      </mdc-tab-bar>\n      <router-view></router-view>\n    </div>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./component-viewer.scss\"></require>\n  <div class=\"demo-panel-content\">\n    <div class=\"demo-panel-transition\">\n      <h1 class=\"demo-panel-title\">${template.title}</h1>\n      ${template.description}\n\n      <div if.bind=\"template.references\">\n        <h2 class=\"demo-panel-heading\">References</h2>\n        <div repeat.for=\"ref of template.references\">\n          <a mdc-button href.bind=\"ref.url\" target=\"_blank\" rel=\"noopener\">\n            <i class=\"material-icons mdc-button__icon\">link</i> ${ref.name}\n          </a>\n        </div>\n      </div>\n\n      <div if.bind=\"template.code\">\n        <h2 class=\"demo-panel-heading\">Module</h2>\n        <pre if.bind=\"template.code\"><code class=\"typescript\" highlight>${template.code}</code></pre>\n      </div>\n\n      <div if.bind=\"template.sass\">\n        <h2 class=\"demo-panel-heading\">Styles</h2>\n        <pre if.bind=\"template.sass\"><code class=\"sass\" highlight>${template.sass}</code></pre>\n      </div>\n\n      <div repeat.for=\"mdcUrl of template.mdcUrls\" class=\"viewer-mdc-urls\">\n        <a mdc-button href.bind=\"mdcUrl.url\" target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons mdc-button__icon\">link</i> ${mdcUrl.name}\n        </a>\n      </div>\n      <mdc-tab-bar if.bind=\"tabs.length\">\n        <mdc-tab repeat.for=\"tab of tabs\" label.bind=\"tab.title\" click.trigger=\"navigateTo(tab)\" class=\"viewer-tab\" active.bind=\"tab.navModel.isActive\">\n        </mdc-tab>\n      </mdc-tab-bar>\n      <router-view></router-view>\n    </div>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -65053,7 +65056,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Basic</h3>\n\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <mdc-field>\n          <mdc-select label=\"Make your choice\" value.bind=\"value\" required>\n            <i class=\"material-icons\" mdc-select-icon>pets</i>\n            <mdc-list-item value.bind=\"undefined\"></mdc-list-item>\n            <mdc-list-item repeat.for=\"o of options\" value.bind=\"o\">${o.name}</mdc-list-item>\n          </mdc-select>\n          <mdc-select-helper-text validation>Required</mdc-select-helper-text>\n        </mdc-field>\n      </div>\n      <!-- <div class=\"demo-container\">\n        <mdc-select label=\"Make your choice\" value.bind=\"value\" outlined>\n          <i class=\"material-icons\" mdc-select-icon>pets</i>\n          <mdc-list-item repeat.for=\"o of options\" data-value.bind=\"1\" value.bind=\"o\">${o.name}</mdc-list-item>\n        </mdc-select>\n      </div> -->\n      <br>\n      You've selected ${value.name}\n      <button mdc-button click.delegate=\"addOption()\">Add option</button>\n      <button mdc-button click.delegate=\"removeOption()\">Remove option</button>\n    </div>\n    <!-- <example-viewer [example]=\"exampleDefault\"></example-viewer> -->\n  </div>\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Basic</h3>\n\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <mdc-field>\n          <mdc-select label=\"Make your choice\" value.bind=\"value\" required>\n            <i class=\"material-icons\" mdc-select-icon>pets</i>\n            <mdc-list-item>choose</mdc-list-item>\n            <mdc-list-item repeat.for=\"o of options\" value.bind=\"o\">${o.name}</mdc-list-item>\n          </mdc-select>\n          <mdc-select-helper-text validation>Required</mdc-select-helper-text>\n        </mdc-field>\n      </div>\n      <div class=\"demo-container\">\n        <mdc-select label=\"Make your choice\" value.bind=\"value\" outlined>\n          <i class=\"material-icons\" mdc-select-icon>pets</i>\n          <mdc-list-item>choose</mdc-list-item>\n          <mdc-list-item repeat.for=\"o of options\" data-value.bind=\"1\" value.bind=\"o\">${o.name}</mdc-list-item>\n        </mdc-select>\n      </div>\n      <br>\n      You've selected ${value.name}\n      <button mdc-button click.trigger=\"addOption()\">Add option</button>\n      <button mdc-button click.trigger=\"removeOption()\">Remove option</button>\n    </div>\n    <!-- <example-viewer [example]=\"exampleDefault\"></example-viewer> -->\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -65284,4 +65287,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.b695ef088aafaa40a263.bundle.map
+//# sourceMappingURL=app.96a6da721b5ad5d40bad.bundle.map
