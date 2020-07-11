@@ -110,7 +110,8 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
       return;
     }
 
-    if (index === numbers.UNSET_INDEX) {
+    // !!! MODIFIED FOR AURELIA TO SUPPORT TEXT IN "EMPTY" ITEMS !!!
+    if (index === numbers.UNSET_INDEX || this.menuItemValues[index] === undefined || this.menuItemValues[index] === null) {
       this.adapter.setSelectedText('');
     } else {
       this.adapter.setSelectedText(
