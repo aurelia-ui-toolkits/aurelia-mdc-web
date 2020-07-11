@@ -5,7 +5,7 @@
     ${required ? 'mdc-select--required' : ''}
   " id="${id}">
   <div class="mdc-select__anchor" ref="selectAnchor" mdc-ripple change.trigger="handleChange()"
-    focus.trigger="handleFocus()" blur.call="handleBlur()" keydown.trigger="handleKeydown($event)"
+    focus.trigger="handleFocus()" blur.trigger="handleBlur()" keydown.trigger="handleKeydown($event)"
     click.trigger="handleClick($event)" aria-required="true">
     <span class="mdc-select__ripple" if.bind="!outlined"></span>
     <slot name="leading-icon"></slot>

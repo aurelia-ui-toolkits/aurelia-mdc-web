@@ -1,6 +1,6 @@
 <template class="mdc-drawer
   ${type === 'dismissible' ? 'mdc-drawer--dismissible' : ''}
-  ${ type === 'modal' ? 'mdc-drawer--modal' : ''}" transitionend.delegate="handleTransitionEnd_($event)"
-  keydown.delegate="handleKeydown_($event)">
+  ${ type === 'modal' ? 'mdc-drawer--modal' : ''}" transitionend.trigger="handleTransitionEnd_($event)"
+  keydown.trigger="handleKeydown_($event)">
   <slot></slot>
 </template>
