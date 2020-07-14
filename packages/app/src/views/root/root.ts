@@ -19,6 +19,7 @@ export class Root {
     const exampleRoutes: RouteConfig[] = [
       { route: 'button' },
       { route: 'card' },
+      { route: 'dialog' },
       { route: 'drawer' },
       { route: 'form-field' },
       { route: 'icon-button' },

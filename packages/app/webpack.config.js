@@ -35,6 +35,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'base',
           'button',
           'card',
+          'dialog',
           'drawer',
           'floating-label',
           'form-field',

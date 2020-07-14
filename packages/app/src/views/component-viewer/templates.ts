@@ -29,6 +29,23 @@ export const templates: { [x: string]: IComponentTemplate } = {
     code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));`,
     sass: `@use '@material/button/mdc-button';`
   },
+  dialog: {
+    title: 'Dialog',
+    description: 'Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.',
+    references: [{
+      name: 'Material Design guidelines: Dialog',
+      url: 'https://material.io/guidelines/components/dialogs.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-dialog/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-dialog/README.md#sass-mixins' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/dialog'));`,
+    sass: `@use '@material/dialog/mdc-dialog';
+@use '@material/dialog';`
+  },
   card: {
     title: 'Card',
     description: 'Cards contain content and actions about a single subject.',

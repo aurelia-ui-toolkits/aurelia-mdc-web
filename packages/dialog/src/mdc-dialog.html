@@ -1,0 +1,10 @@
+<template class="mdc-dialog" click.trigger="handleClick_($event)" keydown.trigger="handleKeydown_($event)"
+  mdcdialog:opening.trigger="handleOpening_()" mdcdialog:closing.trigger="handleClosing_()">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface" role="alertdialog" aria-modal="true" aria-labelledby="${titleId}"
+      aria-describedby="${contentId}">
+      <slot></slot>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</template>
