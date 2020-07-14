@@ -1,0 +1,44 @@
+<template>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Icon Button</h3>
+    <button mdc-icon-button class="material-icons">keyboard_arrow_left</button>
+    <button mdc-icon-button class="material-icons">keyboard_arrow_right</button>
+    <button mdc-icon-button class="material-icons">favorite</button>
+    <!-- <example-viewer [example]="exampleSimple"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Icon Toggle</h3>
+    <button mdc-icon-button on.bind="on">
+      <mdc-icon-button-icon class="material-icons">sentiment_very_dissatisfied</mdc-icon-button-icon>
+      <mdc-icon-button-icon class="material-icons" on>sentiment_very_satisfied</mdc-icon-button-icon>
+    </button>
+    You are ${on ? 'satisfied' : 'dissatisfied'}
+    <!-- <example-viewer [example]="exampleIconToggle"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Density</h3>
+    <button mdc-icon-button class="material-icons demo-density-icon-button-1">favorite</button>
+    <button mdc-icon-button class="material-icons demo-density-icon-button-2">favorite</button>
+    <button mdc-icon-button class="material-icons demo-density-icon-button-3">favorite</button>
+    <!-- <example-viewer [example]="exampleDensity"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Theme</h3>
+    <button mdc-icon-button class="material-icons demo-icon-button-custom" offIcon="">
+      <mdc-icon-button-icon class="material-icons">favorite_border</mdc-icon-button-icon>
+      <mdc-icon-button-icon class="material-icons" on>favorite</mdc-icon-button-icon>
+    </button>
+    <button mdc-icon-button class="material-icons demo-icon-button-primary" offIcon="favorite_border">
+      <mdc-icon-button-icon class="material-icons">favorite_border</mdc-icon-button-icon>
+      <mdc-icon-button-icon class="material-icons" on>favorite</mdc-icon-button-icon>
+    </button>
+    <button mdc-icon-button class="material-icons demo-icon-button-secondary">
+      <mdc-icon-button-icon class="material-icons">favorite_border</mdc-icon-button-icon>
+      <mdc-icon-button-icon class="material-icons" on>favorite</mdc-icon-button-icon>
+    </button>
+    <!-- <example-viewer [example]="exampleTheme"></example-viewer> -->
+  </div>
+</template>

@@ -21,6 +21,7 @@ export class Root {
       { route: 'card' },
       { route: 'drawer' },
       { route: 'form-field' },
+      { route: 'icon-button' },
       { route: 'menu' },
       { route: 'list' },
       { route: 'ripple' },

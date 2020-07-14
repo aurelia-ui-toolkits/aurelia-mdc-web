@@ -75,6 +75,23 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/form-field/mdc-form-field';
 @use '@material/form-field/_index' as form-field;`
   },
+  "icon-button": {
+    title: 'Icon Buttons',
+    description: `Icon buttons allow users to take actions, and make choices, with a single tap.`,
+    references: [{
+      name: 'Material Design guidelines: Toggle Buttons',
+      url: 'https://material.io/design/components/buttons.html#toggle-button'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-icon-button/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-icon-button/README.md#sass-mixins' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon-button'));`,
+    sass: `@use '@material/icon-button/mdc-icon-button';
+@use '@material/icon-button/_index' as icon-button;`
+  },
   list: {
     title: 'Lists',
     description: 'Lists are continuous, vertical indexes of text or images.',

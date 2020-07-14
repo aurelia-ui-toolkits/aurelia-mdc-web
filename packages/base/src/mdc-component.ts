@@ -6,7 +6,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   foundation?: FoundationType;
 
   initialised = this.createInitiliasedPromise();
-  private initialisedResolve: () => void;
+  protected initialisedResolve: () => void;
 
   private createInitiliasedPromise() {
     return new Promise(r => this.initialisedResolve = r);
@@ -28,7 +28,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
 
   detached() {
     this.destroy();
-    this.foundation!.destroy();
+    this.foundation?.destroy();
     this.foundation = undefined;
     this.initialised = this.createInitiliasedPromise();
   }

@@ -38,6 +38,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'drawer',
           'floating-label',
           'form-field',
+          'icon-button',
           'line-ripple',
           'list',
           'menu',

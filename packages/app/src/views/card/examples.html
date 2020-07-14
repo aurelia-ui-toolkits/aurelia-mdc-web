@@ -16,11 +16,14 @@
           <button mdc-button>Read</button>
           <button mdc-button>Bookmark</button>
         </mdc-card-action-buttons>
-        <!-- <mdc-card-action-icons>
-          <button mdcIconButton mdcCardAction="icon" onIcon="favorite" offIcon="favorite_border"></button>
-          <button mdcIconButton mdcCardAction="icon" icon="share"></button>
-          <button mdcIconButton mdcCardAction="icon" icon="more_vert"></button>
-        </mdc-card-action-icons> -->
+        <mdc-card-action-icons>
+          <button mdc-icon-button>
+            <mdc-icon-button-icon class="material-icons">favorite_border</mdc-icon-button-icon>
+            <mdc-icon-button-icon class="material-icons" on>favorite</mdc-icon-button-icon>
+          </button>
+          <button mdc-icon-button class="material-icons">share</button>
+          <button mdc-icon-button class="material-icons">more_vert</button>
+        </mdc-card-action-icons>
       </mdc-card-actions>
     </mdc-card>
   </div>
