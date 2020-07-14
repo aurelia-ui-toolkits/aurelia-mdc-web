@@ -206,5 +206,22 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/top-app-bar/mdc-top-app-bar';
 @use '@material/top-app-bar';
 @use '@material/icon-button/mdc-icon-button';`
+  },
+  "typography": {
+    title: 'Typography',
+    description: 'Use typography to present your design and content as clearly and efficiently as possible.',
+    references: [{
+      name: 'Material Design guidelines: Typography',
+      url: 'https://material.io/design/typography/#type-scale'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-typography/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-typography/README.md#style-customization' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/typography'));`,
+    sass: `@use '@material/typography/mdc-typography';
+@use '@material/typography';`
   }
 }

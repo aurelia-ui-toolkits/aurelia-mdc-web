@@ -27,6 +27,7 @@ export class Root {
       { route: 'tabs' },
       { route: 'text-field' },
       { route: 'top-app-bar' },
+      { route: 'typography' },
     ];
 
     const menuRoutes: RouteConfig[] = [

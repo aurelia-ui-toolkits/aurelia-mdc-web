@@ -37,6 +37,7 @@
     "@material/tab-scroller": "^7.0.0",
     "@material/textfield": "^7.0.0",
     "@material/top-app-bar": "^7.0.0",
+    "@material/typography": "^7.0.0",
     "@types/highlightjs": "^9.12.0",
     "aurelia-binding": "^2.5.4",
     "aurelia-bootstrapper": "^2.3.3",
