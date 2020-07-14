@@ -34,6 +34,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         ...([
           'base',
           'button',
+          'card',
           'drawer',
           'floating-label',
           'form-field',

@@ -29,6 +29,23 @@ export const templates: { [x: string]: IComponentTemplate } = {
     code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));`,
     sass: `@use '@material/button/mdc-button';`
   },
+  card: {
+    title: 'Card',
+    description: 'Cards contain content and actions about a single subject.',
+    references: [{
+      name: 'Material Design guidelines: Cards',
+      url: 'https://material.io/design/components/cards.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-card/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-card/README.md#sass-mixins' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/card'));`,
+    sass: `@use '@material/card/mdc-card';
+@use '@material/card';`
+  },
   drawer: {
     title: 'Drawers',
     description: 'The MDC Navigation Drawer is used to organize access to destinations and other functionality on an app.',

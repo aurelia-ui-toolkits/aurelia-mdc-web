@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@material/button": "^7.0.0",
+    "@material/card": "^7.0.0",
     "@material/drawer": "^7.0.0",
     "@material/floating-label": "^7.0.0",
     "@material/form-field": "^7.0.0",

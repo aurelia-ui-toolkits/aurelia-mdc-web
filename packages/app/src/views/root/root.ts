@@ -18,6 +18,7 @@ export class Root {
   configureRouter(config: RouterConfiguration) {
     const exampleRoutes: RouteConfig[] = [
       { route: 'button' },
+      { route: 'card' },
       { route: 'drawer' },
       { route: 'form-field' },
       { route: 'menu' },

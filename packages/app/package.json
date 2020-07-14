@@ -15,6 +15,7 @@
   "devDependencies": {
     "@aurelia-mdc-web/base": "^0.0.1",
     "@aurelia-mdc-web/button": "^0.0.1",
+    "@aurelia-mdc-web/card": "^0.0.1",
     "@aurelia-mdc-web/floating-label": "^0.0.1",
     "@aurelia-mdc-web/form-field": "^0.0.1",
     "@aurelia-mdc-web/line-ripple": "^0.0.1",
