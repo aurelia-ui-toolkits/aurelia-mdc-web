@@ -1,6 +1,6 @@
 import { PLATFORM, FrameworkConfiguration } from 'aurelia-framework';
 
-export { MdcRipple } from './mdc-ripple';
+export { MdcRipple, IMdcRippleElement } from './mdc-ripple';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([

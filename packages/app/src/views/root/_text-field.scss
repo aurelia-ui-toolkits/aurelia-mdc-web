@@ -105,8 +105,9 @@
 	padding-left: $padding;
 }
 
-.au-form-field-text-field,
-.au-form-field-select {
+.au-text-field,
+.au-select {
+  display: block;
 	height: 87px;
 }
 

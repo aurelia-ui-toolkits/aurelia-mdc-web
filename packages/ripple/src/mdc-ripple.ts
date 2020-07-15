@@ -63,5 +63,12 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
       updateCssVariable: (varName, value) => (this.surface || this.root).style.setProperty(varName, value),
     };
   }
+}
 
+export interface IMdcRippleElement extends HTMLElement {
+  au: {
+    'mdc-ripple': {
+      viewModel: MdcRipple;
+    }
+  }
 }

@@ -48,12 +48,12 @@
   },
   "peerDependencies": {
     "@aurelia-mdc-web/base": "^0.0.1",
-    "@aurelia-mdc-web/text-field": "^0.0.1",
+    "@aurelia-mdc-web/ripple": "^0.0.1",
     "@material/form-field": "^7.0.0"
   },
   "devDependencies": {
     "@aurelia-mdc-web/base": "^0.0.1",
-    "@aurelia-mdc-web/text-field": "^0.0.1",
+    "@aurelia-mdc-web/ripple": "^0.0.1",
     "concurrently": "^5.2.0",
     "conventional-changelog-cli": "^2.0.34",
     "copyfiles": "^1.2.0",

@@ -4,14 +4,14 @@
 
     <div class="demo-layout__row">
       <div class="demo-container">
-        <mdc-field>
+        <div class="au-select">
           <mdc-select label="Make your choice" value.bind="value" required>
             <i class="material-icons" mdc-select-icon>pets</i>
             <mdc-list-item>choose</mdc-list-item>
             <mdc-list-item repeat.for="o of options" value.bind="o">${o.name}</mdc-list-item>
           </mdc-select>
           <mdc-select-helper-text validation>Required</mdc-select-helper-text>
-        </mdc-field>
+        </div>
       </div>
       <div class="demo-container">
         <mdc-select label="Make your choice" value.bind="value" outlined>
