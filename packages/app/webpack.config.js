@@ -10,7 +10,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
     loader: 'sass-loader', options: {
       webpackImporter: false,
       sassOptions: {
-        includePaths: [path.resolve('../../node_modules/')],
+        includePaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')],
       }
     }
   }];
@@ -36,6 +36,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'button',
           'card',
           'checkbox',
+          'circular-progress',
           'dialog',
           'drawer',
           'floating-label',

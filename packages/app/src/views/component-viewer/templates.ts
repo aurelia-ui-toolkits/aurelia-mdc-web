@@ -80,6 +80,24 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/checkbox/mdc-checkbox';
 @use '@material/checkbox';`
   },
+  'circular-progress': {
+    title: 'Circular Progress',
+    description: 'Progress indicators express an unspecified wait time or display the length of a process.',
+    references: [{
+      name: 'Material Design guidelines: Progress Activity',
+      url: 'https://material.io/components/progress-indicators/'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-circular-progress/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-circular-progress/README.md#sass-mixins' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/circular-progress'));`,
+    sass: `@use '@material/circular-progress/mdc-circular-progress';
+@use '@material/circular-progress';
+@use "@aurelia-mdc-web/circular-progress";`
+  },
   drawer: {
     title: 'Drawers',
     description: 'The MDC Navigation Drawer is used to organize access to destinations and other functionality on an app.',

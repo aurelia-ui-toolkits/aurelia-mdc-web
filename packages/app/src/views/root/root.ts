@@ -20,6 +20,7 @@ export class Root {
       { route: 'button' },
       { route: 'card' },
       { route: 'checkbox' },
+      { route: 'circular-progress' },
       { route: 'dialog' },
       { route: 'drawer' },
       { route: 'form-field' },

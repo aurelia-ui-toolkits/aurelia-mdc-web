@@ -21,6 +21,8 @@
 @use "@material/dialog/mdc-dialog";
 @use "@material/checkbox/mdc-checkbox";
 @use "@material/radio/mdc-radio";
+@use "@material/circular-progress/mdc-circular-progress";
+@use "@aurelia-mdc-web/circular-progress";
 
 @use "./button";
 @use "./card";
@@ -28,6 +30,22 @@
 @use "./layout";
 @use "./list";
 @use "./text-field";
+
+// .mdc-circular-progress {
+//   width: var(--mdc-circular-progress-size);
+//   height: var(--mdc-circular-progress-size);
+
+//   .mdc-circular-progress__indeterminate-circle-graphic {
+//     stroke-width: var(--mdc-circular-progress-stroke-width);
+//   }
+
+//   .mdc-circular-progress__gap-patch {
+//     .mdc-circular-progress__indeterminate-circle-graphic {
+//       stroke-width: var(--mdc-circular-progress-gap-patch-stroke-width);
+//     }
+//   }
+// }
+
 
 .mdc-list {
   display: block;
