@@ -64,6 +64,14 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   @bindable.booleanAttr
   required: boolean;
+  async requiredChanged() {
+    await this.initialised;
+    if (this.required) {
+      this.selectAnchor.setAttribute('aria-required', 'true');
+    } else {
+      this.selectAnchor.removeAttribute('aria-required');
+    }
+  }
 
   private initialValue: unknown;
   get value(): unknown {
