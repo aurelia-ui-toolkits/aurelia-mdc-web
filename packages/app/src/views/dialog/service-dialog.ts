@@ -1,9 +1,10 @@
 import { useView, PLATFORM } from 'aurelia-framework';
 
-// @useView(PLATFORM.moduleName('./service-dialog.html'))
+@useView(PLATFORM.moduleName('views/dialog/service-dialog.html'))
 export class ServiceDialog {
-  activate(params: any) {
-    console.log(params);
+  params: unknown;
 
+  activate(params: unknown) {
+    this.params = params;
   }
 }

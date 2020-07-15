@@ -2,7 +2,7 @@ import { MdcComponent } from "@aurelia-mdc-web/base";
 import { MDCDialogFoundation, strings, MDCDialogAdapter, util, MDCDialogCloseEventDetail } from "@material/dialog";
 import { MdcDialogContent } from './mdc-dialog-content';
 import { FocusTrap } from '@material/dom/focus-trap';
-import { child, customElement, useView, inject, View } from 'aurelia-framework';
+import { child, customElement, useView, inject, View, bindable } from 'aurelia-framework';
 import { closest, matches } from "@material/dom/ponyfill";
 
 const LAYOUT_EVENTS = ['resize', 'orientationchange'];
@@ -26,6 +26,20 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   @child('mdc-dialog-content')
   content_?: MdcDialogContent; // assigned in initialize()
 
+  @bindable
+  scrimClickAction: string;
+  async scrimClickActionChanged(){
+    await this.initialised;
+    this.foundation?.setScrimClickAction(this.scrimClickAction);
+  }
+
+  @bindable
+  escapeKeyAction: string;
+  async escapeKeyActionChanged(){
+    await this.initialised;
+    this.foundation?.setEscapeKeyAction(this.escapeKeyAction);
+  }
+
   async initialise() {
     this.focusTrap_ = util.createFocusTrapInstance(this.root as HTMLElement, (el, focusOptions) => new FocusTrap(el, focusOptions));
 
@@ -48,6 +62,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
 
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
+    return true;
   }
 
   handleEvent(evt: Event): void {

@@ -17,7 +17,7 @@
         <mdc-select label="Make your choice" value.bind="value" outlined>
           <i class="material-icons" mdc-select-icon>pets</i>
           <mdc-list-item>choose</mdc-list-item>
-          <mdc-list-item repeat.for="o of options" data-value.bind="1" value.bind="o">${o.name}</mdc-list-item>
+          <mdc-list-item repeat.for="o of options" value.bind="o">${o.name}</mdc-list-item>
         </mdc-select>
       </div>
       <br>
