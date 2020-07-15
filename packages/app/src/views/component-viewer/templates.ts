@@ -63,6 +63,23 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/card/mdc-card';
 @use '@material/card';`
   },
+  checkbox: {
+    title: 'Checkbox',
+    description: 'Checkboxes allow the user to select one or more items from a set.',
+    references: [{
+      name: 'Material Design guidelines: Checkbox',
+      url: 'https://material.io/design/components/selection-controls.html#checkboxes'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-checkbox/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-checkbox/README.md#style-customization' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'));`,
+    sass: `@use '@material/checkbox/mdc-checkbox';
+@use '@material/checkbox';`
+  },
   drawer: {
     title: 'Drawers',
     description: 'The MDC Navigation Drawer is used to organize access to destinations and other functionality on an app.',

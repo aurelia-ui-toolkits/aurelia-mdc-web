@@ -6,6 +6,8 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @useView(PLATFORM.moduleName('./mdc-form-field.html'))
 @customElement(cssClasses.ROOT)
 export class MdcFormField {
+  constructor(private root: HTMLElement) { }
+
   cssClasses = cssClasses;
 
   @bindable.booleanAttr
@@ -16,4 +18,14 @@ export class MdcFormField {
 
   @bindable.booleanAttr
   spaceBetween: boolean;
+
+  attached() {
+    const input = this.root.querySelector('input');
+    if (input && input.hasAttribute('id')) {
+      const label = this.root.querySelector('label');
+      if (label) {
+        label.setAttribute('for', input.getAttribute('id')!);
+      }
+    }
+  }
 }

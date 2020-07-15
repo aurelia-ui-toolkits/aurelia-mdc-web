@@ -21,6 +21,7 @@
   "devDependencies": {
     "@material/button": "^7.0.0",
     "@material/card": "^7.0.0",
+    "@material/checkbox": "^7.0.0",
     "@material/dialog": "^7.0.0",
     "@material/drawer": "^7.0.0",
     "@material/floating-label": "^7.0.0",

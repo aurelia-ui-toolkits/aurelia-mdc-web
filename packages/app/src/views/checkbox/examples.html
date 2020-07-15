@@ -1,0 +1,36 @@
+<template>
+  <div class="demo-content">
+    <mdc-checkbox></mdc-checkbox>
+    <mdc-checkbox checked></mdc-checkbox>
+    <mdc-checkbox disabled></mdc-checkbox>
+    <mdc-checkbox checked disabled></mdc-checkbox>
+    <mdc-checkbox indeterminate></mdc-checkbox>
+
+    <!-- <example-viewer [example]="exampleSimple"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-layout__column">
+      <div class="demo-container">
+        <mdc-form-field>
+          <mdc-checkbox checked.bind="checked"></mdc-checkbox>
+          <label>Label</label>
+        </mdc-form-field>
+      </div>
+      <div class="demo-container">
+        <mdc-form-field>
+          <mdc-checkbox disabled></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+      </div>
+      <div class="demo-container">
+        <mdc-form-field align-end>
+          <mdc-checkbox checked.bind="checked"></mdc-checkbox>
+          <label>Label (RTL)</label>
+        </mdc-form-field>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="exampleLabel"></example-viewer> -->
+  </div>
+
+</template>

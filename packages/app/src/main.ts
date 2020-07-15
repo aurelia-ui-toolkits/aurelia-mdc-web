@@ -11,6 +11,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     ])
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/card'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/dialog'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/drawer'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
