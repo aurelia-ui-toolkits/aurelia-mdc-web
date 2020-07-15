@@ -162,6 +162,24 @@ export const templates: { [x: string]: IComponentTemplate } = {
 @use '@material/list/mdc-list';
 @use '@material/menu-surface/mdc-menu-surface';`
   },
+  radio: {
+    title: 'Radio Buttons',
+    description: 'Radio buttons allow the user to select one option from a set while seeing all available options.',
+    references: [{
+      name: 'Material Design guidelines: Radio Buttons',
+      url: 'https://material.io/design/components/selection-controls.html#radio-buttons'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-radio/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-radio/README.md#style-customization' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/radio'));`,
+    sass: `@use '@material/radio/mdc-radio';
+@use '@material/radio';
+@use '@material/form-field/mdc-form-field';`
+  },
   ripple: {
     title: 'Ripple',
     description: 'Ripple provides components (or any element) with a material "ink ripple" interaction effect.',

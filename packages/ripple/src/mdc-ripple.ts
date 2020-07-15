@@ -24,6 +24,9 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
     this.foundation?.setUnbounded(Boolean(this.unbounded));
   }
 
+  @bindable.booleanAttr
+  activeSurface: boolean;
+
   activate() {
     this.foundation?.activate();
   }
@@ -50,7 +53,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
       deregisterInteractionHandler: (evtType, handler) => (this.input ?? this.root).removeEventListener(evtType, handler, applyPassive()),
       deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
       getWindowPageOffset: () => ({ x: window.pageXOffset, y: window.pageYOffset }),
-      isSurfaceActive: () => matches(this.input ?? this.root, ':active'),
+      isSurfaceActive: () => this.activeSurface && matches(this.input ?? this.root, ':active'),
       isSurfaceDisabled: () => this.disabled,
       isUnbounded: () => this.unbounded,
       registerDocumentInteractionHandler: (evtType, handler) => document.documentElement.addEventListener(evtType, handler, applyPassive()),

@@ -1,4 +1,4 @@
-<template class="mdc-checkbox" mdc-ripple>
+<template class="mdc-checkbox ${touch ? 'mdc-checkbox--touch' : ''}" mdc-ripple="input.bind: nativeControl_; unbounded.bind: true">
   <input type="checkbox" class="mdc-checkbox__native-control" id="${id}" ref="nativeControl_"
     change.trigger="handleChange_()" />
   <div class="mdc-checkbox__background">
@@ -7,4 +7,5 @@
     </svg>
     <div class="mdc-checkbox__mixedmark"></div>
   </div>
+  <div class="mdc-checkbox__ripple"></div>
 </template>

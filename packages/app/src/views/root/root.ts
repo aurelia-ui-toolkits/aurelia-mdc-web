@@ -26,6 +26,7 @@ export class Root {
       { route: 'icon-button' },
       { route: 'menu' },
       { route: 'list' },
+      { route: 'radio' },
       { route: 'ripple' },
       { route: 'select' },
       { route: 'tabs' },

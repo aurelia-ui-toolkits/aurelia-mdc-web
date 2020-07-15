@@ -23,6 +23,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu-surface'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/notched-outline'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/top-app-bar'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/radio'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/tab-bar'))

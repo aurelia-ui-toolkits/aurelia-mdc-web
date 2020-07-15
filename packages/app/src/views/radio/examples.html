@@ -1,0 +1,14 @@
+<template>
+  <div class="demo-content">
+    <mdc-form-field>
+      <mdc-radio model.bind="'cats'" checked.bind="value">Cats</mdc-radio>
+      <label>Cats</label>
+    </mdc-form-field>
+    <mdc-form-field>
+      <mdc-radio model.bind="'dogs'" checked.bind="value">Dogs</mdc-radio>
+      <label>Dogs</label>
+    </mdc-form-field>
+    You've picked ${value}
+    <!-- <example-viewer [example]="exampleSimple"></example-viewer> -->
+  </div>
+</template>

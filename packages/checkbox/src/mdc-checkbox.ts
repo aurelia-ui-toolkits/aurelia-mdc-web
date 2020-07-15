@@ -26,6 +26,9 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     this.nativeControl_.disabled = this.disabled;
   }
 
+  @bindable.booleanAttr
+  touch: boolean;
+
   initialChecked?: boolean;
   get checked(): boolean {
     if (this.nativeControl_) {
