@@ -1,5 +1,11 @@
-import { inlineView, customElement } from 'aurelia-framework';
+import { customAttribute, inject } from 'aurelia-framework';
 
-@inlineView('<template class="mdc-list-item__graphic"><slot></slot></template>')
-@customElement('mdc-list-item-graphic')
-export class MdcListItemGraphic { }
+@inject(Element)
+@customAttribute('mdc-list-item-graphic')
+export class MdcListItemGraphic {
+  constructor(private root: HTMLElement) { }
+
+  attached() {
+    this.root.classList.add('mdc-list-item__graphic');
+  }
+}

@@ -4,7 +4,5 @@
     ${activated ? cssClasses.LIST_ITEM_CLASS + '--activated' : ''}
   " id="mdc-list-item-${id}" mdc-ripple="disabled.bind: disabled" keydown.trigger="onKeydown($event)">
   <div class="mdc-list-item__ripple"></div>
-  <span class="${cssClasses.LIST_ITEM_TEXT_CLASS}">
-    <slot></slot>
-  </span>
+  <slot></slot>
 </template>
