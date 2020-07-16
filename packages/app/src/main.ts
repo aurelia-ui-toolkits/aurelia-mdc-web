@@ -9,6 +9,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .globalResources([
       'attributes/highlight',
     ])
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/card'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'))
@@ -27,6 +28,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/radio'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/slider'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/tab-bar'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/typography'));

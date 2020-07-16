@@ -1,0 +1,69 @@
+<template>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Continuous</h3>
+    <mdc-slider min.bind="continuousMin" max.bind="continuousMax" value.bind="continuousValue"
+      disabled.bind="continuousDisabled" name="test"></mdc-slider>
+
+    <mdc-text-field label="Min" type="number" size="1" min="0" max="200" value.bind="continuousMin"></mdc-text-field>
+    <mdc-text-field label="Max" type="number" size="1" min="0" max="200" value.bind="continuousMax"></mdc-text-field>
+    <div class="demo-layout__row">
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="continuousDisabled"></mdc-checkbox>
+        <label>Disabled</label>
+      </mdc-form-field>
+    </div>
+    <p>Value: ${continuousValue}</p>
+    <!-- <example-viewer [example]="exampleContinuous"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Discrete</h3>
+    <mdc-slider discrete min.bind="discreteMin" max.bind="discreteMax" value.bind="discreteValue"
+      disabled.bind="discreteDisabled"></mdc-slider>
+
+    <mdc-text-field label="Min" type="number" size="1" min="0" max="200" value.bind="discreteMin"></mdc-text-field>
+    <mdc-text-field label="Max" type="number" size="1" min="0" max="200" value.bind="discreteMax"></mdc-text-field>
+    <div class="demo-layout__row">
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="discreteDisabled"></mdc-checkbox>
+        <label>Disabled</label>
+      </mdc-form-field>
+    </div>
+    <p>Value: ${discreteValue}</p>
+    <!-- <example-viewer [example]="exampleDiscrete"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Discrete with Tick Marks</h3>
+    <mdc-slider discrete markers min.bind="dmMin" max.bind="dmMax" value.bind="dmValue" step.bind="dmStep"
+      disabled.bind="dmDisabled"></mdc-slider>
+
+    <mdc-text-field label="Min" type="number" size="1" min="0" max="200" value.bind="dmMin"></mdc-text-field>
+    <mdc-text-field label="Max" type="number" size="1" min="0" max="200" value.bind="dmMax"></mdc-text-field>
+    <mdc-text-field label="Step" type="number" size="1" min="0" max="10" value.bind="dmStep"></mdc-text-field>
+    <div class="demo-layout__row">
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="dmDisabled"></mdc-checkbox>
+        <label>Disabled</label>
+      </mdc-form-field>
+    </div>
+    <p>Value: ${dmValue}</p>
+    <!-- <example-viewer [example]="exampleDiscreteTickMarks"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Custom range</h3>
+    <mdc-slider discrete min="500" max="1000" value.bind="rangedValue"></mdc-slider>
+    <p>Min: 500</p>
+    <p>Max: 1000</p>
+    <p>Value: ${rangedValue}</p>
+    <example-viewer [example]="exampleCustomRange"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Theme</h3>
+    <mdc-slider discrete markers class="demo-slider-custom" value="20">
+    </mdc-slider>
+    <example-viewer [example]="exampleTheme"></example-viewer>
+  </div>
+</template>

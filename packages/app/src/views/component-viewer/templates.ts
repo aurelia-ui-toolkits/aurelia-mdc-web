@@ -237,6 +237,23 @@ export const templates: { [x: string]: IComponentTemplate } = {
 @use '@material/menu-surface/mdc-menu-surface';
 @use '@material/menu/mdc-menu';`
   },
+  slider: {
+    title: 'Slider',
+    description: 'Sliders allow users to make selections from a range of values.',
+    references: [{
+      name: 'Material Design guidelines: Sliders',
+      url: 'https://material.io/guidelines/components/sliders.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-slider/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-slider/README.md#theming' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/slider'));`,
+    sass: `@use '@material/slider/mdc-slider';
+@use '@material/slider';`
+  },
   tabs: {
     title: 'Tabs',
     description: 'Tabs organize content across different screens, data sets, and other interactions.',

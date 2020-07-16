@@ -10,31 +10,15 @@ export class Root {
 
   @observable
   drawer: MdcDrawer;
-  async drawerChanged(){
+  async drawerChanged() {
     await this.drawer.initialised;
     this.drawer.open = true;
   }
 
   configureRouter(config: RouterConfiguration) {
-    const exampleRoutes: RouteConfig[] = [
-      { route: 'button' },
-      { route: 'card' },
-      { route: 'checkbox' },
-      { route: 'circular-progress' },
-      { route: 'dialog' },
-      { route: 'drawer' },
-      { route: 'form-field' },
-      { route: 'icon-button' },
-      { route: 'menu' },
-      { route: 'list' },
-      { route: 'radio' },
-      { route: 'ripple' },
-      { route: 'select' },
-      { route: 'tabs' },
-      { route: 'text-field' },
-      { route: 'top-app-bar' },
-      { route: 'typography' },
-    ];
+    const exampleRoutes: RouteConfig[] = ['button', 'card', 'checkbox', 'circular-progress', 'dialog', 'drawer', 'form-field', 'icon-button', 'menu',
+      'list', 'radio', 'ripple', 'select', 'slider', 'tabs', 'text-field', 'top-app-bar', 'typography']
+      .map(x => ({ route: x }));
 
     const menuRoutes: RouteConfig[] = [
       { route: ['', 'home'], title: 'Home', name: 'home', divider: true },

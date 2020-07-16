@@ -3,8 +3,8 @@
     <h3 class="demo-content__headline">Character Counter</h3>
     <div class="demo-layout__row">
       <div class="demo-container">
-        <div if.bind="!checked" class="au-text-field">
-          <mdc-text-field label="Label" maxlength="100" value.bind="value">
+        <div class="au-text-field">
+          <mdc-text-field label="Label" maxlength="100" value.bind="value" type="number">
             <i class="material-icons" mdc-text-field-icon leading>event</i>
             <i class="material-icons" mdc-text-field-icon trailing>science</i>
           </mdc-text-field>
@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="demo-container">
+      <!-- <div class="demo-container">
         <div class="au-text-field">
           <mdc-text-field label="Label" outlined value.bind="value" maxlength="100" required type="number">
             <i class="material-icons" mdc-text-field-icon leading>event</i>
@@ -27,7 +27,7 @@
           </mdc-text-field-helper-line>
         </div>
         <div>${value}</div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

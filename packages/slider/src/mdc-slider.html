@@ -1,0 +1,18 @@
+<template class="mdc-slider
+    ${discrete ? 'mdc-slider--discrete' : ''}
+    ${discrete && markers ? 'mdc-slider--display-markers' : ''}
+  " role="slider">
+  <div class="mdc-slider__track-container" ref="trackMarkerContainer_">
+    <div class="mdc-slider__track" ref="track_"></div>
+    <div class="mdc-slider__track-marker-container" if.bind="discrete && markers" ref="trackMarkerContainer_"></div>
+  </div>
+  <div class="mdc-slider__thumb-container" ref="thumbContainer_">
+    <div class="mdc-slider__pin" if.bind="discrete">
+      <span class="mdc-slider__pin-value-marker" ref="pinValueMarker_"></span>
+    </div>
+    <svg class="mdc-slider__thumb" width="21" height="21">
+      <circle cx="10.5" cy="10.5" r="7.875"></circle>
+    </svg>
+    <div class="mdc-slider__focus-ring"></div>
+  </div>
+</template>

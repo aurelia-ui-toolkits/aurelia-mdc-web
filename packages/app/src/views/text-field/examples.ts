@@ -1,1 +1,3 @@
-export class Examples { }
+export class Examples {
+  value = 0;
+}

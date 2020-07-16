@@ -50,6 +50,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'radio',
           'ripple',
           'select',
+          'slider',
           'tab-bar',
           'top-app-bar',
           'text-field',

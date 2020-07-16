@@ -28,6 +28,8 @@
     "@aurelia-mdc-web/notched-outline": "^0.0.1",
     "@aurelia-mdc-web/ripple": "^0.0.1",
     "@aurelia-mdc-web/radio": "^0.0.1",
+    "@aurelia-mdc-web/select": "^0.0.1",
+    "@aurelia-mdc-web/slider": "^0.0.1",
     "@aurelia-mdc-web/text-field": "^0.0.1",
     "@aurelia-mdc-web/typography": "^0.0.1",
     "aurelia-loader-webpack": "^2.2.1",
