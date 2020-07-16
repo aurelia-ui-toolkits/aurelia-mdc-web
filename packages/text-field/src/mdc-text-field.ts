@@ -119,7 +119,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   set value(value: string) {
     if (this.foundation) {
       if (this.foundation.getValue() !== value) {
-        this.foundation.setValue(value || '');
+        this.foundation.setValue(value === null || value === undefined ? '' : value.toString());
       }
     } else {
       this.initialValue = value;
@@ -160,11 +160,18 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.leadingIcon_ = this.leadingIconEl?.au['mdc-text-field-icon'].viewModel;
     this.trailingIcon_ = this.trailingIconEl?.au['mdc-text-field-icon'].viewModel;
     const nextSibling = this.root.nextElementSibling;
+    const initialisedChildren = [this.label_.initialised];
     if (nextSibling?.tagName === cssClasses.HELPER_LINE.toUpperCase()) {
       this.helperText_ = nextSibling.querySelector<IMdcTextFieldHelperTextElement>(helperTextStrings.ROOT_SELECTOR)?.au.controller.viewModel;
       this.characterCounter_ = nextSibling.querySelector<IMdcTextFieldCharacterCounterElement>(characterCountStrings.ROOT_SELECTOR)?.au.controller.viewModel;
-      await Promise.all([this.helperText_?.initialised, this.characterCounter_?.initialised].filter(x => x));
+      if (this.helperText_) {
+        initialisedChildren.push(this.helperText_.initialised);
+      }
+      if (this.characterCounter_) {
+        initialisedChildren.push(this.characterCounter_.initialised);
+      }
     }
+    await Promise.all(initialisedChildren);
   }
 
   getDefaultFoundation() {
