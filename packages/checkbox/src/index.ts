@@ -1,4 +1,4 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, EventSubscriber } from 'aurelia-framework';
+import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, ObserverLocator, CheckedObserver } from 'aurelia-framework';
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 
 export { MdcCheckbox, IMdcCheckboxElement } from './mdc-checkbox';
@@ -16,8 +16,8 @@ const checkboxConfig = {
   properties: {
     checked: {
       defaultBindingMode: bindingMode.twoWay,
-      getObserver(element: Element) {
-        return new ValueAttributeObserver(element, 'checked', new EventSubscriber(['change']));
+      getObserver(element: Element, _: string, observerLocator: ObserverLocator) {
+        return new CheckedObserver(element, new EventSubscriber(['change']), observerLocator);
       }
     }
   }

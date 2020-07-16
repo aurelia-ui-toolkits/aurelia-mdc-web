@@ -169,14 +169,6 @@ function defineMdcCheckboxElementApis(element: HTMLElement) {
         this.au.controller.viewModel.indeterminate = value;
       }
     },
-    value: {
-      get(this: IMdcCheckboxElement) {
-        return this.au.controller.viewModel.value;
-      },
-      set(this: IMdcCheckboxElement, value: string) {
-        this.au.controller.viewModel.value = value;
-      }
-    },
     focus: {
       value(this: IMdcCheckboxElement) {
         this.au.controller.viewModel.focus();
