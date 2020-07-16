@@ -4,7 +4,7 @@
     ${raised ? 'mdc-button--raised' : ''}
     ${unelevated ? 'mdc-button--unelevated' : ''}
     ${outlined ? 'mdc-button--outlined' : ''}
-  " tabindex.bind="disabled ? -1 : 0">
+  " tabindex.bind="disabled ? -1 : 0" mdc-ripple>
   <div class="mdc-button__ripple"></div>
   <span class="mdc-button__label" if.bind="label">${label}</span>
   <div class="mdc-button__touch" if.bind="touch"></div>

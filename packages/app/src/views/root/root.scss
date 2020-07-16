@@ -25,6 +25,7 @@
 @use "@aurelia-mdc-web/circular-progress";
 @use "@material/slider/mdc-slider";
 @use "@material/switch/mdc-switch";
+@use "@material/fab/mdc-fab";
 
 @use "./button";
 @use "./card";
@@ -33,6 +34,7 @@
 @use "./list";
 @use "./text-field";
 @use "./slider";
+@use "./fab";
 
 body {
   margin: 0;

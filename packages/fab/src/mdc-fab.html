@@ -1,0 +1,13 @@
+<template class="
+    mdc-fab
+    ${mini ? 'mdc-fab--mini' : ''}
+    ${extended ? 'mdc-fab--extended' : ''}
+    ${exited ? 'mdc-fab--exited' : ''}
+    ${touch ? 'mdc-fab--touch' : ''}
+  " tabindex.bind="disabled ? -1 : 0" mdc-ripple>
+  <div class="mdc-fab__ripple"></div>
+  <slot></slot>
+  <span class="material-icons mdc-fab__icon" if.bind="icon">${icon}</span>
+  <span class="mdc-fab__label" if.bind="label">${label}</span>
+  <div class="mdc-fab__touch" if.bind="touch"></div>
+</template>

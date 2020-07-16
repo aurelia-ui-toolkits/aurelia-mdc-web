@@ -1,0 +1,116 @@
+<template>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">FAB</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="toggleMini()">
+        Mini: ${mini ? 'On' : 'Off'}
+      </button>
+    </div>
+    <button mdc-fab mini.bind="mini" icon="edit"></button>
+    <!-- <example-viewer [example]="example1"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Mini</h3>
+    <button mdc-fab mini>
+      <i class="material-icons" mdc-fab-icon>edit</i>
+    </button>
+    <example-viewer [example]="exampleMini"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Extended FAB</h3>
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <button mdc-fab extended icon="add_shopping_cart" label="Add to cart" class="blackFab"></button>
+      </div>
+      <div class="demo-container">
+        <button mdc-fab extended label="Create" class="blackFab"></button>
+      </div>
+      <div class="demo-container">
+        <button mdc-fab extended label="Save Changes" icon="save" class="purple500Fab"></button>
+      </div>
+    </div>
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <button mdc-fab extended label="Create" icon="add"></button>
+      </div>
+      <div class="demo-container">
+        <button mdc-fab extended class="demo-fab-extended-shape-radius" label="Shaped" icon="add"></button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="exampleExtended"></example-viewer> -->
+  </div>
+
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Exit/Entry Animation</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="toggleExited()">Toggle Exited</button>
+      <button mdc-button click.delegate="toggleMini2()">Mini:${mini2 ? 'On' : 'Off'}</button>
+    </div>
+    <button mdc-fab mini.bind="mini2" exited.bind="exited" click.delegate="toggleExited()" icon="save"></button>
+    <!-- <example-viewer [example]="exampleExited"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Shaped</h3>
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <button mdc-fab class="demo-fab-shaped--one" icon="favorite_border"></button>
+      </div>
+      <div class="demo-container">
+        <button mdc-fab mini class="demo-fab-shaped--two" icon="favorite_border"></button>
+      </div>
+      <div class="demo-container">
+        <button mdc-fab class="demo-fab-shape-radius" icon="favorite_border"></button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="exampleShaped"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Theme</h3>
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <button mdc-fab class="red800Fab" icon="edit"></button>
+      </div>
+      <div class="demo-container">
+        <button mdc-fab class="yellow800Fab" icon="edit"></button>
+      </div>
+      <div class="demo-container">
+        <button mdc-fab class="purple500Fab" icon="edit"></button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="exampleTheme"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Custom icon size</h3>
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <button mdc-fab class="demo-fab-icon-size" icon="edit"></button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="exampleCustom"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Accessibility</h3>
+    <p>
+      Material Design spec advises that touch targets should be at least 48x48px.
+      While the FAB is 48x48px by default, the mini FAB is 40x40px. To meet this
+      requirement, add the `touch` property.
+    </p>
+    <p>
+      Note that the outer mdc-touch-target-wrapper element is only necessary if
+      you want to avoid potentially overlapping touch targets on adjacent elements
+      (due to collapsing margins). </p>
+    <div class="demo-layout__row">
+      <div class="mdc-touch-target-wrapper">
+        <button mdc-fab mini touch icon="edit"></button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="exampleAccessibility"></example-viewer> -->
+  </div>
+</template>

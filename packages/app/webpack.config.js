@@ -39,6 +39,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'circular-progress',
           'dialog',
           'drawer',
+          'fab',
           'floating-label',
           'form-field',
           'icon-button',
