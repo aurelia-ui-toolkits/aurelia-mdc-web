@@ -254,6 +254,23 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/slider/mdc-slider';
 @use '@material/slider';`
   },
+  switch: {
+    title: 'Switches',
+    description: 'Buttons allow users to take actions, and make choices, with a single tap.',
+    references: [{
+      name: 'Material Design guidelines: Switches',
+      url: 'https://material.io/design/components/selection-controls.html#switches'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-switch/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-switch/README.md#sass-mixins' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/switch'));`,
+    sass: `@use '@material/switch/mdc-switch';
+@use '@material/switch';`
+  },
   tabs: {
     title: 'Tabs',
     description: 'Tabs organize content across different screens, data sets, and other interactions.',

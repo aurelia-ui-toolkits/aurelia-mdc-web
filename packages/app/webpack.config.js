@@ -51,6 +51,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'ripple',
           'select',
           'slider',
+          'switch',
           'tab-bar',
           'top-app-bar',
           'text-field',

@@ -29,6 +29,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/slider'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/switch'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/tab-bar'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/typography'));

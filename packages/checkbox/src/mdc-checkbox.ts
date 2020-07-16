@@ -95,7 +95,6 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
 
   handleChange_() {
     this.foundation?.handleChange();
-    this.emit('change', { checked: this.checked });
   }
 
   handleAnimationEnd_() {

@@ -1,7 +1,7 @@
 <template class="mdc-slider
     ${discrete ? 'mdc-slider--discrete' : ''}
     ${discrete && markers ? 'mdc-slider--display-markers' : ''}
-  " role="slider">
+  " role="slider" style="display: block">
   <div class="mdc-slider__track-container" ref="trackMarkerContainer_">
     <div class="mdc-slider__track" ref="track_"></div>
     <div class="mdc-slider__track-marker-container" if.bind="discrete && markers" ref="trackMarkerContainer_"></div>

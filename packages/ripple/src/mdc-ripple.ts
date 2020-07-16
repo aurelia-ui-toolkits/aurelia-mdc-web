@@ -47,7 +47,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
     return {
       addClass: (className) => (this.surface || this.root).classList.add(className),
       browserSupportsCssVars: () => util.supportsCssVariables(window),
-      computeBoundingRect: () => this.root.getBoundingClientRect(),
+      computeBoundingRect: () => (this.surface || this.root).getBoundingClientRect(),
       containsEventTarget: (target) => this.root.contains(target as Node),
       deregisterDocumentInteractionHandler: (evtType, handler) => document.documentElement.removeEventListener(evtType, handler, applyPassive()),
       deregisterInteractionHandler: (evtType, handler) => (this.input ?? this.root).removeEventListener(evtType, handler, applyPassive()),
