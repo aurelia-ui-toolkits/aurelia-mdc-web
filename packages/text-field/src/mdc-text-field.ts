@@ -160,7 +160,10 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.leadingIcon_ = this.leadingIconEl?.au['mdc-text-field-icon'].viewModel;
     this.trailingIcon_ = this.trailingIconEl?.au['mdc-text-field-icon'].viewModel;
     const nextSibling = this.root.nextElementSibling;
-    const initialisedChildren = [this.label_.initialised];
+    const initialisedChildren: Promise<unknown>[] = [];
+    if (this.label_) {
+      initialisedChildren.push(this.label_.initialised);
+    }
     if (nextSibling?.tagName === cssClasses.HELPER_LINE.toUpperCase()) {
       this.helperText_ = nextSibling.querySelector<IMdcTextFieldHelperTextElement>(helperTextStrings.ROOT_SELECTOR)?.au.controller.viewModel;
       this.characterCounter_ = nextSibling.querySelector<IMdcTextFieldCharacterCounterElement>(characterCountStrings.ROOT_SELECTOR)?.au.controller.viewModel;
