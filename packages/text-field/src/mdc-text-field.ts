@@ -72,10 +72,14 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.input_.readOnly = this.readonly;
   }
 
-  @bindable.number
-  maxlength: number;
+  @bindable
+  maxlength: string;
   maxlengthChanged() {
-    this.input_.maxLength = this.maxlength;
+    if (this.maxlength) {
+      this.input_.setAttribute('maxlength', this.maxlength);
+    } else {
+      this.input_.removeAttribute('maxlength');
+    }
   }
 
   @bindable
