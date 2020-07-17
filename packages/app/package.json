@@ -34,6 +34,7 @@
     "@aurelia-mdc-web/switch": "^0.0.1",
     "@aurelia-mdc-web/text-field": "^0.0.1",
     "@aurelia-mdc-web/typography": "^0.0.1",
+    "@aurelia-mdc-web/validation": "^0.0.1",
     "aurelia-loader-webpack": "^2.2.1",
     "aurelia-webpack-plugin": "^4.0.0",
     "css-loader": "^3.6.0",

@@ -56,7 +56,8 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'tab-bar',
           'top-app-bar',
           'text-field',
-          'typography'
+          'typography',
+          'validation'
         ].reduce((map, packageName) => {
           const mappedPackagedName = `@aurelia-mdc-web/${packageName}`;
           map[mappedPackagedName] = path.resolve(__dirname, `../${packageName}/src`);

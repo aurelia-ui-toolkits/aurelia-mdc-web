@@ -64,6 +64,7 @@
     "aurelia-templating-resources": "^1.13.0",
     "aurelia-templating-router": "^1.4.0",
     "aurelia-typed-observable-plugin": "^0.4.2",
+    "aurelia-validation": "^2.0.0-rc2",
     "aurelia-webpack-plugin": "^4.0.0",
     "concurrently": "^5.2.0",
     "conventional-changelog-cli": "^2.0.34",

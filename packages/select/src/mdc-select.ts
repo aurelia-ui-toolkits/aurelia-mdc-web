@@ -91,6 +91,14 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     }
   }
 
+  get valid(): boolean {
+    return this.foundation?.isValid() ?? true;
+  }
+
+  set valid(value: boolean) {
+    this.foundation?.setValid(value);
+  }
+
   get selectedIndex(): number {
     return this.foundation!.getSelectedIndex();
   }
@@ -327,6 +335,15 @@ function defineMdcSelectElementApis(element: HTMLElement) {
         // aurelia binding converts "undefined" and "null" into empty string
         // this does not translate well into "empty" menu items when several selects are bound to the same field
         this.au.controller.viewModel.value = value === "" ? undefined : value;
+      },
+      configurable: true
+    },
+    valid: {
+      get(this: IMdcSelectElement) {
+        return this.au.controller.viewModel.valid;
+      },
+      set(this: IMdcSelectElement, value: any) {
+        this.au.controller.viewModel.valid = value;
       },
       configurable: true
     },

@@ -4,13 +4,18 @@
     <div class="demo-layout__row">
       <div class="demo-container">
         <div class="au-text-field">
-          <mdc-text-field label="Label" maxlength="100" value.bind="value" type="number">
+          <mdc-text-field label="Label" maxlength="100" value.bind="value" type="number" required>
             <i class="material-icons" mdc-text-field-icon leading>event</i>
             <i class="material-icons" mdc-text-field-icon trailing>science</i>
           </mdc-text-field>
           <mdc-text-field-helper-line>
-            <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
-            <mdc-text-field-character-counter></mdc-text-field-character-counter>
+            <!-- <mdc-text-field-helper-text>Helper text</mdc-text-field-helper-text> -->
+            <mdc-text-field-helper-text validation>
+              <span class="help-block">Validation text 1</span>
+              <span class="help-block">Validation text 2</span>
+              <span class="help-block">Validation text 3</span>
+            </mdc-text-field-helper-text>
+            <!-- <mdc-text-field-character-counter></mdc-text-field-character-counter> -->
           </mdc-text-field-helper-line>
         </div>
       </div>
@@ -28,6 +33,19 @@
         </div>
         <div>${value}</div>
       </div>
+    </div>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Aurelia validation</h3>
+    <div class="demo-container1">
+      <div class="au-text-field">
+        <mdc-text-field label="Label" value.bind="valueStr & validate" type="text"></mdc-text-field>
+        <mdc-text-field-helper-line>
+          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
+        </mdc-text-field-helper-line>
+      </div>
+      <button mdc-button click.delegate="validate()">Validate</button>
     </div>
   </div>
 </template>

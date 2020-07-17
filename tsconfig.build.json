@@ -21,7 +21,8 @@
     "importHelpers": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "newLine": "lf"
+    "newLine": "lf",
+    "downlevelIteration": true
   },
   "exclude": [
     ".vscode",

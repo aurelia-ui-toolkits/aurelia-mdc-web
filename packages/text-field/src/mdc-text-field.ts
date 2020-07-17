@@ -130,6 +130,15 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
+  get valid(): boolean {
+    return this.foundation?.isValid() ?? true;
+  }
+
+  set valid(value: boolean) {
+    this.foundation?.setUseNativeValidation(false);
+    this.foundation?.setValid(value);
+  }
+
   bind() {
     this.requiredChanged();
     this.disabledChanged();
@@ -281,6 +290,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   onBlur(): void {
     this.foundation?.deactivateFocus();
+    this.emit('blur', {}, true);
   }
 
   focus() {
@@ -308,6 +318,15 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       },
       set(this: IMdcTextFieldElement, value: any) {
         this.au.controller.viewModel.value = value;
+      },
+      configurable: true
+    },
+    valid: {
+      get(this: IMdcTextFieldElement) {
+        return this.au.controller.viewModel.valid;
+      },
+      set(this: IMdcTextFieldElement, value: any) {
+        this.au.controller.viewModel.valid = value;
       },
       configurable: true
     },
