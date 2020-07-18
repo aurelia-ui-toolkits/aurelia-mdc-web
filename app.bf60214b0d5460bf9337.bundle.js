@@ -4122,35 +4122,6 @@ var cssClasses = {
 
 /***/ }),
 
-/***/ "../../node_modules/@material/line-ripple/dist/mdc.line-ripple.css":
-/*!*********************************************************************************************!*\
-  !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/line-ripple/dist/mdc.line-ripple.css ***!
-  \*********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(/*! ../../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../../css-loader/dist/cjs.js!./mdc.line-ripple.css */ "../../node_modules/css-loader/dist/cjs.js!../../node_modules/@material/line-ripple/dist/mdc.line-ripple.css");
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
 /***/ "../../node_modules/@material/line-ripple/foundation.js":
 /*!**********************************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/@material/line-ripple/foundation.js ***!
@@ -33601,24 +33572,6 @@ Object.defineProperty(aurelia_pal__WEBPACK_IMPORTED_MODULE_0__["PLATFORM"], "Loa
 
 /***/ }),
 
-/***/ "../../node_modules/css-loader/dist/cjs.js!../../node_modules/@material/line-ripple/dist/mdc.line-ripple.css":
-/*!***********************************************************************************************************************************************************!*\
-  !*** C:/Dev/au/aurelia-mdc-web/node_modules/css-loader/dist/cjs.js!C:/Dev/au/aurelia-mdc-web/node_modules/@material/line-ripple/dist/mdc.line-ripple.css ***!
-  \***********************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.i, "/**\n * @license\n * Copyright Google LLC All Rights Reserved.\n *\n * Use of this source code is governed by an MIT-style license that can be\n * found in the LICENSE file at https://github.com/material-components/material-components-web/blob/master/LICENSE\n */\n.mdc-line-ripple::before, .mdc-line-ripple::after {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  border-bottom-style: solid;\n  content: \"\";\n}\n.mdc-line-ripple::before {\n  border-bottom-width: 1px;\n  z-index: 1;\n}\n.mdc-line-ripple::after {\n  -webkit-transform: scaleX(0);\n          transform: scaleX(0);\n  border-bottom-width: 2px;\n  opacity: 0;\n  z-index: 2;\n}\n.mdc-line-ripple::after {\n  transition: opacity 180ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 180ms cubic-bezier(0.4, 0, 0.2, 1);\n  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1), opacity 180ms cubic-bezier(0.4, 0, 0.2, 1);\n  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1), opacity 180ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 180ms cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.mdc-line-ripple--active::after {\n  -webkit-transform: scaleX(1);\n          transform: scaleX(1);\n  opacity: 1;\n}\n\n.mdc-line-ripple--deactivating::after {\n  opacity: 0;\n}", ""]);
-// Exports
-module.exports = exports;
-
-
-/***/ }),
-
 /***/ "../../node_modules/css-loader/dist/cjs.js!../../node_modules/highlightjs/styles/github.css":
 /*!******************************************************************************************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/css-loader/dist/cjs.js!C:/Dev/au/aurelia-mdc-web/node_modules/highlightjs/styles/github.css ***!
@@ -57521,25 +57474,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcComponentAdapters = void 0;
-    var MdcComponentAdapters = /** @class */ (function () {
-        function MdcComponentAdapters(observerLocator) {
+    let MdcComponentAdapters = class MdcComponentAdapters {
+        constructor(observerLocator) {
             this.observerLocator = observerLocator;
             this.adaptersCreated = false;
             this.adapters = {};
         }
-        MdcComponentAdapters.prototype.createAdapter = function () {
-            var _this = this;
+        createAdapter() {
             this.observerLocator.addAdapter({
-                getObserver: function (obj, propertyName, descriptor) {
+                getObserver: (obj, propertyName, descriptor) => {
                     if (obj instanceof Element) {
-                        var tagName = obj.getAttribute('as-element') || obj.tagName;
-                        var elAdapters = _this.adapters[tagName];
+                        const tagName = obj.getAttribute('as-element') || obj.tagName;
+                        const elAdapters = this.adapters[tagName];
                         if (!elAdapters) {
                             return null;
                         }
-                        var propertyAdapter = elAdapters.properties[propertyName];
+                        const propertyAdapter = elAdapters.properties[propertyName];
                         if (propertyAdapter) {
-                            var observer = propertyAdapter.getObserver(obj, propertyName, _this.observerLocator, descriptor);
+                            const observer = propertyAdapter.getObserver(obj, propertyName, this.observerLocator, descriptor);
                             if (observer) {
                                 return observer;
                             }
@@ -57548,55 +57500,54 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     return null;
                 }
             });
-        };
-        MdcComponentAdapters.prototype.getOrCreateMdcElementAdapters = function (tagName) {
+        }
+        getOrCreateMdcElementAdapters(tagName) {
             if (!this.adaptersCreated) {
                 this.createAdapter();
                 this.adaptersCreated = true;
             }
-            var adapters = this.adapters;
-            var elementAdapters = adapters[tagName] || adapters[tagName.toLowerCase()];
+            const adapters = this.adapters;
+            let elementAdapters = adapters[tagName] || adapters[tagName.toLowerCase()];
             if (!elementAdapters) {
-                elementAdapters = adapters[tagName] = adapters[tagName.toLowerCase()] = { tagName: tagName, properties: {} };
+                elementAdapters = adapters[tagName] = adapters[tagName.toLowerCase()] = { tagName, properties: {} };
             }
             return elementAdapters;
-        };
-        MdcComponentAdapters.prototype.interceptDetermineDefaultBindingMode = function () {
-            var mdc = this;
-            var originalFn = aurelia_templating_binding_1.SyntaxInterpreter.prototype.determineDefaultBindingMode;
+        }
+        interceptDetermineDefaultBindingMode() {
+            const mdc = this;
+            const originalFn = aurelia_templating_binding_1.SyntaxInterpreter.prototype.determineDefaultBindingMode;
             aurelia_templating_binding_1.SyntaxInterpreter.prototype.determineDefaultBindingMode = function (element, attrName, context) {
-                var tagName = element.getAttribute('as-element') || element.tagName;
-                var elAdapters = mdc.adapters[tagName];
+                const tagName = element.getAttribute('as-element') || element.tagName;
+                const elAdapters = mdc.adapters[tagName];
                 if (elAdapters) {
-                    var propertyAdapter = elAdapters.properties[attrName];
+                    const propertyAdapter = elAdapters.properties[attrName];
                     if (propertyAdapter) {
                         return propertyAdapter.defaultBindingMode;
                     }
                 }
                 return originalFn.call(this, element, attrName, context);
             };
-        };
-        MdcComponentAdapters.prototype.addMdcElementObserverAdapter = function (tagName, properties) {
+        }
+        addMdcElementObserverAdapter(tagName, properties) {
             if (!this.adaptersCreated) {
                 this.createAdapter();
                 this.adaptersCreated = true;
             }
-            var elementAdapters = this.getOrCreateMdcElementAdapters(tagName);
+            const elementAdapters = this.getOrCreateMdcElementAdapters(tagName);
             Object.assign(elementAdapters.properties, properties);
-        };
-        MdcComponentAdapters.prototype.registerMdcElementConfig = function (observerAdapter) {
+        }
+        registerMdcElementConfig(observerAdapter) {
             if (!this.bindingModeIntercepted) {
                 this.interceptDetermineDefaultBindingMode();
                 this.bindingModeIntercepted = true;
             }
             this.addMdcElementObserverAdapter(observerAdapter.tagName.toUpperCase(), observerAdapter.properties);
-        };
-        MdcComponentAdapters = tslib_1.__decorate([
-            aurelia_framework_1.inject(aurelia_framework_1.ObserverLocator),
-            tslib_1.__metadata("design:paramtypes", [aurelia_framework_1.ObserverLocator])
-        ], MdcComponentAdapters);
-        return MdcComponentAdapters;
-    }());
+        }
+    };
+    MdcComponentAdapters = tslib_1.__decorate([
+        aurelia_framework_1.inject(aurelia_framework_1.ObserverLocator),
+        tslib_1.__metadata("design:paramtypes", [aurelia_framework_1.ObserverLocator])
+    ], MdcComponentAdapters);
     exports.MdcComponentAdapters = MdcComponentAdapters;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -57615,57 +57566,46 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcComponent = void 0;
-    var MdcComponent = /** @class */ (function () {
-        function MdcComponent(root) {
+    class MdcComponent {
+        constructor(root) {
             this.root = root;
             this.initialised = this.createInitiliasedPromise();
         }
-        MdcComponent.prototype.createInitiliasedPromise = function () {
-            var _this = this;
-            return new Promise(function (r) { return _this.initialisedResolve = r; });
-        };
-        MdcComponent.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () { return tslib_1.__generator(this, function (_a) {
-                return [2 /*return*/];
-            }); });
-        };
-        MdcComponent.prototype.initialSyncWithDOM = function () { };
-        MdcComponent.prototype.attached = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.initialise()];
-                        case 1:
-                            _a.sent();
-                            this.foundation = this.getDefaultFoundation();
-                            this.foundation.init();
-                            this.initialisedResolve();
-                            this.initialSyncWithDOM();
-                            return [2 /*return*/];
-                    }
-                });
+        createInitiliasedPromise() {
+            return new Promise(r => this.initialisedResolve = r);
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () { });
+        }
+        initialSyncWithDOM() { }
+        attached() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialise();
+                this.foundation = this.getDefaultFoundation();
+                this.foundation.init();
+                this.initialisedResolve();
+                this.initialSyncWithDOM();
             });
-        };
-        MdcComponent.prototype.destroy = function () { };
-        MdcComponent.prototype.detached = function () {
+        }
+        destroy() { }
+        detached() {
             var _a;
             this.destroy();
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.destroy();
             this.foundation = undefined;
             this.initialised = this.createInitiliasedPromise();
-        };
-        MdcComponent.prototype.listen = function (evtType, handler, options) {
+        }
+        listen(evtType, handler, options) {
             this.root.addEventListener(evtType, handler, options);
-        };
-        MdcComponent.prototype.unlisten = function (evtType, handler, options) {
+        }
+        unlisten(evtType, handler, options) {
             this.root.removeEventListener(evtType, handler, options);
-        };
+        }
         /**
          * Fires a cross-browser-compatible custom event from the component root of the given type, with the given data.
          */
-        MdcComponent.prototype.emit = function (evtType, evtData, shouldBubble) {
-            if (shouldBubble === void 0) { shouldBubble = false; }
-            var evt;
+        emit(evtType, evtData, shouldBubble = false) {
+            let evt;
             if (typeof CustomEvent === 'function') {
                 evt = new CustomEvent(evtType, {
                     bubbles: shouldBubble,
@@ -57677,9 +57617,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 evt.initCustomEvent(evtType, shouldBubble, false, evtData);
             }
             this.root.dispatchEvent(evt);
-        };
-        return MdcComponent;
-    }());
+        }
+    }
     exports.MdcComponent = MdcComponent;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -57698,79 +57637,61 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.invokeLifecycle = exports.MdcDialogService = void 0;
-    var MdcDialogService = /** @class */ (function () {
-        function MdcDialogService(templatingEngine, viewResources, compositionEngine) {
+    let MdcDialogService = class MdcDialogService {
+        constructor(templatingEngine, viewResources, compositionEngine) {
             this.templatingEngine = templatingEngine;
             this.viewResources = viewResources;
             this.compositionEngine = compositionEngine;
         }
-        MdcDialogService.prototype.open = function (options) {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var dialog, closingResolver, closingPromise, bindingContext, childView, controllers, view, slot, compositionContext, canActivate, _a;
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0:
-                            dialog = document.createElement('mdc-dialog');
-                            dialog.setAttribute(dialog_1.strings.CLOSING_EVENT + ".trigger", 'handleClosing($event)');
-                            document.body.appendChild(dialog);
-                            closingPromise = new Promise(function (r) { return closingResolver = r; });
-                            bindingContext = {
-                                handleClosing: function (evt) {
-                                    closingResolver(evt.detail.action);
-                                    childView.detached();
-                                    dialog.remove();
-                                }
-                            };
-                            childView = this.templatingEngine.enhance({ element: dialog, bindingContext: bindingContext });
-                            controllers = childView.controllers;
-                            view = controllers[0].view;
-                            slot = new aurelia_framework_1.ViewSlot(view.slots[aurelia_framework_1.ShadowDOM.defaultSlotKey].anchor, false);
-                            slot.attached();
-                            compositionContext = this.createCompositionContext(childView.container, dialog, bindingContext, {
-                                viewModel: options.viewModel,
-                                model: options.model
-                            }, slot);
-                            return [4 /*yield*/, this.ensureViewModel(compositionContext)];
-                        case 1:
-                            compositionContext = _b.sent();
-                            if (!compositionContext.viewModel) return [3 /*break*/, 3];
-                            return [4 /*yield*/, invokeLifecycle(compositionContext.viewModel, 'canActivate', options.model)];
-                        case 2:
-                            _a = _b.sent();
-                            return [3 /*break*/, 4];
-                        case 3:
-                            _a = true;
-                            _b.label = 4;
-                        case 4:
-                            canActivate = _a;
-                            if (!canActivate) {
-                                throw new Error('modal cannot be opened');
-                            }
-                            this.compositionEngine.compose(compositionContext).then(function (controller) {
-                                bindingContext.currentViewModel = controller.viewModel;
-                            });
-                            return [4 /*yield*/, dialog.au.controller.viewModel.initialised];
-                        case 5:
-                            _b.sent();
-                            dialog.au.controller.viewModel.open();
-                            return [2 /*return*/, closingPromise];
+        open(options) {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                const dialog = document.createElement('mdc-dialog');
+                dialog.setAttribute(`${dialog_1.strings.CLOSING_EVENT}.trigger`, 'handleClosing($event)');
+                document.body.appendChild(dialog);
+                let closingResolver;
+                const closingPromise = new Promise(r => closingResolver = r);
+                const bindingContext = {
+                    handleClosing: (evt) => {
+                        closingResolver(evt.detail.action);
+                        childView.detached();
+                        dialog.remove();
                     }
+                };
+                const childView = this.templatingEngine.enhance({ element: dialog, bindingContext });
+                const controllers = childView.controllers;
+                const view = controllers[0].view;
+                const slot = new aurelia_framework_1.ViewSlot(view.slots[aurelia_framework_1.ShadowDOM.defaultSlotKey].anchor, false);
+                slot.attached();
+                let compositionContext = this.createCompositionContext(childView.container, dialog, bindingContext, {
+                    viewModel: options.viewModel,
+                    model: options.model
+                }, slot);
+                compositionContext = yield this.ensureViewModel(compositionContext);
+                const canActivate = compositionContext.viewModel ? yield invokeLifecycle(compositionContext.viewModel, 'canActivate', options.model) : true;
+                if (!canActivate) {
+                    throw new Error('modal cannot be opened');
+                }
+                this.compositionEngine.compose(compositionContext).then((controller) => {
+                    bindingContext.currentViewModel = controller.viewModel;
                 });
+                yield dialog.au.controller.viewModel.initialised;
+                dialog.au.controller.viewModel.open();
+                return closingPromise;
             });
-        };
-        MdcDialogService.prototype.createCompositionContext = function (container, host, bindingContext, settings, slot) {
+        }
+        createCompositionContext(container, host, bindingContext, settings, slot) {
             return {
-                container: container,
+                container,
                 bindingContext: settings.viewModel ? null : bindingContext,
                 viewResources: this.viewResources,
                 model: settings.model,
                 view: settings.view,
                 viewModel: settings.viewModel,
                 viewSlot: slot || new aurelia_framework_1.ViewSlot(host, true),
-                host: host
+                host
             };
-        };
-        MdcDialogService.prototype.ensureViewModel = function (compositionContext) {
+        }
+        ensureViewModel(compositionContext) {
             if (compositionContext.viewModel === undefined) {
                 return Promise.resolve(compositionContext);
             }
@@ -57778,20 +57699,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 return Promise.resolve(compositionContext);
             }
             return this.compositionEngine.ensureViewModel(compositionContext);
-        };
-        MdcDialogService = tslib_1.__decorate([
-            aurelia_framework_1.inject(aurelia_framework_1.TemplatingEngine, aurelia_framework_1.ViewResources, aurelia_framework_1.CompositionEngine),
-            tslib_1.__metadata("design:paramtypes", [aurelia_framework_1.TemplatingEngine, aurelia_framework_1.ViewResources,
-                aurelia_framework_1.CompositionEngine])
-        ], MdcDialogService);
-        return MdcDialogService;
-    }());
+        }
+    };
+    MdcDialogService = tslib_1.__decorate([
+        aurelia_framework_1.inject(aurelia_framework_1.TemplatingEngine, aurelia_framework_1.ViewResources, aurelia_framework_1.CompositionEngine),
+        tslib_1.__metadata("design:paramtypes", [aurelia_framework_1.TemplatingEngine, aurelia_framework_1.ViewResources,
+            aurelia_framework_1.CompositionEngine])
+    ], MdcDialogService);
     exports.MdcDialogService = MdcDialogService;
     function invokeLifecycle(instance, name, model) {
         if (typeof instance[name] === 'function') {
-            return new Promise(function (resolve) {
+            return new Promise(resolve => {
                 resolve(instance[name](model));
-            }).then(function (result) {
+            }).then(result => {
                 if (result !== null && result !== undefined) {
                     return result;
                 }
@@ -57814,7 +57734,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @material/select */ "../../node_modules/@material/select/index.js"), __webpack_require__(/*! @material/menu */ "../../node_modules/@material/menu/index.js"), __webpack_require__(/*! @material/base */ "../../node_modules/@material/base/index.js"), __webpack_require__(/*! @material/dom/keyboard */ "../../node_modules/@material/dom/keyboard.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, select_1, menu_1, base_1, keyboard_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! @material/select */ "../../node_modules/@material/select/index.js"), __webpack_require__(/*! @material/menu */ "../../node_modules/@material/menu/index.js"), __webpack_require__(/*! @material/base */ "../../node_modules/@material/base/index.js"), __webpack_require__(/*! @material/dom/keyboard */ "../../node_modules/@material/dom/keyboard.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, select_1, menu_1, base_1, keyboard_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MDCSelectFoundationAurelia = void 0;
@@ -57822,113 +57742,92 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * This is almost a complete copy of the default foundation with exception to handling values.
      * It supports values of unknown types which must be bound to mdc-list-item.value.
      */
-    var MDCSelectFoundationAurelia = /** @class */ (function (_super) {
-        tslib_1.__extends(MDCSelectFoundationAurelia, _super);
+    class MDCSelectFoundationAurelia extends base_1.MDCFoundation {
         /* istanbul ignore next: optional argument is not a branch statement */
         /**
          * @param adapter
          * @param foundationMap Map from subcomponent names to their subfoundations.
          */
-        function MDCSelectFoundationAurelia(adapter, foundationMap) {
-            if (foundationMap === void 0) { foundationMap = {}; }
-            var _this = _super.call(this, tslib_1.__assign(tslib_1.__assign({}, MDCSelectFoundationAurelia.defaultAdapter), adapter)) || this;
+        constructor(adapter, foundationMap = {}) {
+            super(Object.assign(Object.assign({}, MDCSelectFoundationAurelia.defaultAdapter), adapter));
             // bound values of the menu items.
-            _this.menuItemValues = [];
+            this.menuItemValues = [];
             // Disabled state
-            _this.disabled = false;
+            this.disabled = false;
             // isMenuOpen is used to track the state of the menu by listening to the
             // MDCMenuSurface:closed event For reference, menu.open will return false if
             // the menu is still closing, but isMenuOpen returns false only after the menu
             // has closed
-            _this.isMenuOpen = false;
+            this.isMenuOpen = false;
             // By default, select is invalid if it is required but no value is selected.
-            _this.useDefaultValidation = true;
-            _this.customValidity = true;
-            _this.leadingIcon = foundationMap.leadingIcon;
-            _this.helperText = foundationMap.helperText;
-            return _this;
+            this.useDefaultValidation = true;
+            this.customValidity = true;
+            this.leadingIcon = foundationMap.leadingIcon;
+            this.helperText = foundationMap.helperText;
         }
-        Object.defineProperty(MDCSelectFoundationAurelia, "cssClasses", {
-            get: function () {
-                return select_1.cssClasses;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MDCSelectFoundationAurelia, "numbers", {
-            get: function () {
-                return select_1.numbers;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MDCSelectFoundationAurelia, "strings", {
-            get: function () {
-                return select_1.strings;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MDCSelectFoundationAurelia, "defaultAdapter", {
-            /**
-             * See {@link MDCSelectAdapter} for typing information on parameters and return types.
-             */
-            get: function () {
-                // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-                return {
-                    addClass: function () { return undefined; },
-                    removeClass: function () { return undefined; },
-                    hasClass: function () { return false; },
-                    activateBottomLine: function () { return undefined; },
-                    deactivateBottomLine: function () { return undefined; },
-                    getSelectedMenuItem: function () { return null; },
-                    getSelectedIndex: function () { return -1; },
-                    setSelectedIndex: function () { return undefined; },
-                    hasLabel: function () { return false; },
-                    floatLabel: function () { return undefined; },
-                    getLabelWidth: function () { return 0; },
-                    setLabelRequired: function () { return undefined; },
-                    hasOutline: function () { return false; },
-                    notchOutline: function () { return undefined; },
-                    closeOutline: function () { return undefined; },
-                    setRippleCenter: function () { return undefined; },
-                    notifyChange: function () { return undefined; },
-                    setSelectedText: function () { return undefined; },
-                    isSelectAnchorFocused: function () { return false; },
-                    getSelectAnchorAttr: function () { return ''; },
-                    setSelectAnchorAttr: function () { return undefined; },
-                    removeSelectAnchorAttr: function () { return undefined; },
-                    addMenuClass: function () { return undefined; },
-                    removeMenuClass: function () { return undefined; },
-                    openMenu: function () { return undefined; },
-                    closeMenu: function () { return undefined; },
-                    getAnchorElement: function () { return null; },
-                    setMenuAnchorElement: function () { return undefined; },
-                    setMenuAnchorCorner: function () { return undefined; },
-                    setMenuWrapFocus: function () { return undefined; },
-                    setAttributeAtIndex: function () { return undefined; },
-                    focusMenuItemAtIndex: function () { return undefined; },
-                    getMenuItemCount: function () { return 0; },
-                    getMenuItemValues: function () { return []; },
-                    getMenuItemTextAtIndex: function () { return ''; },
-                    getMenuItemAttr: function () { return ''; },
-                    addClassAtIndex: function () { return undefined; },
-                    removeClassAtIndex: function () { return undefined; },
-                    isTypeaheadInProgress: function () { return false; },
-                    typeaheadMatchItem: function () { return -1; },
-                };
-                // tslint:enable:object-literal-sort-keys
-            },
-            enumerable: false,
-            configurable: true
-        });
+        static get cssClasses() {
+            return select_1.cssClasses;
+        }
+        static get numbers() {
+            return select_1.numbers;
+        }
+        static get strings() {
+            return select_1.strings;
+        }
+        /**
+         * See {@link MDCSelectAdapter} for typing information on parameters and return types.
+         */
+        static get defaultAdapter() {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: () => undefined,
+                removeClass: () => undefined,
+                hasClass: () => false,
+                activateBottomLine: () => undefined,
+                deactivateBottomLine: () => undefined,
+                getSelectedMenuItem: () => null,
+                getSelectedIndex: () => -1,
+                setSelectedIndex: () => undefined,
+                hasLabel: () => false,
+                floatLabel: () => undefined,
+                getLabelWidth: () => 0,
+                setLabelRequired: () => undefined,
+                hasOutline: () => false,
+                notchOutline: () => undefined,
+                closeOutline: () => undefined,
+                setRippleCenter: () => undefined,
+                notifyChange: () => undefined,
+                setSelectedText: () => undefined,
+                isSelectAnchorFocused: () => false,
+                getSelectAnchorAttr: () => '',
+                setSelectAnchorAttr: () => undefined,
+                removeSelectAnchorAttr: () => undefined,
+                addMenuClass: () => undefined,
+                removeMenuClass: () => undefined,
+                openMenu: () => undefined,
+                closeMenu: () => undefined,
+                getAnchorElement: () => null,
+                setMenuAnchorElement: () => undefined,
+                setMenuAnchorCorner: () => undefined,
+                setMenuWrapFocus: () => undefined,
+                setAttributeAtIndex: () => undefined,
+                focusMenuItemAtIndex: () => undefined,
+                getMenuItemCount: () => 0,
+                getMenuItemValues: () => [],
+                getMenuItemTextAtIndex: () => '',
+                getMenuItemAttr: () => '',
+                addClassAtIndex: () => undefined,
+                removeClassAtIndex: () => undefined,
+                isTypeaheadInProgress: () => false,
+                typeaheadMatchItem: () => -1,
+            };
+            // tslint:enable:object-literal-sort-keys
+        }
         /** Returns the index of the currently selected menu item, or -1 if none. */
-        MDCSelectFoundationAurelia.prototype.getSelectedIndex = function () {
+        getSelectedIndex() {
             return this.adapter.getSelectedIndex();
-        };
-        MDCSelectFoundationAurelia.prototype.setSelectedIndex = function (index, closeMenu, skipNotify) {
-            if (closeMenu === void 0) { closeMenu = false; }
-            if (skipNotify === void 0) { skipNotify = false; }
+        }
+        setSelectedIndex(index, closeMenu = false, skipNotify = false) {
             if (index >= this.adapter.getMenuItemCount()) {
                 return;
             }
@@ -57946,22 +57845,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             if (!skipNotify) {
                 this.handleChange();
             }
-        };
+        }
         // !!! MODIFIED FOR AURELIA !!!
-        MDCSelectFoundationAurelia.prototype.setValue = function (value) {
-            var index = this.adapter.getMenuItemValues().indexOf(value);
+        setValue(value) {
+            const index = this.adapter.getMenuItemValues().indexOf(value);
             this.setSelectedIndex(index);
-        };
+        }
         // !!! MODIFIED FOR AURELIA !!!
-        MDCSelectFoundationAurelia.prototype.getValue = function () {
+        getValue() {
             var _a;
-            var listItem = this.adapter.getSelectedMenuItem();
+            const listItem = this.adapter.getSelectedMenuItem();
             return (_a = listItem === null || listItem === void 0 ? void 0 : listItem.au) === null || _a === void 0 ? void 0 : _a.controller.viewModel.value;
-        };
-        MDCSelectFoundationAurelia.prototype.getDisabled = function () {
+        }
+        getDisabled() {
             return this.disabled;
-        };
-        MDCSelectFoundationAurelia.prototype.setDisabled = function (isDisabled) {
+        }
+        setDisabled(isDisabled) {
             this.disabled = isDisabled;
             if (this.disabled) {
                 this.adapter.addClass(select_1.cssClasses.DISABLED);
@@ -57982,56 +57881,56 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 this.adapter.setSelectAnchorAttr('tabindex', '0');
             }
             this.adapter.setSelectAnchorAttr('aria-disabled', this.disabled.toString());
-        };
+        }
         /** Opens the menu. */
-        MDCSelectFoundationAurelia.prototype.openMenu = function () {
+        openMenu() {
             this.adapter.addClass(select_1.cssClasses.ACTIVATED);
             this.adapter.openMenu();
             this.isMenuOpen = true;
             this.adapter.setSelectAnchorAttr('aria-expanded', 'true');
-        };
+        }
         /**
          * @param content Sets the content of the helper text.
          */
-        MDCSelectFoundationAurelia.prototype.setHelperTextContent = function (content) {
+        setHelperTextContent(content) {
             if (this.helperText) {
                 this.helperText.setContent(content);
             }
-        };
+        }
         /**
          * Re-calculates if the notched outline should be notched and if the label
          * should float.
          */
-        MDCSelectFoundationAurelia.prototype.layout = function () {
+        layout() {
             if (this.adapter.hasLabel()) {
-                var optionHasValue = !!this.getValue(); // !!! MODIFIED FOR AURELIA !!!
-                var isFocused = this.adapter.hasClass(select_1.cssClasses.FOCUSED);
-                var shouldFloatAndNotch = optionHasValue || isFocused;
-                var isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
+                const optionHasValue = !!this.getValue(); // !!! MODIFIED FOR AURELIA !!!
+                const isFocused = this.adapter.hasClass(select_1.cssClasses.FOCUSED);
+                const shouldFloatAndNotch = optionHasValue || isFocused;
+                const isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
                 this.notchOutline(shouldFloatAndNotch);
                 this.adapter.floatLabel(shouldFloatAndNotch);
                 this.adapter.setLabelRequired(isRequired);
             }
-        };
+        }
         /**
          * Synchronizes the list of options with the state of the foundation. Call
          * this whenever menu options are dynamically updated.
          */
-        MDCSelectFoundationAurelia.prototype.layoutOptions = function () {
+        layoutOptions() {
             this.menuItemValues = this.adapter.getMenuItemValues();
-            var selectedIndex = this.menuItemValues.indexOf(this.getValue());
+            const selectedIndex = this.menuItemValues.indexOf(this.getValue());
             this.setSelectedIndex(selectedIndex, /** closeMenu */ false, /** skipNotify */ true);
-        };
-        MDCSelectFoundationAurelia.prototype.handleMenuOpened = function () {
+        }
+        handleMenuOpened() {
             if (this.adapter.getMenuItemValues().length === 0) {
                 return;
             }
             // Menu should open to the last selected element, should open to first menu item otherwise.
-            var selectedIndex = this.getSelectedIndex();
-            var focusItemIndex = selectedIndex >= 0 ? selectedIndex : 0;
+            const selectedIndex = this.getSelectedIndex();
+            const focusItemIndex = selectedIndex >= 0 ? selectedIndex : 0;
             this.adapter.focusMenuItemAtIndex(focusItemIndex);
-        };
-        MDCSelectFoundationAurelia.prototype.handleMenuClosed = function () {
+        }
+        handleMenuClosed() {
             this.adapter.removeClass(select_1.cssClasses.ACTIVATED);
             this.isMenuOpen = false;
             this.adapter.setSelectAnchorAttr('aria-expanded', 'false');
@@ -58039,42 +57938,42 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             if (!this.adapter.isSelectAnchorFocused()) {
                 this.blur();
             }
-        };
+        }
         /**
          * Handles value changes, via change event or programmatic updates.
          */
-        MDCSelectFoundationAurelia.prototype.handleChange = function () {
+        handleChange() {
             this.layout();
             this.adapter.notifyChange(this.getValue());
-            var isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
+            const isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
             if (isRequired && this.useDefaultValidation) {
                 this.setValid(this.isValid());
                 if (this.helperText) {
                     this.helperText.setValidity(this.isValid());
                 }
             }
-        };
-        MDCSelectFoundationAurelia.prototype.handleMenuItemAction = function (index) {
+        }
+        handleMenuItemAction(index) {
             this.setSelectedIndex(index, /** closeMenu */ true);
-        };
+        }
         /**
          * Handles focus events from select element.
          */
-        MDCSelectFoundationAurelia.prototype.handleFocus = function () {
+        handleFocus() {
             this.adapter.addClass(select_1.cssClasses.FOCUSED);
             this.layout();
             this.adapter.activateBottomLine();
-        };
+        }
         /**
          * Handles blur events from select element.
          */
-        MDCSelectFoundationAurelia.prototype.handleBlur = function () {
+        handleBlur() {
             if (this.isMenuOpen) {
                 return;
             }
             this.blur();
-        };
-        MDCSelectFoundationAurelia.prototype.handleClick = function (normalizedX) {
+        }
+        handleClick(normalizedX) {
             if (this.disabled) {
                 return;
             }
@@ -58084,24 +57983,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
             this.adapter.setRippleCenter(normalizedX);
             this.openMenu();
-        };
+        }
         /**
          * Handles keydown events on select element. Depending on the type of
          * character typed, does typeahead matching or opens menu.
          */
-        MDCSelectFoundationAurelia.prototype.handleKeydown = function (event) {
+        handleKeydown(event) {
             if (this.isMenuOpen || !this.adapter.hasClass(select_1.cssClasses.FOCUSED)) {
                 return;
             }
-            var isEnter = keyboard_1.normalizeKey(event) === keyboard_1.KEY.ENTER;
-            var isSpace = keyboard_1.normalizeKey(event) === keyboard_1.KEY.SPACEBAR;
-            var arrowUp = keyboard_1.normalizeKey(event) === keyboard_1.KEY.ARROW_UP;
-            var arrowDown = keyboard_1.normalizeKey(event) === keyboard_1.KEY.ARROW_DOWN;
+            const isEnter = keyboard_1.normalizeKey(event) === keyboard_1.KEY.ENTER;
+            const isSpace = keyboard_1.normalizeKey(event) === keyboard_1.KEY.SPACEBAR;
+            const arrowUp = keyboard_1.normalizeKey(event) === keyboard_1.KEY.ARROW_UP;
+            const arrowDown = keyboard_1.normalizeKey(event) === keyboard_1.KEY.ARROW_DOWN;
             // Typeahead
             if (!isSpace && event.key && event.key.length === 1 ||
                 isSpace && this.adapter.isTypeaheadInProgress()) {
-                var key = isSpace ? ' ' : event.key;
-                var typeaheadNextIndex = this.adapter.typeaheadMatchItem(key, this.getSelectedIndex());
+                const key = isSpace ? ' ' : event.key;
+                const typeaheadNextIndex = this.adapter.typeaheadMatchItem(key, this.getSelectedIndex());
                 if (typeaheadNextIndex >= 0) {
                     this.setSelectedIndex(typeaheadNextIndex);
                 }
@@ -58121,44 +58020,44 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
             this.openMenu();
             event.preventDefault();
-        };
+        }
         /**
          * Opens/closes the notched outline.
          */
-        MDCSelectFoundationAurelia.prototype.notchOutline = function (openNotch) {
+        notchOutline(openNotch) {
             if (!this.adapter.hasOutline()) {
                 return;
             }
-            var isFocused = this.adapter.hasClass(select_1.cssClasses.FOCUSED);
+            const isFocused = this.adapter.hasClass(select_1.cssClasses.FOCUSED);
             if (openNotch) {
-                var labelScale = select_1.numbers.LABEL_SCALE;
-                var labelWidth = this.adapter.getLabelWidth() * labelScale;
+                const labelScale = select_1.numbers.LABEL_SCALE;
+                const labelWidth = this.adapter.getLabelWidth() * labelScale;
                 this.adapter.notchOutline(labelWidth);
             }
             else if (!isFocused) {
                 this.adapter.closeOutline();
             }
-        };
+        }
         /**
          * Sets the aria label of the leading icon.
          */
-        MDCSelectFoundationAurelia.prototype.setLeadingIconAriaLabel = function (label) {
+        setLeadingIconAriaLabel(label) {
             if (this.leadingIcon) {
                 this.leadingIcon.setAriaLabel(label);
             }
-        };
+        }
         /**
          * Sets the text content of the leading icon.
          */
-        MDCSelectFoundationAurelia.prototype.setLeadingIconContent = function (content) {
+        setLeadingIconContent(content) {
             if (this.leadingIcon) {
                 this.leadingIcon.setContent(content);
             }
-        };
-        MDCSelectFoundationAurelia.prototype.setUseDefaultValidation = function (useDefaultValidation) {
+        }
+        setUseDefaultValidation(useDefaultValidation) {
             this.useDefaultValidation = useDefaultValidation;
-        };
-        MDCSelectFoundationAurelia.prototype.setValid = function (isValid) {
+        }
+        setValid(isValid) {
             if (!this.useDefaultValidation) {
                 this.customValidity = isValid;
             }
@@ -58171,8 +58070,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 this.adapter.addClass(select_1.cssClasses.INVALID);
                 this.adapter.addMenuClass(select_1.cssClasses.MENU_INVALID);
             }
-        };
-        MDCSelectFoundationAurelia.prototype.isValid = function () {
+        }
+        isValid() {
             if (this.useDefaultValidation &&
                 this.adapter.hasClass(select_1.cssClasses.REQUIRED) &&
                 !this.adapter.hasClass(select_1.cssClasses.DISABLED)) {
@@ -58182,8 +58081,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     (this.getSelectedIndex() !== 0 || Boolean(this.getValue()));
             }
             return this.customValidity;
-        };
-        MDCSelectFoundationAurelia.prototype.setRequired = function (isRequired) {
+        }
+        setRequired(isRequired) {
             if (isRequired) {
                 this.adapter.addClass(select_1.cssClasses.REQUIRED);
             }
@@ -58192,12 +58091,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
             this.adapter.setSelectAnchorAttr('aria-required', isRequired.toString());
             this.adapter.setLabelRequired(isRequired);
-        };
-        MDCSelectFoundationAurelia.prototype.getRequired = function () {
+        }
+        getRequired() {
             return this.adapter.getSelectAnchorAttr('aria-required') === 'true';
-        };
-        MDCSelectFoundationAurelia.prototype.init = function () {
-            var anchorEl = this.adapter.getAnchorElement();
+        }
+        init() {
+            const anchorEl = this.adapter.getAnchorElement();
             if (anchorEl) {
                 this.adapter.setMenuAnchorElement(anchorEl);
                 this.adapter.setMenuAnchorCorner(menu_1.Corner.BOTTOM_START);
@@ -58206,24 +58105,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.setDisabled(this.adapter.hasClass(select_1.cssClasses.DISABLED));
             this.layout();
             this.layoutOptions();
-        };
+        }
         /**
          * Unfocuses the select component.
          */
-        MDCSelectFoundationAurelia.prototype.blur = function () {
+        blur() {
             this.adapter.removeClass(select_1.cssClasses.FOCUSED);
             this.layout();
             this.adapter.deactivateBottomLine();
-            var isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
+            const isRequired = this.adapter.hasClass(select_1.cssClasses.REQUIRED);
             if (isRequired && this.useDefaultValidation) {
                 this.setValid(this.isValid());
                 if (this.helperText) {
                     this.helperText.setValidity(this.isValid());
                 }
             }
-        };
-        return MDCSelectFoundationAurelia;
-    }(base_1.MDCFoundation));
+        }
+    }
     exports.MDCSelectFoundationAurelia = MDCSelectFoundationAurelia;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58238,28 +58136,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @material/slider */ "../../node_modules/@material/slider/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, slider_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! @material/slider */ "../../node_modules/@material/slider/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, slider_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcSliderFoundationAurelia = void 0;
     // overriding lets the rest of the foundation to always get a fresh bounding rect
     // otherwise resizing a container, or moving an element ruins interaction
-    var MdcSliderFoundationAurelia = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcSliderFoundationAurelia, _super);
-        function MdcSliderFoundationAurelia() {
-            return _super !== null && _super.apply(this, arguments) || this;
+    class MdcSliderFoundationAurelia extends slider_1.MDCSliderFoundation {
+        get rect_() {
+            return this.adapter.computeBoundingRect();
         }
-        Object.defineProperty(MdcSliderFoundationAurelia.prototype, "rect_", {
-            get: function () {
-                return this.adapter.computeBoundingRect();
-            },
-            set: function (value) {
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return MdcSliderFoundationAurelia;
-    }(slider_1.MDCSliderFoundation));
+        set rect_(value) {
+        }
+    }
     exports.MdcSliderFoundationAurelia = MdcSliderFoundationAurelia;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58267,17 +58156,35 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 /***/ }),
 
-/***/ "../validation/src/index.ts":
-/*!**********************************!*\
-  !*** ../validation/src/index.ts ***!
-  \**********************************/
+/***/ "../validation/src/mdc-validation-controller-factory.ts":
+/*!**************************************************************!*\
+  !*** ../validation/src/mdc-validation-controller-factory.ts ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./mdc-validation-renderer */ "../validation/src/mdc-validation-renderer.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, mdc_validation_renderer_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-validation */ "aurelia-validation"), __webpack_require__(/*! ./mdc-validation-renderer */ "../validation/src/mdc-validation-renderer.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_validation_1, mdc_validation_renderer_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    Object.defineProperty(exports, "MdcValidationRenderer", { enumerable: true, get: function () { return mdc_validation_renderer_1.MdcValidationRenderer; } });
+    exports.MdcValidationControllerFactory = void 0;
+    class MdcValidationControllerFactory extends aurelia_validation_1.ValidationControllerFactory {
+        static get(container) {
+            console.log(aurelia_validation_1.ValidationControllerFactory);
+            return new MdcValidationControllerFactory(container);
+        }
+        constructor(container) {
+            super(container);
+        }
+        createForCurrentScope(validator) {
+            let controller = super.createForCurrentScope(validator);
+            controller.addRenderer(new mdc_validation_renderer_1.MdcValidationRenderer());
+            // controller.validateTrigger = validateTrigger.changeOrBlur;
+            return controller;
+        }
+    }
+    exports.MdcValidationControllerFactory = MdcValidationControllerFactory;
+    // this tells DI to call static get method to resolve dependency
+    MdcValidationControllerFactory["protocol:aurelia:resolver"] = true;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -58291,58 +58198,46 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcValidationRenderer = void 0;
-    var MdcValidationRenderer = /** @class */ (function () {
-        function MdcValidationRenderer() {
-        }
-        MdcValidationRenderer.prototype.render = function (instruction) {
-            var e_1, _a;
-            var groupedInstructions = new Map();
-            for (var i = 0; i < instruction.unrender.length; ++i) {
-                var ri = instruction.unrender[i];
-                for (var j = 0; j < ri.elements.length; ++j) {
-                    var el = ri.elements[j];
-                    var group = this.getOrAddGroup(groupedInstructions, el);
-                    group.unrender.push(ri.result);
-                }
-            }
-            for (var i = 0; i < instruction.render.length; ++i) {
-                var ri = instruction.render[i];
-                for (var j = 0; j < ri.elements.length; ++j) {
-                    var el = ri.elements[j];
-                    var group = this.getOrAddGroup(groupedInstructions, el);
-                    group.render.push(ri.result);
-                }
-            }
-            try {
-                for (var _b = tslib_1.__values(groupedInstructions.entries()), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var _d = tslib_1.__read(_c.value, 2), el = _d[0], group = _d[1];
-                    if (Object.getOwnPropertyDescriptor(el, 'valid')) {
-                        el.valid = !group.render.find(function (x) { return !x.valid; });
+    class MdcValidationRenderer {
+        render(instruction) {
+            const elements = new Map();
+            for (let i = 0; i < instruction.unrender.length; ++i) {
+                const ri = instruction.unrender[i];
+                for (let j = 0; j < ri.elements.length; ++j) {
+                    const el = ri.elements[j];
+                    if (!ri.result.valid && Object.getOwnPropertyDescriptor(el, 'removeError')) {
+                        el.removeError(ri.result);
+                        elements.set(el, true);
                     }
                 }
             }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            for (let i = 0; i < instruction.render.length; ++i) {
+                const ri = instruction.render[i];
+                for (let j = 0; j < ri.elements.length; ++j) {
+                    const el = ri.elements[j];
+                    if (!ri.result.valid && Object.getOwnPropertyDescriptor(el, 'addError')) {
+                        el.addError(ri.result);
+                        elements.set(el, true);
+                    }
                 }
-                finally { if (e_1) throw e_1.error; }
             }
-        };
-        MdcValidationRenderer.prototype.getOrAddGroup = function (groupedInstructions, el) {
-            var group = groupedInstructions.get(el);
-            if (!group) {
-                group = { unrender: [], render: [] };
-                groupedInstructions.set(el, group);
+            for (const el of elements.keys()) {
+                switch (el.tagName) {
+                    case 'MDC-TEXT-FIELD':
+                        const helperLine = el.nextElementSibling;
+                        if ((helperLine === null || helperLine === void 0 ? void 0 : helperLine.tagName) === 'MDC-TEXT-FIELD-HELPER-LINE') {
+                            helperLine.au.controller.viewModel.errors = el.getErrors()
+                                .filter(x => x.message !== null).map(x => x.message);
+                        }
+                        break;
+                }
             }
-            return group;
-        };
-        return MdcValidationRenderer;
-    }());
+        }
+    }
     exports.MdcValidationRenderer = MdcValidationRenderer;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58411,85 +58306,80 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcSizeCustomAttribute = void 0;
-    var MdcSizeCustomAttribute = /** @class */ (function () {
-        function MdcSizeCustomAttribute(element) {
+    let MdcSizeCustomAttribute = class MdcSizeCustomAttribute {
+        constructor(element) {
             this.element = element;
             this.value = { width: 0, height: 0 };
             this.width = 0;
             this.height = 0;
         }
-        MdcSizeCustomAttribute.prototype.bind = function () {
+        bind() {
             this.observer = this.getObserver();
             this.observer.observe(this.element);
-        };
-        MdcSizeCustomAttribute.prototype.unbind = function () {
+        }
+        unbind() {
             this.observer.disconnect();
             this.observer = void 0;
-        };
-        MdcSizeCustomAttribute.prototype.getObserver = function () {
-            var _this = this;
+        }
+        getObserver() {
             if (typeof aurelia_pal_1.PLATFORM.global.ResizeObserver === 'function') {
-                return new aurelia_pal_1.PLATFORM.global.ResizeObserver(function (records) {
-                    var rect = records[0].contentRect;
-                    _this.value = { width: rect.width, height: rect.height };
+                return new aurelia_pal_1.PLATFORM.global.ResizeObserver((records) => {
+                    const rect = records[0].contentRect;
+                    this.value = { width: rect.width, height: rect.height };
                 });
             }
             else {
-                return new ElementSizeDirtyChecker(function (size) {
-                    _this.value = size;
+                return new ElementSizeDirtyChecker((size) => {
+                    this.value = size;
                 });
             }
-        };
-        MdcSizeCustomAttribute.prototype.valueChanged = function (size) {
+        }
+        valueChanged(size) {
             this.value = size;
             this.width = size.width;
             this.height = size.height;
-        };
-        tslib_1.__decorate([
-            aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.fromView, primaryProperty: true }),
-            tslib_1.__metadata("design:type", Object)
-        ], MdcSizeCustomAttribute.prototype, "value", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.fromView }),
-            tslib_1.__metadata("design:type", Number)
-        ], MdcSizeCustomAttribute.prototype, "width", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.fromView }),
-            tslib_1.__metadata("design:type", Number)
-        ], MdcSizeCustomAttribute.prototype, "height", void 0);
-        MdcSizeCustomAttribute = tslib_1.__decorate([
-            aurelia_framework_1.customAttribute('mdc-size'),
-            aurelia_framework_1.inject(Element),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcSizeCustomAttribute);
-        return MdcSizeCustomAttribute;
-    }());
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.fromView, primaryProperty: true }),
+        tslib_1.__metadata("design:type", Object)
+    ], MdcSizeCustomAttribute.prototype, "value", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.fromView }),
+        tslib_1.__metadata("design:type", Number)
+    ], MdcSizeCustomAttribute.prototype, "width", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.fromView }),
+        tslib_1.__metadata("design:type", Number)
+    ], MdcSizeCustomAttribute.prototype, "height", void 0);
+    MdcSizeCustomAttribute = tslib_1.__decorate([
+        aurelia_framework_1.customAttribute('mdc-size'),
+        aurelia_framework_1.inject(Element),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcSizeCustomAttribute);
     exports.MdcSizeCustomAttribute = MdcSizeCustomAttribute;
-    var ElementSizeDirtyChecker = /** @class */ (function () {
-        function ElementSizeDirtyChecker(callback, rate /*3 times a second*/) {
-            if (rate === void 0) { rate = 330; }
+    class ElementSizeDirtyChecker {
+        constructor(callback, rate = 330 /*3 times a second*/) {
             this.callback = callback;
             this.rate = rate;
             this.size = { width: 0, height: 0 };
         }
-        ElementSizeDirtyChecker.prototype.observe = function (element) {
-            var _this = this;
-            this.timerId = setInterval(function () {
-                var _a = element.getBoundingClientRect(), width = _a.width, height = _a.height;
-                var currentSize = _this.size;
+        observe(element) {
+            this.timerId = setInterval(() => {
+                const { width, height } = element.getBoundingClientRect();
+                const currentSize = this.size;
                 if (width !== currentSize.width || height !== currentSize.height) {
-                    _this.size = { width: width, height: height };
-                    if (typeof _this.callback === 'function') {
-                        _this.callback(_this.size);
+                    this.size = { width, height };
+                    if (typeof this.callback === 'function') {
+                        this.callback(this.size);
                     }
                 }
             }, this.rate);
-        };
-        ElementSizeDirtyChecker.prototype.disconnect = function () {
+        }
+        disconnect() {
             clearInterval(this.timerId);
-        };
-        return ElementSizeDirtyChecker;
-    }());
+        }
+    }
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -58532,31 +58422,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.EnhanceMdcButton = void 0;
-    var EnhanceMdcButton = /** @class */ (function () {
-        function EnhanceMdcButton() {
+    let EnhanceMdcButton = class EnhanceMdcButton {
+        beforeCompile(template) {
+            const actions = template.querySelectorAll("[mdc-button]");
+            for (let i of Array.from(actions)) {
+                i.setAttribute("as-element", "mdc-button");
+            }
         }
-        EnhanceMdcButton.prototype.beforeCompile = function (template) {
-            var e_1, _a;
-            var actions = template.querySelectorAll("[mdc-button]");
-            try {
-                for (var _b = tslib_1.__values(Array.from(actions)), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var i = _c.value;
-                    i.setAttribute("as-element", "mdc-button");
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-        };
-        EnhanceMdcButton = tslib_1.__decorate([
-            aurelia_framework_1.viewEngineHooks
-        ], EnhanceMdcButton);
-        return EnhanceMdcButton;
-    }());
+    };
+    EnhanceMdcButton = tslib_1.__decorate([
+        aurelia_framework_1.viewEngineHooks
+    ], EnhanceMdcButton);
     exports.EnhanceMdcButton = EnhanceMdcButton;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58575,32 +58451,29 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcButton = void 0;
-    var MdcButton = /** @class */ (function () {
-        function MdcButton() {
-        }
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcButton.prototype, "touch", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcButton.prototype, "raised", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcButton.prototype, "unelevated", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcButton.prototype, "outlined", void 0);
-        MdcButton = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-button.html'),
-            aurelia_framework_1.customElement('mdc-button')
-        ], MdcButton);
-        return MdcButton;
-    }());
+    let MdcButton = class MdcButton {
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcButton.prototype, "touch", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcButton.prototype, "raised", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcButton.prototype, "unelevated", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcButton.prototype, "outlined", void 0);
+    MdcButton = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-button.html'),
+        aurelia_framework_1.customElement('mdc-button')
+    ], MdcButton);
     exports.MdcButton = MdcButton;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58662,19 +58535,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCard = void 0;
-    var MdcCard = /** @class */ (function () {
-        function MdcCard() {
-        }
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcCard.prototype, "outlined", void 0);
-        MdcCard = tslib_1.__decorate([
-            aurelia_framework_1.useView('./mdc-card.html'),
-            aurelia_framework_1.customElement('mdc-card')
-        ], MdcCard);
-        return MdcCard;
-    }());
+    let MdcCard = class MdcCard {
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcCard.prototype, "outlined", void 0);
+    MdcCard = tslib_1.__decorate([
+        aurelia_framework_1.useView('./mdc-card.html'),
+        aurelia_framework_1.customElement('mdc-card')
+    ], MdcCard);
     exports.MdcCard = MdcCard;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58693,15 +58563,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCardActionButtons = void 0;
-    var MdcCardActionButtons = /** @class */ (function () {
-        function MdcCardActionButtons() {
-        }
-        MdcCardActionButtons = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template class="mdc-card__action-buttons"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-card-action-buttons')
-        ], MdcCardActionButtons);
-        return MdcCardActionButtons;
-    }());
+    let MdcCardActionButtons = class MdcCardActionButtons {
+    };
+    MdcCardActionButtons = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-card__action-buttons"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-card-action-buttons')
+    ], MdcCardActionButtons);
     exports.MdcCardActionButtons = MdcCardActionButtons;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58720,15 +58587,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCardActionIcons = void 0;
-    var MdcCardActionIcons = /** @class */ (function () {
-        function MdcCardActionIcons() {
-        }
-        MdcCardActionIcons = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template class="mdc-card__action-icons"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-card-action-icons')
-        ], MdcCardActionIcons);
-        return MdcCardActionIcons;
-    }());
+    let MdcCardActionIcons = class MdcCardActionIcons {
+    };
+    MdcCardActionIcons = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-card__action-icons"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-card-action-icons')
+    ], MdcCardActionIcons);
     exports.MdcCardActionIcons = MdcCardActionIcons;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58747,14 +58611,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCardActions = void 0;
-    var MdcCardActions = /** @class */ (function () {
-        function MdcCardActions(root) {
+    let MdcCardActions = class MdcCardActions {
+        constructor(root) {
             this.root = root;
         }
-        MdcCardActions.prototype.attached = function () {
-            var children = this.root.children;
-            for (var i = 0; i < children.length; ++i) {
-                var child = children[i];
+        attached() {
+            const children = this.root.children;
+            for (let i = 0; i < children.length; ++i) {
+                const child = children[i];
                 child.classList.add('mdc-card__action');
                 if (child.classList.contains('mdc-icon-button')) {
                     child.classList.add('mdc-card__action--icon');
@@ -58763,19 +58627,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     child.classList.add('mdc-card__action--button');
                 }
             }
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcCardActions.prototype, "fullBleed", void 0);
-        MdcCardActions = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-card-actions.html'),
-            aurelia_framework_1.customElement('mdc-card-actions'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcCardActions);
-        return MdcCardActions;
-    }());
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcCardActions.prototype, "fullBleed", void 0);
+    MdcCardActions = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-card-actions.html'),
+        aurelia_framework_1.customElement('mdc-card-actions'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcCardActions);
     exports.MdcCardActions = MdcCardActions;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58808,23 +58671,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCardMedia = void 0;
-    var MdcCardMedia = /** @class */ (function () {
-        function MdcCardMedia() {
-        }
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcCardMedia.prototype, "scale", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcCardMedia.prototype, "wide", void 0);
-        MdcCardMedia = tslib_1.__decorate([
-            aurelia_framework_1.useView('./mdc-card-media.html'),
-            aurelia_framework_1.customElement('mdc-card-media')
-        ], MdcCardMedia);
-        return MdcCardMedia;
-    }());
+    let MdcCardMedia = class MdcCardMedia {
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcCardMedia.prototype, "scale", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcCardMedia.prototype, "wide", void 0);
+    MdcCardMedia = tslib_1.__decorate([
+        aurelia_framework_1.useView('./mdc-card-media.html'),
+        aurelia_framework_1.customElement('mdc-card-media')
+    ], MdcCardMedia);
     exports.MdcCardMedia = MdcCardMedia;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58857,15 +58717,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCardPrimaryAction = void 0;
-    var MdcCardPrimaryAction = /** @class */ (function () {
-        function MdcCardPrimaryAction() {
-        }
-        MdcCardPrimaryAction = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template class="mdc-card__primary-action" mdc-ripple><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-card-primary-action')
-        ], MdcCardPrimaryAction);
-        return MdcCardPrimaryAction;
-    }());
+    let MdcCardPrimaryAction = class MdcCardPrimaryAction {
+    };
+    MdcCardPrimaryAction = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-card__primary-action" mdc-ripple><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-card-primary-action')
+    ], MdcCardPrimaryAction);
     exports.MdcCardPrimaryAction = MdcCardPrimaryAction;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -58906,12 +58763,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         ]);
     }
     exports.configure = configure;
-    var checkboxConfig = {
+    const checkboxConfig = {
         tagName: 'mdc-checkbox',
         properties: {
             checked: {
                 defaultBindingMode: aurelia_framework_1.bindingMode.twoWay,
-                getObserver: function (element, _, observerLocator) {
+                getObserver(element, _, observerLocator) {
                     return new aurelia_framework_1.CheckedObserver(element, new aurelia_framework_1.EventSubscriber(['change']), observerLocator);
                 }
             }
@@ -58934,155 +58791,128 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCheckbox = void 0;
-    var checkboxId = 0;
-    var MdcCheckbox = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcCheckbox, _super);
-        function MdcCheckbox(root) {
-            var _this = _super.call(this, root) || this;
-            _this.id = "mdc-checkbox-" + ++checkboxId + "-input";
-            defineMdcCheckboxElementApis(_this.root);
-            return _this;
+    let checkboxId = 0;
+    let MdcCheckbox = class MdcCheckbox extends base_1.MdcComponent {
+        constructor(root) {
+            super(root);
+            this.id = `mdc-checkbox-${++checkboxId}-input`;
+            defineMdcCheckboxElementApis(this.root);
         }
-        MdcCheckbox.prototype.disabledChanged = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _a.sent();
-                            this.nativeControl_.disabled = this.disabled;
-                            return [2 /*return*/];
-                    }
-                });
+        disabledChanged() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                this.nativeControl_.disabled = this.disabled;
             });
-        };
-        Object.defineProperty(MdcCheckbox.prototype, "checked", {
-            get: function () {
-                var _a;
-                if (this.nativeControl_) {
-                    return this.nativeControl_.checked;
-                }
-                else {
-                    return (_a = this.initialChecked) !== null && _a !== void 0 ? _a : false;
-                }
-            },
-            set: function (checked) {
-                if (this.nativeControl_) {
-                    this.nativeControl_.checked = checked;
-                }
-                else {
-                    this.initialChecked = checked;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcCheckbox.prototype, "indeterminate", {
-            get: function () {
-                return this.nativeControl_.indeterminate;
-            },
-            set: function (indeterminate) {
-                this.nativeControl_.indeterminate = indeterminate;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcCheckbox.prototype, "value", {
-            get: function () {
-                return this.nativeControl_.value;
-            },
-            set: function (value) {
-                this.nativeControl_.value = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcCheckbox.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var attributeValue, attributeValue;
-                return tslib_1.__generator(this, function (_a) {
-                    this.nativeControl_.indeterminate = this.indeterminate;
-                    this.listen(util_1.getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
-                    if (this.root.hasAttribute('checked')) {
-                        attributeValue = this.root.getAttribute('checked');
-                        if (attributeValue || attributeValue === '') {
-                            this.root.checked = true;
-                        }
+        }
+        get checked() {
+            var _a;
+            if (this.nativeControl_) {
+                return this.nativeControl_.checked;
+            }
+            else {
+                return (_a = this.initialChecked) !== null && _a !== void 0 ? _a : false;
+            }
+        }
+        set checked(checked) {
+            if (this.nativeControl_) {
+                this.nativeControl_.checked = checked;
+            }
+            else {
+                this.initialChecked = checked;
+            }
+        }
+        get indeterminate() {
+            return this.nativeControl_.indeterminate;
+        }
+        set indeterminate(indeterminate) {
+            this.nativeControl_.indeterminate = indeterminate;
+        }
+        get value() {
+            return this.nativeControl_.value;
+        }
+        set value(value) {
+            this.nativeControl_.value = value;
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.nativeControl_.indeterminate = this.indeterminate;
+                this.listen(util_1.getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
+                if (this.root.hasAttribute('checked')) {
+                    const attributeValue = this.root.getAttribute('checked');
+                    if (attributeValue || attributeValue === '') {
+                        this.root.checked = true;
                     }
-                    if (this.root.hasAttribute('indeterminate')) {
-                        attributeValue = this.root.getAttribute('indeterminate');
-                        if (attributeValue || attributeValue === '') {
-                            this.root.indeterminate = true;
-                        }
+                }
+                if (this.root.hasAttribute('indeterminate')) {
+                    const attributeValue = this.root.getAttribute('indeterminate');
+                    if (attributeValue || attributeValue === '') {
+                        this.root.indeterminate = true;
                     }
-                    return [2 /*return*/];
-                });
+                }
             });
-        };
-        MdcCheckbox.prototype.initialSyncWithDOM = function () {
+        }
+        initialSyncWithDOM() {
             if (this.initialChecked !== undefined) {
                 this.checked = this.initialChecked;
             }
-        };
-        MdcCheckbox.prototype.destroy = function () {
+        }
+        destroy() {
             this.unlisten(util_1.getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
-        };
-        MdcCheckbox.prototype.handleChange_ = function () {
+        }
+        handleChange_() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleChange();
-        };
-        MdcCheckbox.prototype.handleAnimationEnd_ = function () {
+        }
+        handleAnimationEnd_() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleAnimationEnd();
-        };
-        MdcCheckbox.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                forceLayout: function () { return _this.root.offsetWidth; },
-                hasNativeControl: function () { return !!_this.nativeControl_; },
-                isAttachedToDOM: function () { return Boolean(_this.root.parentNode); },
-                isChecked: function () { return _this.checked; },
-                isIndeterminate: function () { return _this.indeterminate; },
-                removeClass: function (className) {
-                    _this.root.classList.remove(className);
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                forceLayout: () => this.root.offsetWidth,
+                hasNativeControl: () => !!this.nativeControl_,
+                isAttachedToDOM: () => Boolean(this.root.parentNode),
+                isChecked: () => this.checked,
+                isIndeterminate: () => this.indeterminate,
+                removeClass: (className) => {
+                    this.root.classList.remove(className);
                 },
-                removeNativeControlAttr: function (attr) {
-                    _this.nativeControl_.removeAttribute(attr);
+                removeNativeControlAttr: (attr) => {
+                    this.nativeControl_.removeAttribute(attr);
                 },
-                setNativeControlAttr: function (attr, value) {
-                    _this.nativeControl_.setAttribute(attr, value);
+                setNativeControlAttr: (attr, value) => {
+                    this.nativeControl_.setAttribute(attr, value);
                 },
-                setNativeControlDisabled: function (disabled) {
-                    _this.nativeControl_.disabled = disabled;
+                setNativeControlDisabled: (disabled) => {
+                    this.nativeControl_.disabled = disabled;
                 },
             };
             return new checkbox_1.MDCCheckboxFoundation(adapter);
-        };
-        MdcCheckbox.prototype.focus = function () {
+        }
+        focus() {
             this.nativeControl_.focus();
-        };
-        MdcCheckbox.prototype.blur = function () {
+        }
+        blur() {
             this.nativeControl_.blur();
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcCheckbox.prototype, "disabled", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcCheckbox.prototype, "touch", void 0);
-        MdcCheckbox = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-checkbox.html'),
-            aurelia_framework_1.customElement('mdc-checkbox'),
-            tslib_1.__metadata("design:paramtypes", [Object])
-        ], MdcCheckbox);
-        return MdcCheckbox;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcCheckbox.prototype, "disabled", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcCheckbox.prototype, "touch", void 0);
+    MdcCheckbox = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-checkbox.html'),
+        aurelia_framework_1.customElement('mdc-checkbox'),
+        tslib_1.__metadata("design:paramtypes", [Object])
+    ], MdcCheckbox);
     exports.MdcCheckbox = MdcCheckbox;
     function defineMdcCheckboxElementApis(element) {
         Object.defineProperties(element, {
@@ -59090,30 +58920,30 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 value: 'checkbox',
             },
             checked: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.checked;
                 },
-                set: function (value) {
+                set(value) {
                     this.au.controller.viewModel.checked = value;
                 },
                 configurable: true
             },
             indeterminate: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.indeterminate;
                 },
-                set: function (value) {
+                set(value) {
                     this.au.controller.viewModel.indeterminate = value;
                 }
             },
             focus: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.focus();
                 },
                 configurable: true
             },
             blur: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.blur();
                 },
                 configurable: true
@@ -59176,83 +59006,69 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCircularProgress = void 0;
-    var MdcCircularProgress = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcCircularProgress, _super);
-        function MdcCircularProgress() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.radius = 47.5;
-            _this.size = 100;
-            _this.strokeWidth = 10;
-            return _this;
+    let MdcCircularProgress = class MdcCircularProgress extends base_1.MdcComponent {
+        constructor() {
+            super(...arguments);
+            this.radius = 47.5;
+            this.size = 100;
+            this.strokeWidth = 10;
         }
-        MdcCircularProgress.prototype.progressChanged = function () {
+        progressChanged() {
             var _a, _b;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _c.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setDeterminate(!!this.progress);
-                            if (this.progress) {
-                                (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.setProgress(this.progress);
-                            }
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setDeterminate(!!this.progress);
+                if (this.progress) {
+                    (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.setProgress(this.progress);
+                }
             });
-        };
-        MdcCircularProgress.prototype.bind = function () {
+        }
+        bind() {
             this.radius = (this.size - 4) / 2 - this.strokeWidth;
             this.strokeDasharray = 2 * this.radius * Math.PI;
             this.strokeDashoffset = this.strokeDasharray / 2;
-            this.root.style.setProperty('--mdc-circular-progress-size', this.size + "px");
-            this.root.style.setProperty('--mdc-circular-progress-stroke-width', this.strokeWidth + "px");
-            this.root.style.setProperty('--mdc-circular-progress-gap-patch-stroke-width', this.strokeWidth * 0.8 + "px");
-        };
-        MdcCircularProgress.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    this.progressChanged();
-                    return [2 /*return*/];
-                });
+            this.root.style.setProperty('--mdc-circular-progress-size', `${this.size}px`);
+            this.root.style.setProperty('--mdc-circular-progress-stroke-width', `${this.strokeWidth}px`);
+            this.root.style.setProperty('--mdc-circular-progress-gap-patch-stroke-width', `${this.strokeWidth * 0.8}px`);
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.progressChanged();
             });
-        };
-        MdcCircularProgress.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take
             // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
             // methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                getDeterminateCircleAttribute: function (attributeName) { return _this.determinateCircle_.getAttribute(attributeName); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                removeAttribute: function (attributeName) { return _this.root.removeAttribute(attributeName); },
-                setAttribute: function (attributeName, value) { return _this.root.setAttribute(attributeName, value); },
-                setDeterminateCircleAttribute: function (attributeName, value) { return _this.determinateCircle_.setAttribute(attributeName, value); },
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                getDeterminateCircleAttribute: (attributeName) => this.determinateCircle_.getAttribute(attributeName),
+                hasClass: (className) => this.root.classList.contains(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                removeAttribute: (attributeName) => this.root.removeAttribute(attributeName),
+                setAttribute: (attributeName, value) => this.root.setAttribute(attributeName, value),
+                setDeterminateCircleAttribute: (attributeName, value) => this.determinateCircle_.setAttribute(attributeName, value),
             };
             return new circular_progress_1.MDCCircularProgressFoundation(adapter);
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.number,
-            tslib_1.__metadata("design:type", Number)
-        ], MdcCircularProgress.prototype, "size", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.number,
-            tslib_1.__metadata("design:type", Number)
-        ], MdcCircularProgress.prototype, "strokeWidth", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.number,
-            tslib_1.__metadata("design:type", Number)
-        ], MdcCircularProgress.prototype, "progress", void 0);
-        MdcCircularProgress = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-circular-progress.html'),
-            aurelia_framework_1.customElement('mdc-circular-progress')
-        ], MdcCircularProgress);
-        return MdcCircularProgress;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.number,
+        tslib_1.__metadata("design:type", Number)
+    ], MdcCircularProgress.prototype, "size", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.number,
+        tslib_1.__metadata("design:type", Number)
+    ], MdcCircularProgress.prototype, "strokeWidth", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.number,
+        tslib_1.__metadata("design:type", Number)
+    ], MdcCircularProgress.prototype, "progress", void 0);
+    MdcCircularProgress = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-circular-progress.html'),
+        aurelia_framework_1.customElement('mdc-circular-progress')
+    ], MdcCircularProgress);
     exports.MdcCircularProgress = MdcCircularProgress;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59313,76 +59129,56 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcDialog = void 0;
-    var LAYOUT_EVENTS = ['resize', 'orientationchange'];
-    var dialogId = 0;
+    const LAYOUT_EVENTS = ['resize', 'orientationchange'];
+    let dialogId = 0;
     dialog_1.strings.OPENING_EVENT = dialog_1.strings.OPENING_EVENT.toLowerCase();
     dialog_1.strings.CLOSING_EVENT = dialog_1.strings.CLOSING_EVENT.toLowerCase();
-    var MdcDialog = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcDialog, _super);
-        function MdcDialog() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.id = ++dialogId;
-            _this.contentId = "mdc-dialog-content-" + _this.id;
-            _this.titleId = "mdc-dialog-title-" + _this.id;
-            return _this;
+    let MdcDialog = class MdcDialog extends base_1.MdcComponent {
+        constructor() {
+            super(...arguments);
+            this.id = ++dialogId;
+            this.contentId = `mdc-dialog-content-${this.id}`;
+            this.titleId = `mdc-dialog-title-${this.id}`;
         }
-        MdcDialog.prototype.scrimClickActionChanged = function () {
+        scrimClickActionChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setScrimClickAction(this.scrimClickAction);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setScrimClickAction(this.scrimClickAction);
             });
-        };
-        MdcDialog.prototype.escapeKeyActionChanged = function () {
+        }
+        escapeKeyActionChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setEscapeKeyAction(this.escapeKeyAction);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setEscapeKeyAction(this.escapeKeyAction);
             });
-        };
-        MdcDialog.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var content, title;
-                return tslib_1.__generator(this, function (_a) {
-                    this.focusTrap_ = dialog_1.util.createFocusTrapInstance(this.root, function (el, focusOptions) { return new focus_trap_1.FocusTrap(el, focusOptions); });
-                    this.buttons_ = [].slice.call(this.root.querySelectorAll(dialog_1.strings.BUTTON_SELECTOR));
-                    this.defaultButton_ = this.root.querySelector("[" + dialog_1.strings.BUTTON_DEFAULT_ATTRIBUTE + "]");
-                    content = this.root.querySelector('mdc-dialog-content');
-                    content === null || content === void 0 ? void 0 : content.setAttribute('id', this.contentId);
-                    title = this.root.querySelector('mdc-dialog-title');
-                    title === null || title === void 0 ? void 0 : title.setAttribute('id', this.titleId);
-                    return [2 /*return*/];
-                });
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.focusTrap_ = dialog_1.util.createFocusTrapInstance(this.root, (el, focusOptions) => new focus_trap_1.FocusTrap(el, focusOptions));
+                this.buttons_ = [].slice.call(this.root.querySelectorAll(dialog_1.strings.BUTTON_SELECTOR));
+                this.defaultButton_ = this.root.querySelector(`[${dialog_1.strings.BUTTON_DEFAULT_ATTRIBUTE}]`);
+                const content = this.root.querySelector('mdc-dialog-content');
+                content === null || content === void 0 ? void 0 : content.setAttribute('id', this.contentId);
+                const title = this.root.querySelector('mdc-dialog-title');
+                title === null || title === void 0 ? void 0 : title.setAttribute('id', this.titleId);
             });
-        };
-        MdcDialog.prototype.destroy = function () {
+        }
+        destroy() {
             this.handleClosing_();
-            _super.prototype.destroy.call(this);
-        };
-        MdcDialog.prototype.handleClick_ = function (evt) {
+            super.destroy();
+        }
+        handleClick_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick(evt);
-        };
-        MdcDialog.prototype.handleKeydown_ = function (evt) {
+        }
+        handleKeydown_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
             return true;
-        };
-        MdcDialog.prototype.handleEvent = function (evt) {
+        }
+        handleEvent(evt) {
             var _a, _b;
             switch (evt.currentTarget) {
                 case window:
@@ -59401,87 +59197,82 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     }
                     break;
             }
-        };
-        MdcDialog.prototype.handleOpening_ = function () {
-            var _this = this;
-            LAYOUT_EVENTS.forEach(function (evtType) { return window.addEventListener(evtType, _this); });
+        }
+        handleOpening_() {
+            LAYOUT_EVENTS.forEach((evtType) => window.addEventListener(evtType, this));
             document.addEventListener('keydown', this);
-        };
+        }
         ;
-        MdcDialog.prototype.handleClosing_ = function () {
-            var _this = this;
-            LAYOUT_EVENTS.forEach(function (evtType) { return window.removeEventListener(evtType, _this); });
+        handleClosing_() {
+            LAYOUT_EVENTS.forEach((evtType) => window.removeEventListener(evtType, this));
             document.removeEventListener('keydown', this);
-        };
+        }
         ;
-        MdcDialog.prototype.open = function () {
+        open() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.open();
-        };
-        MdcDialog.prototype.close = function (action) {
+        }
+        close(action = '') {
             var _a;
-            if (action === void 0) { action = ''; }
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.close(action);
-        };
-        MdcDialog.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addBodyClass: function (className) { return document.body.classList.add(className); },
-                addClass: function (className) { return _this.root.classList.add(className); },
-                areButtonsStacked: function () { return dialog_1.util.areTopsMisaligned(_this.buttons_); },
-                clickDefaultButton: function () { return _this.defaultButton_ && _this.defaultButton_.click(); },
-                eventTargetMatches: function (target, selector) { return target ? ponyfill_1.matches(target, selector) : false; },
-                getActionFromEvent: function (evt) {
+            const adapter = {
+                addBodyClass: (className) => document.body.classList.add(className),
+                addClass: (className) => this.root.classList.add(className),
+                areButtonsStacked: () => dialog_1.util.areTopsMisaligned(this.buttons_),
+                clickDefaultButton: () => this.defaultButton_ && this.defaultButton_.click(),
+                eventTargetMatches: (target, selector) => target ? ponyfill_1.matches(target, selector) : false,
+                getActionFromEvent: (evt) => {
                     if (!evt.target) {
                         return '';
                     }
-                    var element = ponyfill_1.closest(evt.target, "[" + dialog_1.strings.ACTION_ATTRIBUTE + "]");
+                    const element = ponyfill_1.closest(evt.target, `[${dialog_1.strings.ACTION_ATTRIBUTE}]`);
                     return element && element.getAttribute(dialog_1.strings.ACTION_ATTRIBUTE);
                 },
-                getInitialFocusEl: function () { return _this.getInitialFocusEl_(); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                isContentScrollable: function () { var _a, _b; return dialog_1.util.isScrollable((_b = (_a = _this.content_) === null || _a === void 0 ? void 0 : _a.root) !== null && _b !== void 0 ? _b : null); },
-                notifyClosed: function (action) { return _this.emit(dialog_1.strings.CLOSED_EVENT, action ? { action: action } : {}); },
-                notifyClosing: function (action) { return _this.emit(dialog_1.strings.CLOSING_EVENT, action ? { action: action } : {}); },
-                notifyOpened: function () { return _this.emit(dialog_1.strings.OPENED_EVENT, {}); },
-                notifyOpening: function () { return _this.emit(dialog_1.strings.OPENING_EVENT, {}); },
-                releaseFocus: function () { return _this.focusTrap_.releaseFocus(); },
-                removeBodyClass: function (className) { return document.body.classList.remove(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                reverseButtons: function () {
-                    _this.buttons_.reverse();
-                    _this.buttons_.forEach(function (button) {
+                getInitialFocusEl: () => this.getInitialFocusEl_(),
+                hasClass: (className) => this.root.classList.contains(className),
+                isContentScrollable: () => { var _a, _b; return dialog_1.util.isScrollable((_b = (_a = this.content_) === null || _a === void 0 ? void 0 : _a.root) !== null && _b !== void 0 ? _b : null); },
+                notifyClosed: (action) => this.emit(dialog_1.strings.CLOSED_EVENT, action ? { action } : {}),
+                notifyClosing: (action) => this.emit(dialog_1.strings.CLOSING_EVENT, action ? { action } : {}),
+                notifyOpened: () => this.emit(dialog_1.strings.OPENED_EVENT, {}),
+                notifyOpening: () => this.emit(dialog_1.strings.OPENING_EVENT, {}),
+                releaseFocus: () => this.focusTrap_.releaseFocus(),
+                removeBodyClass: (className) => document.body.classList.remove(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                reverseButtons: () => {
+                    this.buttons_.reverse();
+                    this.buttons_.forEach((button) => {
                         button.parentElement.appendChild(button);
                     });
                 },
-                trapFocus: function () { return _this.focusTrap_.trapFocus(); },
+                trapFocus: () => this.focusTrap_.trapFocus(),
             };
             return new dialog_1.MDCDialogFoundation(adapter);
-        };
-        MdcDialog.prototype.getInitialFocusEl_ = function () {
-            return this.root.querySelector("[" + dialog_1.strings.INITIAL_FOCUS_ATTRIBUTE + "]");
-        };
-        tslib_1.__decorate([
-            aurelia_framework_1.child('mdc-dialog-content'),
-            tslib_1.__metadata("design:type", mdc_dialog_content_1.MdcDialogContent)
-        ], MdcDialog.prototype, "content_", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcDialog.prototype, "scrimClickAction", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcDialog.prototype, "escapeKeyAction", void 0);
-        MdcDialog = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-dialog.html'),
-            aurelia_framework_1.customElement('mdc-dialog')
-        ], MdcDialog);
-        return MdcDialog;
-    }(base_1.MdcComponent));
+        }
+        getInitialFocusEl_() {
+            return this.root.querySelector(`[${dialog_1.strings.INITIAL_FOCUS_ATTRIBUTE}]`);
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.child('mdc-dialog-content'),
+        tslib_1.__metadata("design:type", mdc_dialog_content_1.MdcDialogContent)
+    ], MdcDialog.prototype, "content_", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcDialog.prototype, "scrimClickAction", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcDialog.prototype, "escapeKeyAction", void 0);
+    MdcDialog = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-dialog.html'),
+        aurelia_framework_1.customElement('mdc-dialog')
+    ], MdcDialog);
     exports.MdcDialog = MdcDialog;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59500,27 +59291,26 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcDialogActions = void 0;
-    var MdcDialogActions = /** @class */ (function () {
-        function MdcDialogActions(root) {
+    let MdcDialogActions = class MdcDialogActions {
+        constructor(root) {
             this.root = root;
         }
-        MdcDialogActions.prototype.attached = function () {
-            var children = this.root.children;
-            for (var i = 0; i < children.length; ++i) {
-                var child = children[i];
+        attached() {
+            const children = this.root.children;
+            for (let i = 0; i < children.length; ++i) {
+                const child = children[i];
                 if (child.classList.contains('mdc-button')) {
                     child.classList.add('mdc-dialog__button');
                 }
             }
-        };
-        MdcDialogActions = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.inlineView('<template class="mdc-dialog__actions"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-dialog-actions'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcDialogActions);
-        return MdcDialogActions;
-    }());
+        }
+    };
+    MdcDialogActions = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inlineView('<template class="mdc-dialog__actions"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-dialog-actions'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcDialogActions);
     exports.MdcDialogActions = MdcDialogActions;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59539,18 +59329,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcDialogContent = void 0;
-    var MdcDialogContent = /** @class */ (function () {
-        function MdcDialogContent(root) {
+    let MdcDialogContent = class MdcDialogContent {
+        constructor(root) {
             this.root = root;
         }
-        MdcDialogContent = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.inlineView('<template class="mdc-dialog__content"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-dialog-content'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcDialogContent);
-        return MdcDialogContent;
-    }());
+    };
+    MdcDialogContent = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inlineView('<template class="mdc-dialog__content"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-dialog-content'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcDialogContent);
     exports.MdcDialogContent = MdcDialogContent;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59569,15 +59358,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcDialogTitle = void 0;
-    var MdcDialogTitle = /** @class */ (function () {
-        function MdcDialogTitle() {
-        }
-        MdcDialogTitle = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template class="mdc-dialog__title"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-dialog-title')
-        ], MdcDialogTitle);
-        return MdcDialogTitle;
-    }());
+    let MdcDialogTitle = class MdcDialogTitle {
+    };
+    MdcDialogTitle = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-dialog__title"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-dialog-title')
+    ], MdcDialogTitle);
     exports.MdcDialogTitle = MdcDialogTitle;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59637,108 +59423,97 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcDrawer = void 0;
-    var MdcDrawer = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcDrawer, _super);
-        function MdcDrawer() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.type = 'standard';
-            return _this;
+    let MdcDrawer = class MdcDrawer extends base_1.MdcComponent {
+        constructor() {
+            super(...arguments);
+            this.type = 'standard';
         }
-        Object.defineProperty(MdcDrawer.prototype, "open", {
-            /**
-             * @return boolean Proxies to the foundation's `open`/`close` methods.
-             * Also returns true if drawer is in the open position.
-             */
-            get: function () {
-                return this.foundation.isOpen();
-            },
-            /**
-             * Toggles the drawer open and closed.
-             */
-            set: function (isOpen) {
-                var _a, _b;
-                if (isOpen) {
-                    (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.open();
+        /**
+         * @return boolean Proxies to the foundation's `open`/`close` methods.
+         * Also returns true if drawer is in the open position.
+         */
+        get open() {
+            return this.foundation.isOpen();
+        }
+        /**
+         * Toggles the drawer open and closed.
+         */
+        set open(isOpen) {
+            var _a, _b;
+            if (isOpen) {
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.open();
+            }
+            else {
+                (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.close();
+            }
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.focusTrapFactory_ = el => new focus_trap_1.FocusTrap(el);
+                if (this.root.parentElement.clientWidth < 900) {
+                    this.type = 'modal';
                 }
-                else {
-                    (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.close();
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcDrawer.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    this.focusTrapFactory_ = function (el) { return new focus_trap_1.FocusTrap(el); };
-                    if (this.root.parentElement.clientWidth < 900) {
-                        this.type = 'modal';
-                    }
-                    return [2 /*return*/];
-                });
             });
-        };
-        MdcDrawer.prototype.initialSyncWithDOM = function () {
-            var _this = this;
+        }
+        initialSyncWithDOM() {
             if (this.type === 'modal') {
                 this.scrim_ = document.createElement('div');
                 this.scrim_.classList.add('mdc-drawer-scrim');
                 this.root.insertAdjacentElement('afterend', this.scrim_);
                 if (this.scrim_) {
-                    this.handleScrimClick_ = function () {
-                        _this.open = false;
-                        return _this.foundation.handleScrimClick();
+                    this.handleScrimClick_ = () => {
+                        this.open = false;
+                        return this.foundation.handleScrimClick();
                     };
                     this.scrim_.addEventListener('click', this.handleScrimClick_);
                     this.focusTrap_ = drawer_1.util.createFocusTrapInstance(this.root, this.focusTrapFactory_);
                 }
             }
-        };
-        MdcDrawer.prototype.handleKeydown_ = function (evt) {
+        }
+        handleKeydown_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
             return true;
-        };
-        MdcDrawer.prototype.handleTransitionEnd_ = function (evt) {
+        }
+        handleTransitionEnd_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTransitionEnd(evt);
             return true;
-        };
-        MdcDrawer.prototype.destroy = function () {
-            var MODAL = drawer_1.cssClasses.MODAL;
+        }
+        destroy() {
+            const { MODAL } = drawer_1.cssClasses;
             if (this.scrim_ && this.handleScrimClick_ && this.root.classList.contains(MODAL)) {
                 this.scrim_.removeEventListener('click', this.handleScrimClick_);
                 // Ensure drawer is closed to hide scrim and release focus
                 this.open = false;
             }
-        };
-        MdcDrawer.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                elementHasClass: function (element, className) { return element.classList.contains(className); },
-                saveFocus: function () { return _this.previousFocus_ = document.activeElement; },
-                restoreFocus: function () {
-                    var previousFocus = _this.previousFocus_;
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                hasClass: (className) => this.root.classList.contains(className),
+                elementHasClass: (element, className) => element.classList.contains(className),
+                saveFocus: () => this.previousFocus_ = document.activeElement,
+                restoreFocus: () => {
+                    const previousFocus = this.previousFocus_;
                     if (previousFocus && previousFocus.focus &&
-                        _this.root.contains(document.activeElement)) {
+                        this.root.contains(document.activeElement)) {
                         previousFocus.focus();
                     }
                 },
-                focusActiveNavigationItem: function () {
-                    var activeNavItemEl = _this.root.querySelector("." + list_1.MDCListFoundation.cssClasses.LIST_ITEM_ACTIVATED_CLASS);
+                focusActiveNavigationItem: () => {
+                    const activeNavItemEl = this.root.querySelector(`.${list_1.MDCListFoundation.cssClasses.LIST_ITEM_ACTIVATED_CLASS}`);
                     if (activeNavItemEl) {
                         activeNavItemEl.focus();
                     }
                 },
-                notifyClose: function () { return _this.emit(drawer_1.strings.CLOSE_EVENT, {}, true /* shouldBubble */); },
-                notifyOpen: function () { return _this.emit(drawer_1.strings.OPEN_EVENT, {}, true /* shouldBubble */); },
-                trapFocus: function () { var _a; return (_a = _this.focusTrap_) === null || _a === void 0 ? void 0 : _a.trapFocus(); },
-                releaseFocus: function () { var _a; return (_a = _this.focusTrap_) === null || _a === void 0 ? void 0 : _a.releaseFocus(); },
+                notifyClose: () => this.emit(drawer_1.strings.CLOSE_EVENT, {}, true /* shouldBubble */),
+                notifyOpen: () => this.emit(drawer_1.strings.OPEN_EVENT, {}, true /* shouldBubble */),
+                trapFocus: () => { var _a; return (_a = this.focusTrap_) === null || _a === void 0 ? void 0 : _a.trapFocus(); },
+                releaseFocus: () => { var _a; return (_a = this.focusTrap_) === null || _a === void 0 ? void 0 : _a.releaseFocus(); },
             };
             if (this.type === 'modal') {
                 return new drawer_1.MDCModalDrawerFoundation(adapter);
@@ -59746,21 +59521,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             else {
                 return new drawer_1.MDCDismissibleDrawerFoundation(adapter);
             }
-        };
-        MdcDrawer.prototype.toggle = function () {
+        }
+        toggle() {
             this.open = !this.open;
-        };
-        tslib_1.__decorate([
-            aurelia_framework_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcDrawer.prototype, "type", void 0);
-        MdcDrawer = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-drawer.html'),
-            aurelia_framework_1.customElement(drawer_1.cssClasses.ROOT)
-        ], MdcDrawer);
-        return MdcDrawer;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcDrawer.prototype, "type", void 0);
+    MdcDrawer = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-drawer.html'),
+        aurelia_framework_1.customElement(drawer_1.cssClasses.ROOT)
+    ], MdcDrawer);
     exports.MdcDrawer = MdcDrawer;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59779,16 +59553,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcDrawerAppContent = void 0;
-    var MdcDrawerAppContent = /** @class */ (function () {
-        function MdcDrawerAppContent() {
-        }
-        MdcDrawerAppContent = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.inlineView('<template class="mdc-drawer-app-content"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-drawer-app-content')
-        ], MdcDrawerAppContent);
-        return MdcDrawerAppContent;
-    }());
+    let MdcDrawerAppContent = class MdcDrawerAppContent {
+    };
+    MdcDrawerAppContent = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inlineView('<template class="mdc-drawer-app-content"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-drawer-app-content')
+    ], MdcDrawerAppContent);
     exports.MdcDrawerAppContent = MdcDrawerAppContent;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59807,16 +59578,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcDrawerContent = void 0;
-    var MdcDrawerContent = /** @class */ (function () {
-        function MdcDrawerContent() {
-        }
-        MdcDrawerContent = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.inlineView('<template class="mdc-drawer__content"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-drawer-content')
-        ], MdcDrawerContent);
-        return MdcDrawerContent;
-    }());
+    let MdcDrawerContent = class MdcDrawerContent {
+    };
+    MdcDrawerContent = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inlineView('<template class="mdc-drawer__content"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-drawer-content')
+    ], MdcDrawerContent);
     exports.MdcDrawerContent = MdcDrawerContent;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59835,24 +59603,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcDrawerHeader = void 0;
-    var MdcDrawerHeader = /** @class */ (function () {
-        function MdcDrawerHeader() {
-        }
-        tslib_1.__decorate([
-            aurelia_framework_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcDrawerHeader.prototype, "title", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcDrawerHeader.prototype, "subtitle", void 0);
-        MdcDrawerHeader = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-drawer-header.html'),
-            aurelia_framework_1.customElement('mdc-drawer-header')
-        ], MdcDrawerHeader);
-        return MdcDrawerHeader;
-    }());
+    let MdcDrawerHeader = class MdcDrawerHeader {
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcDrawerHeader.prototype, "title", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcDrawerHeader.prototype, "subtitle", void 0);
+    MdcDrawerHeader = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-drawer-header.html'),
+        aurelia_framework_1.customElement('mdc-drawer-header')
+    ], MdcDrawerHeader);
     exports.MdcDrawerHeader = MdcDrawerHeader;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59924,31 +59689,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.EnhanceMdcFab = void 0;
-    var EnhanceMdcFab = /** @class */ (function () {
-        function EnhanceMdcFab() {
+    let EnhanceMdcFab = class EnhanceMdcFab {
+        beforeCompile(template) {
+            const actions = template.querySelectorAll("[mdc-fab]");
+            for (let i of Array.from(actions)) {
+                i.setAttribute("as-element", "mdc-fab");
+            }
         }
-        EnhanceMdcFab.prototype.beforeCompile = function (template) {
-            var e_1, _a;
-            var actions = template.querySelectorAll("[mdc-fab]");
-            try {
-                for (var _b = tslib_1.__values(Array.from(actions)), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var i = _c.value;
-                    i.setAttribute("as-element", "mdc-fab");
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-        };
-        EnhanceMdcFab = tslib_1.__decorate([
-            aurelia_framework_1.viewEngineHooks
-        ], EnhanceMdcFab);
-        return EnhanceMdcFab;
-    }());
+    };
+    EnhanceMdcFab = tslib_1.__decorate([
+        aurelia_framework_1.viewEngineHooks
+    ], EnhanceMdcFab);
     exports.EnhanceMdcFab = EnhanceMdcFab;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -59967,39 +59718,36 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcFab = void 0;
-    var MdcFab = /** @class */ (function () {
-        function MdcFab() {
-        }
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcFab.prototype, "mini", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcFab.prototype, "extended", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcFab.prototype, "touch", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcFab.prototype, "exited", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcFab.prototype, "icon", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcFab.prototype, "label", void 0);
-        MdcFab = tslib_1.__decorate([
-            aurelia_framework_1.useView('./mdc-fab.html'),
-            aurelia_framework_1.customElement('mdc-fab')
-        ], MdcFab);
-        return MdcFab;
-    }());
+    let MdcFab = class MdcFab {
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcFab.prototype, "mini", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcFab.prototype, "extended", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcFab.prototype, "touch", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcFab.prototype, "exited", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcFab.prototype, "icon", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcFab.prototype, "label", void 0);
+    MdcFab = tslib_1.__decorate([
+        aurelia_framework_1.useView('./mdc-fab.html'),
+        aurelia_framework_1.customElement('mdc-fab')
+    ], MdcFab);
     exports.MdcFab = MdcFab;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -60056,52 +59804,46 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcFloatingLabel = void 0;
-    var MdcFloatingLabel = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcFloatingLabel, _super);
-        function MdcFloatingLabel() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcFloatingLabel.prototype.shake = function (shouldShake) {
+    let MdcFloatingLabel = class MdcFloatingLabel extends base_1.MdcComponent {
+        shake(shouldShake) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.shake(shouldShake);
-        };
+        }
         /**
          * Styles the label to float/dock.
          * @param shouldFloat If true, floats the label by adding a CSS class; otherwise, docks it by removing the class.
          */
-        MdcFloatingLabel.prototype.float = function (shouldFloat) {
+        float(shouldFloat) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.float(shouldFloat);
-        };
+        }
         /**
          * Styles the label as required.
          * @param isRequired If true, adds an asterisk to the label, indicating that it is required.
          */
-        MdcFloatingLabel.prototype.setRequired = function (isRequired) {
+        setRequired(isRequired) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setRequired(isRequired);
-        };
-        MdcFloatingLabel.prototype.getWidth = function () {
+        }
+        getWidth() {
             return this.foundation.getWidth();
-        };
-        MdcFloatingLabel.prototype.getDefaultFoundation = function () {
-            var _this = this;
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                getWidth: function () { return ponyfill_1.estimateScrollWidth(_this.root); },
-                registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-                deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
+        }
+        getDefaultFoundation() {
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                getWidth: () => ponyfill_1.estimateScrollWidth(this.root),
+                registerInteractionHandler: (evtType, handler) => this.listen(evtType, handler),
+                deregisterInteractionHandler: (evtType, handler) => this.unlisten(evtType, handler),
             };
             return new floating_label_1.MDCFloatingLabelFoundation(adapter);
-        };
-        MdcFloatingLabel = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customElement('mdc-floating-label'),
-            aurelia_framework_1.useView('./mdc-floating-label.html')
-        ], MdcFloatingLabel);
-        return MdcFloatingLabel;
-    }(base_1.MdcComponent));
+        }
+    };
+    MdcFloatingLabel = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customElement('mdc-floating-label'),
+        aurelia_framework_1.useView('./mdc-floating-label.html')
+    ], MdcFloatingLabel);
     exports.MdcFloatingLabel = MdcFloatingLabel;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -60158,64 +59900,56 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcFormField = void 0;
-    var MdcFormField = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcFormField, _super);
-        function MdcFormField() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.cssClasses = form_field_1.cssClasses;
-            return _this;
+    let MdcFormField = class MdcFormField extends base_1.MdcComponent {
+        constructor() {
+            super(...arguments);
+            this.cssClasses = form_field_1.cssClasses;
         }
-        MdcFormField.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var rippleUpgraded, input;
-                return tslib_1.__generator(this, function (_a) {
-                    rippleUpgraded = this.root.querySelector('mdc-checkbox');
-                    if (!rippleUpgraded) {
-                        rippleUpgraded = this.root.querySelector('mdc-radio');
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                let rippleUpgraded = this.root.querySelector('mdc-checkbox');
+                if (!rippleUpgraded) {
+                    rippleUpgraded = this.root.querySelector('mdc-radio');
+                }
+                this.ripple = rippleUpgraded === null || rippleUpgraded === void 0 ? void 0 : rippleUpgraded.au['mdc-ripple'].viewModel;
+                const input = this.root.querySelector('input');
+                if (input === null || input === void 0 ? void 0 : input.hasAttribute('id')) {
+                    this.label = this.root.querySelector('label');
+                    if (this.label) {
+                        this.label.setAttribute('for', input.getAttribute('id'));
                     }
-                    this.ripple = rippleUpgraded === null || rippleUpgraded === void 0 ? void 0 : rippleUpgraded.au['mdc-ripple'].viewModel;
-                    input = this.root.querySelector('input');
-                    if (input === null || input === void 0 ? void 0 : input.hasAttribute('id')) {
-                        this.label = this.root.querySelector('label');
-                        if (this.label) {
-                            this.label.setAttribute('for', input.getAttribute('id'));
-                        }
-                    }
-                    return [2 /*return*/];
-                });
+                }
             });
-        };
-        MdcFormField.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                activateInputRipple: function () { var _a; return (_a = _this.ripple) === null || _a === void 0 ? void 0 : _a.activate(); },
-                deactivateInputRipple: function () { var _a; return (_a = _this.ripple) === null || _a === void 0 ? void 0 : _a.deactivate(); },
-                deregisterInteractionHandler: function (evtType, handler) { var _a; return (_a = _this.label) === null || _a === void 0 ? void 0 : _a.removeEventListener(evtType, handler); },
-                registerInteractionHandler: function (evtType, handler) { var _a; return (_a = _this.label) === null || _a === void 0 ? void 0 : _a.addEventListener(evtType, handler); },
+            const adapter = {
+                activateInputRipple: () => { var _a; return (_a = this.ripple) === null || _a === void 0 ? void 0 : _a.activate(); },
+                deactivateInputRipple: () => { var _a; return (_a = this.ripple) === null || _a === void 0 ? void 0 : _a.deactivate(); },
+                deregisterInteractionHandler: (evtType, handler) => { var _a; return (_a = this.label) === null || _a === void 0 ? void 0 : _a.removeEventListener(evtType, handler); },
+                registerInteractionHandler: (evtType, handler) => { var _a; return (_a = this.label) === null || _a === void 0 ? void 0 : _a.addEventListener(evtType, handler); },
             };
             return new form_field_1.MDCFormFieldFoundation(adapter);
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcFormField.prototype, "nowrap", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcFormField.prototype, "alignEnd", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcFormField.prototype, "spaceBetween", void 0);
-        MdcFormField = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-form-field.html'),
-            aurelia_framework_1.customElement(form_field_1.cssClasses.ROOT)
-        ], MdcFormField);
-        return MdcFormField;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcFormField.prototype, "nowrap", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcFormField.prototype, "alignEnd", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcFormField.prototype, "spaceBetween", void 0);
+    MdcFormField = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-form-field.html'),
+        aurelia_framework_1.customElement(form_field_1.cssClasses.ROOT)
+    ], MdcFormField);
     exports.MdcFormField = MdcFormField;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -60274,31 +60008,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.EnhanceMdcIconButton = void 0;
-    var EnhanceMdcIconButton = /** @class */ (function () {
-        function EnhanceMdcIconButton() {
+    let EnhanceMdcIconButton = class EnhanceMdcIconButton {
+        beforeCompile(template) {
+            const actions = template.querySelectorAll("[mdc-icon-button]");
+            for (let i of Array.from(actions)) {
+                i.setAttribute("as-element", "mdc-icon-button");
+            }
         }
-        EnhanceMdcIconButton.prototype.beforeCompile = function (template) {
-            var e_1, _a;
-            var actions = template.querySelectorAll("[mdc-icon-button]");
-            try {
-                for (var _b = tslib_1.__values(Array.from(actions)), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var i = _c.value;
-                    i.setAttribute("as-element", "mdc-icon-button");
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-        };
-        EnhanceMdcIconButton = tslib_1.__decorate([
-            aurelia_framework_1.viewEngineHooks
-        ], EnhanceMdcIconButton);
-        return EnhanceMdcIconButton;
-    }());
+    };
+    EnhanceMdcIconButton = tslib_1.__decorate([
+        aurelia_framework_1.viewEngineHooks
+    ], EnhanceMdcIconButton);
     exports.EnhanceMdcIconButton = EnhanceMdcIconButton;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -60317,67 +60037,54 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcIconButton = void 0;
-    var MdcIconButton = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcIconButton, _super);
-        function MdcIconButton() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcIconButton.prototype.attached = function () {
+    let MdcIconButton = class MdcIconButton extends base_1.MdcComponent {
+        attached() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialise()];
-                        case 1:
-                            _b.sent();
-                            if ((_a = this.icons) === null || _a === void 0 ? void 0 : _a.length) {
-                                this.foundation = this.getDefaultFoundation();
-                                this.foundation.init();
-                            }
-                            this.initialisedResolve();
-                            this.initialSyncWithDOM();
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialise();
+                if ((_a = this.icons) === null || _a === void 0 ? void 0 : _a.length) {
+                    this.foundation = this.getDefaultFoundation();
+                    this.foundation.init();
+                }
+                this.initialisedResolve();
+                this.initialSyncWithDOM();
             });
-        };
-        MdcIconButton.prototype.handleClick = function () {
+        }
+        handleClick() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick();
-        };
+        }
         ;
-        MdcIconButton.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                notifyChange: function (evtData) {
-                    _this.emit(icon_button_1.strings.CHANGE_EVENT, evtData);
-                    _this.on = evtData.isOn;
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                hasClass: (className) => this.root.classList.contains(className),
+                notifyChange: (evtData) => {
+                    this.emit(icon_button_1.strings.CHANGE_EVENT, evtData);
+                    this.on = evtData.isOn;
                 },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                getAttr: function (attrName) { return _this.root.getAttribute(attrName); },
-                setAttr: function (attrName, attrValue) { return _this.root.setAttribute(attrName, attrValue); },
+                removeClass: (className) => this.root.classList.remove(className),
+                getAttr: (attrName) => this.root.getAttribute(attrName),
+                setAttr: (attrName, attrValue) => this.root.setAttribute(attrName, attrValue),
             };
             return new icon_button_1.MDCIconButtonToggleFoundation(adapter);
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr({ defaultBindingMode: aurelia_framework_1.bindingMode.twoWay }),
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcIconButton.prototype, "on", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.children('mdc-icon-button-icon'),
-            tslib_1.__metadata("design:type", Array)
-        ], MdcIconButton.prototype, "icons", void 0);
-        MdcIconButton = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-icon-button.html'),
-            aurelia_framework_1.customElement('mdc-icon-button')
-        ], MdcIconButton);
-        return MdcIconButton;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr({ defaultBindingMode: aurelia_framework_1.bindingMode.twoWay }),
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcIconButton.prototype, "on", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.children('mdc-icon-button-icon'),
+        tslib_1.__metadata("design:type", Array)
+    ], MdcIconButton.prototype, "icons", void 0);
+    MdcIconButton = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-icon-button.html'),
+        aurelia_framework_1.customElement('mdc-icon-button')
+    ], MdcIconButton);
     exports.MdcIconButton = MdcIconButton;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -60396,19 +60103,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcIconButtonIcon = void 0;
-    var MdcIconButtonIcon = /** @class */ (function () {
-        function MdcIconButtonIcon() {
-        }
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcIconButtonIcon.prototype, "on", void 0);
-        MdcIconButtonIcon = tslib_1.__decorate([
-            aurelia_framework_1.useView('./mdc-icon-button-icon.html'),
-            aurelia_framework_1.customElement('mdc-icon-button-icon')
-        ], MdcIconButtonIcon);
-        return MdcIconButtonIcon;
-    }());
+    let MdcIconButtonIcon = class MdcIconButtonIcon {
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcIconButtonIcon.prototype, "on", void 0);
+    MdcIconButtonIcon = tslib_1.__decorate([
+        aurelia_framework_1.useView('./mdc-icon-button-icon.html'),
+        aurelia_framework_1.customElement('mdc-icon-button-icon')
+    ], MdcIconButtonIcon);
     exports.MdcIconButtonIcon = MdcIconButtonIcon;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -60475,56 +60179,50 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @aurelia-mdc-web/base */ "@aurelia-mdc-web/base"), __webpack_require__(/*! @material/line-ripple */ "../../node_modules/@material/line-ripple/index.js"), __webpack_require__(/*! @material/line-ripple/dist/mdc.line-ripple.css */ "../../node_modules/@material/line-ripple/dist/mdc.line-ripple.css")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, base_1, line_ripple_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @aurelia-mdc-web/base */ "@aurelia-mdc-web/base"), __webpack_require__(/*! @material/line-ripple */ "../../node_modules/@material/line-ripple/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, base_1, line_ripple_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcLineRipple = void 0;
-    var MdcLineRipple = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcLineRipple, _super);
-        function MdcLineRipple() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
+    let MdcLineRipple = class MdcLineRipple extends base_1.MdcComponent {
         /**
          * Activates the line ripple
          */
-        MdcLineRipple.prototype.activate = function () {
+        activate() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate();
-        };
+        }
         /**
          * Deactivates the line ripple
          */
-        MdcLineRipple.prototype.deactivate = function () {
+        deactivate() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
-        };
+        }
         /**
          * Sets the transform origin given a user's click location.
          * The `rippleCenter` is the x-coordinate of the middle of the ripple.
          */
-        MdcLineRipple.prototype.setRippleCenter = function (xCoordinate) {
+        setRippleCenter(xCoordinate) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setRippleCenter(xCoordinate);
-        };
-        MdcLineRipple.prototype.getDefaultFoundation = function () {
-            var _this = this;
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                setStyle: function (propertyName, value) { return _this.root.style.setProperty(propertyName, value); },
-                registerEventHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-                deregisterEventHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
+        }
+        getDefaultFoundation() {
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                hasClass: (className) => this.root.classList.contains(className),
+                setStyle: (propertyName, value) => this.root.style.setProperty(propertyName, value),
+                registerEventHandler: (evtType, handler) => this.listen(evtType, handler),
+                deregisterEventHandler: (evtType, handler) => this.unlisten(evtType, handler),
             };
             return new line_ripple_1.MDCLineRippleFoundation(adapter);
-        };
-        MdcLineRipple = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customElement('mdc-line-ripple'),
-            aurelia_framework_1.inlineView('<template class="mdc-line-ripple"></template>')
-        ], MdcLineRipple);
-        return MdcLineRipple;
-    }(base_1.MdcComponent));
+        }
+    };
+    MdcLineRipple = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customElement('mdc-line-ripple'),
+        aurelia_framework_1.inlineView('<template class="mdc-line-ripple"></template>')
+    ], MdcLineRipple);
     exports.MdcLineRipple = MdcLineRipple;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -60580,231 +60278,192 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.mdcListStrings = {
         ITEMS_CHANGED: 'mdclist:itemschanged'
     };
-    var MdcList = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcList, _super);
-        function MdcList() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.cssClasses = list_1.cssClasses;
-            _this.vertical = true;
-            return _this;
+    let MdcList = class MdcList extends base_1.MdcComponent {
+        constructor() {
+            super(...arguments);
+            this.cssClasses = list_1.cssClasses;
+            this.vertical = true;
         }
-        MdcList.prototype.singleSelectionChanged = function () {
+        singleSelectionChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSingleSelection(this.singleSelection);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSingleSelection(this.singleSelection);
             });
-        };
-        MdcList.prototype.activatedChanged = function () {
+        }
+        activatedChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUseActivatedClass(this.activated);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUseActivatedClass(this.activated);
             });
-        };
-        MdcList.prototype.itemsChanged = function () {
+        }
+        itemsChanged() {
             this.emit(exports.mdcListStrings.ITEMS_CHANGED, { items: this.items }, true);
-        };
-        MdcList.prototype.typeaheadChanged = function (hasTypeahead) {
+        }
+        typeaheadChanged(hasTypeahead) {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setHasTypeahead(hasTypeahead);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setHasTypeahead(hasTypeahead);
             });
-        };
-        MdcList.prototype.wrapFocusChanged = function () {
+        }
+        wrapFocusChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setWrapFocus(this.wrapFocus);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setWrapFocus(this.wrapFocus);
             });
-        };
-        MdcList.prototype.initialSyncWithDOM = function () {
+        }
+        initialSyncWithDOM() {
             this.layout();
             this.initializeListType();
             if (this.role) {
                 this.root.setAttribute('role', this.role);
             }
-        };
-        Object.defineProperty(MdcList.prototype, "listElements", {
-            get: function () {
-                return [].slice.call(this.root.querySelectorAll("." + list_1.cssClasses.LIST_ITEM_CLASS));
-            },
-            enumerable: false,
-            configurable: true
-        });
+        }
+        get listElements() {
+            return [].slice.call(this.root.querySelectorAll(`.${list_1.cssClasses.LIST_ITEM_CLASS}`));
+        }
         /**
          * Extracts the primary text from a list item.
          * @param item The list item element.
          * @return The primary text in the element.
          */
-        MdcList.prototype.getPrimaryText = function (item) {
-            var primaryText = item.querySelector("." + list_1.cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS);
+        getPrimaryText(item) {
+            const primaryText = item.querySelector(`.${list_1.cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS}`);
             if (primaryText) {
                 return primaryText.textContent || '';
             }
-            var singleLineText = item.querySelector("." + list_1.cssClasses.LIST_ITEM_TEXT_CLASS);
+            const singleLineText = item.querySelector(`.${list_1.cssClasses.LIST_ITEM_TEXT_CLASS}`);
             return (singleLineText && singleLineText.textContent) || '';
-        };
-        MdcList.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClassForElementIndex: function (index, className) {
-                    var element = _this.listElements[index];
+            const adapter = {
+                addClassForElementIndex: (index, className) => {
+                    const element = this.listElements[index];
                     if (element) {
                         element.classList.add(className);
                     }
                 },
-                focusItemAtIndex: function (index) {
-                    var element = _this.listElements[index];
+                focusItemAtIndex: (index) => {
+                    const element = this.listElements[index];
                     if (element) {
                         element.focus();
                     }
                 },
-                getAttributeForElementIndex: function (index, attr) { return _this.listElements[index].getAttribute(attr); },
-                getFocusedElementIndex: function () { return _this.listElements.indexOf(document.activeElement); },
-                getListItemCount: function () { return _this.listElements.length; },
-                getPrimaryTextAtIndex: function (index) { return _this.getPrimaryText(_this.listElements[index]); },
-                hasCheckboxAtIndex: function (index) {
-                    var listItem = _this.listElements[index];
+                getAttributeForElementIndex: (index, attr) => this.listElements[index].getAttribute(attr),
+                getFocusedElementIndex: () => this.listElements.indexOf(document.activeElement),
+                getListItemCount: () => this.listElements.length,
+                getPrimaryTextAtIndex: (index) => this.getPrimaryText(this.listElements[index]),
+                hasCheckboxAtIndex: (index) => {
+                    const listItem = this.listElements[index];
                     return !!listItem.querySelector(list_1.strings.CHECKBOX_SELECTOR);
                 },
-                hasRadioAtIndex: function (index) {
-                    var listItem = _this.listElements[index];
+                hasRadioAtIndex: (index) => {
+                    const listItem = this.listElements[index];
                     return !!listItem.querySelector(list_1.strings.RADIO_SELECTOR);
                 },
-                isCheckboxCheckedAtIndex: function (index) {
-                    var listItem = _this.listElements[index];
-                    var toggleEl = listItem.querySelector(list_1.strings.CHECKBOX_SELECTOR);
+                isCheckboxCheckedAtIndex: (index) => {
+                    const listItem = this.listElements[index];
+                    const toggleEl = listItem.querySelector(list_1.strings.CHECKBOX_SELECTOR);
                     return toggleEl.checked;
                 },
-                isFocusInsideList: function () {
-                    return _this.root !== document.activeElement && _this.root.contains(document.activeElement);
+                isFocusInsideList: () => {
+                    return this.root !== document.activeElement && this.root.contains(document.activeElement);
                 },
-                isRootFocused: function () { return document.activeElement === _this.root; },
-                listItemAtIndexHasClass: function (index, className) { return _this.listElements[index].classList.contains(className); },
-                notifyAction: function (index) {
-                    _this.emit(list_1.strings.ACTION_EVENT, { index: index }, /** shouldBubble */ true);
+                isRootFocused: () => document.activeElement === this.root,
+                listItemAtIndexHasClass: (index, className) => this.listElements[index].classList.contains(className),
+                notifyAction: (index) => {
+                    this.emit(list_1.strings.ACTION_EVENT, { index }, /** shouldBubble */ true);
                 },
-                removeClassForElementIndex: function (index, className) {
-                    var element = _this.listElements[index];
+                removeClassForElementIndex: (index, className) => {
+                    const element = this.listElements[index];
                     if (element) {
                         element.classList.remove(className);
                     }
                 },
-                setAttributeForElementIndex: function (index, attr, value) {
-                    var element = _this.listElements[index];
+                setAttributeForElementIndex: (index, attr, value) => {
+                    const element = this.listElements[index];
                     if (element) {
                         element.setAttribute(attr, value);
                     }
                 },
-                setCheckedCheckboxOrRadioAtIndex: function (index, isChecked) {
-                    var listItem = _this.listElements[index];
-                    var toggleEl = listItem.querySelector(list_1.strings.CHECKBOX_RADIO_SELECTOR);
+                setCheckedCheckboxOrRadioAtIndex: (index, isChecked) => {
+                    const listItem = this.listElements[index];
+                    const toggleEl = listItem.querySelector(list_1.strings.CHECKBOX_RADIO_SELECTOR);
                     toggleEl.checked = isChecked;
-                    var event = document.createEvent('Event');
+                    const event = document.createEvent('Event');
                     event.initEvent('change', true, true);
                     toggleEl.dispatchEvent(event);
                 },
-                setTabIndexForListItemChildren: function (listItemIndex, tabIndexValue) {
-                    var element = _this.listElements[listItemIndex];
-                    var listItemChildren = [].slice.call(element.querySelectorAll(list_1.strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX));
-                    listItemChildren.forEach(function (el) { return el.setAttribute('tabindex', tabIndexValue); });
+                setTabIndexForListItemChildren: (listItemIndex, tabIndexValue) => {
+                    const element = this.listElements[listItemIndex];
+                    const listItemChildren = [].slice.call(element.querySelectorAll(list_1.strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX));
+                    listItemChildren.forEach((el) => el.setAttribute('tabindex', tabIndexValue));
                 },
             };
             return new list_1.MDCListFoundation(adapter);
-        };
+        }
         /**
          * Used to figure out which list item this event is targetting. Or returns -1 if
          * there is no list item
          */
-        MdcList.prototype.getListItemIndex_ = function (evt) {
-            var eventTarget = evt.target;
-            var nearestParent = ponyfill_1.closest(eventTarget, "." + list_1.cssClasses.LIST_ITEM_CLASS + ", ." + list_1.cssClasses.ROOT);
+        getListItemIndex_(evt) {
+            const eventTarget = evt.target;
+            const nearestParent = ponyfill_1.closest(eventTarget, `.${list_1.cssClasses.LIST_ITEM_CLASS}, .${list_1.cssClasses.ROOT}`);
             // Get the index of the element if it is a list item.
-            if (nearestParent && ponyfill_1.matches(nearestParent, "." + list_1.cssClasses.LIST_ITEM_CLASS)) {
+            if (nearestParent && ponyfill_1.matches(nearestParent, `.${list_1.cssClasses.LIST_ITEM_CLASS}`)) {
                 return this.listElements.indexOf(nearestParent);
             }
             return -1;
-        };
+        }
         /**
          * Used to figure out which element was clicked before sending the event to the foundation.
          */
-        MdcList.prototype.handleFocusInEvent_ = function (evt) {
+        handleFocusInEvent_(evt) {
             var _a;
-            var index = this.getListItemIndex_(evt);
+            const index = this.getListItemIndex_(evt);
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleFocusIn(evt, index);
-        };
+        }
         /**
          * Used to figure out which element was clicked before sending the event to the foundation.
          */
-        MdcList.prototype.handleFocusOutEvent_ = function (evt) {
+        handleFocusOutEvent_(evt) {
             var _a;
-            var index = this.getListItemIndex_(evt);
+            const index = this.getListItemIndex_(evt);
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleFocusOut(evt, index);
-        };
+        }
         /**
          * Used to figure out which element was focused when keydown event occurred before sending the event to the
          * foundation.
          */
-        MdcList.prototype.handleKeydownEvent_ = function (evt) {
+        handleKeydownEvent_(evt) {
             var _a;
-            var index = this.getListItemIndex_(evt);
-            var target = evt.target;
+            const index = this.getListItemIndex_(evt);
+            const target = evt.target;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt, target.classList.contains(list_1.cssClasses.LIST_ITEM_CLASS), index);
             return true;
-        };
+        }
         /**
          * Used to figure out which element was clicked before sending the event to the foundation.
          */
-        MdcList.prototype.handleClickEvent_ = function (evt) {
+        handleClickEvent_(evt) {
             var _a;
-            var index = this.getListItemIndex_(evt);
-            var target = evt.target;
+            const index = this.getListItemIndex_(evt);
+            const target = evt.target;
             // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
-            var toggleCheckbox = !ponyfill_1.matches(target, list_1.strings.CHECKBOX_RADIO_SELECTOR);
+            const toggleCheckbox = !ponyfill_1.matches(target, list_1.strings.CHECKBOX_RADIO_SELECTOR);
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick(index, toggleCheckbox);
-        };
-        Object.defineProperty(MdcList.prototype, "typeaheadInProgress", {
-            /**
-             * @return Whether typeahead is currently matching a user-specified prefix.
-             */
-            get: function () {
-                return this.foundation.isTypeaheadInProgress();
-            },
-            enumerable: false,
-            configurable: true
-        });
+        }
+        /**
+         * @return Whether typeahead is currently matching a user-specified prefix.
+         */
+        get typeaheadInProgress() {
+            return this.foundation.isTypeaheadInProgress();
+        }
         /**
          * Given the next desired character from the user, adds it to the typeahead
          * buffer. Then, attempts to find the next option matching the buffer. Wraps
@@ -60815,100 +60474,94 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          *     the currently focused index.
          * @return The index of the matched item.
          */
-        MdcList.prototype.typeaheadMatchItem = function (nextChar, startingIndex) {
+        typeaheadMatchItem(nextChar, startingIndex) {
             return this.foundation.typeaheadMatchItem(nextChar, startingIndex, /** skipFocus */ true);
-        };
-        MdcList.prototype.layout = function () {
+        }
+        layout() {
             var _a;
-            var direction = this.root.getAttribute(list_1.strings.ARIA_ORIENTATION);
+            const direction = this.root.getAttribute(list_1.strings.ARIA_ORIENTATION);
             this.vertical = direction !== list_1.strings.ARIA_ORIENTATION_HORIZONTAL;
             // List items need to have at least tabindex=-1 to be focusable.
             [].slice.call(this.root.querySelectorAll('.mdc-list-item:not([tabindex])'))
-                .forEach(function (el) {
+                .forEach((el) => {
                 el.setAttribute('tabindex', '-1');
             });
             // Child button/a elements are not tabbable until the list item is focused.
             [].slice.call(this.root.querySelectorAll(list_1.strings.FOCUSABLE_CHILD_ELEMENTS))
-                .forEach(function (el) { return el.setAttribute('tabindex', '-1'); });
+                .forEach((el) => el.setAttribute('tabindex', '-1'));
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.layout();
-        };
-        Object.defineProperty(MdcList.prototype, "selectedIndex", {
-            get: function () {
-                return this.foundation.getSelectedIndex();
-            },
-            set: function (index) {
-                var _a;
-                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSelectedIndex(index);
-            },
-            enumerable: false,
-            configurable: true
-        });
+        }
+        get selectedIndex() {
+            return this.foundation.getSelectedIndex();
+        }
+        set selectedIndex(index) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSelectedIndex(index);
+        }
         /**
          * Initialize selectedIndex value based on pre-selected checkbox list items, single selection or radio.
          */
-        MdcList.prototype.initializeListType = function () {
-            var _this = this;
-            var checkboxListItems = this.root.querySelectorAll(list_1.strings.ARIA_ROLE_CHECKBOX_SELECTOR);
-            var radioSelectedListItem = this.root.querySelector(list_1.strings.ARIA_CHECKED_RADIO_SELECTOR);
+        initializeListType() {
+            const checkboxListItems = this.root.querySelectorAll(list_1.strings.ARIA_ROLE_CHECKBOX_SELECTOR);
+            const radioSelectedListItem = this.root.querySelector(list_1.strings.ARIA_CHECKED_RADIO_SELECTOR);
             if (checkboxListItems.length) {
-                var preselectedItems = this.root.querySelectorAll(list_1.strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
-                this.selectedIndex = [].map.call(preselectedItems, function (listItem) { return _this.listElements.indexOf(listItem); });
+                const preselectedItems = this.root.querySelectorAll(list_1.strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
+                this.selectedIndex = [].map.call(preselectedItems, (listItem) => this.listElements.indexOf(listItem));
             }
             else if (radioSelectedListItem) {
                 this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
             }
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcList.prototype, "twoLine", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcList.prototype, "role", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcList.prototype, "singleSelection", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcList.prototype, "activated", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcList.prototype, "vertical", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcList.prototype, "dense", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcList.prototype, "avatar", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.children('mdc-list-item'),
-            tslib_1.__metadata("design:type", Array)
-        ], MdcList.prototype, "items", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcList.prototype, "typeahead", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcList.prototype, "nonInteractive", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcList.prototype, "wrapFocus", void 0);
-        MdcList = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-list.html'),
-            aurelia_framework_1.customElement(list_1.cssClasses.ROOT)
-        ], MdcList);
-        return MdcList;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcList.prototype, "twoLine", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcList.prototype, "role", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcList.prototype, "singleSelection", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcList.prototype, "activated", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcList.prototype, "vertical", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcList.prototype, "dense", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcList.prototype, "avatar", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.children('mdc-list-item'),
+        tslib_1.__metadata("design:type", Array)
+    ], MdcList.prototype, "items", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcList.prototype, "typeahead", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcList.prototype, "nonInteractive", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcList.prototype, "wrapFocus", void 0);
+    MdcList = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-list.html'),
+        aurelia_framework_1.customElement(list_1.cssClasses.ROOT)
+    ], MdcList);
     exports.MdcList = MdcList;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -60927,23 +60580,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcListDivider = void 0;
-    var MdcListDivider = /** @class */ (function () {
-        function MdcListDivider() {
-        }
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcListDivider.prototype, "padded", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcListDivider.prototype, "inset", void 0);
-        MdcListDivider = tslib_1.__decorate([
-            aurelia_framework_1.useView('./mdc-list-divider.html'),
-            aurelia_framework_1.customElement('mdc-list-divider')
-        ], MdcListDivider);
-        return MdcListDivider;
-    }());
+    let MdcListDivider = class MdcListDivider {
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcListDivider.prototype, "padded", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcListDivider.prototype, "inset", void 0);
+    MdcListDivider = tslib_1.__decorate([
+        aurelia_framework_1.useView('./mdc-list-divider.html'),
+        aurelia_framework_1.customElement('mdc-list-divider')
+    ], MdcListDivider);
     exports.MdcListDivider = MdcListDivider;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -60976,22 +60626,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcListGroup = void 0;
-    var MdcListGroup = /** @class */ (function () {
-        function MdcListGroup() {
+    let MdcListGroup = class MdcListGroup {
+        headersChanged() {
+            this.headers.forEach(x => x.classList.add('mdc-list-group__subheader'));
         }
-        MdcListGroup.prototype.headersChanged = function () {
-            this.headers.forEach(function (x) { return x.classList.add('mdc-list-group__subheader'); });
-        };
-        tslib_1.__decorate([
-            aurelia_framework_1.children('h1,h2,h3,h4,h5,h6'),
-            tslib_1.__metadata("design:type", Array)
-        ], MdcListGroup.prototype, "headers", void 0);
-        MdcListGroup = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template class="mdc-list-group"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-list-group')
-        ], MdcListGroup);
-        return MdcListGroup;
-    }());
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.children('h1,h2,h3,h4,h5,h6'),
+        tslib_1.__metadata("design:type", Array)
+    ], MdcListGroup.prototype, "headers", void 0);
+    MdcListGroup = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-list-group"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-list-group')
+    ], MdcListGroup);
     exports.MdcListGroup = MdcListGroup;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -61010,20 +60657,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcListItemGraphic = void 0;
-    var MdcListItemGraphic = /** @class */ (function () {
-        function MdcListItemGraphic(root) {
+    let MdcListItemGraphic = class MdcListItemGraphic {
+        constructor(root) {
             this.root = root;
         }
-        MdcListItemGraphic.prototype.attached = function () {
+        attached() {
             this.root.classList.add('mdc-list-item__graphic');
-        };
-        MdcListItemGraphic = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-list-item-graphic'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcListItemGraphic);
-        return MdcListItemGraphic;
-    }());
+        }
+    };
+    MdcListItemGraphic = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-list-item-graphic'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcListItemGraphic);
     exports.MdcListItemGraphic = MdcListItemGraphic;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -61042,20 +60688,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcListItemMate = void 0;
-    var MdcListItemMate = /** @class */ (function () {
-        function MdcListItemMate(root) {
+    let MdcListItemMate = class MdcListItemMate {
+        constructor(root) {
             this.root = root;
         }
-        MdcListItemMate.prototype.attached = function () {
+        attached() {
             this.root.classList.add('mdc-list-item__meta');
-        };
-        MdcListItemMate = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-list-item-meta'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcListItemMate);
-        return MdcListItemMate;
-    }());
+        }
+    };
+    MdcListItemMate = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-list-item-meta'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcListItemMate);
     exports.MdcListItemMate = MdcListItemMate;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -61074,15 +60719,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcListItemPrimaryText = void 0;
-    var MdcListItemPrimaryText = /** @class */ (function () {
-        function MdcListItemPrimaryText() {
-        }
-        MdcListItemPrimaryText = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template class="mdc-list-item__primary-text"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-list-item-primary-text')
-        ], MdcListItemPrimaryText);
-        return MdcListItemPrimaryText;
-    }());
+    let MdcListItemPrimaryText = class MdcListItemPrimaryText {
+    };
+    MdcListItemPrimaryText = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-list-item__primary-text"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-list-item-primary-text')
+    ], MdcListItemPrimaryText);
     exports.MdcListItemPrimaryText = MdcListItemPrimaryText;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -61101,15 +60743,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcListItemPrimaryText = void 0;
-    var MdcListItemPrimaryText = /** @class */ (function () {
-        function MdcListItemPrimaryText() {
-        }
-        MdcListItemPrimaryText = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template class="mdc-list-item__secondary-text"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-list-item-secondary-text')
-        ], MdcListItemPrimaryText);
-        return MdcListItemPrimaryText;
-    }());
+    let MdcListItemPrimaryText = class MdcListItemPrimaryText {
+    };
+    MdcListItemPrimaryText = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-list-item__secondary-text"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-list-item-secondary-text')
+    ], MdcListItemPrimaryText);
     exports.MdcListItemPrimaryText = MdcListItemPrimaryText;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -61126,31 +60765,31 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-pal */ "../../node_modules/aurelia-pal/dist/es2015/aurelia-pal.js"), __webpack_require__(/*! @material/list */ "../../node_modules/@material/list/index.js"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, aurelia_pal_1, list_1, aurelia_typed_observable_plugin_1) {
     "use strict";
+    var MdcListItem_1;
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcListItem = void 0;
-    var listItemId = 0;
-    var ENTER = 13;
-    var SPACE = 32;
-    var MdcListItem = /** @class */ (function () {
-        function MdcListItem(root) {
+    let listItemId = 0;
+    const ENTER = 13;
+    const SPACE = 32;
+    let MdcListItem = MdcListItem_1 = class MdcListItem {
+        constructor(root) {
             this.root = root;
             this.cssClasses = list_1.cssClasses;
             this.id = ++listItemId;
         }
-        MdcListItem_1 = MdcListItem;
-        MdcListItem.processContent = function (_viewCompiler, _resources, element, _instruction) {
-            var graphic = element.querySelector('[mdc-list-item-graphic]');
+        static processContent(_viewCompiler, _resources, element, _instruction) {
+            const graphic = element.querySelector('[mdc-list-item-graphic]');
             if (graphic) {
                 element.removeChild(graphic);
             }
-            var meta = element.querySelector('[mdc-list-item-meta]');
+            const meta = element.querySelector('[mdc-list-item-meta]');
             if (meta) {
                 element.removeChild(meta);
             }
-            var itemText = document.createElement('span');
+            const itemText = document.createElement('span');
             itemText.classList.add(list_1.cssClasses.LIST_ITEM_TEXT_CLASS);
-            var children = [].slice.call(element.childNodes);
-            for (var i = 0; i < children.length; ++i) {
+            const children = [].slice.call(element.childNodes);
+            for (let i = 0; i < children.length; ++i) {
                 itemText.appendChild(children[i]);
             }
             if (graphic) {
@@ -61161,44 +60800,42 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 element.appendChild(meta);
             }
             return true;
-        };
-        MdcListItem.prototype.initialSyncWithDOM = function () {
+        }
+        initialSyncWithDOM() {
             if (this.role) {
                 this.root.setAttribute('role', this.role);
             }
-        };
-        MdcListItem.prototype.onKeydown = function (evt) {
+        }
+        onKeydown(evt) {
             if ((evt.keyCode === ENTER || evt.keyCode === SPACE) && !this.disabled) {
                 this.root.dispatchEvent(new CustomEvent('selection-change', { detail: { item: this } }));
             }
             return true;
-        };
-        var MdcListItem_1;
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcListItem.prototype, "role", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcListItem.prototype, "disabled", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcListItem.prototype, "activated", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", Object)
-        ], MdcListItem.prototype, "value", void 0);
-        MdcListItem = MdcListItem_1 = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-list-item.html'),
-            aurelia_framework_1.customElement(list_1.cssClasses.LIST_ITEM_CLASS),
-            aurelia_framework_1.processContent(MdcListItem_1.processContent),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcListItem);
-        return MdcListItem;
-    }());
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcListItem.prototype, "role", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcListItem.prototype, "disabled", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcListItem.prototype, "activated", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", Object)
+    ], MdcListItem.prototype, "value", void 0);
+    MdcListItem = MdcListItem_1 = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-list-item.html'),
+        aurelia_framework_1.customElement(list_1.cssClasses.LIST_ITEM_CLASS),
+        aurelia_framework_1.processContent(MdcListItem_1.processContent),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcListItem);
     exports.MdcListItem = MdcListItem;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -61220,33 +60857,15 @@ module.exports = code;
 
 /***/ }),
 
-/***/ "@aurelia-mdc-web/list/mdc-list.css":
-/*!********************************!*\
-  !*** ../list/src/mdc-list.css ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.i, ".mdc-list-divider {\n  display: block;\n}", ""]);
-// Exports
-module.exports = exports;
-
-
-/***/ }),
-
 /***/ "@aurelia-mdc-web/list/mdc-list.html":
 /*!*********************************!*\
   !*** ../list/src/mdc-list.html ***!
   \*********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"\n    ${cssClasses.ROOT}\n    ${twoLine ? cssClasses.ROOT + '--two-line' : ''}\n    ${dense ? cssClasses.ROOT + '--dense' : ''}\n    ${avatar ? cssClasses.ROOT + '--avatar-list' : ''}\n    ${nonInteractive ? cssClasses.ROOT + '--non-interactive' : ''}\n  \" keydown.trigger=\"handleKeydownEvent_($event)\" click.trigger=\"handleClickEvent_($event)\"\n  focusin.trigger=\"handleFocusInEvent_($event)\" focusout.trigger=\"handleFocusOutEvent_($event)\"\n  aria-orientation=\"${vertical ? 'vertical' : 'horizontal' }\" style=\"display: block\">\n  <require from=\"./mdc-list.css\"></require>\n  <slot></slot>\n</template>\n";
+var code = "<template class=\"\n    ${cssClasses.ROOT}\n    ${twoLine ? cssClasses.ROOT + '--two-line' : ''}\n    ${dense ? cssClasses.ROOT + '--dense' : ''}\n    ${avatar ? cssClasses.ROOT + '--avatar-list' : ''}\n    ${nonInteractive ? cssClasses.ROOT + '--non-interactive' : ''}\n  \" keydown.trigger=\"handleKeydownEvent_($event)\" click.trigger=\"handleClickEvent_($event)\"\n  focusin.trigger=\"handleFocusInEvent_($event)\" focusout.trigger=\"handleFocusOutEvent_($event)\"\n  aria-orientation=\"${vertical ? 'vertical' : 'horizontal' }\" style=\"display: block\">\n  <slot></slot>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -61314,28 +60933,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.MdcMenuSurface = void 0;
     menu_surface_1.strings.OPENED_EVENT = menu_surface_1.strings.OPENED_EVENT.toLowerCase();
     menu_surface_1.strings.CLOSED_EVENT = menu_surface_1.strings.CLOSED_EVENT.toLowerCase();
-    var MdcMenuSurface = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcMenuSurface, _super);
-        function MdcMenuSurface() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcMenuSurface.prototype.handleKeydown = function (evt) {
+    let MdcMenuSurface = class MdcMenuSurface extends base_1.MdcComponent {
+        handleKeydown(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
-        };
-        MdcMenuSurface.prototype.handleBodyClick = function (evt) {
+        }
+        handleBodyClick(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleBodyClick(evt);
-        };
-        MdcMenuSurface.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    this.root.classList.add(menu_surface_1.cssClasses.ROOT);
-                    return [2 /*return*/];
-                });
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.root.classList.add(menu_surface_1.cssClasses.ROOT);
             });
-        };
-        MdcMenuSurface.prototype.handleEvent = function (evt) {
+        }
+        handleEvent(evt) {
             switch (evt.currentTarget) {
                 case this.root:
                     switch (evt.type) {
@@ -61352,224 +60964,188 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     }
                     break;
             }
-        };
-        MdcMenuSurface.prototype.registerBodyClickListener = function () {
+        }
+        registerBodyClickListener() {
             // this is different to native implementation
             // refer to https://github.com/material-components/material-components-web/issues/6188
             // capture so that no race between handleBodyClick and quickOpen when
             // menusurface opened on button click which registers this listener
             document.body.addEventListener('click', this);
-        };
+        }
         ;
-        MdcMenuSurface.prototype.deregisterBodyClickListener = function () {
+        deregisterBodyClickListener() {
             document.body.removeEventListener('click', this);
-        };
+        }
         ;
-        MdcMenuSurface.prototype.initialSyncWithDOM = function () {
-            var parentEl = this.root.parentElement;
+        initialSyncWithDOM() {
+            const parentEl = this.root.parentElement;
             if (!this.anchor) {
                 this.anchor = parentEl && parentEl.classList.contains(menu_surface_1.cssClasses.ANCHOR) ? parentEl : null;
             }
             this.listen('keydown', this);
-        };
-        MdcMenuSurface.prototype.destroy = function () {
+        }
+        destroy() {
             this.unlisten('keydown', this);
             if (this.originalParent) {
                 this.originalParent.appendChild(document.body.removeChild(this.root));
             }
-            _super.prototype.destroy.call(this);
-        };
-        MdcMenuSurface.prototype.isOpen = function () {
+            super.destroy();
+        }
+        isOpen() {
             return this.foundation.isOpen();
-        };
-        MdcMenuSurface.prototype.open = function () {
+        }
+        open() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.open();
-        };
-        MdcMenuSurface.prototype.close = function (skipRestoreFocus) {
+        }
+        close(skipRestoreFocus = false) {
             var _a;
-            if (skipRestoreFocus === void 0) { skipRestoreFocus = false; }
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.close(skipRestoreFocus);
-        };
-        Object.defineProperty(MdcMenuSurface.prototype, "quickOpen", {
-            set: function (quickOpen) {
-                var _a;
-                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setQuickOpen(quickOpen);
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcMenuSurface.prototype.hoistToBodyChanged = function () {
+        }
+        set quickOpen(quickOpen) {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            if (this.hoistToBody) {
-                                this.originalParent = this.root.parentElement;
-                                if (this.originalParent) {
-                                    document.body.appendChild(this.originalParent.removeChild(this.root));
-                                    (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setIsHoisted(true);
-                                }
-                            }
-                            return [2 /*return*/];
-                    }
-                });
-            });
-        };
-        MdcMenuSurface.prototype.fixedChanged = function () {
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setQuickOpen(quickOpen);
+        }
+        hoistToBodyChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0:
-                            if (this.fixed) {
-                                this.root.classList.add(menu_surface_1.cssClasses.FIXED);
-                            }
-                            else {
-                                this.root.classList.remove(menu_surface_1.cssClasses.FIXED);
-                            }
-                            return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setFixedPosition(this.fixed);
-                            return [2 /*return*/];
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                if (this.hoistToBody) {
+                    this.originalParent = this.root.parentElement;
+                    if (this.originalParent) {
+                        document.body.appendChild(this.originalParent.removeChild(this.root));
+                        (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setIsHoisted(true);
                     }
-                });
+                }
             });
-        };
+        }
+        fixedChanged() {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                if (this.fixed) {
+                    this.root.classList.add(menu_surface_1.cssClasses.FIXED);
+                }
+                else {
+                    this.root.classList.remove(menu_surface_1.cssClasses.FIXED);
+                }
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setFixedPosition(this.fixed);
+            });
+        }
         /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
-        MdcMenuSurface.prototype.setAbsolutePosition = function (x, y) {
+        setAbsolutePosition(x, y) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAbsolutePosition(x, y);
             this.hoistToBody = true;
-        };
-        MdcMenuSurface.prototype.anchorCornerChanged = function () {
+        }
+        anchorCornerChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAnchorCorner(menu_surface_1.Corner[this.anchorCorner]);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAnchorCorner(menu_surface_1.Corner[this.anchorCorner]);
             });
-        };
+        }
         /**
          * @param corner Default anchor corner alignment of top-left surface corner.
          */
-        MdcMenuSurface.prototype.setAnchorCorner = function (corner) {
+        setAnchorCorner(corner) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAnchorCorner(corner);
-        };
-        MdcMenuSurface.prototype.anchorMarginChanged = function (margin) {
+        }
+        anchorMarginChanged(margin) {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAnchorMargin(margin);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAnchorMargin(margin);
             });
-        };
-        MdcMenuSurface.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                hasAnchor: function () { return !!_this.anchor; },
-                notifyClose: function () {
-                    _this.emit(menu_surface_1.MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
-                    _this.deregisterBodyClickListener();
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                hasClass: (className) => this.root.classList.contains(className),
+                hasAnchor: () => !!this.anchor,
+                notifyClose: () => {
+                    this.emit(menu_surface_1.MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
+                    this.deregisterBodyClickListener();
                 },
-                notifyOpen: function () {
-                    _this.emit(menu_surface_1.MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
-                    _this.registerBodyClickListener();
+                notifyOpen: () => {
+                    this.emit(menu_surface_1.MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
+                    this.registerBodyClickListener();
                 },
-                isElementInContainer: function (el) { return _this.root.contains(el); },
-                isRtl: function () { return getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
-                setTransformOrigin: function (origin) {
-                    var propertyName = menu_surface_1.util.getTransformPropertyName(window) + "-origin";
-                    _this.root.style.setProperty(propertyName, origin);
+                isElementInContainer: (el) => this.root.contains(el),
+                isRtl: () => getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
+                setTransformOrigin: (origin) => {
+                    const propertyName = `${menu_surface_1.util.getTransformPropertyName(window)}-origin`;
+                    this.root.style.setProperty(propertyName, origin);
                 },
-                isFocused: function () { return document.activeElement === _this.root; },
-                saveFocus: function () {
-                    _this.previousFocus = document.activeElement;
+                isFocused: () => document.activeElement === this.root,
+                saveFocus: () => {
+                    this.previousFocus = document.activeElement;
                 },
-                restoreFocus: function () {
-                    if (_this.root.contains(document.activeElement)) {
-                        if (_this.previousFocus && _this.previousFocus.focus) {
-                            _this.previousFocus.focus();
+                restoreFocus: () => {
+                    if (this.root.contains(document.activeElement)) {
+                        if (this.previousFocus && this.previousFocus.focus) {
+                            this.previousFocus.focus();
                         }
                     }
                 },
-                getInnerDimensions: function () {
+                getInnerDimensions: () => {
                     return {
-                        width: _this.root.offsetWidth,
-                        height: _this.root.offsetHeight
+                        width: this.root.offsetWidth,
+                        height: this.root.offsetHeight
                     };
                 },
-                getAnchorDimensions: function () { return _this.anchor ? _this.anchor.getBoundingClientRect() : null; },
-                getWindowDimensions: function () {
+                getAnchorDimensions: () => this.anchor ? this.anchor.getBoundingClientRect() : null,
+                getWindowDimensions: () => {
                     return { width: window.innerWidth, height: window.innerHeight };
                 },
-                getBodyDimensions: function () {
+                getBodyDimensions: () => {
                     return { width: document.body.clientWidth, height: document.body.clientHeight };
                 },
-                getWindowScroll: function () {
+                getWindowScroll: () => {
                     return { x: window.pageXOffset, y: window.pageYOffset };
                 },
-                setPosition: function (position) {
-                    var rootHTML = _this.root;
-                    rootHTML.style.left = 'left' in position ? position.left + "px" : '';
-                    rootHTML.style.right = 'right' in position ? position.right + "px" : '';
-                    rootHTML.style.top = 'top' in position ? position.top + "px" : '';
-                    rootHTML.style.bottom = 'bottom' in position ? position.bottom + "px" : '';
+                setPosition: (position) => {
+                    const rootHTML = this.root;
+                    rootHTML.style.left = 'left' in position ? `${position.left}px` : '';
+                    rootHTML.style.right = 'right' in position ? `${position.right}px` : '';
+                    rootHTML.style.top = 'top' in position ? `${position.top}px` : '';
+                    rootHTML.style.bottom = 'bottom' in position ? `${position.bottom}px` : '';
                 },
-                setMaxHeight: function (height) {
-                    _this.root.style.maxHeight = height;
+                setMaxHeight: (height) => {
+                    this.root.style.maxHeight = height;
                 },
             };
             return new menu_surface_1.MDCMenuSurfaceFoundation(adapter);
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", Object)
-        ], MdcMenuSurface.prototype, "anchor", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcMenuSurface.prototype, "hoistToBody", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcMenuSurface.prototype, "fixed", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", Object)
-        ], MdcMenuSurface.prototype, "anchorCorner", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", Object)
-        ], MdcMenuSurface.prototype, "anchorMargin", void 0);
-        MdcMenuSurface = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-menu-surface')
-        ], MdcMenuSurface);
-        return MdcMenuSurface;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", Object)
+    ], MdcMenuSurface.prototype, "anchor", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcMenuSurface.prototype, "hoistToBody", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcMenuSurface.prototype, "fixed", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", Object)
+    ], MdcMenuSurface.prototype, "anchorCorner", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", Object)
+    ], MdcMenuSurface.prototype, "anchorMargin", void 0);
+    MdcMenuSurface = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-menu-surface')
+    ], MdcMenuSurface);
     exports.MdcMenuSurface = MdcMenuSurface;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -61588,20 +61164,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcMenuSurfaceAnchor = void 0;
-    var MdcMenuSurfaceAnchor = /** @class */ (function () {
-        function MdcMenuSurfaceAnchor(root) {
+    let MdcMenuSurfaceAnchor = class MdcMenuSurfaceAnchor {
+        constructor(root) {
             this.root = root;
         }
-        MdcMenuSurfaceAnchor.prototype.attached = function () {
+        attached() {
             this.root.classList.add(menu_surface_1.cssClasses.ANCHOR);
-        };
-        MdcMenuSurfaceAnchor = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-menu-surface-anchor'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcMenuSurfaceAnchor);
-        return MdcMenuSurfaceAnchor;
-    }());
+        }
+    };
+    MdcMenuSurfaceAnchor = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-menu-surface-anchor'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcMenuSurfaceAnchor);
     exports.MdcMenuSurfaceAnchor = MdcMenuSurfaceAnchor;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -61621,95 +61196,67 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcMenu = void 0;
     menu_1.strings.SELECTED_EVENT = menu_1.strings.SELECTED_EVENT.toLowerCase();
-    var MdcMenu = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcMenu, _super);
-        function MdcMenu() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.defaultFocusState = 'LIST_ROOT';
-            return _this;
+    let MdcMenu = class MdcMenu extends base_1.MdcComponent {
+        constructor() {
+            super(...arguments);
+            this.defaultFocusState = 'LIST_ROOT';
         }
-        MdcMenu.prototype.typeaheadChanged = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _a.sent();
-                            if (this.list_) {
-                                this.list_.typeahead = this.typeahead;
-                            }
-                            return [2 /*return*/];
-                    }
-                });
+        typeaheadChanged() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                if (this.list_) {
+                    this.list_.typeahead = this.typeahead;
+                }
             });
-        };
-        MdcMenu.prototype.handleKeydown_ = function (evt) {
+        }
+        handleKeydown_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
             return true;
-        };
-        MdcMenu.prototype.handleItemAction_ = function (evt) {
+        }
+        handleItemAction_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleItemAction(this.items[evt.detail.index]);
             return true;
-        };
-        MdcMenu.prototype.handleMenuSurfaceOpened_ = function () {
+        }
+        handleMenuSurfaceOpened_() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleMenuSurfaceOpened();
             return true;
-        };
-        Object.defineProperty(MdcMenu.prototype, "open", {
-            get: function () {
-                return this.menuSurface_.isOpen();
-            },
-            set: function (value) {
-                if (value) {
-                    this.menuSurface_.open();
-                }
-                else {
-                    this.menuSurface_.close();
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcMenu.prototype.toggle = function () {
+        }
+        get open() {
+            return this.menuSurface_.isOpen();
+        }
+        set open(value) {
+            if (value) {
+                this.menuSurface_.open();
+            }
+            else {
+                this.menuSurface_.close();
+            }
+        }
+        toggle() {
             this.open = !this.open;
-        };
-        Object.defineProperty(MdcMenu.prototype, "wrapFocus", {
-            get: function () {
-                return this.list_ ? this.list_.wrapFocus : false;
-            },
-            set: function (value) {
-                if (this.list_) {
-                    this.list_.wrapFocus = value;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcMenu.prototype, "typeaheadInProgress", {
-            /**
-             * @return Whether typeahead logic is currently matching some user prefix.
-             */
-            get: function () {
-                return this.list_ ? this.list_.typeaheadInProgress : false;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcMenu.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.menuSurface_.initialised];
-                        case 1:
-                            _a.sent();
-                            return [2 /*return*/];
-                    }
-                });
+        }
+        get wrapFocus() {
+            return this.list_ ? this.list_.wrapFocus : false;
+        }
+        set wrapFocus(value) {
+            if (this.list_) {
+                this.list_.wrapFocus = value;
+            }
+        }
+        /**
+         * @return Whether typeahead logic is currently matching some user prefix.
+         */
+        get typeaheadInProgress() {
+            return this.list_ ? this.list_.typeaheadInProgress : false;
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.menuSurface_.initialised;
             });
-        };
+        }
         /**
          * Given the next desired character from the user, adds it to the typeahead
          * buffer. Then, attempts to find the next option matching the buffer. Wraps
@@ -61723,215 +61270,190 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
          *     the currently focused index.
          * @return The index of the matched item, or -1 if no match.
          */
-        MdcMenu.prototype.typeaheadMatchItem = function (nextChar, startingIndex) {
+        typeaheadMatchItem(nextChar, startingIndex) {
             if (this.list_) {
                 return this.list_.typeaheadMatchItem(nextChar, startingIndex);
             }
             return -1;
-        };
+        }
         /**
          * Layout the underlying list element in the case of any dynamic updates
          * to its structure.
          */
-        MdcMenu.prototype.layout = function () {
+        layout() {
             if (this.list_) {
                 this.list_.layout();
             }
-        };
-        Object.defineProperty(MdcMenu.prototype, "items", {
-            /**
-             * Return the items within the menu. Note that this only contains the set of elements within
-             * the items container that are proper list items, and not supplemental / presentational DOM
-             * elements.
-             */
-            get: function () {
-                return this.list_ ? this.list_.listElements : [];
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcMenu.prototype, "singleSelection", {
-            /**
-             * Turns on/off the underlying list's single selection mode. Used mainly
-             * by select menu.
-             *
-             * @param singleSelection Whether to enable single selection mode.
-             */
-            set: function (singleSelection) {
-                if (this.list_) {
-                    this.list_.singleSelection = singleSelection;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcMenu.prototype, "selectedIndex", {
-            /**
-             * Retrieves the selected index. Only applicable to select menus.
-             * @return The selected index, which is a number for single selection and
-             *     radio lists, and an array of numbers for checkbox lists.
-             */
-            get: function () {
-                return this.list_ ? this.list_.selectedIndex : constants_1.numbers.UNSET_INDEX;
-            },
-            /**
-             * Sets the selected index of the list. Only applicable to select menus.
-             * @param index The selected index, which is a number for single selection and
-             *     radio lists, and an array of numbers for checkbox lists.
-             */
-            set: function (index) {
-                if (this.list_) {
-                    this.list_.selectedIndex = index;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
+        }
+        /**
+         * Return the items within the menu. Note that this only contains the set of elements within
+         * the items container that are proper list items, and not supplemental / presentational DOM
+         * elements.
+         */
+        get items() {
+            return this.list_ ? this.list_.listElements : [];
+        }
+        /**
+         * Turns on/off the underlying list's single selection mode. Used mainly
+         * by select menu.
+         *
+         * @param singleSelection Whether to enable single selection mode.
+         */
+        set singleSelection(singleSelection) {
+            if (this.list_) {
+                this.list_.singleSelection = singleSelection;
+            }
+        }
+        /**
+         * Retrieves the selected index. Only applicable to select menus.
+         * @return The selected index, which is a number for single selection and
+         *     radio lists, and an array of numbers for checkbox lists.
+         */
+        get selectedIndex() {
+            return this.list_ ? this.list_.selectedIndex : constants_1.numbers.UNSET_INDEX;
+        }
+        /**
+         * Sets the selected index of the list. Only applicable to select menus.
+         * @param index The selected index, which is a number for single selection and
+         *     radio lists, and an array of numbers for checkbox lists.
+         */
+        set selectedIndex(index) {
+            if (this.list_) {
+                this.list_.selectedIndex = index;
+            }
+        }
         /**
          * @param corner Default anchor corner alignment of top-left menu corner.
          */
-        MdcMenu.prototype.setAnchorCorner = function (corner) {
+        setAnchorCorner(corner) {
             this.menuSurface_.setAnchorCorner(corner);
-        };
-        Object.defineProperty(MdcMenu.prototype, "quickOpen", {
-            set: function (quickOpen) {
-                this.menuSurface_.quickOpen = quickOpen;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcMenu.prototype.defaultFocusStateChanged = function () {
+        }
+        set quickOpen(quickOpen) {
+            this.menuSurface_.quickOpen = quickOpen;
+        }
+        defaultFocusStateChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setDefaultFocusState(menu_1.DefaultFocusState[this.defaultFocusState]);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setDefaultFocusState(menu_1.DefaultFocusState[this.defaultFocusState]);
             });
-        };
+        }
         /**
          * Sets the list item as the selected row at the specified index.
          * @param index Index of list item within menu.
          */
-        MdcMenu.prototype.setSelectedIndex = function (index) {
+        setSelectedIndex(index) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSelectedIndex(index);
-        };
+        }
         /**
          * Sets the enabled state to isEnabled for the menu item at the given index.
          * @param index Index of the menu item
          * @param isEnabled The desired enabled state of the menu item.
          */
-        MdcMenu.prototype.setEnabled = function (index, isEnabled) {
+        setEnabled(index, isEnabled) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setEnabled(index, isEnabled);
-        };
+        }
         /**
          * @return The item within the menu at the index specified.
          */
-        MdcMenu.prototype.getOptionByIndex = function (index) {
-            var items = this.items;
+        getOptionByIndex(index) {
+            const items = this.items;
             if (index < items.length) {
                 return this.items[index];
             }
             else {
                 return null;
             }
-        };
+        }
         /**
          * @param index A menu item's index.
          * @return The primary text within the menu at the index specified.
          */
-        MdcMenu.prototype.getPrimaryTextAtIndex = function (index) {
-            var item = this.getOptionByIndex(index);
+        getPrimaryTextAtIndex(index) {
+            const item = this.getOptionByIndex(index);
             if (item && this.list_) {
                 return this.list_.getPrimaryText(item) || '';
             }
             return '';
-        };
-        MdcMenu.prototype.setAbsolutePosition = function (x, y) {
+        }
+        setAbsolutePosition(x, y) {
             this.menuSurface_.setAbsolutePosition(x, y);
-        };
-        MdcMenu.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClassToElementAtIndex: function (index, className) {
-                    var list = _this.items;
+            const adapter = {
+                addClassToElementAtIndex: (index, className) => {
+                    const list = this.items;
                     list[index].classList.add(className);
                 },
-                removeClassFromElementAtIndex: function (index, className) {
-                    var list = _this.items;
+                removeClassFromElementAtIndex: (index, className) => {
+                    const list = this.items;
                     list[index].classList.remove(className);
                 },
-                addAttributeToElementAtIndex: function (index, attr, value) {
-                    var list = _this.items;
+                addAttributeToElementAtIndex: (index, attr, value) => {
+                    const list = this.items;
                     list[index].setAttribute(attr, value);
                 },
-                removeAttributeFromElementAtIndex: function (index, attr) {
-                    var list = _this.items;
+                removeAttributeFromElementAtIndex: (index, attr) => {
+                    const list = this.items;
                     list[index].removeAttribute(attr);
                 },
-                elementContainsClass: function (element, className) { return element.classList.contains(className); },
-                closeSurface: function (skipRestoreFocus) { return _this.menuSurface_.close(skipRestoreFocus); },
-                getElementIndex: function (element) { return _this.items.indexOf(element); },
-                notifySelected: function (evtData) { return _this.emit(menu_1.strings.SELECTED_EVENT, { index: evtData.index, item: _this.items[evtData.index], }); },
-                getMenuItemCount: function () { return _this.items.length; },
-                focusItemAtIndex: function (index) { return _this.items[index].focus(); },
-                focusListRoot: function () { return _this.root.querySelector(menu_1.strings.LIST_SELECTOR).focus(); },
-                isSelectableItemAtIndex: function (index) { return !!ponyfill_1.closest(_this.items[index], "." + menu_1.cssClasses.MENU_SELECTION_GROUP); },
-                getSelectedSiblingOfItemAtIndex: function (index) {
-                    var selectionGroupEl = ponyfill_1.closest(_this.items[index], "." + menu_1.cssClasses.MENU_SELECTION_GROUP);
-                    var selectedItemEl = selectionGroupEl.querySelector("." + menu_1.cssClasses.MENU_SELECTED_LIST_ITEM);
-                    return selectedItemEl ? _this.items.indexOf(selectedItemEl) : -1;
+                elementContainsClass: (element, className) => element.classList.contains(className),
+                closeSurface: (skipRestoreFocus) => this.menuSurface_.close(skipRestoreFocus),
+                getElementIndex: (element) => this.items.indexOf(element),
+                notifySelected: (evtData) => this.emit(menu_1.strings.SELECTED_EVENT, { index: evtData.index, item: this.items[evtData.index], }),
+                getMenuItemCount: () => this.items.length,
+                focusItemAtIndex: (index) => this.items[index].focus(),
+                focusListRoot: () => this.root.querySelector(menu_1.strings.LIST_SELECTOR).focus(),
+                isSelectableItemAtIndex: (index) => !!ponyfill_1.closest(this.items[index], `.${menu_1.cssClasses.MENU_SELECTION_GROUP}`),
+                getSelectedSiblingOfItemAtIndex: (index) => {
+                    const selectionGroupEl = ponyfill_1.closest(this.items[index], `.${menu_1.cssClasses.MENU_SELECTION_GROUP}`);
+                    const selectedItemEl = selectionGroupEl.querySelector(`.${menu_1.cssClasses.MENU_SELECTED_LIST_ITEM}`);
+                    return selectedItemEl ? this.items.indexOf(selectedItemEl) : -1;
                 },
             };
             return new menu_1.MDCMenuFoundation(adapter);
-        };
-        tslib_1.__decorate([
-            aurelia_framework_1.child('mdc-list'),
-            tslib_1.__metadata("design:type", list_1.MdcList)
-        ], MdcMenu.prototype, "list_", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcMenu.prototype, "fixed", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcMenu.prototype, "typeahead", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr({ defaultBindingMode: aurelia_framework_1.bindingMode.oneTime }),
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcMenu.prototype, "hoistToBody", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", Object)
-        ], MdcMenu.prototype, "anchor", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", Object)
-        ], MdcMenu.prototype, "defaultFocusState", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", Object)
-        ], MdcMenu.prototype, "anchorCorner", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", Object)
-        ], MdcMenu.prototype, "anchorMargin", void 0);
-        MdcMenu = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customElement('mdc-menu')
-        ], MdcMenu);
-        return MdcMenu;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.child('mdc-list'),
+        tslib_1.__metadata("design:type", list_1.MdcList)
+    ], MdcMenu.prototype, "list_", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcMenu.prototype, "fixed", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcMenu.prototype, "typeahead", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr({ defaultBindingMode: aurelia_framework_1.bindingMode.oneTime }),
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcMenu.prototype, "hoistToBody", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", Object)
+    ], MdcMenu.prototype, "anchor", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", Object)
+    ], MdcMenu.prototype, "defaultFocusState", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", Object)
+    ], MdcMenu.prototype, "anchorCorner", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", Object)
+    ], MdcMenu.prototype, "anchorMargin", void 0);
+    MdcMenu = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customElement('mdc-menu')
+    ], MdcMenu);
     exports.MdcMenu = MdcMenu;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -61988,67 +61510,57 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcNotchedOutline = void 0;
-    var MdcNotchedOutline = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcNotchedOutline, _super);
-        function MdcNotchedOutline() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcNotchedOutline.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var _this = this;
-                return tslib_1.__generator(this, function (_a) {
-                    if (this.label) {
-                        this.label.root.style.transitionDuration = '0s';
-                        this.root.classList.add(notched_outline_1.cssClasses.OUTLINE_UPGRADED);
-                        requestAnimationFrame(function () {
-                            _this.label.root.style.transitionDuration = '';
-                        });
-                    }
-                    else {
-                        this.root.classList.add(notched_outline_1.cssClasses.NO_LABEL);
-                    }
-                    return [2 /*return*/];
-                });
+    let MdcNotchedOutline = class MdcNotchedOutline extends base_1.MdcComponent {
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                if (this.label) {
+                    this.label.root.style.transitionDuration = '0s';
+                    this.root.classList.add(notched_outline_1.cssClasses.OUTLINE_UPGRADED);
+                    requestAnimationFrame(() => {
+                        this.label.root.style.transitionDuration = '';
+                    });
+                }
+                else {
+                    this.root.classList.add(notched_outline_1.cssClasses.NO_LABEL);
+                }
             });
-        };
+        }
         /**
          * Updates classes and styles to open the notch to the specified width.
          * @param notchWidth The notch width in the outline.
          */
-        MdcNotchedOutline.prototype.notch = function (notchWidth) {
+        notch(notchWidth) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.notch(notchWidth);
-        };
+        }
         /**
          * Updates classes and styles to close the notch.
          */
-        MdcNotchedOutline.prototype.closeNotch = function () {
+        closeNotch() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.closeNotch();
-        };
-        MdcNotchedOutline.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                setNotchWidthProperty: function (width) { return _this.notchElement_.style.setProperty('width', width + 'px'); },
-                removeNotchWidthProperty: function () { return _this.notchElement_.style.removeProperty('width'); },
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                setNotchWidthProperty: (width) => this.notchElement_.style.setProperty('width', width + 'px'),
+                removeNotchWidthProperty: () => this.notchElement_.style.removeProperty('width'),
             };
             return new notched_outline_1.MDCNotchedOutlineFoundation(adapter);
-        };
-        tslib_1.__decorate([
-            aurelia_framework_1.child("." + floating_label_1.MDCFloatingLabelFoundation.cssClasses.ROOT),
-            tslib_1.__metadata("design:type", floating_label_2.MdcFloatingLabel)
-        ], MdcNotchedOutline.prototype, "label", void 0);
-        MdcNotchedOutline = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-notched-outline.html'),
-            aurelia_framework_1.customElement('mdc-notched-outline')
-        ], MdcNotchedOutline);
-        return MdcNotchedOutline;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.child(`.${floating_label_1.MDCFloatingLabelFoundation.cssClasses.ROOT}`),
+        tslib_1.__metadata("design:type", floating_label_2.MdcFloatingLabel)
+    ], MdcNotchedOutline.prototype, "label", void 0);
+    MdcNotchedOutline = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-notched-outline.html'),
+        aurelia_framework_1.customElement('mdc-notched-outline')
+    ], MdcNotchedOutline);
     exports.MdcNotchedOutline = MdcNotchedOutline;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -62089,12 +61601,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         ]);
     }
     exports.configure = configure;
-    var radioConfig = {
+    const radioConfig = {
         tagName: 'mdc-radio',
         properties: {
             checked: {
                 defaultBindingMode: aurelia_framework_1.bindingMode.twoWay,
-                getObserver: function (element, _, observerLocator) {
+                getObserver(element, _, observerLocator) {
                     return new aurelia_framework_1.CheckedObserver(element, new aurelia_framework_1.EventSubscriber(['change']), observerLocator);
                 }
             }
@@ -62117,112 +61629,89 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcRadio = void 0;
-    var radioId = 0;
-    var MdcRadio = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcRadio, _super);
-        function MdcRadio(root) {
-            var _this = _super.call(this, root) || this;
-            _this.id = "mdc-radio-" + ++radioId + "-input";
-            defineMdcRadioElementApis(_this.root);
-            return _this;
+    let radioId = 0;
+    let MdcRadio = class MdcRadio extends base_1.MdcComponent {
+        constructor(root) {
+            super(root);
+            this.id = `mdc-radio-${++radioId}-input`;
+            defineMdcRadioElementApis(this.root);
         }
-        MdcRadio.prototype.disabledChanged = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _a.sent();
-                            this.nativeControl_.disabled = this.disabled;
-                            return [2 /*return*/];
-                    }
-                });
+        disabledChanged() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                this.nativeControl_.disabled = this.disabled;
             });
-        };
-        Object.defineProperty(MdcRadio.prototype, "checked", {
-            get: function () {
-                var _a;
-                if (this.nativeControl_) {
-                    return this.nativeControl_.checked;
-                }
-                else {
-                    return (_a = this.initialChecked) !== null && _a !== void 0 ? _a : false;
-                }
-            },
-            set: function (checked) {
-                if (this.nativeControl_) {
-                    this.nativeControl_.checked = checked;
-                }
-                else {
-                    this.initialChecked = checked;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcRadio.prototype, "value", {
-            get: function () {
-                return this.nativeControl_.value;
-            },
-            set: function (value) {
-                this.nativeControl_.value = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcRadio.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var attributeValue;
-                return tslib_1.__generator(this, function (_a) {
-                    if (this.root.hasAttribute('checked')) {
-                        attributeValue = this.root.getAttribute('checked');
-                        if (attributeValue || attributeValue === '') {
-                            this.root.checked = true;
-                        }
+        }
+        get checked() {
+            var _a;
+            if (this.nativeControl_) {
+                return this.nativeControl_.checked;
+            }
+            else {
+                return (_a = this.initialChecked) !== null && _a !== void 0 ? _a : false;
+            }
+        }
+        set checked(checked) {
+            if (this.nativeControl_) {
+                this.nativeControl_.checked = checked;
+            }
+            else {
+                this.initialChecked = checked;
+            }
+        }
+        get value() {
+            return this.nativeControl_.value;
+        }
+        set value(value) {
+            this.nativeControl_.value = value;
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                if (this.root.hasAttribute('checked')) {
+                    const attributeValue = this.root.getAttribute('checked');
+                    if (attributeValue || attributeValue === '') {
+                        this.root.checked = true;
                     }
-                    return [2 /*return*/];
-                });
+                }
             });
-        };
-        MdcRadio.prototype.initialSyncWithDOM = function () {
+        }
+        initialSyncWithDOM() {
             if (this.initialChecked !== undefined) {
                 this.checked = this.initialChecked;
             }
-        };
-        MdcRadio.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled =
-                    disabled; },
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                setNativeControlDisabled: (disabled) => this.nativeControl_.disabled =
+                    disabled,
             };
             return new radio_1.MDCRadioFoundation(adapter);
-        };
-        MdcRadio.prototype.focus = function () {
+        }
+        focus() {
             this.nativeControl_.focus();
-        };
-        MdcRadio.prototype.blur = function () {
+        }
+        blur() {
             this.nativeControl_.blur();
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcRadio.prototype, "disabled", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcRadio.prototype, "touch", void 0);
-        MdcRadio = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-radio.html'),
-            aurelia_framework_1.customElement('mdc-radio'),
-            tslib_1.__metadata("design:paramtypes", [Object])
-        ], MdcRadio);
-        return MdcRadio;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcRadio.prototype, "disabled", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcRadio.prototype, "touch", void 0);
+    MdcRadio = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-radio.html'),
+        aurelia_framework_1.customElement('mdc-radio'),
+        tslib_1.__metadata("design:paramtypes", [Object])
+    ], MdcRadio);
     exports.MdcRadio = MdcRadio;
     function defineMdcRadioElementApis(element) {
         Object.defineProperties(element, {
@@ -62230,30 +61719,30 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 value: 'radio',
             },
             checked: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.checked;
                 },
-                set: function (value) {
+                set(value) {
                     this.au.controller.viewModel.checked = value;
                 },
                 configurable: true
             },
             value: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.value;
                 },
-                set: function (value) {
+                set(value) {
                     this.au.controller.viewModel.value = value;
                 }
             },
             focus: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.focus();
                 },
                 configurable: true
             },
             blur: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.blur();
                 },
                 configurable: true
@@ -62316,87 +61805,74 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcRipple = void 0;
-    var MdcRipple = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcRipple, _super);
-        function MdcRipple() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcRipple.prototype.unboundedChanged = function () {
+    let MdcRipple = class MdcRipple extends base_1.MdcComponent {
+        unboundedChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUnbounded(Boolean(this.unbounded));
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUnbounded(Boolean(this.unbounded));
             });
-        };
-        MdcRipple.prototype.activate = function () {
+        }
+        activate() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate();
-        };
-        MdcRipple.prototype.deactivate = function () {
+        }
+        deactivate() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
-        };
-        MdcRipple.prototype.layout = function () {
+        }
+        layout() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.layout();
-        };
-        MdcRipple.prototype.getDefaultFoundation = function () {
+        }
+        getDefaultFoundation() {
             return new ripple_1.MDCRippleFoundation(this.createAdapter());
-        };
-        MdcRipple.prototype.createAdapter = function () {
-            var _this = this;
+        }
+        createAdapter() {
             return {
-                addClass: function (className) { return (_this.surface || _this.root).classList.add(className); },
-                browserSupportsCssVars: function () { return ripple_1.util.supportsCssVariables(window); },
-                computeBoundingRect: function () { return (_this.surface || _this.root).getBoundingClientRect(); },
-                containsEventTarget: function (target) { return _this.root.contains(target); },
-                deregisterDocumentInteractionHandler: function (evtType, handler) { return document.documentElement.removeEventListener(evtType, handler, events_1.applyPassive()); },
-                deregisterInteractionHandler: function (evtType, handler) { var _a; return ((_a = _this.input) !== null && _a !== void 0 ? _a : _this.root).removeEventListener(evtType, handler, events_1.applyPassive()); },
-                deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
-                getWindowPageOffset: function () { return ({ x: window.pageXOffset, y: window.pageYOffset }); },
-                isSurfaceActive: function () { var _a; return _this.activeSurface && ponyfill_1.matches((_a = _this.input) !== null && _a !== void 0 ? _a : _this.root, ':active'); },
-                isSurfaceDisabled: function () { return _this.disabled; },
-                isUnbounded: function () { return _this.unbounded; },
-                registerDocumentInteractionHandler: function (evtType, handler) { return document.documentElement.addEventListener(evtType, handler, events_1.applyPassive()); },
-                registerInteractionHandler: function (evtType, handler) { var _a; return ((_a = _this.input) !== null && _a !== void 0 ? _a : _this.root).addEventListener(evtType, handler, events_1.applyPassive()); },
-                registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
-                removeClass: function (className) { return (_this.surface || _this.root).classList.remove(className); },
-                updateCssVariable: function (varName, value) { return (_this.surface || _this.root).style.setProperty(varName, value); },
+                addClass: (className) => (this.surface || this.root).classList.add(className),
+                browserSupportsCssVars: () => ripple_1.util.supportsCssVariables(window),
+                computeBoundingRect: () => (this.surface || this.root).getBoundingClientRect(),
+                containsEventTarget: (target) => this.root.contains(target),
+                deregisterDocumentInteractionHandler: (evtType, handler) => document.documentElement.removeEventListener(evtType, handler, events_1.applyPassive()),
+                deregisterInteractionHandler: (evtType, handler) => { var _a; return ((_a = this.input) !== null && _a !== void 0 ? _a : this.root).removeEventListener(evtType, handler, events_1.applyPassive()); },
+                deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
+                getWindowPageOffset: () => ({ x: window.pageXOffset, y: window.pageYOffset }),
+                isSurfaceActive: () => { var _a; return this.activeSurface && ponyfill_1.matches((_a = this.input) !== null && _a !== void 0 ? _a : this.root, ':active'); },
+                isSurfaceDisabled: () => this.disabled,
+                isUnbounded: () => this.unbounded,
+                registerDocumentInteractionHandler: (evtType, handler) => document.documentElement.addEventListener(evtType, handler, events_1.applyPassive()),
+                registerInteractionHandler: (evtType, handler) => { var _a; return ((_a = this.input) !== null && _a !== void 0 ? _a : this.root).addEventListener(evtType, handler, events_1.applyPassive()); },
+                registerResizeHandler: (handler) => window.addEventListener('resize', handler),
+                removeClass: (className) => (this.surface || this.root).classList.remove(className),
+                updateCssVariable: (varName, value) => (this.surface || this.root).style.setProperty(varName, value),
             };
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", HTMLInputElement)
-        ], MdcRipple.prototype, "input", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", HTMLElement)
-        ], MdcRipple.prototype, "surface", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcRipple.prototype, "disabled", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcRipple.prototype, "unbounded", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcRipple.prototype, "activeSurface", void 0);
-        MdcRipple = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-ripple')
-        ], MdcRipple);
-        return MdcRipple;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", HTMLInputElement)
+    ], MdcRipple.prototype, "input", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", HTMLElement)
+    ], MdcRipple.prototype, "surface", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcRipple.prototype, "disabled", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcRipple.prototype, "unbounded", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcRipple.prototype, "activeSurface", void 0);
+    MdcRipple = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-ripple')
+    ], MdcRipple);
     exports.MdcRipple = MdcRipple;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -62425,12 +61901,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         ]);
     }
     exports.configure = configure;
-    var selectConfig = {
+    const selectConfig = {
         tagName: 'mdc-select',
         properties: {
             value: {
                 defaultBindingMode: aurelia_framework_1.bindingMode.twoWay,
-                getObserver: function (element) {
+                getObserver(element) {
                     return new aurelia_framework_1.ValueAttributeObserver(element, 'value', new aurelia_framework_1.EventSubscriber([select_1.strings.CHANGE_EVENT]));
                 }
             }
@@ -62451,334 +61927,298 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "@aurelia-mdc-web/base"), __webpack_require__(/*! @material/select */ "../../node_modules/@material/select/index.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-pal */ "../../node_modules/aurelia-pal/dist/es2015/aurelia-pal.js"), __webpack_require__(/*! ./mdc-select-icon */ "@aurelia-mdc-web/select/mdc-select-icon"), __webpack_require__(/*! ./mdc-select-helper-text/mdc-select-helper-text */ "@aurelia-mdc-web/select/mdc-select-helper-text/mdc-select-helper-text"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js"), __webpack_require__(/*! @aurelia-mdc-web/list */ "@aurelia-mdc-web/list"), __webpack_require__(/*! ./mdc-select-fundation-aurelia */ "../select/src/mdc-select-fundation-aurelia.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, select_1, aurelia_framework_1, aurelia_pal_1, mdc_select_icon_1, mdc_select_helper_text_1, aurelia_typed_observable_plugin_1, list_1, mdc_select_fundation_aurelia_1) {
     "use strict";
+    var MdcSelect_1;
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcSelect = void 0;
     select_1.strings.CHANGE_EVENT = select_1.strings.CHANGE_EVENT.toLowerCase();
-    var selectId = 0;
-    var MdcSelect = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcSelect, _super);
-        function MdcSelect(root) {
-            var _this = _super.call(this, root) || this;
-            _this.id = "mdc-select-" + ++selectId;
-            defineMdcSelectElementApis(_this.root);
-            return _this;
+    let selectId = 0;
+    let MdcSelect = MdcSelect_1 = class MdcSelect extends base_1.MdcComponent {
+        constructor(root) {
+            super(root);
+            this.id = `mdc-select-${++selectId}`;
+            defineMdcSelectElementApis(this.root);
         }
-        MdcSelect_1 = MdcSelect;
-        MdcSelect.processContent = function (_viewCompiler, _resources, element, _instruction) {
+        static processContent(_viewCompiler, _resources, element, _instruction) {
             // move icon to the slot - this allows omitting slot specification
-            var leadingIcon = element.querySelector("[" + mdc_select_icon_1.mdcIconStrings.ATTRIBUTE + "]");
+            const leadingIcon = element.querySelector(`[${mdc_select_icon_1.mdcIconStrings.ATTRIBUTE}]`);
             leadingIcon === null || leadingIcon === void 0 ? void 0 : leadingIcon.setAttribute('slot', 'leading-icon');
             return true;
-        };
-        MdcSelect.prototype.requiredChanged = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _a.sent();
-                            if (this.required) {
-                                this.selectAnchor.setAttribute('aria-required', 'true');
-                            }
-                            else {
-                                this.selectAnchor.removeAttribute('aria-required');
-                            }
-                            return [2 /*return*/];
-                    }
-                });
+        }
+        requiredChanged() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                if (this.required) {
+                    this.selectAnchor.setAttribute('aria-required', 'true');
+                }
+                else {
+                    this.selectAnchor.removeAttribute('aria-required');
+                }
             });
-        };
-        Object.defineProperty(MdcSelect.prototype, "value", {
-            get: function () {
-                if (this.foundation) {
-                    return this.foundation.getValue();
-                }
-                else {
-                    return this.initialValue;
-                }
-            },
-            set: function (value) {
-                if (this.foundation) {
-                    this.foundation.setValue(value);
-                    this.foundation.layout();
-                }
-                else {
-                    this.initialValue = value;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcSelect.prototype, "valid", {
-            get: function () {
-                var _a, _b;
-                return (_b = (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.isValid()) !== null && _b !== void 0 ? _b : true;
-            },
-            set: function (value) {
-                var _a;
-                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setValid(value);
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcSelect.prototype, "selectedIndex", {
-            get: function () {
-                return this.foundation.getSelectedIndex();
-            },
-            set: function (selectedIndex) {
-                var _a;
-                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSelectedIndex(selectedIndex, /** closeMenu */ true);
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcSelect.prototype.initialise = function () {
+        }
+        get value() {
+            if (this.foundation) {
+                return this.foundation.getValue();
+            }
+            else {
+                return this.initialValue;
+            }
+        }
+        set value(value) {
+            if (this.foundation) {
+                this.foundation.setValue(value);
+                this.foundation.layout();
+            }
+            else {
+                this.initialValue = value;
+            }
+        }
+        get valid() {
             var _a, _b;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var nextSibling;
-                return tslib_1.__generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            this.leadingIcon = (_a = this.leadingIconEl) === null || _a === void 0 ? void 0 : _a.au['mdc-select-icon'].viewModel;
-                            nextSibling = this.root.nextElementSibling;
-                            if ((nextSibling === null || nextSibling === void 0 ? void 0 : nextSibling.tagName) === mdc_select_helper_text_1.mdcHelperTextCssClasses.ROOT.toUpperCase()) {
-                                this.helperText = nextSibling.au.controller.viewModel;
-                            }
-                            return [4 /*yield*/, Promise.all([(_b = this.helperText) === null || _b === void 0 ? void 0 : _b.initialised, this.menu.initialised].filter(function (x) { return x; }))];
-                        case 1:
-                            _c.sent();
-                            return [2 /*return*/];
-                    }
-                });
+            return (_b = (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.isValid()) !== null && _b !== void 0 ? _b : true;
+        }
+        set valid(value) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setValid(value);
+        }
+        get selectedIndex() {
+            return this.foundation.getSelectedIndex();
+        }
+        set selectedIndex(selectedIndex) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setSelectedIndex(selectedIndex, /** closeMenu */ true);
+        }
+        initialise() {
+            var _a, _b;
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.leadingIcon = (_a = this.leadingIconEl) === null || _a === void 0 ? void 0 : _a.au['mdc-select-icon'].viewModel;
+                const nextSibling = this.root.nextElementSibling;
+                if ((nextSibling === null || nextSibling === void 0 ? void 0 : nextSibling.tagName) === mdc_select_helper_text_1.mdcHelperTextCssClasses.ROOT.toUpperCase()) {
+                    this.helperText = nextSibling.au.controller.viewModel;
+                }
+                yield Promise.all([(_b = this.helperText) === null || _b === void 0 ? void 0 : _b.initialised, this.menu.initialised].filter(x => x));
             });
-        };
-        MdcSelect.prototype.initialSyncWithDOM = function () {
+        }
+        initialSyncWithDOM() {
             this.value = this.initialValue;
-        };
-        MdcSelect.prototype.getDefaultFoundation = function () {
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = tslib_1.__assign(tslib_1.__assign(tslib_1.__assign(tslib_1.__assign({}, this.getSelectAdapterMethods()), this.getCommonAdapterMethods()), this.getOutlineAdapterMethods()), this.getLabelAdapterMethods());
+            const adapter = Object.assign(Object.assign(Object.assign(Object.assign({}, this.getSelectAdapterMethods()), this.getCommonAdapterMethods()), this.getOutlineAdapterMethods()), this.getLabelAdapterMethods());
             return new mdc_select_fundation_aurelia_1.MDCSelectFoundationAurelia(adapter, this.getFoundationMap());
-        };
-        MdcSelect.prototype.getSelectAdapterMethods = function () {
-            var _this = this;
+        }
+        getSelectAdapterMethods() {
             return {
-                getSelectedMenuItem: function () { return _this.menuElement.querySelector(select_1.strings.SELECTED_ITEM_SELECTOR); },
-                getMenuItemAttr: function (menuItem, attr) { return menuItem.getAttribute(attr); },
-                setSelectedText: function (text) {
-                    _this.selectedText.textContent = text;
+                getSelectedMenuItem: () => this.menuElement.querySelector(select_1.strings.SELECTED_ITEM_SELECTOR),
+                getMenuItemAttr: (menuItem, attr) => menuItem.getAttribute(attr),
+                setSelectedText: (text) => {
+                    this.selectedText.textContent = text;
                 },
-                isSelectAnchorFocused: function () { return document.activeElement === _this.selectAnchor; },
-                getSelectAnchorAttr: function (attr) { return _this.selectAnchor.getAttribute(attr); },
-                setSelectAnchorAttr: function (attr, value) {
-                    _this.selectAnchor.setAttribute(attr, value);
+                isSelectAnchorFocused: () => document.activeElement === this.selectAnchor,
+                getSelectAnchorAttr: (attr) => this.selectAnchor.getAttribute(attr),
+                setSelectAnchorAttr: (attr, value) => {
+                    this.selectAnchor.setAttribute(attr, value);
                 },
-                removeSelectAnchorAttr: function (attr) {
-                    _this.selectAnchor.removeAttribute(attr);
+                removeSelectAnchorAttr: (attr) => {
+                    this.selectAnchor.removeAttribute(attr);
                 },
-                addMenuClass: function (className) {
-                    _this.menuElement.classList.add(className);
+                addMenuClass: (className) => {
+                    this.menuElement.classList.add(className);
                 },
-                removeMenuClass: function (className) {
-                    _this.menuElement.classList.remove(className);
+                removeMenuClass: (className) => {
+                    this.menuElement.classList.remove(className);
                 },
-                openMenu: function () { _this.menu.open = true; },
-                closeMenu: function () { _this.menu.open = false; },
-                getAnchorElement: function () { return _this.root.querySelector(select_1.strings.SELECT_ANCHOR_SELECTOR); },
-                setMenuAnchorElement: function (anchorEl) {
-                    _this.menu.anchor = anchorEl;
+                openMenu: () => { this.menu.open = true; },
+                closeMenu: () => { this.menu.open = false; },
+                getAnchorElement: () => this.root.querySelector(select_1.strings.SELECT_ANCHOR_SELECTOR),
+                setMenuAnchorElement: (anchorEl) => {
+                    this.menu.anchor = anchorEl;
                 },
-                setMenuAnchorCorner: function (anchorCorner) {
-                    _this.menu.setAnchorCorner(anchorCorner);
+                setMenuAnchorCorner: (anchorCorner) => {
+                    this.menu.setAnchorCorner(anchorCorner);
                 },
-                setMenuWrapFocus: function (wrapFocus) {
-                    _this.menu.wrapFocus = wrapFocus;
+                setMenuWrapFocus: (wrapFocus) => {
+                    this.menu.wrapFocus = wrapFocus;
                 },
-                getSelectedIndex: function () {
-                    var index = _this.menu.selectedIndex;
+                getSelectedIndex: () => {
+                    const index = this.menu.selectedIndex;
                     return index instanceof Array ? index[0] : index;
                 },
-                setSelectedIndex: function (index) {
-                    _this.menu.selectedIndex = index;
+                setSelectedIndex: (index) => {
+                    this.menu.selectedIndex = index;
                 },
-                setAttributeAtIndex: function (index, attributeName, attributeValue) {
-                    _this.menu.items[index].setAttribute(attributeName, attributeValue);
+                setAttributeAtIndex: (index, attributeName, attributeValue) => {
+                    this.menu.items[index].setAttribute(attributeName, attributeValue);
                 },
-                removeAttributeAtIndex: function (index, attributeName) {
-                    _this.menu.items[index].removeAttribute(attributeName);
+                removeAttributeAtIndex: (index, attributeName) => {
+                    this.menu.items[index].removeAttribute(attributeName);
                 },
-                focusMenuItemAtIndex: function (index) {
-                    _this.menu.items[index].focus();
+                focusMenuItemAtIndex: (index) => {
+                    this.menu.items[index].focus();
                 },
-                getMenuItemCount: function () { return _this.menu.items.length; },
-                getMenuItemValues: function () { return _this.menu.items.map(function (x) { return x.au.controller.viewModel.value; }); },
-                getMenuItemTextAtIndex: function (index) { return _this.menu.getPrimaryTextAtIndex(index); },
-                addClassAtIndex: function (index, className) {
-                    _this.menu.items[index].classList.add(className);
+                getMenuItemCount: () => this.menu.items.length,
+                getMenuItemValues: () => this.menu.items.map(x => x.au.controller.viewModel.value),
+                getMenuItemTextAtIndex: (index) => this.menu.getPrimaryTextAtIndex(index),
+                addClassAtIndex: (index, className) => {
+                    this.menu.items[index].classList.add(className);
                 },
-                removeClassAtIndex: function (index, className) {
-                    _this.menu.items[index].classList.remove(className);
+                removeClassAtIndex: (index, className) => {
+                    this.menu.items[index].classList.remove(className);
                 },
-                isTypeaheadInProgress: function () { return _this.menu.typeaheadInProgress; },
-                typeaheadMatchItem: function (nextChar, startingIndex) { return _this.menu.typeaheadMatchItem(nextChar, startingIndex); },
+                isTypeaheadInProgress: () => this.menu.typeaheadInProgress,
+                typeaheadMatchItem: (nextChar, startingIndex) => this.menu.typeaheadMatchItem(nextChar, startingIndex),
             };
-        };
-        MdcSelect.prototype.getCommonAdapterMethods = function () {
-            var _this = this;
+        }
+        getCommonAdapterMethods() {
             return {
-                addClass: function (className) {
-                    _this.root.classList.add(className);
+                addClass: (className) => {
+                    this.root.classList.add(className);
                 },
-                removeClass: function (className) {
-                    _this.root.classList.remove(className);
+                removeClass: (className) => {
+                    this.root.classList.remove(className);
                 },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                setRippleCenter: function (normalizedX) {
-                    _this.lineRipple && _this.lineRipple.setRippleCenter(normalizedX);
+                hasClass: (className) => this.root.classList.contains(className),
+                setRippleCenter: (normalizedX) => {
+                    this.lineRipple && this.lineRipple.setRippleCenter(normalizedX);
                 },
-                activateBottomLine: function () {
-                    _this.lineRipple && _this.lineRipple.activate();
+                activateBottomLine: () => {
+                    this.lineRipple && this.lineRipple.activate();
                 },
-                deactivateBottomLine: function () {
-                    _this.lineRipple && _this.lineRipple.deactivate();
+                deactivateBottomLine: () => {
+                    this.lineRipple && this.lineRipple.deactivate();
                 },
-                notifyChange: function (value) {
-                    var index = _this.selectedIndex;
-                    _this.emit(select_1.strings.CHANGE_EVENT, { value: value, index: index }, true /* shouldBubble  */);
+                notifyChange: (value) => {
+                    const index = this.selectedIndex;
+                    this.emit(select_1.strings.CHANGE_EVENT, { value, index }, true /* shouldBubble  */);
                 },
             };
-        };
-        MdcSelect.prototype.getOutlineAdapterMethods = function () {
-            var _this = this;
+        }
+        getOutlineAdapterMethods() {
             return {
-                hasOutline: function () { return Boolean(_this.outline); },
-                notchOutline: function (labelWidth) {
-                    _this.outline && _this.outline.notch(labelWidth);
+                hasOutline: () => Boolean(this.outline),
+                notchOutline: (labelWidth) => {
+                    this.outline && this.outline.notch(labelWidth);
                 },
-                closeOutline: function () {
-                    _this.outline && _this.outline.closeNotch();
+                closeOutline: () => {
+                    this.outline && this.outline.closeNotch();
                 },
             };
-        };
-        MdcSelect.prototype.getLabelAdapterMethods = function () {
-            var _this = this;
+        }
+        getLabelAdapterMethods() {
             return {
-                hasLabel: function () { return !!_this.mdcLabel; },
-                floatLabel: function (shouldFloat) {
-                    _this.mdcLabel && _this.mdcLabel.float(shouldFloat);
+                hasLabel: () => !!this.mdcLabel,
+                floatLabel: (shouldFloat) => {
+                    this.mdcLabel && this.mdcLabel.float(shouldFloat);
                 },
-                getLabelWidth: function () { return _this.mdcLabel ? _this.mdcLabel.getWidth() : 0; },
-                setLabelRequired: function (isRequired) {
-                    _this.mdcLabel && _this.mdcLabel.setRequired(isRequired);
+                getLabelWidth: () => this.mdcLabel ? this.mdcLabel.getWidth() : 0,
+                setLabelRequired: (isRequired) => {
+                    this.mdcLabel && this.mdcLabel.setRequired(isRequired);
                 },
             };
-        };
-        MdcSelect.prototype.handleChange = function () {
+        }
+        handleChange() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleChange();
-        };
+        }
         ;
-        MdcSelect.prototype.handleFocus = function () {
+        handleFocus() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleFocus();
-        };
-        MdcSelect.prototype.handleBlur = function () {
+        }
+        handleBlur() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleBlur();
-        };
-        MdcSelect.prototype.handleClick = function (evt) {
+        }
+        handleClick(evt) {
             var _a;
             this.selectAnchor.focus();
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick(this.getNormalizedXCoordinate(evt));
-        };
-        MdcSelect.prototype.handleKeydown = function (evt) {
+        }
+        handleKeydown(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeydown(evt);
             return true;
-        };
-        MdcSelect.prototype.handleMenuItemAction = function (evt) {
+        }
+        handleMenuItemAction(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleMenuItemAction(evt.detail.index);
-        };
-        MdcSelect.prototype.handleMenuOpened = function () {
+        }
+        handleMenuOpened() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleMenuOpened();
-        };
-        MdcSelect.prototype.handleMenuClosed = function () {
+        }
+        handleMenuClosed() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleMenuClosed();
-        };
-        MdcSelect.prototype.handleItemsChanged = function () {
+        }
+        handleItemsChanged() {
             var _a, _b;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.layoutOptions();
             (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.layout();
-        };
-        MdcSelect.prototype.focus = function () {
+        }
+        focus() {
             this.selectAnchor.focus();
-        };
-        MdcSelect.prototype.blur = function () {
+        }
+        blur() {
             this.selectAnchor.blur();
-        };
+        }
         /**
          * Calculates where the line ripple should start based on the x coordinate within the component.
          */
-        MdcSelect.prototype.getNormalizedXCoordinate = function (evt) {
-            var targetClientRect = evt.target.getBoundingClientRect();
-            var xCoordinate = this.isTouchEvent(evt) ? evt.touches[0].clientX : evt.clientX;
+        getNormalizedXCoordinate(evt) {
+            const targetClientRect = evt.target.getBoundingClientRect();
+            const xCoordinate = this.isTouchEvent(evt) ? evt.touches[0].clientX : evt.clientX;
             return xCoordinate - targetClientRect.left;
-        };
-        MdcSelect.prototype.isTouchEvent = function (evt) {
+        }
+        isTouchEvent(evt) {
             return Boolean(evt.touches);
-        };
+        }
         /**
          * Returns a map of all subcomponents to subfoundations.
          */
-        MdcSelect.prototype.getFoundationMap = function () {
+        getFoundationMap() {
             var _a, _b;
             return {
                 helperText: (_a = this.helperText) === null || _a === void 0 ? void 0 : _a.foundation,
                 leadingIcon: (_b = this.leadingIcon) === null || _b === void 0 ? void 0 : _b.foundation
             };
-        };
-        var MdcSelect_1;
-        tslib_1.__decorate([
-            aurelia_framework_1.child("[" + mdc_select_icon_1.mdcIconStrings.ATTRIBUTE + "]"),
-            tslib_1.__metadata("design:type", Object)
-        ], MdcSelect.prototype, "leadingIconEl", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.children('mdc-list-items'),
-            tslib_1.__metadata("design:type", list_1.MdcListItem)
-        ], MdcSelect.prototype, "items", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcSelect.prototype, "label", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcSelect.prototype, "outlined", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcSelect.prototype, "required", void 0);
-        MdcSelect = MdcSelect_1 = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-select.html'),
-            aurelia_framework_1.customElement(select_1.cssClasses.ROOT),
-            aurelia_framework_1.processContent(MdcSelect_1.processContent),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcSelect);
-        return MdcSelect;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.child(`[${mdc_select_icon_1.mdcIconStrings.ATTRIBUTE}]`),
+        tslib_1.__metadata("design:type", Object)
+    ], MdcSelect.prototype, "leadingIconEl", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.children('mdc-list-items'),
+        tslib_1.__metadata("design:type", list_1.MdcListItem)
+    ], MdcSelect.prototype, "items", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcSelect.prototype, "label", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSelect.prototype, "outlined", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSelect.prototype, "required", void 0);
+    MdcSelect = MdcSelect_1 = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-select.html'),
+        aurelia_framework_1.customElement(select_1.cssClasses.ROOT),
+        aurelia_framework_1.processContent(MdcSelect_1.processContent),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcSelect);
     exports.MdcSelect = MdcSelect;
     function defineMdcSelectElementApis(element) {
         Object.defineProperties(element, {
             value: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.value;
                 },
-                set: function (value) {
+                set(value) {
                     // aurelia binding converts "undefined" and "null" into empty string
                     // this does not translate well into "empty" menu items when several selects are bound to the same field
                     this.au.controller.viewModel.value = value === "" ? undefined : value;
@@ -62786,22 +62226,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 configurable: true
             },
             valid: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.valid;
                 },
-                set: function (value) {
+                set(value) {
                     this.au.controller.viewModel.valid = value;
                 },
                 configurable: true
             },
             focus: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.focus();
                 },
                 configurable: true
             },
             blur: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.blur();
                 },
                 configurable: true
@@ -62829,53 +62269,45 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.mdcHelperTextCssClasses = {
         ROOT: 'mdc-select-helper-text'
     };
-    var MdcSelectHelperText = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcSelectHelperText, _super);
-        function MdcSelectHelperText() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.helperTextCssClasses = select_1.helperTextCssClasses;
-            _this.ROOT = exports.mdcHelperTextCssClasses.ROOT;
-            return _this;
+    let MdcSelectHelperText = class MdcSelectHelperText extends base_1.MdcComponent {
+        constructor() {
+            super(...arguments);
+            this.helperTextCssClasses = select_1.helperTextCssClasses;
+            this.ROOT = exports.mdcHelperTextCssClasses.ROOT;
         }
-        Object.defineProperty(MdcSelectHelperText.prototype, "foundationForTextField", {
-            // Provided for access by MDCTextField component
-            get: function () {
-                return this.foundation;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcSelectHelperText.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        // Provided for access by MDCTextField component
+        get foundationForTextField() {
+            return this.foundation;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
-                removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
-                setContent: function (content) {
-                    _this.root.textContent = content;
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                hasClass: (className) => this.root.classList.contains(className),
+                setAttr: (attr, value) => this.root.setAttribute(attr, value),
+                removeAttr: (attr) => this.root.removeAttribute(attr),
+                setContent: (content) => {
+                    this.root.textContent = content;
                 },
             };
             return new select_1.MDCSelectHelperTextFoundation(adapter);
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcSelectHelperText.prototype, "persistent", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcSelectHelperText.prototype, "validation", void 0);
-        MdcSelectHelperText = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-select-helper-text.html'),
-            aurelia_framework_1.customElement(exports.mdcHelperTextCssClasses.ROOT)
-        ], MdcSelectHelperText);
-        return MdcSelectHelperText;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSelectHelperText.prototype, "persistent", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSelectHelperText.prototype, "validation", void 0);
+    MdcSelectHelperText = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-select-helper-text.html'),
+        aurelia_framework_1.customElement(exports.mdcHelperTextCssClasses.ROOT)
+    ], MdcSelectHelperText);
     exports.MdcSelectHelperText = MdcSelectHelperText;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -62911,42 +62343,33 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.mdcIconStrings = {
         ATTRIBUTE: 'mdc-select-icon'
     };
-    var MdcSelectIcon = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcSelectIcon, _super);
-        function MdcSelectIcon() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcSelectIcon.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    this.root.classList.add('mdc-select__icon');
-                    return [2 /*return*/];
-                });
+    let MdcSelectIcon = class MdcSelectIcon extends base_1.MdcComponent {
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.root.classList.add('mdc-select__icon');
             });
-        };
-        MdcSelectIcon.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                getAttr: function (attr) { return _this.root.getAttribute(attr); },
-                setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
-                removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
-                setContent: function (content) {
-                    _this.root.textContent = content;
+            const adapter = {
+                getAttr: (attr) => this.root.getAttribute(attr),
+                setAttr: (attr, value) => this.root.setAttribute(attr, value),
+                removeAttr: (attr) => this.root.removeAttribute(attr),
+                setContent: (content) => {
+                    this.root.textContent = content;
                 },
-                registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-                deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
-                notifyIconAction: function () { return _this.emit(select_1.MDCSelectIconFoundation.strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */); },
+                registerInteractionHandler: (evtType, handler) => this.listen(evtType, handler),
+                deregisterInteractionHandler: (evtType, handler) => this.unlisten(evtType, handler),
+                notifyIconAction: () => this.emit(select_1.MDCSelectIconFoundation.strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */),
             };
             return new select_1.MDCSelectIconFoundation(adapter);
-        };
-        MdcSelectIcon = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute(exports.mdcIconStrings.ATTRIBUTE)
-        ], MdcSelectIcon);
-        return MdcSelectIcon;
-    }(base_1.MdcComponent));
+        }
+    };
+    MdcSelectIcon = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute(exports.mdcIconStrings.ATTRIBUTE)
+    ], MdcSelectIcon);
     exports.MdcSelectIcon = MdcSelectIcon;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -62987,12 +62410,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         ]);
     }
     exports.configure = configure;
-    var checkboxConfig = {
+    const checkboxConfig = {
         tagName: 'mdc-slider',
         properties: {
             value: {
                 defaultBindingMode: aurelia_framework_1.bindingMode.twoWay,
-                getObserver: function (element) {
+                getObserver(element) {
                     return new aurelia_framework_1.ValueAttributeObserver(element, 'value', new aurelia_framework_1.EventSubscriber([slider_1.strings.CHANGE_EVENT, slider_1.strings.INPUT_EVENT]));
                 }
             }
@@ -63017,226 +62440,183 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.MdcSlider = void 0;
     slider_1.strings.INPUT_EVENT = slider_1.strings.INPUT_EVENT.toLowerCase();
     slider_1.strings.CHANGE_EVENT = slider_1.strings.CHANGE_EVENT.toLowerCase();
-    var MdcSlider = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcSlider, _super);
-        function MdcSlider(root) {
-            var _this = _super.call(this, root) || this;
-            _this.min = 0;
-            _this.max = 100;
-            _this.step = 1;
-            defineMdcSliderElementApis(_this.root);
-            return _this;
+    let MdcSlider = class MdcSlider extends base_1.MdcComponent {
+        constructor(root) {
+            super(root);
+            this.min = 0;
+            this.max = 100;
+            this.step = 1;
+            defineMdcSliderElementApis(this.root);
         }
-        MdcSlider.prototype.sizeChanged = function () {
+        sizeChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.layout();
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.layout();
             });
-        };
-        MdcSlider.prototype.disabledChanged = function () {
+        }
+        disabledChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setDisabled(this.disabled);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setDisabled(this.disabled);
             });
-        };
-        MdcSlider.prototype.minChanged = function () {
+        }
+        minChanged() {
             var _a, _b;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _c.sent();
-                            if (this.min > this.max) {
-                                this.max = this.min;
-                            }
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setMax(this.max);
-                            (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.setMin(this.min);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                if (this.min > this.max) {
+                    this.max = this.min;
+                }
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setMax(this.max);
+                (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.setMin(this.min);
             });
-        };
-        MdcSlider.prototype.maxChanged = function () {
+        }
+        maxChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setMax(this.max);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setMax(this.max);
             });
-        };
-        MdcSlider.prototype.stepChanged = function () {
+        }
+        stepChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setStep(this.step);
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setStep(this.step);
             });
-        };
-        Object.defineProperty(MdcSlider.prototype, "value", {
-            get: function () {
-                if (this.foundation) {
-                    return this.foundation.getValue();
-                }
-                else {
-                    return this.initialValue;
-                }
-            },
-            set: function (value) {
-                if (this.foundation) {
-                    this.foundation.setValue(value);
-                }
-                else {
-                    this.initialValue = value;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcSlider.prototype.initialSyncWithDOM = function () {
+        }
+        get value() {
+            if (this.foundation) {
+                return this.foundation.getValue();
+            }
+            else {
+                return this.initialValue;
+            }
+        }
+        set value(value) {
+            if (this.foundation) {
+                this.foundation.setValue(value);
+            }
+            else {
+                this.initialValue = value;
+            }
+        }
+        initialSyncWithDOM() {
             var _a;
             this.value = this.initialValue;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setupTrackMarker();
-        };
-        MdcSlider.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take
             // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
             // methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                getAttribute: function (name) { return _this.root.getAttribute(name); },
-                setAttribute: function (name, value) { return _this.root.setAttribute(name, value); },
-                removeAttribute: function (name) { return _this.root.removeAttribute(name); },
-                computeBoundingRect: function () { return _this.root.getBoundingClientRect(); },
-                getTabIndex: function () { return _this.root.tabIndex; },
-                registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler, events_1.applyPassive()); },
-                deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler, events_1.applyPassive()); },
-                registerThumbContainerInteractionHandler: function (evtType, handler) {
-                    _this.thumbContainer_.addEventListener(evtType, handler, events_1.applyPassive());
+            const adapter = {
+                hasClass: (className) => this.root.classList.contains(className),
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                getAttribute: (name) => this.root.getAttribute(name),
+                setAttribute: (name, value) => this.root.setAttribute(name, value),
+                removeAttribute: (name) => this.root.removeAttribute(name),
+                computeBoundingRect: () => this.root.getBoundingClientRect(),
+                getTabIndex: () => this.root.tabIndex,
+                registerInteractionHandler: (evtType, handler) => this.listen(evtType, handler, events_1.applyPassive()),
+                deregisterInteractionHandler: (evtType, handler) => this.unlisten(evtType, handler, events_1.applyPassive()),
+                registerThumbContainerInteractionHandler: (evtType, handler) => {
+                    this.thumbContainer_.addEventListener(evtType, handler, events_1.applyPassive());
                 },
-                deregisterThumbContainerInteractionHandler: function (evtType, handler) {
-                    _this.thumbContainer_.removeEventListener(evtType, handler, events_1.applyPassive());
+                deregisterThumbContainerInteractionHandler: (evtType, handler) => {
+                    this.thumbContainer_.removeEventListener(evtType, handler, events_1.applyPassive());
                 },
-                registerBodyInteractionHandler: function (evtType, handler) { return document.body.addEventListener(evtType, handler); },
-                deregisterBodyInteractionHandler: function (evtType, handler) { return document.body.removeEventListener(evtType, handler); },
-                registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
-                deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
-                notifyInput: function () { return _this.emit(slider_1.strings.INPUT_EVENT, _this); },
-                notifyChange: function () { return _this.emit(slider_1.strings.CHANGE_EVENT, _this); },
-                setThumbContainerStyleProperty: function (propertyName, value) {
-                    _this.thumbContainer_.style.setProperty(propertyName, value);
+                registerBodyInteractionHandler: (evtType, handler) => document.body.addEventListener(evtType, handler),
+                deregisterBodyInteractionHandler: (evtType, handler) => document.body.removeEventListener(evtType, handler),
+                registerResizeHandler: (handler) => window.addEventListener('resize', handler),
+                deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
+                notifyInput: () => this.emit(slider_1.strings.INPUT_EVENT, this),
+                notifyChange: () => this.emit(slider_1.strings.CHANGE_EVENT, this),
+                setThumbContainerStyleProperty: (propertyName, value) => {
+                    this.thumbContainer_.style.setProperty(propertyName, value);
                 },
-                setTrackStyleProperty: function (propertyName, value) { return _this.track_.style.setProperty(propertyName, value); },
-                setMarkerValue: function (value) { return _this.pinValueMarker_.innerText = value.toLocaleString(); },
-                setTrackMarkers: function (step, max, min) {
-                    var stepStr = step.toLocaleString();
-                    var maxStr = max.toLocaleString();
-                    var minStr = min.toLocaleString();
+                setTrackStyleProperty: (propertyName, value) => this.track_.style.setProperty(propertyName, value),
+                setMarkerValue: (value) => this.pinValueMarker_.innerText = value.toLocaleString(),
+                setTrackMarkers: (step, max, min) => {
+                    const stepStr = step.toLocaleString();
+                    const maxStr = max.toLocaleString();
+                    const minStr = min.toLocaleString();
                     // keep calculation in css for better rounding/subpixel behavior
-                    var markerAmount = "((" + maxStr + " - " + minStr + ") / " + stepStr + ")";
-                    var markerWidth = "2px";
-                    var markerBkgdImage = "linear-gradient(to right, currentColor " + markerWidth + ", transparent 0)";
-                    var markerBkgdLayout = "0 center / calc((100% - " + markerWidth + ") / " + markerAmount + ") 100% repeat-x";
-                    var markerBkgdShorthand = markerBkgdImage + " " + markerBkgdLayout;
-                    _this.trackMarkerContainer_.style.setProperty('background', markerBkgdShorthand);
+                    const markerAmount = `((${maxStr} - ${minStr}) / ${stepStr})`;
+                    const markerWidth = `2px`;
+                    const markerBkgdImage = `linear-gradient(to right, currentColor ${markerWidth}, transparent 0)`;
+                    const markerBkgdLayout = `0 center / calc((100% - ${markerWidth}) / ${markerAmount}) 100% repeat-x`;
+                    const markerBkgdShorthand = `${markerBkgdImage} ${markerBkgdLayout}`;
+                    this.trackMarkerContainer_.style.setProperty('background', markerBkgdShorthand);
                 },
-                isRTL: function () { return getComputedStyle(_this.root).direction === 'rtl'; },
+                isRTL: () => getComputedStyle(this.root).direction === 'rtl',
             };
             return new mdc_slider_foundation_aurelia_1.MdcSliderFoundationAurelia(adapter);
-        };
-        MdcSlider.prototype.focus = function () {
+        }
+        focus() {
             this.root.focus();
-        };
-        MdcSlider.prototype.blur = function () {
+        }
+        blur() {
             this.root.blur();
-        };
-        tslib_1.__decorate([
-            aurelia_framework_1.observable,
-            tslib_1.__metadata("design:type", Object)
-        ], MdcSlider.prototype, "size", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcSlider.prototype, "discrete", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcSlider.prototype, "markers", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcSlider.prototype, "disabled", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.number,
-            tslib_1.__metadata("design:type", Number)
-        ], MdcSlider.prototype, "min", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.number,
-            tslib_1.__metadata("design:type", Number)
-        ], MdcSlider.prototype, "max", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.number,
-            tslib_1.__metadata("design:type", Number)
-        ], MdcSlider.prototype, "step", void 0);
-        MdcSlider = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-slider.html'),
-            aurelia_framework_1.customElement('mdc-slider'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcSlider);
-        return MdcSlider;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.observable,
+        tslib_1.__metadata("design:type", Object)
+    ], MdcSlider.prototype, "size", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSlider.prototype, "discrete", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSlider.prototype, "markers", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSlider.prototype, "disabled", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.number,
+        tslib_1.__metadata("design:type", Number)
+    ], MdcSlider.prototype, "min", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.number,
+        tslib_1.__metadata("design:type", Number)
+    ], MdcSlider.prototype, "max", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.number,
+        tslib_1.__metadata("design:type", Number)
+    ], MdcSlider.prototype, "step", void 0);
+    MdcSlider = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-slider.html'),
+        aurelia_framework_1.customElement('mdc-slider'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcSlider);
     exports.MdcSlider = MdcSlider;
     function defineMdcSliderElementApis(element) {
         Object.defineProperties(element, {
             value: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.value;
                 },
-                set: function (value) {
+                set(value) {
                     this.au.controller.viewModel.value = value;
                 },
                 configurable: true
             },
             focus: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.focus();
                 },
                 configurable: true
             },
             blur: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.blur();
                 },
                 configurable: true
@@ -63283,12 +62663,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         ]);
     }
     exports.configure = configure;
-    var switchConfig = {
+    const switchConfig = {
         tagName: 'mdc-switch',
         properties: {
             checked: {
                 defaultBindingMode: aurelia_framework_1.bindingMode.twoWay,
-                getObserver: function (element, _, observerLocator) {
+                getObserver(element, _, observerLocator) {
                     return new aurelia_framework_1.CheckedObserver(element, new aurelia_framework_1.EventSubscriber(['change']), observerLocator);
                 }
             }
@@ -63311,108 +62691,89 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcSwitch = void 0;
-    var switchId = 0;
-    var MdcSwitch = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcSwitch, _super);
-        function MdcSwitch(root) {
-            var _this = _super.call(this, root) || this;
-            _this.id = "mdc-switch-" + ++switchId + "-input";
-            defineMdcSwitchElementApis(_this.root);
-            return _this;
+    let switchId = 0;
+    let MdcSwitch = class MdcSwitch extends base_1.MdcComponent {
+        constructor(root) {
+            super(root);
+            this.id = `mdc-switch-${++switchId}-input`;
+            defineMdcSwitchElementApis(this.root);
         }
-        MdcSwitch.prototype.disabledChanged = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _a.sent();
-                            this.nativeControl_.disabled = this.disabled;
-                            return [2 /*return*/];
-                    }
-                });
+        disabledChanged() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                this.nativeControl_.disabled = this.disabled;
             });
-        };
-        Object.defineProperty(MdcSwitch.prototype, "checked", {
-            get: function () {
-                var _a;
-                if (this.nativeControl_) {
-                    return this.nativeControl_.checked;
-                }
-                else {
-                    return (_a = this.initialChecked) !== null && _a !== void 0 ? _a : false;
-                }
-            },
-            set: function (checked) {
-                var _a;
-                if (this.foundation) {
-                    (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setChecked(checked);
-                }
-                else {
-                    this.initialChecked = checked;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcSwitch.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var attributeValue;
-                return tslib_1.__generator(this, function (_a) {
-                    if (this.root.hasAttribute('checked')) {
-                        attributeValue = this.root.getAttribute('checked');
-                        if (attributeValue || attributeValue === '') {
-                            this.root.checked = true;
-                        }
+        }
+        get checked() {
+            var _a;
+            if (this.nativeControl_) {
+                return this.nativeControl_.checked;
+            }
+            else {
+                return (_a = this.initialChecked) !== null && _a !== void 0 ? _a : false;
+            }
+        }
+        set checked(checked) {
+            var _a;
+            if (this.foundation) {
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setChecked(checked);
+            }
+            else {
+                this.initialChecked = checked;
+            }
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                if (this.root.hasAttribute('checked')) {
+                    const attributeValue = this.root.getAttribute('checked');
+                    if (attributeValue || attributeValue === '') {
+                        this.root.checked = true;
                     }
-                    return [2 /*return*/];
-                });
+                }
             });
-        };
-        MdcSwitch.prototype.initialSyncWithDOM = function () {
+        }
+        initialSyncWithDOM() {
             if (this.initialChecked !== undefined) {
                 this.checked = this.initialChecked;
             }
-        };
-        MdcSwitch.prototype.handleChange_ = function (evt) {
+        }
+        handleChange_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleChange(evt);
-        };
-        MdcSwitch.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                setNativeControlChecked: function (checked) { return _this.nativeControl_.checked = checked; },
-                setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled = disabled; },
-                setNativeControlAttr: function (attr, value) { return _this.nativeControl_.setAttribute(attr, value); },
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                setNativeControlChecked: (checked) => this.nativeControl_.checked = checked,
+                setNativeControlDisabled: (disabled) => this.nativeControl_.disabled = disabled,
+                setNativeControlAttr: (attr, value) => this.nativeControl_.setAttribute(attr, value),
             };
             return new switch_1.MDCSwitchFoundation(adapter);
-        };
-        MdcSwitch.prototype.focus = function () {
+        }
+        focus() {
             this.nativeControl_.focus();
-        };
-        MdcSwitch.prototype.blur = function () {
+        }
+        blur() {
             this.nativeControl_.blur();
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcSwitch.prototype, "disabled", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcSwitch.prototype, "touch", void 0);
-        MdcSwitch = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-switch.html'),
-            aurelia_framework_1.customElement('mdc-switch'),
-            tslib_1.__metadata("design:paramtypes", [Object])
-        ], MdcSwitch);
-        return MdcSwitch;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSwitch.prototype, "disabled", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSwitch.prototype, "touch", void 0);
+    MdcSwitch = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-switch.html'),
+        aurelia_framework_1.customElement('mdc-switch'),
+        tslib_1.__metadata("design:paramtypes", [Object])
+    ], MdcSwitch);
     exports.MdcSwitch = MdcSwitch;
     function defineMdcSwitchElementApis(element) {
         Object.defineProperties(element, {
@@ -63420,22 +62781,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 value: 'checkbox',
             },
             checked: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.checked;
                 },
-                set: function (value) {
+                set(value) {
                     this.au.controller.viewModel.checked = value;
                 },
                 configurable: true
             },
             focus: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.focus();
                 },
                 configurable: true
             },
             blur: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.blur();
                 },
                 configurable: true
@@ -63501,57 +62862,51 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTabIndicator = void 0;
-    var MdcTabIndicator = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcTabIndicator, _super);
-        function MdcTabIndicator() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcTabIndicator.prototype.computeContentClientRect = function () {
+    let MdcTabIndicator = class MdcTabIndicator extends base_1.MdcComponent {
+        computeContentClientRect() {
             return this.foundation.computeContentClientRect();
-        };
-        MdcTabIndicator.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                computeContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
-                setContentStyleProperty: function (prop, value) { return _this.content_.style.setProperty(prop, value); },
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                computeContentClientRect: () => this.content_.getBoundingClientRect(),
+                setContentStyleProperty: (prop, value) => this.content_.style.setProperty(prop, value),
             };
             if (this.root.classList.contains(tab_indicator_1.MDCTabIndicatorFoundation.cssClasses.FADE)) {
                 return new tab_indicator_1.MDCFadingTabIndicatorFoundation(adapter);
             }
             // Default to the sliding indicator
             return new tab_indicator_1.MDCSlidingTabIndicatorFoundation(adapter);
-        };
-        MdcTabIndicator.prototype.activate = function (previousIndicatorClientRect) {
+        }
+        activate(previousIndicatorClientRect) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate(previousIndicatorClientRect);
-        };
-        MdcTabIndicator.prototype.deactivate = function () {
+        }
+        deactivate() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTabIndicator.prototype, "fade", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTabIndicator.prototype, "active", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTabIndicator.prototype, "icon", void 0);
-        MdcTabIndicator = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-tab-indicator.html'),
-            aurelia_framework_1.customElement('mdc-tab-indicator')
-        ], MdcTabIndicator);
-        return MdcTabIndicator;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTabIndicator.prototype, "fade", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTabIndicator.prototype, "active", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTabIndicator.prototype, "icon", void 0);
+    MdcTabIndicator = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-tab-indicator.html'),
+        aurelia_framework_1.customElement('mdc-tab-indicator')
+    ], MdcTabIndicator);
     exports.MdcTabIndicator = MdcTabIndicator;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -63586,152 +62941,122 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.MdcTabBar = void 0;
     // aurelia is case insensitive
     tab_1.MDCTabFoundation.strings.INTERACTED_EVENT = 'mdctab:interacted';
-    var MdcTabBar = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcTabBar, _super);
-        function MdcTabBar() {
-            return _super !== null && _super.apply(this, arguments) || this;
+    let MdcTabBar = class MdcTabBar extends base_1.MdcComponent {
+        focusOnActivateChanged() {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.tabScroller_) === null || _a === void 0 ? void 0 : _a.tabs.forEach((tab) => tab.focusOnActivate = this.focusOnActivate);
+            });
         }
-        MdcTabBar.prototype.focusOnActivateChanged = function () {
+        useAutomaticActivationChanged() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var _this = this;
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.tabScroller_) === null || _a === void 0 ? void 0 : _a.tabs.forEach(function (tab) { return tab.focusOnActivate = _this.focusOnActivate; });
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUseAutomaticActivation(this.useAutomaticActivation);
             });
-        };
-        MdcTabBar.prototype.useAutomaticActivationChanged = function () {
-            var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUseAutomaticActivation(this.useAutomaticActivation);
-                            return [2 /*return*/];
-                    }
-                });
+        }
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.tabScroller_.initialised;
+                yield Promise.all(this.tabScroller_.tabs.map(x => x.initialised));
             });
-        };
-        MdcTabBar.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.tabScroller_.initialised];
-                        case 1:
-                            _a.sent();
-                            return [4 /*yield*/, Promise.all(this.tabScroller_.tabs.map(function (x) { return x.initialised; }))];
-                        case 2:
-                            _a.sent();
-                            return [2 /*return*/];
-                    }
-                });
-            });
-        };
-        MdcTabBar.prototype.initialSyncWithDOM = function () {
-            for (var i = 0; i < this.tabScroller_.tabs.length; i++) {
+        }
+        initialSyncWithDOM() {
+            for (let i = 0; i < this.tabScroller_.tabs.length; i++) {
                 if (this.tabScroller_.tabs[i].active) {
                     this.scrollIntoView(i);
                     break;
                 }
             }
-        };
-        MdcTabBar.prototype.handleKeyDown_ = function (evt) {
+        }
+        handleKeyDown_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleKeyDown(evt);
             return true;
-        };
-        MdcTabBar.prototype.handleTabInteraction_ = function (evt) {
+        }
+        handleTabInteraction_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTabInteraction(evt);
-        };
-        MdcTabBar.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                scrollTo: function (scrollX) { return _this.tabScroller_.scrollTo(scrollX); },
-                incrementScroll: function (scrollXIncrement) { return _this.tabScroller_.incrementScroll(scrollXIncrement); },
-                getScrollPosition: function () { return _this.tabScroller_.getScrollPosition(); },
-                getScrollContentWidth: function () { return _this.tabScroller_.getScrollContentWidth(); },
-                getOffsetWidth: function () { return _this.root.offsetWidth; },
-                isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
-                setActiveTab: function (index) { var _a; return (_a = _this.foundation) === null || _a === void 0 ? void 0 : _a.activateTab(index); },
-                activateTabAtIndex: function (index, clientRect) { return _this.tabScroller_.tabs[index].activate(clientRect); },
-                deactivateTabAtIndex: function (index) { return _this.tabScroller_.tabs[index].deactivate(); },
-                focusTabAtIndex: function (index) { return _this.tabScroller_.tabs[index].focus(); },
-                getTabIndicatorClientRectAtIndex: function (index) { return _this.tabScroller_.tabs[index].computeIndicatorClientRect(); },
-                getTabDimensionsAtIndex: function (index) { return _this.tabScroller_.tabs[index].computeDimensions(); },
-                getPreviousActiveTabIndex: function () {
-                    for (var i = 0; i < _this.tabScroller_.tabs.length; i++) {
-                        if (_this.tabScroller_.tabs[i].isActive()) {
+            const adapter = {
+                scrollTo: (scrollX) => this.tabScroller_.scrollTo(scrollX),
+                incrementScroll: (scrollXIncrement) => this.tabScroller_.incrementScroll(scrollXIncrement),
+                getScrollPosition: () => this.tabScroller_.getScrollPosition(),
+                getScrollContentWidth: () => this.tabScroller_.getScrollContentWidth(),
+                getOffsetWidth: () => this.root.offsetWidth,
+                isRTL: () => window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
+                setActiveTab: (index) => { var _a; return (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activateTab(index); },
+                activateTabAtIndex: (index, clientRect) => this.tabScroller_.tabs[index].activate(clientRect),
+                deactivateTabAtIndex: (index) => this.tabScroller_.tabs[index].deactivate(),
+                focusTabAtIndex: (index) => this.tabScroller_.tabs[index].focus(),
+                getTabIndicatorClientRectAtIndex: (index) => this.tabScroller_.tabs[index].computeIndicatorClientRect(),
+                getTabDimensionsAtIndex: (index) => this.tabScroller_.tabs[index].computeDimensions(),
+                getPreviousActiveTabIndex: () => {
+                    for (let i = 0; i < this.tabScroller_.tabs.length; i++) {
+                        if (this.tabScroller_.tabs[i].isActive()) {
                             return i;
                         }
                     }
                     return -1;
                 },
-                getFocusedTabIndex: function () {
-                    var tabElements = _this.getTabElements_();
-                    var activeElement = document.activeElement;
+                getFocusedTabIndex: () => {
+                    const tabElements = this.getTabElements_();
+                    const activeElement = document.activeElement;
                     return tabElements.indexOf(activeElement);
                 },
-                getIndexOfTabById: function (id) {
-                    for (var i = 0; i < _this.tabScroller_.tabs.length; i++) {
-                        if (_this.tabScroller_.tabs[i].id === id) {
+                getIndexOfTabById: (id) => {
+                    for (let i = 0; i < this.tabScroller_.tabs.length; i++) {
+                        if (this.tabScroller_.tabs[i].id === id) {
                             return i;
                         }
                     }
                     return -1;
                 },
-                getTabListLength: function () { return _this.tabScroller_.tabs.length; },
-                notifyTabActivated: function (index) { return _this.emit(tab_bar_1.strings.TAB_ACTIVATED_EVENT, { index: index }, true); },
+                getTabListLength: () => this.tabScroller_.tabs.length,
+                notifyTabActivated: (index) => this.emit(tab_bar_1.strings.TAB_ACTIVATED_EVENT, { index }, true),
             };
             return new tab_bar_1.MDCTabBarFoundation(adapter);
-        };
+        }
         /**
          * Activates the tab at the given index
          * @param index The index of the tab
          */
-        MdcTabBar.prototype.activateTab = function (index) {
+        activateTab(index) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activateTab(index);
-        };
+        }
         /**
          * Scrolls the tab at the given index into view
          * @param index THe index of the tab
          */
-        MdcTabBar.prototype.scrollIntoView = function (index) {
+        scrollIntoView(index) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.scrollIntoView(index);
-        };
+        }
         /**
          * Returns all the tab elements in a nice clean array
          */
-        MdcTabBar.prototype.getTabElements_ = function () {
+        getTabElements_() {
             return [].slice.call(this.root.querySelectorAll(tab_bar_1.strings.TAB_SELECTOR));
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTabBar.prototype, "focusOnActivate", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTabBar.prototype, "useAutomaticActivation", void 0);
-        MdcTabBar = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-tab-bar.html'),
-            aurelia_framework_1.customElement('mdc-tab-bar')
-        ], MdcTabBar);
-        return MdcTabBar;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTabBar.prototype, "focusOnActivate", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTabBar.prototype, "useAutomaticActivation", void 0);
+    MdcTabBar = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-tab-bar.html'),
+        aurelia_framework_1.customElement('mdc-tab-bar')
+    ], MdcTabBar);
     exports.MdcTabBar = MdcTabBar;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -63764,77 +63089,71 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTabScroller = void 0;
-    var MdcTabScroller = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcTabScroller, _super);
-        function MdcTabScroller() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcTabScroller.prototype.getDefaultFoundation = function () {
-            var _this = this;
+    class MdcTabScroller extends base_1.MdcComponent {
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                eventTargetMatchesSelector: function (evtTarget, selector) { return ponyfill_1.matches(evtTarget, selector); },
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                addScrollAreaClass: function (className) { return _this.area_.classList.add(className); },
-                setScrollAreaStyleProperty: function (prop, value) { return _this.area_.style.setProperty(prop, value); },
-                setScrollContentStyleProperty: function (prop, value) { return _this.content_.style.setProperty(prop, value); },
-                getScrollContentStyleValue: function (propName) { return window.getComputedStyle(_this.content_).getPropertyValue(propName); },
-                setScrollAreaScrollLeft: function (scrollX) { return _this.area_.scrollLeft = scrollX; },
-                getScrollAreaScrollLeft: function () { return _this.area_.scrollLeft; },
-                getScrollContentOffsetWidth: function () { return _this.content_.offsetWidth; },
-                getScrollAreaOffsetWidth: function () { return _this.area_.offsetWidth; },
-                computeScrollAreaClientRect: function () { return _this.area_.getBoundingClientRect(); },
-                computeScrollContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
-                computeHorizontalScrollbarHeight: function () { return tab_scroller_1.util.computeHorizontalScrollbarHeight(document); },
+            const adapter = {
+                eventTargetMatchesSelector: (evtTarget, selector) => ponyfill_1.matches(evtTarget, selector),
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                addScrollAreaClass: (className) => this.area_.classList.add(className),
+                setScrollAreaStyleProperty: (prop, value) => this.area_.style.setProperty(prop, value),
+                setScrollContentStyleProperty: (prop, value) => this.content_.style.setProperty(prop, value),
+                getScrollContentStyleValue: (propName) => window.getComputedStyle(this.content_).getPropertyValue(propName),
+                setScrollAreaScrollLeft: (scrollX) => this.area_.scrollLeft = scrollX,
+                getScrollAreaScrollLeft: () => this.area_.scrollLeft,
+                getScrollContentOffsetWidth: () => this.content_.offsetWidth,
+                getScrollAreaOffsetWidth: () => this.area_.offsetWidth,
+                computeScrollAreaClientRect: () => this.area_.getBoundingClientRect(),
+                computeScrollContentClientRect: () => this.content_.getBoundingClientRect(),
+                computeHorizontalScrollbarHeight: () => tab_scroller_1.util.computeHorizontalScrollbarHeight(document),
             };
             return new tab_scroller_1.MDCTabScrollerFoundation(adapter);
-        };
-        MdcTabScroller.prototype.handleInteraction_ = function () {
+        }
+        handleInteraction_() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleInteraction();
             return true;
-        };
-        MdcTabScroller.prototype.handleTransitionEnd_ = function (evt) {
+        }
+        handleTransitionEnd_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTransitionEnd(evt);
             return true;
-        };
+        }
         /**
          * Returns the current visual scroll position
          */
-        MdcTabScroller.prototype.getScrollPosition = function () {
+        getScrollPosition() {
             return this.foundation.getScrollPosition();
-        };
+        }
         /**
          * Returns the width of the scroll content
          */
-        MdcTabScroller.prototype.getScrollContentWidth = function () {
+        getScrollContentWidth() {
             return this.content_.offsetWidth;
-        };
+        }
         /**
          * Increments the scroll value by the given amount
          * @param scrollXIncrement The pixel value by which to increment the scroll value
          */
-        MdcTabScroller.prototype.incrementScroll = function (scrollXIncrement) {
+        incrementScroll(scrollXIncrement) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.incrementScroll(scrollXIncrement);
-        };
+        }
         /**
          * Scrolls to the given pixel position
          * @param scrollX The pixel value to scroll to
          */
-        MdcTabScroller.prototype.scrollTo = function (scrollX) {
+        scrollTo(scrollX) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.scrollTo(scrollX);
-        };
-        tslib_1.__decorate([
-            aurelia_framework_1.children('mdc-tab'),
-            tslib_1.__metadata("design:type", Array)
-        ], MdcTabScroller.prototype, "tabs", void 0);
-        return MdcTabScroller;
-    }(base_1.MdcComponent));
+        }
+    }
+    tslib_1.__decorate([
+        aurelia_framework_1.children('mdc-tab'),
+        tslib_1.__metadata("design:type", Array)
+    ], MdcTabScroller.prototype, "tabs", void 0);
     exports.MdcTabScroller = MdcTabScroller;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -63867,106 +63186,98 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTab = void 0;
-    var tabId = 0;
-    var MdcTab = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcTab, _super);
-        function MdcTab() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.id = "mdc-tab-" + ++tabId;
-            return _this;
+    let tabId = 0;
+    let MdcTab = class MdcTab extends base_1.MdcComponent {
+        constructor() {
+            super(...arguments);
+            this.id = `mdc-tab-${++tabId}`;
         }
-        MdcTab.prototype.handleClick_ = function () {
+        handleClick_() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick();
             return true;
-        };
-        MdcTab.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                activateIndicator: function (previousIndicatorClientRect) { return _this.tabIndicator_.activate(previousIndicatorClientRect); },
-                deactivateIndicator: function () { return _this.tabIndicator_.deactivate(); },
-                notifyInteracted: function () { return _this.emit(tab_1.MDCTabFoundation.strings.INTERACTED_EVENT, { tabId: _this.id }, true /* bubble */); },
-                getOffsetLeft: function () { return _this.root.offsetLeft; },
-                getOffsetWidth: function () { return _this.root.offsetWidth; },
-                getContentOffsetLeft: function () { return _this.content_.offsetLeft; },
-                getContentOffsetWidth: function () { return _this.content_.offsetWidth; },
-                focus: function () { return _this.root.focus(); },
+            const adapter = {
+                setAttr: (attr, value) => this.root.setAttribute(attr, value),
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                hasClass: (className) => this.root.classList.contains(className),
+                activateIndicator: (previousIndicatorClientRect) => this.tabIndicator_.activate(previousIndicatorClientRect),
+                deactivateIndicator: () => this.tabIndicator_.deactivate(),
+                notifyInteracted: () => this.emit(tab_1.MDCTabFoundation.strings.INTERACTED_EVENT, { tabId: this.id }, true /* bubble */),
+                getOffsetLeft: () => this.root.offsetLeft,
+                getOffsetWidth: () => this.root.offsetWidth,
+                getContentOffsetLeft: () => this.content_.offsetLeft,
+                getContentOffsetWidth: () => this.content_.offsetWidth,
+                focus: () => this.root.focus(),
             };
             return new tab_1.MDCTabFoundation(adapter);
-        };
-        MdcTab.prototype.isActive = function () {
+        }
+        isActive() {
             return this.foundation.isActive();
-        };
-        Object.defineProperty(MdcTab.prototype, "focusOnActivate", {
-            set: function (focusOnActivate) {
-                var _a;
-                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setFocusOnActivate(focusOnActivate);
-            },
-            enumerable: false,
-            configurable: true
-        });
+        }
+        set focusOnActivate(focusOnActivate) {
+            var _a;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setFocusOnActivate(focusOnActivate);
+        }
         /**
          * Activates the tab
          */
-        MdcTab.prototype.activate = function (computeIndicatorClientRect) {
+        activate(computeIndicatorClientRect) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activate(computeIndicatorClientRect);
-        };
+        }
         /**
          * Deactivates the tab
          */
-        MdcTab.prototype.deactivate = function () {
+        deactivate() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivate();
-        };
+        }
         /**
          * Returns the indicator's client rect
          */
-        MdcTab.prototype.computeIndicatorClientRect = function () {
+        computeIndicatorClientRect() {
             return this.tabIndicator_.computeContentClientRect();
-        };
-        MdcTab.prototype.computeDimensions = function () {
+        }
+        computeDimensions() {
             return this.foundation.computeDimensions();
-        };
+        }
         /**
          * Focuses the tab
          */
-        MdcTab.prototype.focus = function () {
+        focus() {
             this.root.focus();
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTab.prototype, "id", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTab.prototype, "fixed", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTab.prototype, "active", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTab.prototype, "icon", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTab.prototype, "label", void 0);
-        MdcTab = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-tab.html'),
-            aurelia_framework_1.customElement('mdc-tab')
-        ], MdcTab);
-        return MdcTab;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTab.prototype, "id", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTab.prototype, "fixed", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTab.prototype, "active", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTab.prototype, "icon", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTab.prototype, "label", void 0);
+    MdcTab = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-tab.html'),
+        aurelia_framework_1.customElement('mdc-tab')
+    ], MdcTab);
     exports.MdcTab = MdcTab;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64005,18 +63316,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         config.globalResources([
             './mdc-text-field',
             './mdc-text-field-icon',
-            './mdc-text-field-helper-line',
+            './mdc-text-field-helper-line/mdc-text-field-helper-line',
             './mdc-text-field-helper-text/mdc-text-field-helper-text',
             './mdc-text-field-character-counter'
         ]);
     }
     exports.configure = configure;
-    var textFieldConfig = {
+    const textFieldConfig = {
         tagName: 'mdc-text-field',
         properties: {
             value: {
                 defaultBindingMode: aurelia_framework_1.bindingMode.twoWay,
-                getObserver: function (element) {
+                getObserver(element) {
                     return new aurelia_framework_1.ValueAttributeObserver(element, 'value', new aurelia_framework_1.EventSubscriber(['change', 'input']));
                 }
             }
@@ -64037,94 +63348,98 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @material/textfield */ "../../node_modules/@material/textfield/index.js"), __webpack_require__(/*! @material/dom/events */ "../../node_modules/@material/dom/events.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "@aurelia-mdc-web/base"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js"), __webpack_require__(/*! ./mdc-text-field-icon */ "@aurelia-mdc-web/text-field/mdc-text-field-icon")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, textfield_1, events_1, base_1, aurelia_typed_observable_plugin_1, mdc_text_field_icon_1) {
     "use strict";
+    var MdcTextField_1;
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTextField = void 0;
-    var textFieldId = 0;
-    var MdcTextField = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcTextField, _super);
-        function MdcTextField(root) {
-            var _this = _super.call(this, root) || this;
-            _this.id = "mdc-text-field-" + ++textFieldId;
-            defineMdcTextFieldElementApis(_this.root);
-            return _this;
+    let textFieldId = 0;
+    let MdcTextField = MdcTextField_1 = class MdcTextField extends base_1.MdcComponent {
+        constructor(root) {
+            super(root);
+            this.id = `mdc-text-field-${++textFieldId}`;
+            this.errors = [];
+            defineMdcTextFieldElementApis(this.root);
         }
-        MdcTextField_1 = MdcTextField;
-        MdcTextField.processContent = function (_viewCompiler, _resources, element, _instruction) {
+        static processContent(_viewCompiler, _resources, element, _instruction) {
             // move icons to slots - this allows omitting slot specification
-            var leadingIcon = element.querySelector("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.LEADING + "]");
+            const leadingIcon = element.querySelector(`[${mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE}][${mdc_text_field_icon_1.mdcIconStrings.LEADING}]`);
             leadingIcon === null || leadingIcon === void 0 ? void 0 : leadingIcon.setAttribute('slot', 'leading-icon');
-            var trailingIcon = element.querySelector("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.TRAILING + "]");
+            const trailingIcon = element.querySelector(`[${mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE}][${mdc_text_field_icon_1.mdcIconStrings.TRAILING}]`);
             trailingIcon === null || trailingIcon === void 0 ? void 0 : trailingIcon.setAttribute('slot', 'trailing-icon');
             return true;
-        };
-        MdcTextField.prototype.requiredChanged = function () {
+        }
+        requiredChanged() {
             this.input_.required = this.required;
-        };
-        MdcTextField.prototype.disabledChanged = function () {
+        }
+        disabledChanged() {
             this.input_.disabled = this.disabled;
-        };
-        MdcTextField.prototype.readonlyChanged = function () {
+        }
+        readonlyChanged() {
             this.input_.readOnly = this.readonly;
-        };
-        MdcTextField.prototype.maxlengthChanged = function () {
+        }
+        maxlengthChanged() {
             if (this.maxlength) {
                 this.input_.setAttribute('maxlength', this.maxlength);
             }
             else {
                 this.input_.removeAttribute('maxlength');
             }
-        };
-        MdcTextField.prototype.maxChanged = function () {
+        }
+        maxChanged() {
             this.input_.max = this.max;
-        };
-        MdcTextField.prototype.minChanged = function () {
+        }
+        minChanged() {
             this.input_.min = this.min;
-        };
-        MdcTextField.prototype.stepChanged = function () {
+        }
+        stepChanged() {
             this.input_.step = this.step;
-        };
-        MdcTextField.prototype.tabindexChanged = function () {
+        }
+        tabindexChanged() {
             this.input_.tabIndex = this.tabindex;
-        };
-        MdcTextField.prototype.typeChanged = function () {
+        }
+        typeChanged() {
             this.input_.type = this.type;
-        };
-        Object.defineProperty(MdcTextField.prototype, "value", {
-            get: function () {
-                if (this.foundation) {
-                    return this.foundation.getValue();
+        }
+        get value() {
+            if (this.foundation) {
+                return this.foundation.getValue();
+            }
+            else {
+                return this.initialValue;
+            }
+        }
+        set value(value) {
+            if (this.foundation) {
+                if (this.foundation.getValue() !== value) {
+                    this.foundation.setValue(value === null || value === undefined ? '' : value.toString());
                 }
-                else {
-                    return this.initialValue;
-                }
-            },
-            set: function (value) {
-                if (this.foundation) {
-                    if (this.foundation.getValue() !== value) {
-                        this.foundation.setValue(value === null || value === undefined ? '' : value.toString());
-                    }
-                }
-                else {
-                    this.initialValue = value;
-                }
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdcTextField.prototype, "valid", {
-            get: function () {
-                var _a, _b;
-                return (_b = (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.isValid()) !== null && _b !== void 0 ? _b : true;
-            },
-            set: function (value) {
-                var _a, _b;
-                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUseNativeValidation(false);
-                (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.setValid(value);
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcTextField.prototype.bind = function () {
+            }
+            else {
+                this.initialValue = value;
+            }
+        }
+        addError(error) {
+            if (!this.errors.includes(error)) {
+                this.errors.push(error);
+            }
+            this.valid = false;
+        }
+        removeError(error) {
+            const i = this.errors.indexOf(error);
+            if (i !== -1) {
+                this.errors.splice(i, 1);
+            }
+            this.valid = this.errors.length === 0;
+        }
+        get valid() {
+            var _a, _b;
+            return (_b = (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.isValid()) !== null && _b !== void 0 ? _b : true;
+        }
+        set valid(value) {
+            var _a, _b;
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setUseNativeValidation(false);
+            (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.setValid(value);
+        }
+        bind() {
             this.requiredChanged();
             this.disabledChanged();
             this.readonlyChanged();
@@ -64138,250 +63453,245 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             if (this.root.hasAttribute('value')) {
                 this.value = this.root.getAttribute('value') || '';
             }
-        };
-        MdcTextField.prototype.initialSyncWithDOM = function () {
+        }
+        initialSyncWithDOM() {
             this.value = this.initialValue;
-        };
-        MdcTextField.prototype.initialise = function () {
+        }
+        initialise() {
             var _a, _b, _c, _d;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var nextSibling, initialisedChildren;
-                return tslib_1.__generator(this, function (_e) {
-                    switch (_e.label) {
-                        case 0:
-                            this.leadingIcon_ = (_a = this.leadingIconEl) === null || _a === void 0 ? void 0 : _a.au['mdc-text-field-icon'].viewModel;
-                            this.trailingIcon_ = (_b = this.trailingIconEl) === null || _b === void 0 ? void 0 : _b.au['mdc-text-field-icon'].viewModel;
-                            nextSibling = this.root.nextElementSibling;
-                            initialisedChildren = [];
-                            if (this.label_) {
-                                initialisedChildren.push(this.label_.initialised);
-                            }
-                            if ((nextSibling === null || nextSibling === void 0 ? void 0 : nextSibling.tagName) === textfield_1.cssClasses.HELPER_LINE.toUpperCase()) {
-                                this.helperText_ = (_c = nextSibling.querySelector(textfield_1.helperTextStrings.ROOT_SELECTOR)) === null || _c === void 0 ? void 0 : _c.au.controller.viewModel;
-                                this.characterCounter_ = (_d = nextSibling.querySelector(textfield_1.characterCountStrings.ROOT_SELECTOR)) === null || _d === void 0 ? void 0 : _d.au.controller.viewModel;
-                                if (this.helperText_) {
-                                    initialisedChildren.push(this.helperText_.initialised);
-                                }
-                                if (this.characterCounter_) {
-                                    initialisedChildren.push(this.characterCounter_.initialised);
-                                }
-                            }
-                            return [4 /*yield*/, Promise.all(initialisedChildren)];
-                        case 1:
-                            _e.sent();
-                            return [2 /*return*/];
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.leadingIcon_ = (_a = this.leadingIconEl) === null || _a === void 0 ? void 0 : _a.au['mdc-text-field-icon'].viewModel;
+                this.trailingIcon_ = (_b = this.trailingIconEl) === null || _b === void 0 ? void 0 : _b.au['mdc-text-field-icon'].viewModel;
+                const nextSibling = this.root.nextElementSibling;
+                const initialisedChildren = [];
+                if (this.label_) {
+                    initialisedChildren.push(this.label_.initialised);
+                }
+                if ((nextSibling === null || nextSibling === void 0 ? void 0 : nextSibling.tagName) === textfield_1.cssClasses.HELPER_LINE.toUpperCase()) {
+                    this.helperText_ = (_c = nextSibling.querySelector(textfield_1.helperTextStrings.ROOT_SELECTOR)) === null || _c === void 0 ? void 0 : _c.au.controller.viewModel;
+                    this.characterCounter_ = (_d = nextSibling.querySelector(textfield_1.characterCountStrings.ROOT_SELECTOR)) === null || _d === void 0 ? void 0 : _d.au.controller.viewModel;
+                    if (this.helperText_) {
+                        initialisedChildren.push(this.helperText_.initialised);
                     }
-                });
+                    if (this.characterCounter_) {
+                        initialisedChildren.push(this.characterCounter_.initialised);
+                    }
+                }
+                yield Promise.all(initialisedChildren);
             });
-        };
-        MdcTextField.prototype.getDefaultFoundation = function () {
-            var adapter = tslib_1.__assign(tslib_1.__assign(tslib_1.__assign(tslib_1.__assign(tslib_1.__assign({}, this.getRootAdapterMethods_()), this.getInputAdapterMethods_()), this.getLabelAdapterMethods_()), this.getLineRippleAdapterMethods_()), this.getOutlineAdapterMethods_());
+        }
+        getDefaultFoundation() {
+            const adapter = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, this.getRootAdapterMethods_()), this.getInputAdapterMethods_()), this.getLabelAdapterMethods_()), this.getLineRippleAdapterMethods_()), this.getOutlineAdapterMethods_());
             return new textfield_1.MDCTextFieldFoundation(adapter, this.getFoundationMap_());
-        };
-        MdcTextField.prototype.getRootAdapterMethods_ = function () {
-            var _this = this;
+        }
+        getRootAdapterMethods_() {
             return {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                registerTextFieldInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-                deregisterTextFieldInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
-                registerValidationAttributeChangeHandler: function (handler) {
-                    var getAttributesList = function (mutationsList) {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                hasClass: (className) => this.root.classList.contains(className),
+                registerTextFieldInteractionHandler: (evtType, handler) => this.listen(evtType, handler),
+                deregisterTextFieldInteractionHandler: (evtType, handler) => this.unlisten(evtType, handler),
+                registerValidationAttributeChangeHandler: (handler) => {
+                    const getAttributesList = (mutationsList) => {
                         return mutationsList
-                            .map(function (mutation) { return mutation.attributeName; })
-                            .filter(function (attributeName) { return attributeName; });
+                            .map((mutation) => mutation.attributeName)
+                            .filter((attributeName) => attributeName);
                     };
-                    var observer = new MutationObserver(function (mutationsList) { return handler(getAttributesList(mutationsList)); });
-                    var config = { attributes: true };
-                    observer.observe(_this.input_, config);
+                    const observer = new MutationObserver((mutationsList) => handler(getAttributesList(mutationsList)));
+                    const config = { attributes: true };
+                    observer.observe(this.input_, config);
                     return observer;
                 },
-                deregisterValidationAttributeChangeHandler: function (observer) { return observer.disconnect(); },
+                deregisterValidationAttributeChangeHandler: (observer) => observer.disconnect(),
             };
-        };
-        MdcTextField.prototype.getInputAdapterMethods_ = function () {
-            var _this = this;
+        }
+        getInputAdapterMethods_() {
             return {
-                getNativeInput: function () { return _this.input_; },
-                isFocused: function () { return document.activeElement === _this.input_; },
-                registerInputInteractionHandler: function (evtType, handler) { return _this.input_.addEventListener(evtType, handler, events_1.applyPassive()); },
-                deregisterInputInteractionHandler: function (evtType, handler) { return _this.input_.removeEventListener(evtType, handler, events_1.applyPassive()); },
+                getNativeInput: () => this.input_,
+                isFocused: () => document.activeElement === this.input_,
+                registerInputInteractionHandler: (evtType, handler) => this.input_.addEventListener(evtType, handler, events_1.applyPassive()),
+                deregisterInputInteractionHandler: (evtType, handler) => this.input_.removeEventListener(evtType, handler, events_1.applyPassive()),
             };
-        };
-        MdcTextField.prototype.getLabelAdapterMethods_ = function () {
-            var _this = this;
+        }
+        getLabelAdapterMethods_() {
             return {
-                floatLabel: function (shouldFloat) { return _this.label_ && _this.label_.float(shouldFloat); },
-                getLabelWidth: function () { return _this.label_ ? _this.label_.getWidth() : 0; },
-                hasLabel: function () { return Boolean(_this.label_); },
-                shakeLabel: function (shouldShake) { return _this.label_ && _this.label_.shake(shouldShake); },
-                setLabelRequired: function (isRequired) { return _this.label_ && _this.label_.setRequired(isRequired); },
+                floatLabel: (shouldFloat) => this.label_ && this.label_.float(shouldFloat),
+                getLabelWidth: () => this.label_ ? this.label_.getWidth() : 0,
+                hasLabel: () => Boolean(this.label_),
+                shakeLabel: (shouldShake) => this.label_ && this.label_.shake(shouldShake),
+                setLabelRequired: (isRequired) => this.label_ && this.label_.setRequired(isRequired),
             };
-        };
-        MdcTextField.prototype.getLineRippleAdapterMethods_ = function () {
-            var _this = this;
+        }
+        getLineRippleAdapterMethods_() {
             return {
-                activateLineRipple: function () { return _this.lineRipple_ && _this.lineRipple_.activate(); },
-                deactivateLineRipple: function () { return _this.lineRipple_ && _this.lineRipple_.deactivate(); },
-                setLineRippleTransformOrigin: function (normalizedX) { return _this.lineRipple_ && _this.lineRipple_.setRippleCenter(normalizedX); }
+                activateLineRipple: () => this.lineRipple_ && this.lineRipple_.activate(),
+                deactivateLineRipple: () => this.lineRipple_ && this.lineRipple_.deactivate(),
+                setLineRippleTransformOrigin: (normalizedX) => this.lineRipple_ && this.lineRipple_.setRippleCenter(normalizedX)
             };
-        };
-        MdcTextField.prototype.getOutlineAdapterMethods_ = function () {
-            var _this = this;
+        }
+        getOutlineAdapterMethods_() {
             return {
-                closeOutline: function () { return _this.outline_ && _this.outline_.closeNotch(); },
-                hasOutline: function () { return Boolean(_this.outline_); },
-                notchOutline: function (labelWidth) { return _this.outline_ && _this.outline_.notch(labelWidth); },
+                closeOutline: () => this.outline_ && this.outline_.closeNotch(),
+                hasOutline: () => Boolean(this.outline_),
+                notchOutline: (labelWidth) => this.outline_ && this.outline_.notch(labelWidth),
             };
-        };
+        }
         /**
          * @return A map of all subcomponents to subfoundations.
          */
-        MdcTextField.prototype.getFoundationMap_ = function () {
+        getFoundationMap_() {
             return {
                 characterCounter: this.characterCounter_ ? this.characterCounter_.foundationForTextField : undefined,
                 helperText: this.helperText_ ? this.helperText_.foundationForTextField : undefined,
                 leadingIcon: this.leadingIcon_ ? this.leadingIcon_.foundationForTextField : undefined,
                 trailingIcon: this.trailingIcon_ ? this.trailingIcon_.foundationForTextField : undefined,
             };
-        };
-        MdcTextField.prototype.onInput = function (evt) {
+        }
+        onInput(evt) {
             var _a;
-            var value = evt.target.value;
+            const value = evt.target.value;
             this.value = value;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleInput();
             this.emit('input', {}, true);
-        };
-        MdcTextField.prototype.onFocus = function () {
+        }
+        onFocus() {
             var _a;
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0: return [4 /*yield*/, this.initialised];
-                        case 1:
-                            _b.sent();
-                            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activateFocus();
-                            return [2 /*return*/];
-                    }
-                });
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.activateFocus();
             });
-        };
-        MdcTextField.prototype.onChange = function (evt) {
-            var value = evt.target.value;
+        }
+        onChange(evt) {
+            const value = evt.target.value;
             this.value = value;
             this.emit('change', {}, true);
-        };
-        MdcTextField.prototype.onBlur = function () {
+        }
+        onBlur() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.deactivateFocus();
             this.emit('blur', {}, true);
-        };
-        MdcTextField.prototype.focus = function () {
+        }
+        focus() {
             this.input_.focus();
-        };
-        MdcTextField.prototype.blur = function () {
+        }
+        blur() {
             this.input_.blur();
-        };
-        var MdcTextField_1;
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTextField.prototype, "label", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTextField.prototype, "outlined", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTextField.prototype, "prefix", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTextField.prototype, "suffix", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTextField.prototype, "required", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTextField.prototype, "disabled", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTextField.prototype, "readonly", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTextField.prototype, "maxlength", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTextField.prototype, "max", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTextField.prototype, "min", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTextField.prototype, "step", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.number,
-            tslib_1.__metadata("design:type", Number)
-        ], MdcTextField.prototype, "tabindex", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTextField.prototype, "type", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.child("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.LEADING + "]"),
-            tslib_1.__metadata("design:type", Object)
-        ], MdcTextField.prototype, "leadingIconEl", void 0);
-        tslib_1.__decorate([
-            aurelia_framework_1.child("[" + mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE + "][" + mdc_text_field_icon_1.mdcIconStrings.TRAILING + "]"),
-            tslib_1.__metadata("design:type", Object)
-        ], MdcTextField.prototype, "trailingIconEl", void 0);
-        MdcTextField = MdcTextField_1 = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-text-field.html'),
-            aurelia_framework_1.customElement(textfield_1.cssClasses.ROOT),
-            aurelia_framework_1.processContent(MdcTextField_1.processContent),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcTextField);
-        return MdcTextField;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTextField.prototype, "label", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTextField.prototype, "outlined", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTextField.prototype, "prefix", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTextField.prototype, "suffix", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTextField.prototype, "required", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTextField.prototype, "disabled", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTextField.prototype, "readonly", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTextField.prototype, "maxlength", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTextField.prototype, "max", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTextField.prototype, "min", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTextField.prototype, "step", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.number,
+        tslib_1.__metadata("design:type", Number)
+    ], MdcTextField.prototype, "tabindex", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTextField.prototype, "type", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.child(`[${mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE}][${mdc_text_field_icon_1.mdcIconStrings.LEADING}]`),
+        tslib_1.__metadata("design:type", Object)
+    ], MdcTextField.prototype, "leadingIconEl", void 0);
+    tslib_1.__decorate([
+        aurelia_framework_1.child(`[${mdc_text_field_icon_1.mdcIconStrings.ATTRIBUTE}][${mdc_text_field_icon_1.mdcIconStrings.TRAILING}]`),
+        tslib_1.__metadata("design:type", Object)
+    ], MdcTextField.prototype, "trailingIconEl", void 0);
+    MdcTextField = MdcTextField_1 = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-text-field.html'),
+        aurelia_framework_1.customElement(textfield_1.cssClasses.ROOT),
+        aurelia_framework_1.processContent(MdcTextField_1.processContent),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcTextField);
     exports.MdcTextField = MdcTextField;
     function defineMdcTextFieldElementApis(element) {
         Object.defineProperties(element, {
             value: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.value;
                 },
-                set: function (value) {
+                set(value) {
                     this.au.controller.viewModel.value = value;
                 },
                 configurable: true
             },
             valid: {
-                get: function () {
+                get() {
                     return this.au.controller.viewModel.valid;
                 },
-                set: function (value) {
+                set(value) {
                     this.au.controller.viewModel.valid = value;
                 },
                 configurable: true
             },
+            addError: {
+                value(error) {
+                    this.au.controller.viewModel.addError(error);
+                },
+                configurable: true
+            },
+            removeError: {
+                value(error) {
+                    this.au.controller.viewModel.removeError(error);
+                },
+                configurable: true
+            },
+            getErrors: {
+                value() {
+                    return this.au.controller.viewModel.errors;
+                },
+                configurable: true
+            },
             focus: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.focus();
                 },
                 configurable: true
             },
             blur: {
-                value: function () {
+                value() {
                     this.au.controller.viewModel.blur();
                 },
                 configurable: true
@@ -64406,37 +63716,27 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTextFieldCharacterCounter = void 0;
-    var MdcTextFieldCharacterCounter = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcTextFieldCharacterCounter, _super);
-        function MdcTextFieldCharacterCounter() {
-            return _super !== null && _super.apply(this, arguments) || this;
+    let MdcTextFieldCharacterCounter = class MdcTextFieldCharacterCounter extends base_1.MdcComponent {
+        // Provided for access by MDCTextField component
+        get foundationForTextField() {
+            return this.foundation;
         }
-        Object.defineProperty(MdcTextFieldCharacterCounter.prototype, "foundationForTextField", {
-            // Provided for access by MDCTextField component
-            get: function () {
-                return this.foundation;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcTextFieldCharacterCounter.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                setContent: function (content) {
-                    _this.root.textContent = content;
+            const adapter = {
+                setContent: (content) => {
+                    this.root.textContent = content;
                 },
             };
             return new textfield_1.MDCTextFieldCharacterCounterFoundation(adapter);
-        };
-        MdcTextFieldCharacterCounter = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.inlineView("<template class=\"" + textfield_1.characterCountCssClasses.ROOT + "\"></template>"),
-            aurelia_framework_1.customElement(textfield_1.characterCountCssClasses.ROOT)
-        ], MdcTextFieldCharacterCounter);
-        return MdcTextFieldCharacterCounter;
-    }(base_1.MdcComponent));
+        }
+    };
+    MdcTextFieldCharacterCounter = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inlineView(`<template class="${textfield_1.characterCountCssClasses.ROOT}"></template>`),
+        aurelia_framework_1.customElement(textfield_1.characterCountCssClasses.ROOT)
+    ], MdcTextFieldCharacterCounter);
     exports.MdcTextFieldCharacterCounter = MdcTextFieldCharacterCounter;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64444,31 +63744,46 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 /***/ }),
 
-/***/ "@aurelia-mdc-web/text-field/mdc-text-field-helper-line":
-/*!*******************************************************!*\
-  !*** ../text-field/src/mdc-text-field-helper-line.ts ***!
-  \*******************************************************/
+/***/ "@aurelia-mdc-web/text-field/mdc-text-field-helper-line/mdc-text-field-helper-line":
+/*!**********************************************************************************!*\
+  !*** ../text-field/src/mdc-text-field-helper-line/mdc-text-field-helper-line.ts ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, aurelia_typed_observable_plugin_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTextFieldHelperLine = void 0;
-    var MdcTextFieldHelperLine = /** @class */ (function () {
-        function MdcTextFieldHelperLine() {
-        }
-        MdcTextFieldHelperLine = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.inlineView('<template class="mdc-text-field-helper-line"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-text-field-helper-line')
-        ], MdcTextFieldHelperLine);
-        return MdcTextFieldHelperLine;
-    }());
+    let MdcTextFieldHelperLine = class MdcTextFieldHelperLine {
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", Array)
+    ], MdcTextFieldHelperLine.prototype, "errors", void 0);
+    MdcTextFieldHelperLine = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-text-field-helper-line.html'),
+        aurelia_framework_1.customElement('mdc-text-field-helper-line')
+    ], MdcTextFieldHelperLine);
     exports.MdcTextFieldHelperLine = MdcTextFieldHelperLine;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/text-field/mdc-text-field-helper-line/mdc-text-field-helper-line.html":
+/*!************************************************************************************!*\
+  !*** ../text-field/src/mdc-text-field-helper-line/mdc-text-field-helper-line.html ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template class=\"mdc-text-field-helper-line ${errors.length ? 'mdc-text-field-helper-line--with-errors' : ''}\">\n  <slot></slot>\n  <mdc-text-field-helper-text if.bind=\"errors.length\" validation class=\"mdc-text-field-helper-text--errors\">\n    <span class=\"mdc-text-field-helper-text__error\" repeat.for=\"e of errors\">${e}<br/></span>\n  </mdc-text-field-helper-text>\n</template>\n";
+// Exports
+module.exports = code;
 
 /***/ }),
 
@@ -64483,52 +63798,44 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTextFieldHelperText = void 0;
-    var MdcTextFieldHelperText = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcTextFieldHelperText, _super);
-        function MdcTextFieldHelperText() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.helperTextCssClasses = textfield_1.helperTextCssClasses;
-            return _this;
+    let MdcTextFieldHelperText = class MdcTextFieldHelperText extends base_1.MdcComponent {
+        constructor() {
+            super(...arguments);
+            this.helperTextCssClasses = textfield_1.helperTextCssClasses;
         }
-        Object.defineProperty(MdcTextFieldHelperText.prototype, "foundationForTextField", {
-            // Provided for access by MDCTextField component
-            get: function () {
-                return this.foundation;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcTextFieldHelperText.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        // Provided for access by MDCTextField component
+        get foundationForTextField() {
+            return this.foundation;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
-                removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
-                setContent: function (content) {
-                    _this.root.textContent = content;
+            const adapter = {
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                hasClass: (className) => this.root.classList.contains(className),
+                setAttr: (attr, value) => this.root.setAttribute(attr, value),
+                removeAttr: (attr) => this.root.removeAttribute(attr),
+                setContent: (content) => {
+                    this.root.textContent = content;
                 },
             };
             return new textfield_1.MDCTextFieldHelperTextFoundation(adapter);
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTextFieldHelperText.prototype, "persistent", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTextFieldHelperText.prototype, "validation", void 0);
-        MdcTextFieldHelperText = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-text-field-helper-text.html'),
-            aurelia_framework_1.customElement(textfield_1.helperTextCssClasses.ROOT)
-        ], MdcTextFieldHelperText);
-        return MdcTextFieldHelperText;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTextFieldHelperText.prototype, "persistent", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTextFieldHelperText.prototype, "validation", void 0);
+    MdcTextFieldHelperText = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-text-field-helper-text.html'),
+        aurelia_framework_1.customElement(textfield_1.helperTextCssClasses.ROOT)
+    ], MdcTextFieldHelperText);
     exports.MdcTextFieldHelperText = MdcTextFieldHelperText;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64544,7 +63851,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"\n    ${helperTextCssClasses.ROOT} ${persistent ? helperTextCssClasses.ROOT + '--persistent' : ''}\n    ${validation ? helperTextCssClasses.ROOT + '--validation-msg' : ''}\">\n  <slot></slot>\n</template>\n";
+var code = "<!-- DO NOT FORMAT THIS FILE! ANY SPACE BEFORE <SLOT> BREAKS HELPER TEXT ALIGNMENT! -->\n<template class=\"\n    ${helperTextCssClasses.ROOT} ${persistent ? helperTextCssClasses.ROOT + '--persistent' : ''}\n    ${validation ? helperTextCssClasses.ROOT + '--validation-msg' : ''}\"><slot></slot></template>\n";
 // Exports
 module.exports = code;
 
@@ -64566,56 +63873,43 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         LEADING: 'leading',
         TRAILING: 'trailing'
     };
-    var MdcTextFieldIcon = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcTextFieldIcon, _super);
-        function MdcTextFieldIcon() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcTextFieldIcon.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    this.root.classList.add(textfield_1.iconCssClasses.ROOT);
-                    if (this.root.hasAttribute(exports.mdcIconStrings.LEADING)) {
-                        this.root.classList.add(textfield_1.iconCssClasses.ROOT + "--" + exports.mdcIconStrings.LEADING);
-                    }
-                    if (this.root.hasAttribute(exports.mdcIconStrings.TRAILING)) {
-                        this.root.classList.add(textfield_1.iconCssClasses.ROOT + "--" + exports.mdcIconStrings.TRAILING);
-                    }
-                    return [2 /*return*/];
-                });
+    let MdcTextFieldIcon = class MdcTextFieldIcon extends base_1.MdcComponent {
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.root.classList.add(textfield_1.iconCssClasses.ROOT);
+                if (this.root.hasAttribute(exports.mdcIconStrings.LEADING)) {
+                    this.root.classList.add(`${textfield_1.iconCssClasses.ROOT}--${exports.mdcIconStrings.LEADING}`);
+                }
+                if (this.root.hasAttribute(exports.mdcIconStrings.TRAILING)) {
+                    this.root.classList.add(`${textfield_1.iconCssClasses.ROOT}--${exports.mdcIconStrings.TRAILING}`);
+                }
             });
-        };
-        Object.defineProperty(MdcTextFieldIcon.prototype, "foundationForTextField", {
-            // Provided for access by MDCTextField component
-            get: function () {
-                return this.foundation;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        MdcTextFieldIcon.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        // Provided for access by MDCTextField component
+        get foundationForTextField() {
+            return this.foundation;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                getAttr: function (attr) { return _this.root.getAttribute(attr); },
-                setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
-                removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
-                setContent: function (content) {
-                    _this.root.textContent = content;
+            const adapter = {
+                getAttr: (attr) => this.root.getAttribute(attr),
+                setAttr: (attr, value) => this.root.setAttribute(attr, value),
+                removeAttr: (attr) => this.root.removeAttribute(attr),
+                setContent: (content) => {
+                    this.root.textContent = content;
                 },
-                registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-                deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
-                notifyIconAction: function () { return _this.emit(textfield_1.MDCTextFieldIconFoundation.strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */); },
+                registerInteractionHandler: (evtType, handler) => this.listen(evtType, handler),
+                deregisterInteractionHandler: (evtType, handler) => this.unlisten(evtType, handler),
+                notifyIconAction: () => this.emit(textfield_1.MDCTextFieldIconFoundation.strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */),
             };
             return new textfield_1.MDCTextFieldIconFoundation(adapter);
-        };
-        MdcTextFieldIcon = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute(exports.mdcIconStrings.ATTRIBUTE)
-        ], MdcTextFieldIcon);
-        return MdcTextFieldIcon;
-    }(base_1.MdcComponent));
+        }
+    };
+    MdcTextFieldIcon = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute(exports.mdcIconStrings.ATTRIBUTE)
+    ], MdcTextFieldIcon);
     exports.MdcTextFieldIcon = MdcTextFieldIcon;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64680,31 +63974,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.EnhanceTopAppBarActions = void 0;
-    var EnhanceTopAppBarActions = /** @class */ (function () {
-        function EnhanceTopAppBarActions() {
+    let EnhanceTopAppBarActions = class EnhanceTopAppBarActions {
+        beforeCompile(template) {
+            const actions = template.querySelectorAll("[mdc-top-app-bar-action-item],[mdc-top-app-bar-nav-icon]");
+            for (let i of Array.from(actions)) {
+                i.setAttribute("mdc-ripple", "unbounded.bind: true");
+            }
         }
-        EnhanceTopAppBarActions.prototype.beforeCompile = function (template) {
-            var e_1, _a;
-            var actions = template.querySelectorAll("[mdc-top-app-bar-action-item],[mdc-top-app-bar-nav-icon]");
-            try {
-                for (var _b = tslib_1.__values(Array.from(actions)), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var i = _c.value;
-                    i.setAttribute("mdc-ripple", "unbounded.bind: true");
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-        };
-        EnhanceTopAppBarActions = tslib_1.__decorate([
-            aurelia_framework_1.viewEngineHooks
-        ], EnhanceTopAppBarActions);
-        return EnhanceTopAppBarActions;
-    }());
+    };
+    EnhanceTopAppBarActions = tslib_1.__decorate([
+        aurelia_framework_1.viewEngineHooks
+    ], EnhanceTopAppBarActions);
     exports.EnhanceTopAppBarActions = EnhanceTopAppBarActions;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64723,20 +64003,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTopAppBar = void 0;
-    var MdcTopAppBar = /** @class */ (function (_super) {
-        tslib_1.__extends(MdcTopAppBar, _super);
-        function MdcTopAppBar() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MdcTopAppBar.prototype.initialise = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    this.scrollTarget_ = window;
-                    return [2 /*return*/];
-                });
+    let MdcTopAppBar = class MdcTopAppBar extends base_1.MdcComponent {
+        initialise() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.scrollTarget_ = window;
             });
-        };
-        MdcTopAppBar.prototype.initialSyncWithDOM = function () {
+        }
+        initialSyncWithDOM() {
             var _a, _b, _c;
             this.handleNavigationClick_ = (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleNavigationClick.bind(this.foundation);
             this.handleWindowResize_ = (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.handleWindowResize.bind(this.foundation);
@@ -64747,13 +64020,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             if (this.navIcon_) {
                 this.navIcon_.addEventListener('click', this.handleNavigationClick_);
             }
-            var isFixed = this.root.classList.contains(top_app_bar_1.cssClasses.FIXED_CLASS);
-            var isShort = this.root.classList.contains(top_app_bar_1.cssClasses.SHORT_CLASS);
+            const isFixed = this.root.classList.contains(top_app_bar_1.cssClasses.FIXED_CLASS);
+            const isShort = this.root.classList.contains(top_app_bar_1.cssClasses.SHORT_CLASS);
             if (!isShort && !isFixed) {
                 window.addEventListener('resize', this.handleWindowResize_);
             }
-        };
-        MdcTopAppBar.prototype.setScrollTarget = function (target) {
+        }
+        setScrollTarget(target) {
             var _a;
             // Remove scroll handler from the previous scroll target
             this.scrollTarget_.removeEventListener('scroll', this.handleTargetScroll_);
@@ -64761,26 +64034,25 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             // Initialize scroll handler on the new scroll target
             this.handleTargetScroll_ = (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleTargetScroll.bind(this.foundation);
             this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_);
-        };
-        MdcTopAppBar.prototype.getDefaultFoundation = function () {
-            var _this = this;
+        }
+        getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
             // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-            var adapter = {
-                hasClass: function (className) { return _this.root.classList.contains(className); },
-                addClass: function (className) { return _this.root.classList.add(className); },
-                removeClass: function (className) { return _this.root.classList.remove(className); },
-                setStyle: function (property, value) { return _this.root.style.setProperty(property, value); },
-                getTopAppBarHeight: function () { return _this.root.clientHeight; },
-                notifyNavigationIconClicked: function () { return _this.emit(top_app_bar_1.strings.NAVIGATION_EVENT, {}); },
-                getViewportScrollY: function () {
-                    var win = _this.scrollTarget_;
-                    var el = _this.scrollTarget_;
+            const adapter = {
+                hasClass: (className) => this.root.classList.contains(className),
+                addClass: (className) => this.root.classList.add(className),
+                removeClass: (className) => this.root.classList.remove(className),
+                setStyle: (property, value) => this.root.style.setProperty(property, value),
+                getTopAppBarHeight: () => this.root.clientHeight,
+                notifyNavigationIconClicked: () => this.emit(top_app_bar_1.strings.NAVIGATION_EVENT, {}),
+                getViewportScrollY: () => {
+                    const win = this.scrollTarget_;
+                    const el = this.scrollTarget_;
                     return win.pageYOffset !== undefined ? win.pageYOffset : el.scrollTop;
                 },
-                getTotalActionItems: function () { return _this.root.querySelectorAll(top_app_bar_1.strings.ACTION_ITEM_SELECTOR).length; },
+                getTotalActionItems: () => this.root.querySelectorAll(top_app_bar_1.strings.ACTION_ITEM_SELECTOR).length,
             };
-            var foundation;
+            let foundation;
             if (this.root.classList.contains(top_app_bar_1.cssClasses.SHORT_CLASS)) {
                 foundation = new top_app_bar_1.MDCTopAppBarBaseFoundation(adapter);
             }
@@ -64791,34 +64063,33 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 foundation = new top_app_bar_1.MDCTopAppBarFoundation(adapter);
             }
             return foundation;
-        };
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTopAppBar.prototype, "short", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTopAppBar.prototype, "collapsed", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTopAppBar.prototype, "fixed", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTopAppBar.prototype, "prominent", void 0);
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable.booleanAttr,
-            tslib_1.__metadata("design:type", Boolean)
-        ], MdcTopAppBar.prototype, "dense", void 0);
-        MdcTopAppBar = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.useView('./mdc-top-app-bar.html'),
-            aurelia_framework_1.customElement('mdc-top-app-bar')
-        ], MdcTopAppBar);
-        return MdcTopAppBar;
-    }(base_1.MdcComponent));
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTopAppBar.prototype, "short", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTopAppBar.prototype, "collapsed", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTopAppBar.prototype, "fixed", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTopAppBar.prototype, "prominent", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcTopAppBar.prototype, "dense", void 0);
+    MdcTopAppBar = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.useView('./mdc-top-app-bar.html'),
+        aurelia_framework_1.customElement('mdc-top-app-bar')
+    ], MdcTopAppBar);
     exports.MdcTopAppBar = MdcTopAppBar;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64837,26 +64108,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTopAppBarActionItem = void 0;
-    var MdcTopAppBarActionItem = /** @class */ (function () {
-        function MdcTopAppBarActionItem(root) {
+    let MdcTopAppBarActionItem = class MdcTopAppBarActionItem {
+        constructor(root) {
             this.root = root;
         }
-        MdcTopAppBarActionItem.prototype.attached = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    this.root.setAttribute('role', 'button');
-                    this.root.classList.add('mdc-top-app-bar__action-item', 'mdc-icon-button');
-                    return [2 /*return*/];
-                });
+        attached() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.root.setAttribute('role', 'button');
+                this.root.classList.add('mdc-top-app-bar__action-item', 'mdc-icon-button');
             });
-        };
-        MdcTopAppBarActionItem = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-top-app-bar-action-item'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcTopAppBarActionItem);
-        return MdcTopAppBarActionItem;
-    }());
+        }
+    };
+    MdcTopAppBarActionItem = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-top-app-bar-action-item'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcTopAppBarActionItem);
     exports.MdcTopAppBarActionItem = MdcTopAppBarActionItem;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64875,25 +64142,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTopAppBarFixedAdjust = void 0;
-    var MdcTopAppBarFixedAdjust = /** @class */ (function () {
-        function MdcTopAppBarFixedAdjust(root) {
+    let MdcTopAppBarFixedAdjust = class MdcTopAppBarFixedAdjust {
+        constructor(root) {
             this.root = root;
         }
-        MdcTopAppBarFixedAdjust.prototype.attached = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    this.root.classList.add('mdc-top-app-bar--fixed-adjust');
-                    return [2 /*return*/];
-                });
+        attached() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.root.classList.add('mdc-top-app-bar--fixed-adjust');
             });
-        };
-        MdcTopAppBarFixedAdjust = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-top-app-bar-fixed-adjust'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcTopAppBarFixedAdjust);
-        return MdcTopAppBarFixedAdjust;
-    }());
+        }
+    };
+    MdcTopAppBarFixedAdjust = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-top-app-bar-fixed-adjust'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcTopAppBarFixedAdjust);
     exports.MdcTopAppBarFixedAdjust = MdcTopAppBarFixedAdjust;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64912,26 +64175,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTopAppBarNavIcon = void 0;
-    var MdcTopAppBarNavIcon = /** @class */ (function () {
-        function MdcTopAppBarNavIcon(root) {
+    let MdcTopAppBarNavIcon = class MdcTopAppBarNavIcon {
+        constructor(root) {
             this.root = root;
         }
-        MdcTopAppBarNavIcon.prototype.attached = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    this.root.setAttribute('role', 'button');
-                    this.root.classList.add('mdc-top-app-bar__navigation-icon', 'mdc-icon-button');
-                    return [2 /*return*/];
-                });
+        attached() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                this.root.setAttribute('role', 'button');
+                this.root.classList.add('mdc-top-app-bar__navigation-icon', 'mdc-icon-button');
             });
-        };
-        MdcTopAppBarNavIcon = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-top-app-bar-nav-icon'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcTopAppBarNavIcon);
-        return MdcTopAppBarNavIcon;
-    }());
+        }
+    };
+    MdcTopAppBarNavIcon = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-top-app-bar-nav-icon'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcTopAppBarNavIcon);
     exports.MdcTopAppBarNavIcon = MdcTopAppBarNavIcon;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64950,15 +64209,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTopAppBarRow = void 0;
-    var MdcTopAppBarRow = /** @class */ (function () {
-        function MdcTopAppBarRow() {
-        }
-        MdcTopAppBarRow = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template class="mdc-top-app-bar__row"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-top-app-bar-row')
-        ], MdcTopAppBarRow);
-        return MdcTopAppBarRow;
-    }());
+    let MdcTopAppBarRow = class MdcTopAppBarRow {
+    };
+    MdcTopAppBarRow = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-top-app-bar__row"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-top-app-bar-row')
+    ], MdcTopAppBarRow);
     exports.MdcTopAppBarRow = MdcTopAppBarRow;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64977,20 +64233,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTopAppBarSection = void 0;
-    var MdcTopAppBarSection = /** @class */ (function () {
-        function MdcTopAppBarSection() {
+    let MdcTopAppBarSection = class MdcTopAppBarSection {
+        constructor() {
             this.align = 'start';
         }
-        tslib_1.__decorate([
-            aurelia_typed_observable_plugin_1.bindable,
-            tslib_1.__metadata("design:type", String)
-        ], MdcTopAppBarSection.prototype, "align", void 0);
-        MdcTopAppBarSection = tslib_1.__decorate([
-            aurelia_framework_1.useView('./mdc-top-app-bar-section.html'),
-            aurelia_framework_1.customElement('mdc-top-app-bar-section')
-        ], MdcTopAppBarSection);
-        return MdcTopAppBarSection;
-    }());
+    };
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable,
+        tslib_1.__metadata("design:type", String)
+    ], MdcTopAppBarSection.prototype, "align", void 0);
+    MdcTopAppBarSection = tslib_1.__decorate([
+        aurelia_framework_1.useView('./mdc-top-app-bar-section.html'),
+        aurelia_framework_1.customElement('mdc-top-app-bar-section')
+    ], MdcTopAppBarSection);
     exports.MdcTopAppBarSection = MdcTopAppBarSection;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -65023,15 +64278,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTopAppBarTitle = void 0;
-    var MdcTopAppBarTitle = /** @class */ (function () {
-        function MdcTopAppBarTitle() {
-        }
-        MdcTopAppBarTitle = tslib_1.__decorate([
-            aurelia_framework_1.inlineView('<template class="mdc-top-app-bar__title"><slot></slot></template>'),
-            aurelia_framework_1.customElement('mdc-top-app-bar-title')
-        ], MdcTopAppBarTitle);
-        return MdcTopAppBarTitle;
-    }());
+    let MdcTopAppBarTitle = class MdcTopAppBarTitle {
+    };
+    MdcTopAppBarTitle = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-top-app-bar__title"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-top-app-bar-title')
+    ], MdcTopAppBarTitle);
     exports.MdcTopAppBarTitle = MdcTopAppBarTitle;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -65087,21 +64339,44 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcTypography = void 0;
-    var MdcTypography = /** @class */ (function () {
-        function MdcTypography(root) {
+    let MdcTypography = class MdcTypography {
+        constructor(root) {
             this.root = root;
         }
-        MdcTypography.prototype.attached = function () {
-            this.root.classList.add(this.value ? "mdc-typography--" + this.value : 'mdc-typography');
-        };
-        MdcTypography = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('mdc-typography'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], MdcTypography);
-        return MdcTypography;
-    }());
+        attached() {
+            this.root.classList.add(this.value ? `mdc-typography--${this.value}` : 'mdc-typography');
+        }
+    };
+    MdcTypography = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-typography'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcTypography);
     exports.MdcTypography = MdcTypography;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/validation":
+/*!**********************************!*\
+  !*** ../validation/src/index.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! aurelia-validation */ "aurelia-validation"), __webpack_require__(/*! ./mdc-validation-controller-factory */ "../validation/src/mdc-validation-controller-factory.ts"), __webpack_require__(/*! ./mdc-validation-renderer */ "../validation/src/mdc-validation-renderer.ts"), __webpack_require__(/*! ./mdc-validation-controller-factory */ "../validation/src/mdc-validation-controller-factory.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, aurelia_validation_1, mdc_validation_controller_factory_1, mdc_validation_renderer_1, mdc_validation_controller_factory_2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.configure = void 0;
+    Object.defineProperty(exports, "MdcValidationRenderer", { enumerable: true, get: function () { return mdc_validation_renderer_1.MdcValidationRenderer; } });
+    Object.defineProperty(exports, "MdcValidationControllerFactory", { enumerable: true, get: function () { return mdc_validation_controller_factory_2.MdcValidationControllerFactory; } });
+    function configure() {
+        // replace default static get with ours
+        aurelia_validation_1.ValidationControllerFactory.get = mdc_validation_controller_factory_1.MdcValidationControllerFactory.get;
+    }
+    exports.configure = configure;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -65119,20 +64394,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Highlight = void 0;
-    var Highlight = /** @class */ (function () {
-        function Highlight(element) {
+    let Highlight = class Highlight {
+        constructor(element) {
             this.element = element;
         }
-        Highlight.prototype.attached = function () {
+        attached() {
             highlightjs_1.highlightBlock(this.element);
-        };
-        Highlight = tslib_1.__decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customAttribute('highlight'),
-            tslib_1.__metadata("design:paramtypes", [HTMLElement])
-        ], Highlight);
-        return Highlight;
-    }());
+        }
+    };
+    Highlight = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('highlight'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], Highlight);
     exports.Highlight = Highlight;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72098,52 +71372,43 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.configure = void 0;
     function configure(aurelia) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        aurelia
-                            .use
-                            .developmentLogging()
-                            .standardConfiguration()
-                            .globalResources([
-                            'attributes/highlight',
-                        ])
-                            .plugin('@aurelia-mdc-web/base')
-                            .plugin('@aurelia-mdc-web/button')
-                            .plugin('@aurelia-mdc-web/card')
-                            .plugin('@aurelia-mdc-web/checkbox')
-                            .plugin('@aurelia-mdc-web/circular-progress')
-                            .plugin('@aurelia-mdc-web/dialog')
-                            .plugin('@aurelia-mdc-web/drawer')
-                            .plugin('@aurelia-mdc-web/fab')
-                            .plugin('@aurelia-mdc-web/floating-label')
-                            .plugin('@aurelia-mdc-web/form-field')
-                            .plugin('@aurelia-mdc-web/icon-button')
-                            .plugin('@aurelia-mdc-web/line-ripple')
-                            .plugin('@aurelia-mdc-web/list')
-                            .plugin('@aurelia-mdc-web/menu')
-                            .plugin('@aurelia-mdc-web/menu-surface')
-                            .plugin('@aurelia-mdc-web/notched-outline')
-                            .plugin('@aurelia-mdc-web/top-app-bar')
-                            .plugin('@aurelia-mdc-web/radio')
-                            .plugin('@aurelia-mdc-web/ripple')
-                            .plugin('@aurelia-mdc-web/select')
-                            .plugin('@aurelia-mdc-web/slider')
-                            .plugin('@aurelia-mdc-web/switch')
-                            .plugin('@aurelia-mdc-web/tab-bar')
-                            .plugin('@aurelia-mdc-web/text-field')
-                            .plugin('@aurelia-mdc-web/typography')
-                            .plugin('aurelia-validation');
-                        return [4 /*yield*/, aurelia.start()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, aurelia.setRoot('views/root/root')];
-                    case 2:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            aurelia
+                .use
+                .developmentLogging()
+                .standardConfiguration()
+                .globalResources([
+                'attributes/highlight',
+            ])
+                .plugin('@aurelia-mdc-web/base')
+                .plugin('@aurelia-mdc-web/button')
+                .plugin('@aurelia-mdc-web/card')
+                .plugin('@aurelia-mdc-web/checkbox')
+                .plugin('@aurelia-mdc-web/circular-progress')
+                .plugin('@aurelia-mdc-web/dialog')
+                .plugin('@aurelia-mdc-web/drawer')
+                .plugin('@aurelia-mdc-web/fab')
+                .plugin('@aurelia-mdc-web/floating-label')
+                .plugin('@aurelia-mdc-web/form-field')
+                .plugin('@aurelia-mdc-web/icon-button')
+                .plugin('@aurelia-mdc-web/line-ripple')
+                .plugin('@aurelia-mdc-web/list')
+                .plugin('@aurelia-mdc-web/menu')
+                .plugin('@aurelia-mdc-web/menu-surface')
+                .plugin('@aurelia-mdc-web/notched-outline')
+                .plugin('@aurelia-mdc-web/top-app-bar')
+                .plugin('@aurelia-mdc-web/radio')
+                .plugin('@aurelia-mdc-web/ripple')
+                .plugin('@aurelia-mdc-web/select')
+                .plugin('@aurelia-mdc-web/slider')
+                .plugin('@aurelia-mdc-web/switch')
+                .plugin('@aurelia-mdc-web/tab-bar')
+                .plugin('@aurelia-mdc-web/text-field')
+                .plugin('@aurelia-mdc-web/typography')
+                .plugin('aurelia-validation')
+                .plugin('@aurelia-mdc-web/validation');
+            yield aurelia.start();
+            yield aurelia.setRoot('views/root/root');
         });
     }
     exports.configure = configure;
@@ -72164,11 +71429,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ApiViewer = void 0;
-    var ApiViewer = /** @class */ (function () {
-        function ApiViewer() {
-        }
-        return ApiViewer;
-    }());
+    class ApiViewer {
+    }
     exports.ApiViewer = ApiViewer;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72201,17 +71463,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Button = void 0;
-    var Button = /** @class */ (function (_super) {
-        tslib_1.__extends(Button, _super);
-        function Button() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Button = tslib_1.__decorate([
-            aurelia_framework_1.autoinject,
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Button);
-        return Button;
-    }(component_viewer_1.ComponentViewer));
+    let Button = class Button extends component_viewer_1.ComponentViewer {
+    };
+    Button = tslib_1.__decorate([
+        aurelia_framework_1.autoinject,
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Button);
     exports.Button = Button;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72230,11 +71487,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72267,16 +71521,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Card = void 0;
-    var Card = /** @class */ (function (_super) {
-        tslib_1.__extends(Card, _super);
-        function Card() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Card = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Card);
-        return Card;
-    }(component_viewer_1.ComponentViewer));
+    let Card = class Card extends component_viewer_1.ComponentViewer {
+    };
+    Card = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Card);
     exports.Card = Card;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72295,11 +71544,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72332,16 +71578,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Checkbox = void 0;
-    var Checkbox = /** @class */ (function (_super) {
-        tslib_1.__extends(Checkbox, _super);
-        function Checkbox() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Checkbox = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Checkbox);
-        return Checkbox;
-    }(component_viewer_1.ComponentViewer));
+    let Checkbox = class Checkbox extends component_viewer_1.ComponentViewer {
+    };
+    Checkbox = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Checkbox);
     exports.Checkbox = Checkbox;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72360,12 +71601,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
+    class Examples {
+        constructor() {
             this.checked = true;
         }
-        return Examples;
-    }());
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72398,16 +71638,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CircularProgress = void 0;
-    var CircularProgress = /** @class */ (function (_super) {
-        tslib_1.__extends(CircularProgress, _super);
-        function CircularProgress() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        CircularProgress = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], CircularProgress);
-        return CircularProgress;
-    }(component_viewer_1.ComponentViewer));
+    let CircularProgress = class CircularProgress extends component_viewer_1.ComponentViewer {
+    };
+    CircularProgress = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], CircularProgress);
     exports.CircularProgress = CircularProgress;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72426,11 +71661,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72463,26 +71695,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ComponentViewer = void 0;
-    var ComponentViewer = /** @class */ (function () {
-        function ComponentViewer() {
-        }
-        ComponentViewer.prototype.configureRouter = function (config, router) {
+    class ComponentViewer {
+        constructor() { }
+        configureRouter(config, router) {
             this.router = router;
             config.map([
                 { route: '', redirect: 'examples' },
                 { route: 'examples', name: 'examples', title: 'Examples', moduleId: './examples' },
                 { route: 'api', name: 'api', title: 'Api', moduleId: '../api-viewer/api-viewer' }
             ]);
-        };
-        ComponentViewer.prototype.attached = function () {
-            this.tabs = this.router.routes.filter(function (x) { return !x.redirect; });
+        }
+        attached() {
+            this.tabs = this.router.routes.filter(x => !x.redirect);
             this.template = templates_1.templates[this.router.parent.currentInstruction.config.name];
-        };
-        ComponentViewer.prototype.navigateTo = function (tab) {
+        }
+        navigateTo(tab) {
             this.router.navigateToRoute(tab.route);
-        };
-        return ComponentViewer;
-    }());
+        }
+    }
     exports.ComponentViewer = ComponentViewer;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72547,8 +71777,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-button/README.md#sass-mixins' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));",
-            sass: "@use '@material/button/mdc-button';"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));`,
+            sass: `@use '@material/button/mdc-button';`
         },
         dialog: {
             title: 'Dialog',
@@ -72563,8 +71793,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-dialog/README.md#sass-mixins' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/dialog'));",
-            sass: "@use '@material/dialog/mdc-dialog';\n@use '@material/dialog';"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/dialog'));`,
+            sass: `@use '@material/dialog/mdc-dialog';
+@use '@material/dialog';`
         },
         card: {
             title: 'Card',
@@ -72579,8 +71810,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-card/README.md#sass-mixins' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/card'));",
-            sass: "@use '@material/card/mdc-card';\n@use '@material/card';"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/card'));`,
+            sass: `@use '@material/card/mdc-card';
+@use '@material/card';`
         },
         checkbox: {
             title: 'Checkbox',
@@ -72595,8 +71827,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-checkbox/README.md#style-customization' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'));",
-            sass: "@use '@material/checkbox/mdc-checkbox';\n@use '@material/checkbox';"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'));`,
+            sass: `@use '@material/checkbox/mdc-checkbox';
+@use '@material/checkbox';`
         },
         'circular-progress': {
             title: 'Circular Progress',
@@ -72611,8 +71844,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-circular-progress/README.md#sass-mixins' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/circular-progress'));",
-            sass: "@use '@material/circular-progress/mdc-circular-progress';\n@use '@material/circular-progress';\n@use \"@aurelia-mdc-web/circular-progress\";"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/circular-progress'));`,
+            sass: `@use '@material/circular-progress/mdc-circular-progress';
+@use '@material/circular-progress';
+@use "@aurelia-mdc-web/circular-progress";`
         },
         drawer: {
             title: 'Drawers',
@@ -72627,7 +71862,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-drawer/README.md#sass-mixins' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/drawer'));",
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/drawer'));`,
             sass: '@use "@material/drawer/mdc-drawer";'
         },
         fab: {
@@ -72643,22 +71878,26 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md#sass-mixins' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/fab'));",
-            sass: "@use '@material/fab/mdc-fab';\n@use '@material/fab';"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/fab'));`,
+            sass: `@use '@material/fab/mdc-fab';
+@use '@material/fab';`
         },
         "form-field": {
             title: 'Form Fields',
-            description: "MDC Form Field aligns an MDC Web form field (for example, a checkbox)\n    with its label and makes it RTL-aware. It also activates a ripple effect\n    upon interacting with the label.",
+            description: `MDC Form Field aligns an MDC Web form field (for example, a checkbox)
+    with its label and makes it RTL-aware. It also activates a ripple effect
+    upon interacting with the label.`,
             references: [{
                     name: 'Material Components Web',
                     url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-form-field/README.md'
                 }],
-            code: "import {MdcFormFieldModule} from '@angular-mdc/web/form-field';",
-            sass: "@use '@material/form-field/mdc-form-field';\n@use '@material/form-field/_index' as form-field;"
+            code: `import {MdcFormFieldModule} from '@angular-mdc/web/form-field';`,
+            sass: `@use '@material/form-field/mdc-form-field';
+@use '@material/form-field/_index' as form-field;`
         },
         "icon-button": {
             title: 'Icon Buttons',
-            description: "Icon buttons allow users to take actions, and make choices, with a single tap.",
+            description: `Icon buttons allow users to take actions, and make choices, with a single tap.`,
             references: [{
                     name: 'Material Design guidelines: Toggle Buttons',
                     url: 'https://material.io/design/components/buttons.html#toggle-button'
@@ -72669,8 +71908,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-icon-button/README.md#sass-mixins' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon-button'));",
-            sass: "@use '@material/icon-button/mdc-icon-button';\n@use '@material/icon-button/_index' as icon-button;"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon-button'));`,
+            sass: `@use '@material/icon-button/mdc-icon-button';
+@use '@material/icon-button/_index' as icon-button;`
         },
         list: {
             title: 'Lists',
@@ -72685,8 +71925,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-list/README.md#sass-mixins' },
             ],
-            code: "import {MdcListModule} from '@angular-mdc/web/list';",
-            sass: "@use '@material/list/mdc-list';\n@use '@material/list';"
+            code: `import {MdcListModule} from '@angular-mdc/web/list';`,
+            sass: `@use '@material/list/mdc-list';
+@use '@material/list';`
         },
         menu: {
             title: 'Menus',
@@ -72701,8 +71942,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu/README.md#sass-mixins' },
             ],
-            code: "import {MdcMenuModule} from '@angular-mdc/web/menu';",
-            sass: "@use '@material/menu/mdc-menu';\n@use '@material/menu';\n@use '@material/list/mdc-list';\n@use '@material/menu-surface/mdc-menu-surface';"
+            code: `import {MdcMenuModule} from '@angular-mdc/web/menu';`,
+            sass: `@use '@material/menu/mdc-menu';
+@use '@material/menu';
+@use '@material/list/mdc-list';
+@use '@material/menu-surface/mdc-menu-surface';`
         },
         radio: {
             title: 'Radio Buttons',
@@ -72717,8 +71961,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-radio/README.md#style-customization' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/radio'));",
-            sass: "@use '@material/radio/mdc-radio';\n@use '@material/radio';\n@use '@material/form-field/mdc-form-field';"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/radio'));`,
+            sass: `@use '@material/radio/mdc-radio';
+@use '@material/radio';
+@use '@material/form-field/mdc-form-field';`
         },
         ripple: {
             title: 'Ripple',
@@ -72733,8 +71979,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-ripple/README.md#sass-apis' },
             ],
-            code: "import {MdcRippleModule} from '@angular-mdc/web/ripple';",
-            sass: "@use '@material/ripple/mdc-ripple';\n@use '@material/ripple';"
+            code: `import {MdcRippleModule} from '@angular-mdc/web/ripple';`,
+            sass: `@use '@material/ripple/mdc-ripple';
+@use '@material/ripple';`
         },
         select: {
             title: 'Select Menus',
@@ -72751,8 +71998,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/helper-text/README.md#sass-mixins' },
                 { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/icon/README.md#sass-mixins' },
             ],
-            code: "import {MdcSelectModule} from '@angular-mdc/web/select';",
-            sass: "@use '@material/select/mdc-select';\n@use '@material/select/_index' as select;\n@use '@material/list/mdc-list';\n@use '@material/menu-surface/mdc-menu-surface';\n@use '@material/menu/mdc-menu';"
+            code: `import {MdcSelectModule} from '@angular-mdc/web/select';`,
+            sass: `@use '@material/select/mdc-select';
+@use '@material/select/_index' as select;
+@use '@material/list/mdc-list';
+@use '@material/menu-surface/mdc-menu-surface';
+@use '@material/menu/mdc-menu';`
         },
         slider: {
             title: 'Slider',
@@ -72767,8 +72018,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-slider/README.md#theming' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/slider'));",
-            sass: "@use '@material/slider/mdc-slider';\n@use '@material/slider';"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/slider'));`,
+            sass: `@use '@material/slider/mdc-slider';
+@use '@material/slider';`
         },
         switch: {
             title: 'Switches',
@@ -72783,8 +72035,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-switch/README.md#sass-mixins' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/switch'));",
-            sass: "@use '@material/switch/mdc-switch';\n@use '@material/switch';"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/switch'));`,
+            sass: `@use '@material/switch/mdc-switch';
+@use '@material/switch';`
         },
         tabs: {
             title: 'Tabs',
@@ -72811,8 +72064,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 { name: 'Tab Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab/README.md#sass-mixins' },
                 { name: 'Indicator Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-indicator/README.md#sass-mixins' },
             ],
-            code: "import {MdcTabBarModule} from '@angular-mdc/web/tab-bar';",
-            sass: "@use '@material/tab-bar/mdc-tab-bar';\n@use '@material/tab-bar';\n@use '@material/tab-scroller/mdc-tab-scroller';\n@use '@material/tab-scroller';\n@use '@material/tab-indicator/mdc-tab-indicator';\n@use '@material/tab-indicator';\n@use '@material/tab/mdc-tab';\n@use '@material/tab';"
+            code: `import {MdcTabBarModule} from '@angular-mdc/web/tab-bar';`,
+            sass: `@use '@material/tab-bar/mdc-tab-bar';
+@use '@material/tab-bar';
+@use '@material/tab-scroller/mdc-tab-scroller';
+@use '@material/tab-scroller';
+@use '@material/tab-indicator/mdc-tab-indicator';
+@use '@material/tab-indicator';
+@use '@material/tab/mdc-tab';
+@use '@material/tab';`
         },
         "text-field": {
             title: 'Text Field',
@@ -72830,8 +72090,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/helper-text/README.md#sass-mixins' },
                 { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/icon/README.md#sass-mixins' },
             ],
-            code: "import {MdcTextFieldModule} from '@angular-mdc/web/textfield';",
-            sass: "@use '@material/textfield/mdc-text-field';\n@use '@material/textfield/_index' as textfield;\n@use '@material/form-field/_index' as form-field;"
+            code: `import {MdcTextFieldModule} from '@angular-mdc/web/textfield';`,
+            sass: `@use '@material/textfield/mdc-text-field';
+@use '@material/textfield/_index' as textfield;
+@use '@material/form-field/_index' as form-field;`
         },
         "top-app-bar": {
             title: 'Top App Bar',
@@ -72846,8 +72108,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-top-app-bar/README.md#sass-mixins' },
             ],
-            code: "import {MdcTopAppBarModule} from '@angular-mdc/web/top-app-bar';",
-            sass: "@use '@material/top-app-bar/mdc-top-app-bar';\n@use '@material/top-app-bar';\n@use '@material/icon-button/mdc-icon-button';"
+            code: `import {MdcTopAppBarModule} from '@angular-mdc/web/top-app-bar';`,
+            sass: `@use '@material/top-app-bar/mdc-top-app-bar';
+@use '@material/top-app-bar';
+@use '@material/icon-button/mdc-icon-button';`
         },
         "typography": {
             title: 'Typography',
@@ -72862,8 +72126,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-typography/README.md#style-customization' },
             ],
-            code: "aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/typography'));",
-            sass: "@use '@material/typography/mdc-typography';\n@use '@material/typography';"
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/typography'));`,
+            sass: `@use '@material/typography/mdc-typography';
+@use '@material/typography';`
         }
     };
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -72883,16 +72148,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Dialog = void 0;
-    var Dialog = /** @class */ (function (_super) {
-        tslib_1.__extends(Dialog, _super);
-        function Dialog() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Dialog = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Dialog);
-        return Dialog;
-    }(component_viewer_1.ComponentViewer));
+    let Dialog = class Dialog extends component_viewer_1.ComponentViewer {
+    };
+    Dialog = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Dialog);
     exports.Dialog = Dialog;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72911,34 +72171,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples(dialogService) {
+    let Examples = class Examples {
+        constructor(dialogService) {
             this.dialogService = dialogService;
         }
-        Examples.prototype.open = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var _a, _b;
-                return tslib_1.__generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            _b = (_a = console).log;
-                            return [4 /*yield*/, this.dialogService.open({ viewModel: service_dialog_1.ServiceDialog, model: { caption: 'Select an account' } })];
-                        case 1:
-                            _b.apply(_a, [_c.sent()]);
-                            return [2 /*return*/];
-                    }
-                });
+        open() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                console.log(yield this.dialogService.open({ viewModel: service_dialog_1.ServiceDialog, model: { caption: 'Select an account' } }));
             });
-        };
-        Examples.prototype.handleClosing = function (evt) {
+        }
+        handleClosing(evt) {
             console.log(evt.detail);
-        };
-        Examples = tslib_1.__decorate([
-            aurelia_framework_1.autoinject,
-            tslib_1.__metadata("design:paramtypes", [dialog_1.MdcDialogService])
-        ], Examples);
-        return Examples;
-    }());
+        }
+    };
+    Examples = tslib_1.__decorate([
+        aurelia_framework_1.autoinject,
+        tslib_1.__metadata("design:paramtypes", [dialog_1.MdcDialogService])
+    ], Examples);
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -72971,17 +72220,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ServiceDialog = void 0;
-    var ServiceDialog = /** @class */ (function () {
-        function ServiceDialog() {
-        }
-        ServiceDialog.prototype.activate = function (params) {
+    let ServiceDialog = class ServiceDialog {
+        activate(params) {
             this.params = params;
-        };
-        ServiceDialog = tslib_1.__decorate([
-            aurelia_framework_1.useView('views/dialog/service-dialog.html')
-        ], ServiceDialog);
-        return ServiceDialog;
-    }());
+        }
+    };
+    ServiceDialog = tslib_1.__decorate([
+        aurelia_framework_1.useView('views/dialog/service-dialog.html')
+    ], ServiceDialog);
     exports.ServiceDialog = ServiceDialog;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73014,16 +72260,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Drawer = void 0;
-    var Drawer = /** @class */ (function (_super) {
-        tslib_1.__extends(Drawer, _super);
-        function Drawer() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Drawer = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Drawer);
-        return Drawer;
-    }(component_viewer_1.ComponentViewer));
+    let Drawer = class Drawer extends component_viewer_1.ComponentViewer {
+    };
+    Drawer = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Drawer);
     exports.Drawer = Drawer;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73042,11 +72283,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73079,23 +72317,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
+    class Examples {
+        constructor() {
             this.mini = false;
             this.mini2 = false;
             this.exited = false;
         }
-        Examples.prototype.toggleMini = function () {
+        toggleMini() {
             this.mini = !this.mini;
-        };
-        Examples.prototype.toggleMini2 = function () {
+        }
+        toggleMini2() {
             this.mini2 = !this.mini2;
-        };
-        Examples.prototype.toggleExited = function () {
+        }
+        toggleExited() {
             this.exited = !this.exited;
-        };
-        return Examples;
-    }());
+        }
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73128,17 +72365,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Fab = void 0;
-    var Fab = /** @class */ (function (_super) {
-        tslib_1.__extends(Fab, _super);
-        function Fab() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Fab = tslib_1.__decorate([
-            aurelia_framework_1.autoinject,
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Fab);
-        return Fab;
-    }(component_viewer_1.ComponentViewer));
+    let Fab = class Fab extends component_viewer_1.ComponentViewer {
+    };
+    Fab = tslib_1.__decorate([
+        aurelia_framework_1.autoinject,
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Fab);
     exports.Fab = Fab;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73157,11 +72389,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73194,16 +72423,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.FormField = void 0;
-    var FormField = /** @class */ (function (_super) {
-        tslib_1.__extends(FormField, _super);
-        function FormField() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        FormField = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], FormField);
-        return FormField;
-    }(component_viewer_1.ComponentViewer));
+    let FormField = class FormField extends component_viewer_1.ComponentViewer {
+    };
+    FormField = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], FormField);
     exports.FormField = FormField;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73222,11 +72446,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GettingStarted = void 0;
-    var GettingStarted = /** @class */ (function () {
-        function GettingStarted() {
-        }
-        return GettingStarted;
-    }());
+    class GettingStarted {
+    }
     exports.GettingStarted = GettingStarted;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73259,11 +72480,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Home = void 0;
-    var Home = /** @class */ (function () {
-        function Home() {
-        }
-        return Home;
-    }());
+    class Home {
+    }
     exports.Home = Home;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73296,11 +72514,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73333,17 +72548,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IconButton = void 0;
-    var IconButton = /** @class */ (function (_super) {
-        tslib_1.__extends(IconButton, _super);
-        function IconButton() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        IconButton = tslib_1.__decorate([
-            aurelia_framework_1.autoinject,
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], IconButton);
-        return IconButton;
-    }(component_viewer_1.ComponentViewer));
+    let IconButton = class IconButton extends component_viewer_1.ComponentViewer {
+    };
+    IconButton = tslib_1.__decorate([
+        aurelia_framework_1.autoinject,
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], IconButton);
     exports.IconButton = IconButton;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73362,11 +72572,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73399,16 +72606,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.List = void 0;
-    var List = /** @class */ (function (_super) {
-        tslib_1.__extends(List, _super);
-        function List() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        List = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], List);
-        return List;
-    }(component_viewer_1.ComponentViewer));
+    let List = class List extends component_viewer_1.ComponentViewer {
+    };
+    List = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], List);
     exports.List = List;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73427,11 +72629,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73464,17 +72663,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Menu = void 0;
-    var Menu = /** @class */ (function (_super) {
-        tslib_1.__extends(Menu, _super);
-        function Menu() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Menu = tslib_1.__decorate([
-            aurelia_framework_1.autoinject,
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Menu);
-        return Menu;
-    }(component_viewer_1.ComponentViewer));
+    let Menu = class Menu extends component_viewer_1.ComponentViewer {
+    };
+    Menu = tslib_1.__decorate([
+        aurelia_framework_1.autoinject,
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Menu);
     exports.Menu = Menu;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73493,12 +72687,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
+    class Examples {
+        constructor() {
             this.value = 'cats';
         }
-        return Examples;
-    }());
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73531,16 +72724,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Radio = void 0;
-    var Radio = /** @class */ (function (_super) {
-        tslib_1.__extends(Radio, _super);
-        function Radio() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Radio = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Radio);
-        return Radio;
-    }(component_viewer_1.ComponentViewer));
+    let Radio = class Radio extends component_viewer_1.ComponentViewer {
+    };
+    Radio = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Radio);
     exports.Radio = Radio;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73559,11 +72747,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73596,16 +72781,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Ripple = void 0;
-    var Ripple = /** @class */ (function (_super) {
-        tslib_1.__extends(Ripple, _super);
-        function Ripple() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Ripple = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Ripple);
-        return Ripple;
-    }(component_viewer_1.ComponentViewer));
+    let Ripple = class Ripple extends component_viewer_1.ComponentViewer {
+    };
+    Ripple = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Ripple);
     exports.Ripple = Ripple;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73624,57 +72804,52 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Root = void 0;
-    var Root = /** @class */ (function () {
-        function Root(router) {
+    let Root = class Root {
+        constructor(router) {
             this.router = router;
         }
-        Root.prototype.drawerChanged = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.drawer.initialised];
-                        case 1:
-                            _a.sent();
-                            this.drawer.open = true;
-                            return [2 /*return*/];
-                    }
-                });
+        drawerChanged() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.drawer.initialised;
+                this.drawer.open = true;
             });
-        };
-        Root.prototype.configureRouter = function (config) {
-            var exampleRoutes = ['button', 'card', 'checkbox', 'circular-progress', 'dialog', 'drawer', 'fab', 'form-field', 'icon-button',
+        }
+        configureRouter(config) {
+            const exampleRoutes = ['button', 'card', 'checkbox', 'circular-progress', 'dialog', 'drawer', 'fab', 'form-field', 'icon-button',
                 'menu', 'list', 'radio', 'ripple', 'select', 'slider', 'switch', 'tabs', 'text-field', 'top-app-bar', 'typography']
-                .map(function (x) { return ({ route: x }); });
-            var menuRoutes = tslib_1.__spread([
+                .map(x => ({ route: x }));
+            const menuRoutes = [
                 { route: ['', 'home'], title: 'Home', name: 'home', divider: true },
-                { route: 'getting-started', divider: true }
-            ], exampleRoutes);
-            menuRoutes.forEach(function (x) {
+                { route: 'getting-started', divider: true },
+                ...exampleRoutes
+            ];
+            menuRoutes.forEach(x => {
                 x.nav = true;
                 x.name = x.name || x.route;
-                x.moduleId = "views/" + x.name + "/" + x.name;
-                x.title = x.title || x.route.split('-').map(function (x) { return "" + x[0].toUpperCase() + x.substring(1); }).join(' ');
+                x.moduleId = `views/${x.name}/${x.name}`;
+                x.title = x.title || x.route.split('-').map(x => `${x[0].toUpperCase()}${x.substring(1)}`).join(' ');
                 x.tooltip = x.title;
             });
-            var routes = tslib_1.__spread(menuRoutes);
+            const routes = [
+                ...menuRoutes,
+            ];
             config.map(routes);
-        };
-        Root.prototype.attached = function () {
+        }
+        attached() {
             this.navModels = this.router.navigation;
-        };
-        Root.prototype.navigateTo = function (nm) {
+        }
+        navigateTo(nm) {
             this.router.navigate(nm.relativeHref);
-        };
-        tslib_1.__decorate([
-            aurelia_framework_1.observable,
-            tslib_1.__metadata("design:type", drawer_1.MdcDrawer)
-        ], Root.prototype, "drawer", void 0);
-        Root = tslib_1.__decorate([
-            aurelia_framework_1.autoinject,
-            tslib_1.__metadata("design:paramtypes", [aurelia_router_1.Router])
-        ], Root);
-        return Root;
-    }());
+        }
+    };
+    tslib_1.__decorate([
+        aurelia_framework_1.observable,
+        tslib_1.__metadata("design:type", drawer_1.MdcDrawer)
+    ], Root.prototype, "drawer", void 0);
+    Root = tslib_1.__decorate([
+        aurelia_framework_1.autoinject,
+        tslib_1.__metadata("design:paramtypes", [aurelia_router_1.Router])
+    ], Root);
     exports.Root = Root;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73711,7 +72886,7 @@ module.exports = code;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";.mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;opacity:0;pointer-events:none;transition:opacity .28s cubic-bezier(.4,0,.2,1);background-color:#fff}.mdc-button{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);padding:0 8px;position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;border-radius:4px;border-radius:var(--mdc-shape-small,4px);height:36px}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-button:disabled,.mdc-button:not(:disabled){background-color:transparent}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;width:18px;height:18px;font-size:18px;vertical-align:top}.mdc-button .mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button .mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button .mdc-button__touch{position:absolute;top:50%;right:0;height:48px;left:0;transform:translateY(-50%)}.mdc-button:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-button:disabled{color:rgba(0,0,0,.38)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button__label+.mdc-button__icon{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--outlined .mdc-button__icon,.mdc-button--raised .mdc-button__icon,.mdc-button--unelevated .mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--outlined .mdc-button__icon[dir=rtl],.mdc-button--outlined .mdc-button__label+.mdc-button__icon,.mdc-button--raised .mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon,.mdc-button--unelevated .mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--outlined .mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__icon{margin-left:8px;margin-right:-4px}.mdc-button--outlined .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button--outlined .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__label+.mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--raised,.mdc-button--unelevated{padding:0 16px}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{background-color:rgba(0,0,0,.12);color:rgba(0,0,0,.38)}.mdc-button--raised{box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);transition:box-shadow .28s cubic-bezier(.4,0,.2,1)}.mdc-button--raised:focus,.mdc-button--raised:hover{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)}.mdc-button--raised:active{box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mdc-button--raised:disabled{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)}.mdc-button--outlined{padding:0 15px;border-width:1px;border-style:solid}.mdc-button--outlined .mdc-button__ripple{top:-1px;left:-1px;border:1px solid transparent}.mdc-button--outlined .mdc-button__touch{left:-1px;width:calc(100% + 2px)}.mdc-button--outlined:disabled,.mdc-button--outlined:not(:disabled){border-color:rgba(0,0,0,.12)}.mdc-button--touch{margin-top:6px;margin-bottom:6px}@keyframes mdc-ripple-fg-radius-in{0%{animation-timing-function:cubic-bezier(.4,0,.2,1);transform:translate(var(--mdc-ripple-fg-translate-start,0)) scale(1)}to{transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}}@keyframes mdc-ripple-fg-opacity-in{0%{animation-timing-function:linear;opacity:0}to{opacity:var(--mdc-ripple-fg-opacity,0)}}@keyframes mdc-ripple-fg-opacity-out{0%{animation-timing-function:linear;opacity:var(--mdc-ripple-fg-opacity,0)}to{opacity:0}}.mdc-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-button .mdc-button__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-button.mdc-ripple-upgraded--unbounded .mdc-button__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-button.mdc-ripple-upgraded--foreground-activation .mdc-button__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-button.mdc-ripple-upgraded--foreground-deactivation .mdc-button__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-button:hover .mdc-button__ripple:before{opacity:.04}.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.12}.mdc-button:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.12}.mdc-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-button .mdc-button__ripple{position:absolute;box-sizing:content-box;width:100%;height:100%;overflow:hidden}.mdc-button:not(.mdc-button--outlined) .mdc-button__ripple{top:0;left:0}.mdc-button--raised .mdc-button__ripple:after,.mdc-button--raised .mdc-button__ripple:before,.mdc-button--unelevated .mdc-button__ripple:after,.mdc-button--unelevated .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:hover .mdc-button__ripple:before,.mdc-button--unelevated:hover .mdc-button__ripple:before{opacity:.08}.mdc-button--raised.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--raised:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before,.mdc-button--unelevated.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--unelevated:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.mdc-button--raised:not(.mdc-ripple-upgraded) .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button--raised:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.mdc-button--raised.mdc-ripple-upgraded,.mdc-button--unelevated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-list{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);line-height:1.5rem;margin:0;padding:8px 0;list-style-type:none;color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list:focus{outline:none}.mdc-list-item__secondary-text{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))}.mdc-list-item__graphic{background-color:transparent;color:rgba(0,0,0,.38);color:var(--mdc-theme-text-icon-on-background,rgba(0,0,0,.38))}.mdc-list-item__meta{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-hint-on-background,rgba(0,0,0,.38))}.mdc-list-group__subheader{color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list-item--disabled .mdc-list-item__text{opacity:.38}.mdc-list-item--disabled .mdc-list-item__primary-text,.mdc-list-item--disabled .mdc-list-item__secondary-text,.mdc-list-item--disabled .mdc-list-item__text{color:#000;color:var(--mdc-theme-on-surface,#000)}.mdc-list-item--activated,.mdc-list-item--activated .mdc-list-item__graphic,.mdc-list-item--selected,.mdc-list-item--selected .mdc-list-item__graphic{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-list--dense{padding-top:4px;padding-bottom:4px;font-size:.812rem}.mdc-list-item{display:flex;position:relative;align-items:center;justify-content:flex-start;overflow:hidden;padding:0 16px;height:48px}.mdc-list-item:focus{outline:none}.mdc-list-item:not(.mdc-list-item--selected):focus:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:\"\"}.mdc-list-item.mdc-list-item--selected:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:3px double transparent;border-radius:inherit;content:\"\"}.mdc-list--icon-list .mdc-list-item,.mdc-list-item[dir=rtl],[dir=rtl] .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--icon-list .mdc-list-item{height:56px}.mdc-list--icon-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--avatar-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--thumbnail-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px;height:72px}.mdc-list--image-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--video-list .mdc-list-item{padding-left:0;padding-right:16px;height:72px}.mdc-list--video-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item{padding-left:16px;padding-right:0}.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:20px;height:20px}.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list-item__graphic{flex-shrink:0;align-items:center;justify-content:center;fill:currentColor;object-fit:cover;margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--icon-list .mdc-list-item__graphic{margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list--icon-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--avatar-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px;border-radius:50%}.mdc-list--avatar-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px}.mdc-list--thumbnail-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--image-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:56px;height:56px}.mdc-list--image-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--video-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:100px;height:56px}.mdc-list--video-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list .mdc-list-item__graphic{display:inline-flex}.mdc-list-item__meta{margin-left:auto;margin-right:0}.mdc-list-item__meta:not(.material-icons){-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit)}.mdc-list-item[dir=rtl] .mdc-list-item__meta,[dir=rtl] .mdc-list-item .mdc-list-item__meta{margin-left:0;margin-right:auto}.mdc-list-item__text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.mdc-list-item__text[for]{pointer-events:none}.mdc-list-item__primary-text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list-item__primary-text:before{display:inline-block;width:0;height:28px;content:\"\";vertical-align:0}.mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text,.mdc-list--icon-list .mdc-list-item__primary-text,.mdc-list--image-list .mdc-list-item__primary-text,.mdc-list--thumbnail-list .mdc-list-item__primary-text,.mdc-list--video-list .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text:before,.mdc-list--icon-list .mdc-list-item__primary-text:before,.mdc-list--image-list .mdc-list-item__primary-text:before,.mdc-list--thumbnail-list .mdc-list-item__primary-text:before,.mdc-list--video-list .mdc-list-item__primary-text:before{display:inline-block;width:0;height:32px;content:\"\";vertical-align:0}.mdc-list--avatar-list .mdc-list-item__primary-text:after,.mdc-list--icon-list .mdc-list-item__primary-text:after,.mdc-list--image-list .mdc-list-item__primary-text:after,.mdc-list--thumbnail-list .mdc-list-item__primary-text:after,.mdc-list--video-list .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--dense .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--dense .mdc-list-item__primary-text:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list-item__secondary-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal}.mdc-list-item__secondary-text:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__secondary-text{font-size:inherit}.mdc-list--dense .mdc-list-item{height:40px}.mdc-list--two-line .mdc-list-item__text{align-self:flex-start}.mdc-list--two-line .mdc-list-item{height:64px}.mdc-list--two-line.mdc-list--avatar-list .mdc-list-item,.mdc-list--two-line.mdc-list--icon-list .mdc-list-item,.mdc-list--two-line.mdc-list--image-list .mdc-list-item,.mdc-list--two-line.mdc-list--thumbnail-list .mdc-list-item,.mdc-list--two-line.mdc-list--video-list .mdc-list-item{height:72px}.mdc-list--two-line.mdc-list--icon-list .mdc-list-item__graphic{align-self:flex-start;margin-top:16px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item,.mdc-list--two-line.mdc-list--dense .mdc-list-item{height:60px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:36px;height:36px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}:not(.mdc-list-item--disabled).mdc-list-item{cursor:pointer}a.mdc-list-item{color:inherit;text-decoration:none}.mdc-list-divider{height:0;margin:0;border:none;border-bottom:1px solid;border-bottom-color:rgba(0,0,0,.12)}.mdc-list-divider--padded{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--padded{margin-left:0;margin-right:16px}.mdc-list-divider--inset{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list-divider--inset[dir=rtl],[dir=rtl] .mdc-list-divider--inset{margin-left:0;margin-right:72px}.mdc-list-divider--inset.mdc-list-divider--padded{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list-divider--inset.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--inset.mdc-list-divider--padded{margin-left:0;margin-right:72px}.mdc-list .mdc-list-divider--inset-leading{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--icon-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:88px;margin-right:0;width:calc(100% - 88px)}.mdc-list--image-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:88px;margin-right:0;width:calc(100% - 104px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:116px;margin-right:0;width:calc(100% - 116px)}.mdc-list--video-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:116px;margin-right:0;width:calc(100% - 132px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0;width:100%}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0;width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0}.mdc-list-group .mdc-list{padding:0}.mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);margin:.75rem 16px}:not(.mdc-list-item--disabled).mdc-list-item{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{background-color:#000}:not(.mdc-list-item--disabled).mdc-list-item:hover .mdc-list-item__ripple:before{opacity:.04}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--activated:hover .mdc-list-item__ripple:before{opacity:.16}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{opacity:.08}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--selected:hover .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.2}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-list-item--disabled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-list-item--disabled .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-list-item--disabled.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{background-color:#000}.mdc-list-item--disabled.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,.mdc-list-item--disabled:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}.mdc-list-item--disabled .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;font-size:24px;text-decoration:none;cursor:pointer;user-select:none;width:48px;height:48px;padding:12px}.mdc-icon-button img,.mdc-icon-button svg{width:24px;height:24px}.mdc-icon-button:disabled{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-disabled-on-light,rgba(0,0,0,.38));cursor:default;pointer-events:none}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button--on .mdc-icon-button__icon,.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-icon-button:after,.mdc-icon-button:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-icon-button:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-icon-button.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-icon-button.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-icon-button.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-icon-button.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button:after,.mdc-icon-button:before{top:0;left:0;width:100%;height:100%}.mdc-icon-button.mdc-ripple-upgraded:after,.mdc-icon-button.mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button:after,.mdc-icon-button:before{background-color:#000}.mdc-icon-button:hover:before{opacity:.04}.mdc-icon-button.mdc-ripple-upgraded--background-focused:before,.mdc-icon-button:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-icon-button:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-icon-button:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-icon-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-top-app-bar{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;display:flex;position:fixed;flex-direction:column;justify-content:space-between;box-sizing:border-box;width:100%;z-index:4}.mdc-top-app-bar .mdc-top-app-bar__action-item,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon{color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:after,.mdc-top-app-bar .mdc-top-app-bar__action-item:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:hover:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:hover:before{opacity:.08}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):focus:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):active:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-top-app-bar__row{display:flex;position:relative;box-sizing:border-box;width:100%;height:64px}.mdc-top-app-bar__section{display:inline-flex;flex:1 1 auto;align-items:center;min-width:0;padding:8px 12px;z-index:1}.mdc-top-app-bar__section--align-start{justify-content:flex-start;order:-1}.mdc-top-app-bar__section--align-end{justify-content:flex-end;order:1}.mdc-top-app-bar__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);padding-left:20px;padding-right:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;z-index:1}.mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:24px;border-bottom-left-radius:0}.mdc-top-app-bar--short-collapsed[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:24px}.mdc-top-app-bar--short{top:0;right:auto;left:0;width:100%;transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short[dir=rtl],[dir=rtl] .mdc-top-app-bar--short{right:0;left:auto}.mdc-top-app-bar--short .mdc-top-app-bar__row{height:56px}.mdc-top-app-bar--short .mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short .mdc-top-app-bar__title{transition:opacity .2s cubic-bezier(.4,0,.2,1);opacity:1}.mdc-top-app-bar--short-collapsed{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);width:56px;transition:width .3s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__title{display:none}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__action-item{transition:padding .15s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item{width:112px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__row{height:48px}.mdc-top-app-bar--dense .mdc-top-app-bar__section{padding:0 4px}.mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:0;padding-right:12px}.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:128px}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{align-self:flex-end;padding-bottom:2px}.mdc-top-app-bar--prominent .mdc-top-app-bar__action-item,.mdc-top-app-bar--prominent .mdc-top-app-bar__navigation-icon{align-self:flex-start}.mdc-top-app-bar--fixed{transition:box-shadow .2s linear}.mdc-top-app-bar--fixed-scrolled{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);transition:box-shadow .2s linear}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:96px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__section{padding:0 12px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:20px;padding-right:0;padding-bottom:9px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--fixed-adjust{padding-top:64px}.mdc-top-app-bar--dense-fixed-adjust{padding-top:48px}.mdc-top-app-bar--short-fixed-adjust{padding-top:56px}.mdc-top-app-bar--prominent-fixed-adjust{padding-top:128px}.mdc-top-app-bar--dense-prominent-fixed-adjust{padding-top:96px}@media (max-width:599px){.mdc-top-app-bar__row{height:56px}.mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short{transition:width .2s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed{transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-bottom:6px}.mdc-top-app-bar--fixed-adjust{padding-top:56px}}.mdc-drawer{background-color:#fff;border-top-left-radius:0;border-top-right-radius:0;border-top-right-radius:var(--mdc-shape-large,0);border-bottom-right-radius:0;border-bottom-right-radius:var(--mdc-shape-large,0);border-bottom-left-radius:0;z-index:6;width:256px;display:flex;flex-direction:column;flex-shrink:0;box-sizing:border-box;height:100%;border-right:1px solid;border-color:rgba(0,0,0,.12);overflow:hidden;transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer .mdc-drawer__title{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-drawer__subtitle,.mdc-drawer .mdc-list-group__subheader,.mdc-drawer .mdc-list-item__graphic{color:rgba(0,0,0,.6)}.mdc-drawer .mdc-list-item{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{color:#6200ee}.mdc-drawer .mdc-list-item--activated{color:rgba(98,0,238,.87)}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-top-left-radius:0;border-top-left-radius:var(--mdc-shape-large,0);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:0;border-bottom-left-radius:var(--mdc-shape-large,0)}.mdc-drawer .mdc-list-item{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:256px;margin-right:0}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:0;margin-right:256px}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-right-width:0;border-left-width:1px;border-right-style:none;border-left-style:solid}.mdc-drawer .mdc-list-item{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-subtitle2-font-size,.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height,1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight,500);letter-spacing:.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing,.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform,inherit);height:40px;margin:8px;padding:0 8px}.mdc-drawer .mdc-list-item:first-child{margin-top:2px}.mdc-drawer .mdc-list-item:last-child{margin-bottom:0}.mdc-drawer .mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;line-height:normal;margin:0;padding:0 16px}.mdc-drawer .mdc-list-group__subheader:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-drawer .mdc-list-divider{margin:3px 0 4px}.mdc-drawer .mdc-list-item__graphic,.mdc-drawer .mdc-list-item__text{pointer-events:none}.mdc-drawer--animate{transform:translateX(-100%)}.mdc-drawer--animate[dir=rtl],[dir=rtl] .mdc-drawer--animate{transform:translateX(100%)}.mdc-drawer--opening{transition-duration:.25s}.mdc-drawer--opening,.mdc-drawer--opening[dir=rtl],[dir=rtl] .mdc-drawer--opening{transform:translateX(0)}.mdc-drawer--closing{transform:translateX(-100%);transition-duration:.2s}.mdc-drawer--closing[dir=rtl],[dir=rtl] .mdc-drawer--closing{transform:translateX(100%)}.mdc-drawer__header{flex-shrink:0;box-sizing:border-box;min-height:64px;padding:0 16px 4px}.mdc-drawer__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-drawer__title:before{display:inline-block;width:0;height:36px;content:\"\";vertical-align:0}.mdc-drawer__title:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-drawer__subtitle{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:0}.mdc-drawer__subtitle:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-drawer__content{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}.mdc-drawer--dismissible{left:0;right:auto;display:none;position:absolute}.mdc-drawer--dismissible[dir=rtl],[dir=rtl] .mdc-drawer--dismissible{left:auto;right:0}.mdc-drawer--dismissible.mdc-drawer--open{display:flex}.mdc-drawer-app-content{position:relative}.mdc-drawer-app-content,.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer-app-content{margin-left:0;margin-right:0}.mdc-drawer--modal{box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12);left:0;right:auto;display:none;position:fixed}.mdc-drawer--modal+.mdc-drawer-scrim{background-color:rgba(0,0,0,.32)}.mdc-drawer--modal[dir=rtl],[dir=rtl] .mdc-drawer--modal{left:auto;right:0}.mdc-drawer--modal.mdc-drawer--open{display:flex}.mdc-drawer-scrim{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:5;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer--open+.mdc-drawer-scrim{display:block}.mdc-drawer--animate+.mdc-drawer-scrim{opacity:0}.mdc-drawer--opening+.mdc-drawer-scrim{transition-duration:.25s;opacity:1}.mdc-drawer--closing+.mdc-drawer-scrim{transition-duration:.2s;opacity:0}.mdc-floating-label{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);position:absolute;left:0;transform-origin:left top;line-height:1.15rem;text-align:left;text-overflow:ellipsis;white-space:nowrap;cursor:text;overflow:hidden;will-change:transform;transition:transform .15s cubic-bezier(.4,0,.2,1),color .15s cubic-bezier(.4,0,.2,1)}.mdc-floating-label[dir=rtl],[dir=rtl] .mdc-floating-label{right:0;left:auto;transform-origin:right top;text-align:right}.mdc-floating-label--float-above{cursor:auto}.mdc-floating-label--required:after{margin-left:1px;margin-right:0;content:\"*\"}.mdc-floating-label--required[dir=rtl]:after,[dir=rtl] .mdc-floating-label--required:after{margin-left:0;margin-right:1px}.mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-standard .25s 1}@keyframes mdc-floating-label-shake-float-above-standard{0%{transform:translateX(0) translateY(-106%) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-106%) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-106%) scale(.75)}to{transform:translateX(0) translateY(-106%) scale(.75)}}.mdc-line-ripple:after,.mdc-line-ripple:before{position:absolute;bottom:0;left:0;width:100%;border-bottom-style:solid;content:\"\"}.mdc-line-ripple:before{border-bottom-width:1px;z-index:1}.mdc-line-ripple:after{transform:scaleX(0);border-bottom-width:2px;opacity:0;z-index:2;transition:transform .18s cubic-bezier(.4,0,.2,1),opacity .18s cubic-bezier(.4,0,.2,1)}.mdc-line-ripple--active:after{transform:scaleX(1);opacity:1}.mdc-line-ripple--deactivating:after{opacity:0}.mdc-notched-outline{display:flex;position:absolute;top:0;right:0;left:0;box-sizing:border-box;width:100%;max-width:100%;height:100%;text-align:left;pointer-events:none}.mdc-notched-outline[dir=rtl],[dir=rtl] .mdc-notched-outline{text-align:right}.mdc-notched-outline__leading,.mdc-notched-outline__notch,.mdc-notched-outline__trailing{box-sizing:border-box;height:100%;border-top:1px solid;border-bottom:1px solid;pointer-events:none}.mdc-notched-outline__leading{border-left:1px solid;border-right:none;width:12px}.mdc-notched-outline__leading[dir=rtl],.mdc-notched-outline__trailing,[dir=rtl] .mdc-notched-outline__leading{border-left:none;border-right:1px solid}.mdc-notched-outline__trailing{flex-grow:1}.mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-notched-outline__trailing{border-left:1px solid;border-right:none}.mdc-notched-outline__notch{flex:0 0 auto;width:auto;max-width:calc(100% - 24px)}.mdc-notched-outline .mdc-floating-label{display:inline-block;position:relative;max-width:100%}.mdc-notched-outline .mdc-floating-label--float-above{text-overflow:clip}.mdc-notched-outline--upgraded .mdc-floating-label--float-above{max-width:133.33333%}.mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:0;padding-right:8px;border-top:none}.mdc-notched-outline--notched .mdc-notched-outline__notch[dir=rtl],[dir=rtl] .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:8px;padding-right:0}.mdc-notched-outline--no-label .mdc-notched-outline__notch{padding:0}.mdc-text-field--filled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-text-field--filled .mdc-text-field__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-text-field--filled.mdc-ripple-upgraded--unbounded .mdc-text-field__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-activation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-deactivation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-text-field__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-text-field{border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:0;border-bottom-left-radius:0;padding:0 16px;display:inline-flex;align-items:baseline;position:relative;box-sizing:border-box;overflow:hidden;will-change:opacity,transform,color}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{color:rgba(0,0,0,.87)}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder{color:rgba(0,0,0,.54)}}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.54)}}.mdc-text-field .mdc-text-field__input{caret-color:#6200ee;caret-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field-character-counter{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:rgba(0,0,0,.54)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--prefix,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--suffix{color:rgba(0,0,0,.6)}.mdc-text-field .mdc-floating-label{top:50%;transform:translateY(-50%);pointer-events:none}.mdc-text-field.mdc-text-field--with-leading-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon[dir=rtl],.mdc-text-field.mdc-text-field--with-trailing-icon,[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon{padding-left:16px;padding-right:0}.mdc-text-field.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon,.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:0}.mdc-text-field__input{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);width:100%;min-width:0;border:none;border-radius:0;background:none;appearance:none;padding:0}.mdc-text-field__input::-ms-clear{display:none}.mdc-text-field__input:focus{outline:none}.mdc-text-field__input:invalid{box-shadow:none}.mdc-text-field__input:-webkit-autofill{z-index:auto!important}@media all{.mdc-text-field__input::placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field__input:-ms-input-placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field--focused .mdc-text-field__input::placeholder,.mdc-text-field--fullwidth .mdc-text-field__input::placeholder,.mdc-text-field--no-label .mdc-text-field__input::placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}@media all{.mdc-text-field--focused .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--fullwidth .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--no-label .mdc-text-field__input:-ms-input-placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}.mdc-text-field__affix{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);opacity:0;white-space:nowrap}.mdc-text-field--label-floating .mdc-text-field__affix,.mdc-text-field--no-label .mdc-text-field__affix{opacity:1}.mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field__affix--prefix[dir=rtl],[dir=rtl] .mdc-text-field__affix--prefix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix[dir=rtl],.mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:12px;padding-right:0}.mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field__affix--suffix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:0;padding-right:2px}.mdc-text-field__input:-webkit-autofill+.mdc-floating-label{transform:translateY(-50%) scale(.75);cursor:auto}.mdc-text-field--filled{height:56px}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{background-color:rgba(0,0,0,.87)}.mdc-text-field--filled:hover .mdc-text-field__ripple:before{opacity:.04}.mdc-text-field--filled.mdc-ripple-upgraded--background-focused .mdc-text-field__ripple:before,.mdc-text-field--filled:not(.mdc-ripple-upgraded):focus .mdc-text-field__ripple:before{transition-duration:75ms;opacity:.12}.mdc-text-field--filled:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-text-field--filled:not(.mdc-text-field--disabled){background-color:#f5f5f5}.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.87)}.mdc-text-field--filled .mdc-line-ripple:after{border-bottom-color:#6200ee;border-bottom-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--filled .mdc-floating-label{left:16px;right:auto}.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--filled .mdc-floating-label{left:auto;right:16px}.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{height:100%}.mdc-text-field--filled.mdc-text-field--no-label .mdc-floating-label,.mdc-text-field--filled.mdc-text-field--no-label:before{display:none}.mdc-text-field--outlined{height:56px;overflow:visible}.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) scale(1);font-size:.75rem}.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) scale(.75);font-size:1rem}.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined{0%{transform:translateX(0) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-34.75px) scale(.75)}to{transform:translateX(0) translateY(-34.75px) scale(.75)}}.mdc-text-field--outlined .mdc-text-field__input{height:100%}.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.38)}.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.87)}.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing,[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:0}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:1px}.mdc-text-field--outlined .mdc-text-field__ripple:after,.mdc-text-field--outlined .mdc-text-field__ripple:before{content:none}.mdc-text-field--outlined .mdc-floating-label{left:4px;right:auto}.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-floating-label{left:auto;right:4px}.mdc-text-field--outlined .mdc-text-field__input{display:flex;border:none!important;background-color:transparent}.mdc-text-field--textarea{flex-direction:column;align-items:center;width:auto;height:auto;padding:0;transition:none}.mdc-text-field--textarea .mdc-floating-label{top:19px}.mdc-text-field--textarea .mdc-floating-label:not(.mdc-floating-label--float-above){transform:none}.mdc-text-field--textarea .mdc-text-field__input{flex-grow:1;height:auto;min-height:1.5rem;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;resize:none;padding:0 16px;line-height:1.5rem}.mdc-text-field--textarea.mdc-text-field--filled:before{display:none}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-10.25px) scale(.75)}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-filled .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-filled{0%{transform:translateX(0) translateY(-10.25px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-10.25px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-10.25px) scale(.75)}to{transform:translateX(0) translateY(-10.25px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--filled .mdc-text-field__input{margin-top:23px;margin-bottom:9px}.mdc-text-field--textarea.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-27.25px) scale(1);font-size:.75rem}.mdc-text-field--textarea.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-24.75px) scale(.75);font-size:1rem}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-outlined{0%{transform:translateX(0) translateY(-24.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-24.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-24.75px) scale(.75)}to{transform:translateX(0) translateY(-24.75px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label{top:18px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field__input{margin-bottom:2px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter{align-self:flex-end;padding:0 16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:after{display:inline-block;width:0;height:16px;content:\"\";vertical-align:-16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:before{display:none}.mdc-text-field__resizer{align-self:stretch;display:inline-flex;flex-direction:column;flex-grow:1;max-height:100%;max-width:100%;min-height:56px;min-width:fit-content;min-width:-moz-available;min-width:-webkit-fill-available;overflow:hidden;resize:both}.mdc-text-field--filled .mdc-text-field__resizer{transform:translateY(-1px)}.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field__input{transform:translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(-1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(1px) translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter[dir=rtl],.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(-1px) translateY(1px)}.mdc-text-field--fullwidth{padding:0;width:100%}.mdc-text-field--fullwidth.mdc-text-field--disabled .mdc-line-ripple:before,.mdc-text-field--fullwidth:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea){display:flex}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__input{height:100%}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-floating-label,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):before{display:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:after,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:before{content:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):not(.mdc-text-field--disabled){background-color:transparent}.mdc-text-field--fullwidth.mdc-text-field--textarea .mdc-text-field__resizer{resize:vertical}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 48px);left:48px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{left:auto;right:48px}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:36px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:auto;right:36px}.mdc-text-field--with-leading-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(-32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(-32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon{0%{transform:translateX(-32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(-32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon-rtl{0%{transform:translateX(32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 64px)}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-trailing-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 96px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 128px)}.mdc-text-field-helper-line{display:flex;justify-content:space-between;box-sizing:border-box}.mdc-text-field+.mdc-text-field-helper-line{padding-right:16px;padding-left:16px}.mdc-form-field>.mdc-text-field+label{align-self:flex-start}.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(98,0,238,.87)}.mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--focused .mdc-notched-outline__trailing{border-width:2px}.mdc-text-field--focused+.mdc-text-field-helper-line .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--validation-msg){opacity:1}.mdc-text-field--focused.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:2px}.mdc-text-field--focused.mdc-text-field--outlined.mdc-text-field--textarea .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after,.mdc-text-field--invalid:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid .mdc-text-field__input{caret-color:#b00020;caret-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{opacity:1}.mdc-text-field--disabled{pointer-events:none}.mdc-text-field--disabled .mdc-text-field__input{color:rgba(0,0,0,.38)}@media all{.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:rgba(0,0,0,.38)}}@media all{.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.38)}}.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:rgba(0,0,0,.3)}.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.06)}.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.06)}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter,.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix,.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:GrayText}}.mdc-text-field--disabled .mdc-floating-label{cursor:default}.mdc-text-field--disabled.mdc-text-field--filled{background-color:#fafafa}.mdc-text-field--disabled.mdc-text-field--filled .mdc-text-field__ripple{display:none}.mdc-text-field--disabled .mdc-text-field__input{pointer-events:auto}.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--end-aligned .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__input{text-align:left}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix,.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{direction:ltr}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{padding-left:12px;padding-right:0}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--leading,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--leading{order:1}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{order:2}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{order:3}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{order:4}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--trailing,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--trailing{order:5}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-right:12px}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px}.mdc-text-field-helper-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;line-height:normal;margin:0;opacity:0;will-change:opacity;transition:opacity .15s cubic-bezier(.4,0,.2,1)}.mdc-text-field-helper-text:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-helper-text--persistent{transition:none;opacity:1;will-change:auto}.mdc-text-field-character-counter{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-left:auto;margin-right:0;padding-left:16px;padding-right:0;white-space:nowrap}.mdc-text-field-character-counter:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-character-counter[dir=rtl],[dir=rtl] .mdc-text-field-character-counter{margin-left:0;margin-right:auto;padding-left:0;padding-right:16px}.mdc-text-field__icon{align-self:center;cursor:pointer}.mdc-text-field__icon:not([tabindex]),.mdc-text-field__icon[tabindex=\"-1\"]{cursor:default;pointer-events:none}.mdc-text-field__icon svg{display:block}.mdc-text-field__icon--leading{margin-left:16px;margin-right:8px}.mdc-text-field__icon--leading[dir=rtl],[dir=rtl] .mdc-text-field__icon--leading{margin-left:8px;margin-right:16px}.mdc-text-field__icon--trailing,.mdc-text-field__icon--trailing[dir=rtl],[dir=rtl] .mdc-text-field__icon--trailing{margin-left:12px;margin-right:12px}.mdc-form-field{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87));display:inline-flex;align-items:center;vertical-align:middle}.mdc-form-field>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0;order:0}.mdc-form-field>label[dir=rtl],[dir=rtl] .mdc-form-field>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px}.mdc-form-field--nowrap>label{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.mdc-form-field--align-end>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px;order:-1}.mdc-form-field--align-end>label[dir=rtl],[dir=rtl] .mdc-form-field--align-end>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0}.mdc-form-field--space-between{justify-content:space-between}.mdc-form-field--space-between>label,.mdc-form-field--space-between>label[dir=rtl],[dir=rtl] .mdc-form-field--space-between>label{margin:0}.mdc-ripple-surface{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:relative;outline:none;overflow:hidden}.mdc-ripple-surface:after,.mdc-ripple-surface:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-ripple-surface:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-ripple-surface.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-ripple-surface.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface:after,.mdc-ripple-surface:before{background-color:#000}.mdc-ripple-surface:hover:before{opacity:.04}.mdc-ripple-surface.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface:after,.mdc-ripple-surface:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-ripple-surface.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]{overflow:visible}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:before{top:0;left:0;width:100%;height:100%}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface--primary:after,.mdc-ripple-surface--primary:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-ripple-surface--primary:hover:before{opacity:.04}.mdc-ripple-surface--primary.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface--accent:after,.mdc-ripple-surface--accent:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-ripple-surface--accent:hover:before{opacity:.04}.mdc-ripple-surface--accent.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-tab-bar{width:100%}.mdc-tab{height:48px}.mdc-tab--stacked{height:72px}.mdc-tab-scroller{overflow-y:hidden}.mdc-tab-scroller.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-scroller__test{position:absolute;top:-9999px;width:100px;height:100px;overflow-x:scroll}.mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:touch;display:flex;overflow-x:hidden}.mdc-tab-scroller__scroll-area::-webkit-scrollbar,.mdc-tab-scroller__test::-webkit-scrollbar{display:none}.mdc-tab-scroller__scroll-area--scroll{overflow-x:scroll}.mdc-tab-scroller__scroll-content{position:relative;display:flex;flex:1 0 auto;transform:none;will-change:transform}.mdc-tab-scroller--align-start .mdc-tab-scroller__scroll-content{justify-content:flex-start}.mdc-tab-scroller--align-end .mdc-tab-scroller__scroll-content{justify-content:flex-end}.mdc-tab-scroller--align-center .mdc-tab-scroller__scroll-content{justify-content:center}.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:auto}.mdc-tab-indicator{display:flex;position:absolute;top:0;left:0;justify-content:center;width:100%;height:100%;pointer-events:none;z-index:1}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab-indicator .mdc-tab-indicator__content--icon{color:#018786;color:var(--mdc-theme-secondary,#018786)}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-top-width:2px}.mdc-tab-indicator .mdc-tab-indicator__content--icon{height:34px;font-size:34px}.mdc-tab-indicator__content{transform-origin:left;opacity:0}.mdc-tab-indicator__content--underline{align-self:flex-end;box-sizing:border-box;width:100%;border-top-style:solid}.mdc-tab-indicator__content--icon{align-self:center;margin:0 auto}.mdc-tab-indicator--active .mdc-tab-indicator__content{opacity:1}.mdc-tab-indicator .mdc-tab-indicator__content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-indicator--no-transition .mdc-tab-indicator__content{transition:none}.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition:opacity .15s linear}.mdc-tab-indicator--active.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition-delay:.1s}.mdc-tab{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);position:relative;display:flex;flex:1 0 auto;justify-content:center;box-sizing:border-box;margin:0;padding:0 24px;border:none;outline:none;background:none;text-align:center;white-space:nowrap;cursor:pointer;-webkit-appearance:none;z-index:1}.mdc-tab .mdc-tab__text-label{color:rgba(0,0,0,.6)}.mdc-tab .mdc-tab__icon{color:rgba(0,0,0,.54);fill:currentColor}.mdc-tab::-moz-focus-inner{padding:0;border:0}.mdc-tab--min-width{flex:0 1 auto}.mdc-tab__content{position:relative;display:flex;align-items:center;justify-content:center;height:inherit;pointer-events:none}.mdc-tab__text-label{display:inline-block;line-height:1}.mdc-tab__icon,.mdc-tab__text-label{transition:color .15s linear;z-index:2}.mdc-tab__icon{width:24px;height:24px;font-size:24px}.mdc-tab--stacked .mdc-tab__content{flex-direction:column;align-items:center;justify-content:center}.mdc-tab--stacked .mdc-tab__text-label{padding-top:6px;padding-bottom:4px}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-tab--active .mdc-tab__icon{fill:currentColor}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{transition-delay:.1s}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:8px;padding-right:0}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label[dir=rtl],[dir=rtl] .mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:0;padding-right:8px}.mdc-tab__ripple{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}.mdc-tab__ripple:after,.mdc-tab__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-tab__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-tab__ripple.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-tab__ripple.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple:after,.mdc-tab__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-tab__ripple.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-tab__ripple:after,.mdc-tab__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab__ripple:hover:before{opacity:.04}.mdc-tab__ripple.mdc-ripple-upgraded--background-focused:before,.mdc-tab__ripple:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-tab__ripple:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-tab__ripple:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-tab__ripple.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-menu{min-width:112px}.mdc-menu .mdc-list,.mdc-menu .mdc-list-item__graphic,.mdc-menu .mdc-list-item__meta{color:rgba(0,0,0,.87)}.mdc-menu .mdc-list{position:relative}.mdc-menu .mdc-list .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-menu .mdc-list-divider{margin:8px 0}.mdc-menu .mdc-list-item{user-select:none}.mdc-menu .mdc-list-item--disabled{cursor:auto}.mdc-menu a.mdc-list-item .mdc-list-item__graphic,.mdc-menu a.mdc-list-item .mdc-list-item__text{pointer-events:none}.mdc-menu__selection-group{padding:0;fill:currentColor}.mdc-menu__selection-group .mdc-list-item{padding-left:56px;padding-right:16px}.mdc-menu__selection-group .mdc-list-item[dir=rtl],[dir=rtl] .mdc-menu__selection-group .mdc-list-item{padding-left:16px;padding-right:56px}.mdc-menu__selection-group .mdc-menu__selection-group-icon{left:16px;right:auto;display:none;position:absolute;top:50%;transform:translateY(-50%)}.mdc-menu__selection-group .mdc-menu__selection-group-icon[dir=rtl],[dir=rtl] .mdc-menu__selection-group .mdc-menu__selection-group-icon{left:auto;right:16px}.mdc-menu-item--selected .mdc-menu__selection-group-icon{display:inline}.mdc-menu-surface{display:none;position:absolute;box-sizing:border-box;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);margin:0;padding:0;transform:scale(1);transform-origin:top left;opacity:0;overflow:auto;will-change:transform,opacity;z-index:8;transition:opacity .03s linear,transform .12s cubic-bezier(0,0,.2,1);box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);background-color:#fff;background-color:var(--mdc-theme-surface,#fff);color:#000;color:var(--mdc-theme-on-surface,#000);border-radius:4px;border-radius:var(--mdc-shape-medium,4px);transform-origin-left:top left;transform-origin-right:top right}.mdc-menu-surface:focus{outline:none}.mdc-menu-surface--open{display:inline-block;transform:scale(1);opacity:1}.mdc-menu-surface--animating-open{display:inline-block;transform:scale(.8);opacity:0}.mdc-menu-surface--animating-closed{display:inline-block;opacity:0;transition:opacity 75ms linear}.mdc-menu-surface[dir=rtl],[dir=rtl] .mdc-menu-surface{transform-origin-left:top right;transform-origin-right:top left}.mdc-menu-surface--anchor{position:relative;overflow:visible}.mdc-menu-surface--fixed{position:fixed}.mdc-menu-surface--fullwidth{width:100%}.mdc-select-helper-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;margin:0 16px;line-height:normal}.mdc-select-helper-text[dir=rtl],[dir=rtl] .mdc-select-helper-text{margin-left:16px;margin-right:16px}.mdc-select-helper-text:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-select-helper-text--validation-msg{opacity:0;transition:opacity .18s cubic-bezier(.4,0,.2,1)}.mdc-select--invalid+.mdc-select-helper-text--validation-msg,.mdc-select-helper-text--validation-msg-persistent{opacity:1}.mdc-select--with-leading-icon .mdc-select__icon{display:inline-block;box-sizing:border-box;border:none;text-decoration:none;cursor:pointer;user-select:none;flex-shrink:0;align-self:center;background-color:transparent;fill:currentColor;margin-left:12px;margin-right:12px}.mdc-select--with-leading-icon .mdc-select__icon[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon .mdc-select__icon{margin-left:12px;margin-right:12px}.mdc-select__icon:not([tabindex]),.mdc-select__icon[tabindex=\"-1\"]{cursor:default;pointer-events:none}.mdc-select__anchor{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-select__anchor .mdc-select__ripple:after,.mdc-select__anchor .mdc-select__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-select__anchor .mdc-select__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-select__anchor.mdc-ripple-upgraded .mdc-select__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-select__anchor.mdc-ripple-upgraded .mdc-select__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-select__anchor.mdc-ripple-upgraded--unbounded .mdc-select__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-select__anchor.mdc-ripple-upgraded--foreground-activation .mdc-select__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-select__anchor.mdc-ripple-upgraded--foreground-deactivation .mdc-select__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-select__anchor .mdc-select__ripple:after,.mdc-select__anchor .mdc-select__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-select__anchor.mdc-ripple-upgraded .mdc-select__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-select__anchor .mdc-select__ripple:after,.mdc-select__anchor .mdc-select__ripple:before{background-color:rgba(0,0,0,.87)}.mdc-select__anchor:hover .mdc-select__ripple:before{opacity:.04}.mdc-select__anchor.mdc-ripple-upgraded--background-focused .mdc-select__ripple:before,.mdc-select__anchor:not(.mdc-ripple-upgraded):focus .mdc-select__ripple:before{transition-duration:75ms;opacity:.12}.mdc-select__anchor .mdc-select__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-select__menu .mdc-list .mdc-list-item--selected .mdc-list-item__ripple:after,.mdc-select__menu .mdc-list .mdc-list-item--selected .mdc-list-item__ripple:before{background-color:#000;background-color:var(--mdc-theme-on-surface,#000)}.mdc-select__menu .mdc-list .mdc-list-item--selected:hover .mdc-list-item__ripple:before{opacity:.04}.mdc-select__menu .mdc-list .mdc-list-item--selected.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,.mdc-select__menu .mdc-list .mdc-list-item--selected:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}.mdc-select__menu .mdc-list .mdc-list-item--selected:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}.mdc-select__menu .mdc-list .mdc-list-item--selected:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.12}.mdc-select__menu .mdc-list .mdc-list-item--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-select{min-width:200px;display:inline-flex;position:relative}.mdc-select:not(.mdc-select--disabled) .mdc-select__anchor{background-color:#f5f5f5}.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text{color:rgba(0,0,0,.87)}.mdc-select:not(.mdc-select--disabled) .mdc-floating-label{color:rgba(0,0,0,.6)}.mdc-select:not(.mdc-select--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-select:not(.mdc-select--disabled) .mdc-select__dropdown-icon{fill:rgba(0,0,0,.54)}.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-select__dropdown-icon{fill:#6200ee;fill:var(--mdc-theme-primary,#6200ee)}.mdc-select:not(.mdc-select--disabled)+.mdc-select-helper-text{color:rgba(0,0,0,.6)}.mdc-select:not(.mdc-select--disabled) .mdc-select__icon{color:rgba(0,0,0,.54)}.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-line-ripple:after{border-bottom-color:#6200ee;border-bottom-color:var(--mdc-theme-primary,#6200ee)}.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label{color:rgba(98,0,238,.87)}.mdc-select:not(.mdc-select--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.87)}.mdc-select.mdc-select--disabled .mdc-select__anchor{background-color:#fafafa}.mdc-select.mdc-select--disabled .mdc-floating-label{color:rgba(0,0,0,.38)}.mdc-select.mdc-select--disabled .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.06)}.mdc-select.mdc-select--disabled .mdc-select__dropdown-icon{fill:rgba(0,0,0,.38)}.mdc-select.mdc-select--disabled+.mdc-select-helper-text,.mdc-select.mdc-select--disabled .mdc-select__icon,.mdc-select.mdc-select--disabled .mdc-select__selected-text{color:rgba(0,0,0,.38)}@media screen and (-ms-high-contrast:active){.mdc-select.mdc-select--disabled .mdc-select__selected-text{color:GrayText}.mdc-select.mdc-select--disabled .mdc-select__dropdown-icon{fill:red}.mdc-select.mdc-select--disabled .mdc-floating-label{color:GrayText}.mdc-select.mdc-select--disabled .mdc-line-ripple:before{border-bottom-color:GrayText}.mdc-select.mdc-select--disabled .mdc-notched-outline__leading,.mdc-select.mdc-select--disabled .mdc-notched-outline__notch,.mdc-select.mdc-select--disabled .mdc-notched-outline__trailing{border-color:GrayText}.mdc-select.mdc-select--disabled+.mdc-select-helper-text,.mdc-select.mdc-select--disabled .mdc-select__icon{color:GrayText}}.mdc-select .mdc-floating-label{left:16px;right:auto;top:50%;transform:translateY(-50%);pointer-events:none}.mdc-select .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select .mdc-floating-label{left:auto;right:16px}.mdc-select.mdc-select--filled .mdc-floating-label{max-width:calc(100% - 64px)}.mdc-select.mdc-select--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-select.mdc-select--outlined .mdc-floating-label{left:4px;right:auto}.mdc-select.mdc-select--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select.mdc-select--outlined .mdc-floating-label{left:auto;right:4px}.mdc-select .mdc-select__anchor{height:56px;display:flex;align-items:baseline}.mdc-select .mdc-select__anchor:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-select.mdc-select--no-label .mdc-select__anchor .mdc-select__selected-text:before{content:\"​\"}.mdc-select.mdc-select--no-label .mdc-select__anchor .mdc-select__selected-text{height:100%;display:inline-flex;align-items:center}.mdc-select.mdc-select--no-label .mdc-select__anchor:before{display:none}.mdc-select .mdc-select__anchor{border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:0;border-bottom-left-radius:0;padding-left:16px;padding-right:0}.mdc-select .mdc-select__anchor[dir=rtl],[dir=rtl] .mdc-select .mdc-select__anchor{padding-left:0;padding-right:16px}.mdc-select.mdc-select--with-leading-icon .mdc-select__anchor,.mdc-select.mdc-select--with-leading-icon .mdc-select__anchor[dir=rtl],[dir=rtl] .mdc-select.mdc-select--with-leading-icon .mdc-select__anchor{padding-left:0;padding-right:0}.mdc-select .mdc-select__icon{width:24px;height:24px;font-size:24px}.mdc-select .mdc-select__dropdown-icon{width:24px;height:24px}.mdc-select .mdc-select__menu .mdc-list-item,.mdc-select .mdc-select__menu .mdc-list-item[dir=rtl],[dir=rtl] .mdc-select .mdc-select__menu .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-select .mdc-select__menu .mdc-list-item__graphic{margin-left:0;margin-right:12px}.mdc-select .mdc-select__menu .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-select .mdc-select__menu .mdc-list-item__graphic{margin-left:12px;margin-right:0}.mdc-select__dropdown-icon{margin-left:12px;margin-right:12px;display:inline-flex;position:relative;align-self:center;align-items:center;justify-content:center;flex-shrink:0;pointer-events:none}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-active,.mdc-select__dropdown-icon .mdc-select__dropdown-icon-inactive{position:absolute;top:0;left:0}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-graphic{width:41.6666666667%;height:20.8333333333%}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-inactive{opacity:1;transition:opacity 75ms linear 75ms}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-active{opacity:0;transition:opacity 75ms linear}.mdc-select__dropdown-icon[dir=rtl],[dir=rtl] .mdc-select__dropdown-icon{margin-left:12px;margin-right:12px}.mdc-select--activated .mdc-select__dropdown-icon .mdc-select__dropdown-icon-inactive{opacity:0;transition:opacity 49.5ms linear}.mdc-select--activated .mdc-select__dropdown-icon .mdc-select__dropdown-icon-active{opacity:1;transition:opacity .1005s linear 49.5ms}.mdc-select__anchor{width:100%;position:relative;box-sizing:border-box;overflow:hidden;outline:none;cursor:pointer}.mdc-select__anchor .mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-select__anchor.mdc-select--focused.mdc-line-ripple:after{transform:scaleY(2);opacity:1}.mdc-select__selected-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);box-sizing:border-box;width:auto;flex-grow:1;height:28px;border:none;outline:none;padding:0;white-space:nowrap;appearance:none;pointer-events:none;overflow:hidden;background-color:transparent;color:inherit}.mdc-select__selected-text::-ms-expand{display:none}.mdc-select__selected-text::-ms-value{background-color:transparent;color:inherit}.mdc-select--outlined{border:none}.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading,.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch,.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.38)}.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.87)}.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__trailing{border-width:2px;border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-select--outlined.mdc-select--disabled .mdc-notched-outline__leading,.mdc-select--outlined.mdc-select--disabled .mdc-notched-outline__notch,.mdc-select--outlined.mdc-select--disabled .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.06)}.mdc-select--outlined.mdc-select--disabled .mdc-select__anchor{background-color:transparent}.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__trailing,[dir=rtl] .mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:0}.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-select--outlined .mdc-select__selected-text{border-radius:4px}.mdc-select--outlined:not(.mdc-select--disabled) .mdc-select__anchor{background-color:transparent}.mdc-select--outlined .mdc-select__anchor :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-select--outlined .mdc-select__anchor{overflow:visible}.mdc-select--outlined .mdc-select__anchor .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-select-outlined .25s 1}.mdc-select--outlined .mdc-select__anchor .mdc-floating-label--float-above{transform:translateY(-37.25px) scale(1);font-size:.75rem}.mdc-select--outlined .mdc-select__anchor.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-select--outlined .mdc-select__anchor .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) scale(.75);font-size:1rem}.mdc-select--outlined .mdc-select__anchor .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:1px}.mdc-select--outlined .mdc-select__anchor .mdc-select__selected-text:before{content:\"​\"}.mdc-select--outlined .mdc-select__anchor .mdc-select__selected-text{height:100%;display:inline-flex;align-items:center}.mdc-select--outlined .mdc-select__anchor:before{display:none}.mdc-select--outlined .mdc-select__selected-text{display:flex;border:none;z-index:1;background-color:transparent}.mdc-select--outlined .mdc-select__icon{z-index:2}.mdc-select--outlined .mdc-floating-label{line-height:1.15rem}.mdc-select--outlined.mdc-select--focused .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:2px}.mdc-select--invalid:not(.mdc-select--disabled) .mdc-floating-label{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled) .mdc-line-ripple:before,.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--focused .mdc-line-ripple:after{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label{color:#b00020}.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--invalid+.mdc-select-helper-text--validation-msg{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--focused .mdc-select__dropdown-icon,.mdc-select--invalid:not(.mdc-select--disabled) .mdc-select__dropdown-icon{fill:#b00020;fill:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled):hover .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__trailing{border-width:2px;border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-select--disabled{cursor:default;pointer-events:none}.mdc-select--with-leading-icon .mdc-floating-label{left:48px;right:auto}.mdc-select--with-leading-icon .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon .mdc-floating-label{left:auto;right:48px}.mdc-select--with-leading-icon .mdc-select__menu .mdc-list-item,.mdc-select--with-leading-icon .mdc-select__menu .mdc-list-item[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon .mdc-select__menu .mdc-list-item{padding-left:12px;padding-right:12px}.mdc-select--with-leading-icon.mdc-select--filled .mdc-floating-label{max-width:calc(100% - 96px)}.mdc-select--with-leading-icon.mdc-select--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 128px)}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label{left:36px;right:auto}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label{left:auto;right:36px}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(-32px) scale(1)}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(32px) scale(1)}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above{font-size:.75rem}.mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(-32px) scale(.75)}.mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(32px) scale(.75)}.mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px .25s 1}@keyframes mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px{0%{transform:translateX(-32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(-32px) translateY(-34.75px) scale(.75)}}.mdc-select--with-leading-icon.mdc-select--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px .25s 1}@keyframes mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px-rtl{0%{transform:translateX(32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(32px) translateY(-34.75px) scale(.75)}}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-select__anchor :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 96px)}.mdc-select--filled .mdc-menu-surface--is-open-below{border-top-left-radius:0;border-top-right-radius:0}.mdc-select__menu .mdc-select__icon,.mdc-select__menu .mdc-select__icon[dir=rtl],[dir=rtl] .mdc-select__menu .mdc-select__icon{margin-left:0;margin-right:0}.mdc-select__menu .mdc-list .mdc-list-item--activated,.mdc-select__menu .mdc-list .mdc-list-item--activated .mdc-list-item__graphic,.mdc-select__menu .mdc-list .mdc-list-item--selected,.mdc-select__menu .mdc-list .mdc-list-item--selected .mdc-list-item__graphic{color:#000;color:var(--mdc-theme-on-surface,#000)}.mdc-card{border-radius:4px;border-radius:var(--mdc-shape-medium,4px);background-color:#fff;background-color:var(--mdc-theme-surface,#fff);position:relative;box-shadow:0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);display:flex;flex-direction:column;box-sizing:border-box}.mdc-card .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-card--outlined{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12);border:1px solid #e0e0e0}.mdc-card__media{position:relative;box-sizing:border-box;background-repeat:no-repeat;background-position:50%;background-size:cover}.mdc-card__media:before{display:block;content:\"\"}.mdc-card__media:first-child{border-top-left-radius:inherit;border-top-right-radius:inherit}.mdc-card__media:last-child{border-bottom-left-radius:inherit;border-bottom-right-radius:inherit}.mdc-card__media--square:before{margin-top:100%}.mdc-card__media--16-9:before{margin-top:56.25%}.mdc-card__media-content{position:absolute;top:0;right:0;bottom:0;left:0;box-sizing:border-box}.mdc-card__primary-action{display:flex;flex-direction:column;box-sizing:border-box;position:relative;outline:none;color:inherit;text-decoration:none;cursor:pointer;overflow:hidden}.mdc-card__primary-action:first-child{border-top-left-radius:inherit;border-top-right-radius:inherit}.mdc-card__primary-action:last-child{border-bottom-left-radius:inherit;border-bottom-right-radius:inherit}.mdc-card__actions{display:flex;flex-direction:row;align-items:center;box-sizing:border-box;min-height:52px;padding:8px}.mdc-card__actions--full-bleed{padding:0}.mdc-card__action-buttons,.mdc-card__action-icons{display:flex;flex-direction:row;align-items:center;box-sizing:border-box}.mdc-card__action-icons{color:rgba(0,0,0,.6);flex-grow:1;justify-content:flex-end}.mdc-card__action-buttons+.mdc-card__action-icons{margin-left:16px;margin-right:0}.mdc-card__action-buttons+.mdc-card__action-icons[dir=rtl],[dir=rtl] .mdc-card__action-buttons+.mdc-card__action-icons{margin-left:0;margin-right:16px}.mdc-card__action{display:inline-flex;flex-direction:row;align-items:center;box-sizing:border-box;justify-content:center;cursor:pointer;user-select:none}.mdc-card__action:focus{outline:none}.mdc-card__action--button{margin-left:0;margin-right:8px;padding:0 8px}.mdc-card__action--button[dir=rtl],[dir=rtl] .mdc-card__action--button{margin-left:8px;margin-right:0}.mdc-card__action--button:last-child,.mdc-card__action--button:last-child[dir=rtl],[dir=rtl] .mdc-card__action--button:last-child{margin-left:0;margin-right:0}.mdc-card__actions--full-bleed .mdc-card__action--button{justify-content:space-between;width:100%;height:auto;max-height:none;margin:0;padding:8px 16px;text-align:left}.mdc-card__actions--full-bleed .mdc-card__action--button[dir=rtl],[dir=rtl] .mdc-card__actions--full-bleed .mdc-card__action--button{text-align:right}.mdc-card__action--icon{margin:-6px 0;padding:12px}.mdc-card__action--icon:not(:disabled){color:rgba(0,0,0,.6)}.mdc-card__primary-action{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-card__primary-action:after,.mdc-card__primary-action:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-card__primary-action:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-card__primary-action.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-card__primary-action.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-card__primary-action.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-card__primary-action.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-card__primary-action.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-card__primary-action:after,.mdc-card__primary-action:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-card__primary-action.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-card__primary-action:after,.mdc-card__primary-action:before{background-color:#000}.mdc-card__primary-action:hover:before{opacity:.04}.mdc-card__primary-action.mdc-ripple-upgraded--background-focused:before,.mdc-card__primary-action:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-card__primary-action:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-card__primary-action:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-card__primary-action.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-typography{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}.mdc-typography--headline1{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:6rem;font-size:var(--mdc-typography-headline1-font-size,6rem);line-height:6rem;line-height:var(--mdc-typography-headline1-line-height,6rem);font-weight:300;font-weight:var(--mdc-typography-headline1-font-weight,300);letter-spacing:-.015625em;letter-spacing:var(--mdc-typography-headline1-letter-spacing,-.015625em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline1-text-transform,inherit)}.mdc-typography--headline1,.mdc-typography--headline2{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--headline2{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:3.75rem;font-size:var(--mdc-typography-headline2-font-size,3.75rem);line-height:3.75rem;line-height:var(--mdc-typography-headline2-line-height,3.75rem);font-weight:300;font-weight:var(--mdc-typography-headline2-font-weight,300);letter-spacing:-.0083333333em;letter-spacing:var(--mdc-typography-headline2-letter-spacing,-.0083333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline2-text-transform,inherit)}.mdc-typography--headline3{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline3-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:3rem;font-size:var(--mdc-typography-headline3-font-size,3rem);line-height:3.125rem;line-height:var(--mdc-typography-headline3-line-height,3.125rem);font-weight:400;font-weight:var(--mdc-typography-headline3-font-weight,400);letter-spacing:normal;letter-spacing:var(--mdc-typography-headline3-letter-spacing,normal);text-decoration:inherit;text-decoration:var(--mdc-typography-headline3-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline3-text-transform,inherit)}.mdc-typography--headline3,.mdc-typography--headline4{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--headline4{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline4-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:2.125rem;font-size:var(--mdc-typography-headline4-font-size,2.125rem);line-height:2.5rem;line-height:var(--mdc-typography-headline4-line-height,2.5rem);font-weight:400;font-weight:var(--mdc-typography-headline4-font-weight,400);letter-spacing:.0073529412em;letter-spacing:var(--mdc-typography-headline4-letter-spacing,.0073529412em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline4-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline4-text-transform,inherit)}.mdc-typography--headline5{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline5-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.5rem;font-size:var(--mdc-typography-headline5-font-size,1.5rem);line-height:2rem;line-height:var(--mdc-typography-headline5-line-height,2rem);font-weight:400;font-weight:var(--mdc-typography-headline5-font-weight,400);letter-spacing:normal;letter-spacing:var(--mdc-typography-headline5-letter-spacing,normal);text-decoration:inherit;text-decoration:var(--mdc-typography-headline5-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline5-text-transform,inherit)}.mdc-typography--headline5,.mdc-typography--headline6{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--headline6{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit)}.mdc-typography--subtitle1{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit)}.mdc-typography--subtitle1,.mdc-typography--subtitle2{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--subtitle2{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-subtitle2-font-size,.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height,1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight,500);letter-spacing:.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing,.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform,inherit)}.mdc-typography--body1{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-body1-font-size,1rem);line-height:1.5rem;line-height:var(--mdc-typography-body1-line-height,1.5rem);font-weight:400;font-weight:var(--mdc-typography-body1-font-weight,400);letter-spacing:.03125em;letter-spacing:var(--mdc-typography-body1-letter-spacing,.03125em);text-decoration:inherit;text-decoration:var(--mdc-typography-body1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body1-text-transform,inherit)}.mdc-typography--body1,.mdc-typography--body2{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--body2{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit)}.mdc-typography--caption{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit)}.mdc-typography--button{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase)}.mdc-typography--button,.mdc-typography--overline{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--overline{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-overline-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-overline-font-size,.75rem);line-height:2rem;line-height:var(--mdc-typography-overline-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-overline-font-weight,500);letter-spacing:.1666666667em;letter-spacing:var(--mdc-typography-overline-letter-spacing,.1666666667em);text-decoration:none;text-decoration:var(--mdc-typography-overline-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-overline-text-transform,uppercase)}.mdc-dialog,.mdc-dialog__scrim{position:fixed;top:0;left:0;align-items:center;justify-content:center;box-sizing:border-box;width:100%;height:100%}.mdc-dialog{display:none;z-index:7}.mdc-dialog .mdc-dialog__surface{background-color:#fff;background-color:var(--mdc-theme-surface,#fff)}.mdc-dialog .mdc-dialog__scrim{background-color:rgba(0,0,0,.32)}.mdc-dialog .mdc-dialog__title{color:rgba(0,0,0,.87)}.mdc-dialog .mdc-dialog__content{color:rgba(0,0,0,.6)}.mdc-dialog.mdc-dialog--scrollable .mdc-dialog__actions,.mdc-dialog.mdc-dialog--scrollable .mdc-dialog__title{border-color:rgba(0,0,0,.12)}.mdc-dialog .mdc-dialog__content{padding:20px 24px}.mdc-dialog .mdc-dialog__surface{min-width:280px}@media (max-width:592px){.mdc-dialog .mdc-dialog__surface{max-width:calc(100vw - 32px)}}@media (min-width:592px){.mdc-dialog .mdc-dialog__surface{max-width:560px}}.mdc-dialog .mdc-dialog__surface{max-height:calc(100% - 32px)}.mdc-dialog .mdc-dialog__surface{border-radius:4px;border-radius:var(--mdc-shape-medium,4px)}.mdc-dialog__scrim{opacity:0;z-index:-1}.mdc-dialog__container{display:flex;flex-direction:row;align-items:center;justify-content:space-around;box-sizing:border-box;height:100%;transform:scale(.8);opacity:0;pointer-events:none}.mdc-dialog__surface{position:relative;box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12);display:flex;flex-direction:column;flex-grow:0;flex-shrink:0;box-sizing:border-box;max-width:100%;max-height:100%;pointer-events:auto;overflow-y:auto}.mdc-dialog__surface .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-dialog[dir=rtl] .mdc-dialog__surface,[dir=rtl] .mdc-dialog .mdc-dialog__surface{text-align:right}.mdc-dialog__title{display:block;line-height:normal;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);position:relative;flex-shrink:0;box-sizing:border-box;margin:0;padding:0 24px 9px;border-bottom:1px solid transparent}.mdc-dialog__title:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-dialog[dir=rtl] .mdc-dialog__title,[dir=rtl] .mdc-dialog .mdc-dialog__title{text-align:right}.mdc-dialog--scrollable .mdc-dialog__title{padding-bottom:15px}.mdc-dialog__content{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-body1-font-size,1rem);line-height:1.5rem;line-height:var(--mdc-typography-body1-line-height,1.5rem);font-weight:400;font-weight:var(--mdc-typography-body1-font-weight,400);letter-spacing:.03125em;letter-spacing:var(--mdc-typography-body1-letter-spacing,.03125em);text-decoration:inherit;text-decoration:var(--mdc-typography-body1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body1-text-transform,inherit);flex-grow:1;box-sizing:border-box;margin:0;overflow:auto;-webkit-overflow-scrolling:touch}.mdc-dialog__content>:first-child{margin-top:0}.mdc-dialog__content>:last-child{margin-bottom:0}.mdc-dialog__title+.mdc-dialog__content{padding-top:0}.mdc-dialog--scrollable .mdc-dialog__title+.mdc-dialog__content{padding-top:8px;padding-bottom:8px}.mdc-dialog__content .mdc-list:first-child:last-child{padding:6px 0 0}.mdc-dialog--scrollable .mdc-dialog__content .mdc-list:first-child:last-child{padding:0}.mdc-dialog__actions{display:flex;position:relative;flex-shrink:0;flex-wrap:wrap;align-items:center;justify-content:flex-end;box-sizing:border-box;min-height:52px;margin:0;padding:8px;border-top:1px solid transparent}.mdc-dialog--stacked .mdc-dialog__actions{flex-direction:column;align-items:flex-end}.mdc-dialog__button{margin-left:8px;margin-right:0;max-width:100%;text-align:right}.mdc-dialog__button[dir=rtl],[dir=rtl] .mdc-dialog__button{margin-left:0;margin-right:8px}.mdc-dialog__button:first-child,.mdc-dialog__button:first-child[dir=rtl],[dir=rtl] .mdc-dialog__button:first-child{margin-left:0;margin-right:0}.mdc-dialog[dir=rtl] .mdc-dialog__button,[dir=rtl] .mdc-dialog .mdc-dialog__button{text-align:left}.mdc-dialog--stacked .mdc-dialog__button:not(:first-child){margin-top:12px}.mdc-dialog--closing,.mdc-dialog--open,.mdc-dialog--opening{display:flex}.mdc-dialog--opening .mdc-dialog__scrim{transition:opacity .15s linear}.mdc-dialog--opening .mdc-dialog__container{transition:opacity 75ms linear,transform .15s cubic-bezier(0,0,.2,1) 0ms}.mdc-dialog--closing .mdc-dialog__container,.mdc-dialog--closing .mdc-dialog__scrim{transition:opacity 75ms linear}.mdc-dialog--closing .mdc-dialog__container{transform:none}.mdc-dialog--open .mdc-dialog__scrim{opacity:1}.mdc-dialog--open .mdc-dialog__container{transform:none;opacity:1}.mdc-dialog-scroll-lock{overflow:hidden}@keyframes mdc-checkbox-unchecked-checked-checkmark-path{0%,50%{stroke-dashoffset:29.7833385}50%{animation-timing-function:cubic-bezier(0,0,.2,1)}to{stroke-dashoffset:0}}@keyframes mdc-checkbox-unchecked-indeterminate-mixedmark{0%,68.2%{transform:scaleX(0)}68.2%{animation-timing-function:cubic-bezier(0,0,0,1)}to{transform:scaleX(1)}}@keyframes mdc-checkbox-checked-unchecked-checkmark-path{0%{animation-timing-function:cubic-bezier(.4,0,1,1);opacity:1;stroke-dashoffset:0}to{opacity:0;stroke-dashoffset:-29.7833385}}@keyframes mdc-checkbox-checked-indeterminate-checkmark{0%{animation-timing-function:cubic-bezier(0,0,.2,1);transform:rotate(0deg);opacity:1}to{transform:rotate(45deg);opacity:0}}@keyframes mdc-checkbox-indeterminate-checked-checkmark{0%{animation-timing-function:cubic-bezier(.14,0,0,1);transform:rotate(45deg);opacity:0}to{transform:rotate(1turn);opacity:1}}@keyframes mdc-checkbox-checked-indeterminate-mixedmark{0%{animation-timing-function:mdc-animation-deceleration-curve-timing-function;transform:rotate(-45deg);opacity:0}to{transform:rotate(0deg);opacity:1}}@keyframes mdc-checkbox-indeterminate-checked-mixedmark{0%{animation-timing-function:cubic-bezier(.14,0,0,1);transform:rotate(0deg);opacity:1}to{transform:rotate(315deg);opacity:0}}@keyframes mdc-checkbox-indeterminate-unchecked-mixedmark{0%{animation-timing-function:linear;transform:scaleX(1);opacity:1}32.8%,to{transform:scaleX(0);opacity:0}}.mdc-checkbox{display:inline-block;position:relative;flex:0 0 18px;box-sizing:content-box;width:18px;height:18px;line-height:0;white-space:nowrap;cursor:pointer;vertical-align:bottom;padding:11px}.mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background:before,.mdc-checkbox .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background:before,.mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-checkbox.mdc-checkbox--selected .mdc-checkbox__ripple:after,.mdc-checkbox.mdc-checkbox--selected .mdc-checkbox__ripple:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-checkbox.mdc-checkbox--selected:hover .mdc-checkbox__ripple:before{opacity:.04}.mdc-checkbox.mdc-checkbox--selected.mdc-ripple-upgraded--background-focused .mdc-checkbox__ripple:before,.mdc-checkbox.mdc-checkbox--selected:not(.mdc-ripple-upgraded):focus .mdc-checkbox__ripple:before{transition-duration:75ms;opacity:.12}.mdc-checkbox.mdc-checkbox--selected:not(.mdc-ripple-upgraded) .mdc-checkbox__ripple:after{transition:opacity .15s linear}.mdc-checkbox.mdc-checkbox--selected:not(.mdc-ripple-upgraded):active .mdc-checkbox__ripple:after{transition-duration:75ms;opacity:.12}.mdc-checkbox.mdc-checkbox--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-checkbox.mdc-ripple-upgraded--background-focused.mdc-checkbox--selected .mdc-checkbox__ripple:after,.mdc-checkbox.mdc-ripple-upgraded--background-focused.mdc-checkbox--selected .mdc-checkbox__ripple:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-checkbox .mdc-checkbox__background{top:11px;left:11px}.mdc-checkbox .mdc-checkbox__background:before{top:-13px;left:-13px;width:40px;height:40px}.mdc-checkbox .mdc-checkbox__native-control{top:0;right:0;left:0;width:40px;height:40px}.mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background{border-color:rgba(0,0,0,.54);background-color:transparent}.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,.mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background,.mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786);background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}@keyframes mdc-checkbox-fade-in-background-8A000000secondary00000000secondary{0%{border-color:rgba(0,0,0,.54);background-color:transparent}50%{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786);background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}}@keyframes mdc-checkbox-fade-out-background-8A000000secondary00000000secondary{0%,80%{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786);background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}to{border-color:rgba(0,0,0,.54);background-color:transparent}}.mdc-checkbox--anim-unchecked-checked .mdc-checkbox__native-control:enabled~.mdc-checkbox__background,.mdc-checkbox--anim-unchecked-indeterminate .mdc-checkbox__native-control:enabled~.mdc-checkbox__background{animation-name:mdc-checkbox-fade-in-background-8A000000secondary00000000secondary}.mdc-checkbox--anim-checked-unchecked .mdc-checkbox__native-control:enabled~.mdc-checkbox__background,.mdc-checkbox--anim-indeterminate-unchecked .mdc-checkbox__native-control:enabled~.mdc-checkbox__background{animation-name:mdc-checkbox-fade-out-background-8A000000secondary00000000secondary}.mdc-checkbox__native-control[disabled]:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background{border-color:rgba(0,0,0,.38);background-color:transparent}.mdc-checkbox__native-control[data-indeterminate=true][disabled]~.mdc-checkbox__background,.mdc-checkbox__native-control[disabled]:checked~.mdc-checkbox__background,.mdc-checkbox__native-control[disabled]:indeterminate~.mdc-checkbox__background{border-color:transparent;background-color:rgba(0,0,0,.38)}.mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark{color:#fff}.mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__mixedmark{border-color:#fff}.mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__checkmark{color:#fff}.mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__mixedmark{border-color:#fff}@media screen and (-ms-high-contrast:active){.mdc-checkbox__native-control[disabled]:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background{border-color:GrayText;background-color:transparent}.mdc-checkbox__native-control[data-indeterminate=true][disabled]~.mdc-checkbox__background,.mdc-checkbox__native-control[disabled]:checked~.mdc-checkbox__background,.mdc-checkbox__native-control[disabled]:indeterminate~.mdc-checkbox__background{border-color:GrayText;background-color:transparent}.mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__checkmark{color:GrayText}.mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__mixedmark{border-color:GrayText}.mdc-checkbox__mixedmark{margin:0 1px}}.mdc-checkbox--disabled{cursor:default;pointer-events:none}.mdc-checkbox__background{display:inline-flex;position:absolute;align-items:center;justify-content:center;box-sizing:border-box;width:18px;height:18px;border:2px solid;border-radius:2px;background-color:transparent;pointer-events:none;will-change:background-color,border-color;transition:background-color 90ms cubic-bezier(.4,0,.6,1) 0ms,border-color 90ms cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox__background .mdc-checkbox__background:before{background-color:#000;background-color:var(--mdc-theme-on-surface,#000)}.mdc-checkbox__checkmark{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;opacity:0;transition:opacity .18s cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox--upgraded .mdc-checkbox__checkmark{opacity:1}.mdc-checkbox__checkmark-path{transition:stroke-dashoffset .18s cubic-bezier(.4,0,.6,1) 0ms;stroke:currentColor;stroke-width:3.12px;stroke-dashoffset:29.7833385;stroke-dasharray:29.7833385}.mdc-checkbox__mixedmark{width:100%;height:0;transform:scaleX(0) rotate(0deg);border-width:1px;border-style:solid;opacity:0;transition:opacity 90ms cubic-bezier(.4,0,.6,1) 0ms,transform 90ms cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox--upgraded .mdc-checkbox__background,.mdc-checkbox--upgraded .mdc-checkbox__checkmark,.mdc-checkbox--upgraded .mdc-checkbox__checkmark-path,.mdc-checkbox--upgraded .mdc-checkbox__mixedmark{transition:none!important}.mdc-checkbox--anim-checked-unchecked .mdc-checkbox__background,.mdc-checkbox--anim-indeterminate-unchecked .mdc-checkbox__background,.mdc-checkbox--anim-unchecked-checked .mdc-checkbox__background,.mdc-checkbox--anim-unchecked-indeterminate .mdc-checkbox__background{animation-duration:.18s;animation-timing-function:linear}.mdc-checkbox--anim-unchecked-checked .mdc-checkbox__checkmark-path{animation:mdc-checkbox-unchecked-checked-checkmark-path .18s linear 0s;transition:none}.mdc-checkbox--anim-unchecked-indeterminate .mdc-checkbox__mixedmark{animation:mdc-checkbox-unchecked-indeterminate-mixedmark 90ms linear 0s;transition:none}.mdc-checkbox--anim-checked-unchecked .mdc-checkbox__checkmark-path{animation:mdc-checkbox-checked-unchecked-checkmark-path 90ms linear 0s;transition:none}.mdc-checkbox--anim-checked-indeterminate .mdc-checkbox__checkmark{animation:mdc-checkbox-checked-indeterminate-checkmark 90ms linear 0s;transition:none}.mdc-checkbox--anim-checked-indeterminate .mdc-checkbox__mixedmark{animation:mdc-checkbox-checked-indeterminate-mixedmark 90ms linear 0s;transition:none}.mdc-checkbox--anim-indeterminate-checked .mdc-checkbox__checkmark{animation:mdc-checkbox-indeterminate-checked-checkmark .5s linear 0s;transition:none}.mdc-checkbox--anim-indeterminate-checked .mdc-checkbox__mixedmark{animation:mdc-checkbox-indeterminate-checked-mixedmark .5s linear 0s;transition:none}.mdc-checkbox--anim-indeterminate-unchecked .mdc-checkbox__mixedmark{animation:mdc-checkbox-indeterminate-unchecked-mixedmark .3s linear 0s;transition:none}.mdc-checkbox__native-control:checked~.mdc-checkbox__background,.mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background,.mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background{transition:border-color 90ms cubic-bezier(0,0,.2,1) 0ms,background-color 90ms cubic-bezier(0,0,.2,1) 0ms}.mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__checkmark-path,.mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__checkmark-path,.mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background .mdc-checkbox__checkmark-path{stroke-dashoffset:0}.mdc-checkbox__background:before{position:absolute;transform:scale(0);border-radius:50%;opacity:0;pointer-events:none;content:\"\";will-change:opacity,transform;transition:opacity 90ms cubic-bezier(.4,0,.6,1) 0ms,transform 90ms cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox__native-control:focus~.mdc-checkbox__background:before{transform:scale(1);opacity:.12;transition:opacity 80ms cubic-bezier(0,0,.2,1) 0ms,transform 80ms cubic-bezier(0,0,.2,1) 0ms}.mdc-checkbox__native-control{position:absolute;margin:0;padding:0;opacity:0;cursor:inherit}.mdc-checkbox__native-control:disabled{cursor:default;pointer-events:none}.mdc-checkbox--touch{margin:4px}.mdc-checkbox--touch .mdc-checkbox__native-control{top:-4px;right:-4px;left:-4px;width:48px;height:48px}.mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__checkmark{transition:opacity .18s cubic-bezier(0,0,.2,1) 0ms,transform .18s cubic-bezier(0,0,.2,1) 0ms;opacity:1}.mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__mixedmark{transform:scaleX(1) rotate(-45deg)}.mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__checkmark,.mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background .mdc-checkbox__checkmark{transform:rotate(45deg);opacity:0;transition:opacity 90ms cubic-bezier(.4,0,.6,1) 0ms,transform 90ms cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__mixedmark,.mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background .mdc-checkbox__mixedmark{transform:scaleX(1) rotate(0deg);opacity:1}.mdc-checkbox{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-checkbox .mdc-checkbox__ripple:after,.mdc-checkbox .mdc-checkbox__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-checkbox .mdc-checkbox__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-checkbox.mdc-ripple-upgraded--unbounded .mdc-checkbox__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-checkbox.mdc-ripple-upgraded--foreground-activation .mdc-checkbox__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-checkbox.mdc-ripple-upgraded--foreground-deactivation .mdc-checkbox__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-checkbox .mdc-checkbox__ripple:after,.mdc-checkbox .mdc-checkbox__ripple:before{background-color:#000;background-color:var(--mdc-theme-on-surface,#000)}.mdc-checkbox:hover .mdc-checkbox__ripple:before{opacity:.04}.mdc-checkbox.mdc-ripple-upgraded--background-focused .mdc-checkbox__ripple:before,.mdc-checkbox:not(.mdc-ripple-upgraded):focus .mdc-checkbox__ripple:before{transition-duration:75ms;opacity:.12}.mdc-checkbox:not(.mdc-ripple-upgraded) .mdc-checkbox__ripple:after{transition:opacity .15s linear}.mdc-checkbox:not(.mdc-ripple-upgraded):active .mdc-checkbox__ripple:after{transition-duration:75ms;opacity:.12}.mdc-checkbox.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-checkbox .mdc-checkbox__ripple:after,.mdc-checkbox .mdc-checkbox__ripple:before{top:0;left:0;width:100%;height:100%}.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:after,.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-checkbox__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-ripple-upgraded--background-focused .mdc-checkbox__background:before{content:none}.mdc-radio{padding:10px;display:inline-block;position:relative;flex:0 0 auto;box-sizing:content-box;width:20px;height:20px;cursor:pointer;will-change:opacity,transform,border-color,color}.mdc-radio .mdc-radio__native-control:enabled:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle{border-color:rgba(0,0,0,.54)}.mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle,.mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786)}.mdc-radio .mdc-radio__native-control:disabled+.mdc-radio__background .mdc-radio__inner-circle,.mdc-radio .mdc-radio__native-control:disabled:checked+.mdc-radio__background .mdc-radio__outer-circle,.mdc-radio .mdc-radio__native-control:disabled:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle,.mdc-radio [aria-disabled=true] .mdc-radio__native-control+.mdc-radio__background .mdc-radio__inner-circle,.mdc-radio [aria-disabled=true] .mdc-radio__native-control:checked+.mdc-radio__background .mdc-radio__outer-circle,.mdc-radio [aria-disabled=true] .mdc-radio__native-control:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle{border-color:rgba(0,0,0,.38)}.mdc-radio .mdc-radio__background:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786);top:-10px;left:-10px;width:40px;height:40px}.mdc-radio .mdc-radio__native-control{top:0;right:0;left:0;width:40px;height:40px}.mdc-radio__background{display:inline-block;position:relative;box-sizing:border-box;width:20px;height:20px}.mdc-radio__background:before{position:absolute;transform:scale(0);border-radius:50%;opacity:0;pointer-events:none;content:\"\";transition:opacity .12s cubic-bezier(.4,0,.6,1) 0ms,transform .12s cubic-bezier(.4,0,.6,1) 0ms}.mdc-radio__outer-circle{border-width:2px;transition:border-color .12s cubic-bezier(.4,0,.6,1) 0ms}.mdc-radio__inner-circle,.mdc-radio__outer-circle{position:absolute;top:0;left:0;box-sizing:border-box;width:100%;height:100%;border-style:solid;border-radius:50%}.mdc-radio__inner-circle{transform:scale(0);border-width:10px;transition:transform .12s cubic-bezier(.4,0,.6,1) 0ms,border-color .12s cubic-bezier(.4,0,.6,1) 0ms}.mdc-radio__native-control{position:absolute;margin:0;padding:0;opacity:0;cursor:inherit;z-index:1}.mdc-radio--touch{margin:4px}.mdc-radio--touch .mdc-radio__native-control{top:-4px;right:-4px;left:-4px;width:48px;height:48px}.mdc-radio__native-control:checked+.mdc-radio__background,.mdc-radio__native-control:disabled+.mdc-radio__background{transition:opacity .12s cubic-bezier(0,0,.2,1) 0ms,transform .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio__native-control:checked+.mdc-radio__background .mdc-radio__outer-circle,.mdc-radio__native-control:disabled+.mdc-radio__background .mdc-radio__outer-circle{transition:border-color .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio__native-control:checked+.mdc-radio__background .mdc-radio__inner-circle,.mdc-radio__native-control:disabled+.mdc-radio__background .mdc-radio__inner-circle{transition:transform .12s cubic-bezier(0,0,.2,1) 0ms,border-color .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio--disabled{cursor:default;pointer-events:none}.mdc-radio__native-control:checked+.mdc-radio__background .mdc-radio__inner-circle{transform:scale(.5);transition:transform .12s cubic-bezier(0,0,.2,1) 0ms,border-color .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio__native-control:disabled+.mdc-radio__background,[aria-disabled=true] .mdc-radio__native-control+.mdc-radio__background{cursor:default}.mdc-radio__native-control:focus+.mdc-radio__background:before{transform:scale(1);opacity:.12;transition:opacity .12s cubic-bezier(0,0,.2,1) 0ms,transform .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-radio .mdc-radio__ripple:after,.mdc-radio .mdc-radio__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-radio .mdc-radio__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-radio.mdc-ripple-upgraded--unbounded .mdc-radio__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-radio.mdc-ripple-upgraded--foreground-activation .mdc-radio__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-radio.mdc-ripple-upgraded--foreground-deactivation .mdc-radio__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-radio .mdc-radio__ripple:after,.mdc-radio .mdc-radio__ripple:before{top:0;left:0;width:100%;height:100%}.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:after,.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-radio .mdc-radio__ripple:after,.mdc-radio .mdc-radio__ripple:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-radio:hover .mdc-radio__ripple:before{opacity:.04}.mdc-radio.mdc-ripple-upgraded--background-focused .mdc-radio__ripple:before,.mdc-radio:not(.mdc-ripple-upgraded):focus .mdc-radio__ripple:before{transition-duration:75ms;opacity:.12}.mdc-radio:not(.mdc-ripple-upgraded) .mdc-radio__ripple:after{transition:opacity .15s linear}.mdc-radio:not(.mdc-ripple-upgraded):active .mdc-radio__ripple:after{transition-duration:75ms;opacity:.12}.mdc-radio.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-radio.mdc-ripple-upgraded--background-focused .mdc-radio__background:before{content:none}.mdc-radio__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-circular-progress__determinate-circle,.mdc-circular-progress__indeterminate-circle-graphic{stroke:#6200ee;stroke:var(--mdc-theme-primary,#6200ee)}@keyframes mdc-circular-progress-container-rotate{to{transform:rotate(1turn)}}@keyframes mdc-circular-progress-spinner-layer-rotate{12.5%{transform:rotate(135deg)}25%{transform:rotate(270deg)}37.5%{transform:rotate(405deg)}50%{transform:rotate(540deg)}62.5%{transform:rotate(675deg)}75%{transform:rotate(810deg)}87.5%{transform:rotate(945deg)}to{transform:rotate(3turn)}}@keyframes mdc-circular-progress-color-1-fade-in-out{0%{opacity:.99}25%{opacity:.99}26%{opacity:0}89%{opacity:0}90%{opacity:.99}to{opacity:.99}}@keyframes mdc-circular-progress-color-2-fade-in-out{0%{opacity:0}15%{opacity:0}25%{opacity:.99}50%{opacity:.99}51%{opacity:0}to{opacity:0}}@keyframes mdc-circular-progress-color-3-fade-in-out{0%{opacity:0}40%{opacity:0}50%{opacity:.99}75%{opacity:.99}76%{opacity:0}to{opacity:0}}@keyframes mdc-circular-progress-color-4-fade-in-out{0%{opacity:0}65%{opacity:0}75%{opacity:.99}90%{opacity:.99}to{opacity:0}}@keyframes mdc-circular-progress-left-spin{0%{transform:rotate(265deg)}50%{transform:rotate(130deg)}to{transform:rotate(265deg)}}@keyframes mdc-circular-progress-right-spin{0%{transform:rotate(-265deg)}50%{transform:rotate(-130deg)}to{transform:rotate(-265deg)}}.mdc-circular-progress{width:48px;height:48px;display:inline-block;position:relative;direction:ltr;transition:opacity .25s cubic-bezier(.4,0,.6,1) 0ms}.mdc-circular-progress .mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:4px}.mdc-circular-progress .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:3.2px}.mdc-circular-progress--small{width:24px;height:24px}.mdc-circular-progress--small .mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress--small .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:2.5px}.mdc-circular-progress--small .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:2px}.mdc-circular-progress--medium{width:36px;height:36px}.mdc-circular-progress--medium .mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress--medium .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:3px}.mdc-circular-progress--medium .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:2.4px}.mdc-circular-progress--large{width:48px;height:48px}.mdc-circular-progress--large .mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress--large .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:4px}.mdc-circular-progress--large .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:3.2px}.mdc-circular-progress__determinate-container,.mdc-circular-progress__indeterminate-circle-graphic,.mdc-circular-progress__indeterminate-container,.mdc-circular-progress__spinner-layer{position:absolute;width:100%;height:100%}.mdc-circular-progress__determinate-container{transform:rotate(-90deg)}.mdc-circular-progress__indeterminate-container{opacity:0}.mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress__indeterminate-circle-graphic{fill:transparent}.mdc-circular-progress__determinate-circle{transition:stroke-dashoffset .5s cubic-bezier(0,0,.2,1) 0ms}.mdc-circular-progress__gap-patch{position:absolute;top:0;left:47.5%;box-sizing:border-box;width:5%;height:100%;overflow:hidden}.mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{left:-900%;width:2000%;transform:rotate(180deg)}.mdc-circular-progress__circle-clipper{display:inline-block;position:relative;width:50%;height:100%;overflow:hidden}.mdc-circular-progress__circle-clipper .mdc-circular-progress__indeterminate-circle-graphic{width:200%}.mdc-circular-progress__circle-right .mdc-circular-progress__indeterminate-circle-graphic{left:-100%}.mdc-circular-progress--indeterminate .mdc-circular-progress__determinate-container{opacity:0}.mdc-circular-progress--indeterminate .mdc-circular-progress__indeterminate-container{opacity:1;animation:mdc-circular-progress-container-rotate 1.5682352941176s linear infinite}.mdc-circular-progress--indeterminate .mdc-circular-progress__spinner-layer{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__color-1{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,mdc-circular-progress-color-1-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__color-2{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,mdc-circular-progress-color-2-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__color-3{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,mdc-circular-progress-color-3-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__color-4{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,mdc-circular-progress-color-4-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__circle-left .mdc-circular-progress__indeterminate-circle-graphic{animation:mdc-circular-progress-left-spin 1333ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__circle-right .mdc-circular-progress__indeterminate-circle-graphic{animation:mdc-circular-progress-right-spin 1333ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--closed{opacity:0}.mdc-circular-progress{width:var(--mdc-circular-progress-size);height:var(--mdc-circular-progress-size)}.mdc-circular-progress .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:var(--mdc-circular-progress-stroke-width)}.mdc-circular-progress .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:var(--mdc-circular-progress-gap-patch-stroke-width)}@keyframes mdc-slider-emphasize{0%{animation-timing-function:ease-out}50%{animation-timing-function:ease-in;transform:scale(.85)}to{transform:scale(.571)}}.mdc-slider{position:relative;width:100%;height:48px;cursor:pointer;touch-action:pan-x;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track,.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container:after{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container:after{opacity:.26}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-marker-container{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__thumb{fill:#018786;fill:var(--mdc-theme-secondary,#018786);stroke:#018786;stroke:var(--mdc-theme-secondary,#018786)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__focus-ring,.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__pin{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__pin{color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-slider--disable-touch-action{touch-action:none}.mdc-slider--disabled{cursor:auto}.mdc-slider--disabled .mdc-slider__track{background-color:#9a9a9a}.mdc-slider--disabled .mdc-slider__track-container:after{background-color:#9a9a9a;opacity:.26}.mdc-slider--disabled .mdc-slider__track-marker-container{background-color:#9a9a9a}.mdc-slider--disabled .mdc-slider__thumb{fill:#9a9a9a;stroke:#9a9a9a;stroke:#fff;stroke:var(--mdc-slider-bg-color-behind-component,#fff)}.mdc-slider:focus{outline:none}.mdc-slider__track-container{position:absolute;top:50%;width:100%;height:2px;overflow:hidden}.mdc-slider__track-container:after{position:absolute;top:0;left:0;display:block;width:100%;height:100%;content:\"\"}.mdc-slider__track{position:absolute;width:100%;height:100%;transform-origin:left top;will-change:transform}.mdc-slider[dir=rtl] .mdc-slider__track,[dir=rtl] .mdc-slider .mdc-slider__track{transform-origin:right top}.mdc-slider__track-marker-container{display:flex;margin-right:0;margin-left:-1px;visibility:hidden}.mdc-slider[dir=rtl] .mdc-slider__track-marker-container,[dir=rtl] .mdc-slider .mdc-slider__track-marker-container{margin-right:-1px;margin-left:0}.mdc-slider__track-marker-container:after{display:block;width:2px;height:2px;content:\"\"}.mdc-slider__track-marker{flex:1}.mdc-slider__track-marker:after{display:block;width:2px;height:2px;content:\"\"}.mdc-slider__track-marker:first-child:after{width:3px}.mdc-slider__thumb-container{position:absolute;top:15px;left:0;width:21px;height:100%;user-select:none;will-change:transform}.mdc-slider__thumb{position:absolute;top:0;left:0;transform:scale(.571);stroke-width:3.5;transition:transform .1s ease-out,fill .1s ease-out,stroke .1s ease-out}.mdc-slider__focus-ring{width:21px;height:21px;border-radius:50%;opacity:0;transition:transform .26667s ease-out,opacity .26667s ease-out,background-color .26667s ease-out}.mdc-slider__pin{display:flex;position:absolute;top:0;left:0;align-items:center;justify-content:center;width:26px;height:26px;margin-top:-2px;margin-left:-2px;transform:rotate(-45deg) scale(0) translate(0);border-radius:50% 50% 50% 0;z-index:1;transition:transform .1s ease-out}.mdc-slider__pin-value-marker{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);transform:rotate(45deg)}.mdc-slider--active .mdc-slider__thumb{transform:scaleX(1)}.mdc-slider--focus .mdc-slider__thumb{animation:mdc-slider-emphasize .26667s linear}.mdc-slider--focus .mdc-slider__focus-ring{transform:scale3d(1.55,1.55,1.55);opacity:.25}.mdc-slider--in-transit .mdc-slider__thumb{transition-delay:.14s}.mdc-slider--in-transit .mdc-slider__thumb-container,.mdc-slider--in-transit .mdc-slider__track,.mdc-slider:focus:not(.mdc-slider--active) .mdc-slider__thumb-container,.mdc-slider:focus:not(.mdc-slider--active) .mdc-slider__track{transition:transform 80ms ease}.mdc-slider--discrete.mdc-slider--active .mdc-slider__thumb{transform:scale(.57143)}.mdc-slider--discrete.mdc-slider--active .mdc-slider__pin{transform:rotate(-45deg) scale(1) translate(19px,-20px)}.mdc-slider--discrete.mdc-slider--focus .mdc-slider__thumb{animation:none}.mdc-slider--discrete.mdc-slider--display-markers .mdc-slider__track-marker-container{visibility:visible}.mdc-switch__thumb-underlay{left:-18px;right:auto;top:-17px;width:48px;height:48px}.mdc-switch__thumb-underlay[dir=rtl],[dir=rtl] .mdc-switch__thumb-underlay{left:auto;right:-18px}.mdc-switch__native-control{width:68px;height:48px}.mdc-switch{display:inline-block;position:relative;outline:none;user-select:none}.mdc-switch.mdc-switch--checked .mdc-switch__thumb,.mdc-switch.mdc-switch--checked .mdc-switch__track{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-switch.mdc-switch--checked .mdc-switch__thumb{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786)}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__track{background-color:#000;background-color:var(--mdc-theme-on-surface,#000)}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb{background-color:#fff;background-color:var(--mdc-theme-surface,#fff);border-color:#fff;border-color:var(--mdc-theme-surface,#fff)}.mdc-switch__native-control{left:0;right:auto;position:absolute;top:0;margin:0;opacity:0;cursor:pointer;pointer-events:auto;transition:transform 90ms cubic-bezier(.4,0,.2,1)}.mdc-switch__native-control[dir=rtl],[dir=rtl] .mdc-switch__native-control{left:auto;right:0}.mdc-switch__track{box-sizing:border-box;width:32px;height:14px;border:1px solid transparent;border-radius:7px;opacity:.38;transition:opacity 90ms cubic-bezier(.4,0,.2,1),background-color 90ms cubic-bezier(.4,0,.2,1),border-color 90ms cubic-bezier(.4,0,.2,1)}.mdc-switch__thumb-underlay{display:flex;position:absolute;align-items:center;justify-content:center;transform:translateX(0);transition:transform 90ms cubic-bezier(.4,0,.2,1),background-color 90ms cubic-bezier(.4,0,.2,1),border-color 90ms cubic-bezier(.4,0,.2,1)}.mdc-switch__thumb{box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);box-sizing:border-box;width:20px;height:20px;border:10px solid;border-radius:50%;pointer-events:none;z-index:1}.mdc-switch--checked .mdc-switch__track{opacity:.54}.mdc-switch--checked .mdc-switch__thumb-underlay{transform:translateX(20px)}.mdc-switch--checked .mdc-switch__native-control,.mdc-switch--checked .mdc-switch__thumb-underlay[dir=rtl],[dir=rtl] .mdc-switch--checked .mdc-switch__thumb-underlay{transform:translateX(-20px)}.mdc-switch--checked .mdc-switch__native-control[dir=rtl],[dir=rtl] .mdc-switch--checked .mdc-switch__native-control{transform:translateX(20px)}.mdc-switch--disabled{opacity:.38;pointer-events:none}.mdc-switch--disabled .mdc-switch__thumb{border-width:1px}.mdc-switch--disabled .mdc-switch__native-control{cursor:default;pointer-events:none}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:after,.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:before{background-color:#9e9e9e}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:hover:before{opacity:.08}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay.mdc-ripple-upgraded--background-focused:before,.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-switch__thumb-underlay{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-switch__thumb-underlay:after,.mdc-switch__thumb-underlay:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-switch__thumb-underlay:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-switch__thumb-underlay.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-switch__thumb-underlay.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-switch__thumb-underlay.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-switch__thumb-underlay.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-switch__thumb-underlay.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-switch__thumb-underlay:after,.mdc-switch__thumb-underlay:before{top:0;left:0;width:100%;height:100%}.mdc-switch__thumb-underlay.mdc-ripple-upgraded:after,.mdc-switch__thumb-underlay.mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-switch__thumb-underlay.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-switch__thumb-underlay:after,.mdc-switch__thumb-underlay:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-switch__thumb-underlay:hover:before{opacity:.04}.mdc-switch__thumb-underlay.mdc-ripple-upgraded--background-focused:before,.mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-switch__thumb-underlay.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-fab{box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);display:inline-flex;position:relative;align-items:center;justify-content:center;box-sizing:border-box;width:56px;height:56px;padding:0;border:none;fill:currentColor;text-decoration:none;cursor:pointer;user-select:none;-moz-appearance:none;-webkit-appearance:none;overflow:visible;transition:box-shadow .28s cubic-bezier(.4,0,.2,1),opacity 15ms linear 30ms,transform .27s cubic-bezier(0,0,.2,1) 0ms;background-color:#018786;background-color:var(--mdc-theme-secondary,#018786);color:#fff;color:var(--mdc-theme-on-secondary,#fff)}.mdc-fab .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-fab:not(.mdc-fab--extended),.mdc-fab:not(.mdc-fab--extended) .mdc-fab__ripple{border-radius:50%}.mdc-fab::-moz-focus-inner{padding:0;border:0}.mdc-fab:focus,.mdc-fab:hover{box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mdc-fab:active{box-shadow:0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12)}.mdc-fab:active,.mdc-fab:focus{outline:none}.mdc-fab:hover{cursor:pointer}.mdc-fab>svg{width:100%}.mdc-fab .mdc-fab__icon{width:24px;height:24px;font-size:24px}.mdc-fab--mini{width:40px;height:40px}.mdc-fab--extended{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);border-radius:24px;padding:0 20px;width:auto;max-width:100%;height:48px;line-height:normal}.mdc-fab--extended .mdc-fab__ripple{border-radius:24px}.mdc-fab--extended .mdc-fab__icon{margin-left:-8px;margin-right:12px}.mdc-fab--extended .mdc-fab__icon[dir=rtl],.mdc-fab--extended .mdc-fab__label+.mdc-fab__icon,[dir=rtl] .mdc-fab--extended .mdc-fab__icon{margin-left:12px;margin-right:-8px}.mdc-fab--extended .mdc-fab__label+.mdc-fab__icon[dir=rtl],[dir=rtl] .mdc-fab--extended .mdc-fab__label+.mdc-fab__icon{margin-left:-8px;margin-right:12px}.mdc-fab--touch{margin:4px}.mdc-fab--touch .mdc-fab__touch{position:absolute;top:50%;right:0;height:48px;left:50%;width:48px;transform:translate(-50%,-50%)}.mdc-fab:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:\"\"}.mdc-fab__label{justify-content:flex-start;text-overflow:ellipsis;white-space:nowrap;overflow-x:hidden;overflow-y:visible}.mdc-fab__icon{transition:transform .18s cubic-bezier(0,0,.2,1) 90ms;fill:currentColor;will-change:transform}.mdc-fab .mdc-fab__icon{display:inline-flex;align-items:center;justify-content:center}.mdc-fab--exited{transform:scale(0);opacity:0;transition:opacity 15ms linear .15s,transform .18s cubic-bezier(.4,0,1,1) 0ms}.mdc-fab--exited .mdc-fab__icon{transform:scale(0);transition:transform 135ms cubic-bezier(.4,0,1,1) 0ms}.mdc-fab{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-fab .mdc-fab__ripple:after,.mdc-fab .mdc-fab__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-fab .mdc-fab__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-fab.mdc-ripple-upgraded .mdc-fab__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-fab.mdc-ripple-upgraded .mdc-fab__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-fab.mdc-ripple-upgraded--unbounded .mdc-fab__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-fab.mdc-ripple-upgraded--foreground-activation .mdc-fab__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-fab.mdc-ripple-upgraded--foreground-deactivation .mdc-fab__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-fab .mdc-fab__ripple:after,.mdc-fab .mdc-fab__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-fab.mdc-ripple-upgraded .mdc-fab__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-fab .mdc-fab__ripple:after,.mdc-fab .mdc-fab__ripple:before{background-color:#fff;background-color:var(--mdc-theme-on-secondary,#fff)}.mdc-fab:hover .mdc-fab__ripple:before{opacity:.08}.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.24}.mdc-fab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.24}.mdc-fab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-fab .mdc-fab__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden}.big-round-shape-button,.big-round-shape-button .mdc-button__ripple{border-radius:8px}.demo-thick-outline-button{padding:0 12px;border-width:4px}.demo-thick-outline-button .mdc-button__ripple{top:-4px;left:-4px;border:4px solid transparent}.demo-thick-outline-button .mdc-button__touch{left:-4px;width:calc(100% + 8px)}.demo-button-ink-color:not(:disabled){background-color:#9c27b0}.demo-button-ink-color:not(:disabled) .mdc-button__icon{color:#fff}.demo-button-ink-color:not(:disabled){color:orange}.demo-button-ink-color:after,.demo-button-ink-color:before{background-color:orange}.demo-button-ink-color:hover:before{opacity:.08}.demo-button-ink-color.mdc-ripple-upgraded--background-focused:before,.demo-button-ink-color:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.demo-button-ink-color:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-button-ink-color:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.demo-button-ink-color.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-button-icon-color:not(:disabled) .mdc-button__icon{color:orange}.demo-button-primary:not(:disabled){background-color:#6200ee;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-primary .mdc-button__ripple:after,.demo-button-primary .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-primary:hover .mdc-button__ripple:before{opacity:.08}.demo-button-primary.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.demo-button-primary:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.demo-button-primary:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.demo-button-primary:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.demo-button-primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-button-secondary:not(:disabled){background-color:#018786;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-secondary .mdc-button__ripple:after,.demo-button-secondary .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-secondary:hover .mdc-button__ripple:before{opacity:.08}.demo-button-secondary.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.demo-button-secondary:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.demo-button-secondary:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.demo-button-secondary:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.demo-button-secondary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-density-button{height:24px;margin-top:0;margin-bottom:0}.demo-density-button .mdc-button__touch{display:none}.demo-card{width:350px;margin:28px}.demo-card__primary{padding:1rem}.demo-card__title{margin:0}.demo-card__subtitle{margin:0}.demo-card__secondary,.demo-card__subtitle{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))}.demo-card__secondary{padding:0 1rem 8px}.demo-card-article{padding:16px;text-decoration:none;color:inherit}.demo-card-article-group-heading{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-light,rgba(0,0,0,.54));padding:8px 16px}.demo-card-article__title{margin:0 0 4px}.demo-card-article__snippet{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-light,rgba(0,0,0,.54));margin:0}.demo-card--photo{width:200px}.demo-card__media{background-image:url(https://material-components-web.appspot.com/images/1-1.jpg)}.demo-card__media--16-9{background-image:url(https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg)}.demo-card__media-content--with-title{display:flex;flex-direction:column;justify-content:flex-end}.demo-card__media-title{padding:8px 16px;background-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.5));color:#fff}.demo-card--music{border-top-left-radius:24px;border-top-right-radius:4px;border-bottom-right-radius:24px;border-bottom-left-radius:4px}.demo-card--music[dir=rtl],[dir=rtl] .demo-card--music{border-top-left-radius:4px;border-top-right-radius:24px;border-bottom-right-radius:4px;border-bottom-left-radius:24px}.demo-card__music-row{display:flex;border-top-left-radius:inherit}.demo-card__music-row[dir=rtl],[dir=rtl] .demo-card__music-row{border-top-left-radius:0;border-top-right-radius:inherit}.demo-card__media--music{width:110px;border-top-left-radius:inherit}.demo-card__media--music[dir=rtl],[dir=rtl] .demo-card__media--music{border-top-left-radius:0;border-top-right-radius:inherit}.demo-card__music-info{display:flex;flex-direction:column;padding:8px 16px}.demo-card__action-buttons--text-only{margin-left:8px}.demo-icon-button-custom{color:#de442c}.demo-icon-button-custom:hover:before{opacity:.04}.demo-icon-button-custom.mdc-ripple-upgraded--background-focused:before,.demo-icon-button-custom:not(.mdc-ripple-upgraded):active:after,.demo-icon-button-custom:not(.mdc-ripple-upgraded):focus:before{opacity:.12}.demo-icon-button-custom.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.demo-icon-button-custom:after,.demo-icon-button-custom:before{background-color:#de442c}.demo-icon-button-custom:hover:before{opacity:.09}.demo-icon-button-custom.mdc-ripple-upgraded--background-focused:before,.demo-icon-button-custom:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.26}.demo-icon-button-custom:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-icon-button-custom:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.35}.demo-icon-button-custom.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.35}.demo-icon-button-primary{color:#6200ee}.demo-icon-button-primary:after,.demo-icon-button-primary:before{background-color:#6200ee}.demo-icon-button-primary:hover:before{opacity:.04}.demo-icon-button-primary.mdc-ripple-upgraded--background-focused:before,.demo-icon-button-primary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.demo-icon-button-primary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-icon-button-primary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.demo-icon-button-primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.demo-icon-button-secondary{color:#018786}.demo-icon-button-secondary:after,.demo-icon-button-secondary:before{background-color:#018786}.demo-icon-button-secondary:hover:before{opacity:.04}.demo-icon-button-secondary.mdc-ripple-upgraded--background-focused:before,.demo-icon-button-secondary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.demo-icon-button-secondary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-icon-button-secondary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.demo-icon-button-secondary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.demo-density-icon-button-1{width:44px;height:44px;padding:10px}.demo-density-icon-button-2{width:40px;height:40px;padding:8px}.demo-density-icon-button-3{width:36px;height:36px;padding:6px}.demo-layout__row{display:flex;flex-flow:row wrap;margin-top:.8rem}.demo-layout__row--no-wrap{display:flex;flex-direction:row}.demo-layout__column{display:flex;flex-direction:column}.demo-layout--start{align-self:flex-start}.demo-layout--end{flex-grow:1;align-self:flex-end}.demo-layout--center{display:flex;align-content:flex-end;align-items:center;justify-content:center}.demo-panel{display:flex;position:relative;height:100vh;overflow:hidden}.demo-panel-content,.demo-panel-section{width:100%;max-width:100%}.demo-panel-content{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;overflow:auto}@media (max-width:900px){.demo-panel-content{width:unset;padding:12px}}.demo-panel-transition{width:100%;max-width:1200px;padding-bottom:60px}.demo-panel-title{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline4-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:2.125rem;font-size:var(--mdc-typography-headline4-font-size,2.125rem);line-height:2.5rem;line-height:var(--mdc-typography-headline4-line-height,2.5rem);font-weight:400;font-weight:var(--mdc-typography-headline4-font-weight,400);letter-spacing:.0073529412em;letter-spacing:var(--mdc-typography-headline4-letter-spacing,.0073529412em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline4-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline4-text-transform,inherit);margin:16px 16px 16px 0;line-height:1.25}.demo-panel-heading,.demo-panel-title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;padding-bottom:.3em;border-bottom:1px solid #eaecef;font-weight:500}.demo-panel-heading{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin:24px 16px 16px 0;line-height:1.25}.demo-container{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;min-width:200px;padding:10px}.hljs{border-radius:.45rem;padding:9px;display:inline-block}.demo-content{border-radius:12px;border:1px solid rgba(0,0,0,.15);margin:1.5rem 1rem;padding:1rem}.demo-content__headline{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin-top:.1em;margin-bottom:.3em}.demo-content--block{display:inline-block;margin-right:5px}.demo-top-app-bar{background-color:#363640;z-index:7}.demo-drawer{position:fixed}.demo-drawer .mdc-list-item{cursor:pointer}.demo-list--custom{color:#1e88e5}.demo-list--custom .mdc-list-item__graphic{color:#fff;background-color:rgba(0,0,0,.38);background-color:var(--mdc-theme-text-icon-on-background,rgba(0,0,0,.38))}.demo-list--custom .mdc-list-divider{border-bottom-color:#fce4ec}.demo-list--custom .mdc-list-item__secondary-text{color:#8e24aa}.demo-list--custom .mdc-list-item__graphic{background-color:#ec407a;color:#fce4ec}.demo-list--custom .mdc-list-item__meta{color:#ff9800}.demo-list--shaped .mdc-list-item{border-top-left-radius:0;border-top-right-radius:50px;border-bottom-right-radius:50px;border-bottom-left-radius:0}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:#00f}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#00f}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text{color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__icon--leading{color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading{color:#00f}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.38)}.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:#00f}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__input{color:orange}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.5)}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(255,165,0,.38)}.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.87)}.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:orange}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.38)}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:#00f}.demo-fullwidth-input:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(255,165,0,.38)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__input{color:orange}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.5)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:orange}.demo-fullwidth-input.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.87)}.demo-fullwidth-input.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:orange}.demo-shaped-text-field{border-top-left-radius:28px;border-top-right-radius:28px;border-bottom-right-radius:0;border-bottom-left-radius:0}.demo-shaped-text-field--outline{padding-left:32px;padding-right:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:28px;width:28px}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:28px;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__notch{max-width:calc(100% - 56px)}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:0;border-top-right-radius:28px;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:28px}.demo-shaped-text-field--outline[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline{padding-left:0;padding-right:32px}.demo-shaped-text-field--outline+.mdc-text-field-helper-line{padding-left:32px;padding-right:28px}.demo-shaped-text-field--outline+.mdc-text-field-helper-line[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline+.mdc-text-field-helper-line{padding-left:28px;padding-right:32px}.demo-density-text-field{height:52px}.demo-density-outlined-text-field{height:44px}.demo-density-outlined-text-field .mdc-floating-label--float-above{transform:translateY(-31.25px) scale(1);font-size:.75rem}.demo-density-outlined-text-field.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) scale(.75);font-size:1rem}.demo-density-outlined-text-field .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-44px .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-44px{0%{transform:translateX(0) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-28.75px) scale(.75)}to{transform:translateX(0) translateY(-28.75px) scale(.75)}}.demo-density-outlined-text-field-with-leading-icon{height:44px}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-31.25px) translateX(-32px) scale(1)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-31.25px) translateX(32px) scale(1)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) translateX(-32px) scale(.75)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) translateX(32px) scale(.75)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above- .25s 1}@keyframes mdc-floating-label-shake-float-above-{0%{transform:translateX(-32px) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-28.75px) scale(.75)}to{transform:translateX(-32px) translateY(-28.75px) scale(.75)}}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above- .25s 1}@keyframes mdc-floating-label-shake-float-above--rtl{0%{transform:translateX(32px) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-28.75px) scale(.75)}to{transform:translateX(32px) translateY(-28.75px) scale(.75)}}.au-select,.au-text-field{display:block;height:87px}.demo-layout__row .au-form-field-select+mdc-form-field,.demo-layout__row .au-form-field-text-field+mdc-form-field{padding-left:14px}.mdc-form-field{align-self:flex-start}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__track{background-color:#d32f2f}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__track-container:after{background-color:#fdd835;opacity:1}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__track-marker-container{background-color:#00f}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__thumb{fill:#ff9800;stroke:#ff9800}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__focus-ring{background-color:#f57f17}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__pin{background-color:#e91e63;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.red800Fab{background-color:#c62828;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.red800Fab .mdc-fab__ripple:after,.mdc-fab.red800Fab .mdc-fab__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.red800Fab:hover .mdc-fab__ripple:before{opacity:.08}.mdc-fab.red800Fab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab.red800Fab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.24}.mdc-fab.red800Fab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab.red800Fab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.24}.mdc-fab.red800Fab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-fab.yellow800Fab{background-color:#f9a825;color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-light,rgba(0,0,0,.87))}.mdc-fab.yellow800Fab .mdc-fab__ripple:after,.mdc-fab.yellow800Fab .mdc-fab__ripple:before{background-color:rgba(0,0,0,.87);background-color:var(--mdc-theme-text-primary-on-light,rgba(0,0,0,.87))}.mdc-fab.yellow800Fab:hover .mdc-fab__ripple:before{opacity:.04}.mdc-fab.yellow800Fab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab.yellow800Fab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.12}.mdc-fab.yellow800Fab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab.yellow800Fab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.12}.mdc-fab.yellow800Fab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-fab.purple500Fab{background-color:#9c27b0;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.purple500Fab .mdc-fab__ripple:after,.mdc-fab.purple500Fab .mdc-fab__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.purple500Fab:hover .mdc-fab__ripple:before{opacity:.08}.mdc-fab.purple500Fab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab.purple500Fab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.24}.mdc-fab.purple500Fab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab.purple500Fab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.24}.mdc-fab.purple500Fab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-fab.blackFab{background-color:#000;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.blackFab .mdc-fab__ripple:after,.mdc-fab.blackFab .mdc-fab__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.blackFab:hover .mdc-fab__ripple:before{opacity:.08}.mdc-fab.blackFab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab.blackFab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.24}.mdc-fab.blackFab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab.blackFab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.24}.mdc-fab.blackFab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-fab-shaped--one:not(.mdc-fab--extended),.demo-fab-shaped--one:not(.mdc-fab--extended) .mdc-fab__ripple{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-fab-shaped--two:not(.mdc-fab--extended),.demo-fab-shaped--two:not(.mdc-fab--extended) .mdc-fab__ripple{border-radius:8px}.demo-fab-shape-radius:not(.mdc-fab--extended),.demo-fab-shape-radius:not(.mdc-fab--extended) .mdc-fab__ripple{border-top-left-radius:50%;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:0}.demo-fab-extended-shape-radius,.demo-fab-extended-shape-radius .mdc-fab__ripple{border-radius:12px}.demo-fab-icon-size .mdc-fab__icon{width:36px;height:36px;font-size:36px}.demo-fab-position-zindex{z-index:7}body{margin:0;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";.mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;opacity:0;pointer-events:none;transition:opacity .28s cubic-bezier(.4,0,.2,1);background-color:#fff}.mdc-button{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);padding:0 8px;position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;border-radius:4px;border-radius:var(--mdc-shape-small,4px);height:36px}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button .mdc-button__ripple{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-button:disabled,.mdc-button:not(:disabled){background-color:transparent}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;width:18px;height:18px;font-size:18px;vertical-align:top}.mdc-button .mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button .mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button .mdc-button__touch{position:absolute;top:50%;right:0;height:48px;left:0;transform:translateY(-50%)}.mdc-button:not(:disabled){color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-button:disabled{color:rgba(0,0,0,.38)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}.mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button__label+.mdc-button__icon{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--outlined .mdc-button__icon,.mdc-button--raised .mdc-button__icon,.mdc-button--unelevated .mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--outlined .mdc-button__icon[dir=rtl],.mdc-button--outlined .mdc-button__label+.mdc-button__icon,.mdc-button--raised .mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon,.mdc-button--unelevated .mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--outlined .mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__icon{margin-left:8px;margin-right:-4px}.mdc-button--outlined .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--raised .mdc-button__label+.mdc-button__icon[dir=rtl],.mdc-button--unelevated .mdc-button__label+.mdc-button__icon[dir=rtl],[dir=rtl] .mdc-button--outlined .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--raised .mdc-button__label+.mdc-button__icon,[dir=rtl] .mdc-button--unelevated .mdc-button__label+.mdc-button__icon{margin-left:-4px;margin-right:8px}.mdc-button--raised,.mdc-button--unelevated{padding:0 16px}.mdc-button--raised:not(:disabled),.mdc-button--unelevated:not(:disabled){background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:disabled,.mdc-button--unelevated:disabled{background-color:rgba(0,0,0,.12);color:rgba(0,0,0,.38)}.mdc-button--raised{box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);transition:box-shadow .28s cubic-bezier(.4,0,.2,1)}.mdc-button--raised:focus,.mdc-button--raised:hover{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)}.mdc-button--raised:active{box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mdc-button--raised:disabled{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)}.mdc-button--outlined{padding:0 15px;border-width:1px;border-style:solid}.mdc-button--outlined .mdc-button__ripple{top:-1px;left:-1px;border:1px solid transparent}.mdc-button--outlined .mdc-button__touch{left:-1px;width:calc(100% + 2px)}.mdc-button--outlined:disabled,.mdc-button--outlined:not(:disabled){border-color:rgba(0,0,0,.12)}.mdc-button--touch{margin-top:6px;margin-bottom:6px}@keyframes mdc-ripple-fg-radius-in{0%{animation-timing-function:cubic-bezier(.4,0,.2,1);transform:translate(var(--mdc-ripple-fg-translate-start,0)) scale(1)}to{transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}}@keyframes mdc-ripple-fg-opacity-in{0%{animation-timing-function:linear;opacity:0}to{opacity:var(--mdc-ripple-fg-opacity,0)}}@keyframes mdc-ripple-fg-opacity-out{0%{animation-timing-function:linear;opacity:var(--mdc-ripple-fg-opacity,0)}to{opacity:0}}.mdc-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-button .mdc-button__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-button.mdc-ripple-upgraded--unbounded .mdc-button__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-button.mdc-ripple-upgraded--foreground-activation .mdc-button__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-button.mdc-ripple-upgraded--foreground-deactivation .mdc-button__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-button.mdc-ripple-upgraded .mdc-button__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-button .mdc-button__ripple:after,.mdc-button .mdc-button__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-button:hover .mdc-button__ripple:before{opacity:.04}.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.12}.mdc-button:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.12}.mdc-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-button .mdc-button__ripple{position:absolute;box-sizing:content-box;width:100%;height:100%;overflow:hidden}.mdc-button:not(.mdc-button--outlined) .mdc-button__ripple{top:0;left:0}.mdc-button--raised .mdc-button__ripple:after,.mdc-button--raised .mdc-button__ripple:before,.mdc-button--unelevated .mdc-button__ripple:after,.mdc-button--unelevated .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-button--raised:hover .mdc-button__ripple:before,.mdc-button--unelevated:hover .mdc-button__ripple:before{opacity:.08}.mdc-button--raised.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--raised:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before,.mdc-button--unelevated.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.mdc-button--unelevated:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.mdc-button--raised:not(.mdc-ripple-upgraded) .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.mdc-button--raised:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after,.mdc-button--unelevated:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.mdc-button--raised.mdc-ripple-upgraded,.mdc-button--unelevated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-list{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);line-height:1.5rem;margin:0;padding:8px 0;list-style-type:none;color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list:focus{outline:none}.mdc-list-item__secondary-text{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))}.mdc-list-item__graphic{background-color:transparent;color:rgba(0,0,0,.38);color:var(--mdc-theme-text-icon-on-background,rgba(0,0,0,.38))}.mdc-list-item__meta{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-hint-on-background,rgba(0,0,0,.38))}.mdc-list-group__subheader{color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87))}.mdc-list-item--disabled .mdc-list-item__text{opacity:.38}.mdc-list-item--disabled .mdc-list-item__primary-text,.mdc-list-item--disabled .mdc-list-item__secondary-text,.mdc-list-item--disabled .mdc-list-item__text{color:#000;color:var(--mdc-theme-on-surface,#000)}.mdc-list-item--activated,.mdc-list-item--activated .mdc-list-item__graphic,.mdc-list-item--selected,.mdc-list-item--selected .mdc-list-item__graphic{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-list--dense{padding-top:4px;padding-bottom:4px;font-size:.812rem}.mdc-list-item{display:flex;position:relative;align-items:center;justify-content:flex-start;overflow:hidden;padding:0 16px;height:48px}.mdc-list-item:focus{outline:none}.mdc-list-item:not(.mdc-list-item--selected):focus:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:\"\"}.mdc-list-item.mdc-list-item--selected:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:3px double transparent;border-radius:inherit;content:\"\"}.mdc-list--icon-list .mdc-list-item,.mdc-list-item[dir=rtl],[dir=rtl] .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--icon-list .mdc-list-item{height:56px}.mdc-list--icon-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--avatar-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px;height:56px}.mdc-list--thumbnail-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px;height:72px}.mdc-list--image-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-list--video-list .mdc-list-item{padding-left:0;padding-right:16px;height:72px}.mdc-list--video-list .mdc-list-item[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item{padding-left:16px;padding-right:0}.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:20px;height:20px}.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list-item__graphic{flex-shrink:0;align-items:center;justify-content:center;fill:currentColor;object-fit:cover;margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--icon-list .mdc-list-item__graphic{margin-left:0;margin-right:32px;width:24px;height:24px}.mdc-list--icon-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-item__graphic{margin-left:32px;margin-right:0}.mdc-list--avatar-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px;border-radius:50%}.mdc-list--avatar-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:40px;height:40px}.mdc-list--thumbnail-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--image-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:56px;height:56px}.mdc-list--image-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list--video-list .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:100px;height:56px}.mdc-list--video-list .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-item__graphic{margin-left:16px;margin-right:0}.mdc-list .mdc-list-item__graphic{display:inline-flex}.mdc-list-item__meta{margin-left:auto;margin-right:0}.mdc-list-item__meta:not(.material-icons){-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit)}.mdc-list-item[dir=rtl] .mdc-list-item__meta,[dir=rtl] .mdc-list-item .mdc-list-item__meta{margin-left:0;margin-right:auto}.mdc-list-item__text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.mdc-list-item__text[for]{pointer-events:none}.mdc-list-item__primary-text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list-item__primary-text:before{display:inline-block;width:0;height:28px;content:\"\";vertical-align:0}.mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text,.mdc-list--icon-list .mdc-list-item__primary-text,.mdc-list--image-list .mdc-list-item__primary-text,.mdc-list--thumbnail-list .mdc-list-item__primary-text,.mdc-list--video-list .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--avatar-list .mdc-list-item__primary-text:before,.mdc-list--icon-list .mdc-list-item__primary-text:before,.mdc-list--image-list .mdc-list-item__primary-text:before,.mdc-list--thumbnail-list .mdc-list-item__primary-text:before,.mdc-list--video-list .mdc-list-item__primary-text:before{display:inline-block;width:0;height:32px;content:\"\";vertical-align:0}.mdc-list--avatar-list .mdc-list-item__primary-text:after,.mdc-list--icon-list .mdc-list-item__primary-text:after,.mdc-list--image-list .mdc-list-item__primary-text:after,.mdc-list--thumbnail-list .mdc-list-item__primary-text:after,.mdc-list--video-list .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list--dense .mdc-list-item__primary-text{display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-list--dense .mdc-list-item__primary-text:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__primary-text:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-list-item__secondary-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;margin-top:0;line-height:normal}.mdc-list-item__secondary-text:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-list--dense .mdc-list-item__secondary-text{font-size:inherit}.mdc-list--dense .mdc-list-item{height:40px}.mdc-list--two-line .mdc-list-item__text{align-self:flex-start}.mdc-list--two-line .mdc-list-item{height:64px}.mdc-list--two-line.mdc-list--avatar-list .mdc-list-item,.mdc-list--two-line.mdc-list--icon-list .mdc-list-item,.mdc-list--two-line.mdc-list--image-list .mdc-list-item,.mdc-list--two-line.mdc-list--thumbnail-list .mdc-list-item,.mdc-list--two-line.mdc-list--video-list .mdc-list-item{height:72px}.mdc-list--two-line.mdc-list--icon-list .mdc-list-item__graphic{align-self:flex-start;margin-top:16px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item,.mdc-list--two-line.mdc-list--dense .mdc-list-item{height:60px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:0;margin-right:16px;width:36px;height:36px}.mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-list--avatar-list.mdc-list--dense .mdc-list-item__graphic{margin-left:16px;margin-right:0}:not(.mdc-list-item--disabled).mdc-list-item{cursor:pointer}a.mdc-list-item{color:inherit;text-decoration:none}.mdc-list-divider{height:0;margin:0;border:none;border-bottom:1px solid;border-bottom-color:rgba(0,0,0,.12)}.mdc-list-divider--padded{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--padded{margin-left:0;margin-right:16px}.mdc-list-divider--inset{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list-divider--inset[dir=rtl],[dir=rtl] .mdc-list-divider--inset{margin-left:0;margin-right:72px}.mdc-list-divider--inset.mdc-list-divider--padded{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list-divider--inset.mdc-list-divider--padded[dir=rtl],[dir=rtl] .mdc-list-divider--inset.mdc-list-divider--padded{margin-left:0;margin-right:72px}.mdc-list .mdc-list-divider--inset-leading{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--icon-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--icon-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--avatar-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:72px;margin-right:0;width:calc(100% - 72px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:72px;margin-right:0;width:calc(100% - 88px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:72px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--thumbnail-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:88px;margin-right:0;width:calc(100% - 88px)}.mdc-list--image-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:88px;margin-right:0;width:calc(100% - 104px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:88px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:16px;margin-right:0;width:calc(100% - 16px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:16px}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:16px;margin-right:0;width:calc(100% - 32px)}.mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--image-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:16px}.mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:116px;margin-right:0;width:calc(100% - 116px)}.mdc-list--video-list .mdc-list-divider--inset-leading[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-trailing{width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:116px;margin-right:0;width:calc(100% - 132px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing{margin-left:0;margin-right:116px}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0;width:100%}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--padding{margin-left:0;margin-right:0}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0;width:calc(100% - 16px)}.mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding[dir=rtl],[dir=rtl] .mdc-list--video-list .mdc-list-divider--inset-leading.mdc-list-divider--inset-trailing.mdc-list-divider--inset-padding{margin-left:0;margin-right:0}.mdc-list-group .mdc-list{padding:0}.mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);margin:.75rem 16px}:not(.mdc-list-item--disabled).mdc-list-item{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple:before{background-color:#000}:not(.mdc-list-item--disabled).mdc-list-item:hover .mdc-list-item__ripple:before{opacity:.04}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--activated .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--activated:hover .mdc-list-item__ripple:before{opacity:.16}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--activated:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.24}:not(.mdc-list-item--disabled).mdc-list-item--activated.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{opacity:.08}:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:after,:not(.mdc-list-item--disabled).mdc-list-item--selected .mdc-list-item__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}:not(.mdc-list-item--disabled).mdc-list-item--selected:hover .mdc-list-item__ripple:before{opacity:.12}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}:not(.mdc-list-item--disabled).mdc-list-item--selected:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.2}:not(.mdc-list-item--disabled).mdc-list-item--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.2}:not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-list-item--disabled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-list-item--disabled .mdc-list-item__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-list-item--disabled.mdc-ripple-upgraded--unbounded .mdc-list-item__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-activation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-list-item--disabled.mdc-ripple-upgraded--foreground-deactivation .mdc-list-item__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-list-item--disabled.mdc-ripple-upgraded .mdc-list-item__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-list-item--disabled .mdc-list-item__ripple:after,.mdc-list-item--disabled .mdc-list-item__ripple:before{background-color:#000}.mdc-list-item--disabled.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,.mdc-list-item--disabled:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}.mdc-list-item--disabled .mdc-list-item__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-list-divider{display:block}.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:transparent;fill:currentColor;color:inherit;font-size:24px;text-decoration:none;cursor:pointer;user-select:none;width:48px;height:48px;padding:12px}.mdc-icon-button img,.mdc-icon-button svg{width:24px;height:24px}.mdc-icon-button:disabled{color:rgba(0,0,0,.38);color:var(--mdc-theme-text-disabled-on-light,rgba(0,0,0,.38));cursor:default;pointer-events:none}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button--on .mdc-icon-button__icon,.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-icon-button:after,.mdc-icon-button:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-icon-button:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-icon-button.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-icon-button.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-icon-button.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-icon-button.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-icon-button:after,.mdc-icon-button:before{top:0;left:0;width:100%;height:100%}.mdc-icon-button.mdc-ripple-upgraded:after,.mdc-icon-button.mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-icon-button:after,.mdc-icon-button:before{background-color:#000}.mdc-icon-button:hover:before{opacity:.04}.mdc-icon-button.mdc-ripple-upgraded--background-focused:before,.mdc-icon-button:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-icon-button:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-icon-button:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-icon-button.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-top-app-bar{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee);color:#fff;display:flex;position:fixed;flex-direction:column;justify-content:space-between;box-sizing:border-box;width:100%;z-index:4}.mdc-top-app-bar .mdc-top-app-bar__action-item,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon{color:#fff;color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:after,.mdc-top-app-bar .mdc-top-app-bar__action-item:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:before{background-color:#fff;background-color:var(--mdc-theme-on-primary,#fff)}.mdc-top-app-bar .mdc-top-app-bar__action-item:hover:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:hover:before{opacity:.08}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):focus:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded--background-focused:before,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-top-app-bar .mdc-top-app-bar__action-item:not(.mdc-ripple-upgraded):active:after,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.mdc-top-app-bar .mdc-top-app-bar__action-item.mdc-ripple-upgraded,.mdc-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-top-app-bar__row{display:flex;position:relative;box-sizing:border-box;width:100%;height:64px}.mdc-top-app-bar__section{display:inline-flex;flex:1 1 auto;align-items:center;min-width:0;padding:8px 12px;z-index:1}.mdc-top-app-bar__section--align-start{justify-content:flex-start;order:-1}.mdc-top-app-bar__section--align-end{justify-content:flex-end;order:1}.mdc-top-app-bar__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);padding-left:20px;padding-right:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;z-index:1}.mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:24px;border-bottom-left-radius:0}.mdc-top-app-bar--short-collapsed[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed{border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:24px}.mdc-top-app-bar--short{top:0;right:auto;left:0;width:100%;transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short[dir=rtl],[dir=rtl] .mdc-top-app-bar--short{right:0;left:auto}.mdc-top-app-bar--short .mdc-top-app-bar__row{height:56px}.mdc-top-app-bar--short .mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short .mdc-top-app-bar__title{transition:opacity .2s cubic-bezier(.4,0,.2,1);opacity:1}.mdc-top-app-bar--short-collapsed{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);width:56px;transition:width .3s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__title{display:none}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__action-item{transition:padding .15s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item{width:112px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__row{height:48px}.mdc-top-app-bar--dense .mdc-top-app-bar__section{padding:0 4px}.mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:12px;padding-right:0}.mdc-top-app-bar--dense .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense .mdc-top-app-bar__title{padding-left:0;padding-right:12px}.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:128px}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{align-self:flex-end;padding-bottom:2px}.mdc-top-app-bar--prominent .mdc-top-app-bar__action-item,.mdc-top-app-bar--prominent .mdc-top-app-bar__navigation-icon{align-self:flex-start}.mdc-top-app-bar--fixed{transition:box-shadow .2s linear}.mdc-top-app-bar--fixed-scrolled{box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);transition:box-shadow .2s linear}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__row{height:96px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__section{padding:0 12px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:20px;padding-right:0;padding-bottom:9px}.mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title[dir=rtl],[dir=rtl] .mdc-top-app-bar--dense.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-left:0;padding-right:20px}.mdc-top-app-bar--fixed-adjust{padding-top:64px}.mdc-top-app-bar--dense-fixed-adjust{padding-top:48px}.mdc-top-app-bar--short-fixed-adjust{padding-top:56px}.mdc-top-app-bar--prominent-fixed-adjust{padding-top:128px}.mdc-top-app-bar--dense-prominent-fixed-adjust{padding-top:96px}@media (max-width:599px){.mdc-top-app-bar__row{height:56px}.mdc-top-app-bar__section{padding:4px}.mdc-top-app-bar--short{transition:width .2s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed{transition:width .25s cubic-bezier(.4,0,.2,1)}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:0;padding-right:12px}.mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end[dir=rtl],[dir=rtl] .mdc-top-app-bar--short-collapsed .mdc-top-app-bar__section--align-end{padding-left:12px;padding-right:0}.mdc-top-app-bar--prominent .mdc-top-app-bar__title{padding-bottom:6px}.mdc-top-app-bar--fixed-adjust{padding-top:56px}}.mdc-drawer{background-color:#fff;border-top-left-radius:0;border-top-right-radius:0;border-top-right-radius:var(--mdc-shape-large,0);border-bottom-right-radius:0;border-bottom-right-radius:var(--mdc-shape-large,0);border-bottom-left-radius:0;z-index:6;width:256px;display:flex;flex-direction:column;flex-shrink:0;box-sizing:border-box;height:100%;border-right:1px solid;border-color:rgba(0,0,0,.12);overflow:hidden;transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer .mdc-drawer__title{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-drawer__subtitle,.mdc-drawer .mdc-list-group__subheader,.mdc-drawer .mdc-list-item__graphic{color:rgba(0,0,0,.6)}.mdc-drawer .mdc-list-item{color:rgba(0,0,0,.87)}.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{color:#6200ee}.mdc-drawer .mdc-list-item--activated{color:rgba(98,0,238,.87)}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-top-left-radius:0;border-top-left-radius:var(--mdc-shape-large,0);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:0;border-bottom-left-radius:var(--mdc-shape-large,0)}.mdc-drawer .mdc-list-item{border-radius:4px;border-radius:var(--mdc-shape-small,4px)}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:256px;margin-right:0}.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing)+.mdc-drawer-app-content{margin-left:0;margin-right:256px}.mdc-drawer[dir=rtl],[dir=rtl] .mdc-drawer{border-right-width:0;border-left-width:1px;border-right-style:none;border-left-style:solid}.mdc-drawer .mdc-list-item{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-subtitle2-font-size,.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height,1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight,500);letter-spacing:.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing,.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform,inherit);height:40px;margin:8px;padding:0 8px}.mdc-drawer .mdc-list-item:first-child{margin-top:2px}.mdc-drawer .mdc-list-item:last-child{margin-bottom:0}.mdc-drawer .mdc-list-group__subheader{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;line-height:normal;margin:0;padding:0 16px}.mdc-drawer .mdc-list-group__subheader:before{display:inline-block;width:0;height:24px;content:\"\";vertical-align:0}.mdc-drawer .mdc-list-divider{margin:3px 0 4px}.mdc-drawer .mdc-list-item__graphic,.mdc-drawer .mdc-list-item__text{pointer-events:none}.mdc-drawer--animate{transform:translateX(-100%)}.mdc-drawer--animate[dir=rtl],[dir=rtl] .mdc-drawer--animate{transform:translateX(100%)}.mdc-drawer--opening{transition-duration:.25s}.mdc-drawer--opening,.mdc-drawer--opening[dir=rtl],[dir=rtl] .mdc-drawer--opening{transform:translateX(0)}.mdc-drawer--closing{transform:translateX(-100%);transition-duration:.2s}.mdc-drawer--closing[dir=rtl],[dir=rtl] .mdc-drawer--closing{transform:translateX(100%)}.mdc-drawer__header{flex-shrink:0;box-sizing:border-box;min-height:64px;padding:0 16px 4px}.mdc-drawer__title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:-20px}.mdc-drawer__title:before{display:inline-block;width:0;height:36px;content:\"\";vertical-align:0}.mdc-drawer__title:after{display:inline-block;width:0;height:20px;content:\"\";vertical-align:-20px}.mdc-drawer__subtitle{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-bottom:0}.mdc-drawer__subtitle:before{display:inline-block;width:0;height:20px;content:\"\";vertical-align:0}.mdc-drawer__content{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}.mdc-drawer--dismissible{left:0;right:auto;display:none;position:absolute}.mdc-drawer--dismissible[dir=rtl],[dir=rtl] .mdc-drawer--dismissible{left:auto;right:0}.mdc-drawer--dismissible.mdc-drawer--open{display:flex}.mdc-drawer-app-content{position:relative}.mdc-drawer-app-content,.mdc-drawer-app-content[dir=rtl],[dir=rtl] .mdc-drawer-app-content{margin-left:0;margin-right:0}.mdc-drawer--modal{box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12);left:0;right:auto;display:none;position:fixed}.mdc-drawer--modal+.mdc-drawer-scrim{background-color:rgba(0,0,0,.32)}.mdc-drawer--modal[dir=rtl],[dir=rtl] .mdc-drawer--modal{left:auto;right:0}.mdc-drawer--modal.mdc-drawer--open{display:flex}.mdc-drawer-scrim{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:5;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1)}.mdc-drawer--open+.mdc-drawer-scrim{display:block}.mdc-drawer--animate+.mdc-drawer-scrim{opacity:0}.mdc-drawer--opening+.mdc-drawer-scrim{transition-duration:.25s;opacity:1}.mdc-drawer--closing+.mdc-drawer-scrim{transition-duration:.2s;opacity:0}.mdc-floating-label{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);position:absolute;left:0;transform-origin:left top;line-height:1.15rem;text-align:left;text-overflow:ellipsis;white-space:nowrap;cursor:text;overflow:hidden;will-change:transform;transition:transform .15s cubic-bezier(.4,0,.2,1),color .15s cubic-bezier(.4,0,.2,1)}.mdc-floating-label[dir=rtl],[dir=rtl] .mdc-floating-label{right:0;left:auto;transform-origin:right top;text-align:right}.mdc-floating-label--float-above{cursor:auto}.mdc-floating-label--required:after{margin-left:1px;margin-right:0;content:\"*\"}.mdc-floating-label--required[dir=rtl]:after,[dir=rtl] .mdc-floating-label--required:after{margin-left:0;margin-right:1px}.mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-standard .25s 1}@keyframes mdc-floating-label-shake-float-above-standard{0%{transform:translateX(0) translateY(-106%) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-106%) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-106%) scale(.75)}to{transform:translateX(0) translateY(-106%) scale(.75)}}.mdc-line-ripple:after,.mdc-line-ripple:before{position:absolute;bottom:0;left:0;width:100%;border-bottom-style:solid;content:\"\"}.mdc-line-ripple:before{border-bottom-width:1px;z-index:1}.mdc-line-ripple:after{transform:scaleX(0);border-bottom-width:2px;opacity:0;z-index:2;transition:transform .18s cubic-bezier(.4,0,.2,1),opacity .18s cubic-bezier(.4,0,.2,1)}.mdc-line-ripple--active:after{transform:scaleX(1);opacity:1}.mdc-line-ripple--deactivating:after{opacity:0}.mdc-notched-outline{display:flex;position:absolute;top:0;right:0;left:0;box-sizing:border-box;width:100%;max-width:100%;height:100%;text-align:left;pointer-events:none}.mdc-notched-outline[dir=rtl],[dir=rtl] .mdc-notched-outline{text-align:right}.mdc-notched-outline__leading,.mdc-notched-outline__notch,.mdc-notched-outline__trailing{box-sizing:border-box;height:100%;border-top:1px solid;border-bottom:1px solid;pointer-events:none}.mdc-notched-outline__leading{border-left:1px solid;border-right:none;width:12px}.mdc-notched-outline__leading[dir=rtl],.mdc-notched-outline__trailing,[dir=rtl] .mdc-notched-outline__leading{border-left:none;border-right:1px solid}.mdc-notched-outline__trailing{flex-grow:1}.mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-notched-outline__trailing{border-left:1px solid;border-right:none}.mdc-notched-outline__notch{flex:0 0 auto;width:auto;max-width:calc(100% - 24px)}.mdc-notched-outline .mdc-floating-label{display:inline-block;position:relative;max-width:100%}.mdc-notched-outline .mdc-floating-label--float-above{text-overflow:clip}.mdc-notched-outline--upgraded .mdc-floating-label--float-above{max-width:133.33333%}.mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:0;padding-right:8px;border-top:none}.mdc-notched-outline--notched .mdc-notched-outline__notch[dir=rtl],[dir=rtl] .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-left:8px;padding-right:0}.mdc-notched-outline--no-label .mdc-notched-outline__notch{padding:0}.mdc-text-field--filled{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-text-field--filled .mdc-text-field__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-text-field--filled.mdc-ripple-upgraded--unbounded .mdc-text-field__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-activation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-text-field--filled.mdc-ripple-upgraded--foreground-deactivation .mdc-text-field__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-text-field--filled.mdc-ripple-upgraded .mdc-text-field__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-text-field__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-text-field{border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:0;border-bottom-left-radius:0;padding:0 16px;display:inline-flex;align-items:baseline;position:relative;box-sizing:border-box;overflow:hidden;will-change:opacity,transform,color}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{color:rgba(0,0,0,.87)}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder{color:rgba(0,0,0,.54)}}@media all{.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.54)}}.mdc-text-field .mdc-text-field__input{caret-color:#6200ee;caret-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field-character-counter{color:rgba(0,0,0,.6)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:rgba(0,0,0,.54)}.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--prefix,.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__affix--suffix{color:rgba(0,0,0,.6)}.mdc-text-field .mdc-floating-label{top:50%;transform:translateY(-50%);pointer-events:none}.mdc-text-field.mdc-text-field--with-leading-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon[dir=rtl],.mdc-text-field.mdc-text-field--with-trailing-icon,[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon{padding-left:16px;padding-right:0}.mdc-text-field.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:16px}.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon,.mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon[dir=rtl],[dir=rtl] .mdc-text-field.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon{padding-left:0;padding-right:0}.mdc-text-field__input{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);width:100%;min-width:0;border:none;border-radius:0;background:none;appearance:none;padding:0}.mdc-text-field__input::-ms-clear{display:none}.mdc-text-field__input:focus{outline:none}.mdc-text-field__input:invalid{box-shadow:none}.mdc-text-field__input:-webkit-autofill{z-index:auto!important}@media all{.mdc-text-field__input::placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field__input:-ms-input-placeholder{transition:opacity 67ms cubic-bezier(.4,0,.2,1);opacity:0}}@media all{.mdc-text-field--focused .mdc-text-field__input::placeholder,.mdc-text-field--fullwidth .mdc-text-field__input::placeholder,.mdc-text-field--no-label .mdc-text-field__input::placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}@media all{.mdc-text-field--focused .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--fullwidth .mdc-text-field__input:-ms-input-placeholder,.mdc-text-field--no-label .mdc-text-field__input:-ms-input-placeholder{transition-delay:40ms;transition-duration:.11s;opacity:1}}.mdc-text-field__affix{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);height:28px;transition:opacity .15s cubic-bezier(.4,0,.2,1);opacity:0;white-space:nowrap}.mdc-text-field--label-floating .mdc-text-field__affix,.mdc-text-field--no-label .mdc-text-field__affix{opacity:1}.mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field__affix--prefix[dir=rtl],[dir=rtl] .mdc-text-field__affix--prefix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--prefix[dir=rtl],.mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-left:12px;padding-right:0}.mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field__affix--suffix{padding-left:0;padding-right:12px}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px;padding-right:0}.mdc-text-field--end-aligned .mdc-text-field__affix--suffix[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:0;padding-right:2px}.mdc-text-field__input:-webkit-autofill+.mdc-floating-label{transform:translateY(-50%) scale(.75);cursor:auto}.mdc-text-field--filled{height:56px}.mdc-text-field--filled .mdc-text-field__ripple:after,.mdc-text-field--filled .mdc-text-field__ripple:before{background-color:rgba(0,0,0,.87)}.mdc-text-field--filled:hover .mdc-text-field__ripple:before{opacity:.04}.mdc-text-field--filled.mdc-ripple-upgraded--background-focused .mdc-text-field__ripple:before,.mdc-text-field--filled:not(.mdc-ripple-upgraded):focus .mdc-text-field__ripple:before{transition-duration:75ms;opacity:.12}.mdc-text-field--filled:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-text-field--filled:not(.mdc-text-field--disabled){background-color:#f5f5f5}.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.87)}.mdc-text-field--filled .mdc-line-ripple:after{border-bottom-color:#6200ee;border-bottom-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--filled .mdc-floating-label{left:16px;right:auto}.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--filled .mdc-floating-label{left:auto;right:16px}.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{height:100%}.mdc-text-field--filled.mdc-text-field--no-label .mdc-floating-label,.mdc-text-field--filled.mdc-text-field--no-label:before{display:none}.mdc-text-field--outlined{height:56px;overflow:visible}.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) scale(1);font-size:.75rem}.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) scale(.75);font-size:1rem}.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined{0%{transform:translateX(0) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-34.75px) scale(.75)}to{transform:translateX(0) translateY(-34.75px) scale(.75)}}.mdc-text-field--outlined .mdc-text-field__input{height:100%}.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.38)}.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.87)}.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing,[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:0}.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:1px}.mdc-text-field--outlined .mdc-text-field__ripple:after,.mdc-text-field--outlined .mdc-text-field__ripple:before{content:none}.mdc-text-field--outlined .mdc-floating-label{left:4px;right:auto}.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-floating-label{left:auto;right:4px}.mdc-text-field--outlined .mdc-text-field__input{display:flex;border:none!important;background-color:transparent}.mdc-text-field--textarea{flex-direction:column;align-items:center;width:auto;height:auto;padding:0;transition:none}.mdc-text-field--textarea .mdc-floating-label{top:19px}.mdc-text-field--textarea .mdc-floating-label:not(.mdc-floating-label--float-above){transform:none}.mdc-text-field--textarea .mdc-text-field__input{flex-grow:1;height:auto;min-height:1.5rem;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;resize:none;padding:0 16px;line-height:1.5rem}.mdc-text-field--textarea.mdc-text-field--filled:before{display:none}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--float-above{transform:translateY(-10.25px) scale(.75)}.mdc-text-field--textarea.mdc-text-field--filled .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-filled .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-filled{0%{transform:translateX(0) translateY(-10.25px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-10.25px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-10.25px) scale(.75)}to{transform:translateX(0) translateY(-10.25px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--filled .mdc-text-field__input{margin-top:23px;margin-bottom:9px}.mdc-text-field--textarea.mdc-text-field--filled.mdc-text-field--no-label .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-27.25px) scale(1);font-size:.75rem}.mdc-text-field--textarea.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--textarea.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-24.75px) scale(.75);font-size:1rem}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-textarea-outlined .25s 1}@keyframes mdc-floating-label-shake-float-above-textarea-outlined{0%{transform:translateX(0) translateY(-24.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-24.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-24.75px) scale(.75)}to{transform:translateX(0) translateY(-24.75px) scale(.75)}}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-text-field__input{margin-top:16px;margin-bottom:16px}.mdc-text-field--textarea.mdc-text-field--outlined .mdc-floating-label{top:18px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field__input{margin-bottom:2px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter{align-self:flex-end;padding:0 16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:after{display:inline-block;width:0;height:16px;content:\"\";vertical-align:-16px}.mdc-text-field--textarea.mdc-text-field--with-internal-counter .mdc-text-field-character-counter:before{display:none}.mdc-text-field__resizer{align-self:stretch;display:inline-flex;flex-direction:column;flex-grow:1;max-height:100%;max-width:100%;min-height:56px;min-width:fit-content;min-width:-moz-available;min-width:-webkit-fill-available;overflow:hidden;resize:both}.mdc-text-field--filled .mdc-text-field__resizer{transform:translateY(-1px)}.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--filled .mdc-text-field__resizer .mdc-text-field__input{transform:translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(-1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer{transform:translateX(1px) translateY(-1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(1px) translateY(1px)}.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter[dir=rtl],.mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field-character-counter,[dir=rtl] .mdc-text-field--outlined .mdc-text-field__resizer .mdc-text-field__input{transform:translateX(-1px) translateY(1px)}.mdc-text-field--fullwidth{padding:0;width:100%}.mdc-text-field--fullwidth.mdc-text-field--disabled .mdc-line-ripple:before,.mdc-text-field--fullwidth:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea){display:flex}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__input{height:100%}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-floating-label,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):before{display:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:after,.mdc-text-field--fullwidth:not(.mdc-text-field--textarea) .mdc-text-field__ripple:before{content:none}.mdc-text-field--fullwidth:not(.mdc-text-field--textarea):not(.mdc-text-field--disabled){background-color:transparent}.mdc-text-field--fullwidth.mdc-text-field--textarea .mdc-text-field__resizer{resize:vertical}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 48px);left:48px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label{left:auto;right:48px}.mdc-text-field--with-leading-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:36px;right:auto}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label{left:auto;right:36px}.mdc-text-field--with-leading-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(-32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(32px) scale(1)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(-32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(32px) scale(.75)}.mdc-text-field--with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon{0%{transform:translateX(-32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(-32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .mdc-text-field--with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-leading-icon .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-leading-icon-rtl{0%{transform:translateX(32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(32px) translateY(-34.75px) scale(.75)}}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 64px)}.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-text-field--with-trailing-icon.mdc-text-field--outlined :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label{max-width:calc(100% - 96px)}.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon.mdc-text-field--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 128px)}.mdc-text-field-helper-line{display:flex;justify-content:space-between;box-sizing:border-box}.mdc-text-field+.mdc-text-field-helper-line{padding-right:16px;padding-left:16px}.mdc-form-field>.mdc-text-field+label{align-self:flex-start}.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(98,0,238,.87)}.mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--focused .mdc-notched-outline__trailing{border-width:2px}.mdc-text-field--focused+.mdc-text-field-helper-line .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--validation-msg){opacity:1}.mdc-text-field--focused.mdc-text-field--outlined .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:2px}.mdc-text-field--focused.mdc-text-field--outlined.mdc-text-field--textarea .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:0}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after,.mdc-text-field--invalid:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid .mdc-text-field__input{caret-color:#b00020;caret-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__icon--trailing{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-text-field--invalid:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-text-field--invalid+.mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg{opacity:1}.mdc-text-field--disabled{pointer-events:none}.mdc-text-field--disabled .mdc-text-field__input{color:rgba(0,0,0,.38)}@media all{.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:rgba(0,0,0,.38)}}@media all{.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:rgba(0,0,0,.38)}}.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:rgba(0,0,0,.3)}.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix{color:rgba(0,0,0,.38)}.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.06)}.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.06)}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input::placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-text-field__input:-ms-input-placeholder{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-character-counter,.mdc-text-field--disabled+.mdc-text-field-helper-line .mdc-text-field-helper-text,.mdc-text-field--disabled .mdc-floating-label,.mdc-text-field--disabled .mdc-text-field-character-counter,.mdc-text-field--disabled .mdc-text-field__affix--prefix,.mdc-text-field--disabled .mdc-text-field__affix--suffix,.mdc-text-field--disabled .mdc-text-field__icon--leading,.mdc-text-field--disabled .mdc-text-field__icon--trailing{color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-line-ripple:before{border-bottom-color:GrayText}}@media screen and (-ms-high-contrast:active){.mdc-text-field--disabled .mdc-notched-outline__leading,.mdc-text-field--disabled .mdc-notched-outline__notch,.mdc-text-field--disabled .mdc-notched-outline__trailing{border-color:GrayText}}.mdc-text-field--disabled .mdc-floating-label{cursor:default}.mdc-text-field--disabled.mdc-text-field--filled{background-color:#fafafa}.mdc-text-field--disabled.mdc-text-field--filled .mdc-text-field__ripple{display:none}.mdc-text-field--disabled .mdc-text-field__input{pointer-events:auto}.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--end-aligned .mdc-text-field__input[dir=rtl],[dir=rtl] .mdc-text-field--end-aligned .mdc-text-field__input{text-align:left}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix,.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{direction:ltr}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{padding-left:0;padding-right:2px}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{padding-left:12px;padding-right:0}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--leading,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--leading{order:1}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--suffix{order:2}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__input{order:3}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__affix--prefix{order:4}.mdc-text-field--ltr-text[dir=rtl] .mdc-text-field__icon--trailing,[dir=rtl] .mdc-text-field--ltr-text .mdc-text-field__icon--trailing{order:5}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__input,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__input{text-align:right}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--prefix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--prefix{padding-right:12px}.mdc-text-field--ltr-text.mdc-text-field--end-aligned[dir=rtl] .mdc-text-field__affix--suffix,[dir=rtl] .mdc-text-field--ltr-text.mdc-text-field--end-aligned .mdc-text-field__affix--suffix{padding-left:2px}.mdc-text-field-helper-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;line-height:normal;margin:0;opacity:0;will-change:opacity;transition:opacity .15s cubic-bezier(.4,0,.2,1)}.mdc-text-field-helper-text:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-helper-text--persistent{transition:none;opacity:1;will-change:auto}.mdc-text-field-character-counter{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;margin-top:0;line-height:normal;margin-left:auto;margin-right:0;padding-left:16px;padding-right:0;white-space:nowrap}.mdc-text-field-character-counter:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-text-field-character-counter[dir=rtl],[dir=rtl] .mdc-text-field-character-counter{margin-left:0;margin-right:auto;padding-left:0;padding-right:16px}.mdc-text-field__icon{align-self:center;cursor:pointer}.mdc-text-field__icon:not([tabindex]),.mdc-text-field__icon[tabindex=\"-1\"]{cursor:default;pointer-events:none}.mdc-text-field__icon svg{display:block}.mdc-text-field__icon--leading{margin-left:16px;margin-right:8px}.mdc-text-field__icon--leading[dir=rtl],[dir=rtl] .mdc-text-field__icon--leading{margin-left:8px;margin-right:16px}.mdc-text-field__icon--trailing,.mdc-text-field__icon--trailing[dir=rtl],[dir=rtl] .mdc-text-field__icon--trailing{margin-left:12px;margin-right:12px}.mdc-text-field-helper-line--with-errors .mdc-text-field-character-counter,.mdc-text-field-helper-line--with-errors .mdc-text-field-helper-text--errors:before,.mdc-text-field-helper-line--with-errors .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--errors){display:none}.mdc-text-field-helper-line--with-errors .mdc-text-field-helper-text--errors .mdc-text-field-helper-text__error:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-form-field{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87));display:inline-flex;align-items:center;vertical-align:middle}.mdc-form-field>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0;order:0}.mdc-form-field>label[dir=rtl],[dir=rtl] .mdc-form-field>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px}.mdc-form-field--nowrap>label{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.mdc-form-field--align-end>label{margin-left:auto;margin-right:0;padding-left:0;padding-right:4px;order:-1}.mdc-form-field--align-end>label[dir=rtl],[dir=rtl] .mdc-form-field--align-end>label{margin-left:0;margin-right:auto;padding-left:4px;padding-right:0}.mdc-form-field--space-between{justify-content:space-between}.mdc-form-field--space-between>label,.mdc-form-field--space-between>label[dir=rtl],[dir=rtl] .mdc-form-field--space-between>label{margin:0}.mdc-ripple-surface{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:relative;outline:none;overflow:hidden}.mdc-ripple-surface:after,.mdc-ripple-surface:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-ripple-surface:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-ripple-surface.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-ripple-surface.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-ripple-surface.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-ripple-surface:after,.mdc-ripple-surface:before{background-color:#000}.mdc-ripple-surface:hover:before{opacity:.04}.mdc-ripple-surface.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface:after,.mdc-ripple-surface:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-ripple-surface.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]{overflow:visible}.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded]:before{top:0;left:0;width:100%;height:100%}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after,.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface[data-mdc-ripple-is-unbounded].mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-ripple-surface--primary:after,.mdc-ripple-surface--primary:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-ripple-surface--primary:hover:before{opacity:.04}.mdc-ripple-surface--primary.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-ripple-surface--accent:after,.mdc-ripple-surface--accent:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-ripple-surface--accent:hover:before{opacity:.04}.mdc-ripple-surface--accent.mdc-ripple-upgraded--background-focused:before,.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-ripple-surface--accent.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-tab-bar{width:100%}.mdc-tab{height:48px}.mdc-tab--stacked{height:72px}.mdc-tab-scroller{overflow-y:hidden}.mdc-tab-scroller.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-scroller__test{position:absolute;top:-9999px;width:100px;height:100px;overflow-x:scroll}.mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:touch;display:flex;overflow-x:hidden}.mdc-tab-scroller__scroll-area::-webkit-scrollbar,.mdc-tab-scroller__test::-webkit-scrollbar{display:none}.mdc-tab-scroller__scroll-area--scroll{overflow-x:scroll}.mdc-tab-scroller__scroll-content{position:relative;display:flex;flex:1 0 auto;transform:none;will-change:transform}.mdc-tab-scroller--align-start .mdc-tab-scroller__scroll-content{justify-content:flex-start}.mdc-tab-scroller--align-end .mdc-tab-scroller__scroll-content{justify-content:flex-end}.mdc-tab-scroller--align-center .mdc-tab-scroller__scroll-content{justify-content:center}.mdc-tab-scroller--animating .mdc-tab-scroller__scroll-area{-webkit-overflow-scrolling:auto}.mdc-tab-indicator{display:flex;position:absolute;top:0;left:0;justify-content:center;width:100%;height:100%;pointer-events:none;z-index:1}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab-indicator .mdc-tab-indicator__content--icon{color:#018786;color:var(--mdc-theme-secondary,#018786)}.mdc-tab-indicator .mdc-tab-indicator__content--underline{border-top-width:2px}.mdc-tab-indicator .mdc-tab-indicator__content--icon{height:34px;font-size:34px}.mdc-tab-indicator__content{transform-origin:left;opacity:0}.mdc-tab-indicator__content--underline{align-self:flex-end;box-sizing:border-box;width:100%;border-top-style:solid}.mdc-tab-indicator__content--icon{align-self:center;margin:0 auto}.mdc-tab-indicator--active .mdc-tab-indicator__content{opacity:1}.mdc-tab-indicator .mdc-tab-indicator__content{transition:transform .25s cubic-bezier(.4,0,.2,1)}.mdc-tab-indicator--no-transition .mdc-tab-indicator__content{transition:none}.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition:opacity .15s linear}.mdc-tab-indicator--active.mdc-tab-indicator--fade .mdc-tab-indicator__content{transition-delay:.1s}.mdc-tab{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);position:relative;display:flex;flex:1 0 auto;justify-content:center;box-sizing:border-box;margin:0;padding:0 24px;border:none;outline:none;background:none;text-align:center;white-space:nowrap;cursor:pointer;-webkit-appearance:none;z-index:1}.mdc-tab .mdc-tab__text-label{color:rgba(0,0,0,.6)}.mdc-tab .mdc-tab__icon{color:rgba(0,0,0,.54);fill:currentColor}.mdc-tab::-moz-focus-inner{padding:0;border:0}.mdc-tab--min-width{flex:0 1 auto}.mdc-tab__content{position:relative;display:flex;align-items:center;justify-content:center;height:inherit;pointer-events:none}.mdc-tab__text-label{display:inline-block;line-height:1}.mdc-tab__icon,.mdc-tab__text-label{transition:color .15s linear;z-index:2}.mdc-tab__icon{width:24px;height:24px;font-size:24px}.mdc-tab--stacked .mdc-tab__content{flex-direction:column;align-items:center;justify-content:center}.mdc-tab--stacked .mdc-tab__text-label{padding-top:6px;padding-bottom:4px}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{color:#6200ee;color:var(--mdc-theme-primary,#6200ee)}.mdc-tab--active .mdc-tab__icon{fill:currentColor}.mdc-tab--active .mdc-tab__icon,.mdc-tab--active .mdc-tab__text-label{transition-delay:.1s}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:8px;padding-right:0}.mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label[dir=rtl],[dir=rtl] .mdc-tab:not(.mdc-tab--stacked) .mdc-tab__icon+.mdc-tab__text-label{padding-left:0;padding-right:8px}.mdc-tab__ripple{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0);position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}.mdc-tab__ripple:after,.mdc-tab__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-tab__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-tab__ripple.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-tab__ripple.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-tab__ripple.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-tab__ripple:after,.mdc-tab__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-tab__ripple.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-tab__ripple:after,.mdc-tab__ripple:before{background-color:#6200ee;background-color:var(--mdc-theme-primary,#6200ee)}.mdc-tab__ripple:hover:before{opacity:.04}.mdc-tab__ripple.mdc-ripple-upgraded--background-focused:before,.mdc-tab__ripple:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-tab__ripple:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-tab__ripple:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-tab__ripple.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-menu{min-width:112px}.mdc-menu .mdc-list,.mdc-menu .mdc-list-item__graphic,.mdc-menu .mdc-list-item__meta{color:rgba(0,0,0,.87)}.mdc-menu .mdc-list{position:relative}.mdc-menu .mdc-list .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-menu .mdc-list-divider{margin:8px 0}.mdc-menu .mdc-list-item{user-select:none}.mdc-menu .mdc-list-item--disabled{cursor:auto}.mdc-menu a.mdc-list-item .mdc-list-item__graphic,.mdc-menu a.mdc-list-item .mdc-list-item__text{pointer-events:none}.mdc-menu__selection-group{padding:0;fill:currentColor}.mdc-menu__selection-group .mdc-list-item{padding-left:56px;padding-right:16px}.mdc-menu__selection-group .mdc-list-item[dir=rtl],[dir=rtl] .mdc-menu__selection-group .mdc-list-item{padding-left:16px;padding-right:56px}.mdc-menu__selection-group .mdc-menu__selection-group-icon{left:16px;right:auto;display:none;position:absolute;top:50%;transform:translateY(-50%)}.mdc-menu__selection-group .mdc-menu__selection-group-icon[dir=rtl],[dir=rtl] .mdc-menu__selection-group .mdc-menu__selection-group-icon{left:auto;right:16px}.mdc-menu-item--selected .mdc-menu__selection-group-icon{display:inline}.mdc-menu-surface{display:none;position:absolute;box-sizing:border-box;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);margin:0;padding:0;transform:scale(1);transform-origin:top left;opacity:0;overflow:auto;will-change:transform,opacity;z-index:8;transition:opacity .03s linear,transform .12s cubic-bezier(0,0,.2,1);box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);background-color:#fff;background-color:var(--mdc-theme-surface,#fff);color:#000;color:var(--mdc-theme-on-surface,#000);border-radius:4px;border-radius:var(--mdc-shape-medium,4px);transform-origin-left:top left;transform-origin-right:top right}.mdc-menu-surface:focus{outline:none}.mdc-menu-surface--open{display:inline-block;transform:scale(1);opacity:1}.mdc-menu-surface--animating-open{display:inline-block;transform:scale(.8);opacity:0}.mdc-menu-surface--animating-closed{display:inline-block;opacity:0;transition:opacity 75ms linear}.mdc-menu-surface[dir=rtl],[dir=rtl] .mdc-menu-surface{transform-origin-left:top right;transform-origin-right:top left}.mdc-menu-surface--anchor{position:relative;overflow:visible}.mdc-menu-surface--fixed{position:fixed}.mdc-menu-surface--fullwidth{width:100%}.mdc-select-helper-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit);display:block;margin:0 16px;line-height:normal}.mdc-select-helper-text[dir=rtl],[dir=rtl] .mdc-select-helper-text{margin-left:16px;margin-right:16px}.mdc-select-helper-text:before{display:inline-block;width:0;height:16px;content:\"\";vertical-align:0}.mdc-select-helper-text--validation-msg{opacity:0;transition:opacity .18s cubic-bezier(.4,0,.2,1)}.mdc-select--invalid+.mdc-select-helper-text--validation-msg,.mdc-select-helper-text--validation-msg-persistent{opacity:1}.mdc-select--with-leading-icon .mdc-select__icon{display:inline-block;box-sizing:border-box;border:none;text-decoration:none;cursor:pointer;user-select:none;flex-shrink:0;align-self:center;background-color:transparent;fill:currentColor;margin-left:12px;margin-right:12px}.mdc-select--with-leading-icon .mdc-select__icon[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon .mdc-select__icon{margin-left:12px;margin-right:12px}.mdc-select__icon:not([tabindex]),.mdc-select__icon[tabindex=\"-1\"]{cursor:default;pointer-events:none}.mdc-select__anchor{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-select__anchor .mdc-select__ripple:after,.mdc-select__anchor .mdc-select__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-select__anchor .mdc-select__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-select__anchor.mdc-ripple-upgraded .mdc-select__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-select__anchor.mdc-ripple-upgraded .mdc-select__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-select__anchor.mdc-ripple-upgraded--unbounded .mdc-select__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-select__anchor.mdc-ripple-upgraded--foreground-activation .mdc-select__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-select__anchor.mdc-ripple-upgraded--foreground-deactivation .mdc-select__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-select__anchor .mdc-select__ripple:after,.mdc-select__anchor .mdc-select__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-select__anchor.mdc-ripple-upgraded .mdc-select__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-select__anchor .mdc-select__ripple:after,.mdc-select__anchor .mdc-select__ripple:before{background-color:rgba(0,0,0,.87)}.mdc-select__anchor:hover .mdc-select__ripple:before{opacity:.04}.mdc-select__anchor.mdc-ripple-upgraded--background-focused .mdc-select__ripple:before,.mdc-select__anchor:not(.mdc-ripple-upgraded):focus .mdc-select__ripple:before{transition-duration:75ms;opacity:.12}.mdc-select__anchor .mdc-select__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-select__menu .mdc-list .mdc-list-item--selected .mdc-list-item__ripple:after,.mdc-select__menu .mdc-list .mdc-list-item--selected .mdc-list-item__ripple:before{background-color:#000;background-color:var(--mdc-theme-on-surface,#000)}.mdc-select__menu .mdc-list .mdc-list-item--selected:hover .mdc-list-item__ripple:before{opacity:.04}.mdc-select__menu .mdc-list .mdc-list-item--selected.mdc-ripple-upgraded--background-focused .mdc-list-item__ripple:before,.mdc-select__menu .mdc-list .mdc-list-item--selected:not(.mdc-ripple-upgraded):focus .mdc-list-item__ripple:before{transition-duration:75ms;opacity:.12}.mdc-select__menu .mdc-list .mdc-list-item--selected:not(.mdc-ripple-upgraded) .mdc-list-item__ripple:after{transition:opacity .15s linear}.mdc-select__menu .mdc-list .mdc-list-item--selected:not(.mdc-ripple-upgraded):active .mdc-list-item__ripple:after{transition-duration:75ms;opacity:.12}.mdc-select__menu .mdc-list .mdc-list-item--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-select{min-width:200px;display:inline-flex;position:relative}.mdc-select:not(.mdc-select--disabled) .mdc-select__anchor{background-color:#f5f5f5}.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text{color:rgba(0,0,0,.87)}.mdc-select:not(.mdc-select--disabled) .mdc-floating-label{color:rgba(0,0,0,.6)}.mdc-select:not(.mdc-select--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.42)}.mdc-select:not(.mdc-select--disabled) .mdc-select__dropdown-icon{fill:rgba(0,0,0,.54)}.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-select__dropdown-icon{fill:#6200ee;fill:var(--mdc-theme-primary,#6200ee)}.mdc-select:not(.mdc-select--disabled)+.mdc-select-helper-text{color:rgba(0,0,0,.6)}.mdc-select:not(.mdc-select--disabled) .mdc-select__icon{color:rgba(0,0,0,.54)}.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-line-ripple:after{border-bottom-color:#6200ee;border-bottom-color:var(--mdc-theme-primary,#6200ee)}.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label{color:rgba(98,0,238,.87)}.mdc-select:not(.mdc-select--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.87)}.mdc-select.mdc-select--disabled .mdc-select__anchor{background-color:#fafafa}.mdc-select.mdc-select--disabled .mdc-floating-label{color:rgba(0,0,0,.38)}.mdc-select.mdc-select--disabled .mdc-line-ripple:before{border-bottom-color:rgba(0,0,0,.06)}.mdc-select.mdc-select--disabled .mdc-select__dropdown-icon{fill:rgba(0,0,0,.38)}.mdc-select.mdc-select--disabled+.mdc-select-helper-text,.mdc-select.mdc-select--disabled .mdc-select__icon,.mdc-select.mdc-select--disabled .mdc-select__selected-text{color:rgba(0,0,0,.38)}@media screen and (-ms-high-contrast:active){.mdc-select.mdc-select--disabled .mdc-select__selected-text{color:GrayText}.mdc-select.mdc-select--disabled .mdc-select__dropdown-icon{fill:red}.mdc-select.mdc-select--disabled .mdc-floating-label{color:GrayText}.mdc-select.mdc-select--disabled .mdc-line-ripple:before{border-bottom-color:GrayText}.mdc-select.mdc-select--disabled .mdc-notched-outline__leading,.mdc-select.mdc-select--disabled .mdc-notched-outline__notch,.mdc-select.mdc-select--disabled .mdc-notched-outline__trailing{border-color:GrayText}.mdc-select.mdc-select--disabled+.mdc-select-helper-text,.mdc-select.mdc-select--disabled .mdc-select__icon{color:GrayText}}.mdc-select .mdc-floating-label{left:16px;right:auto;top:50%;transform:translateY(-50%);pointer-events:none}.mdc-select .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select .mdc-floating-label{left:auto;right:16px}.mdc-select.mdc-select--filled .mdc-floating-label{max-width:calc(100% - 64px)}.mdc-select.mdc-select--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 85.33333px)}.mdc-select.mdc-select--outlined .mdc-floating-label{left:4px;right:auto}.mdc-select.mdc-select--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select.mdc-select--outlined .mdc-floating-label{left:auto;right:4px}.mdc-select .mdc-select__anchor{height:56px;display:flex;align-items:baseline}.mdc-select .mdc-select__anchor:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-select.mdc-select--no-label .mdc-select__anchor .mdc-select__selected-text:before{content:\"​\"}.mdc-select.mdc-select--no-label .mdc-select__anchor .mdc-select__selected-text{height:100%;display:inline-flex;align-items:center}.mdc-select.mdc-select--no-label .mdc-select__anchor:before{display:none}.mdc-select .mdc-select__anchor{border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:0;border-bottom-left-radius:0;padding-left:16px;padding-right:0}.mdc-select .mdc-select__anchor[dir=rtl],[dir=rtl] .mdc-select .mdc-select__anchor{padding-left:0;padding-right:16px}.mdc-select.mdc-select--with-leading-icon .mdc-select__anchor,.mdc-select.mdc-select--with-leading-icon .mdc-select__anchor[dir=rtl],[dir=rtl] .mdc-select.mdc-select--with-leading-icon .mdc-select__anchor{padding-left:0;padding-right:0}.mdc-select .mdc-select__icon{width:24px;height:24px;font-size:24px}.mdc-select .mdc-select__dropdown-icon{width:24px;height:24px}.mdc-select .mdc-select__menu .mdc-list-item,.mdc-select .mdc-select__menu .mdc-list-item[dir=rtl],[dir=rtl] .mdc-select .mdc-select__menu .mdc-list-item{padding-left:16px;padding-right:16px}.mdc-select .mdc-select__menu .mdc-list-item__graphic{margin-left:0;margin-right:12px}.mdc-select .mdc-select__menu .mdc-list-item__graphic[dir=rtl],[dir=rtl] .mdc-select .mdc-select__menu .mdc-list-item__graphic{margin-left:12px;margin-right:0}.mdc-select__dropdown-icon{margin-left:12px;margin-right:12px;display:inline-flex;position:relative;align-self:center;align-items:center;justify-content:center;flex-shrink:0;pointer-events:none}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-active,.mdc-select__dropdown-icon .mdc-select__dropdown-icon-inactive{position:absolute;top:0;left:0}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-graphic{width:41.6666666667%;height:20.8333333333%}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-inactive{opacity:1;transition:opacity 75ms linear 75ms}.mdc-select__dropdown-icon .mdc-select__dropdown-icon-active{opacity:0;transition:opacity 75ms linear}.mdc-select__dropdown-icon[dir=rtl],[dir=rtl] .mdc-select__dropdown-icon{margin-left:12px;margin-right:12px}.mdc-select--activated .mdc-select__dropdown-icon .mdc-select__dropdown-icon-inactive{opacity:0;transition:opacity 49.5ms linear}.mdc-select--activated .mdc-select__dropdown-icon .mdc-select__dropdown-icon-active{opacity:1;transition:opacity .1005s linear 49.5ms}.mdc-select__anchor{width:100%;position:relative;box-sizing:border-box;overflow:hidden;outline:none;cursor:pointer}.mdc-select__anchor .mdc-floating-label--float-above{transform:translateY(-106%) scale(.75)}.mdc-select__anchor.mdc-select--focused.mdc-line-ripple:after{transform:scaleY(2);opacity:1}.mdc-select__selected-text{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit);box-sizing:border-box;width:auto;flex-grow:1;height:28px;border:none;outline:none;padding:0;white-space:nowrap;appearance:none;pointer-events:none;overflow:hidden;background-color:transparent;color:inherit}.mdc-select__selected-text::-ms-expand{display:none}.mdc-select__selected-text::-ms-value{background-color:transparent;color:inherit}.mdc-select--outlined{border:none}.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading,.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch,.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.38)}.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.87)}.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__trailing{border-width:2px;border-color:#6200ee;border-color:var(--mdc-theme-primary,#6200ee)}.mdc-select--outlined.mdc-select--disabled .mdc-notched-outline__leading,.mdc-select--outlined.mdc-select--disabled .mdc-notched-outline__notch,.mdc-select--outlined.mdc-select--disabled .mdc-notched-outline__trailing{border-color:rgba(0,0,0,.06)}.mdc-select--outlined.mdc-select--disabled .mdc-select__anchor{background-color:transparent}.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__trailing,[dir=rtl] .mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:0}.mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .mdc-select--outlined .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:4px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:4px}.mdc-select--outlined .mdc-select__selected-text{border-radius:4px}.mdc-select--outlined:not(.mdc-select--disabled) .mdc-select__anchor{background-color:transparent}.mdc-select--outlined .mdc-select__anchor :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 60px)}.mdc-select--outlined .mdc-select__anchor{overflow:visible}.mdc-select--outlined .mdc-select__anchor .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-select-outlined .25s 1}.mdc-select--outlined .mdc-select__anchor .mdc-floating-label--float-above{transform:translateY(-37.25px) scale(1);font-size:.75rem}.mdc-select--outlined .mdc-select__anchor.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-select--outlined .mdc-select__anchor .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) scale(.75);font-size:1rem}.mdc-select--outlined .mdc-select__anchor .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:1px}.mdc-select--outlined .mdc-select__anchor .mdc-select__selected-text:before{content:\"​\"}.mdc-select--outlined .mdc-select__anchor .mdc-select__selected-text{height:100%;display:inline-flex;align-items:center}.mdc-select--outlined .mdc-select__anchor:before{display:none}.mdc-select--outlined .mdc-select__selected-text{display:flex;border:none;z-index:1;background-color:transparent}.mdc-select--outlined .mdc-select__icon{z-index:2}.mdc-select--outlined .mdc-floating-label{line-height:1.15rem}.mdc-select--outlined.mdc-select--focused .mdc-notched-outline--notched .mdc-notched-outline__notch{padding-top:2px}.mdc-select--invalid:not(.mdc-select--disabled) .mdc-floating-label{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled) .mdc-line-ripple:before,.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--focused .mdc-line-ripple:after{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label{color:#b00020}.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--invalid+.mdc-select-helper-text--validation-msg{color:#b00020;color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled).mdc-select--focused .mdc-select__dropdown-icon,.mdc-select--invalid:not(.mdc-select--disabled) .mdc-select__dropdown-icon{fill:#b00020;fill:var(--mdc-theme-error,#b00020)}.mdc-select--invalid:not(.mdc-select--disabled):hover .mdc-line-ripple:before{border-bottom-color:#b00020;border-bottom-color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__anchor:hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__leading,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__notch,.mdc-select--invalid.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__trailing{border-width:2px;border-color:#b00020;border-color:var(--mdc-theme-error,#b00020)}.mdc-select--disabled{cursor:default;pointer-events:none}.mdc-select--with-leading-icon .mdc-floating-label{left:48px;right:auto}.mdc-select--with-leading-icon .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon .mdc-floating-label{left:auto;right:48px}.mdc-select--with-leading-icon .mdc-select__menu .mdc-list-item,.mdc-select--with-leading-icon .mdc-select__menu .mdc-list-item[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon .mdc-select__menu .mdc-list-item{padding-left:12px;padding-right:12px}.mdc-select--with-leading-icon.mdc-select--filled .mdc-floating-label{max-width:calc(100% - 96px)}.mdc-select--with-leading-icon.mdc-select--filled .mdc-floating-label--float-above{max-width:calc(133.33333% - 128px)}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label{left:36px;right:auto}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label{left:auto;right:36px}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(-32px) scale(1)}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above{transform:translateY(-37.25px) translateX(32px) scale(1)}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--float-above{font-size:.75rem}.mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(-32px) scale(.75)}.mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-34.75px) translateX(32px) scale(.75)}.mdc-select--with-leading-icon.mdc-select--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.mdc-select--with-leading-icon.mdc-select--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px .25s 1}@keyframes mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px{0%{transform:translateX(-32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(-32px) translateY(-34.75px) scale(.75)}}.mdc-select--with-leading-icon.mdc-select--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .mdc-select--with-leading-icon.mdc-select--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px .25s 1}@keyframes mdc-floating-label-shake-float-above-select-outlined-leading-icon-56px-rtl{0%{transform:translateX(32px) translateY(-34.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-34.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-34.75px) scale(.75)}to{transform:translateX(32px) translateY(-34.75px) scale(.75)}}.mdc-select--with-leading-icon.mdc-select--outlined .mdc-select__anchor :not(.mdc-notched-outline--notched) .mdc-notched-outline__notch{max-width:calc(100% - 96px)}.mdc-select--filled .mdc-menu-surface--is-open-below{border-top-left-radius:0;border-top-right-radius:0}.mdc-select__menu .mdc-select__icon,.mdc-select__menu .mdc-select__icon[dir=rtl],[dir=rtl] .mdc-select__menu .mdc-select__icon{margin-left:0;margin-right:0}.mdc-select__menu .mdc-list .mdc-list-item--activated,.mdc-select__menu .mdc-list .mdc-list-item--activated .mdc-list-item__graphic,.mdc-select__menu .mdc-list .mdc-list-item--selected,.mdc-select__menu .mdc-list .mdc-list-item--selected .mdc-list-item__graphic{color:#000;color:var(--mdc-theme-on-surface,#000)}.mdc-card{border-radius:4px;border-radius:var(--mdc-shape-medium,4px);background-color:#fff;background-color:var(--mdc-theme-surface,#fff);position:relative;box-shadow:0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);display:flex;flex-direction:column;box-sizing:border-box}.mdc-card .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-card--outlined{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12);border:1px solid #e0e0e0}.mdc-card__media{position:relative;box-sizing:border-box;background-repeat:no-repeat;background-position:50%;background-size:cover}.mdc-card__media:before{display:block;content:\"\"}.mdc-card__media:first-child{border-top-left-radius:inherit;border-top-right-radius:inherit}.mdc-card__media:last-child{border-bottom-left-radius:inherit;border-bottom-right-radius:inherit}.mdc-card__media--square:before{margin-top:100%}.mdc-card__media--16-9:before{margin-top:56.25%}.mdc-card__media-content{position:absolute;top:0;right:0;bottom:0;left:0;box-sizing:border-box}.mdc-card__primary-action{display:flex;flex-direction:column;box-sizing:border-box;position:relative;outline:none;color:inherit;text-decoration:none;cursor:pointer;overflow:hidden}.mdc-card__primary-action:first-child{border-top-left-radius:inherit;border-top-right-radius:inherit}.mdc-card__primary-action:last-child{border-bottom-left-radius:inherit;border-bottom-right-radius:inherit}.mdc-card__actions{display:flex;flex-direction:row;align-items:center;box-sizing:border-box;min-height:52px;padding:8px}.mdc-card__actions--full-bleed{padding:0}.mdc-card__action-buttons,.mdc-card__action-icons{display:flex;flex-direction:row;align-items:center;box-sizing:border-box}.mdc-card__action-icons{color:rgba(0,0,0,.6);flex-grow:1;justify-content:flex-end}.mdc-card__action-buttons+.mdc-card__action-icons{margin-left:16px;margin-right:0}.mdc-card__action-buttons+.mdc-card__action-icons[dir=rtl],[dir=rtl] .mdc-card__action-buttons+.mdc-card__action-icons{margin-left:0;margin-right:16px}.mdc-card__action{display:inline-flex;flex-direction:row;align-items:center;box-sizing:border-box;justify-content:center;cursor:pointer;user-select:none}.mdc-card__action:focus{outline:none}.mdc-card__action--button{margin-left:0;margin-right:8px;padding:0 8px}.mdc-card__action--button[dir=rtl],[dir=rtl] .mdc-card__action--button{margin-left:8px;margin-right:0}.mdc-card__action--button:last-child,.mdc-card__action--button:last-child[dir=rtl],[dir=rtl] .mdc-card__action--button:last-child{margin-left:0;margin-right:0}.mdc-card__actions--full-bleed .mdc-card__action--button{justify-content:space-between;width:100%;height:auto;max-height:none;margin:0;padding:8px 16px;text-align:left}.mdc-card__actions--full-bleed .mdc-card__action--button[dir=rtl],[dir=rtl] .mdc-card__actions--full-bleed .mdc-card__action--button{text-align:right}.mdc-card__action--icon{margin:-6px 0;padding:12px}.mdc-card__action--icon:not(:disabled){color:rgba(0,0,0,.6)}.mdc-card__primary-action{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-card__primary-action:after,.mdc-card__primary-action:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-card__primary-action:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-card__primary-action.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-card__primary-action.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-card__primary-action.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-card__primary-action.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-card__primary-action.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-card__primary-action:after,.mdc-card__primary-action:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-card__primary-action.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-card__primary-action:after,.mdc-card__primary-action:before{background-color:#000}.mdc-card__primary-action:hover:before{opacity:.04}.mdc-card__primary-action.mdc-ripple-upgraded--background-focused:before,.mdc-card__primary-action:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-card__primary-action:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-card__primary-action:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-card__primary-action.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-typography{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}.mdc-typography--headline1{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:6rem;font-size:var(--mdc-typography-headline1-font-size,6rem);line-height:6rem;line-height:var(--mdc-typography-headline1-line-height,6rem);font-weight:300;font-weight:var(--mdc-typography-headline1-font-weight,300);letter-spacing:-.015625em;letter-spacing:var(--mdc-typography-headline1-letter-spacing,-.015625em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline1-text-transform,inherit)}.mdc-typography--headline1,.mdc-typography--headline2{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--headline2{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:3.75rem;font-size:var(--mdc-typography-headline2-font-size,3.75rem);line-height:3.75rem;line-height:var(--mdc-typography-headline2-line-height,3.75rem);font-weight:300;font-weight:var(--mdc-typography-headline2-font-weight,300);letter-spacing:-.0083333333em;letter-spacing:var(--mdc-typography-headline2-letter-spacing,-.0083333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline2-text-transform,inherit)}.mdc-typography--headline3{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline3-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:3rem;font-size:var(--mdc-typography-headline3-font-size,3rem);line-height:3.125rem;line-height:var(--mdc-typography-headline3-line-height,3.125rem);font-weight:400;font-weight:var(--mdc-typography-headline3-font-weight,400);letter-spacing:normal;letter-spacing:var(--mdc-typography-headline3-letter-spacing,normal);text-decoration:inherit;text-decoration:var(--mdc-typography-headline3-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline3-text-transform,inherit)}.mdc-typography--headline3,.mdc-typography--headline4{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--headline4{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline4-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:2.125rem;font-size:var(--mdc-typography-headline4-font-size,2.125rem);line-height:2.5rem;line-height:var(--mdc-typography-headline4-line-height,2.5rem);font-weight:400;font-weight:var(--mdc-typography-headline4-font-weight,400);letter-spacing:.0073529412em;letter-spacing:var(--mdc-typography-headline4-letter-spacing,.0073529412em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline4-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline4-text-transform,inherit)}.mdc-typography--headline5{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline5-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.5rem;font-size:var(--mdc-typography-headline5-font-size,1.5rem);line-height:2rem;line-height:var(--mdc-typography-headline5-line-height,2rem);font-weight:400;font-weight:var(--mdc-typography-headline5-font-weight,400);letter-spacing:normal;letter-spacing:var(--mdc-typography-headline5-letter-spacing,normal);text-decoration:inherit;text-decoration:var(--mdc-typography-headline5-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline5-text-transform,inherit)}.mdc-typography--headline5,.mdc-typography--headline6{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--headline6{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit)}.mdc-typography--subtitle1{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-subtitle1-font-size,1rem);line-height:1.75rem;line-height:var(--mdc-typography-subtitle1-line-height,1.75rem);font-weight:400;font-weight:var(--mdc-typography-subtitle1-font-weight,400);letter-spacing:.009375em;letter-spacing:var(--mdc-typography-subtitle1-letter-spacing,.009375em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle1-text-transform,inherit)}.mdc-typography--subtitle1,.mdc-typography--subtitle2{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--subtitle2{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-subtitle2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-subtitle2-font-size,.875rem);line-height:1.375rem;line-height:var(--mdc-typography-subtitle2-line-height,1.375rem);font-weight:500;font-weight:var(--mdc-typography-subtitle2-font-weight,500);letter-spacing:.0071428571em;letter-spacing:var(--mdc-typography-subtitle2-letter-spacing,.0071428571em);text-decoration:inherit;text-decoration:var(--mdc-typography-subtitle2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-subtitle2-text-transform,inherit)}.mdc-typography--body1{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-body1-font-size,1rem);line-height:1.5rem;line-height:var(--mdc-typography-body1-line-height,1.5rem);font-weight:400;font-weight:var(--mdc-typography-body1-font-weight,400);letter-spacing:.03125em;letter-spacing:var(--mdc-typography-body1-letter-spacing,.03125em);text-decoration:inherit;text-decoration:var(--mdc-typography-body1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body1-text-transform,inherit)}.mdc-typography--body1,.mdc-typography--body2{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--body2{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit)}.mdc-typography--caption{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-caption-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-caption-font-size,.75rem);line-height:1.25rem;line-height:var(--mdc-typography-caption-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-caption-font-weight,400);letter-spacing:.0333333333em;letter-spacing:var(--mdc-typography-caption-letter-spacing,.0333333333em);text-decoration:inherit;text-decoration:var(--mdc-typography-caption-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-caption-text-transform,inherit)}.mdc-typography--button{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase)}.mdc-typography--button,.mdc-typography--overline{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.mdc-typography--overline{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-overline-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.75rem;font-size:var(--mdc-typography-overline-font-size,.75rem);line-height:2rem;line-height:var(--mdc-typography-overline-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-overline-font-weight,500);letter-spacing:.1666666667em;letter-spacing:var(--mdc-typography-overline-letter-spacing,.1666666667em);text-decoration:none;text-decoration:var(--mdc-typography-overline-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-overline-text-transform,uppercase)}.mdc-dialog,.mdc-dialog__scrim{position:fixed;top:0;left:0;align-items:center;justify-content:center;box-sizing:border-box;width:100%;height:100%}.mdc-dialog{display:none;z-index:7}.mdc-dialog .mdc-dialog__surface{background-color:#fff;background-color:var(--mdc-theme-surface,#fff)}.mdc-dialog .mdc-dialog__scrim{background-color:rgba(0,0,0,.32)}.mdc-dialog .mdc-dialog__title{color:rgba(0,0,0,.87)}.mdc-dialog .mdc-dialog__content{color:rgba(0,0,0,.6)}.mdc-dialog.mdc-dialog--scrollable .mdc-dialog__actions,.mdc-dialog.mdc-dialog--scrollable .mdc-dialog__title{border-color:rgba(0,0,0,.12)}.mdc-dialog .mdc-dialog__content{padding:20px 24px}.mdc-dialog .mdc-dialog__surface{min-width:280px}@media (max-width:592px){.mdc-dialog .mdc-dialog__surface{max-width:calc(100vw - 32px)}}@media (min-width:592px){.mdc-dialog .mdc-dialog__surface{max-width:560px}}.mdc-dialog .mdc-dialog__surface{max-height:calc(100% - 32px)}.mdc-dialog .mdc-dialog__surface{border-radius:4px;border-radius:var(--mdc-shape-medium,4px)}.mdc-dialog__scrim{opacity:0;z-index:-1}.mdc-dialog__container{display:flex;flex-direction:row;align-items:center;justify-content:space-around;box-sizing:border-box;height:100%;transform:scale(.8);opacity:0;pointer-events:none}.mdc-dialog__surface{position:relative;box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12);display:flex;flex-direction:column;flex-grow:0;flex-shrink:0;box-sizing:border-box;max-width:100%;max-height:100%;pointer-events:auto;overflow-y:auto}.mdc-dialog__surface .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-dialog[dir=rtl] .mdc-dialog__surface,[dir=rtl] .mdc-dialog .mdc-dialog__surface{text-align:right}.mdc-dialog__title{display:block;line-height:normal;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);position:relative;flex-shrink:0;box-sizing:border-box;margin:0;padding:0 24px 9px;border-bottom:1px solid transparent}.mdc-dialog__title:before{display:inline-block;width:0;height:40px;content:\"\";vertical-align:0}.mdc-dialog[dir=rtl] .mdc-dialog__title,[dir=rtl] .mdc-dialog .mdc-dialog__title{text-align:right}.mdc-dialog--scrollable .mdc-dialog__title{padding-bottom:15px}.mdc-dialog__content{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body1-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1rem;font-size:var(--mdc-typography-body1-font-size,1rem);line-height:1.5rem;line-height:var(--mdc-typography-body1-line-height,1.5rem);font-weight:400;font-weight:var(--mdc-typography-body1-font-weight,400);letter-spacing:.03125em;letter-spacing:var(--mdc-typography-body1-letter-spacing,.03125em);text-decoration:inherit;text-decoration:var(--mdc-typography-body1-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body1-text-transform,inherit);flex-grow:1;box-sizing:border-box;margin:0;overflow:auto;-webkit-overflow-scrolling:touch}.mdc-dialog__content>:first-child{margin-top:0}.mdc-dialog__content>:last-child{margin-bottom:0}.mdc-dialog__title+.mdc-dialog__content{padding-top:0}.mdc-dialog--scrollable .mdc-dialog__title+.mdc-dialog__content{padding-top:8px;padding-bottom:8px}.mdc-dialog__content .mdc-list:first-child:last-child{padding:6px 0 0}.mdc-dialog--scrollable .mdc-dialog__content .mdc-list:first-child:last-child{padding:0}.mdc-dialog__actions{display:flex;position:relative;flex-shrink:0;flex-wrap:wrap;align-items:center;justify-content:flex-end;box-sizing:border-box;min-height:52px;margin:0;padding:8px;border-top:1px solid transparent}.mdc-dialog--stacked .mdc-dialog__actions{flex-direction:column;align-items:flex-end}.mdc-dialog__button{margin-left:8px;margin-right:0;max-width:100%;text-align:right}.mdc-dialog__button[dir=rtl],[dir=rtl] .mdc-dialog__button{margin-left:0;margin-right:8px}.mdc-dialog__button:first-child,.mdc-dialog__button:first-child[dir=rtl],[dir=rtl] .mdc-dialog__button:first-child{margin-left:0;margin-right:0}.mdc-dialog[dir=rtl] .mdc-dialog__button,[dir=rtl] .mdc-dialog .mdc-dialog__button{text-align:left}.mdc-dialog--stacked .mdc-dialog__button:not(:first-child){margin-top:12px}.mdc-dialog--closing,.mdc-dialog--open,.mdc-dialog--opening{display:flex}.mdc-dialog--opening .mdc-dialog__scrim{transition:opacity .15s linear}.mdc-dialog--opening .mdc-dialog__container{transition:opacity 75ms linear,transform .15s cubic-bezier(0,0,.2,1) 0ms}.mdc-dialog--closing .mdc-dialog__container,.mdc-dialog--closing .mdc-dialog__scrim{transition:opacity 75ms linear}.mdc-dialog--closing .mdc-dialog__container{transform:none}.mdc-dialog--open .mdc-dialog__scrim{opacity:1}.mdc-dialog--open .mdc-dialog__container{transform:none;opacity:1}.mdc-dialog-scroll-lock{overflow:hidden}@keyframes mdc-checkbox-unchecked-checked-checkmark-path{0%,50%{stroke-dashoffset:29.7833385}50%{animation-timing-function:cubic-bezier(0,0,.2,1)}to{stroke-dashoffset:0}}@keyframes mdc-checkbox-unchecked-indeterminate-mixedmark{0%,68.2%{transform:scaleX(0)}68.2%{animation-timing-function:cubic-bezier(0,0,0,1)}to{transform:scaleX(1)}}@keyframes mdc-checkbox-checked-unchecked-checkmark-path{0%{animation-timing-function:cubic-bezier(.4,0,1,1);opacity:1;stroke-dashoffset:0}to{opacity:0;stroke-dashoffset:-29.7833385}}@keyframes mdc-checkbox-checked-indeterminate-checkmark{0%{animation-timing-function:cubic-bezier(0,0,.2,1);transform:rotate(0deg);opacity:1}to{transform:rotate(45deg);opacity:0}}@keyframes mdc-checkbox-indeterminate-checked-checkmark{0%{animation-timing-function:cubic-bezier(.14,0,0,1);transform:rotate(45deg);opacity:0}to{transform:rotate(1turn);opacity:1}}@keyframes mdc-checkbox-checked-indeterminate-mixedmark{0%{animation-timing-function:mdc-animation-deceleration-curve-timing-function;transform:rotate(-45deg);opacity:0}to{transform:rotate(0deg);opacity:1}}@keyframes mdc-checkbox-indeterminate-checked-mixedmark{0%{animation-timing-function:cubic-bezier(.14,0,0,1);transform:rotate(0deg);opacity:1}to{transform:rotate(315deg);opacity:0}}@keyframes mdc-checkbox-indeterminate-unchecked-mixedmark{0%{animation-timing-function:linear;transform:scaleX(1);opacity:1}32.8%,to{transform:scaleX(0);opacity:0}}.mdc-checkbox{display:inline-block;position:relative;flex:0 0 18px;box-sizing:content-box;width:18px;height:18px;line-height:0;white-space:nowrap;cursor:pointer;vertical-align:bottom;padding:11px}.mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background:before,.mdc-checkbox .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background:before,.mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-checkbox.mdc-checkbox--selected .mdc-checkbox__ripple:after,.mdc-checkbox.mdc-checkbox--selected .mdc-checkbox__ripple:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-checkbox.mdc-checkbox--selected:hover .mdc-checkbox__ripple:before{opacity:.04}.mdc-checkbox.mdc-checkbox--selected.mdc-ripple-upgraded--background-focused .mdc-checkbox__ripple:before,.mdc-checkbox.mdc-checkbox--selected:not(.mdc-ripple-upgraded):focus .mdc-checkbox__ripple:before{transition-duration:75ms;opacity:.12}.mdc-checkbox.mdc-checkbox--selected:not(.mdc-ripple-upgraded) .mdc-checkbox__ripple:after{transition:opacity .15s linear}.mdc-checkbox.mdc-checkbox--selected:not(.mdc-ripple-upgraded):active .mdc-checkbox__ripple:after{transition-duration:75ms;opacity:.12}.mdc-checkbox.mdc-checkbox--selected.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-checkbox.mdc-ripple-upgraded--background-focused.mdc-checkbox--selected .mdc-checkbox__ripple:after,.mdc-checkbox.mdc-ripple-upgraded--background-focused.mdc-checkbox--selected .mdc-checkbox__ripple:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-checkbox .mdc-checkbox__background{top:11px;left:11px}.mdc-checkbox .mdc-checkbox__background:before{top:-13px;left:-13px;width:40px;height:40px}.mdc-checkbox .mdc-checkbox__native-control{top:0;right:0;left:0;width:40px;height:40px}.mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background{border-color:rgba(0,0,0,.54);background-color:transparent}.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,.mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background,.mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786);background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}@keyframes mdc-checkbox-fade-in-background-8A000000secondary00000000secondary{0%{border-color:rgba(0,0,0,.54);background-color:transparent}50%{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786);background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}}@keyframes mdc-checkbox-fade-out-background-8A000000secondary00000000secondary{0%,80%{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786);background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}to{border-color:rgba(0,0,0,.54);background-color:transparent}}.mdc-checkbox--anim-unchecked-checked .mdc-checkbox__native-control:enabled~.mdc-checkbox__background,.mdc-checkbox--anim-unchecked-indeterminate .mdc-checkbox__native-control:enabled~.mdc-checkbox__background{animation-name:mdc-checkbox-fade-in-background-8A000000secondary00000000secondary}.mdc-checkbox--anim-checked-unchecked .mdc-checkbox__native-control:enabled~.mdc-checkbox__background,.mdc-checkbox--anim-indeterminate-unchecked .mdc-checkbox__native-control:enabled~.mdc-checkbox__background{animation-name:mdc-checkbox-fade-out-background-8A000000secondary00000000secondary}.mdc-checkbox__native-control[disabled]:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background{border-color:rgba(0,0,0,.38);background-color:transparent}.mdc-checkbox__native-control[data-indeterminate=true][disabled]~.mdc-checkbox__background,.mdc-checkbox__native-control[disabled]:checked~.mdc-checkbox__background,.mdc-checkbox__native-control[disabled]:indeterminate~.mdc-checkbox__background{border-color:transparent;background-color:rgba(0,0,0,.38)}.mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark{color:#fff}.mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__mixedmark{border-color:#fff}.mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__checkmark{color:#fff}.mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__mixedmark{border-color:#fff}@media screen and (-ms-high-contrast:active){.mdc-checkbox__native-control[disabled]:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background{border-color:GrayText;background-color:transparent}.mdc-checkbox__native-control[data-indeterminate=true][disabled]~.mdc-checkbox__background,.mdc-checkbox__native-control[disabled]:checked~.mdc-checkbox__background,.mdc-checkbox__native-control[disabled]:indeterminate~.mdc-checkbox__background{border-color:GrayText;background-color:transparent}.mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__checkmark{color:GrayText}.mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__mixedmark{border-color:GrayText}.mdc-checkbox__mixedmark{margin:0 1px}}.mdc-checkbox--disabled{cursor:default;pointer-events:none}.mdc-checkbox__background{display:inline-flex;position:absolute;align-items:center;justify-content:center;box-sizing:border-box;width:18px;height:18px;border:2px solid;border-radius:2px;background-color:transparent;pointer-events:none;will-change:background-color,border-color;transition:background-color 90ms cubic-bezier(.4,0,.6,1) 0ms,border-color 90ms cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox__background .mdc-checkbox__background:before{background-color:#000;background-color:var(--mdc-theme-on-surface,#000)}.mdc-checkbox__checkmark{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;opacity:0;transition:opacity .18s cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox--upgraded .mdc-checkbox__checkmark{opacity:1}.mdc-checkbox__checkmark-path{transition:stroke-dashoffset .18s cubic-bezier(.4,0,.6,1) 0ms;stroke:currentColor;stroke-width:3.12px;stroke-dashoffset:29.7833385;stroke-dasharray:29.7833385}.mdc-checkbox__mixedmark{width:100%;height:0;transform:scaleX(0) rotate(0deg);border-width:1px;border-style:solid;opacity:0;transition:opacity 90ms cubic-bezier(.4,0,.6,1) 0ms,transform 90ms cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox--upgraded .mdc-checkbox__background,.mdc-checkbox--upgraded .mdc-checkbox__checkmark,.mdc-checkbox--upgraded .mdc-checkbox__checkmark-path,.mdc-checkbox--upgraded .mdc-checkbox__mixedmark{transition:none!important}.mdc-checkbox--anim-checked-unchecked .mdc-checkbox__background,.mdc-checkbox--anim-indeterminate-unchecked .mdc-checkbox__background,.mdc-checkbox--anim-unchecked-checked .mdc-checkbox__background,.mdc-checkbox--anim-unchecked-indeterminate .mdc-checkbox__background{animation-duration:.18s;animation-timing-function:linear}.mdc-checkbox--anim-unchecked-checked .mdc-checkbox__checkmark-path{animation:mdc-checkbox-unchecked-checked-checkmark-path .18s linear 0s;transition:none}.mdc-checkbox--anim-unchecked-indeterminate .mdc-checkbox__mixedmark{animation:mdc-checkbox-unchecked-indeterminate-mixedmark 90ms linear 0s;transition:none}.mdc-checkbox--anim-checked-unchecked .mdc-checkbox__checkmark-path{animation:mdc-checkbox-checked-unchecked-checkmark-path 90ms linear 0s;transition:none}.mdc-checkbox--anim-checked-indeterminate .mdc-checkbox__checkmark{animation:mdc-checkbox-checked-indeterminate-checkmark 90ms linear 0s;transition:none}.mdc-checkbox--anim-checked-indeterminate .mdc-checkbox__mixedmark{animation:mdc-checkbox-checked-indeterminate-mixedmark 90ms linear 0s;transition:none}.mdc-checkbox--anim-indeterminate-checked .mdc-checkbox__checkmark{animation:mdc-checkbox-indeterminate-checked-checkmark .5s linear 0s;transition:none}.mdc-checkbox--anim-indeterminate-checked .mdc-checkbox__mixedmark{animation:mdc-checkbox-indeterminate-checked-mixedmark .5s linear 0s;transition:none}.mdc-checkbox--anim-indeterminate-unchecked .mdc-checkbox__mixedmark{animation:mdc-checkbox-indeterminate-unchecked-mixedmark .3s linear 0s;transition:none}.mdc-checkbox__native-control:checked~.mdc-checkbox__background,.mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background,.mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background{transition:border-color 90ms cubic-bezier(0,0,.2,1) 0ms,background-color 90ms cubic-bezier(0,0,.2,1) 0ms}.mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__checkmark-path,.mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__checkmark-path,.mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background .mdc-checkbox__checkmark-path{stroke-dashoffset:0}.mdc-checkbox__background:before{position:absolute;transform:scale(0);border-radius:50%;opacity:0;pointer-events:none;content:\"\";will-change:opacity,transform;transition:opacity 90ms cubic-bezier(.4,0,.6,1) 0ms,transform 90ms cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox__native-control:focus~.mdc-checkbox__background:before{transform:scale(1);opacity:.12;transition:opacity 80ms cubic-bezier(0,0,.2,1) 0ms,transform 80ms cubic-bezier(0,0,.2,1) 0ms}.mdc-checkbox__native-control{position:absolute;margin:0;padding:0;opacity:0;cursor:inherit}.mdc-checkbox__native-control:disabled{cursor:default;pointer-events:none}.mdc-checkbox--touch{margin:4px}.mdc-checkbox--touch .mdc-checkbox__native-control{top:-4px;right:-4px;left:-4px;width:48px;height:48px}.mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__checkmark{transition:opacity .18s cubic-bezier(0,0,.2,1) 0ms,transform .18s cubic-bezier(0,0,.2,1) 0ms;opacity:1}.mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__mixedmark{transform:scaleX(1) rotate(-45deg)}.mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__checkmark,.mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background .mdc-checkbox__checkmark{transform:rotate(45deg);opacity:0;transition:opacity 90ms cubic-bezier(.4,0,.6,1) 0ms,transform 90ms cubic-bezier(.4,0,.6,1) 0ms}.mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__mixedmark,.mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background .mdc-checkbox__mixedmark{transform:scaleX(1) rotate(0deg);opacity:1}.mdc-checkbox{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-checkbox .mdc-checkbox__ripple:after,.mdc-checkbox .mdc-checkbox__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-checkbox .mdc-checkbox__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-checkbox.mdc-ripple-upgraded--unbounded .mdc-checkbox__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-checkbox.mdc-ripple-upgraded--foreground-activation .mdc-checkbox__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-checkbox.mdc-ripple-upgraded--foreground-deactivation .mdc-checkbox__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-checkbox .mdc-checkbox__ripple:after,.mdc-checkbox .mdc-checkbox__ripple:before{background-color:#000;background-color:var(--mdc-theme-on-surface,#000)}.mdc-checkbox:hover .mdc-checkbox__ripple:before{opacity:.04}.mdc-checkbox.mdc-ripple-upgraded--background-focused .mdc-checkbox__ripple:before,.mdc-checkbox:not(.mdc-ripple-upgraded):focus .mdc-checkbox__ripple:before{transition-duration:75ms;opacity:.12}.mdc-checkbox:not(.mdc-ripple-upgraded) .mdc-checkbox__ripple:after{transition:opacity .15s linear}.mdc-checkbox:not(.mdc-ripple-upgraded):active .mdc-checkbox__ripple:after{transition-duration:75ms;opacity:.12}.mdc-checkbox.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-checkbox .mdc-checkbox__ripple:after,.mdc-checkbox .mdc-checkbox__ripple:before{top:0;left:0;width:100%;height:100%}.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:after,.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-checkbox.mdc-ripple-upgraded .mdc-checkbox__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-checkbox__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-ripple-upgraded--background-focused .mdc-checkbox__background:before{content:none}.mdc-radio{padding:10px;display:inline-block;position:relative;flex:0 0 auto;box-sizing:content-box;width:20px;height:20px;cursor:pointer;will-change:opacity,transform,border-color,color}.mdc-radio .mdc-radio__native-control:enabled:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle{border-color:rgba(0,0,0,.54)}.mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle,.mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786)}.mdc-radio .mdc-radio__native-control:disabled+.mdc-radio__background .mdc-radio__inner-circle,.mdc-radio .mdc-radio__native-control:disabled:checked+.mdc-radio__background .mdc-radio__outer-circle,.mdc-radio .mdc-radio__native-control:disabled:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle,.mdc-radio [aria-disabled=true] .mdc-radio__native-control+.mdc-radio__background .mdc-radio__inner-circle,.mdc-radio [aria-disabled=true] .mdc-radio__native-control:checked+.mdc-radio__background .mdc-radio__outer-circle,.mdc-radio [aria-disabled=true] .mdc-radio__native-control:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle{border-color:rgba(0,0,0,.38)}.mdc-radio .mdc-radio__background:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786);top:-10px;left:-10px;width:40px;height:40px}.mdc-radio .mdc-radio__native-control{top:0;right:0;left:0;width:40px;height:40px}.mdc-radio__background{display:inline-block;position:relative;box-sizing:border-box;width:20px;height:20px}.mdc-radio__background:before{position:absolute;transform:scale(0);border-radius:50%;opacity:0;pointer-events:none;content:\"\";transition:opacity .12s cubic-bezier(.4,0,.6,1) 0ms,transform .12s cubic-bezier(.4,0,.6,1) 0ms}.mdc-radio__outer-circle{border-width:2px;transition:border-color .12s cubic-bezier(.4,0,.6,1) 0ms}.mdc-radio__inner-circle,.mdc-radio__outer-circle{position:absolute;top:0;left:0;box-sizing:border-box;width:100%;height:100%;border-style:solid;border-radius:50%}.mdc-radio__inner-circle{transform:scale(0);border-width:10px;transition:transform .12s cubic-bezier(.4,0,.6,1) 0ms,border-color .12s cubic-bezier(.4,0,.6,1) 0ms}.mdc-radio__native-control{position:absolute;margin:0;padding:0;opacity:0;cursor:inherit;z-index:1}.mdc-radio--touch{margin:4px}.mdc-radio--touch .mdc-radio__native-control{top:-4px;right:-4px;left:-4px;width:48px;height:48px}.mdc-radio__native-control:checked+.mdc-radio__background,.mdc-radio__native-control:disabled+.mdc-radio__background{transition:opacity .12s cubic-bezier(0,0,.2,1) 0ms,transform .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio__native-control:checked+.mdc-radio__background .mdc-radio__outer-circle,.mdc-radio__native-control:disabled+.mdc-radio__background .mdc-radio__outer-circle{transition:border-color .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio__native-control:checked+.mdc-radio__background .mdc-radio__inner-circle,.mdc-radio__native-control:disabled+.mdc-radio__background .mdc-radio__inner-circle{transition:transform .12s cubic-bezier(0,0,.2,1) 0ms,border-color .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio--disabled{cursor:default;pointer-events:none}.mdc-radio__native-control:checked+.mdc-radio__background .mdc-radio__inner-circle{transform:scale(.5);transition:transform .12s cubic-bezier(0,0,.2,1) 0ms,border-color .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio__native-control:disabled+.mdc-radio__background,[aria-disabled=true] .mdc-radio__native-control+.mdc-radio__background{cursor:default}.mdc-radio__native-control:focus+.mdc-radio__background:before{transform:scale(1);opacity:.12;transition:opacity .12s cubic-bezier(0,0,.2,1) 0ms,transform .12s cubic-bezier(0,0,.2,1) 0ms}.mdc-radio{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-radio .mdc-radio__ripple:after,.mdc-radio .mdc-radio__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-radio .mdc-radio__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-radio.mdc-ripple-upgraded--unbounded .mdc-radio__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-radio.mdc-ripple-upgraded--foreground-activation .mdc-radio__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-radio.mdc-ripple-upgraded--foreground-deactivation .mdc-radio__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-radio .mdc-radio__ripple:after,.mdc-radio .mdc-radio__ripple:before{top:0;left:0;width:100%;height:100%}.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:after,.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-radio.mdc-ripple-upgraded .mdc-radio__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-radio .mdc-radio__ripple:after,.mdc-radio .mdc-radio__ripple:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-radio:hover .mdc-radio__ripple:before{opacity:.04}.mdc-radio.mdc-ripple-upgraded--background-focused .mdc-radio__ripple:before,.mdc-radio:not(.mdc-ripple-upgraded):focus .mdc-radio__ripple:before{transition-duration:75ms;opacity:.12}.mdc-radio:not(.mdc-ripple-upgraded) .mdc-radio__ripple:after{transition:opacity .15s linear}.mdc-radio:not(.mdc-ripple-upgraded):active .mdc-radio__ripple:after{transition-duration:75ms;opacity:.12}.mdc-radio.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-radio.mdc-ripple-upgraded--background-focused .mdc-radio__background:before{content:none}.mdc-radio__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.mdc-circular-progress__determinate-circle,.mdc-circular-progress__indeterminate-circle-graphic{stroke:#6200ee;stroke:var(--mdc-theme-primary,#6200ee)}@keyframes mdc-circular-progress-container-rotate{to{transform:rotate(1turn)}}@keyframes mdc-circular-progress-spinner-layer-rotate{12.5%{transform:rotate(135deg)}25%{transform:rotate(270deg)}37.5%{transform:rotate(405deg)}50%{transform:rotate(540deg)}62.5%{transform:rotate(675deg)}75%{transform:rotate(810deg)}87.5%{transform:rotate(945deg)}to{transform:rotate(3turn)}}@keyframes mdc-circular-progress-color-1-fade-in-out{0%{opacity:.99}25%{opacity:.99}26%{opacity:0}89%{opacity:0}90%{opacity:.99}to{opacity:.99}}@keyframes mdc-circular-progress-color-2-fade-in-out{0%{opacity:0}15%{opacity:0}25%{opacity:.99}50%{opacity:.99}51%{opacity:0}to{opacity:0}}@keyframes mdc-circular-progress-color-3-fade-in-out{0%{opacity:0}40%{opacity:0}50%{opacity:.99}75%{opacity:.99}76%{opacity:0}to{opacity:0}}@keyframes mdc-circular-progress-color-4-fade-in-out{0%{opacity:0}65%{opacity:0}75%{opacity:.99}90%{opacity:.99}to{opacity:0}}@keyframes mdc-circular-progress-left-spin{0%{transform:rotate(265deg)}50%{transform:rotate(130deg)}to{transform:rotate(265deg)}}@keyframes mdc-circular-progress-right-spin{0%{transform:rotate(-265deg)}50%{transform:rotate(-130deg)}to{transform:rotate(-265deg)}}.mdc-circular-progress{width:48px;height:48px;display:inline-block;position:relative;direction:ltr;transition:opacity .25s cubic-bezier(.4,0,.6,1) 0ms}.mdc-circular-progress .mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:4px}.mdc-circular-progress .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:3.2px}.mdc-circular-progress--small{width:24px;height:24px}.mdc-circular-progress--small .mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress--small .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:2.5px}.mdc-circular-progress--small .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:2px}.mdc-circular-progress--medium{width:36px;height:36px}.mdc-circular-progress--medium .mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress--medium .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:3px}.mdc-circular-progress--medium .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:2.4px}.mdc-circular-progress--large{width:48px;height:48px}.mdc-circular-progress--large .mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress--large .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:4px}.mdc-circular-progress--large .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:3.2px}.mdc-circular-progress__determinate-container,.mdc-circular-progress__indeterminate-circle-graphic,.mdc-circular-progress__indeterminate-container,.mdc-circular-progress__spinner-layer{position:absolute;width:100%;height:100%}.mdc-circular-progress__determinate-container{transform:rotate(-90deg)}.mdc-circular-progress__indeterminate-container{opacity:0}.mdc-circular-progress__determinate-circle-graphic,.mdc-circular-progress__indeterminate-circle-graphic{fill:transparent}.mdc-circular-progress__determinate-circle{transition:stroke-dashoffset .5s cubic-bezier(0,0,.2,1) 0ms}.mdc-circular-progress__gap-patch{position:absolute;top:0;left:47.5%;box-sizing:border-box;width:5%;height:100%;overflow:hidden}.mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{left:-900%;width:2000%;transform:rotate(180deg)}.mdc-circular-progress__circle-clipper{display:inline-block;position:relative;width:50%;height:100%;overflow:hidden}.mdc-circular-progress__circle-clipper .mdc-circular-progress__indeterminate-circle-graphic{width:200%}.mdc-circular-progress__circle-right .mdc-circular-progress__indeterminate-circle-graphic{left:-100%}.mdc-circular-progress--indeterminate .mdc-circular-progress__determinate-container{opacity:0}.mdc-circular-progress--indeterminate .mdc-circular-progress__indeterminate-container{opacity:1;animation:mdc-circular-progress-container-rotate 1.5682352941176s linear infinite}.mdc-circular-progress--indeterminate .mdc-circular-progress__spinner-layer{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__color-1{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,mdc-circular-progress-color-1-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__color-2{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,mdc-circular-progress-color-2-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__color-3{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,mdc-circular-progress-color-3-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__color-4{animation:mdc-circular-progress-spinner-layer-rotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,mdc-circular-progress-color-4-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__circle-left .mdc-circular-progress__indeterminate-circle-graphic{animation:mdc-circular-progress-left-spin 1333ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--indeterminate .mdc-circular-progress__circle-right .mdc-circular-progress__indeterminate-circle-graphic{animation:mdc-circular-progress-right-spin 1333ms cubic-bezier(.4,0,.2,1) infinite both}.mdc-circular-progress--closed{opacity:0}.mdc-circular-progress{width:var(--mdc-circular-progress-size);height:var(--mdc-circular-progress-size)}.mdc-circular-progress .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:var(--mdc-circular-progress-stroke-width)}.mdc-circular-progress .mdc-circular-progress__gap-patch .mdc-circular-progress__indeterminate-circle-graphic{stroke-width:var(--mdc-circular-progress-gap-patch-stroke-width)}@keyframes mdc-slider-emphasize{0%{animation-timing-function:ease-out}50%{animation-timing-function:ease-in;transform:scale(.85)}to{transform:scale(.571)}}.mdc-slider{position:relative;width:100%;height:48px;cursor:pointer;touch-action:pan-x;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track,.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container:after{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container:after{opacity:.26}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-marker-container{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__thumb{fill:#018786;fill:var(--mdc-theme-secondary,#018786);stroke:#018786;stroke:var(--mdc-theme-secondary,#018786)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__focus-ring,.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__pin{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__pin{color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-slider--disable-touch-action{touch-action:none}.mdc-slider--disabled{cursor:auto}.mdc-slider--disabled .mdc-slider__track{background-color:#9a9a9a}.mdc-slider--disabled .mdc-slider__track-container:after{background-color:#9a9a9a;opacity:.26}.mdc-slider--disabled .mdc-slider__track-marker-container{background-color:#9a9a9a}.mdc-slider--disabled .mdc-slider__thumb{fill:#9a9a9a;stroke:#9a9a9a;stroke:#fff;stroke:var(--mdc-slider-bg-color-behind-component,#fff)}.mdc-slider:focus{outline:none}.mdc-slider__track-container{position:absolute;top:50%;width:100%;height:2px;overflow:hidden}.mdc-slider__track-container:after{position:absolute;top:0;left:0;display:block;width:100%;height:100%;content:\"\"}.mdc-slider__track{position:absolute;width:100%;height:100%;transform-origin:left top;will-change:transform}.mdc-slider[dir=rtl] .mdc-slider__track,[dir=rtl] .mdc-slider .mdc-slider__track{transform-origin:right top}.mdc-slider__track-marker-container{display:flex;margin-right:0;margin-left:-1px;visibility:hidden}.mdc-slider[dir=rtl] .mdc-slider__track-marker-container,[dir=rtl] .mdc-slider .mdc-slider__track-marker-container{margin-right:-1px;margin-left:0}.mdc-slider__track-marker-container:after{display:block;width:2px;height:2px;content:\"\"}.mdc-slider__track-marker{flex:1}.mdc-slider__track-marker:after{display:block;width:2px;height:2px;content:\"\"}.mdc-slider__track-marker:first-child:after{width:3px}.mdc-slider__thumb-container{position:absolute;top:15px;left:0;width:21px;height:100%;user-select:none;will-change:transform}.mdc-slider__thumb{position:absolute;top:0;left:0;transform:scale(.571);stroke-width:3.5;transition:transform .1s ease-out,fill .1s ease-out,stroke .1s ease-out}.mdc-slider__focus-ring{width:21px;height:21px;border-radius:50%;opacity:0;transition:transform .26667s ease-out,opacity .26667s ease-out,background-color .26667s ease-out}.mdc-slider__pin{display:flex;position:absolute;top:0;left:0;align-items:center;justify-content:center;width:26px;height:26px;margin-top:-2px;margin-left:-2px;transform:rotate(-45deg) scale(0) translate(0);border-radius:50% 50% 50% 0;z-index:1;transition:transform .1s ease-out}.mdc-slider__pin-value-marker{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-body2-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-body2-font-size,.875rem);line-height:1.25rem;line-height:var(--mdc-typography-body2-line-height,1.25rem);font-weight:400;font-weight:var(--mdc-typography-body2-font-weight,400);letter-spacing:.0178571429em;letter-spacing:var(--mdc-typography-body2-letter-spacing,.0178571429em);text-decoration:inherit;text-decoration:var(--mdc-typography-body2-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-body2-text-transform,inherit);transform:rotate(45deg)}.mdc-slider--active .mdc-slider__thumb{transform:scaleX(1)}.mdc-slider--focus .mdc-slider__thumb{animation:mdc-slider-emphasize .26667s linear}.mdc-slider--focus .mdc-slider__focus-ring{transform:scale3d(1.55,1.55,1.55);opacity:.25}.mdc-slider--in-transit .mdc-slider__thumb{transition-delay:.14s}.mdc-slider--in-transit .mdc-slider__thumb-container,.mdc-slider--in-transit .mdc-slider__track,.mdc-slider:focus:not(.mdc-slider--active) .mdc-slider__thumb-container,.mdc-slider:focus:not(.mdc-slider--active) .mdc-slider__track{transition:transform 80ms ease}.mdc-slider--discrete.mdc-slider--active .mdc-slider__thumb{transform:scale(.57143)}.mdc-slider--discrete.mdc-slider--active .mdc-slider__pin{transform:rotate(-45deg) scale(1) translate(19px,-20px)}.mdc-slider--discrete.mdc-slider--focus .mdc-slider__thumb{animation:none}.mdc-slider--discrete.mdc-slider--display-markers .mdc-slider__track-marker-container{visibility:visible}.mdc-switch__thumb-underlay{left:-18px;right:auto;top:-17px;width:48px;height:48px}.mdc-switch__thumb-underlay[dir=rtl],[dir=rtl] .mdc-switch__thumb-underlay{left:auto;right:-18px}.mdc-switch__native-control{width:68px;height:48px}.mdc-switch{display:inline-block;position:relative;outline:none;user-select:none}.mdc-switch.mdc-switch--checked .mdc-switch__thumb,.mdc-switch.mdc-switch--checked .mdc-switch__track{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-switch.mdc-switch--checked .mdc-switch__thumb{border-color:#018786;border-color:var(--mdc-theme-secondary,#018786)}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__track{background-color:#000;background-color:var(--mdc-theme-on-surface,#000)}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb{background-color:#fff;background-color:var(--mdc-theme-surface,#fff);border-color:#fff;border-color:var(--mdc-theme-surface,#fff)}.mdc-switch__native-control{left:0;right:auto;position:absolute;top:0;margin:0;opacity:0;cursor:pointer;pointer-events:auto;transition:transform 90ms cubic-bezier(.4,0,.2,1)}.mdc-switch__native-control[dir=rtl],[dir=rtl] .mdc-switch__native-control{left:auto;right:0}.mdc-switch__track{box-sizing:border-box;width:32px;height:14px;border:1px solid transparent;border-radius:7px;opacity:.38;transition:opacity 90ms cubic-bezier(.4,0,.2,1),background-color 90ms cubic-bezier(.4,0,.2,1),border-color 90ms cubic-bezier(.4,0,.2,1)}.mdc-switch__thumb-underlay{display:flex;position:absolute;align-items:center;justify-content:center;transform:translateX(0);transition:transform 90ms cubic-bezier(.4,0,.2,1),background-color 90ms cubic-bezier(.4,0,.2,1),border-color 90ms cubic-bezier(.4,0,.2,1)}.mdc-switch__thumb{box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);box-sizing:border-box;width:20px;height:20px;border:10px solid;border-radius:50%;pointer-events:none;z-index:1}.mdc-switch--checked .mdc-switch__track{opacity:.54}.mdc-switch--checked .mdc-switch__thumb-underlay{transform:translateX(20px)}.mdc-switch--checked .mdc-switch__native-control,.mdc-switch--checked .mdc-switch__thumb-underlay[dir=rtl],[dir=rtl] .mdc-switch--checked .mdc-switch__thumb-underlay{transform:translateX(-20px)}.mdc-switch--checked .mdc-switch__native-control[dir=rtl],[dir=rtl] .mdc-switch--checked .mdc-switch__native-control{transform:translateX(20px)}.mdc-switch--disabled{opacity:.38;pointer-events:none}.mdc-switch--disabled .mdc-switch__thumb{border-width:1px}.mdc-switch--disabled .mdc-switch__native-control{cursor:default;pointer-events:none}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:after,.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:before{background-color:#9e9e9e}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:hover:before{opacity:.08}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay.mdc-ripple-upgraded--background-focused:before,.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-switch__thumb-underlay{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-switch__thumb-underlay:after,.mdc-switch__thumb-underlay:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-switch__thumb-underlay:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-switch__thumb-underlay.mdc-ripple-upgraded:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-switch__thumb-underlay.mdc-ripple-upgraded:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-switch__thumb-underlay.mdc-ripple-upgraded--unbounded:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-switch__thumb-underlay.mdc-ripple-upgraded--foreground-activation:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-switch__thumb-underlay.mdc-ripple-upgraded--foreground-deactivation:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-switch__thumb-underlay:after,.mdc-switch__thumb-underlay:before{top:0;left:0;width:100%;height:100%}.mdc-switch__thumb-underlay.mdc-ripple-upgraded:after,.mdc-switch__thumb-underlay.mdc-ripple-upgraded:before{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0);width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-switch__thumb-underlay.mdc-ripple-upgraded:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-switch__thumb-underlay:after,.mdc-switch__thumb-underlay:before{background-color:#018786;background-color:var(--mdc-theme-secondary,#018786)}.mdc-switch__thumb-underlay:hover:before{opacity:.04}.mdc-switch__thumb-underlay.mdc-ripple-upgraded--background-focused:before,.mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.mdc-switch__thumb-underlay:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.mdc-switch__thumb-underlay.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-fab{box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);display:inline-flex;position:relative;align-items:center;justify-content:center;box-sizing:border-box;width:56px;height:56px;padding:0;border:none;fill:currentColor;text-decoration:none;cursor:pointer;user-select:none;-moz-appearance:none;-webkit-appearance:none;overflow:visible;transition:box-shadow .28s cubic-bezier(.4,0,.2,1),opacity 15ms linear 30ms,transform .27s cubic-bezier(0,0,.2,1) 0ms;background-color:#018786;background-color:var(--mdc-theme-secondary,#018786);color:#fff;color:var(--mdc-theme-on-secondary,#fff)}.mdc-fab .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-fab:not(.mdc-fab--extended),.mdc-fab:not(.mdc-fab--extended) .mdc-fab__ripple{border-radius:50%}.mdc-fab::-moz-focus-inner{padding:0;border:0}.mdc-fab:focus,.mdc-fab:hover{box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}.mdc-fab:active{box-shadow:0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12)}.mdc-fab:active,.mdc-fab:focus{outline:none}.mdc-fab:hover{cursor:pointer}.mdc-fab>svg{width:100%}.mdc-fab .mdc-fab__icon{width:24px;height:24px;font-size:24px}.mdc-fab--mini{width:40px;height:40px}.mdc-fab--extended{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-button-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:.875rem;font-size:var(--mdc-typography-button-font-size,.875rem);line-height:2.25rem;line-height:var(--mdc-typography-button-line-height,2.25rem);font-weight:500;font-weight:var(--mdc-typography-button-font-weight,500);letter-spacing:.0892857143em;letter-spacing:var(--mdc-typography-button-letter-spacing,.0892857143em);text-decoration:none;text-decoration:var(--mdc-typography-button-text-decoration,none);text-transform:uppercase;text-transform:var(--mdc-typography-button-text-transform,uppercase);border-radius:24px;padding:0 20px;width:auto;max-width:100%;height:48px;line-height:normal}.mdc-fab--extended .mdc-fab__ripple{border-radius:24px}.mdc-fab--extended .mdc-fab__icon{margin-left:-8px;margin-right:12px}.mdc-fab--extended .mdc-fab__icon[dir=rtl],.mdc-fab--extended .mdc-fab__label+.mdc-fab__icon,[dir=rtl] .mdc-fab--extended .mdc-fab__icon{margin-left:12px;margin-right:-8px}.mdc-fab--extended .mdc-fab__label+.mdc-fab__icon[dir=rtl],[dir=rtl] .mdc-fab--extended .mdc-fab__label+.mdc-fab__icon{margin-left:-8px;margin-right:12px}.mdc-fab--touch{margin:4px}.mdc-fab--touch .mdc-fab__touch{position:absolute;top:50%;right:0;height:48px;left:50%;width:48px;transform:translate(-50%,-50%)}.mdc-fab:before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid transparent;border-radius:inherit;content:\"\"}.mdc-fab__label{justify-content:flex-start;text-overflow:ellipsis;white-space:nowrap;overflow-x:hidden;overflow-y:visible}.mdc-fab__icon{transition:transform .18s cubic-bezier(0,0,.2,1) 90ms;fill:currentColor;will-change:transform}.mdc-fab .mdc-fab__icon{display:inline-flex;align-items:center;justify-content:center}.mdc-fab--exited{transform:scale(0);opacity:0;transition:opacity 15ms linear .15s,transform .18s cubic-bezier(.4,0,1,1) 0ms}.mdc-fab--exited .mdc-fab__icon{transform:scale(0);transition:transform 135ms cubic-bezier(.4,0,1,1) 0ms}.mdc-fab{--mdc-ripple-fg-size:0;--mdc-ripple-left:0;--mdc-ripple-top:0;--mdc-ripple-fg-scale:1;--mdc-ripple-fg-translate-end:0;--mdc-ripple-fg-translate-start:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-fab .mdc-fab__ripple:after,.mdc-fab .mdc-fab__ripple:before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:\"\"}.mdc-fab .mdc-fab__ripple:before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}.mdc-fab.mdc-ripple-upgraded .mdc-fab__ripple:before{transform:scale(var(--mdc-ripple-fg-scale,1))}.mdc-fab.mdc-ripple-upgraded .mdc-fab__ripple:after{top:0;left:0;transform:scale(0);transform-origin:center center}.mdc-fab.mdc-ripple-upgraded--unbounded .mdc-fab__ripple:after{top:var(--mdc-ripple-top,0);left:var(--mdc-ripple-left,0)}.mdc-fab.mdc-ripple-upgraded--foreground-activation .mdc-fab__ripple:after{animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}.mdc-fab.mdc-ripple-upgraded--foreground-deactivation .mdc-fab__ripple:after{animation:mdc-ripple-fg-opacity-out .15s;transform:translate(var(--mdc-ripple-fg-translate-end,0)) scale(var(--mdc-ripple-fg-scale,1))}.mdc-fab .mdc-fab__ripple:after,.mdc-fab .mdc-fab__ripple:before{top:-50%;left:-50%;width:200%;height:200%}.mdc-fab.mdc-ripple-upgraded .mdc-fab__ripple:after{width:var(--mdc-ripple-fg-size,100%);height:var(--mdc-ripple-fg-size,100%)}.mdc-fab .mdc-fab__ripple:after,.mdc-fab .mdc-fab__ripple:before{background-color:#fff;background-color:var(--mdc-theme-on-secondary,#fff)}.mdc-fab:hover .mdc-fab__ripple:before{opacity:.08}.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.24}.mdc-fab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.24}.mdc-fab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-fab .mdc-fab__ripple{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden}.big-round-shape-button,.big-round-shape-button .mdc-button__ripple{border-radius:8px}.demo-thick-outline-button{padding:0 12px;border-width:4px}.demo-thick-outline-button .mdc-button__ripple{top:-4px;left:-4px;border:4px solid transparent}.demo-thick-outline-button .mdc-button__touch{left:-4px;width:calc(100% + 8px)}.demo-button-ink-color:not(:disabled){background-color:#9c27b0}.demo-button-ink-color:not(:disabled) .mdc-button__icon{color:#fff}.demo-button-ink-color:not(:disabled){color:orange}.demo-button-ink-color:after,.demo-button-ink-color:before{background-color:orange}.demo-button-ink-color:hover:before{opacity:.08}.demo-button-ink-color.mdc-ripple-upgraded--background-focused:before,.demo-button-ink-color:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.24}.demo-button-ink-color:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-button-ink-color:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.24}.demo-button-ink-color.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-button-icon-color:not(:disabled) .mdc-button__icon{color:orange}.demo-button-primary:not(:disabled){background-color:#6200ee;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-primary .mdc-button__ripple:after,.demo-button-primary .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-primary:hover .mdc-button__ripple:before{opacity:.08}.demo-button-primary.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.demo-button-primary:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.demo-button-primary:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.demo-button-primary:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.demo-button-primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-button-secondary:not(:disabled){background-color:#018786;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-secondary .mdc-button__ripple:after,.demo-button-secondary .mdc-button__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.demo-button-secondary:hover .mdc-button__ripple:before{opacity:.08}.demo-button-secondary.mdc-ripple-upgraded--background-focused .mdc-button__ripple:before,.demo-button-secondary:not(.mdc-ripple-upgraded):focus .mdc-button__ripple:before{transition-duration:75ms;opacity:.24}.demo-button-secondary:not(.mdc-ripple-upgraded) .mdc-button__ripple:after{transition:opacity .15s linear}.demo-button-secondary:not(.mdc-ripple-upgraded):active .mdc-button__ripple:after{transition-duration:75ms;opacity:.24}.demo-button-secondary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-density-button{height:24px;margin-top:0;margin-bottom:0}.demo-density-button .mdc-button__touch{display:none}.demo-card{width:350px;margin:28px}.demo-card__primary{padding:1rem}.demo-card__title{margin:0}.demo-card__subtitle{margin:0}.demo-card__secondary,.demo-card__subtitle{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))}.demo-card__secondary{padding:0 1rem 8px}.demo-card-article{padding:16px;text-decoration:none;color:inherit}.demo-card-article-group-heading{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-light,rgba(0,0,0,.54));padding:8px 16px}.demo-card-article__title{margin:0 0 4px}.demo-card-article__snippet{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-light,rgba(0,0,0,.54));margin:0}.demo-card--photo{width:200px}.demo-card__media{background-image:url(https://material-components-web.appspot.com/images/1-1.jpg)}.demo-card__media--16-9{background-image:url(https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg)}.demo-card__media-content--with-title{display:flex;flex-direction:column;justify-content:flex-end}.demo-card__media-title{padding:8px 16px;background-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.5));color:#fff}.demo-card--music{border-top-left-radius:24px;border-top-right-radius:4px;border-bottom-right-radius:24px;border-bottom-left-radius:4px}.demo-card--music[dir=rtl],[dir=rtl] .demo-card--music{border-top-left-radius:4px;border-top-right-radius:24px;border-bottom-right-radius:4px;border-bottom-left-radius:24px}.demo-card__music-row{display:flex;border-top-left-radius:inherit}.demo-card__music-row[dir=rtl],[dir=rtl] .demo-card__music-row{border-top-left-radius:0;border-top-right-radius:inherit}.demo-card__media--music{width:110px;border-top-left-radius:inherit}.demo-card__media--music[dir=rtl],[dir=rtl] .demo-card__media--music{border-top-left-radius:0;border-top-right-radius:inherit}.demo-card__music-info{display:flex;flex-direction:column;padding:8px 16px}.demo-card__action-buttons--text-only{margin-left:8px}.demo-icon-button-custom{color:#de442c}.demo-icon-button-custom:hover:before{opacity:.04}.demo-icon-button-custom.mdc-ripple-upgraded--background-focused:before,.demo-icon-button-custom:not(.mdc-ripple-upgraded):active:after,.demo-icon-button-custom:not(.mdc-ripple-upgraded):focus:before{opacity:.12}.demo-icon-button-custom.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.demo-icon-button-custom:after,.demo-icon-button-custom:before{background-color:#de442c}.demo-icon-button-custom:hover:before{opacity:.09}.demo-icon-button-custom.mdc-ripple-upgraded--background-focused:before,.demo-icon-button-custom:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.26}.demo-icon-button-custom:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-icon-button-custom:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.35}.demo-icon-button-custom.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.35}.demo-icon-button-primary{color:#6200ee}.demo-icon-button-primary:after,.demo-icon-button-primary:before{background-color:#6200ee}.demo-icon-button-primary:hover:before{opacity:.04}.demo-icon-button-primary.mdc-ripple-upgraded--background-focused:before,.demo-icon-button-primary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.demo-icon-button-primary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-icon-button-primary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.demo-icon-button-primary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.demo-icon-button-secondary{color:#018786}.demo-icon-button-secondary:after,.demo-icon-button-secondary:before{background-color:#018786}.demo-icon-button-secondary:hover:before{opacity:.04}.demo-icon-button-secondary.mdc-ripple-upgraded--background-focused:before,.demo-icon-button-secondary:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.demo-icon-button-secondary:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-icon-button-secondary:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.demo-icon-button-secondary.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.demo-density-icon-button-1{width:44px;height:44px;padding:10px}.demo-density-icon-button-2{width:40px;height:40px;padding:8px}.demo-density-icon-button-3{width:36px;height:36px;padding:6px}.demo-layout__row{display:flex;flex-flow:row wrap;margin-top:.8rem}.demo-layout__row--no-wrap{display:flex;flex-direction:row}.demo-layout__column{display:flex;flex-direction:column}.demo-layout--start{align-self:flex-start}.demo-layout--end{flex-grow:1;align-self:flex-end}.demo-layout--center{display:flex;align-content:flex-end;align-items:center;justify-content:center}.demo-panel{display:flex;position:relative;height:100vh;overflow:hidden}.demo-panel-content,.demo-panel-section{width:100%;max-width:100%}.demo-panel-content{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;overflow:auto}@media (max-width:900px){.demo-panel-content{width:unset;padding:12px}}.demo-panel-transition{width:100%;max-width:1200px;padding-bottom:60px}.demo-panel-title{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline4-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:2.125rem;font-size:var(--mdc-typography-headline4-font-size,2.125rem);line-height:2.5rem;line-height:var(--mdc-typography-headline4-line-height,2.5rem);font-weight:400;font-weight:var(--mdc-typography-headline4-font-weight,400);letter-spacing:.0073529412em;letter-spacing:var(--mdc-typography-headline4-letter-spacing,.0073529412em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline4-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline4-text-transform,inherit);margin:16px 16px 16px 0;line-height:1.25}.demo-panel-heading,.demo-panel-title{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;padding-bottom:.3em;border-bottom:1px solid #eaecef;font-weight:500}.demo-panel-heading{font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin:24px 16px 16px 0;line-height:1.25}.demo-container{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;min-width:200px;padding:10px}.hljs{border-radius:.45rem;padding:9px;display:inline-block}.demo-content{border-radius:12px;border:1px solid rgba(0,0,0,.15);margin:1.5rem 1rem;padding:1rem}.demo-content__headline{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,sans-serif;font-family:var(--mdc-typography-headline6-font-family,var(--mdc-typography-font-family,Roboto,sans-serif));font-size:1.25rem;font-size:var(--mdc-typography-headline6-font-size,1.25rem);line-height:2rem;line-height:var(--mdc-typography-headline6-line-height,2rem);font-weight:500;font-weight:var(--mdc-typography-headline6-font-weight,500);letter-spacing:.0125em;letter-spacing:var(--mdc-typography-headline6-letter-spacing,.0125em);text-decoration:inherit;text-decoration:var(--mdc-typography-headline6-text-decoration,inherit);text-transform:inherit;text-transform:var(--mdc-typography-headline6-text-transform,inherit);margin-top:.1em;margin-bottom:.3em}.demo-content--block{display:inline-block;margin-right:5px}.demo-top-app-bar{background-color:#363640;z-index:7}.demo-drawer{position:fixed}.demo-drawer .mdc-list-item{cursor:pointer}.demo-list--custom{color:#1e88e5}.demo-list--custom .mdc-list-item__graphic{color:#fff;background-color:rgba(0,0,0,.38);background-color:var(--mdc-theme-text-icon-on-background,rgba(0,0,0,.38))}.demo-list--custom .mdc-list-divider{border-bottom-color:#fce4ec}.demo-list--custom .mdc-list-item__secondary-text{color:#8e24aa}.demo-list--custom .mdc-list-item__graphic{background-color:#ec407a;color:#fce4ec}.demo-list--custom .mdc-list-item__meta{color:#ff9800}.demo-list--shaped .mdc-list-item{border-top-left-radius:0;border-top-right-radius:50px;border-bottom-right-radius:50px;border-bottom-left-radius:0}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):hover .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:#00f}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{border-color:#00f}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text{color:rgba(0,0,255,.38)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__icon--leading{color:rgba(0,0,255,.6)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-text-field-custom-colors:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-text-field__icon--leading{color:#00f}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(0,0,255,.38)}.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:#00f}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__input{color:orange}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.5)}.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:rgba(255,165,0,.38)}.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.87)}.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,.demo-textarea.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{border-color:orange}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(0,0,255,.38)}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-text-field__input{color:#000}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.5)}.demo-fullwidth-input:not(.mdc-text-field--invalid):not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:#00f}.demo-fullwidth-input:not(.mdc-text-field--invalid).mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(0,0,255,.87)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:rgba(255,165,0,.38)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__input{color:orange}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.5)}.demo-fullwidth-input.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple:after{border-bottom-color:orange}.demo-fullwidth-input.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:rgba(255,165,0,.87)}.demo-fullwidth-input.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-line-ripple:before{border-bottom-color:orange}.demo-shaped-text-field{border-top-left-radius:28px;border-top-right-radius:28px;border-bottom-right-radius:0;border-bottom-left-radius:0}.demo-shaped-text-field--outline{padding-left:32px;padding-right:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:28px;width:28px}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__leading{border-top-left-radius:0;border-top-right-radius:28px;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__notch{max-width:calc(100% - 56px)}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:0;border-top-right-radius:28px;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline .mdc-notched-outline .mdc-notched-outline__trailing{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:28px}.demo-shaped-text-field--outline[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline{padding-left:0;padding-right:32px}.demo-shaped-text-field--outline+.mdc-text-field-helper-line{padding-left:32px;padding-right:28px}.demo-shaped-text-field--outline+.mdc-text-field-helper-line[dir=rtl],[dir=rtl] .demo-shaped-text-field--outline+.mdc-text-field-helper-line{padding-left:28px;padding-right:32px}.demo-density-text-field{height:52px}.demo-density-outlined-text-field{height:44px}.demo-density-outlined-text-field .mdc-floating-label--float-above{transform:translateY(-31.25px) scale(1);font-size:.75rem}.demo-density-outlined-text-field.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) scale(.75);font-size:1rem}.demo-density-outlined-text-field .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above-text-field-outlined-44px .25s 1}@keyframes mdc-floating-label-shake-float-above-text-field-outlined-44px{0%{transform:translateX(0) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(4%) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(-4%) translateY(-28.75px) scale(.75)}to{transform:translateX(0) translateY(-28.75px) scale(.75)}}.demo-density-outlined-text-field-with-leading-icon{height:44px}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-31.25px) translateX(-32px) scale(1)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{transform:translateY(-31.25px) translateX(32px) scale(1)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--float-above{font-size:.75rem}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) translateX(-32px) scale(.75)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above[dir=rtl],[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{transform:translateY(-28.75px) translateX(32px) scale(.75)}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above,.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{font-size:1rem}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above- .25s 1}@keyframes mdc-floating-label-shake-float-above-{0%{transform:translateX(-32px) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - 32px)) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - 32px)) translateY(-28.75px) scale(.75)}to{transform:translateX(-32px) translateY(-28.75px) scale(.75)}}.demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined[dir=rtl] .mdc-floating-label--shake,[dir=rtl] .demo-density-outlined-text-field-with-leading-icon.mdc-text-field--outlined .mdc-floating-label--shake{animation:mdc-floating-label-shake-float-above- .25s 1}@keyframes mdc-floating-label-shake-float-above--rtl{0%{transform:translateX(32px) translateY(-28.75px) scale(.75)}33%{animation-timing-function:cubic-bezier(.5,0,.701732,.495819);transform:translateX(calc(4% - -32px)) translateY(-28.75px) scale(.75)}66%{animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);transform:translateX(calc(-4% - -32px)) translateY(-28.75px) scale(.75)}to{transform:translateX(32px) translateY(-28.75px) scale(.75)}}.au-select,.au-text-field{display:inline-block;height:87px}.demo-layout__row .au-form-field-select+mdc-form-field,.demo-layout__row .au-form-field-text-field+mdc-form-field{padding-left:14px}.mdc-form-field{align-self:flex-start}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__track{background-color:#d32f2f}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__track-container:after{background-color:#fdd835;opacity:1}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__track-marker-container{background-color:#00f}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__thumb{fill:#ff9800;stroke:#ff9800}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__focus-ring{background-color:#f57f17}.demo-slider-custom:not(.mdc-slider--disabled) .mdc-slider__pin{background-color:#e91e63;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.red800Fab{background-color:#c62828;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.red800Fab .mdc-fab__ripple:after,.mdc-fab.red800Fab .mdc-fab__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.red800Fab:hover .mdc-fab__ripple:before{opacity:.08}.mdc-fab.red800Fab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab.red800Fab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.24}.mdc-fab.red800Fab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab.red800Fab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.24}.mdc-fab.red800Fab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-fab.yellow800Fab{background-color:#f9a825;color:rgba(0,0,0,.87);color:var(--mdc-theme-text-primary-on-light,rgba(0,0,0,.87))}.mdc-fab.yellow800Fab .mdc-fab__ripple:after,.mdc-fab.yellow800Fab .mdc-fab__ripple:before{background-color:rgba(0,0,0,.87);background-color:var(--mdc-theme-text-primary-on-light,rgba(0,0,0,.87))}.mdc-fab.yellow800Fab:hover .mdc-fab__ripple:before{opacity:.04}.mdc-fab.yellow800Fab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab.yellow800Fab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.12}.mdc-fab.yellow800Fab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab.yellow800Fab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.12}.mdc-fab.yellow800Fab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}.mdc-fab.purple500Fab{background-color:#9c27b0;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.purple500Fab .mdc-fab__ripple:after,.mdc-fab.purple500Fab .mdc-fab__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.purple500Fab:hover .mdc-fab__ripple:before{opacity:.08}.mdc-fab.purple500Fab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab.purple500Fab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.24}.mdc-fab.purple500Fab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab.purple500Fab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.24}.mdc-fab.purple500Fab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.mdc-fab.blackFab{background-color:#000;color:#fff;color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.blackFab .mdc-fab__ripple:after,.mdc-fab.blackFab .mdc-fab__ripple:before{background-color:#fff;background-color:var(--mdc-theme-text-primary-on-dark,#fff)}.mdc-fab.blackFab:hover .mdc-fab__ripple:before{opacity:.08}.mdc-fab.blackFab.mdc-ripple-upgraded--background-focused .mdc-fab__ripple:before,.mdc-fab.blackFab:not(.mdc-ripple-upgraded):focus .mdc-fab__ripple:before{transition-duration:75ms;opacity:.24}.mdc-fab.blackFab:not(.mdc-ripple-upgraded) .mdc-fab__ripple:after{transition:opacity .15s linear}.mdc-fab.blackFab:not(.mdc-ripple-upgraded):active .mdc-fab__ripple:after{transition-duration:75ms;opacity:.24}.mdc-fab.blackFab.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.24}.demo-fab-shaped--one:not(.mdc-fab--extended),.demo-fab-shaped--one:not(.mdc-fab--extended) .mdc-fab__ripple{border-top-left-radius:28px;border-top-right-radius:0;border-bottom-right-radius:28px;border-bottom-left-radius:0}.demo-fab-shaped--two:not(.mdc-fab--extended),.demo-fab-shaped--two:not(.mdc-fab--extended) .mdc-fab__ripple{border-radius:8px}.demo-fab-shape-radius:not(.mdc-fab--extended),.demo-fab-shape-radius:not(.mdc-fab--extended) .mdc-fab__ripple{border-top-left-radius:50%;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:0}.demo-fab-extended-shape-radius,.demo-fab-extended-shape-radius .mdc-fab__ripple{border-radius:12px}.demo-fab-icon-size .mdc-fab__icon{width:36px;height:36px;font-size:36px}.demo-fab-position-zindex{z-index:7}body{margin:0;font-family:var(--mdc-typography-font-family,Roboto,sans-serif)}", ""]);
 // Exports
 module.exports = exports;
 
@@ -73729,19 +72904,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
+    class Examples {
+        constructor() {
             this.options = [{ id: 1, name: 'Cats' }, { id: 2, name: 'Dogs' }];
             this.value = this.options[1];
         }
-        Examples.prototype.addOption = function () {
+        addOption() {
             this.options.push({ id: 3, name: 'Fish' });
-        };
-        Examples.prototype.removeOption = function () {
+        }
+        removeOption() {
             this.options.pop();
-        };
-        return Examples;
-    }());
+        }
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73774,17 +72948,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Select = void 0;
-    var Select = /** @class */ (function (_super) {
-        tslib_1.__extends(Select, _super);
-        function Select() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Select = tslib_1.__decorate([
-            aurelia_framework_1.autoinject,
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Select);
-        return Select;
-    }(component_viewer_1.ComponentViewer));
+    let Select = class Select extends component_viewer_1.ComponentViewer {
+    };
+    Select = tslib_1.__decorate([
+        aurelia_framework_1.autoinject,
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Select);
     exports.Select = Select;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73803,8 +72972,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
+    class Examples {
+        constructor() {
             this.continuousMin = 0;
             this.continuousMax = 100;
             this.continuousValue = 50;
@@ -73820,8 +72989,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.dmDisabled = false;
             this.rangedValue = 500;
         }
-        return Examples;
-    }());
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73854,16 +73022,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Slider = void 0;
-    var Slider = /** @class */ (function (_super) {
-        tslib_1.__extends(Slider, _super);
-        function Slider() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Slider = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Slider);
-        return Slider;
-    }(component_viewer_1.ComponentViewer));
+    let Slider = class Slider extends component_viewer_1.ComponentViewer {
+    };
+    Slider = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Slider);
     exports.Slider = Slider;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73882,12 +73045,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
+    class Examples {
+        constructor() {
             this.checked = true;
         }
-        return Examples;
-    }());
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73920,16 +73082,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Switch = void 0;
-    var Switch = /** @class */ (function (_super) {
-        tslib_1.__extends(Switch, _super);
-        function Switch() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Switch = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Switch);
-        return Switch;
-    }(component_viewer_1.ComponentViewer));
+    let Switch = class Switch extends component_viewer_1.ComponentViewer {
+    };
+    Switch = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Switch);
     exports.Switch = Switch;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73948,11 +73105,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73985,16 +73139,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Tabs = void 0;
-    var Tabs = /** @class */ (function (_super) {
-        tslib_1.__extends(Tabs, _super);
-        function Tabs() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Tabs = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Tabs);
-        return Tabs;
-    }(component_viewer_1.ComponentViewer));
+    let Tabs = class Tabs extends component_viewer_1.ComponentViewer {
+    };
+    Tabs = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Tabs);
     exports.Tabs = Tabs;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -74009,43 +73158,35 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-validation */ "aurelia-validation"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @aurelia-mdc-web/validation */ "../validation/src/index.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_validation_1, aurelia_framework_1, validation_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-validation */ "aurelia-validation"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_validation_1, aurelia_framework_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples(validationControllerFactory) {
+    let Examples = class Examples {
+        constructor(validationControllerFactory) {
             this.value = 0;
             this.valueStr = 'test';
             this.validationController = validationControllerFactory.createForCurrentScope();
-            this.validationController.addRenderer(new validation_1.MdcValidationRenderer());
             this.rules = aurelia_validation_1.ValidationRules
-                .ensure(function (x) { return x.valueStr; }).required()
+                .ensure(x => x.valueStr).required()
+                .satisfies(x => !x.startsWith('erro')).withMessage('cannot start with "erro"')
+                .satisfies(x => !x.startsWith('error')).withMessage('cannot start with "error"')
                 .rules;
         }
-        Examples.prototype.attached = function () {
+        attached() {
             this.validationController.addObject(this, this.rules);
-        };
-        Examples.prototype.validate = function () {
-            return tslib_1.__awaiter(this, void 0, void 0, function () {
-                var res;
-                return tslib_1.__generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.validationController.validate()];
-                        case 1:
-                            res = _a.sent();
-                            console.log(res);
-                            return [2 /*return*/];
-                    }
-                });
+        }
+        validate() {
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                const res = yield this.validationController.validate();
+                console.log(res);
             });
-        };
-        Examples = tslib_1.__decorate([
-            aurelia_framework_1.autoinject,
-            tslib_1.__metadata("design:paramtypes", [aurelia_validation_1.ValidationControllerFactory])
-        ], Examples);
-        return Examples;
-    }());
+        }
+    };
+    Examples = tslib_1.__decorate([
+        aurelia_framework_1.autoinject,
+        tslib_1.__metadata("design:paramtypes", [aurelia_validation_1.ValidationControllerFactory])
+    ], Examples);
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -74061,7 +73202,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Character Counter</h3>\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <div class=\"au-text-field\">\n          <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\" type=\"number\" required>\n            <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n            <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n          </mdc-text-field>\n          <mdc-text-field-helper-line>\n            <!-- <mdc-text-field-helper-text>Helper text</mdc-text-field-helper-text> -->\n            <mdc-text-field-helper-text validation>\n              <span class=\"help-block\">Validation text 1</span>\n              <span class=\"help-block\">Validation text 2</span>\n              <span class=\"help-block\">Validation text 3</span>\n            </mdc-text-field-helper-text>\n            <!-- <mdc-text-field-character-counter></mdc-text-field-character-counter> -->\n          </mdc-text-field-helper-line>\n        </div>\n      </div>\n\n      <div class=\"demo-container\">\n        <div class=\"au-text-field\">\n          <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\" required type=\"number\">\n            <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n            <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n          </mdc-text-field>\n          <mdc-text-field-helper-line>\n            <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n            <mdc-text-field-character-counter></mdc-text-field-character-counter>\n          </mdc-text-field-helper-line>\n        </div>\n        <div>${value}</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Aurelia validation</h3>\n    <div class=\"demo-container1\">\n      <div class=\"au-text-field\">\n        <mdc-text-field label=\"Label\" value.bind=\"valueStr & validate\" type=\"text\"></mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n        </mdc-text-field-helper-line>\n      </div>\n      <button mdc-button click.delegate=\"validate()\">Validate</button>\n    </div>\n  </div>\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Character Counter</h3>\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <div class=\"au-text-field\">\n          <mdc-text-field label=\"Label\" maxlength=\"100\" value.bind=\"value\" type=\"number\" required>\n            <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n            <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n          </mdc-text-field>\n          <mdc-text-field-helper-line>\n            <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n            <mdc-text-field-helper-text validation>Required</mdc-text-field-helper-text>\n            <mdc-text-field-character-counter></mdc-text-field-character-counter>\n          </mdc-text-field-helper-line>\n        </div>\n      </div>\n\n      <div class=\"demo-container\">\n        <div class=\"au-text-field\">\n          <mdc-text-field label=\"Label\" outlined value.bind=\"value\" maxlength=\"100\" required type=\"number\">\n            <i class=\"material-icons\" mdc-text-field-icon leading>event</i>\n            <i class=\"material-icons\" mdc-text-field-icon trailing>science</i>\n          </mdc-text-field>\n          <mdc-text-field-helper-line>\n            <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n            <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>\n            <mdc-text-field-character-counter></mdc-text-field-character-counter>\n          </mdc-text-field-helper-line>\n        </div>\n        <div>${value}</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Aurelia validation</h3>\n    <div class=\"demo-container1\">\n      <div class=\"au-text-field\">\n        <mdc-text-field label=\"Type 'error'\" value.bind=\"valueStr & validate\" type=\"text\"></mdc-text-field>\n        <mdc-text-field-helper-line>\n          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>\n        </mdc-text-field-helper-line>\n      </div>\n      <button mdc-button click.delegate=\"validate()\">Validate</button>\n    </div>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -74078,16 +73219,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.TextField = void 0;
-    var TextField = /** @class */ (function (_super) {
-        tslib_1.__extends(TextField, _super);
-        function TextField() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        TextField = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], TextField);
-        return TextField;
-    }(component_viewer_1.ComponentViewer));
+    let TextField = class TextField extends component_viewer_1.ComponentViewer {
+    };
+    TextField = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], TextField);
     exports.TextField = TextField;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -74106,11 +73242,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -74143,16 +73276,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.TopAppBar = void 0;
-    var TopAppBar = /** @class */ (function (_super) {
-        tslib_1.__extends(TopAppBar, _super);
-        function TopAppBar() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        TopAppBar = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], TopAppBar);
-        return TopAppBar;
-    }(component_viewer_1.ComponentViewer));
+    let TopAppBar = class TopAppBar extends component_viewer_1.ComponentViewer {
+    };
+    TopAppBar = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], TopAppBar);
     exports.TopAppBar = TopAppBar;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -74171,11 +73299,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    var Examples = /** @class */ (function () {
-        function Examples() {
-        }
-        return Examples;
-    }());
+    class Examples {
+    }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -74208,16 +73333,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Typography = void 0;
-    var Typography = /** @class */ (function (_super) {
-        tslib_1.__extends(Typography, _super);
-        function Typography() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Typography = tslib_1.__decorate([
-            aurelia_framework_1.useView('../component-viewer/component-viewer.html')
-        ], Typography);
-        return Typography;
-    }(component_viewer_1.ComponentViewer));
+    let Typography = class Typography extends component_viewer_1.ComponentViewer {
+    };
+    Typography = tslib_1.__decorate([
+        aurelia_framework_1.useView('../component-viewer/component-viewer.html')
+    ], Typography);
     exports.Typography = Typography;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -74226,4 +73346,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.5f18f426d8968dab437b.bundle.map
+//# sourceMappingURL=app.bf60214b0d5460bf9337.bundle.map
