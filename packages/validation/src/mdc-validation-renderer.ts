@@ -1,20 +1,18 @@
-import { ValidationRenderer, RenderInstruction, ResultInstruction, ValidateResult } from 'aurelia-validation';
-
-interface IValidationGroup {
-  unrender: ValidateResult[];
-  render: ValidateResult[];
-}
+import { ValidationRenderer, RenderInstruction, ValidateResult } from 'aurelia-validation';
+import { IMdcTextFieldHelperLineElement, IMdcTextFieldElement } from '@aurelia-mdc-web/text-field';
 
 export class MdcValidationRenderer implements ValidationRenderer {
   render(instruction: RenderInstruction): void {
-    const groupedInstructions = new Map<Element, IValidationGroup>();
+    const elements = new Map<Element, boolean>();
 
     for (let i = 0; i < instruction.unrender.length; ++i) {
       const ri = instruction.unrender[i];
       for (let j = 0; j < ri.elements.length; ++j) {
         const el = ri.elements[j];
-        const group = this.getOrAddGroup(groupedInstructions, el);
-        group.unrender.push(ri.result);
+        if (!ri.result.valid && Object.getOwnPropertyDescriptor(el, 'removeError')) {
+          (el as any).removeError(ri.result);
+          elements.set(el, true);
+        }
       }
     }
 
@@ -22,24 +20,23 @@ export class MdcValidationRenderer implements ValidationRenderer {
       const ri = instruction.render[i];
       for (let j = 0; j < ri.elements.length; ++j) {
         const el = ri.elements[j];
-        const group = this.getOrAddGroup(groupedInstructions, el);
-        group.render.push(ri.result);
+        if (!ri.result.valid && Object.getOwnPropertyDescriptor(el, 'addError')) {
+          (el as any).addError(ri.result);
+          elements.set(el, true);
+        }
       }
     }
 
-    for (const [el, group] of groupedInstructions.entries()) {
-      if (Object.getOwnPropertyDescriptor(el, 'valid')) {
-        (el as any).valid = !group.render.find(x => !x.valid);
+    for (const el of elements.keys()) {
+      switch (el.tagName) {
+        case 'MDC-TEXT-FIELD':
+          const helperLine = el.nextElementSibling as IMdcTextFieldHelperLineElement;
+          if (helperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
+            helperLine.au.controller.viewModel.errors = ((el as IMdcTextFieldElement).getErrors() as ValidateResult[])
+              .filter(x => x.message !== null).map(x => x.message!);
+          }
+          break;
       }
     }
-  }
-
-  private getOrAddGroup(groupedInstructions: Map<Element, IValidationGroup>, el: Element): IValidationGroup {
-    let group = groupedInstructions.get(el);
-    if (!group) {
-      group = { unrender: [], render: [] };
-      groupedInstructions.set(el, group);
-    }
-    return group;
   }
 }

@@ -2,6 +2,7 @@ import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, 
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 
 export { MdcTextField, IMdcTextFieldElement } from './mdc-text-field';
+export { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 
 export function configure(config: FrameworkConfiguration) {
   config.container.get(MdcComponentAdapters).registerMdcElementConfig(textFieldConfig);
@@ -9,7 +10,7 @@ export function configure(config: FrameworkConfiguration) {
   config.globalResources([
     PLATFORM.moduleName('./mdc-text-field'),
     PLATFORM.moduleName('./mdc-text-field-icon'),
-    PLATFORM.moduleName('./mdc-text-field-helper-line'),
+    PLATFORM.moduleName('./mdc-text-field-helper-line/mdc-text-field-helper-line'),
     PLATFORM.moduleName('./mdc-text-field-helper-text/mdc-text-field-helper-text'),
     PLATFORM.moduleName('./mdc-text-field-character-counter')
   ]);

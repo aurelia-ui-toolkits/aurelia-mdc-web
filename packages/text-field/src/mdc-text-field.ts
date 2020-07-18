@@ -41,6 +41,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   outline_!: MdcNotchedOutline | null; // assigned in html
   helperText_: MdcTextFieldHelperText | undefined;
   characterCounter_: MdcTextFieldCharacterCounter | undefined;
+  errors: unknown[] = [];
 
   @bindable
   label: string;
@@ -128,6 +129,21 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     } else {
       this.initialValue = value;
     }
+  }
+
+  addError(error: unknown) {
+    if (!this.errors.includes(error)) {
+      this.errors.push(error);
+    }
+    this.valid = false;
+  }
+
+  removeError(error: unknown) {
+    const i = this.errors.indexOf(error);
+    if (i !== -1) {
+      this.errors.splice(i, 1);
+    }
+    this.valid = this.errors.length === 0;
   }
 
   get valid(): boolean {
@@ -307,7 +323,8 @@ export interface IMdcTextFieldElement extends HTMLElement {
     controller: {
       viewModel: MdcTextField;
     }
-  }
+  },
+  getErrors(): unknown[]
 }
 
 function defineMdcTextFieldElementApis(element: HTMLElement) {
@@ -327,6 +344,24 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       },
       set(this: IMdcTextFieldElement, value: any) {
         this.au.controller.viewModel.valid = value;
+      },
+      configurable: true
+    },
+    addError: {
+      value(this: IMdcTextFieldElement, error: unknown) {
+        this.au.controller.viewModel.addError(error);
+      },
+      configurable: true
+    },
+    removeError: {
+      value(this: IMdcTextFieldElement, error: unknown) {
+        this.au.controller.viewModel.removeError(error);
+      },
+      configurable: true
+    },
+    getErrors: {
+      value(this: IMdcTextFieldElement) {
+        return this.au.controller.viewModel.errors;
       },
       configurable: true
     },

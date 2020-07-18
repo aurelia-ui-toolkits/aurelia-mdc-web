@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "target": "ES2015",
     "baseUrl": ".",
     "paths": {
       "@aurelia-mdc-web/*": ["../*/src"]

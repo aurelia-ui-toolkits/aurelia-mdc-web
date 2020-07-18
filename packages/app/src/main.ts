@@ -1,5 +1,7 @@
 import 'aurelia-bootstrapper';
 import { Aurelia, PLATFORM } from 'aurelia-framework';
+import { ValidationControllerFactory } from 'aurelia-validation';
+import { MdcValidationControllerFactory } from '@aurelia-mdc-web/validation';
 
 export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia
@@ -34,7 +36,8 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/tab-bar'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/typography'))
-    .plugin(PLATFORM.moduleName('aurelia-validation'));
+    .plugin(PLATFORM.moduleName('aurelia-validation'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/validation'));
 
   await aurelia.start();
   await aurelia.setRoot(PLATFORM.moduleName('views/root/root'));

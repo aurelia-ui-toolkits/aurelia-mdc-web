@@ -9,13 +9,9 @@
             <i class="material-icons" mdc-text-field-icon trailing>science</i>
           </mdc-text-field>
           <mdc-text-field-helper-line>
-            <!-- <mdc-text-field-helper-text>Helper text</mdc-text-field-helper-text> -->
-            <mdc-text-field-helper-text validation>
-              <span class="help-block">Validation text 1</span>
-              <span class="help-block">Validation text 2</span>
-              <span class="help-block">Validation text 3</span>
-            </mdc-text-field-helper-text>
-            <!-- <mdc-text-field-character-counter></mdc-text-field-character-counter> -->
+            <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
+            <mdc-text-field-helper-text validation>Required</mdc-text-field-helper-text>
+            <mdc-text-field-character-counter></mdc-text-field-character-counter>
           </mdc-text-field-helper-line>
         </div>
       </div>
@@ -27,6 +23,7 @@
             <i class="material-icons" mdc-text-field-icon trailing>science</i>
           </mdc-text-field>
           <mdc-text-field-helper-line>
+            <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
             <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>
             <mdc-text-field-character-counter></mdc-text-field-character-counter>
           </mdc-text-field-helper-line>
@@ -40,7 +37,7 @@
     <h3 class="demo-content__headline">Aurelia validation</h3>
     <div class="demo-container1">
       <div class="au-text-field">
-        <mdc-text-field label="Label" value.bind="valueStr & validate" type="text"></mdc-text-field>
+        <mdc-text-field label="Type 'error'" value.bind="valueStr & validate" type="text"></mdc-text-field>
         <mdc-text-field-helper-line>
           <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
         </mdc-text-field-helper-line>

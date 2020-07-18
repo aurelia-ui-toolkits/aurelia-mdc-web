@@ -1,0 +1,22 @@
+.mdc-text-field-helper-line--with-errors {
+
+  // validation errors hide all other helper texts
+  .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--errors),
+  .mdc-text-field-character-counter {
+    display: none;
+  }
+
+  .mdc-text-field-helper-text--errors {
+    &:before {
+      display: none;
+    }
+
+    .mdc-text-field-helper-text__error:before {
+      display: inline-block;
+      width: 0;
+      height: 16px;
+      content: "";
+      vertical-align: 0;
+    }
+  }
+}

@@ -1,14 +1,15 @@
 import { ValidationController, ValidationRules, ValidationControllerFactory, Rule } from "aurelia-validation";
 import { autoinject } from 'aurelia-framework';
-import { MdcValidationRenderer } from "@aurelia-mdc-web/validation";
+import { MdcValidationControllerFactory } from "@aurelia-mdc-web/validation";
 
 @autoinject
 export class Examples {
   constructor(validationControllerFactory: ValidationControllerFactory) {
     this.validationController = validationControllerFactory.createForCurrentScope();
-    this.validationController.addRenderer(new MdcValidationRenderer())
     this.rules = ValidationRules
       .ensure<Examples, string>(x => x.valueStr).required()
+      .satisfies(x => !x.startsWith('erro')).withMessage('cannot start with "erro"')
+      .satisfies(x => !x.startsWith('error')).withMessage('cannot start with "error"')
       .rules;
   }
 
