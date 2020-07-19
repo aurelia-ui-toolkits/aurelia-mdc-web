@@ -46,13 +46,11 @@
     "_prepare-release": "cross-env npm run changelog && npm run build && npm run doc",
     "_version": "node ../update-peers.js"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@aurelia-mdc-web/base": "^0.0.1",
-    "@material/dom": "^7.0.0",
     "@material/ripple": "^7.0.0"
   },
   "devDependencies": {
-    "@aurelia-mdc-web/base": "^0.0.1",
     "concurrently": "^5.2.0",
     "conventional-changelog-cli": "^2.0.34",
     "copyfiles": "^1.2.0",
