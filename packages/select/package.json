@@ -51,6 +51,7 @@
     "@aurelia-mdc-web/base": "^0.0.1",
     "@aurelia-mdc-web/floating-label": "^0.0.1",
     "@aurelia-mdc-web/line-ripple": "^0.0.1",
+    "@aurelia-mdc-web/list": "^0.0.1",
     "@aurelia-mdc-web/menu": "^0.0.1",
     "@aurelia-mdc-web/notched-outline": "^0.0.1",
     "@material/select": "^7.0.0"

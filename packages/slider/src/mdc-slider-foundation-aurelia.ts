@@ -7,7 +7,7 @@ export class MdcSliderFoundationAurelia extends MDCSliderFoundation {
     return this.adapter.computeBoundingRect();
   }
 
-  set rect_(value: ClientRect) {
+  set rect_(_: ClientRect) {
 
   }
 }

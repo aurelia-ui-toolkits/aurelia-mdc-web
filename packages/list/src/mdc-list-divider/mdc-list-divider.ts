@@ -1,4 +1,4 @@
-import { inlineView, customElement, useView, PLATFORM } from 'aurelia-framework';
+import { customElement, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 @useView(PLATFORM.moduleName('./mdc-list-divider.html'))
