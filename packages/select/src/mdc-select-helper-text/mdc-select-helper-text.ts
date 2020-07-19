@@ -20,6 +20,9 @@ export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundat
   @bindable.booleanAttr
   validation: boolean;
 
+  @bindable
+  errors: string[];
+
   // Provided for access by MDCTextField component
   get foundationForTextField(): MDCSelectHelperTextFoundation {
     return this.foundation!;

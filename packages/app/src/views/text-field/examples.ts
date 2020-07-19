@@ -1,6 +1,5 @@
 import { ValidationController, ValidationRules, ValidationControllerFactory, Rule } from "aurelia-validation";
 import { autoinject } from 'aurelia-framework';
-import { MdcValidationControllerFactory } from "@aurelia-mdc-web/validation";
 
 @autoinject
 export class Examples {

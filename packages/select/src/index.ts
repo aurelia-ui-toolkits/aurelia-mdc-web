@@ -2,7 +2,8 @@ import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, 
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 import { strings } from '@material/select';
 
-export { MdcSelect } from './mdc-select';
+export { MdcSelect, IMdcSelectElement } from './mdc-select';
+export { IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
 
 export function configure(config: FrameworkConfiguration) {
   config.container.get(MdcComponentAdapters).registerMdcElementConfig(selectConfig);

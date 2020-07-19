@@ -1,5 +1,6 @@
 import { ValidationRenderer, RenderInstruction, ValidateResult } from 'aurelia-validation';
 import { IMdcTextFieldHelperLineElement, IMdcTextFieldElement } from '@aurelia-mdc-web/text-field';
+import { IMdcSelectElement, IMdcSelectHelperTextElement } from "@aurelia-mdc-web/select";
 
 export class MdcValidationRenderer implements ValidationRenderer {
   render(instruction: RenderInstruction): void {
@@ -27,12 +28,23 @@ export class MdcValidationRenderer implements ValidationRenderer {
       }
     }
 
+    this.updateErrorMessages(elements);
+  }
+
+  protected updateErrorMessages(elements: Map<Element, boolean>) {
     for (const el of elements.keys()) {
       switch (el.tagName) {
         case 'MDC-TEXT-FIELD':
           const helperLine = el.nextElementSibling as IMdcTextFieldHelperLineElement;
           if (helperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
             helperLine.au.controller.viewModel.errors = ((el as IMdcTextFieldElement).getErrors() as ValidateResult[])
+              .filter(x => x.message !== null).map(x => x.message!);
+          }
+          break;
+        case 'MDC-SELECT':
+          const helperText = el.nextElementSibling as IMdcSelectHelperTextElement;
+          if (helperText?.tagName === 'MDC-SELECT-HELPER-TEXT') {
+            helperText.au.controller.viewModel.errors = ((el as IMdcSelectElement).getErrors() as ValidateResult[])
               .filter(x => x.message !== null).map(x => x.message!);
           }
           break;

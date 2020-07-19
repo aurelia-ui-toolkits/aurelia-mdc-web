@@ -55,6 +55,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private lineRipple?: MdcLineRipple;
   private mdcLabel: MdcFloatingLabel;
   private outline?: MDCNotchedOutline;
+  errors = new Map<unknown, boolean>();
 
   @bindable
   label: string;
@@ -105,6 +106,16 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   set selectedIndex(selectedIndex: number) {
     this.foundation?.setSelectedIndex(selectedIndex, /** closeMenu */ true);
+  }
+
+  addError(error: unknown) {
+    this.errors.set(error, true);
+    this.valid = false;
+  }
+
+  removeError(error: unknown) {
+    this.errors.delete(error);
+    this.valid = this.errors.size === 0;
   }
 
   async initialise() {
@@ -247,6 +258,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   handleChange() {
     this.foundation?.handleChange();
+    this.emit('change', {}, true);
   };
 
   handleFocus() {
@@ -255,6 +267,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   handleBlur() {
     this.foundation?.handleBlur();
+    this.emit('blur', {}, true);
   }
 
   handleClick(evt: MouseEvent) {
@@ -322,7 +335,8 @@ export interface IMdcSelectElement extends HTMLElement {
     controller: {
       viewModel: MdcSelect;
     }
-  }
+  },
+  getErrors(): unknown[]
 }
 
 function defineMdcSelectElementApis(element: HTMLElement) {
@@ -344,6 +358,24 @@ function defineMdcSelectElementApis(element: HTMLElement) {
       },
       set(this: IMdcSelectElement, value: any) {
         this.au.controller.viewModel.valid = value;
+      },
+      configurable: true
+    },
+    addError: {
+      value(this: IMdcSelectElement, error: unknown) {
+        this.au.controller.viewModel.addError(error);
+      },
+      configurable: true
+    },
+    removeError: {
+      value(this: IMdcSelectElement, error: unknown) {
+        this.au.controller.viewModel.removeError(error);
+      },
+      configurable: true
+    },
+    getErrors: {
+      value(this: IMdcSelectElement) {
+        return Array.from(this.au.controller.viewModel.errors.keys());
       },
       configurable: true
     },

@@ -27,4 +27,17 @@
     </div>
     <!-- <example-viewer [example]="exampleDefault"></example-viewer> -->
   </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Aurelia validation</h3>
+    <div class="au-select">
+      <mdc-select label="Make your choice" value.bind="validatedValue & validateOnChange">
+        <i class="material-icons" mdc-select-icon>pets</i>
+        <mdc-list-item>choose</mdc-list-item>
+        <mdc-list-item repeat.for="o of options" value.bind="o">${o.name}</mdc-list-item>
+      </mdc-select>
+      <mdc-select-helper-text validation></mdc-select-helper-text>
+    </div>
+</div>
+
 </template>

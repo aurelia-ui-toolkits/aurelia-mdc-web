@@ -41,7 +41,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   outline_!: MdcNotchedOutline | null; // assigned in html
   helperText_: MdcTextFieldHelperText | undefined;
   characterCounter_: MdcTextFieldCharacterCounter | undefined;
-  errors: unknown[] = [];
+  errors = new Map<unknown, boolean>();
 
   @bindable
   label: string;
@@ -132,18 +132,13 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 
   addError(error: unknown) {
-    if (!this.errors.includes(error)) {
-      this.errors.push(error);
-    }
+    this.errors.set(error, true);
     this.valid = false;
   }
 
   removeError(error: unknown) {
-    const i = this.errors.indexOf(error);
-    if (i !== -1) {
-      this.errors.splice(i, 1);
-    }
-    this.valid = this.errors.length === 0;
+    this.errors.delete(error);
+    this.valid = this.errors.size === 0;
   }
 
   get valid(): boolean {
@@ -360,8 +355,8 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       configurable: true
     },
     getErrors: {
-      value(this: IMdcTextFieldElement) {
-        return this.au.controller.viewModel.errors;
+      value(this: IMdcTextFieldElement): unknown[] {
+        return Array.from(this.au.controller.viewModel.errors.keys());
       },
       configurable: true
     },
