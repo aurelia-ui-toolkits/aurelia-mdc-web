@@ -1,0 +1,43 @@
+@use '@material/typography';
+@use '@material/theme';
+
+.demo-landing {
+  @include theme.prop(color, #fff);
+  @include theme.prop(background-color, #363640);
+
+  height: 40vh;
+
+  &__title {
+    @include typography.typography(headline2);
+
+    margin-top: 20px;
+    margin-bottom: 0;
+
+    @media (max-width: 699px) {
+      font-size: 8vw;
+    }
+  }
+
+  &__label {
+    @include typography.typography(headline4);
+
+    margin-top: 20px;
+    margin-bottom: 0;
+
+    @media (max-width: 699px) {
+      font-size: 6vw;
+      margin: 0;
+    }
+  }
+
+  &__subtitle {
+    @include typography.typography(body1);
+    @include theme.prop(color, text-secondary-on-background);
+
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}

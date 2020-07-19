@@ -8,9 +8,8 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
   const cssLoaders = ['css-loader', 'postcss-loader'];
   const scssLoaders = [...cssLoaders, {
     loader: 'sass-loader', options: {
-      webpackImporter: false,
       sassOptions: {
-        includePaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')],
+        includePaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')]
       }
     }
   }];

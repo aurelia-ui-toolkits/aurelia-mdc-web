@@ -1,3 +1,124 @@
 <template>
-  Getting started
+  <div class="demo-panel-content">
+    <div class="demo-panel-transition">
+      <h1 class="demo-panel-title">Getting started</h1>
+      <p>For help getting started with a new Aurelia app, check out the <a href="http://aurelia.io/docs/cli"
+          target="_blank" rel="noopener">Aurelia CLI</a>.</p>
+      <p>For existing apps, follow this guide to use Angular MDC.</p>
+      <h2 class="demo-panel-heading">Install Aurelia MDC</h2>
+      <h4 mdc-subtitle2>npm</h4>
+      <pre><code highlight languages="langShell">${npmCmd}</code></pre>
+
+      <h4 mdc-subtitle2>yarn</h4>
+      <pre><code highlight languages="langShell">${yarnCmd}</code></pre>
+
+      <h2 class="demo-panel-heading">Roboto font</h2>
+      To get started, first include the Roboto font with the 300, 400 and 500 weights. You can host it yourself or
+      include it from <a href="https://fonts.google.com/" target="_blank" rel="noopener">Google Fonts:</a>
+
+      <pre><code highlight>${robotoLink}</code></pre>
+
+      <h2 class="demo-panel-heading">Material Icons</h2>
+      If you want to use Material Design Icons, load the icon font in your <code mdc-subtitle2>index.html</code>:
+
+      <pre><code highlight>${materialIconsLink}</code></pre>
+
+      For more information on using Material Icons, check out the
+      <a href="https://material.io/tools/icons/?style=baseline" target="_blank" rel="noopener">Material Icons Guide.</a>
+
+      <h2 class="demo-panel-heading">Sample index.html</h2>
+      Here's an example <code mdc-subtitle2>index.html</code> demonstrating Roboto Font applied to the body element with
+      <code mdc-subtitle2>mdc-typography</code>.
+      <pre><code highlight>${indexHtml}</code></pre>
+
+      <h2 class="demo-panel-heading">MDC Sass modules</h2>
+      In your <code mdc-subtitle2>webpack.config.js</code>, make sure <code mdc-subtitle2>node_modules/</code> is listed
+      as a
+      Sass include path. This is needed for the Sass compiler to be able to find the MDC Web Sass files.
+      <pre><code highlight>
+...
+loader: 'sass-loader', options: {
+  sassOptions: {
+    includePaths: [path.resolve('./node_modules')]
+  }
+}
+...
+      </code></pre>
+
+      <pre><code highlight>
+// styles.scss
+
+@use './styles/body';
+
+@use '@material/theme' with (
+  $primary: #6200ee,
+  $secondary: #faab1a,
+  $background: #fff,
+);
+
+// MDC Typography
+@use '@material/typography/mdc-typography';
+
+// MDC Button
+@use './styles/button';
+
+// Angular MDC
+@use '@angular-mdc/theme/material';
+      </code></pre>
+
+      <pre><code highlight="// styles/_body.scss
+
+  // Override user agent body margin for mdc-top-app-bar
+  body {
+    margin: 0;
+  }"></code></pre>
+
+
+      <pre><code highlight="// styles/_button.scss
+
+  @use '@material/button/mdc-button';
+  @use '@material/button';
+  @use '@material/theme';
+
+  .button-primary {
+    @include button.filled-accessible(theme.$primary);
+  }
+
+  .button-secondary {
+    @include button.filled-accessible(theme.$secondary);
+  }"></code></pre>
+
+      <h2 class="demo-panel-heading">Import Angular MDC components</h2>
+      Create module file `./app/material.module.ts`, and import the NgModule for
+      each component you want to use.
+      <pre><code highlight="import {NgModule} from '@angular/core';
+  import {MdcButtonModule} from '@angular-mdc/web/button';
+
+  @NgModule({
+    exports: [
+      ...
+      MdcButtonModule,
+      ...
+    ]
+  })
+  export class MaterialModule {}"></code></pre>
+
+      <h2 class="demo-panel-heading">Import Material module</h2>
+      Now, import MaterialModule into AppModule.
+      <pre><code highlight="import {MaterialModule} from './material.module';
+
+  @NgModule({
+    imports: [
+      ...
+      MaterialModule,
+      ...
+    ]
+  })
+  export class AppModule {}"></code></pre>
+
+      <h2 class="demo-panel-heading">Start designing</h2>
+      Open app.component.html and add the following markup:
+      <pre><code highlight="<button mdc-button raised>Example</button>"></code></pre>
+    </div>
+  </div>
 </template>

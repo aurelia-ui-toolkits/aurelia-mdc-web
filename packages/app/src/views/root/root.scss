@@ -1,3 +1,9 @@
+@use '@material/theme' with (
+  $primary: #6200ee,
+  $secondary: #faab1a,
+  $background: #fff,
+);
+
 @use "@material/button/mdc-button";
 @use "@material/list/mdc-list";
 @use "@aurelia-mdc-web/list" as AuList;
@@ -32,6 +38,7 @@
 @use "./button";
 @use "./card";
 @use "./icon-button";
+@use "./landing";
 @use "./layout";
 @use "./list";
 @use "./text-field";
