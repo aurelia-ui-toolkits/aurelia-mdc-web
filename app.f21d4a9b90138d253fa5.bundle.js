@@ -72695,7 +72695,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-landing demo-layout__column demo-layout--center\" mdc-elevation=\"2\">\n    <div class=\"demo-landing__summary demo-layout__column demo-layout--center\">\n      <h2 class=\"demo-landing__title\">Material Web Components</h2>\n      <h4 class=\"demo-landing__label\">for Aurelia</h4>\n    </div>\n  </div>\n  <div class=\"demo-layout__column demo-layout--center\">\n    <p class=\"demo-landing__subtitle\">Incorporating Google Material Components for building beautiful, usable products\n      using Material Design.</p>\n    <a raised mdc-button href=\"/#/getting-started\">Get Started</a>\n  </div>\n</template>\n";
+var code = "<template>\n  <div class=\"demo-landing demo-layout__column demo-layout--center\" mdc-elevation=\"2\">\n    <div class=\"demo-landing__summary demo-layout__column demo-layout--center\">\n      <h2 class=\"demo-landing__title\">Material Web Components</h2>\n      <h4 class=\"demo-landing__label\">for Aurelia</h4>\n    </div>\n  </div>\n  <div class=\"demo-layout__column demo-layout--center\">\n    <p class=\"demo-landing__subtitle\">Incorporating Google Material Components for building beautiful, usable products\n      using Material Design.</p>\n    <a raised mdc-button href=\"./#/getting-started\">Get Started</a>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -73558,4 +73558,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.9835baf57deb4de5624a.bundle.map
+//# sourceMappingURL=app.f21d4a9b90138d253fa5.bundle.map
