@@ -72070,7 +72070,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     name: 'Material Components Web',
                     url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-form-field/README.md'
                 }],
-            code: `import {MdcFormFieldModule} from '@angular-mdc/web/form-field';`,
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/form-field'));`,
             sass: `@use '@material/form-field/mdc-form-field';
 @use '@material/form-field/_index' as form-field;`
         },
@@ -72104,7 +72104,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-list/README.md#sass-mixins' },
             ],
-            code: `import {MdcListModule} from '@angular-mdc/web/list';`,
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/list'));`,
             sass: `@use '@material/list/mdc-list';
 @use '@material/list';`
         },
@@ -72121,7 +72121,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu/README.md#sass-mixins' },
             ],
-            code: `import {MdcMenuModule} from '@angular-mdc/web/menu';`,
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'));`,
             sass: `@use '@material/menu/mdc-menu';
 @use '@material/menu';
 @use '@material/list/mdc-list';
@@ -72158,7 +72158,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-ripple/README.md#sass-apis' },
             ],
-            code: `import {MdcRippleModule} from '@angular-mdc/web/ripple';`,
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));`,
             sass: `@use '@material/ripple/mdc-ripple';
 @use '@material/ripple';`
         },
@@ -72177,7 +72177,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/helper-text/README.md#sass-mixins' },
                 { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/icon/README.md#sass-mixins' },
             ],
-            code: `import {MdcSelectModule} from '@angular-mdc/web/select';`,
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'));`,
             sass: `@use '@material/select/mdc-select';
 @use '@material/select/_index' as select;
 @use '@material/list/mdc-list';
@@ -72243,7 +72243,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 { name: 'Tab Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab/README.md#sass-mixins' },
                 { name: 'Indicator Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-indicator/README.md#sass-mixins' },
             ],
-            code: `import {MdcTabBarModule} from '@angular-mdc/web/tab-bar';`,
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/tab-bar'));`,
             sass: `@use '@material/tab-bar/mdc-tab-bar';
 @use '@material/tab-bar';
 @use '@material/tab-scroller/mdc-tab-scroller';
@@ -72269,7 +72269,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/helper-text/README.md#sass-mixins' },
                 { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/icon/README.md#sass-mixins' },
             ],
-            code: `import {MdcTextFieldModule} from '@angular-mdc/web/textfield';`,
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'));`,
             sass: `@use '@material/textfield/mdc-text-field';
 @use '@material/textfield/_index' as textfield;
 @use '@material/form-field/_index' as form-field;`
@@ -72287,7 +72287,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             mdcUrls: [
                 { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-top-app-bar/README.md#sass-mixins' },
             ],
-            code: `import {MdcTopAppBarModule} from '@angular-mdc/web/top-app-bar';`,
+            code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/top-app-bar'));`,
             sass: `@use '@material/top-app-bar/mdc-top-app-bar';
 @use '@material/top-app-bar';
 @use '@material/icon-button/mdc-icon-button';`
@@ -72627,9 +72627,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.GettingStarted = void 0;
     class GettingStarted {
         constructor() {
-            this.langShell = ['shell'];
-            this.npmCmd = `npm i @angular-mdc/web`;
-            this.yarnCmd = `yarn add @angular-mdc/web`;
+            this.npmCmd = `npm i @aurelia-mdc/button`;
+            this.yarnCmd = `yarn add @aurelia-mdc/button`;
             this.materialIconsLink = `<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">`;
             this.robotoLink = `<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">`;
             this.indexHtml = `<html>
@@ -72644,6 +72643,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     <div aurelia-app='src/main'></div>
   </body>
 </html>`;
+            this.design = '<button mdc-button raised>Example</button>';
         }
     }
     exports.GettingStarted = GettingStarted;
@@ -72661,7 +72661,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-panel-content\">\n    <div class=\"demo-panel-transition\">\n      <h1 class=\"demo-panel-title\">Getting started</h1>\n      <p>For help getting started with a new Aurelia app, check out the <a href=\"http://aurelia.io/docs/cli\"\n          target=\"_blank\" rel=\"noopener\">Aurelia CLI</a>.</p>\n      <p>For existing apps, follow this guide to use Angular MDC.</p>\n      <h2 class=\"demo-panel-heading\">Install Aurelia MDC</h2>\n      <h4 mdc-subtitle2>npm</h4>\n      <pre><code highlight languages=\"langShell\">${npmCmd}</code></pre>\n\n      <h4 mdc-subtitle2>yarn</h4>\n      <pre><code highlight languages=\"langShell\">${yarnCmd}</code></pre>\n\n      <h2 class=\"demo-panel-heading\">Roboto font</h2>\n      To get started, first include the Roboto font with the 300, 400 and 500 weights. You can host it yourself or\n      include it from <a href=\"https://fonts.google.com/\" target=\"_blank\" rel=\"noopener\">Google Fonts:</a>\n\n      <pre><code highlight>${robotoLink}</code></pre>\n\n      <h2 class=\"demo-panel-heading\">Material Icons</h2>\n      If you want to use Material Design Icons, load the icon font in your <code mdc-subtitle2>index.html</code>:\n\n      <pre><code highlight>${materialIconsLink}</code></pre>\n\n      For more information on using Material Icons, check out the\n      <a href=\"https://material.io/tools/icons/?style=baseline\" target=\"_blank\" rel=\"noopener\">Material Icons Guide.</a>\n\n      <h2 class=\"demo-panel-heading\">Sample index.html</h2>\n      Here's an example <code mdc-subtitle2>index.html</code> demonstrating Roboto Font applied to the body element with\n      <code mdc-subtitle2>mdc-typography</code>.\n      <pre><code highlight>${indexHtml}</code></pre>\n\n      <h2 class=\"demo-panel-heading\">MDC Sass modules</h2>\n      In your <code mdc-subtitle2>webpack.config.js</code>, make sure <code mdc-subtitle2>node_modules/</code> is listed\n      as a\n      Sass include path. This is needed for the Sass compiler to be able to find the MDC Web Sass files.\n      <pre><code highlight>\n...\nloader: 'sass-loader', options: {\n  sassOptions: {\n    includePaths: [path.resolve('./node_modules')]\n  }\n}\n...\n      </code></pre>\n\n      <pre><code highlight>\n// styles.scss\n\n@use './styles/body';\n\n@use '@material/theme' with (\n  $primary: #6200ee,\n  $secondary: #faab1a,\n  $background: #fff,\n);\n\n// MDC Typography\n@use '@material/typography/mdc-typography';\n\n// MDC Button\n@use './styles/button';\n\n// Angular MDC\n@use '@angular-mdc/theme/material';\n      </code></pre>\n\n      <pre><code highlight=\"// styles/_body.scss\n\n  // Override user agent body margin for mdc-top-app-bar\n  body {\n    margin: 0;\n  }\"></code></pre>\n\n\n      <pre><code highlight=\"// styles/_button.scss\n\n  @use '@material/button/mdc-button';\n  @use '@material/button';\n  @use '@material/theme';\n\n  .button-primary {\n    @include button.filled-accessible(theme.$primary);\n  }\n\n  .button-secondary {\n    @include button.filled-accessible(theme.$secondary);\n  }\"></code></pre>\n\n      <h2 class=\"demo-panel-heading\">Import Angular MDC components</h2>\n      Create module file `./app/material.module.ts`, and import the NgModule for\n      each component you want to use.\n      <pre><code highlight=\"import {NgModule} from '@angular/core';\n  import {MdcButtonModule} from '@angular-mdc/web/button';\n\n  @NgModule({\n    exports: [\n      ...\n      MdcButtonModule,\n      ...\n    ]\n  })\n  export class MaterialModule {}\"></code></pre>\n\n      <h2 class=\"demo-panel-heading\">Import Material module</h2>\n      Now, import MaterialModule into AppModule.\n      <pre><code highlight=\"import {MaterialModule} from './material.module';\n\n  @NgModule({\n    imports: [\n      ...\n      MaterialModule,\n      ...\n    ]\n  })\n  export class AppModule {}\"></code></pre>\n\n      <h2 class=\"demo-panel-heading\">Start designing</h2>\n      Open app.component.html and add the following markup:\n      <pre><code highlight=\"<button mdc-button raised>Example</button>\"></code></pre>\n    </div>\n  </div>\n</template>\n";
+var code = "<template>\n  <div class=\"demo-panel-content\">\n    <div class=\"demo-panel-transition\">\n      <h1 class=\"demo-panel-title\">Getting started</h1>\n      <p>For help getting started with a new Aurelia app, check out the <a href=\"http://aurelia.io/docs/cli\"\n          target=\"_blank\" rel=\"noopener\">Aurelia CLI</a>.</p>\n      <p>For existing apps, follow this guide to use Aurelia MDC.</p>\n      <h2 class=\"demo-panel-heading\">Install Aurelia MDC</h2>\n      Install each package you wish to use, e.g.\n      <h4 mdc-subtitle2>npm</h4>\n      <pre><code highlight class=\"shell\">${npmCmd}</code></pre>\n\n      <h4 mdc-subtitle2>yarn</h4>\n      <pre><code highlight class=\"shell\">${yarnCmd}</code></pre>\n\n      <h2 class=\"demo-panel-heading\">Roboto font</h2>\n      To get started, first include the Roboto font with the 300, 400 and 500 weights. You can host it yourself or\n      include it from <a href=\"https://fonts.google.com/\" target=\"_blank\" rel=\"noopener\">Google Fonts:</a>\n\n      <pre><code highlight>${robotoLink}</code></pre>\n\n      <h2 class=\"demo-panel-heading\">Material Icons</h2>\n      If you want to use Material Design Icons, load the icon font in your <code mdc-subtitle2>index.html</code>:\n\n      <pre><code highlight>${materialIconsLink}</code></pre>\n\n      For more information on using Material Icons, check out the\n      <a href=\"https://material.io/tools/icons/?style=baseline\" target=\"_blank\" rel=\"noopener\">Material Icons Guide.</a>\n\n      <h2 class=\"demo-panel-heading\">Sample index.html</h2>\n      Here's an example <code mdc-subtitle2>index.html</code> demonstrating Roboto Font applied to the body element with\n      <code mdc-subtitle2>mdc-typography</code>.\n      <pre><code highlight>${indexHtml}</code></pre>\n\n      <h2 class=\"demo-panel-heading\">MDC Sass modules</h2>\n      In your <code mdc-subtitle2>webpack.config.js</code>, make sure <code mdc-subtitle2>node_modules/</code> is listed\n      as a\n      Sass include path. This is needed for the Sass compiler to be able to find the MDC Web Sass files.\n      <pre><code highlight>\n...\nloader: 'sass-loader', options: {\n  sassOptions: {\n    includePaths: [path.resolve('./node_modules')]\n  }\n}\n...\n      </code></pre>\n\n      <pre><code highlight>\n// styles.scss\n\n@use './styles/body';\n\n@use '@material/theme' with (\n  $primary: #6200ee,\n  $secondary: #faab1a,\n  $background: #fff,\n);\n\n// MDC Typography\n@use '@material/typography/mdc-typography';\n\n// MDC Button\n@use './styles/button';\n\n// Angular MDC\n@use '@angular-mdc/theme/material';\n      </code></pre>\n\n      <pre><code highlight>\n// styles/_body.scss\n\n// Override user agent body margin for mdc-top-app-bar\nbody {\n  margin: 0;\n}\n      </code></pre>\n\n      <pre><code highlight>\n// styles/_button.scss\n\n@use '@material/button/mdc-button';\n@use '@material/button';\n@use '@material/theme';\n\n.button-primary {\n  @include button.filled-accessible(theme.$primary);\n}\n\n.button-secondary {\n  @include button.filled-accessible(theme.$secondary);\n}\n      </code></pre>\n\n      <h2 class=\"demo-panel-heading\">Configure Aurelia MDC plugins</h2>\n      Configure each plugin you want to use.\n      <pre><code highlight class=\"typescript\">\n// main.ts\n\naurelia\n  .use\n  .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))\n  .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));\n      </code></pre>\n\n      <h2 class=\"demo-panel-heading\">Start designing</h2>\n      Open app.html and add the following markup:\n      <pre><code highlight class=\"html\">${design}</code></pre>\n    </div>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -73558,4 +73558,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.f8b1d725cfcf93fa3c02.bundle.map
+//# sourceMappingURL=app.ccfc3ab31f6ddacf8bdf.bundle.map
