@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/switch",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha.0",
   "publishConfig": {
     "access": "public"
   },
@@ -26,7 +26,9 @@
     "type": "git",
     "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "_test": "karma start --single-run",
     "_develop": "cross-env TS_NODE_PROJECT=\"../../tsconfig-tsnode.json\" karma start",
@@ -52,7 +54,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^0.0.1",
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.0",
     "@material/switch": "^7.0.0"
   },
   "devDependencies": {
@@ -60,8 +62,8 @@
     "conventional-changelog-cli": "^2.0.34",
     "copyfiles": "^1.2.0",
     "cross-env": "^7.0.2",
-    "sass": "^1.26.9",
     "rimraf": "^3.0.2",
+    "sass": "^1.26.9",
     "typescript": "^3.9.5"
   }
 }
