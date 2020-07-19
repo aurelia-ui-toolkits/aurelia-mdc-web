@@ -4,13 +4,14 @@
       <h1 class="demo-panel-title">Getting started</h1>
       <p>For help getting started with a new Aurelia app, check out the <a href="http://aurelia.io/docs/cli"
           target="_blank" rel="noopener">Aurelia CLI</a>.</p>
-      <p>For existing apps, follow this guide to use Angular MDC.</p>
+      <p>For existing apps, follow this guide to use Aurelia MDC.</p>
       <h2 class="demo-panel-heading">Install Aurelia MDC</h2>
+      Install each package you wish to use, e.g.
       <h4 mdc-subtitle2>npm</h4>
-      <pre><code highlight languages="langShell">${npmCmd}</code></pre>
+      <pre><code highlight class="shell">${npmCmd}</code></pre>
 
       <h4 mdc-subtitle2>yarn</h4>
-      <pre><code highlight languages="langShell">${yarnCmd}</code></pre>
+      <pre><code highlight class="shell">${yarnCmd}</code></pre>
 
       <h2 class="demo-panel-heading">Roboto font</h2>
       To get started, first include the Roboto font with the 300, 400 and 500 weights. You can host it yourself or
@@ -66,59 +67,45 @@ loader: 'sass-loader', options: {
 @use '@angular-mdc/theme/material';
       </code></pre>
 
-      <pre><code highlight="// styles/_body.scss
+      <pre><code highlight>
+// styles/_body.scss
 
-  // Override user agent body margin for mdc-top-app-bar
-  body {
-    margin: 0;
-  }"></code></pre>
+// Override user agent body margin for mdc-top-app-bar
+body {
+  margin: 0;
+}
+      </code></pre>
 
+      <pre><code highlight>
+// styles/_button.scss
 
-      <pre><code highlight="// styles/_button.scss
+@use '@material/button/mdc-button';
+@use '@material/button';
+@use '@material/theme';
 
-  @use '@material/button/mdc-button';
-  @use '@material/button';
-  @use '@material/theme';
+.button-primary {
+  @include button.filled-accessible(theme.$primary);
+}
 
-  .button-primary {
-    @include button.filled-accessible(theme.$primary);
-  }
+.button-secondary {
+  @include button.filled-accessible(theme.$secondary);
+}
+      </code></pre>
 
-  .button-secondary {
-    @include button.filled-accessible(theme.$secondary);
-  }"></code></pre>
+      <h2 class="demo-panel-heading">Configure Aurelia MDC plugins</h2>
+      Configure each plugin you want to use.
+      <pre><code highlight class="typescript">
+// main.ts
 
-      <h2 class="demo-panel-heading">Import Angular MDC components</h2>
-      Create module file `./app/material.module.ts`, and import the NgModule for
-      each component you want to use.
-      <pre><code highlight="import {NgModule} from '@angular/core';
-  import {MdcButtonModule} from '@angular-mdc/web/button';
-
-  @NgModule({
-    exports: [
-      ...
-      MdcButtonModule,
-      ...
-    ]
-  })
-  export class MaterialModule {}"></code></pre>
-
-      <h2 class="demo-panel-heading">Import Material module</h2>
-      Now, import MaterialModule into AppModule.
-      <pre><code highlight="import {MaterialModule} from './material.module';
-
-  @NgModule({
-    imports: [
-      ...
-      MaterialModule,
-      ...
-    ]
-  })
-  export class AppModule {}"></code></pre>
+aurelia
+  .use
+  .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))
+  .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));
+      </code></pre>
 
       <h2 class="demo-panel-heading">Start designing</h2>
-      Open app.component.html and add the following markup:
-      <pre><code highlight="<button mdc-button raised>Example</button>"></code></pre>
+      Open app.html and add the following markup:
+      <pre><code highlight class="html">${design}</code></pre>
     </div>
   </div>
 </template>

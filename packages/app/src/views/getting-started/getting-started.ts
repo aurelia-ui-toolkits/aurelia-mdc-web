@@ -1,7 +1,6 @@
 export class GettingStarted {
-  langShell = ['shell'];
-  npmCmd = `npm i @angular-mdc/web`;
-  yarnCmd = `yarn add @angular-mdc/web`;
+  npmCmd = `npm i @aurelia-mdc/button`;
+  yarnCmd = `yarn add @aurelia-mdc/button`;
   materialIconsLink = `<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">`;
   robotoLink = `<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">`;
   indexHtml = `<html>
@@ -16,4 +15,5 @@ export class GettingStarted {
     <div aurelia-app='src/main'></div>
   </body>
 </html>`;
+  design = '<button mdc-button raised>Example</button>';
 }

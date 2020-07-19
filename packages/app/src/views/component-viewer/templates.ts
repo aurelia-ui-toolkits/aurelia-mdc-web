@@ -140,7 +140,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
       name: 'Material Components Web',
       url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-form-field/README.md'
     }],
-    code: `import {MdcFormFieldModule} from '@angular-mdc/web/form-field';`,
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/form-field'));`,
     sass: `@use '@material/form-field/mdc-form-field';
 @use '@material/form-field/_index' as form-field;`
   },
@@ -174,7 +174,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-list/README.md#sass-mixins' },
     ],
-    code: `import {MdcListModule} from '@angular-mdc/web/list';`,
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/list'));`,
     sass: `@use '@material/list/mdc-list';
 @use '@material/list';`
   },
@@ -191,7 +191,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu/README.md#sass-mixins' },
     ],
-    code: `import {MdcMenuModule} from '@angular-mdc/web/menu';`,
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'));`,
     sass: `@use '@material/menu/mdc-menu';
 @use '@material/menu';
 @use '@material/list/mdc-list';
@@ -228,7 +228,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-ripple/README.md#sass-apis' },
     ],
-    code: `import {MdcRippleModule} from '@angular-mdc/web/ripple';`,
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));`,
     sass: `@use '@material/ripple/mdc-ripple';
 @use '@material/ripple';`
   },
@@ -247,7 +247,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/helper-text/README.md#sass-mixins' },
       { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/icon/README.md#sass-mixins' },
     ],
-    code: `import {MdcSelectModule} from '@angular-mdc/web/select';`,
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'));`,
     sass: `@use '@material/select/mdc-select';
 @use '@material/select/_index' as select;
 @use '@material/list/mdc-list';
@@ -313,7 +313,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Tab Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab/README.md#sass-mixins' },
       { name: 'Indicator Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-indicator/README.md#sass-mixins' },
     ],
-    code: `import {MdcTabBarModule} from '@angular-mdc/web/tab-bar';`,
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/tab-bar'));`,
     sass: `@use '@material/tab-bar/mdc-tab-bar';
 @use '@material/tab-bar';
 @use '@material/tab-scroller/mdc-tab-scroller';
@@ -339,7 +339,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/helper-text/README.md#sass-mixins' },
       { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/icon/README.md#sass-mixins' },
     ],
-    code: `import {MdcTextFieldModule} from '@angular-mdc/web/textfield';`,
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'));`,
     sass: `@use '@material/textfield/mdc-text-field';
 @use '@material/textfield/_index' as textfield;
 @use '@material/form-field/_index' as form-field;`
@@ -357,7 +357,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-top-app-bar/README.md#sass-mixins' },
     ],
-    code: `import {MdcTopAppBarModule} from '@angular-mdc/web/top-app-bar';`,
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/top-app-bar'));`,
     sass: `@use '@material/top-app-bar/mdc-top-app-bar';
 @use '@material/top-app-bar';
 @use '@material/icon-button/mdc-icon-button';`
