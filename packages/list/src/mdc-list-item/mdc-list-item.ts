@@ -7,13 +7,14 @@ let listItemId = 0;
 
 const ENTER = 13;
 const SPACE = 32;
+const LIST_ITEM_ACTION = 'mdclistitem:action';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-list-item.html'))
 @customElement(cssClasses.LIST_ITEM_CLASS)
 @processContent(MdcListItem.processContent)
 export class MdcListItem {
-  constructor(private root: HTMLElement) { }
+  constructor(public root: HTMLElement) { }
 
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element, _instruction: BehaviorInstruction) {
     const graphic = element.querySelector('[mdc-list-item-graphic]');
@@ -56,6 +57,9 @@ export class MdcListItem {
   @bindable
   value: unknown;
 
+  @bindable
+  actionData: unknown;
+
   initialSyncWithDOM() {
     if (this.role) {
       this.root.setAttribute('role', this.role);
@@ -64,9 +68,15 @@ export class MdcListItem {
 
   onKeydown(evt: KeyboardEvent) {
     if ((evt.keyCode === ENTER || evt.keyCode === SPACE) && !this.disabled) {
-      this.root.dispatchEvent(new CustomEvent('selection-change', { detail: { item: this } }));
+      this.root.dispatchEvent(new CustomEvent(LIST_ITEM_ACTION, { detail: { item: this, data: this.actionData }, bubbles: true }));
     }
     return true;
+  }
+
+  onClick() {
+    if (!this.disabled) {
+      this.root.dispatchEvent(new CustomEvent(LIST_ITEM_ACTION, { detail: { item: this, data: this.actionData }, bubbles: true }));
+    }
   }
 
 }
@@ -77,4 +87,9 @@ export interface IMdcListItemElement extends HTMLElement {
       viewModel: MdcListItem;
     }
   }
+}
+
+export interface IMdcListActionEventDetail {
+  index: number;
+  data: unknown;
 }
