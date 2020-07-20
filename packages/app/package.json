@@ -20,6 +20,7 @@
     "@aurelia-mdc-web/checkbox": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/circular-progress": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/dialog": "^1.0.0-alpha.0",
+    "@aurelia-mdc-web/expandable": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/fab": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/floating-label": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/form-field": "^1.0.0-alpha.0",

@@ -38,6 +38,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'circular-progress',
           'dialog',
           'drawer',
+          'expandable',
           'fab',
           'floating-label',
           'form-field',

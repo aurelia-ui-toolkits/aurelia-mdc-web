@@ -18,6 +18,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/circular-progress'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/dialog'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/drawer'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/expandable'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/fab'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/form-field'))

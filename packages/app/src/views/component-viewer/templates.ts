@@ -114,6 +114,22 @@ export const templates: { [x: string]: IComponentTemplate } = {
     code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/drawer'));`,
     sass: '@use "@material/drawer/mdc-drawer";'
   },
+  expandable: {
+    title: 'Expandable',
+    description: '???',
+    references: [{
+      name: 'Material Design guidelines: Floating Action Button',
+      url: 'https://material.io/design/components/buttons-floating-action-button.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md#sass-mixins' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/expandable'));`,
+    sass: `@use "@aurelia-mdc-web/expandable";`
+  },
   fab: {
     title: 'Floating Action Button',
     description: 'A floating action button represents the primary action in an application.',

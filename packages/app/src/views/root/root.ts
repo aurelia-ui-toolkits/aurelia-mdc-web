@@ -16,8 +16,9 @@ export class Root {
   }
 
   configureRouter(config: RouterConfiguration) {
-    const exampleRoutes: RouteConfig[] = ['button', 'card', 'checkbox', 'circular-progress', 'dialog', 'drawer', 'fab', 'form-field', 'icon-button',
-      'menu', 'list', 'radio', 'ripple', 'select', 'slider', 'switch', 'tabs', 'text-field', 'top-app-bar', 'typography']
+    const exampleRoutes: RouteConfig[] = ['button', 'card', 'checkbox', 'circular-progress', 'dialog', 'drawer', 'expandable', 'fab',
+      'form-field', 'icon-button', 'menu', 'list', 'radio', 'ripple', 'select', 'slider', 'switch', 'tabs', 'text-field', 'top-app-bar',
+      'typography']
       .map(x => ({ route: x }));
 
     const menuRoutes: RouteConfig[] = [
@@ -42,7 +43,7 @@ export class Root {
     this.navModels = this.router.navigation;
   }
 
-  navigateTo(nm: NavModel) {
-    this.router.navigate(nm.relativeHref);
+  navigateTo(index: number) {
+    this.router.navigate(this.navModels[index].relativeHref);
   }
 }

@@ -21,10 +21,11 @@
     <mdc-drawer view-model.ref="drawer" type="dismissible" mdc-top-app-bar-fixed-adjust>
       <mdc-drawer-header title="Aurelia" subtitle="Material Components Web"></mdc-drawer-header>
       <mdc-drawer-content>
-        <mdc-list single-selection activated wrap-focus>
+        <mdc-list single-selection activated wrap-focus mdclist:action.delegate="navigateTo($event.detail.index)">
           <template repeat.for="m of navModels">
-            <mdc-list-item tabindex.bind="$index ? -1 : 0" } click.delegate="navigateTo(m)" activated.bind="m.isActive">
-              ${m.title}</mdc-list-item>
+            <mdc-list-item activated.bind="m.isActive">
+              ${m.title}
+            </mdc-list-item>
             <mdc-list-divider if.bind="m.config.divider"></mdc-list-divider>
           </template>
         </mdc-list>

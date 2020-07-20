@@ -1,0 +1,20 @@
+<template>
+  <div class="demo-content">
+    <mdc-expandable accordion="acc">
+      <div slot="caption">I'm an accordion 1</div>
+      There can be only one open accordion in a container
+      <mdc-expandable>
+        <div slot="caption">I'm a child expandable</div>
+        Child expandable content
+      </mdc-expandable>
+    </mdc-expandable>
+    <mdc-expandable accordion="acc">
+      <div slot="caption">I'm an accordion 2</div>
+      There can be only one open accordion in a container
+    </mdc-expandable>
+    <mdc-expandable>
+      <div slot="caption">I'm not an accordion</div>
+      Content
+    </mdc-expandable>
+  </div>
+</template>
