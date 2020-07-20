@@ -6,6 +6,6 @@
     ${nonInteractive ? cssClasses.ROOT + '--non-interactive' : ''}
   " keydown.trigger="handleKeydownEvent_($event)" click.trigger="handleClickEvent_($event)"
   focusin.trigger="handleFocusInEvent_($event)" focusout.trigger="handleFocusOutEvent_($event)"
-  aria-orientation="${vertical ? 'vertical' : 'horizontal' }" style="display: block">
+  aria-orientation="${vertical ? 'vertical' : 'horizontal' }">
   <slot></slot>
 </template>
