@@ -137,7 +137,9 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
       isRootFocused: () => document.activeElement === this.root,
       listItemAtIndexHasClass: (index, className) => this.listElements[index].classList.contains(className),
       notifyAction: (index) => {
-        this.emit<MDCListActionEventDetail>(strings.ACTION_EVENT, { index }, /** shouldBubble */ true);
+        const listItem = this.listElements[index];
+        const data = (listItem as IMdcListItemElement).au.controller.viewModel.actionData;
+        this.emit<IMdcListActionEventDetail>(strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
       },
       removeClassForElementIndex: (index, className) => {
         const element = this.listElements[index];
