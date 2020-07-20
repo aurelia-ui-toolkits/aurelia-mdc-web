@@ -1,1 +1,6 @@
-export class Examples { }
+export class Examples {
+  expanded: boolean;
+  toggleExpanded(){
+    this.expanded = !this.expanded;
+  }
+}

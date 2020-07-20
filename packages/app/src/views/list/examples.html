@@ -17,4 +17,24 @@
       </mdc-list>
     </mdc-list-group>
   </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Expandable Items</h3>
+
+    <mdc-list single-selection>
+      <mdc-list-item tabindex="0" mdclistitem:action.delegate="toggleExpanded()" not-selectable>
+        line item
+        <i mdc-list-item-meta class="material-icons">
+          ${expanded ? 'expand_less' :'expand_more'}
+        </i>
+      </mdc-list-item>
+      <div if.bind="expanded">
+        <mdc-list-item style="padding-left: 30px;">Child 1</mdc-list-item>
+        <mdc-list-item style="padding-left: 30px;">Child 2</mdc-list-item>
+      </div>
+      <mdc-list-item>line item</mdc-list-item>
+      <mdc-list-item>line item</mdc-list-item>
+    </mdc-list>
+  </div>
+
 </template>
