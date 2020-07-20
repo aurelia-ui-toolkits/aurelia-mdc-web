@@ -1,6 +1,7 @@
 import { RouterConfiguration, RouteConfig, NavModel, Router } from 'aurelia-router';
 import { autoinject, observable } from 'aurelia-framework';
 import { MdcDrawer } from '@aurelia-mdc-web/drawer';
+import { IMdcListActionEventDetail } from '@aurelia-mdc-web/list';
 
 @autoinject
 export class Root {
@@ -43,7 +44,9 @@ export class Root {
     this.navModels = this.router.navigation;
   }
 
-  navigateTo(index: number) {
-    this.router.navigate(this.navModels[index].relativeHref);
+  navigateTo(detail: IMdcListActionEventDetail) {
+    if(detail.data){
+      this.router.navigate((detail.data as NavModel).relativeHref);
+    }
   }
 }
