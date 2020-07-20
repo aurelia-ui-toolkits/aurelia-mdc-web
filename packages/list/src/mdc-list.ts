@@ -1,10 +1,10 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCListFoundation, MDCListAdapter, MDCListActionEventDetail, strings, cssClasses, MDCListIndex } from '@material/list';
+import { MDCListFoundation, MDCListAdapter, strings, cssClasses, MDCListIndex } from '@material/list';
 import { inject, useView, customElement, children } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { closest, matches } from '@material/dom/ponyfill';
 import { bindable } from 'aurelia-typed-observable-plugin';
-import { MdcListItem } from './mdc-list-item/mdc-list-item';
+import { MdcListItem, IMdcListItemElement, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
 
@@ -211,7 +211,9 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   handleKeydownEvent_(evt: KeyboardEvent) {
     const index = this.getListItemIndex_(evt);
     const target = evt.target as Element;
-    this.foundation?.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
+    if (!target.hasAttribute('not-selectable')) {
+      this.foundation?.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
+    }
     return true;
   }
 
@@ -222,9 +224,11 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
     const index = this.getListItemIndex_(evt);
     const target = evt.target as Element;
 
-    // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
-    const toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
-    this.foundation?.handleClick(index, toggleCheckbox);
+    if (!target.hasAttribute('not-selectable')) {
+      // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
+      const toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
+      this.foundation?.handleClick(index, toggleCheckbox);
+    }
   }
 
   /**
