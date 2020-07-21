@@ -1,7 +1,7 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 import { MdcDefaultLookupConfiguration } from './mdc-lookup-configuration';
 
-export { MdcLookup } from './mdc-lookup';
+export { MdcLookup, IMdcLookupElement } from './mdc-lookup';
 
 export function configure(frameworkConfig: FrameworkConfiguration, callback?: (config: MdcDefaultLookupConfiguration) => void) {
   frameworkConfig.globalResources([

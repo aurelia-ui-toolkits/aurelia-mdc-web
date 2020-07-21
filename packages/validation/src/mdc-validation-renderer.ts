@@ -1,6 +1,7 @@
 import { ValidationRenderer, RenderInstruction, ValidateResult } from 'aurelia-validation';
 import { IMdcTextFieldHelperLineElement, IMdcTextFieldElement } from '@aurelia-mdc-web/text-field';
 import { IMdcSelectElement, IMdcSelectHelperTextElement } from "@aurelia-mdc-web/select";
+import { IMdcLookupElement } from "@aurelia-mdc-web/lookup";
 
 export class MdcValidationRenderer implements ValidationRenderer {
   render(instruction: RenderInstruction): void {
@@ -45,6 +46,15 @@ export class MdcValidationRenderer implements ValidationRenderer {
           const helperText = el.nextElementSibling as IMdcSelectHelperTextElement;
           if (helperText?.tagName === 'MDC-SELECT-HELPER-TEXT') {
             helperText.au.controller.viewModel.errors = ((el as IMdcSelectElement).getErrors() as ValidateResult[])
+              .filter(x => x.message !== null).map(x => x.message!);
+          }
+          break;
+        case 'MDC-LOOKUP':
+          const lookup = el as IMdcLookupElement;
+          const input = lookup.au.controller.viewModel.input;
+          const lookupHelperLine = input?.nextElementSibling as IMdcTextFieldHelperLineElement;
+          if (lookupHelperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
+            lookupHelperLine.au.controller.viewModel.errors = ((el as IMdcTextFieldElement).getErrors() as ValidateResult[])
               .filter(x => x.message !== null).map(x => x.message!);
           }
           break;

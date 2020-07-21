@@ -11,7 +11,9 @@ const inputEvents = ['click', 'input', 'keydown'];
 @customElement('mdc-lookup')
 @useView(PLATFORM.moduleName('./mdc-lookup.html'))
 export class MdcLookup implements EventListenerObject {
-  constructor(private element: HTMLElement, private defaultConfiguration: MdcDefaultLookupConfiguration) { }
+  constructor(private root: HTMLElement, private defaultConfiguration: MdcDefaultLookupConfiguration) {
+    defineMdcLookupElementApis(this.root);
+  }
 
 
   public anchor: { left: number, top: string | undefined, bottom: string | undefined, maxHeight: number, width: number } | null;
@@ -91,7 +93,7 @@ export class MdcLookup implements EventListenerObject {
       return;
     }
     await this.updateFilterBasedOnValue();
-    this.element.dispatchEvent(new CustomEvent('change', { detail: { value: this.value } }));
+    this.root.dispatchEvent(new CustomEvent('change', { detail: { value: this.value } }));
   }
   setValue(value: unknown) {
     if (this.value === value) {
@@ -152,7 +154,7 @@ export class MdcLookup implements EventListenerObject {
           case 'keydown': this.onInputKeydown(evt as KeyboardEvent); break;
         }
         break;
-      case this.element:
+      case this.root:
         switch (evt.type) {
           case 'blur': this.onBlur(); break;
           // case 'keydown': this.onKeydown(evt as KeyboardEvent); break;
@@ -245,7 +247,7 @@ export class MdcLookup implements EventListenerObject {
   onInputKeydown(evt: KeyboardEvent) {
     switch (evt.which) {
       case DOWN:
-        this.element.focus();
+        this.root.focus();
         this.focusedOption = this.optionsArray[0];
         evt.preventDefault();
         break;
@@ -254,7 +256,7 @@ export class MdcLookup implements EventListenerObject {
 
   onWindowWheel(evt: Event) {
     if (this.isOpen) {
-      if (evt.target === PLATFORM.global || !this.element.contains(evt.target as HTMLElement)) {
+      if (evt.target === PLATFORM.global || !this.root.contains(evt.target as HTMLElement)) {
         this.close();
       }
     }
@@ -286,4 +288,54 @@ export class MdcLookup implements EventListenerObject {
   //     this.updateAnchor();
   //   }
   // }
+
+  addError(error: unknown) {
+    if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
+      (this.input as any).addError(error);
+    }
+  }
+
+  removeError(error: unknown) {
+    if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
+      (this.input as any).removeError(error);
+    }
+  }
+
+  getErrors() {
+    if (this.input && Object.getOwnPropertyDescriptor(this.input, 'getErrors')) {
+      return (this.input as any).getErrors();
+    }
+  }
 }
+
+export interface IMdcLookupElement extends HTMLElement {
+  au: {
+    controller: {
+      viewModel: MdcLookup;
+    }
+  },
+  getErrors(): unknown[]
+}
+
+function defineMdcLookupElementApis(element: HTMLElement) {
+  Object.defineProperties(element, {
+    addError: {
+      value(this: IMdcLookupElement, error: unknown) {
+        this.au.controller.viewModel.addError(error);
+      },
+      configurable: true
+    },
+    removeError: {
+      value(this: IMdcLookupElement, error: unknown) {
+        this.au.controller.viewModel.removeError(error);
+      },
+      configurable: true
+    },
+    getErrors: {
+      value(this: IMdcLookupElement): unknown[] {
+        return this.au.controller.viewModel.getErrors();
+      },
+      configurable: true
+    }
+  });
+};

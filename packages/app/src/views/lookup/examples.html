@@ -1,9 +1,11 @@
 <template>
   <div class="demo-content">
+    <h3 class="demo-content__headline">Aurelia validation</h3>
     <div class="demo-layout__row">
       <div mdc-menu-surface-anchor>
         <mdc-text-field label="Lookup" ref="input"></mdc-text-field>
-        <mdc-lookup options.bind="lookupOptions" display-field="name" value.bind="lookupValue" input.bind="input"
+        <mdc-text-field-helper-line></mdc-text-field-helper-line>
+        <mdc-lookup options.bind="lookupOptions" display-field="name" value.bind="lookupValue & validateOnChange" input.bind="input"
           two-line>
           <template replace-part="option">
             <mdc-list-item-primary-text>${option.name}</mdc-list-item-primary-text>
