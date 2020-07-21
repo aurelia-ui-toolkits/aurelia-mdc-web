@@ -253,7 +253,11 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
       elementContainsClass: (element, className) => element.classList.contains(className),
       closeSurface: (skipRestoreFocus: boolean) => this.menuSurface_.close(skipRestoreFocus),
       getElementIndex: (element) => this.items.indexOf(element),
-      notifySelected: (evtData) => this.emit<MDCMenuItemComponentEventDetail>(strings.SELECTED_EVENT, { index: evtData.index, item: this.items[evtData.index], }),
+      notifySelected: (evtData) => {
+        const item = this.items[evtData.index];
+        this.emit<IMdcMenuItemComponentEventDetail>(strings.SELECTED_EVENT,
+          { index: evtData.index, item, data: (item as IMdcListItemElement).au?.controller.viewModel.actionData });
+      },
       getMenuItemCount: () => this.items.length,
       focusItemAtIndex: (index) => (this.items[index] as HTMLElement).focus(),
       focusListRoot: () => (this.root.querySelector(strings.LIST_SELECTOR) as HTMLElement).focus(),
