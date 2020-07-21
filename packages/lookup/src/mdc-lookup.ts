@@ -4,6 +4,7 @@ import { MdcDefaultLookupConfiguration } from './mdc-lookup-configuration';
 import { bindable } from "aurelia-typed-observable-plugin";
 import { MdcMenu, IMdcMenuItemComponentEvent } from "@aurelia-mdc-web/menu";
 
+const UP = 38;
 const DOWN = 40;
 const inputEvents = ['click', 'input', 'keydown'];
 
@@ -119,7 +120,6 @@ export class MdcLookup implements EventListenerObject {
     if (this.input) {
       inputEvents.forEach(x => this.input!.addEventListener(x, this));
     }
-    // lookupEvents.forEach(x => this.element.addEventListener(x, this));
     this.valueChanged();
     if (!this.value && this.preloadOptions) {
       this.loadOptions().catch();
@@ -130,7 +130,6 @@ export class MdcLookup implements EventListenerObject {
     if (this.input) {
       inputEvents.forEach(x => this.input!.removeEventListener(x, this));
     }
-    // lookupEvents.forEach(x => this.element.removeEventListener(x, this));
   }
 
   async open() {
@@ -152,12 +151,6 @@ export class MdcLookup implements EventListenerObject {
           case 'click': this.open(); break;
           case 'input': this.filterChanged(); break;
           case 'keydown': this.onInputKeydown(evt as KeyboardEvent); break;
-        }
-        break;
-      case this.root:
-        switch (evt.type) {
-          case 'blur': this.onBlur(); break;
-          // case 'keydown': this.onKeydown(evt as KeyboardEvent); break;
         }
         break;
     }
@@ -247,9 +240,16 @@ export class MdcLookup implements EventListenerObject {
   onInputKeydown(evt: KeyboardEvent) {
     switch (evt.which) {
       case DOWN:
-        this.root.focus();
-        this.focusedOption = this.optionsArray[0];
-        evt.preventDefault();
+        if (!this.menu.open) {
+          this.open();
+        }
+        this.menu.list_?.foundation?.focusFirstElement();
+        break;
+      case UP:
+        if (!this.menu.open) {
+          this.open();
+        }
+        this.menu.list_?.foundation?.focusLastElement();
         break;
     }
   }
@@ -261,33 +261,6 @@ export class MdcLookup implements EventListenerObject {
       }
     }
   }
-
-  // onKeydown(evt: KeyboardEvent) {
-  //   let i: number;
-  //   switch (evt.which) {
-  //     case DOWN:
-  //       i = this.optionsArray.indexOf(this.focusedOption);
-  //       this.focusedOption = this.optionsArray[i !== this.optionsArray.length - 1 ? i + 1 : 0];
-  //       this.taskQueue.queueTask(() => this.element.querySelector('.ux-lookup__option--focused')?.scrollIntoView());
-  //       break;
-  //     case UP:
-  //       i = this.optionsArray.indexOf(this.focusedOption);
-  //       this.focusedOption = this.optionsArray[i !== 0 ? i - 1 : this.optionsArray.length - 1];
-  //       this.taskQueue.queueTask(() => this.element.querySelector('.ux-lookup__option--focused')?.scrollIntoView());
-  //       break;
-  //     case ENTER:
-  //       this.select(this.focusedOption);
-  //       this.close();
-  //       break;
-  //   }
-  //   evt.preventDefault();
-  // }
-
-  // onWindowResize() {
-  //   if (this.isOpen) {
-  //     this.updateAnchor();
-  //   }
-  // }
 
   addError(error: unknown) {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {

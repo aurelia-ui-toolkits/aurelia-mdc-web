@@ -71,7 +71,7 @@
   height: 100%;
   max-width: 100%;
   width: 100%;
-  overflow: visible; // prevents clipping of menu, lookup
+  overflow: auto;
 
   @media (max-width: 900px) {
     width: unset;
