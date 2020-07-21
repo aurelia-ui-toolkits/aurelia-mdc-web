@@ -58298,6 +58298,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                                 .filter(x => x.message !== null).map(x => x.message);
                         }
                         break;
+                    case 'MDC-LOOKUP':
+                        const lookup = el;
+                        const input = lookup.au.controller.viewModel.input;
+                        const lookupHelperLine = input === null || input === void 0 ? void 0 : input.nextElementSibling;
+                        if ((lookupHelperLine === null || lookupHelperLine === void 0 ? void 0 : lookupHelperLine.tagName) === 'MDC-TEXT-FIELD-HELPER-LINE') {
+                            lookupHelperLine.au.controller.viewModel.errors = el.getErrors()
+                                .filter(x => x.message !== null).map(x => x.message);
+                        }
+                        break;
                 }
             }
         }
@@ -61146,8 +61155,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     const DOWN = 40;
     const inputEvents = ['click', 'input', 'keydown'];
     let MdcLookup = class MdcLookup {
-        constructor(element, defaultConfiguration) {
-            this.element = element;
+        constructor(root, defaultConfiguration) {
+            this.root = root;
             this.defaultConfiguration = defaultConfiguration;
             this.isOpen = false;
             this.isWrapperOpen = false;
@@ -61158,6 +61167,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.getDisplay = option => option.toString();
             this.getValue = option => option;
             this.debounce = this.defaultConfiguration.debounce;
+            defineMdcLookupElementApis(this.root);
         }
         displayFieldChanged() {
             if (this.displayField instanceof Function) {
@@ -61207,7 +61217,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     return;
                 }
                 yield this.updateFilterBasedOnValue();
-                this.element.dispatchEvent(new CustomEvent('change', { detail: { value: this.value } }));
+                this.root.dispatchEvent(new CustomEvent('change', { detail: { value: this.value } }));
             });
         }
         setValue(value) {
@@ -61265,7 +61275,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             break;
                     }
                     break;
-                case this.element:
+                case this.root:
                     switch (evt.type) {
                         case 'blur':
                             this.onBlur();
@@ -61356,7 +61366,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         onInputKeydown(evt) {
             switch (evt.which) {
                 case DOWN:
-                    this.element.focus();
+                    this.root.focus();
                     this.focusedOption = this.optionsArray[0];
                     evt.preventDefault();
                     break;
@@ -61364,9 +61374,49 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
         onWindowWheel(evt) {
             if (this.isOpen) {
-                if (evt.target === aurelia_framework_1.PLATFORM.global || !this.element.contains(evt.target)) {
+                if (evt.target === aurelia_framework_1.PLATFORM.global || !this.root.contains(evt.target)) {
                     this.close();
                 }
+            }
+        }
+        // onKeydown(evt: KeyboardEvent) {
+        //   let i: number;
+        //   switch (evt.which) {
+        //     case DOWN:
+        //       i = this.optionsArray.indexOf(this.focusedOption);
+        //       this.focusedOption = this.optionsArray[i !== this.optionsArray.length - 1 ? i + 1 : 0];
+        //       this.taskQueue.queueTask(() => this.element.querySelector('.ux-lookup__option--focused')?.scrollIntoView());
+        //       break;
+        //     case UP:
+        //       i = this.optionsArray.indexOf(this.focusedOption);
+        //       this.focusedOption = this.optionsArray[i !== 0 ? i - 1 : this.optionsArray.length - 1];
+        //       this.taskQueue.queueTask(() => this.element.querySelector('.ux-lookup__option--focused')?.scrollIntoView());
+        //       break;
+        //     case ENTER:
+        //       this.select(this.focusedOption);
+        //       this.close();
+        //       break;
+        //   }
+        //   evt.preventDefault();
+        // }
+        // onWindowResize() {
+        //   if (this.isOpen) {
+        //     this.updateAnchor();
+        //   }
+        // }
+        addError(error) {
+            if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
+                this.input.addError(error);
+            }
+        }
+        removeError(error) {
+            if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
+                this.input.removeError(error);
+            }
+        }
+        getErrors() {
+            if (this.input && Object.getOwnPropertyDescriptor(this.input, 'getErrors')) {
+                return this.input.getErrors();
             }
         }
     };
@@ -61413,6 +61463,29 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         tslib_1.__metadata("design:paramtypes", [HTMLElement, mdc_lookup_configuration_1.MdcDefaultLookupConfiguration])
     ], MdcLookup);
     exports.MdcLookup = MdcLookup;
+    function defineMdcLookupElementApis(element) {
+        Object.defineProperties(element, {
+            addError: {
+                value(error) {
+                    this.au.controller.viewModel.addError(error);
+                },
+                configurable: true
+            },
+            removeError: {
+                value(error) {
+                    this.au.controller.viewModel.removeError(error);
+                },
+                configurable: true
+            },
+            getErrors: {
+                value() {
+                    return this.au.controller.viewModel.getErrors();
+                },
+                configurable: true
+            }
+        });
+    }
+    ;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -73519,16 +73592,27 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-validation */ "aurelia-validation"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_validation_1, aurelia_framework_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
-    class Examples {
-        constructor() {
+    let Examples = class Examples {
+        constructor(validationControllerFactory) {
             this.lookupOptions = Array.from({ length: 20 }, (x, i) => ({ id: i, name: `option ${i}${i === 5 ? ' loooooooooooooong' : ''}` }));
             this.lookupValue = this.lookupOptions[1];
+            this.validationController = validationControllerFactory.createForCurrentScope();
+            this.rules = aurelia_validation_1.ValidationRules
+                .ensure(x => x.lookupValue).required()
+                .rules;
         }
-    }
+        attached() {
+            this.validationController.addObject(this, this.rules);
+        }
+    };
+    Examples = tslib_1.__decorate([
+        aurelia_framework_1.inject(aurelia_validation_1.ValidationControllerFactory),
+        tslib_1.__metadata("design:paramtypes", [aurelia_validation_1.ValidationControllerFactory])
+    ], Examples);
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -73544,7 +73628,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <div class=\"demo-layout__row\">\n      <div mdc-menu-surface-anchor>\n        <mdc-text-field label=\"Lookup\" ref=\"input\"></mdc-text-field>\n        <mdc-lookup options.bind=\"lookupOptions\" display-field=\"name\" value.bind=\"lookupValue\" input.bind=\"input\"\n          two-line>\n          <template replace-part=\"option\">\n            <mdc-list-item-primary-text>${option.name}</mdc-list-item-primary-text>\n            <mdc-list-item-secondary-text>with id=${option.id}</mdc-list-item-secondary-text>\n          </template>\n        </mdc-lookup>\n      </div>\n    </div>\n    <div class=\"demo-layout__row\">\n      You've picked ${lookupValue | json}\n    </div>\n  </div>\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Aurelia validation</h3>\n    <div class=\"demo-layout__row\">\n      <div mdc-menu-surface-anchor>\n        <mdc-text-field label=\"Lookup\" ref=\"input\"></mdc-text-field>\n        <mdc-text-field-helper-line></mdc-text-field-helper-line>\n        <mdc-lookup options.bind=\"lookupOptions\" display-field=\"name\" value.bind=\"lookupValue & validateOnChange\" input.bind=\"input\"\n          two-line>\n          <template replace-part=\"option\">\n            <mdc-list-item-primary-text>${option.name}</mdc-list-item-primary-text>\n            <mdc-list-item-secondary-text>with id=${option.id}</mdc-list-item-secondary-text>\n          </template>\n        </mdc-lookup>\n      </div>\n    </div>\n    <div class=\"demo-layout__row\">\n      You've picked ${lookupValue | json}\n    </div>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -74319,4 +74403,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.13b8101c99c7cb29de7c.bundle.map
+//# sourceMappingURL=app.b2af740153ce7b99ff6e.bundle.map
