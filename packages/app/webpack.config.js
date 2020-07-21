@@ -45,6 +45,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'icon-button',
           'line-ripple',
           'list',
+          'lookup',
           'menu',
           'menu-surface',
           'notched-outline',

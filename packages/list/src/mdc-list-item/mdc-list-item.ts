@@ -93,3 +93,7 @@ export interface IMdcListActionEventDetail {
   index: number;
   data: unknown;
 }
+
+export interface IMdcListActionEvent extends Event {
+  detail: IMdcListActionEventDetail;
+}

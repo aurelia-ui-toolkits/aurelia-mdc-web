@@ -26,6 +26,7 @@
     "@aurelia-mdc-web/form-field": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/line-ripple": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/list": "^1.0.0-alpha.0",
+    "@aurelia-mdc-web/lookup": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/menu": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/menu-surface": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/notched-outline": "^1.0.0-alpha.0",

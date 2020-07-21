@@ -71,7 +71,7 @@
   height: 100%;
   max-width: 100%;
   width: 100%;
-  overflow: auto;
+  overflow: visible; // prevents clipping of menu, lookup
 
   @media (max-width: 900px) {
     width: unset;
@@ -82,7 +82,7 @@
 .demo-panel-transition {
   width: 100%;
   max-width: 1200px;
-  padding-bottom: 60px;  
+  padding-bottom: 60px;
 }
 
 .demo-panel-title {
@@ -91,8 +91,8 @@
   margin: 16px 16px 16px 0;
   line-height: 1.25;
   padding-bottom: .3em;
-  border-bottom: 1px solid #eaecef;  
-  font-weight: 500;  
+  border-bottom: 1px solid #eaecef;
+  font-weight: 500;
 }
 
 .demo-panel-heading {

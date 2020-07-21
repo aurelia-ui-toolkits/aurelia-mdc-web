@@ -1,6 +1,6 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
-export { MdcMenu } from './mdc-menu';
+export { MdcMenu, IMdcMenuItemComponentEventDetail, IMdcMenuItemComponentEvent } from './mdc-menu';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([

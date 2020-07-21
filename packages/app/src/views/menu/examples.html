@@ -3,7 +3,7 @@
     <h3 class="demo-content__headline">Basic</h3>
     <div mdc-menu-surface-anchor>
       <button mdc-button raised click.trigger="menu.toggle()" style="width: 200px" ref="button">Open</button>
-      <mdc-menu view-model.ref="menu">
+      <mdc-menu view-model.ref="menu" anchor.bind="button">
         <mdc-list role="menu">
           <mdc-list-item role="menuitem">Cats</mdc-list-item>
           <mdc-list-item role="menuitem">Dogs</mdc-list-item>

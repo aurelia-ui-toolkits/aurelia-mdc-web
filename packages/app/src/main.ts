@@ -1,7 +1,6 @@
 import 'aurelia-bootstrapper';
 import { Aurelia, PLATFORM } from 'aurelia-framework';
-import { ValidationControllerFactory } from 'aurelia-validation';
-import { MdcValidationControllerFactory } from '@aurelia-mdc-web/validation';
+import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
 
 export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia
@@ -10,6 +9,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .standardConfiguration()
     .globalResources([
       'attributes/highlight',
+      'converters/json'
     ])
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'))
@@ -25,6 +25,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon-button'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/line-ripple'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/list'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/lookup'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu-surface'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/notched-outline'))

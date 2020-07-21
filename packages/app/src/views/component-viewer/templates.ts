@@ -194,6 +194,25 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/list/mdc-list';
 @use '@material/list';`
   },
+  lookup: {
+    title: 'Lookup',
+    description: '???',
+    references: [{
+      name: 'Material Design guidelines: Menus',
+      url: 'https://material.io/design/components/menus.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu/README.md#sass-mixins' },
+    ],
+    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/lookup'));`,
+    sass: `@use '@material/menu/mdc-menu';
+@use '@material/menu';
+@use '@material/list/mdc-list';
+@use '@material/menu-surface/mdc-menu-surface';`
+  },
   menu: {
     title: 'Menus',
     description: 'A menu displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.',
