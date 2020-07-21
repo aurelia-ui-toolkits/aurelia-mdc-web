@@ -1,8 +1,8 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuItemComponentEventDetail, strings, cssClasses } from '@material/menu';
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
-import { MdcList } from '@aurelia-mdc-web/list';
-import { MDCListActionEvent, MDCListIndex } from '@material/list';
+import { MdcList, IMdcListActionEvent, IMdcListItemElement } from '@aurelia-mdc-web/list';
+import { MDCListIndex } from '@material/list';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
@@ -37,12 +37,25 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   @bindable
   anchor?: Element | null;
 
+  @bindable
+  defaultFocusState: keyof typeof DefaultFocusState = 'LIST_ROOT';
+  async defaultFocusStateChanged() {
+    await this.initialised;
+    this.foundation?.setDefaultFocusState(DefaultFocusState[this.defaultFocusState]);
+  }
+
+  @bindable
+  anchorCorner: keyof typeof Corner;
+
+  @bindable
+  anchorMargin: Partial<MDCMenuDistance>;
+
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
     return true;
   }
 
-  handleItemAction_(evt: MDCListActionEvent) {
+  handleItemAction_(evt: IMdcListActionEvent) {
     this.foundation?.handleItemAction(this.items[evt.detail.index]);
     return true;
   }
@@ -83,40 +96,6 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
    */
   get typeaheadInProgress() {
     return this.list_ ? this.list_.typeaheadInProgress : false;
-  }
-
-  async initialise() {
-    await this.menuSurface_.initialised;
-  }
-
-  /**
-   * Given the next desired character from the user, adds it to the typeahead
-   * buffer. Then, attempts to find the next option matching the buffer. Wraps
-   * around if at the end of options.
-   *
-   * @param nextChar The next character to add to the prefix buffer.
-   * @param startingIndex The index from which to start matching. Only relevant
-   *     when starting a new match sequence. To start a new match sequence,
-   *     clear the buffer using `clearTypeaheadBuffer`, or wait for the buffer
-   *     to clear after a set interval defined in list foundation. Defaults to
-   *     the currently focused index.
-   * @return The index of the matched item, or -1 if no match.
-   */
-  typeaheadMatchItem(nextChar: string, startingIndex?: number): number {
-    if (this.list_) {
-      return this.list_.typeaheadMatchItem(nextChar, startingIndex);
-    }
-    return -1;
-  }
-
-  /**
-   * Layout the underlying list element in the case of any dynamic updates
-   * to its structure.
-   */
-  layout() {
-    if (this.list_) {
-      this.list_.layout();
-    }
   }
 
   /**
@@ -160,6 +139,46 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     }
   }
 
+  async initialise() {
+    await this.menuSurface_.initialised;
+    if (this.hoistToBody) {
+      // when menu is a direct body child there may be a vertical scrollbar briefly shown
+      // when MDCMenuSurfaceFoundation.cssClasses.OPEN added to the menu surface
+      // which breaks alignment
+      this.root.style.position = "fixed";
+    }
+  }
+
+  /**
+   * Given the next desired character from the user, adds it to the typeahead
+   * buffer. Then, attempts to find the next option matching the buffer. Wraps
+   * around if at the end of options.
+   *
+   * @param nextChar The next character to add to the prefix buffer.
+   * @param startingIndex The index from which to start matching. Only relevant
+   *     when starting a new match sequence. To start a new match sequence,
+   *     clear the buffer using `clearTypeaheadBuffer`, or wait for the buffer
+   *     to clear after a set interval defined in list foundation. Defaults to
+   *     the currently focused index.
+   * @return The index of the matched item, or -1 if no match.
+   */
+  typeaheadMatchItem(nextChar: string, startingIndex?: number): number {
+    if (this.list_) {
+      return this.list_.typeaheadMatchItem(nextChar, startingIndex);
+    }
+    return -1;
+  }
+
+  /**
+   * Layout the underlying list element in the case of any dynamic updates
+   * to its structure.
+   */
+  layout() {
+    if (this.list_) {
+      this.list_.layout();
+    }
+  }
+
   /**
    * @param corner Default anchor corner alignment of top-left menu corner.
    */
@@ -170,19 +189,6 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   set quickOpen(quickOpen: boolean) {
     this.menuSurface_.quickOpen = quickOpen;
   }
-
-  @bindable
-  defaultFocusState: keyof typeof DefaultFocusState = 'LIST_ROOT';
-  async defaultFocusStateChanged() {
-    await this.initialised;
-    this.foundation?.setDefaultFocusState(DefaultFocusState[this.defaultFocusState]);
-  }
-
-  @bindable
-  anchorCorner: keyof typeof Corner;
-
-  @bindable
-  anchorMargin: Partial<MDCMenuDistance>;
 
   /**
    * Sets the list item as the selected row at the specified index.
@@ -271,4 +277,12 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     return new MDCMenuFoundation(adapter);
   }
 
+}
+
+export interface IMdcMenuItemComponentEventDetail extends MDCMenuItemComponentEventDetail {
+  data: unknown;
+}
+
+export interface IMdcMenuItemComponentEvent extends Event {
+  readonly detail: IMdcMenuItemComponentEventDetail;
 }
