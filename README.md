@@ -1,3 +1,5 @@
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+
 # Aurelia MDC
 
 [![npm version](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase.svg)](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase)
