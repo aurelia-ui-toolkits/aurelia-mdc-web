@@ -7,4 +7,6 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./mdc-fab'),
     PLATFORM.moduleName('./enhance-mdc-fab')
   ]);
+
+  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
 }
