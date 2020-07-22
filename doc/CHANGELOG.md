@@ -1,3 +1,29 @@
+# [v1.0.0-alpha.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2020-07-22)
+
+
+### Bug Fixes
+
+* **app:** make list focusable, auto close drawer on mobile ([c545076](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c54507638dd78b4a473943c2523e098d17df5ea2))
+* **button:** expose href for route-href ([93184ed](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/93184ed16f58cbeb74ec1c528ca5054cd6554fa2))
+* **list:** move styling to scss ([fe46819](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fe46819d6f561a002a91e71cf0931e9ca0ff7745))
+* **menu:** position fixed for body hoisted menu ([5c46dda](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5c46dda1059b839a005a92e0c0d95c219219cc95))
+
+
+### Features
+
+* **app:** expandable list example ([a3a1d6e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a3a1d6e265eaa7ba0db2ad00cca55a79b73a683c))
+* **expandable:** add ([3c45a99](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3c45a9949781206334e628c1f5e09d93b6cd019e))
+* **list:** allow ignoring item interaction ([562440d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/562440d82b1fc51050845b74c6c5fe8d5ef449d6))
+* **list:** emit event on item action ([34fb45c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/34fb45c18caf80b83fe833336c8ec2bd97ff416d))
+* **list:** include arbitrary data with action event ([fef06a1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fef06a10b83f4a25ba51b444906ae7230c423d90))
+* **lookup:** add ([c260335](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c260335f526c471767789a4166e86f5b0c847011))
+* **lookup:** add not found/searching/error templates ([7f9142f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7f9142f44fd92639cf573e9aa156a038ec60d45e))
+* **lookup:** add validation ([44b8e56](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/44b8e567444cbd764a583d26076485131fd77879))
+* **lookup:** listen for up/down keys ([588c17b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/588c17b46d463db3dcfa4c9f2f4c0a19842c8801))
+* **menu:** pass menu item action data with the event ([c506c00](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c506c009a7c94f1a3a5ee4580f86cdd0868b0f46))
+
+
+
 # [1.0.0-alpha.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/d2004cbdb287c869c75e77f12b210417787a9e1f...v1.0.0-alpha.0) (2020-07-19)
 
 
