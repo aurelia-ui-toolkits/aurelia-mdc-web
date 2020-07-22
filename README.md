@@ -11,7 +11,7 @@ Third-party integration incorporating [Google Material Components](https://githu
 *  [Getting Started](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/getting-started)
 *  [Changelog](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/CHANGELOG.md)
 *  [Documentation and demos](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/)
-*  [StackBlitz Template](https://stackblitz.com/edit/angular-mdc)
+*  [Dumber Gist Template](https://gist.dumber.app/?gist=ca0cfc47e375e4b37363eeb407eb2859)
 *  [Contributing](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/CONTRIBUTING.md)
 *  [Developer guide](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/developer.md)
 
@@ -51,10 +51,9 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |
 
 ## Browser Support
-We officially support the last two versions of every major browser.
 
 - **IE 11** is not supported
 
 ## Thank you
 * To [Arjen de Blok](https://github.com/arjendeblok) for the idea of wrapping MDC and coding hints!
-* To [Dominic Carretto](https://github.com/trimox) for vasluable insights gathered from [Angular MDC wrappers](https://github.com/trimox/angular-mdc-web)!
+* To [Dominic Carretto](https://github.com/trimox) for valuable insights, demo app structure, and markup files from [Angular MDC wrappers](https://github.com/trimox/angular-mdc-web)!
