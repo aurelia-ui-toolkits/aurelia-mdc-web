@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/menu",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "publishConfig": {
     "access": "public"
   },
@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "^1.0.0-alpha.0",
-    "@aurelia-mdc-web/list": "^1.0.0-alpha.0",
+    "@aurelia-mdc-web/list": "^1.0.0-alpha.1",
     "@aurelia-mdc-web/menu-surface": "^1.0.0-alpha.0",
     "@material/menu": "^7.0.0"
   },

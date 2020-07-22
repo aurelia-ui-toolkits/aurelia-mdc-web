@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/validation",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "publishConfig": {
     "access": "public"
   },
@@ -55,8 +55,8 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "^1.0.0-alpha.0",
-    "@aurelia-mdc-web/lookup": "^1.0.0-alpha.0",
-    "@aurelia-mdc-web/select": "^1.0.0-alpha.0",
+    "@aurelia-mdc-web/lookup": "^1.0.0-alpha.1",
+    "@aurelia-mdc-web/select": "^1.0.0-alpha.1",
     "@aurelia-mdc-web/text-field": "^1.0.0-alpha.0",
     "aurelia-validation": "^2.0.0-rc2"
   },
