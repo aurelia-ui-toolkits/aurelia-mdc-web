@@ -3,7 +3,7 @@
 ## <a name="setup"></a> Setup your development environment
 
 1. Make sure you have `node` installed.
-2. Fork the `arurelia-mdc-web` repo on GitHub.
+2. Fork the `aurelia-mdc-web` repo on GitHub.
 3. Clone your fork to your machine with `git clone`.
 4. From the root of the project, run `npm i` to install the dependencies.
 5. From the root of the project, run `npm run refresh` to bootstrap lerna.

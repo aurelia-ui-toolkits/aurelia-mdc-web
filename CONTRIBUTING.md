@@ -44,4 +44,4 @@ Commit message type must be one of the following:
 When submitting PRs for large changes, be sure to include an adequate background in the description so that reviewers of the PR know what the changes entail at a high-level, the motivations for making these changes, and what they affect.
 
 ## <a name="dev"></a> Development Process
-Check out our [Developer guide](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/doc/developer.md).
+Check out our [Developer guide](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/developer.md).
