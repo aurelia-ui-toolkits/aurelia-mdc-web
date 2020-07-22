@@ -14,6 +14,13 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./mdc-text-field-helper-text/mdc-text-field-helper-text'),
     PLATFORM.moduleName('./mdc-text-field-character-counter')
   ]);
+
+  config.aurelia
+    .use
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/line-ripple'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/notched-outline'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
 }
 
 const textFieldConfig = {

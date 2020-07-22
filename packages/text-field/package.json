@@ -57,6 +57,7 @@
     "@aurelia-mdc-web/floating-label": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/line-ripple": "^1.0.0-alpha.0",
     "@aurelia-mdc-web/notched-outline": "^1.0.0-alpha.0",
+    "@aurelia-mdc-web/ripple": "^1.0.0-alpha.0",
     "@material/ripple": "^7.0.0",
     "@material/textfield": "^7.0.0"
   },
