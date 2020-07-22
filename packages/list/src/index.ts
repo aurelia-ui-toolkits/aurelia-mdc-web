@@ -14,4 +14,6 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./mdc-list-divider/mdc-list-divider'),
     PLATFORM.moduleName('./mdc-list-group'),
   ]);
+
+  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
 }
