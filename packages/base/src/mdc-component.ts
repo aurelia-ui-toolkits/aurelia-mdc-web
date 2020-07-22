@@ -8,12 +8,14 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   initialised = this.createInitiliasedPromise();
   protected initialisedResolve: () => void;
 
-  private createInitiliasedPromise() {
+  private async createInitiliasedPromise() {
     return new Promise(r => this.initialisedResolve = r);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async initialise() { }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   initialSyncWithDOM() { }
 
   async attached() {
@@ -24,6 +26,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
     this.initialSyncWithDOM();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   destroy() { }
 
   detached() {
@@ -46,7 +49,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   /**
    * Fires a cross-browser-compatible custom event from the component root of the given type, with the given data.
    */
-  emit<T extends object>(evtType: string, evtData: T, shouldBubble = false) {
+  emit<T>(evtType: string, evtData: T, shouldBubble = false) {
     let evt: CustomEvent<T>;
     if (typeof CustomEvent === 'function') {
       evt = new CustomEvent<T>(evtType, {

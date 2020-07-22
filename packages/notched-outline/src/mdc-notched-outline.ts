@@ -13,6 +13,7 @@ export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation>
   @child(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`)
   label: MdcFloatingLabel;
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     if (this.label) {
       this.label.root.style.transitionDuration = '0s';
@@ -46,7 +47,7 @@ export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation>
     const adapter: MDCNotchedOutlineAdapter = {
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
-      setNotchWidthProperty: (width) => this.notchElement_.style.setProperty('width', width + 'px'),
+      setNotchWidthProperty: (width) => this.notchElement_.style.setProperty('width', `${width}px`),
       removeNotchWidthProperty: () => this.notchElement_.style.removeProperty('width'),
     };
     return new MDCNotchedOutlineFoundation(adapter);

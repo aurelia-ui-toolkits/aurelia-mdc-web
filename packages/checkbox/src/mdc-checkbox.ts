@@ -1,5 +1,5 @@
-import { MdcComponent } from "@aurelia-mdc-web/base";
-import { MDCCheckboxFoundation, MDCCheckboxAdapter } from "@material/checkbox";
+import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MDCCheckboxFoundation, MDCCheckboxAdapter } from '@material/checkbox';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { getCorrectEventName } from '@material/animation/util';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
@@ -62,6 +62,7 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     this.nativeControl_.value = value;
   }
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     this.nativeControl_.indeterminate = this.indeterminate;
     this.listen(getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
@@ -106,7 +107,7 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
     const adapter: MDCCheckboxAdapter = {
       addClass: (className) => this.root.classList.add(className),
-      forceLayout: () => (this.root as HTMLElement).offsetWidth,
+      forceLayout: () => (this.root).offsetWidth,
       hasNativeControl: () => !!this.nativeControl_,
       isAttachedToDOM: () => Boolean(this.root.parentNode),
       isChecked: () => this.checked,
@@ -142,8 +143,8 @@ export interface IMdcCheckboxElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcCheckbox;
-    }
-  }
+    };
+  };
 }
 
 function defineMdcCheckboxElementApis(element: HTMLElement) {
@@ -155,7 +156,7 @@ function defineMdcCheckboxElementApis(element: HTMLElement) {
       get(this: IMdcCheckboxElement) {
         return this.au.controller.viewModel.checked;
       },
-      set(this: IMdcCheckboxElement, value: any) {
+      set(this: IMdcCheckboxElement, value: boolean) {
         this.au.controller.viewModel.checked = value;
       },
       configurable: true
@@ -181,4 +182,4 @@ function defineMdcCheckboxElementApis(element: HTMLElement) {
       configurable: true
     }
   });
-};
+}

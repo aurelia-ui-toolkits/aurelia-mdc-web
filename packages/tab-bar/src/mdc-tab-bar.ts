@@ -31,7 +31,7 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
 
   async initialise() {
     await this.tabScroller_!.initialised;
-    await Promise.all(this.tabScroller_!.tabs.map(x => x.initialised));
+    await Promise.all(this.tabScroller_!.tabs.map(async x => x.initialised));
   }
 
   initialSyncWithDOM() {
@@ -60,7 +60,7 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
       incrementScroll: (scrollXIncrement) => this.tabScroller_!.incrementScroll(scrollXIncrement),
       getScrollPosition: () => this.tabScroller_!.getScrollPosition(),
       getScrollContentWidth: () => this.tabScroller_!.getScrollContentWidth(),
-      getOffsetWidth: () => (this.root as HTMLElement).offsetWidth,
+      getOffsetWidth: () => this.root.offsetWidth,
       isRTL: () => window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
       setActiveTab: (index) => this.foundation?.activateTab(index),
       activateTabAtIndex: (index, clientRect) => this.tabScroller_!.tabs[index].activate(clientRect),
@@ -115,7 +115,7 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
    * Returns all the tab elements in a nice clean array
    */
   private getTabElements_(): IMdcTabElement[] {
-    return [].slice.call(this.root.querySelectorAll(strings.TAB_SELECTOR));
+    return [].slice.call(this.root.querySelectorAll(strings.TAB_SELECTOR)) as IMdcTabElement[];
   }
 
 }

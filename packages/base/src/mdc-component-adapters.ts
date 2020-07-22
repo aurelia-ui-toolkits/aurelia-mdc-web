@@ -29,7 +29,7 @@ export class MdcComponentAdapters {
     this.observerLocator.addAdapter({
       getObserver: (obj: Element, propertyName: string, descriptor: PropertyDescriptor) => {
         if (obj instanceof Element) {
-          const tagName = obj.getAttribute('as-element') || obj.tagName;
+          const tagName = obj.getAttribute('as-element') ?? obj.tagName;
           const elAdapters = this.adapters[tagName];
           if (!elAdapters) {
             return null;
@@ -42,7 +42,7 @@ export class MdcComponentAdapters {
             }
           }
         }
-        return null as any;
+        return null;
       }
     });
   }
@@ -61,6 +61,7 @@ export class MdcComponentAdapters {
   }
 
   private interceptDetermineDefaultBindingMode(): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const mdc = this;
     const originalFn = SyntaxInterpreter.prototype.determineDefaultBindingMode;
 
@@ -68,9 +69,9 @@ export class MdcComponentAdapters {
       this: SyntaxInterpreter,
       element: Element,
       attrName: string,
-      context?: any
+      context?: unknown
     ) {
-      const tagName = element.getAttribute('as-element') || element.tagName;
+      const tagName = element.getAttribute('as-element') ?? element.tagName;
       const elAdapters = mdc.adapters[tagName];
       if (elAdapters) {
         const propertyAdapter = elAdapters.properties[attrName];
@@ -78,6 +79,7 @@ export class MdcComponentAdapters {
           return propertyAdapter.defaultBindingMode;
         }
       }
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return originalFn.call(this, element, attrName, context);
     };
   }

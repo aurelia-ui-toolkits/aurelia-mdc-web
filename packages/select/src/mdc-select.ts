@@ -1,6 +1,6 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { cssClasses, MDCSelectFoundationMap, MDCSelectEventDetail, strings } from '@material/select';
-import { inject, useView, customElement, child, processContent, ViewCompiler, ViewResources, BehaviorInstruction, children } from 'aurelia-framework';
+import { inject, useView, customElement, child, processContent, ViewCompiler, ViewResources, children } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { MdcSelectIcon, IMdcSelectIconElement, mdcIconStrings } from './mdc-select-icon';
 import { MdcSelectHelperText, mdcHelperTextCssClasses, IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
@@ -24,7 +24,7 @@ let selectId = 0;
 @processContent(MdcSelect.processContent)
 export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
-  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element, _instruction: BehaviorInstruction) {
+  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
     // move icon to the slot - this allows omitting slot specification
     const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}]`);
     leadingIcon?.setAttribute('slot', 'leading-icon');
@@ -215,15 +215,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
         this.root.classList.remove(className);
       },
       hasClass: (className: string) => this.root.classList.contains(className),
-      setRippleCenter: (normalizedX: number) => {
-        this.lineRipple && this.lineRipple.setRippleCenter(normalizedX)
-      },
-      activateBottomLine: () => {
-        this.lineRipple && this.lineRipple.activate();
-      },
-      deactivateBottomLine: () => {
-        this.lineRipple && this.lineRipple.deactivate();
-      },
+      setRippleCenter: (normalizedX: number) => this.lineRipple?.setRippleCenter(normalizedX),
+      activateBottomLine: () => this.lineRipple?.activate(),
+      deactivateBottomLine: () => this.lineRipple?.deactivate(),
       notifyChange: (value: string) => {
         const index = this.selectedIndex;
         this.emit<MDCSelectEventDetail>(strings.CHANGE_EVENT, { value, index }, true /* shouldBubble  */);
@@ -234,32 +228,24 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private getOutlineAdapterMethods() {
     return {
       hasOutline: () => Boolean(this.outline),
-      notchOutline: (labelWidth: number) => {
-        this.outline && this.outline.notch(labelWidth);
-      },
-      closeOutline: () => {
-        this.outline && this.outline.closeNotch();
-      },
+      notchOutline: (labelWidth: number) => this.outline?.notch(labelWidth),
+      closeOutline: () => this.outline?.closeNotch(),
     };
   }
 
   private getLabelAdapterMethods() {
     return {
       hasLabel: () => !!this.mdcLabel,
-      floatLabel: (shouldFloat: boolean) => {
-        this.mdcLabel && this.mdcLabel.float(shouldFloat);
-      },
+      floatLabel: (shouldFloat: boolean) => this.mdcLabel?.float(shouldFloat),
       getLabelWidth: () => this.mdcLabel ? this.mdcLabel.getWidth() : 0,
-      setLabelRequired: (isRequired: boolean) => {
-        this.mdcLabel && this.mdcLabel.setRequired(isRequired);
-      },
+      setLabelRequired: (isRequired: boolean) => this.mdcLabel?.setRequired(isRequired),
     };
   }
 
   handleChange() {
     this.foundation?.handleChange();
     this.emit('change', {}, true);
-  };
+  }
 
   handleFocus() {
     this.foundation?.handleFocus();
@@ -334,9 +320,9 @@ export interface IMdcSelectElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcSelect;
-    }
-  },
-  getErrors(): unknown[]
+    };
+  };
+  getErrors(): unknown[];
 }
 
 function defineMdcSelectElementApis(element: HTMLElement) {
@@ -345,10 +331,10 @@ function defineMdcSelectElementApis(element: HTMLElement) {
       get(this: IMdcSelectElement) {
         return this.au.controller.viewModel.value;
       },
-      set(this: IMdcSelectElement, value: any) {
+      set(this: IMdcSelectElement, value: unknown) {
         // aurelia binding converts "undefined" and "null" into empty string
         // this does not translate well into "empty" menu items when several selects are bound to the same field
-        this.au.controller.viewModel.value = value === "" ? undefined : value;
+        this.au.controller.viewModel.value = value === '' ? undefined : value;
       },
       configurable: true
     },
@@ -356,7 +342,7 @@ function defineMdcSelectElementApis(element: HTMLElement) {
       get(this: IMdcSelectElement) {
         return this.au.controller.viewModel.valid;
       },
-      set(this: IMdcSelectElement, value: any) {
+      set(this: IMdcSelectElement, value: boolean) {
         this.au.controller.viewModel.valid = value;
       },
       configurable: true
@@ -392,4 +378,4 @@ function defineMdcSelectElementApis(element: HTMLElement) {
       configurable: true
     }
   });
-};
+}

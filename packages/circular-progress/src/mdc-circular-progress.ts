@@ -1,5 +1,5 @@
-import { MdcComponent } from "@aurelia-mdc-web/base";
-import { MDCCircularProgressFoundation, MDCCircularProgressAdapter } from "@material/circular-progress";
+import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MDCCircularProgressFoundation, MDCCircularProgressAdapter } from '@material/circular-progress';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 
@@ -38,6 +38,7 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
     this.root.style.setProperty('--mdc-circular-progress-gap-patch-stroke-width', `${this.strokeWidth * 0.8}px`);
   }
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     this.progressChanged();
   }
@@ -65,6 +66,6 @@ export interface IMdcCircularProgressElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcCircularProgress;
-    }
-  }
+    };
+  };
 }

@@ -5,7 +5,7 @@ import { customAttribute, inject } from 'aurelia-framework';
 export class MdcTopAppBarFixedAdjust {
   constructor(private root: HTMLElement) { }
 
-  async attached() {
-    this.root.classList.add('mdc-top-app-bar--fixed-adjust')
+  attached() {
+    this.root.classList.add('mdc-top-app-bar--fixed-adjust');
   }
 }

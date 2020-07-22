@@ -5,8 +5,8 @@ import { customAttribute, inject } from 'aurelia-framework';
 export class MdcTopAppBarActionItem {
   constructor(private root: HTMLElement) { }
 
-  async attached() {
+  attached() {
     this.root.setAttribute('role', 'button');
-    this.root.classList.add('mdc-top-app-bar__action-item', 'mdc-icon-button')
+    this.root.classList.add('mdc-top-app-bar__action-item', 'mdc-icon-button');
   }
 }

@@ -1,4 +1,4 @@
-import { inject, customAttribute } from "aurelia-framework";
+import { inject, customAttribute } from 'aurelia-framework';
 
 @inject(Element)
 @customAttribute('mdc-fab-icon')

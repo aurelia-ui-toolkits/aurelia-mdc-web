@@ -42,6 +42,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
 
   private handleScrimClick_?: SpecificEventListener<'click'>; // initialized in initialSyncWithDOM()
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     this.focusTrapFactory_ = el => new FocusTrap(el);
     if (this.root.parentElement!.clientWidth < 900) {
@@ -61,7 +62,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
           return (this.foundation as MDCModalDrawerFoundation).handleScrimClick();
         };
         this.scrim_.addEventListener('click', this.handleScrimClick_);
-        this.focusTrap_ = util.createFocusTrapInstance(this.root as HTMLElement, this.focusTrapFactory_);
+        this.focusTrap_ = util.createFocusTrapInstance(this.root, this.focusTrapFactory_);
       }
     }
   }
@@ -96,8 +97,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
       saveFocus: () => this.previousFocus_ = document.activeElement,
       restoreFocus: () => {
         const previousFocus = this.previousFocus_ as HTMLOrSVGElement | null;
-        if (previousFocus && previousFocus.focus &&
-          this.root.contains(document.activeElement)) {
+        if (previousFocus?.focus && this.root.contains(document.activeElement)) {
           previousFocus.focus();
         }
       },

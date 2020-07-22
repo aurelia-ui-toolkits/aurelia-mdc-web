@@ -1,8 +1,8 @@
 import { inject, useView, customElement, PLATFORM } from 'aurelia-framework';
 import { cssClasses, MDCFormFieldFoundation, MDCFormFieldAdapter } from '@material/form-field';
 import { bindable } from 'aurelia-typed-observable-plugin';
-import { MdcComponent } from "@aurelia-mdc-web/base";
-import { MdcRipple, IMdcRippleElement } from "@aurelia-mdc-web/ripple";
+import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcRipple, IMdcRippleElement } from '@aurelia-mdc-web/ripple';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-form-field.html'))
@@ -23,6 +23,7 @@ export class MdcFormField extends MdcComponent<MDCFormFieldFoundation> {
   @bindable.booleanAttr
   spaceBetween: boolean;
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     let rippleUpgraded = this.root.querySelector<IMdcRippleElement>('mdc-checkbox');
     if (!rippleUpgraded) {

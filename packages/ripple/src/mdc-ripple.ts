@@ -45,9 +45,9 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
 
   createAdapter(): MDCRippleAdapter {
     return {
-      addClass: (className) => (this.surface || this.root).classList.add(className),
+      addClass: (className) => (this.surface ?? this.root).classList.add(className),
       browserSupportsCssVars: () => util.supportsCssVariables(window),
-      computeBoundingRect: () => (this.surface || this.root).getBoundingClientRect(),
+      computeBoundingRect: () => (this.surface ?? this.root).getBoundingClientRect(),
       containsEventTarget: (target) => this.root.contains(target as Node),
       deregisterDocumentInteractionHandler: (evtType, handler) => document.documentElement.removeEventListener(evtType, handler, applyPassive()),
       deregisterInteractionHandler: (evtType, handler) => (this.input ?? this.root).removeEventListener(evtType, handler, applyPassive()),
@@ -59,8 +59,8 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
       registerDocumentInteractionHandler: (evtType, handler) => document.documentElement.addEventListener(evtType, handler, applyPassive()),
       registerInteractionHandler: (evtType, handler) => (this.input ?? this.root).addEventListener(evtType, handler, applyPassive()),
       registerResizeHandler: (handler) => window.addEventListener('resize', handler),
-      removeClass: (className) => (this.surface || this.root).classList.remove(className),
-      updateCssVariable: (varName, value) => (this.surface || this.root).style.setProperty(varName, value),
+      removeClass: (className) => (this.surface ?? this.root).classList.remove(className),
+      updateCssVariable: (varName, value) => (this.surface ?? this.root).style.setProperty(varName, value),
     };
   }
 }
@@ -69,6 +69,6 @@ export interface IMdcRippleElement extends HTMLElement {
   au: {
     'mdc-ripple': {
       viewModel: MdcRipple;
-    }
-  }
+    };
+  };
 }

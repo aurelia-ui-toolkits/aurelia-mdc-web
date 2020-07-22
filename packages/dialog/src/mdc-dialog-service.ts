@@ -7,11 +7,22 @@ export interface IMdcDialogOptions {
   model?: unknown;
 }
 
+declare module 'aurelia-templating' {
+  interface View {
+    controllers: Controller[];
+    slots: ShadowSlot[];
+  }
+
+  interface ShadowSlot {
+    anchor: Node;
+  }
+}
+
 interface IMdcDialogBindingContext {
   currentViewModel?: {
-    canDeactivate?: (result: any) => any;
-    deactivate?: (result: any) => any;
-    detached?: (result: any) => any;
+    canDeactivate?: (result: unknown) => unknown;
+    deactivate?: (result: unknown) => unknown;
+    detached?: (result: unknown) => unknown;
   };
   handleClosing(evt: MDCDialogCloseEvent): void;
 }
@@ -23,7 +34,7 @@ export class MdcDialogService {
 
   async open(options: IMdcDialogOptions) {
     const dialog = document.createElement('mdc-dialog') as IMdcDialogElement;
-    dialog.setAttribute(`${strings.CLOSING_EVENT}.trigger`, 'handleClosing($event)')
+    dialog.setAttribute(`${strings.CLOSING_EVENT}.trigger`, 'handleClosing($event)');
     document.body.appendChild(dialog);
     let closingResolver: (action?: string) => void;
     const closingPromise = new Promise<string>(r => closingResolver = r);
@@ -35,8 +46,8 @@ export class MdcDialogService {
       }
     };
     const childView = this.templatingEngine.enhance({ element: dialog, bindingContext });
-    const controllers = (childView as any).controllers as Controller[];
-    const view: any = controllers[0].view;
+    const controllers = childView.controllers;
+    const view = controllers[0].view;
     const slot = new ViewSlot(view.slots[ShadowDOM.defaultSlotKey].anchor, false);
     slot.attached();
     let compositionContext = this.createCompositionContext(childView.container, dialog, bindingContext, {
@@ -58,7 +69,7 @@ export class MdcDialogService {
   }
 
   private createCompositionContext(container: Container, host: Element, bindingContext: IMdcDialogBindingContext,
-    settings: { model?: any, view?: any, viewModel?: any }, slot?: ViewSlot): CompositionContext {
+    settings: { model?: unknown; view?: string; viewModel?: unknown }, slot?: ViewSlot): CompositionContext {
     return {
       container,
       bindingContext: settings.viewModel ? null : bindingContext,
@@ -66,12 +77,12 @@ export class MdcDialogService {
       model: settings.model,
       view: settings.view,
       viewModel: settings.viewModel,
-      viewSlot: slot || new ViewSlot(host, true),
+      viewSlot: slot ?? new ViewSlot(host, true),
       host
     };
   }
 
-  private ensureViewModel(compositionContext: CompositionContext): Promise<CompositionContext> {
+  private async ensureViewModel(compositionContext: CompositionContext): Promise<CompositionContext> {
     if (compositionContext.viewModel === undefined) {
       return Promise.resolve(compositionContext);
     }
@@ -85,10 +96,10 @@ export class MdcDialogService {
 
 export type LifecycleMethodName = 'canActivate' | 'activate' | 'canDeactivate' | 'deactivate';
 
-export function invokeLifecycle(instance: object, name: LifecycleMethodName, model?: any): Promise<any> {
-  if (typeof (instance as any)[name] === 'function') {
+export async function invokeLifecycle(instance: Record<string, unknown>, name: LifecycleMethodName, model?: unknown): Promise<unknown> {
+  if (typeof instance[name] === 'function') {
     return new Promise(resolve => {
-      resolve((instance as any)[name](model));
+      resolve((instance[name] as (model: unknown) => void)(model));
     }).then(result => {
       if (result !== null && result !== undefined) {
         return result;

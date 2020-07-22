@@ -9,6 +9,7 @@ export const mdcIconStrings = {
 @inject(Element)
 @customAttribute(mdcIconStrings.ATTRIBUTE)
 export class MdcSelectIcon extends MdcComponent<MDCSelectIconFoundation> {
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     this.root.classList.add('mdc-select__icon');
   }
@@ -35,6 +36,6 @@ export interface IMdcSelectIconElement extends HTMLElement {
   au: {
     'mdc-select-icon': {
       viewModel: MdcSelectIcon;
-    }
-  }
+    };
+  };
 }

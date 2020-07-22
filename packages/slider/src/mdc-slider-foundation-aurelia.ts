@@ -7,7 +7,6 @@ export class MdcSliderFoundationAurelia extends MDCSliderFoundation {
     return this.adapter.computeBoundingRect();
   }
 
-  set rect_(_: ClientRect) {
-
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  set rect_(_: ClientRect) { }
 }

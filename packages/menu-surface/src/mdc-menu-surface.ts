@@ -24,6 +24,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     this.foundation?.handleBodyClick(evt);
   }
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     this.root.classList.add(cssClasses.ROOT);
   }
@@ -49,16 +50,16 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     // capture so that no race between handleBodyClick and quickOpen when
     // menusurface opened on button click which registers this listener
     document.body.addEventListener('click', this);
-  };
+  }
 
   deregisterBodyClickListener() {
     document.body.removeEventListener('click', this);
-  };
+  }
 
   initialSyncWithDOM() {
     const parentEl = this.root.parentElement;
     if (!this.anchor) {
-      this.anchor = parentEl && parentEl.classList.contains(cssClasses.ANCHOR) ? parentEl : null;
+      this.anchor = parentEl?.classList.contains(cssClasses.ANCHOR) ? parentEl : null;
     }
     this.listen('keydown', this);
   }
@@ -160,7 +161,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       isRtl: () => getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
         const propertyName = `${util.getTransformPropertyName(window)}-origin`;
-        (this.root as HTMLElement).style.setProperty(propertyName, origin);
+        this.root.style.setProperty(propertyName, origin);
       },
       isFocused: () => document.activeElement === this.root,
       saveFocus: () => {
@@ -168,15 +169,15 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       },
       restoreFocus: () => {
         if (this.root.contains(document.activeElement)) {
-          if (this.previousFocus && this.previousFocus.focus) {
+          if (this.previousFocus?.focus) {
             this.previousFocus.focus();
           }
         }
       },
       getInnerDimensions: () => {
         return {
-          width: (this.root as HTMLElement).offsetWidth,
-          height: (this.root as HTMLElement).offsetHeight
+          width: this.root.offsetWidth,
+          height: this.root.offsetHeight
         };
       },
       getAnchorDimensions: () => this.anchor ? this.anchor.getBoundingClientRect() : null,
@@ -190,14 +191,14 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
         return { x: window.pageXOffset, y: window.pageYOffset };
       },
       setPosition: (position) => {
-        const rootHTML = this.root as HTMLElement;
+        const rootHTML = this.root;
         rootHTML.style.left = 'left' in position ? `${position.left}px` : '';
         rootHTML.style.right = 'right' in position ? `${position.right}px` : '';
         rootHTML.style.top = 'top' in position ? `${position.top}px` : '';
         rootHTML.style.bottom = 'bottom' in position ? `${position.bottom}px` : '';
       },
       setMaxHeight: (height) => {
-        (this.root as HTMLElement).style.maxHeight = height;
+        (this.root).style.maxHeight = height;
       },
     };
     return new MDCMenuSurfaceFoundation(adapter);

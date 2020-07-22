@@ -3,22 +3,17 @@ import { Container } from 'aurelia-framework';
 import { MdcValidationRenderer } from './mdc-validation-renderer';
 
 export class MdcValidationControllerFactory extends ValidationControllerFactory {
-	static get(container: Container) {
-    console.log(ValidationControllerFactory);
-		return new MdcValidationControllerFactory(container);
-	}
+  // this tells DI to call static get method to resolve dependency
+  static 'protocol:aurelia:resolver' = true;
 
-	constructor(container: Container) {
-		super(container);
-	}
+  static get(container: Container) {
+    return new MdcValidationControllerFactory(container);
+  }
 
-	createForCurrentScope(validator?: Validator): ValidationController {
-		let controller = super.createForCurrentScope(validator);
-		controller.addRenderer(new MdcValidationRenderer());
-		// controller.validateTrigger = validateTrigger.changeOrBlur;
-		return controller;
-	}
+  createForCurrentScope(validator?: Validator): ValidationController {
+    const controller = super.createForCurrentScope(validator);
+    controller.addRenderer(new MdcValidationRenderer());
+    // controller.validateTrigger = validateTrigger.changeOrBlur;
+    return controller;
+  }
 }
-
-// this tells DI to call static get method to resolve dependency
-(MdcValidationControllerFactory as any)["protocol:aurelia:resolver"] = true;

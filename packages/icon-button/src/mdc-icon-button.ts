@@ -26,7 +26,7 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
 
   handleClick() {
     this.foundation?.handleClick();
-  };
+  }
 
   getDefaultFoundation() {
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.

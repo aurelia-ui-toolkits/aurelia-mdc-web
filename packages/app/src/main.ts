@@ -1,6 +1,6 @@
+// eslint-disable-next-line import/no-unassigned-import
 import 'aurelia-bootstrapper';
 import { Aurelia, PLATFORM } from 'aurelia-framework';
-import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
 
 export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia

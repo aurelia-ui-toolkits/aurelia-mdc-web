@@ -33,7 +33,7 @@ export class MdcLineRipple extends MdcComponent<MDCLineRippleFoundation> {
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
       hasClass: (className) => this.root.classList.contains(className),
-      setStyle: (propertyName, value) => (this.root as HTMLElement).style.setProperty(propertyName, value),
+      setStyle: (propertyName, value) => this.root.style.setProperty(propertyName, value),
       registerEventHandler: (evtType, handler) => this.listen(evtType, handler),
       deregisterEventHandler: (evtType, handler) => this.unlisten(evtType, handler),
     };

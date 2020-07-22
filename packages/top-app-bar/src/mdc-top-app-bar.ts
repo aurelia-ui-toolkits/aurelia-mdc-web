@@ -31,6 +31,7 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
   @bindable.booleanAttr
   dense: boolean;
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     this.scrollTarget_ = window;
   }
@@ -74,7 +75,7 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
       hasClass: (className) => this.root.classList.contains(className),
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
-      setStyle: (property, value) => (this.root as HTMLElement).style.setProperty(property, value),
+      setStyle: (property, value) => this.root.style.setProperty(property, value),
       getTopAppBarHeight: () => this.root.clientHeight,
       notifyNavigationIconClicked: () => this.emit(strings.NAVIGATION_EVENT, {}),
       getViewportScrollY: () => {

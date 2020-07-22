@@ -1,5 +1,5 @@
-import { MdcComponent } from "@aurelia-mdc-web/base";
-import { MDCSwitchFoundation, MDCSwitchAdapter } from "@material/switch";
+import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MDCSwitchFoundation, MDCSwitchAdapter } from '@material/switch';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 
@@ -45,6 +45,7 @@ export class MdcSwitch extends MdcComponent<MDCSwitchFoundation> {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     if (this.root.hasAttribute('checked')) {
       const attributeValue = this.root.getAttribute('checked');
@@ -93,8 +94,8 @@ export interface IMdcSwitchElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcSwitch;
-    }
-  }
+    };
+  };
 }
 
 function defineMdcSwitchElementApis(element: HTMLElement) {
@@ -106,7 +107,7 @@ function defineMdcSwitchElementApis(element: HTMLElement) {
       get(this: IMdcSwitchElement) {
         return this.au.controller.viewModel.checked;
       },
-      set(this: IMdcSwitchElement, value: any) {
+      set(this: IMdcSwitchElement, value: boolean) {
         this.au.controller.viewModel.checked = value;
       },
       configurable: true
@@ -124,4 +125,4 @@ function defineMdcSwitchElementApis(element: HTMLElement) {
       configurable: true
     }
   });
-};
+}

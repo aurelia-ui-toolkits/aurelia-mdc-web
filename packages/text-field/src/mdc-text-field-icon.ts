@@ -11,6 +11,7 @@ export const mdcIconStrings = {
 @inject(Element)
 @customAttribute(mdcIconStrings.ATTRIBUTE)
 export class MdcTextFieldIcon extends MdcComponent<MDCTextFieldIconFoundation> {
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     this.root.classList.add(iconCssClasses.ROOT);
     if (this.root.hasAttribute(mdcIconStrings.LEADING)) {
@@ -50,6 +51,6 @@ export interface IMdcTextFieldIconElement extends HTMLElement {
   au: {
     'mdc-text-field-icon': {
       viewModel: MdcTextFieldIcon;
-    }
-  }
+    };
+  };
 }

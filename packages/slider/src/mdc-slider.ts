@@ -1,5 +1,5 @@
-import { MdcComponent, Size } from "@aurelia-mdc-web/base";
-import { MDCSliderAdapter, strings } from "@material/slider";
+import { MdcComponent, Size } from '@aurelia-mdc-web/base';
+import { MDCSliderAdapter, strings } from '@material/slider';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { inject, useView, PLATFORM, customElement, observable } from 'aurelia-framework';
 import { applyPassive } from '@material/dom/events';
@@ -101,7 +101,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
       setAttribute: (name, value) => this.root.setAttribute(name, value),
       removeAttribute: (name) => this.root.removeAttribute(name),
       computeBoundingRect: () => this.root.getBoundingClientRect(),
-      getTabIndex: () => (this.root as HTMLElement).tabIndex,
+      getTabIndex: () => (this.root).tabIndex,
       registerInteractionHandler: (evtType, handler) => this.listen(evtType, handler, applyPassive()),
       deregisterInteractionHandler: (evtType, handler) => this.unlisten(evtType, handler, applyPassive()),
       registerThumbContainerInteractionHandler: (evtType, handler) => {
@@ -128,7 +128,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
         const minStr = min.toLocaleString();
         // keep calculation in css for better rounding/subpixel behavior
         const markerAmount = `((${maxStr} - ${minStr}) / ${stepStr})`;
-        const markerWidth = `2px`;
+        const markerWidth = '2px';
         const markerBkgdImage = `linear-gradient(to right, currentColor ${
           markerWidth}, transparent 0)`;
         const markerBkgdLayout = `0 center / calc((100% - ${markerWidth}) / ${
@@ -158,8 +158,8 @@ export interface IMdcSliderElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcSlider;
-    }
-  }
+    };
+  };
 }
 
 function defineMdcSliderElementApis(element: HTMLElement) {
@@ -168,7 +168,7 @@ function defineMdcSliderElementApis(element: HTMLElement) {
       get(this: IMdcSliderElement) {
         return this.au.controller.viewModel.value;
       },
-      set(this: IMdcSliderElement, value: any) {
+      set(this: IMdcSliderElement, value: number) {
         this.au.controller.viewModel.value = value;
       },
       configurable: true
@@ -186,4 +186,4 @@ function defineMdcSliderElementApis(element: HTMLElement) {
       configurable: true
     }
   });
-};
+}

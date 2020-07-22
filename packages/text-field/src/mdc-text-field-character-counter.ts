@@ -27,6 +27,6 @@ export interface IMdcTextFieldCharacterCounterElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcTextFieldCharacterCounter;
-    }
-  }
+    };
+  };
 }

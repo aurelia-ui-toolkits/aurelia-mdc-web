@@ -1,10 +1,10 @@
-import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, BehaviorInstruction, PLATFORM, child } from 'aurelia-framework';
+import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, PLATFORM, child } from 'aurelia-framework';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
   MDCTextFieldLineRippleAdapter, cssClasses, MDCTextFieldOutlineAdapter, helperTextStrings, characterCountStrings
 } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, IValidatedElement } from '@aurelia-mdc-web/base';
 import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
 import { bindable } from 'aurelia-typed-observable-plugin';
@@ -25,7 +25,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     defineMdcTextFieldElementApis(this.root);
   }
 
-  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element, _instruction: BehaviorInstruction) {
+  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
     // move icons to slots - this allows omitting slot specification
     const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`);
     leadingIcon?.setAttribute('slot', 'leading-icon');
@@ -162,7 +162,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.typeChanged();
     // handle the case when attribute value was set, not bound, in html
     if (this.root.hasAttribute('value')) {
-      this.value = this.root.getAttribute('value') || '';
+      this.value = this.root.getAttribute('value') ?? '';
     }
   }
 
@@ -245,27 +245,27 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   private getLabelAdapterMethods_(): MDCTextFieldLabelAdapter {
     return {
-      floatLabel: (shouldFloat) => this.label_ && this.label_.float(shouldFloat),
+      floatLabel: (shouldFloat) => this.label_?.float(shouldFloat),
       getLabelWidth: () => this.label_ ? this.label_.getWidth() : 0,
       hasLabel: () => Boolean(this.label_),
-      shakeLabel: (shouldShake) => this.label_ && this.label_.shake(shouldShake),
-      setLabelRequired: (isRequired) => this.label_ && this.label_.setRequired(isRequired),
+      shakeLabel: (shouldShake) => this.label_?.shake(shouldShake),
+      setLabelRequired: (isRequired) => this.label_?.setRequired(isRequired),
     };
   }
 
   private getLineRippleAdapterMethods_(): MDCTextFieldLineRippleAdapter {
     return {
-      activateLineRipple: () => this.lineRipple_ && this.lineRipple_.activate(),
-      deactivateLineRipple: () => this.lineRipple_ && this.lineRipple_.deactivate(),
-      setLineRippleTransformOrigin: (normalizedX) => this.lineRipple_ && this.lineRipple_.setRippleCenter(normalizedX)
+      activateLineRipple: () => this.lineRipple_?.activate(),
+      deactivateLineRipple: () => this.lineRipple_?.deactivate(),
+      setLineRippleTransformOrigin: (normalizedX) => this.lineRipple_?.setRippleCenter(normalizedX)
     };
   }
 
   private getOutlineAdapterMethods_(): MDCTextFieldOutlineAdapter {
     return {
-      closeOutline: () => this.outline_ && this.outline_.closeNotch(),
+      closeOutline: () => this.outline_?.closeNotch(),
       hasOutline: () => Boolean(this.outline_),
-      notchOutline: (labelWidth) => this.outline_ && this.outline_.notch(labelWidth),
+      notchOutline: (labelWidth) => this.outline_?.notch(labelWidth),
     };
   }
 
@@ -282,7 +282,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 
   onInput(evt: Event): void {
-    const value = (<any>evt.target).value;
+    const value = (evt.target as HTMLInputElement).value;
     this.value = value;
     this.foundation?.handleInput();
     this.emit('input', {}, true);
@@ -313,13 +313,12 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 }
 
-export interface IMdcTextFieldElement extends HTMLElement {
+export interface IMdcTextFieldElement extends IValidatedElement {
   au: {
     controller: {
       viewModel: MdcTextField;
-    }
-  },
-  getErrors(): unknown[]
+    };
+  };
 }
 
 function defineMdcTextFieldElementApis(element: HTMLElement) {
@@ -328,7 +327,7 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       get(this: IMdcTextFieldElement) {
         return this.au.controller.viewModel.value;
       },
-      set(this: IMdcTextFieldElement, value: any) {
+      set(this: IMdcTextFieldElement, value: string) {
         this.au.controller.viewModel.value = value;
       },
       configurable: true
@@ -337,7 +336,7 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       get(this: IMdcTextFieldElement) {
         return this.au.controller.viewModel.valid;
       },
-      set(this: IMdcTextFieldElement, value: any) {
+      set(this: IMdcTextFieldElement, value: boolean) {
         this.au.controller.viewModel.valid = value;
       },
       configurable: true
@@ -373,4 +372,4 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       configurable: true
     }
   });
-};
+}

@@ -10,7 +10,7 @@ strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
 
 export const mdcListStrings = {
   ITEMS_CHANGED: 'mdclist:itemschanged'
-}
+};
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-list.html'))
@@ -80,7 +80,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   }
 
   get listElements(): Element[] {
-    return [].slice.call(this.root.querySelectorAll(`.${cssClasses.LIST_ITEM_CLASS}`));
+    return [].slice.call(this.root.querySelectorAll(`.${cssClasses.LIST_ITEM_CLASS}`)) as Element[];
   }
 
   /**
@@ -91,11 +91,11 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   getPrimaryText(item: Element): string {
     const primaryText = item.querySelector(`.${cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS}`);
     if (primaryText) {
-      return primaryText.textContent || '';
+      return primaryText.textContent ?? '';
     }
 
     const singleLineText = item.querySelector(`.${cssClasses.LIST_ITEM_TEXT_CLASS}`);
-    return (singleLineText && singleLineText.textContent) || '';
+    return singleLineText?.textContent ?? '';
   }
 
   getDefaultFoundation() {

@@ -1,4 +1,4 @@
-import { customElement, inlineView, inject } from "aurelia-framework";
+import { customElement, inlineView, inject } from 'aurelia-framework';
 
 @inject(Element)
 @inlineView('<template class="mdc-dialog__content"><slot></slot></template>')

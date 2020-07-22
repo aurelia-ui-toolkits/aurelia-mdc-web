@@ -1,8 +1,9 @@
 import { customElement, useView, inject, PLATFORM, bindingMode } from 'aurelia-framework';
 import { DiscardablePromise } from './discardable-promise';
 import { MdcDefaultLookupConfiguration } from './mdc-lookup-configuration';
-import { bindable } from "aurelia-typed-observable-plugin";
-import { MdcMenu, IMdcMenuItemComponentEvent } from "@aurelia-mdc-web/menu";
+import { bindable } from 'aurelia-typed-observable-plugin';
+import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
+import { IValidatedElement } from '@aurelia-mdc-web/base';
 
 const UP = 38;
 const DOWN = 40;
@@ -16,8 +17,7 @@ export class MdcLookup implements EventListenerObject {
     defineMdcLookupElementApis(this.root);
   }
 
-
-  public anchor: { left: number, top: string | undefined, bottom: string | undefined, maxHeight: number, width: number } | null;
+  public anchor: { left: number; top: string | undefined; bottom: string | undefined; maxHeight: number; width: number } | null;
   public isOpen: boolean = false;
   public isWrapperOpen: boolean = false;
   public optionsArray: unknown[];
@@ -39,13 +39,13 @@ export class MdcLookup implements EventListenerObject {
     if (this.displayField instanceof Function) {
       this.getDisplay = this.displayField;
     } else if (typeof this.displayField === 'string') {
-      this.getDisplay = option => (option as any)[this.displayField as string];
+      this.getDisplay = option => (option as Record<string, string>)[this.displayField as string];
     } else {
-      this.getDisplay = option => (option as any).toString();
+      this.getDisplay = option => (option as Record<string, unknown>).toString();
     }
   }
 
-  getDisplay: (option: unknown) => string = option => (option as any).toString();
+  getDisplay: (option: unknown) => string = option => (option as Record<string, unknown>).toString();
 
   @bindable
   valueField: ((option: unknown) => unknown) | string | undefined;
@@ -53,7 +53,7 @@ export class MdcLookup implements EventListenerObject {
     if (this.valueField instanceof Function) {
       this.getValue = this.valueField;
     } else if (typeof this.valueField === 'string') {
-      this.getValue = option => (option as any)[this.valueField as string];
+      this.getValue = option => (option as Record<string, unknown>)[this.valueField as string];
     } else {
       this.getValue = option => option;
     }
@@ -132,7 +132,7 @@ export class MdcLookup implements EventListenerObject {
     }
   }
 
-  async open() {
+  open() {
     if (this.isOpen) {
       return;
     }
@@ -169,8 +169,7 @@ export class MdcLookup implements EventListenerObject {
     this.debouncePromise = new DiscardablePromise(new Promise(r => setTimeout(() => r(), this.debounce ?? 0)));
     try {
       await this.debouncePromise;
-    }
-    catch (e) {
+    } catch (e) {
       return;
     }
     this.setValue(undefined);
@@ -185,13 +184,11 @@ export class MdcLookup implements EventListenerObject {
     this.optionsArray = [];
     try {
       await this.loadOptions();
-    }
-    catch (e) {
+    } catch (e) {
       if (e !== DiscardablePromise.discarded) {
         this.errorMessage = e.message;
       }
-    }
-    finally {
+    } finally {
       this.searching = false;
     }
   }
@@ -213,11 +210,10 @@ export class MdcLookup implements EventListenerObject {
   async updateFilterBasedOnValue() {
     if (this.value) {
       this.optionsArray = await this.getOptions(undefined, this.value);
-    }
-    else {
+    } else {
       this.optionsArray = [];
     }
-    if (this.optionsArray && this.optionsArray.length) {
+    if (this.optionsArray?.length) {
       this.setFilter(this.getDisplay(this.optionsArray[0]));
     } else {
       this.setFilter(undefined);
@@ -264,19 +260,21 @@ export class MdcLookup implements EventListenerObject {
 
   addError(error: unknown) {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
-      (this.input as any).addError(error);
+      (this.input as HTMLElement as IValidatedElement).addError(error);
     }
   }
 
   removeError(error: unknown) {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
-      (this.input as any).removeError(error);
+      (this.input as HTMLElement as IValidatedElement).removeError(error);
     }
   }
 
-  getErrors() {
+  getErrors(): unknown[] {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'getErrors')) {
-      return (this.input as any).getErrors();
+      return (this.input as HTMLElement as IValidatedElement).getErrors();
+    } else {
+      return [];
     }
   }
 }
@@ -285,9 +283,9 @@ export interface IMdcLookupElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcLookup;
-    }
-  },
-  getErrors(): unknown[]
+    };
+  };
+  getErrors(): unknown[];
 }
 
 function defineMdcLookupElementApis(element: HTMLElement) {
@@ -311,4 +309,4 @@ function defineMdcLookupElementApis(element: HTMLElement) {
       configurable: true
     }
   });
-};
+}

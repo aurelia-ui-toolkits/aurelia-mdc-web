@@ -1,5 +1,5 @@
 import { customElement, useView } from 'aurelia-framework';
-import { bindable } from "aurelia-typed-observable-plugin";
+import { bindable } from 'aurelia-typed-observable-plugin';
 
 @useView('./mdc-fab.html')
 @customElement('mdc-fab')

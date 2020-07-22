@@ -1,5 +1,5 @@
-import { MdcComponent } from "@aurelia-mdc-web/base";
-import { MDCRadioFoundation, MDCRadioAdapter } from "@material/radio";
+import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MDCRadioFoundation, MDCRadioAdapter } from '@material/radio';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 
@@ -53,6 +53,7 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
     this.nativeControl_.value = value;
   }
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     if (this.root.hasAttribute('checked')) {
       const attributeValue = this.root.getAttribute('checked');
@@ -96,8 +97,8 @@ export interface IMdcRadioElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcRadio;
-    }
-  }
+    };
+  };
 }
 
 function defineMdcRadioElementApis(element: HTMLElement) {
@@ -109,7 +110,7 @@ function defineMdcRadioElementApis(element: HTMLElement) {
       get(this: IMdcRadioElement) {
         return this.au.controller.viewModel.checked;
       },
-      set(this: IMdcRadioElement, value: any) {
+      set(this: IMdcRadioElement, value: boolean) {
         this.au.controller.viewModel.checked = value;
       },
       configurable: true
@@ -135,4 +136,4 @@ function defineMdcRadioElementApis(element: HTMLElement) {
       configurable: true
     }
   });
-};
+}
