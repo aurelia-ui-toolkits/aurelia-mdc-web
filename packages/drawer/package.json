@@ -46,7 +46,7 @@
     "_predoc": "cross-env rimraf doc/api.json && rimraf dist/doc-temp && tsc --project tsconfig.json --outFile dist/doc-temp/aurelia-ux.js && node doc/shape-defs && copyfiles tsconfig.json dist/doc-temp",
     "_doc": "cross-env typedoc --json doc/api.json --excludeExternals --includeDeclarations --mode modules --target ES6 --name aurelia-ux-docs dist/doc-temp/",
     "_postdoc": "cross-env node doc/shape-doc && rimraf dist/doc-temp",
-    "_changelog": "cross-env conventional-changelog -p aurelia-material-components-web -i doc/CHANGELOG.md -s",
+    "_changelog": "cross-env conventional-changelog -p aurelia-mdc-web -i doc/CHANGELOG.md -s",
     "_bump-version": "npm --no-git-tag-version version",
     "_preprepare-release": "cross-env npm run test",
     "_prepare-release": "cross-env npm run changelog && npm run build && npm run doc",
