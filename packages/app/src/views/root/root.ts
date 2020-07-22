@@ -45,8 +45,11 @@ export class Root {
   }
 
   navigateTo(detail: IMdcListActionEventDetail) {
-    if(detail.data){
+    if (detail.data) {
       this.router.navigate((detail.data as NavModel).relativeHref);
+      if (this.drawer.type === 'modal') {
+        this.drawer.toggle();
+      }
     }
   }
 }
