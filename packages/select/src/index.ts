@@ -13,6 +13,15 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./mdc-select-icon'),
     PLATFORM.moduleName('./mdc-select-helper-text/mdc-select-helper-text')
   ]);
+
+  config.aurelia
+    .use
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/line-ripple'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/list'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/notched-outline'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
 }
 
 const selectConfig = {

@@ -60,6 +60,7 @@
     "@aurelia-mdc-web/list": "^1.0.0-alpha.1",
     "@aurelia-mdc-web/menu": "^1.0.0-alpha.1",
     "@aurelia-mdc-web/notched-outline": "^1.0.0-alpha.0",
+    "@aurelia-mdc-web/ripple": "^1.0.0-alpha.0",
     "@material/select": "^7.0.0"
   },
   "devDependencies": {
