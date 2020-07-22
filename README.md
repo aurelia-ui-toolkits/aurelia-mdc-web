@@ -9,7 +9,7 @@ Third-party integration incorporating [Google Material Components](https://githu
 
 #### Quick Links
 *  [Getting Started](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/getting-started)
-*  [Changelog](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/CHANGELOG.md)
+*  [Changelog](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/CHANGELOG.md)
 *  [Documentation and demos](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/)
 *  [StackBlitz Template](https://stackblitz.com/edit/angular-mdc)
 *  [Contributing](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/CONTRIBUTING.md)
