@@ -6,4 +6,6 @@ export function configure(config: FrameworkConfiguration) {
   config.globalResources([
     PLATFORM.moduleName('./mdc-expandable'),
   ]);
+
+  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
 }
