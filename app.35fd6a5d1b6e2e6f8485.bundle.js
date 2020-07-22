@@ -73858,6 +73858,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         navigateTo(detail) {
             if (detail.data) {
                 this.router.navigate(detail.data.relativeHref);
+                if (this.drawer.type === 'modal') {
+                    this.drawer.toggle();
+                }
             }
         }
     };
@@ -73888,7 +73891,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = __webpack_require__(/*! ../../../
 var ___HTML_LOADER_IMPORT_0___ = __webpack_require__(/*! ../../assets/github-circle-white-transparent.svg */ "./src/assets/github-circle-white-transparent.svg");
 // Module
 var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.0</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.0</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\" tabindex=\"0\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -74379,4 +74382,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.bcb5cb95cfc8dc5b5c6d.bundle.map
+//# sourceMappingURL=app.35fd6a5d1b6e2e6f8485.bundle.map
