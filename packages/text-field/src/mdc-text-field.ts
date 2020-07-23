@@ -47,6 +47,9 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   label: string;
 
   @bindable.booleanAttr
+  textarea: boolean;
+
+  @bindable.booleanAttr
   outlined: boolean;
 
   @bindable
@@ -84,6 +87,26 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 
   @bindable
+  rows: string;
+  rowsChanged() {
+    if (this.rows) {
+      this.input_.setAttribute('rows', this.rows);
+    } else {
+      this.input_.removeAttribute('rows');
+    }
+  }
+
+  @bindable
+  cols: string;
+  colsChanged() {
+    if (this.rows) {
+      this.input_.setAttribute('cols', this.cols);
+    } else {
+      this.input_.removeAttribute('cols');
+    }
+  }
+
+  @bindable
   max: string;
   maxChanged() {
     this.input_.max = this.max;
@@ -110,7 +133,9 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable
   type: string;
   typeChanged() {
-    this.input_.type = this.type;
+    if (!this.textarea) {
+      this.input_.type = this.type;
+    }
   }
 
   private initialValue: string;
@@ -150,21 +175,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.foundation?.setValid(value);
   }
 
-  bind() {
-    this.requiredChanged();
-    this.disabledChanged();
-    this.readonlyChanged();
-    this.tabindexChanged();
-    this.maxlengthChanged();
-    this.minChanged();
-    this.maxChanged();
-    this.stepChanged();
-    this.typeChanged();
-    // handle the case when attribute value was set, not bound, in html
-    if (this.root.hasAttribute('value')) {
-      this.value = this.root.getAttribute('value') ?? '';
-    }
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  bind() { }
 
   initialSyncWithDOM() {
     this.value = this.initialValue;
@@ -181,6 +193,22 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   trailingIcon_: MdcTextFieldIcon | undefined;
 
   async initialise() {
+    this.requiredChanged();
+    this.disabledChanged();
+    this.readonlyChanged();
+    this.tabindexChanged();
+    this.maxlengthChanged();
+    this.rowsChanged();
+    this.colsChanged();
+    this.minChanged();
+    this.maxChanged();
+    this.stepChanged();
+    this.typeChanged();
+    // handle the case when attribute value was set, not bound, in html
+    if (this.root.hasAttribute('value')) {
+      this.value = this.root.getAttribute('value') ?? '';
+    }
+
     this.leadingIcon_ = this.leadingIconEl?.au['mdc-text-field-icon'].viewModel;
     this.trailingIcon_ = this.trailingIconEl?.au['mdc-text-field-icon'].viewModel;
     const nextSibling = this.root.nextElementSibling;

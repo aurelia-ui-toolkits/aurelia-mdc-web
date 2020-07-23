@@ -1,12 +1,21 @@
-<template class="mdc-text-field mdc-text-field--${outlined ? 'outlined' : 'filled'}
-${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''}
-${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}" mdc-ripple="input.bind: input_">
+<template class="
+    mdc-text-field
+    ${textarea ? 'mdc-text-field--textarea' : ''}
+    mdc-text-field--${outlined ? 'outlined' : 'filled'}
+    ${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''}
+    ${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}
+  " mdc-ripple="input.bind: input_">
   <span class="mdc-text-field__ripple"></span>
   <slot name="leading-icon"></slot>
-  <span class="mdc-text-field__affix mdc-text-field__affix--prefix" if.bind="prefix">${prefix}</span>
-  <input class="mdc-text-field__input" type="text" aria-labelledby.bind="id" ref="input_" focus.trigger="onFocus()"
-    input.trigger="onInput($event)" change.trigger="onChange($event)" blur.trigger="onBlur()" >
-  <span class="mdc-text-field__affix mdc-text-field__affix--suffix" if.bind="suffix">${suffix}</span>
+  <span class="mdc-text-field__affix mdc-text-field__affix--prefix" if.bind="prefix && !textarea">${prefix}</span>
+  <input if.bind="!textarea" class="mdc-text-field__input" type="text" aria-labelledby.bind="id" ref="input_"
+    focus.trigger="onFocus()" input.trigger="onInput($event)" change.trigger="onChange($event)" blur.trigger="onBlur()">
+  <span if.bind="textarea" class="mdc-text-field__resizer">
+    <textarea class="mdc-text-field__input" aria-labelledby.bind="id" ref="input_"
+      focus.trigger="onFocus()" input.trigger="onInput($event)" change.trigger="onChange($event)"
+      blur.trigger="onBlur()"></textarea>
+  </span>
+  <span class="mdc-text-field__affix mdc-text-field__affix--suffix" if.bind="suffix && !textarea">${suffix}</span>
   <slot name="trailing-icon"></slot>
   <mdc-floating-label if.bind="label && !outlined" id="${id}" view-model.ref="label_">${label}</mdc-floating-label>
   <mdc-line-ripple if.bind="!outlined" view-model.ref="lineRipple_"></mdc-line-ripple>

@@ -40,13 +40,11 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | radio | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/radio) |
 | ripple | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/ripple) |
 | select | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/select) |
-| shape | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/shape) |
 | slider | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/slider) |
 | snackbar | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/snackbar) |
 | switch | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/switch) |
 | tabs | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tabs) |
 | text-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/text-field) |
-| theme | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/angular-mdc-web/theme) |
 | top-app-bar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/top-app-bar) |
 | typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |
 

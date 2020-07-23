@@ -1,5 +1,6 @@
 import { ValidationController, ValidationRules, ValidationControllerFactory, Rule } from "aurelia-validation";
 import { autoinject } from 'aurelia-framework';
+import { MdcTextField } from '@aurelia-mdc-web/text-field';
 
 @autoinject
 export class Examples {
@@ -18,6 +19,9 @@ export class Examples {
   value = 0;
   valueStr: string = 'test';
 
+  textareaDisabled: boolean;
+  textareaRequired: boolean;
+
   attached() {
     this.validationController.addObject(this, this.rules);
   }
@@ -26,4 +30,23 @@ export class Examples {
     const res = await this.validationController.validate();
     console.log(res);
   }
+
+  toggleTextareaDisabled() {
+    this.textareaDisabled = !this.textareaDisabled;
+  }
+
+  toggleTextareaRequired() {
+    this.textareaRequired = !this.textareaRequired;
+  }
+
+  alternateColors(input: HTMLElement) {
+    if (input.hasAttribute('textarea')) {
+      const demoTextarea = 'demo-textarea';
+      input.classList.toggle(demoTextarea);
+    } else {
+      const demoFullwidth = 'demo-fullwidth-input';
+      input.classList.toggle(demoFullwidth);
+    }
+  }
+
 }
