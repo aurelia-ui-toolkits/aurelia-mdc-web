@@ -24,7 +24,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | card | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/card) |
 | checkbox | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/checkbox) |
 | chips | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/chips) |
-| data-table | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/data-table) |
+| data-table | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/data-table) |
 | dialog | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/dialog) |
 | drawer | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/drawer) |
 | elevation | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/elevation) |
