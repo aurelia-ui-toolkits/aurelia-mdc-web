@@ -27,7 +27,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | data-table | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/data-table) |
 | dialog | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/dialog) |
 | drawer | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/drawer) |
-| elevation | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/elevation) |
+| elevation | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/elevation) |
 | fab | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/fab) |
 | form-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/form-field) |
 | icon | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/icon) |

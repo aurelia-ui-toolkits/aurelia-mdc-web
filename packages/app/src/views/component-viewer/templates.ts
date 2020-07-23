@@ -13,7 +13,7 @@ export interface IComponentTemplate {
 }
 
 export const templates: { [x: string]: IComponentTemplate } = {
-  button: {
+  'button': {
     title: 'Button',
     description: 'Buttons allow users to take actions, and make choices, with a single tap.',
     references: [{
@@ -26,10 +26,10 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-button/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));`,
-    sass: `@use '@material/button/mdc-button';`
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/button\'));',
+    sass: '@use \'@material/button/mdc-button\';'
   },
-  dialog: {
+  'dialog': {
     title: 'Dialog',
     description: 'Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.',
     references: [{
@@ -42,11 +42,11 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-dialog/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/dialog'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/dialog\'));',
     sass: `@use '@material/dialog/mdc-dialog';
 @use '@material/dialog';`
   },
-  card: {
+  'card': {
     title: 'Card',
     description: 'Cards contain content and actions about a single subject.',
     references: [{
@@ -59,11 +59,11 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-card/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/card'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/card\'));',
     sass: `@use '@material/card/mdc-card';
 @use '@material/card';`
   },
-  checkbox: {
+  'checkbox': {
     title: 'Checkbox',
     description: 'Checkboxes allow the user to select one or more items from a set.',
     references: [{
@@ -76,7 +76,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-checkbox/README.md#style-customization' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/checkbox\'));',
     sass: `@use '@material/checkbox/mdc-checkbox';
 @use '@material/checkbox';`
   },
@@ -93,12 +93,12 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-circular-progress/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/circular-progress'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/circular-progress\'));',
     sass: `@use '@material/circular-progress/mdc-circular-progress';
 @use '@material/circular-progress';
 @use "@aurelia-mdc-web/circular-progress";`
   },
-  drawer: {
+  'drawer': {
     title: 'Drawers',
     description: 'The MDC Navigation Drawer is used to organize access to destinations and other functionality on an app.',
     references: [{
@@ -111,10 +111,10 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-drawer/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/drawer'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/drawer\'));',
     sass: '@use "@material/drawer/mdc-drawer";'
   },
-  expandable: {
+  'expandable': {
     title: 'Expandable',
     description: '???',
     references: [{
@@ -127,10 +127,28 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/expandable'));`,
-    sass: `@use "@aurelia-mdc-web/expandable";`
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/expandable\'));',
+    sass: '@use "@aurelia-mdc-web/expandable";'
   },
-  fab: {
+  'elevation': {
+    title: 'Elevation',
+    description: `Shadows provide important visual cues about objects’ depth and directional movement.
+    They are the only visual cue indicating the amount of separation between surfaces.
+     An object’s elevation determines the appearance of its shadow.`,
+    references: [{
+      name: 'Material Design guidelines: Elevation',
+      url: 'https://material.io/design/environment/elevation.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-elevation/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-elevation/README.md#style-customization' },
+    ],
+    code: 'import {MdcElevationModule} from \'@angular-mdc/web/elevation\';',
+    sass: '@use \'@material/elevation/mdc-elevation\';'
+  },
+  'fab': {
     title: 'Floating Action Button',
     description: 'A floating action button represents the primary action in an application.',
     references: [{
@@ -143,11 +161,11 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/fab'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/fab\'));',
     sass: `@use '@material/fab/mdc-fab';
 @use '@material/fab';`
   },
-  "form-field": {
+  'form-field': {
     title: 'Form Fields',
     description: `MDC Form Field aligns an MDC Web form field (for example, a checkbox)
     with its label and makes it RTL-aware. It also activates a ripple effect
@@ -156,13 +174,13 @@ export const templates: { [x: string]: IComponentTemplate } = {
       name: 'Material Components Web',
       url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-form-field/README.md'
     }],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/form-field'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/form-field\'));',
     sass: `@use '@material/form-field/mdc-form-field';
 @use '@material/form-field/_index' as form-field;`
   },
-  "icon-button": {
+  'icon-button': {
     title: 'Icon Buttons',
-    description: `Icon buttons allow users to take actions, and make choices, with a single tap.`,
+    description: 'Icon buttons allow users to take actions, and make choices, with a single tap.',
     references: [{
       name: 'Material Design guidelines: Toggle Buttons',
       url: 'https://material.io/design/components/buttons.html#toggle-button'
@@ -173,11 +191,11 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-icon-button/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon-button'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/icon-button\'));',
     sass: `@use '@material/icon-button/mdc-icon-button';
 @use '@material/icon-button/_index' as icon-button;`
   },
-  list: {
+  'list': {
     title: 'Lists',
     description: 'Lists are continuous, vertical indexes of text or images.',
     references: [{
@@ -190,11 +208,11 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-list/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/list'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/list\'));',
     sass: `@use '@material/list/mdc-list';
 @use '@material/list';`
   },
-  lookup: {
+  'lookup': {
     title: 'Lookup',
     description: '???',
     references: [{
@@ -207,13 +225,13 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/lookup'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/lookup\'));',
     sass: `@use '@material/menu/mdc-menu';
 @use '@material/menu';
 @use '@material/list/mdc-list';
 @use '@material/menu-surface/mdc-menu-surface';`
   },
-  menu: {
+  'menu': {
     title: 'Menus',
     description: 'A menu displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.',
     references: [{
@@ -226,13 +244,13 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/menu\'));',
     sass: `@use '@material/menu/mdc-menu';
 @use '@material/menu';
 @use '@material/list/mdc-list';
 @use '@material/menu-surface/mdc-menu-surface';`
   },
-  radio: {
+  'radio': {
     title: 'Radio Buttons',
     description: 'Radio buttons allow the user to select one option from a set while seeing all available options.',
     references: [{
@@ -245,12 +263,12 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-radio/README.md#style-customization' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/radio'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/radio\'));',
     sass: `@use '@material/radio/mdc-radio';
 @use '@material/radio';
 @use '@material/form-field/mdc-form-field';`
   },
-  ripple: {
+  'ripple': {
     title: 'Ripple',
     description: 'Ripple provides components (or any element) with a material "ink ripple" interaction effect.',
     references: [{
@@ -263,11 +281,11 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-ripple/README.md#sass-apis' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/ripple\'));',
     sass: `@use '@material/ripple/mdc-ripple';
 @use '@material/ripple';`
   },
-  select: {
+  'select': {
     title: 'Select Menus',
     description: 'MDC Select provides Material Design single-option select menus, using the MDC menu.',
     references: [{
@@ -282,14 +300,14 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/helper-text/README.md#sass-mixins' },
       { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/icon/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/select\'));',
     sass: `@use '@material/select/mdc-select';
 @use '@material/select/_index' as select;
 @use '@material/list/mdc-list';
 @use '@material/menu-surface/mdc-menu-surface';
 @use '@material/menu/mdc-menu';`
   },
-  slider: {
+  'slider': {
     title: 'Slider',
     description: 'Sliders allow users to make selections from a range of values.',
     references: [{
@@ -302,11 +320,11 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-slider/README.md#theming' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/slider'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/slider\'));',
     sass: `@use '@material/slider/mdc-slider';
 @use '@material/slider';`
   },
-  switch: {
+  'switch': {
     title: 'Switches',
     description: 'Buttons allow users to take actions, and make choices, with a single tap.',
     references: [{
@@ -319,11 +337,11 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-switch/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/switch'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/switch\'));',
     sass: `@use '@material/switch/mdc-switch';
 @use '@material/switch';`
   },
-  tabs: {
+  'tabs': {
     title: 'Tabs',
     description: 'Tabs organize content across different screens, data sets, and other interactions.',
     references: [{
@@ -348,7 +366,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Tab Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab/README.md#sass-mixins' },
       { name: 'Indicator Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-indicator/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/tab-bar'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/tab-bar\'));',
     sass: `@use '@material/tab-bar/mdc-tab-bar';
 @use '@material/tab-bar';
 @use '@material/tab-scroller/mdc-tab-scroller';
@@ -358,7 +376,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
 @use '@material/tab/mdc-tab';
 @use '@material/tab';`
   },
-  "text-field": {
+  'text-field': {
     title: 'Text Field',
     description: 'Text fields let users enter and edit text.',
     references: [{
@@ -374,12 +392,12 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/helper-text/README.md#sass-mixins' },
       { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/icon/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/text-field\'));',
     sass: `@use '@material/textfield/mdc-text-field';
 @use '@material/textfield/_index' as textfield;
 @use '@material/form-field/_index' as form-field;`
   },
-  "top-app-bar": {
+  'top-app-bar': {
     title: 'Top App Bar',
     description: 'The top app bar displays information and actions relating to the current screen.',
     references: [{
@@ -392,12 +410,12 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-top-app-bar/README.md#sass-mixins' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/top-app-bar'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/top-app-bar\'));',
     sass: `@use '@material/top-app-bar/mdc-top-app-bar';
 @use '@material/top-app-bar';
 @use '@material/icon-button/mdc-icon-button';`
   },
-  "typography": {
+  'typography': {
     title: 'Typography',
     description: 'Use typography to present your design and content as clearly and efficiently as possible.',
     references: [{
@@ -410,8 +428,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-typography/README.md#style-customization' },
     ],
-    code: `aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/typography'));`,
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/typography\'));',
     sass: `@use '@material/typography/mdc-typography';
 @use '@material/typography';`
   }
-}
+};

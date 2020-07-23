@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -39,6 +40,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'dialog',
           'drawer',
           'expandable',
+          'elevation',
           'fab',
           'floating-label',
           'form-field',

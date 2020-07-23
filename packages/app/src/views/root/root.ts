@@ -17,7 +17,7 @@ export class Root {
   }
 
   configureRouter(config: RouterConfiguration) {
-    const exampleRoutes: RouteConfig[] = ['button', 'card', 'checkbox', 'circular-progress', 'dialog', 'drawer', 'expandable', 'fab',
+    const exampleRoutes: RouteConfig[] = ['button', 'card', 'checkbox', 'circular-progress', 'dialog', 'drawer', 'expandable', 'elevation', 'fab',
       'form-field', 'icon-button', 'list', 'lookup', 'menu', 'radio', 'ripple', 'select', 'slider', 'switch', 'tabs', 'text-field', 'top-app-bar',
       'typography']
       .map(x => ({ route: x }));
@@ -29,9 +29,9 @@ export class Root {
     ];
     menuRoutes.forEach(x => {
       x.nav = true;
-      x.name = x.name || x.route as string;
+      x.name = x.name ?? x.route as string;
       x.moduleId = `views/${x.name}/${x.name}`;
-      x.title = x.title || (x.route as string).split('-').map(x => `${x[0].toUpperCase()}${x.substring(1)}`).join(' ');
+      x.title = x.title ?? (x.route as string).split('-').map(y => `${y[0].toUpperCase()}${y.substring(1)}`).join(' ');
       x.tooltip = x.title;
     });
     const routes = [

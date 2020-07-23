@@ -25,6 +25,7 @@
     "@material/circular-progress": "^7.0.0",
     "@material/dialog": "^7.0.0",
     "@material/drawer": "^7.0.0",
+    "@material/elevation": "^7.0.0",
     "@material/fab": "^7.0.0",
     "@material/floating-label": "^7.0.0",
     "@material/form-field": "^7.0.0",
