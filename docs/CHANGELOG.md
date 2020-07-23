@@ -1,3 +1,27 @@
+# [v1.0.0-alpha.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2020-07-23)
+
+
+### Bug Fixes
+
+* **button:** configure required plugins automatically ([0c646db](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0c646db581a71f628b81cb41a74776b232fd6b72))
+* **checkbox:** configure required plugins automatically ([d683da8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d683da8070895ed7f35de6003387613425d39545))
+* **expandable:** configure required plugins automatically ([932d802](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/932d802dcabf5aeb3eb124458d66784e1ee4c924))
+* **fab:** configure required plugins automatically ([130bb79](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/130bb7938faf1b46eed9accee8bffbe5dd2b78b8))
+* **list:** configure required plugins automatically ([635ed16](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/635ed16e1ef9e529ccb900596322fdc327556c77))
+* **radio:** configure required plugins automatically ([83954de](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/83954de8008f80ea9605946bdc6cda654aee3cce))
+* **select:** configure required plugins automatically ([7b64e19](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7b64e19245d9d6732a2061f87cecd6ed20c89917))
+* **switch:** configure required plugins automatically ([6fa9d46](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6fa9d461483c31b783182d6a4b69626b89d7c029))
+* **text-field:** configure required plugins automatically ([7f2ffd7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7f2ffd7631c71933ef892ce915ed4b5bbfdcb432))
+
+
+### Features
+
+* **data-table:** add ([0aad22b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0aad22b9ccd69d152e4157c5d4fd3bf4966812b1))
+* **elevation:** add ([ef0d9b1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ef0d9b1dd309b5b372fa3165cc176caa93cd642a))
+* **text-field:** add textarea ([59d2eb1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/59d2eb15cdc2d56b2434d179e17de8a9a026efc6))
+
+
+
 # [v1.0.0-alpha.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2020-07-22)
 
 
