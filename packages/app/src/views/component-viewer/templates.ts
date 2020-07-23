@@ -98,6 +98,24 @@ export const templates: { [x: string]: IComponentTemplate } = {
 @use '@material/circular-progress';
 @use "@aurelia-mdc-web/circular-progress";`
   },
+  'data-table': {
+    title: 'Data Table',
+    description: `Data tables display information in a grid-like format of rows and columns.
+    They organize information in a way that's easy to scan, so that users can look for patterns and insights.`,
+    references: [{
+      name: 'Material Design guidelines: Data Tables',
+      url: 'https://material.io/design/components/data-tables.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-data-table/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-data-table/README.md#sass-mixins' },
+    ],
+    code: 'import {MDCDataTableModule} from \'@angular-mdc/web/data-table\';',
+    sass: `@use '@material/data-table/mdc-data-table';
+@use '@material/data-table';`
+  },
   'drawer': {
     title: 'Drawers',
     description: 'The MDC Navigation Drawer is used to organize access to destinations and other functionality on an app.',

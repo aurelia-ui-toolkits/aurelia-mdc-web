@@ -37,6 +37,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'card',
           'checkbox',
           'circular-progress',
+          'data-table',
           'dialog',
           'drawer',
           'expandable',
