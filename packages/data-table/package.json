@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/data-table",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,8 @@
     "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web"
   },
   "files": [
-    "dist", "*.scss"
+    "dist",
+    "*.scss"
   ],
   "scripts": {
     "_test": "karma start --single-run",
@@ -54,8 +55,8 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.2",
-    "@aurelia-mdc-web/checkbox": "^1.0.0-alpha.2",
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.3",
+    "@aurelia-mdc-web/checkbox": "^1.0.0-alpha.3",
     "@material/data-table": "^7.0.0"
   },
   "devDependencies": {

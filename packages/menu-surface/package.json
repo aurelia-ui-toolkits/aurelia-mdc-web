@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/menu-surface",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,8 @@
     "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web"
   },
   "files": [
-    "dist", "*.scss"
+    "dist",
+    "*.scss"
   ],
   "scripts": {
     "_test": "karma start --single-run",
@@ -54,7 +55,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.2",
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.3",
     "@material/menu-surface": "^7.0.0"
   },
   "devDependencies": {
