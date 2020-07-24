@@ -2,7 +2,7 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCDialogFoundation, strings, MDCDialogAdapter, util, MDCDialogCloseEventDetail } from '@material/dialog';
 import { MdcDialogContent } from './mdc-dialog-content';
 import { FocusTrap } from '@material/dom/focus-trap';
-import { child, customElement, useView, inject, View, bindable } from 'aurelia-framework';
+import { child, customElement, useView, inject, View, bindable, PLATFORM } from 'aurelia-framework';
 import { closest, matches } from '@material/dom/ponyfill';
 
 const LAYOUT_EVENTS = ['resize', 'orientationchange'];
@@ -12,7 +12,7 @@ strings.OPENING_EVENT = strings.OPENING_EVENT.toLowerCase();
 strings.CLOSING_EVENT = strings.CLOSING_EVENT.toLowerCase();
 
 @inject(Element)
-@useView('./mdc-dialog.html')
+@useView(PLATFORM.moduleName('./mdc-dialog.html'))
 @customElement('mdc-dialog')
 export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements EventListenerObject {
 
