@@ -1,3 +1,16 @@
+# [v1.0.0-alpha.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2020-07-24)
+
+
+### Bug Fixes
+
+* **card:** use PLATFORM with useView ([6620fb2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6620fb24c8115c3f477202490bcc948e0ee1e92b))
+* **dialog:** use PLATFORM with useView ([662ab32](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/662ab327d12291b73bcc7d981b665e5fdba697e3))
+* **fab:** use PLATFORM with useView ([b057338](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b0573383fd9d8b672381a4116f711493eac77f82))
+* **icon-button:** use PLATFORM with useView ([fd57c23](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fd57c23cd57011948d7fcfdc28fb3504188d35c1))
+* **text-field:** do not emit duplicate events ([3182fe6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3182fe6c9ece5c2620b7ebf01929dff3dfc41ea4))
+
+
+
 # [v1.0.0-alpha.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2020-07-24)
 
 
