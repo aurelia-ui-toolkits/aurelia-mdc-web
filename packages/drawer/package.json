@@ -27,7 +27,7 @@
     "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web"
   },
   "files": [
-    "dist"
+    "dist", "*.scss"
   ],
   "scripts": {
     "_test": "karma start --single-run",
