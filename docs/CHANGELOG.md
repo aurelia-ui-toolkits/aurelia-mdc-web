@@ -1,3 +1,12 @@
+# [v1.0.0-alpha.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2020-07-24)
+
+
+### Bug Fixes
+
+* **all:** publish scss ([2fa8112](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2fa8112428013e6db4b97e730848b06635d4bac9))
+
+
+
 # [v1.0.0-alpha.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2020-07-23)
 
 
