@@ -1,11 +1,11 @@
-import { children, customElement, useView, inject, bindingMode } from 'aurelia-framework';
+import { children, customElement, useView, inject, bindingMode, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MDCIconButtonToggleFoundation, MDCIconButtonToggleAdapter, MDCIconButtonToggleEventDetail, strings } from '@material/icon-button';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcIconButtonIcon } from './mdc-icon-button-icon/mdc-icon-button-icon';
 
 @inject(Element)
-@useView('./mdc-icon-button.html')
+@useView(PLATFORM.moduleName('./mdc-icon-button.html'))
 @customElement('mdc-icon-button')
 export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.twoWay })
