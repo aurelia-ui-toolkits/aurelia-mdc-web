@@ -1,7 +1,7 @@
-import { customElement, useView } from 'aurelia-framework';
+import { customElement, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
-@useView('./mdc-card-media.html')
+@useView(PLATFORM.moduleName('./mdc-card-media.html'))
 @customElement('mdc-card-media')
 export class MdcCardMedia {
   @bindable.booleanAttr

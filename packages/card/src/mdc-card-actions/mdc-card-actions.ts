@@ -1,8 +1,8 @@
-import { customElement, useView, inject } from 'aurelia-framework';
+import { customElement, useView, inject, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 @inject(Element)
-@useView('./mdc-card-actions.html')
+@useView(PLATFORM.moduleName('./mdc-card-actions.html'))
 @customElement('mdc-card-actions')
 export class MdcCardActions {
   constructor(private root: HTMLElement) { }
