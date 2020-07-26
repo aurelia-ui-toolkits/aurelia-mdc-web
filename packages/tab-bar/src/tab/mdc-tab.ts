@@ -29,6 +29,9 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   @bindable
   label: string;
 
+  @bindable.booleanAttr
+  minWidth: boolean;
+
   handleClick_() {
     this.foundation?.handleClick();
     return true;
@@ -45,11 +48,11 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
       activateIndicator: (previousIndicatorClientRect) => this.tabIndicator_.activate(previousIndicatorClientRect),
       deactivateIndicator: () => this.tabIndicator_.deactivate(),
       notifyInteracted: () => this.emit<MDCTabInteractionEventDetail>(MDCTabFoundation.strings.INTERACTED_EVENT, { tabId: this.id }, true /* bubble */),
-      getOffsetLeft: () => (this.root as HTMLElement).offsetLeft,
-      getOffsetWidth: () => (this.root as HTMLElement).offsetWidth,
+      getOffsetLeft: () => this.root.offsetLeft,
+      getOffsetWidth: () => this.root.offsetWidth,
       getContentOffsetLeft: () => this.content_.offsetLeft,
       getContentOffsetWidth: () => this.content_.offsetWidth,
-      focus: () => (this.root as HTMLElement).focus(),
+      focus: () => this.root.focus(),
     };
     return new MDCTabFoundation(adapter);
   }
@@ -100,7 +103,6 @@ export interface IMdcTabElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcTab;
-    }
-  }
+    };
+  };
 }
-

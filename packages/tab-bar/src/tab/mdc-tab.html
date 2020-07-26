@@ -1,6 +1,7 @@
 <template class="
     mdc-tab
     ${active ? 'mdc-tab--active' : ''}
+    ${minWidth ? 'mdc-tab--min-width' : ''}
   " role="tab" aria-selected="false" tabindex="-1" mdc-ripple="surface.bind: rippleSurface"
   click.trigger="handleClick_()">
   <span class="mdc-tab__content" ref="content_">
