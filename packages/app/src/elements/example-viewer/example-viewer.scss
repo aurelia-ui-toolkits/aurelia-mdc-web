@@ -1,0 +1,15 @@
+.example-opener {
+  display: block;
+  margin-top: 20px;
+}
+
+.example-code-container {
+  position: relative;
+  display: inline-block;
+}
+
+.example-code-container__buttons {
+  position: absolute;
+  right: 0;
+  top: -35px;
+}

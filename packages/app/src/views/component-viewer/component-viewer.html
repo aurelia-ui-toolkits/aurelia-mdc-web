@@ -16,12 +16,12 @@
 
       <div if.bind="template.code">
         <h2 class="demo-panel-heading">Configuration</h2>
-        <pre if.bind="template.code"><code class="typescript" highlight>${template.code}</code></pre>
+        <pre if.bind="template.code"><code class="typescript" highlight.bind="template.code"></code></pre>
       </div>
 
       <div if.bind="template.sass">
         <h2 class="demo-panel-heading">Styles</h2>
-        <pre if.bind="template.sass"><code class="sass" highlight>${template.sass}</code></pre>
+        <pre if.bind="template.sass"><code class="sass" highlight.bind="template.sass"></code></pre>
       </div>
 
       <div repeat.for="mdcUrl of template.mdcUrls" class="viewer-mdc-urls">
@@ -30,7 +30,8 @@
         </a>
       </div>
       <mdc-tab-bar if.bind="tabs.length">
-        <mdc-tab repeat.for="tab of tabs" label.bind="tab.title" click.trigger="navigateTo(tab)" class="viewer-tab" active.bind="tab.navModel.isActive">
+        <mdc-tab repeat.for="tab of tabs" label.bind="tab.title" click.trigger="navigateTo(tab)" class="viewer-tab"
+          active.bind="tab.navModel.isActive">
         </mdc-tab>
       </mdc-tab-bar>
       <router-view></router-view>

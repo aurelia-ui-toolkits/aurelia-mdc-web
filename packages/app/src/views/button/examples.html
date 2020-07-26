@@ -1,38 +1,7 @@
 <template>
   <div class="demo-content">
-    <div class="demo-layout__row">
-      <div class="demo-container">
-        <button mdc-button>Default</button>
-      </div>
-      <div class="demo-container">
-        <a mdc-button href="#/button-demo/examples">Href link</a>
-      </div>
-      <div class="demo-container">
-        <a mdc-button raised href="#/button-demo/examples">Href link</a>
-      </div>
-      <div class="demo-container">
-        <button mdc-button raised>Raised</button>
-      </div>
-      <div class="demo-container">
-        <button mdc-button unelevated>Unelevated</button>
-      </div>
-      <div class="demo-container">
-        <button mdc-button outlined>Outlined</button>
-      </div>
-      <div class="demo-container">
-        <button mdc-button outlined class="demo-thick-outline-button">Thick Outlined</button>
-      </div>
-      <div class="demo-container">
-        <button mdc-button disabled>Disabled</button>
-      </div>
-      <div class="demo-container">
-        <button mdc-button class="demo-button-primary">Primary Color</button>
-      </div>
-      <div class="demo-container">
-        <button mdc-button class="demo-button-secondary">Secondary Color</button>
-      </div>
-    </div>
-    <!-- <example-viewer [example]="exampleDefault"></example-viewer> -->
+    <compose view="./default.html" class="demo-layout__row"></compose>
+    <example-viewer name="button/default"></example-viewer>
   </div>
 
   <div class="demo-content">
@@ -47,7 +16,126 @@
         <button mdc-button outlined class="demo-density-button">Density (-3)</button>
       </div>
     </div>
-    <example-viewer [example]="exampleDensity"></example-viewer>
+    <!-- <example-viewer [example]="exampleDensity"></example-viewer> -->
   </div>
 
+  <div class="demo-content">
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <button mdc-button>
+          <mdc-icon>favorite</mdc-icon>Icon
+        </button>
+      </div>
+      <div class="demo-container">
+        <button mdc-button outlined>
+          <mdc-icon>favorite</mdc-icon>Icon
+        </button>
+      </div>
+      <div class="demo-container">
+        <button mdc-button raised class="demo-button-primary">
+          <mdc-icon>favorite</mdc-icon>Icon
+        </button>
+      </div>
+      <div class="demo-container">
+        <button mdc-button raised class="demo-button-secondary">
+          <mdc-icon>favorite</mdc-icon>Icon
+        </button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="exampleIcon"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">SVG Icon</h3>
+    <button mdc-button raised>
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000">
+        <path fill="none" d="M0 0h24v24H0z" />
+        <path
+          d="M23 12c0-6.07-4.93-11-11-11S1 5.93 1 12s4.93 11 11 11 11-4.93 11-11zM5 17.64C3.75 16.1 3 14.14 3 12c0-2.13.76-4.08 2-5.63v11.27zM17.64 5H6.36C7.9 3.75 9.86 3 12 3s4.1.75 5.64 2zM12 14.53L8.24 7h7.53L12 14.53zM17 9v8h-4l4-8zm-6 8H7V9l4 8zm6.64 2c-1.55 1.25-3.51 2-5.64 2s-4.1-.75-5.64-2h11.28zM21 12c0 2.14-.75 4.1-2 5.64V6.37c1.24 1.55 2 3.5 2 5.63z" />
+      </svg>
+      SVG Icon
+    </button>
+    <!-- <example-viewer [example]="svgExample"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Theme</h3>
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <button mdc-button unelevated class="demo-button-ink-color">
+          <mdc-icon>favorite</mdc-icon>Ink Color
+        </button>
+      </div>
+      <div class="demo-container">
+        <button mdc-button outlined class="demo-button-icon-color">
+          <mdc-icon>favorite</mdc-icon>Icon Color
+        </button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="inkExample"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Shaped</h3>
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <button mdc-button unelevated class="big-round-shape-button">Corner
+          Radius</button>
+      </div>
+      <div class="demo-container">
+        <button mdc-button raised class="big-round-shape-button">
+          <mdc-icon>favorite</mdc-icon>Icon
+        </button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="shapedExample"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Trailing icon</h3>
+    <p>
+      Certain icons make more sense to appear after the button's text label rather than before. This can be accomplished
+      by putting the icon markup <i>after</i> the element with the mdc-button-label attribute.
+    </p>
+    <p>
+      NOTE: The mdc-button-label attribute is required in order for the trailing icon to be styled appropriately.
+    </p>
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <button mdc-button>
+          <span mdc-button-label></span>Trailing Icon</span>
+          <mdc-icon>favorite</mdc-icon>
+        </button>
+      </div>
+      <div class="demo-container">
+        <button mdc-button raised class="demo-button-secondary">
+          <span mdc-button-label></span>Trailing Icon</span>
+          <mdc-icon>favorite</mdc-icon>
+        </button>
+      </div>
+      <div class="demo-container">
+        <button mdc-button outlined label="Trailing Icon">
+          <mdc-icon>favorite</mdc-icon>
+        </button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="trailingIconExample"></example-viewer> -->
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Accessibility</h3>
+    <p>
+      Material Design spec advises that touch targets should be at least 48 x 48 px. To meet this requirement, add the
+      `touch` property.
+    </p>
+    <p>
+      Note that the outer mdc-touch-target-wrapper element is only necessary if you want to avoid potentially
+      overlapping touch targets on adjacent elements (due to collapsing margins). </p>
+    <div class="demo-layout__row">
+      <div class="mdc-touch-target-wrapper">
+        <button mdc-button touch>My Accessible Button</button>
+      </div>
+    </div>
+    <!-- <example-viewer [example]="exampleAccessibility"></example-viewer> -->
+  </div>
 </template>

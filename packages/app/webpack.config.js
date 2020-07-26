@@ -45,6 +45,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'fab',
           'floating-label',
           'form-field',
+          'icon',
           'icon-button',
           'line-ripple',
           'list',
