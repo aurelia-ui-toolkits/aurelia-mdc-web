@@ -1,4 +1,4 @@
-import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
+import { inject, useView, PLATFORM, customElement, children } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 @inject(Element)
@@ -28,5 +28,10 @@ export class MdcButton {
     } else {
       this.root.removeAttribute('href');
     }
+  }
+
+  attached() {
+    const icons = this.root.querySelectorAll('mdc-icon');
+    Array.from(icons).forEach(x => x.classList.add('mdc-button__icon'));
   }
 }
