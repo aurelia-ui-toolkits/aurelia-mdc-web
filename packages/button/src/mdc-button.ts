@@ -1,4 +1,4 @@
-import { inject, useView, PLATFORM, customElement, children } from 'aurelia-framework';
+import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 @inject(Element)
