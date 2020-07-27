@@ -28,6 +28,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | dialog | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/dialog) |
 | drawer | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/drawer) |
 | elevation | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/elevation) |
+| expandable | Available :exclamation: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/expandable) |
 | fab | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/fab) |
 | form-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/form-field) |
 | icon | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/icon) |
@@ -35,6 +36,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | image-list | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/image-list) |
 | linear-progress | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/linear-progress) |
 | list | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/list) |
+| lookup | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/lookup) |
 | menu-surface | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/menu-surface) |
 | menu | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/menu) |
 | radio | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/radio) |
@@ -46,7 +48,11 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | tabs | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tabs) |
 | text-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/text-field) |
 | top-app-bar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/top-app-bar) |
+| tree-view | Available :exclamation: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tree-view) |
 | typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |
+
+#### WARNNING
+:exclamation: - Non-native, opinionated controls which will not be implemented in the original MDC but are required in most projects.
 
 ## Browser Support
 
