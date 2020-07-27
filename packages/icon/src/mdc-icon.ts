@@ -1,5 +1,6 @@
-import { customElement } from 'aurelia-framework';
+import { customElement, useView, PLATFORM } from 'aurelia-framework';
 
+@useView(PLATFORM.moduleName('./mdc-icon.html'))
 @customElement('mdc-icon')
 export class MdcIcon {
 
