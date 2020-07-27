@@ -161,6 +161,11 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     this.content.addEventListener('change', this);
 
     const rowCheckboxList = this.rowCheckboxList;
+    this.rowCheckboxList.forEach(x => x.root.classList.add(cssClasses.ROW_CHECKBOX));
+    if (this.headerRowCheckbox) {
+      this.headerRowCheckbox.root.classList.add(cssClasses.HEADER_ROW_CHECKBOX);
+      rowCheckboxList.push(this.headerRowCheckbox);
+    }
     await Promise.all(rowCheckboxList.map(async x => x.initialised));
   }
 
@@ -171,6 +176,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
         this.getRowByIndex(i).classList.add(cssClasses.ROW_SELECTED);
       }
     }
+    this.foundation?.layout();
   }
 
   destroy() {
