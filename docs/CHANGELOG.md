@@ -1,3 +1,21 @@
+# [v1.0.0-alpha.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2020-07-27)
+
+
+### Bug Fixes
+
+* **button:** add missing attribute ([f575742](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f5757427bb51b01e43f9e2a9c72d4bd56a0c4602))
+* **tab:** add missing attribute ([11ff98c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/11ff98c3a7acf22456e471a448476ff9819500ff))
+
+
+### Features
+
+* **app:** add more button examples ([fa5625a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fa5625a8de9914ba4f4e8f41079643e7d329e3c4))
+* **button:** assign icon class automatically ([976019c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/976019c0c2d2447f2a4db5f3f770cc2e3c9e4050))
+* **icon:** add ([9ac244b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9ac244bb49c41de62c8e1b1e9bcd1d2df634b2ea))
+* **tree-view:** add ([9c87870](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9c87870468532f00b57f17d9316e2c31f645799a))
+
+
+
 # [v1.0.0-alpha.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2020-07-24)
 
 
