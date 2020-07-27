@@ -61,6 +61,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'tab-bar',
           'top-app-bar',
           'text-field',
+          'tree-view',
           'typography',
           'validation'
         ].reduce((map, packageName) => {

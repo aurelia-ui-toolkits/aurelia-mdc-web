@@ -1,0 +1,24 @@
+<template class="mdc-tree-view">
+  <require from="./mdc-tree-node"></require>
+  <ul class="mdc-tree-view__list">
+    <li repeat.for="$node of nodes" class="mdc-tree-view__list-item">
+      <let $tree.bind="element"></let>
+      <let $tree-vm.bind="$parent"></let>
+      <div class="mdc-tree-view__node ${$node.selected ? 'mdc-tree-view__node--selected' : ''}" click.trigger="nodeClicked($node)" mdc-ripple>
+        <div class="mdc-tree-view__node__ripple"></div>
+        <mdc-icon-button if.bind="$node.children" type="fab" size="small" class="mdc-tree-view__expander"
+          on.bind="$node.expanded">
+          <mdc-icon-button-icon class="material-icons">chevron_right</mdc-icon-button-icon>
+          <mdc-icon-button-icon class="material-icons" on>expand_more</mdc-icon-button-icon>
+        </mdc-icon-button>
+        <div else class="mdc-tree-view__leaf-padding"></div>
+        <mdc-tree-node factory.bind="nodeViewFactory"></mdc-tree-node>
+      </div>
+      <!-- show.bind is necessary to enable node search -->
+      <!-- elements hidden with if.bind would not populate treeViews array -->
+      <mdc-tree-view if.bind="$node.children && $node.expanded" nodes.bind="$node.children"
+        mdctree:node-selected.trigger="childNodeSelected($event.detail.node)" view-model.ref="treeViews[$index]"></tree-view>
+    </li>
+  </ul>
+  <slot></slot>
+</template>

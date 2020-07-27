@@ -41,6 +41,7 @@
     "@aurelia-mdc-web/slider": "^1.0.0-alpha.4",
     "@aurelia-mdc-web/switch": "^1.0.0-alpha.4",
     "@aurelia-mdc-web/text-field": "^1.0.0-alpha.4",
+    "@aurelia-mdc-web/tree-view": "^1.0.0-alpha.4",
     "@aurelia-mdc-web/typography": "^1.0.0-alpha.4",
     "@aurelia-mdc-web/validation": "^1.0.0-alpha.4",
     "aurelia-loader-webpack": "^2.2.1",

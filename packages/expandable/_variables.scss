@@ -1,6 +1,5 @@
 @use "@material/theme/variables";
 
-$ink-color: rgba(variables.prop-value(on-surface), 0.87) !default;
 $dropdown-icon-color: rgba(variables.prop-value(on-surface), 0.54) !default;
 $dropdown-transition-duration: 150ms !default;
 // Transition durartions to active state
@@ -15,5 +14,4 @@ $duration: 225ms;
 $timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
 $fast-out-slow-in-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
 
-$ripple-target: '.mdc-expandable__ripple';
 $shape-radius: small !default;
