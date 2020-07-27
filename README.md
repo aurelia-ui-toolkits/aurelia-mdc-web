@@ -52,7 +52,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |
 
 #### WARNNING
-:exclamation: - Non-native, opinionated controls which will not be implemented in the original MDC but are required in most projects.
+:boom: - Non-native, opinionated controls which will not be implemented in the original MDC but are required in most projects.
 
 ## Browser Support
 
