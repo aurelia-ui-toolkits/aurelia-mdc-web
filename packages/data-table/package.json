@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/data-table",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "publishConfig": {
     "access": "public"
   },
@@ -55,8 +55,8 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.4",
-    "@aurelia-mdc-web/checkbox": "^1.0.0-alpha.4",
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.5",
+    "@aurelia-mdc-web/checkbox": "^1.0.0-alpha.5",
     "@material/data-table": "^7.0.0"
   },
   "devDependencies": {
