@@ -4,13 +4,14 @@
     View source
   </button>
   <mdc-tab-bar fixed if.bind="open" (activated)="onActivatedTab($event)">
-    <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" click.delegate="select(tab)" min-width></mdc-tab>
+    <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" click.delegate="select(tab)" min-width active.bind="tab === selectedTab"></mdc-tab>
   </mdc-tab-bar>
   <div class="example-code-container" if.bind="open && selectedTab">
     <div class="example-code-container__buttons">
-      <button mdc-icon-button click="copyCode()" title="Copy to clipboard" class="material-icons">file_copy</button>
+      <button mdc-icon-button click.delegate="copyCode()" title="Copy to clipboard" class="material-icons">file_copy</button>
       <button mdc-icon-button click.delegate="toggle()" title="Close" class="material-icons">close</button>
     </div>
-    <pre><code highlight.bind="selectedTab.code" highlight.ref="highlightVM" class="${selectedTab.language}"></code></pre>
+    <pre><code highlight.bind="selectedTab"
+      highlight.ref="highlightVM" class="${selectedTab.language}"></code></pre>
   </div>
 </template>

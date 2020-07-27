@@ -1,5 +1,7 @@
+import defaultHtml from '!!raw-loader!./default.html';
+import defaultSass from '!!raw-loader!./default.scss';
+
 export class Examples {
-  // async attached() {
-  //   console.log(await import('!!raw-loader!views/button/default.scss'));
-  // }
+  defaultHtml = defaultHtml;
+  defaultSass = defaultSass;
 }

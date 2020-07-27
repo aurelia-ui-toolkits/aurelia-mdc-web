@@ -8,9 +8,9 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .developmentLogging()
     .standardConfiguration()
     .globalResources([
-      'attributes/highlight',
-      'converters/json',
-      'elements/example-viewer/example-viewer'
+      PLATFORM.moduleName('attributes/highlight'),
+      PLATFORM.moduleName('converters/json'),
+      PLATFORM.moduleName('elements/example-viewer/example-viewer')
     ])
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'))

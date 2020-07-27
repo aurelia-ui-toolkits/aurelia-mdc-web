@@ -1,5 +1,5 @@
 import { customAttribute, inject } from 'aurelia-framework';
-import { highlightAuto } from 'highlightjs';
+import { highlight } from 'highlightjs';
 // eslint-disable-next-line import/no-unassigned-import
 import 'highlightjs/styles/github.css';
 
@@ -8,12 +8,13 @@ import 'highlightjs/styles/github.css';
 export class Highlight {
   constructor(private element: HTMLElement) { }
 
-  value: string;
+  value: { code: string; language: string };
   valueChanged() {
-    const r = highlightAuto(this.value);
+    const r = highlight(this.value.language, this.value.code);
     this.element.innerHTML = r.value;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   bind() { }
 
   attached() {
