@@ -51,7 +51,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | tree-view | Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tree-view) |
 | typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |
 
-#### WARNNING
+#### WARNING
 :boom: - Non-native, opinionated controls which will not be implemented in the original MDC but are required in most projects.
 
 ## Browser Support
