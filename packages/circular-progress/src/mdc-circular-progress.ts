@@ -7,7 +7,7 @@ import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 @useView(PLATFORM.moduleName('./mdc-circular-progress.html'))
 @customElement('mdc-circular-progress')
 export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundation> {
-  private determinateCircle_!: HTMLElement;
+  private determinateCircle_?: HTMLElement;
 
   radius: number = 47.5;
   strokeDasharray: number;
@@ -49,12 +49,12 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
     // methods, we need a separate, strongly typed adapter variable.
     const adapter: MDCCircularProgressAdapter = {
       addClass: (className: string) => this.root.classList.add(className),
-      getDeterminateCircleAttribute: (attributeName: string) => this.determinateCircle_.getAttribute(attributeName),
+      getDeterminateCircleAttribute: (attributeName: string) => this.determinateCircle_?.getAttribute(attributeName) ?? null,
       hasClass: (className: string) => this.root.classList.contains(className),
       removeClass: (className: string) => this.root.classList.remove(className),
       removeAttribute: (attributeName: string) => this.root.removeAttribute(attributeName),
       setAttribute: (attributeName: string, value: string) => this.root.setAttribute(attributeName, value),
-      setDeterminateCircleAttribute: (attributeName: string, value: string) => this.determinateCircle_.setAttribute(attributeName, value),
+      setDeterminateCircleAttribute: (attributeName: string, value: string) => this.determinateCircle_?.setAttribute(attributeName, value),
     };
     return new MDCCircularProgressFoundation(adapter);
   }
