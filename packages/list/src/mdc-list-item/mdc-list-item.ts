@@ -1,4 +1,4 @@
-import { inject, useView, customElement, processContent, ViewCompiler, ViewResources, BehaviorInstruction } from 'aurelia-framework';
+import { inject, useView, customElement, processContent, ViewCompiler, ViewResources } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { cssClasses } from '@material/list';
 import { bindable } from 'aurelia-typed-observable-plugin';
@@ -16,7 +16,7 @@ const LIST_ITEM_ACTION = 'mdclistitem:action';
 export class MdcListItem {
   constructor(public root: HTMLElement) { }
 
-  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element, _instruction: BehaviorInstruction) {
+  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
     const graphic = element.querySelector('[mdc-list-item-graphic]');
     if (graphic) {
       element.removeChild(graphic);
@@ -85,8 +85,8 @@ export interface IMdcListItemElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcListItem;
-    }
-  }
+    };
+  };
 }
 
 export interface IMdcListActionEventDetail {
