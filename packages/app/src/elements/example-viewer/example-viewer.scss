@@ -6,6 +6,15 @@
 .example-code-container {
   position: relative;
   display: inline-block;
+  max-width: 100%;
+
+  pre {
+    max-width: 100%;
+
+    code {
+      max-width: calc(100% - 18px);
+    }
+  }
 }
 
 .example-code-container__buttons {

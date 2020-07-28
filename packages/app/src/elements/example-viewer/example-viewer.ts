@@ -24,8 +24,12 @@ export class ExampleViewer {
   highlightVM: Highlight;
 
   bind() {
-    this.tabs.push({ label: 'HTML', language: 'html', code: this.html });
-    this.tabs.push({ label: 'SASS', language: 'scss', code: this.sass });
+    if (this.html) {
+      this.tabs.push({ label: 'HTML', language: 'html', code: this.html });
+    }
+    if (this.sass) {
+      this.tabs.push({ label: 'SASS', language: 'scss', code: this.sass });
+    }
     this.selectedTab = this.tabs[0];
   }
 

@@ -1,0 +1,5 @@
+@use '@material/button';
+
+.big-round-shape-button {
+  @include button.shape-radius(8px);
+}

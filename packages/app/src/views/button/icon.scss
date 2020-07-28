@@ -1,0 +1,10 @@
+@use '@material/button';
+@use '@material/theme';
+
+.demo-button-primary {
+  @include button.filled-accessible(theme.$primary);
+}
+
+.demo-button-secondary {
+  @include button.filled-accessible(theme.$secondary);
+}
