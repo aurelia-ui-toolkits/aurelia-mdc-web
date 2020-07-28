@@ -57642,6 +57642,19 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/accessibility.html":
+/*!***********************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/accessibility.html ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div class=\"demo-layout__row\">\n    <div class=\"mdc-touch-target-wrapper\">\n      <button mdc-button touch>My Accessible Button</button>\n    </div>\n  </div>\n</template>\n");
+
+/***/ }),
+
 /***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/default.html":
 /*!*****************************************************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/default.html ***!
@@ -57665,6 +57678,149 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@use '@material/button';\n@use '@material/theme';\n\n.demo-thick-outline-button {\n  @include button.outline-width(4px);\n}\n\n.demo-button-primary {\n  @include button.filled-accessible(theme.$primary);\n}\n\n.demo-button-secondary {\n  @include button.filled-accessible(theme.$secondary);\n}\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/density.html":
+/*!*****************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/density.html ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div class=\"demo-layout__row\">\n    <div class=\"demo-container\">\n      <button mdc-button class=\"demo-density-button\">Density (-3)</button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button raised class=\"demo-density-button\">Density (-3)</button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button outlined class=\"demo-density-button\">Density (-3)</button>\n    </div>\n  </div>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/density.scss":
+/*!*****************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/density.scss ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@use '@material/button';\n\n.demo-density-button {\n  // Sets button density scale to `-3`, i.e. button height to `24px`.\n  @include button.density(-3);\n}\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/icon.html":
+/*!**************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/icon.html ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div class=\"demo-layout__row\">\n    <div class=\"demo-container\">\n      <button mdc-button>\n        <mdc-icon>favorite</mdc-icon>Icon\n      </button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button outlined>\n        <mdc-icon>favorite</mdc-icon>Icon\n      </button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button raised class=\"demo-button-primary\">\n        <mdc-icon>favorite</mdc-icon>Icon\n      </button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button raised class=\"demo-button-secondary\">\n        <mdc-icon>favorite</mdc-icon>Icon\n      </button>\n    </div>\n  </div>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/icon.scss":
+/*!**************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/icon.scss ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@use '@material/button';\n@use '@material/theme';\n\n.demo-button-primary {\n  @include button.filled-accessible(theme.$primary);\n}\n\n.demo-button-secondary {\n  @include button.filled-accessible(theme.$secondary);\n}\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/shaped.html":
+/*!****************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/shaped.html ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div class=\"demo-container\">\n    <button mdc-button unelevated class=\"big-round-shape-button\">Corner\n      Radius</button>\n  </div>\n  <div class=\"demo-container\">\n    <button mdc-button raised class=\"big-round-shape-button\">\n      <mdc-icon>favorite</mdc-icon>Icon\n    </button>\n  </div>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/shaped.scss":
+/*!****************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/shaped.scss ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@use '@material/button';\n\n.big-round-shape-button {\n  @include button.shape-radius(8px);\n}\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/svg.html":
+/*!*************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/svg.html ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <button mdc-button raised>\n    <svg aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"#000000\" class=\"mdc-button__icon\">\n      <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n      <path\n        d=\"M23 12c0-6.07-4.93-11-11-11S1 5.93 1 12s4.93 11 11 11 11-4.93 11-11zM5 17.64C3.75 16.1 3 14.14 3 12c0-2.13.76-4.08 2-5.63v11.27zM17.64 5H6.36C7.9 3.75 9.86 3 12 3s4.1.75 5.64 2zM12 14.53L8.24 7h7.53L12 14.53zM17 9v8h-4l4-8zm-6 8H7V9l4 8zm6.64 2c-1.55 1.25-3.51 2-5.64 2s-4.1-.75-5.64-2h11.28zM21 12c0 2.14-.75 4.1-2 5.64V6.37c1.24 1.55 2 3.5 2 5.63z\" />\n    </svg>\n    SVG Icon\n  </button>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/theme.html":
+/*!***************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/theme.html ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div class=\"demo-container\">\n    <button mdc-button unelevated class=\"demo-button-ink-color\">\n      <mdc-icon>favorite</mdc-icon>Ink Color\n    </button>\n  </div>\n  <div class=\"demo-container\">\n    <button mdc-button outlined class=\"demo-button-icon-color\">\n      <mdc-icon>favorite</mdc-icon>Icon Color\n    </button>\n  </div>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/theme.scss":
+/*!***************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/theme.scss ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@use '@material/button';\n@use '@material/ripple/_index' as ripple;\n@use '@material/theme/color-palette' as material-color;\n\n.demo-button-ink-color {\n  @include button.container-fill-color(material-color.$purple-500);\n  @include button.icon-color(white);\n  @include button.ink-color(orange);\n  @include ripple.states(orange);\n}\n\n.demo-button-icon-color {\n  @include button.icon-color(orange);\n}\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/trailing.html":
+/*!******************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/trailing.html ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div class=\"demo-container\">\n    <button mdc-button>\n      <span mdc-button-label></span>Trailing Icon</span>\n      <mdc-icon>favorite</mdc-icon>\n    </button>\n  </div>\n  <div class=\"demo-container\">\n    <button mdc-button raised class=\"demo-button-secondary\">\n      <span mdc-button-label></span>Trailing Icon</span>\n      <mdc-icon>favorite</mdc-icon>\n    </button>\n  </div>\n  <div class=\"demo-container\">\n    <button mdc-button outlined label=\"Trailing Icon\">\n      <mdc-icon>favorite</mdc-icon>\n    </button>\n  </div>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/trailing.scss":
+/*!******************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/button/trailing.scss ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@use '@material/button';\n@use '@material/theme';\n\n.demo-button-secondary {\n  @include button.filled-accessible(theme.$secondary);\n}\n");
 
 /***/ }),
 
@@ -59998,12 +60154,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             // methods, we need a separate, strongly typed adapter variable.
             const adapter = {
                 addClass: (className) => this.root.classList.add(className),
-                getDeterminateCircleAttribute: (attributeName) => this.determinateCircle_.getAttribute(attributeName),
+                getDeterminateCircleAttribute: (attributeName) => { var _a, _b; return (_b = (_a = this.determinateCircle_) === null || _a === void 0 ? void 0 : _a.getAttribute(attributeName)) !== null && _b !== void 0 ? _b : null; },
                 hasClass: (className) => this.root.classList.contains(className),
                 removeClass: (className) => this.root.classList.remove(className),
                 removeAttribute: (attributeName) => this.root.removeAttribute(attributeName),
                 setAttribute: (attributeName, value) => this.root.setAttribute(attributeName, value),
-                setDeterminateCircleAttribute: (attributeName, value) => this.determinateCircle_.setAttribute(attributeName, value),
+                setDeterminateCircleAttribute: (attributeName, value) => { var _a; return (_a = this.determinateCircle_) === null || _a === void 0 ? void 0 : _a.setAttribute(attributeName, value); },
             };
             return new circular_progress_1.MDCCircularProgressFoundation(adapter);
         }
@@ -60040,7 +60196,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"mdc-circular-progress mdc-circular-progress--${size}\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"1\">\n  <div class=\"mdc-circular-progress__determinate-container\">\n    <svg class=\"mdc-circular-progress__indeterminate-circle-graphic\" viewBox=\"0 0 ${size} ${size}\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"${size/2}\" cy=\"${size/2}\" r=\"${radius}\" stroke-dasharray=\"${strokeDasharray}\" stroke-dashoffset=\"${strokeDashoffset}\" ref=\"determinateCircle_\"/>\n    </svg>\n  </div>\n  <div class=\"mdc-circular-progress__indeterminate-container\">\n    <div class=\"mdc-circular-progress__spinner-layer\">\n      <div class=\"mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left\">\n        <svg class=\"mdc-circular-progress__indeterminate-circle-graphic\" viewBox=\"0 0 ${size} ${size}\" xmlns=\"http://www.w3.org/2000/svg\">\n          <circle cx=\"${size/2}\" cy=\"${size/2}\" r=\"${radius}\" stroke-dasharray=\"${strokeDasharray}\" stroke-dashoffset=\"${strokeDashoffset}\"/>\n        </svg>\n      </div><div class=\"mdc-circular-progress__gap-patch\">\n        <svg class=\"mdc-circular-progress__indeterminate-circle-graphic\" viewBox=\"0 0 ${size} ${size}\" xmlns=\"http://www.w3.org/2000/svg\">\n          <circle cx=\"${size/2}\" cy=\"${size/2}\" r=\"${radius}\" stroke-dasharray=\"${strokeDasharray}\" stroke-dashoffset=\"${strokeDashoffset}\"/>\n        </svg>\n      </div><div class=\"mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right\">\n        <svg class=\"mdc-circular-progress__indeterminate-circle-graphic\" viewBox=\"0 0 ${size} ${size}\" xmlns=\"http://www.w3.org/2000/svg\">\n          <circle cx=\"${size/2}\" cy=\"${size/2}\" r=\"${radius}\" stroke-dasharray=\"${strokeDasharray}\" stroke-dashoffset=\"${strokeDashoffset}\"/>\n        </svg>\n      </div>\n    </div>\n  </div>\n</template>\n";
+var code = "<template class=\"mdc-circular-progress mdc-circular-progress--${size}\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"1\">\n  <div class=\"mdc-circular-progress__determinate-container\">\n    <svg class=\"mdc-circular-progress__indeterminate-circle-graphic\" viewBox=\"0 0 ${size} ${size}\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"${size/2}\" cy=\"${size/2}\" r=\"${radius}\" stroke-dasharray=\"${strokeDasharray}\" stroke-dashoffset=\"${strokeDashoffset}\"\n        ref=\"determinateCircle_\"/>\n    </svg>\n  </div>\n  <div class=\"mdc-circular-progress__indeterminate-container\">\n    <div class=\"mdc-circular-progress__spinner-layer\">\n      <div class=\"mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left\">\n        <svg class=\"mdc-circular-progress__indeterminate-circle-graphic\" viewBox=\"0 0 ${size} ${size}\" xmlns=\"http://www.w3.org/2000/svg\">\n          <circle cx=\"${size/2}\" cy=\"${size/2}\" r=\"${radius}\" stroke-dasharray=\"${strokeDasharray}\" stroke-dashoffset=\"${strokeDashoffset}\"/>\n        </svg>\n      </div><div class=\"mdc-circular-progress__gap-patch\">\n        <svg class=\"mdc-circular-progress__indeterminate-circle-graphic\" viewBox=\"0 0 ${size} ${size}\" xmlns=\"http://www.w3.org/2000/svg\">\n          <circle cx=\"${size/2}\" cy=\"${size/2}\" r=\"${radius}\" stroke-dasharray=\"${strokeDasharray}\" stroke-dashoffset=\"${strokeDashoffset}\"/>\n        </svg>\n      </div><div class=\"mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right\">\n        <svg class=\"mdc-circular-progress__indeterminate-circle-graphic\" viewBox=\"0 0 ${size} ${size}\" xmlns=\"http://www.w3.org/2000/svg\">\n          <circle cx=\"${size/2}\" cy=\"${size/2}\" r=\"${radius}\" stroke-dasharray=\"${strokeDasharray}\" stroke-dashoffset=\"${strokeDashoffset}\"/>\n        </svg>\n      </div>\n    </div>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -60218,16 +60374,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 this.content = this.root.querySelector('.mdc-data-table__content');
                 this.content.addEventListener('change', this);
                 const rowCheckboxList = this.rowCheckboxList;
+                this.rowCheckboxList.forEach(x => x.root.classList.add(data_table_1.cssClasses.ROW_CHECKBOX));
+                if (this.headerRowCheckbox) {
+                    this.headerRowCheckbox.root.classList.add(data_table_1.cssClasses.HEADER_ROW_CHECKBOX);
+                    rowCheckboxList.push(this.headerRowCheckbox);
+                }
                 yield Promise.all(rowCheckboxList.map((x) => tslib_1.__awaiter(this, void 0, void 0, function* () { return x.initialised; })));
             });
         }
         initialSyncWithDOM() {
+            var _a;
             const rowCheckboxList = this.rowCheckboxList;
             for (let i = 0; i < rowCheckboxList.length; ++i) {
                 if (rowCheckboxList[i].checked) {
                     this.getRowByIndex(i).classList.add(data_table_1.cssClasses.ROW_SELECTED);
                 }
             }
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.layout();
         }
         destroy() {
             this.header.removeEventListener('change', this);
@@ -61696,6 +61859,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     let MdcIcon = class MdcIcon {
     };
     MdcIcon = tslib_1.__decorate([
+        aurelia_framework_1.useView('./mdc-icon.html'),
         aurelia_framework_1.customElement('mdc-icon')
     ], MdcIcon);
     exports.MdcIcon = MdcIcon;
@@ -61951,8 +62115,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 listItemAtIndexHasClass: (index, className) => this.listElements[index].classList.contains(className),
                 notifyAction: (index) => {
                     const listItem = this.listElements[index];
-                    const data = listItem.au.controller.viewModel.actionData;
-                    this.emit(list_1.strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
+                    if (!listItem.hasAttribute('no-list-action')) {
+                        const data = listItem.au.controller.viewModel.actionData;
+                        this.emit(list_1.strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
+                    }
                 },
                 removeClassForElementIndex: (index, className) => {
                     const element = this.listElements[index];
@@ -62031,11 +62197,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             var _a;
             const index = this.getListItemIndex_(evt);
             const target = evt.target;
-            if (!target.hasAttribute('not-selectable')) {
-                // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
-                const toggleCheckbox = !ponyfill_1.matches(target, list_1.strings.CHECKBOX_RADIO_SELECTOR);
-                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick(index, toggleCheckbox);
-            }
+            // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
+            const toggleCheckbox = !ponyfill_1.matches(target, list_1.strings.CHECKBOX_RADIO_SELECTOR);
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick(index, toggleCheckbox);
         }
         /**
          * @return Whether typeahead is currently matching a user-specified prefix.
@@ -62357,7 +62521,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.cssClasses = list_1.cssClasses;
             this.id = ++listItemId;
         }
-        static processContent(_viewCompiler, _resources, element, _instruction) {
+        static processContent(_viewCompiler, _resources, element) {
             const graphic = element.querySelector('[mdc-list-item-graphic]');
             if (graphic) {
                 element.removeChild(graphic);
@@ -73826,8 +73990,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.tabs = [];
         }
         bind() {
-            this.tabs.push({ label: 'HTML', language: 'html', code: this.html });
-            this.tabs.push({ label: 'SASS', language: 'scss', code: this.sass });
+            if (this.html) {
+                this.tabs.push({ label: 'HTML', language: 'html', code: this.html });
+            }
+            if (this.sass) {
+                this.tabs.push({ label: 'SASS', language: 'scss', code: this.sass });
+            }
             this.selectedTab = this.tabs[0];
         }
         toggle() {
@@ -73905,7 +74073,7 @@ module.exports = code;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".example-opener{display:block;margin-top:20px}.example-code-container{position:relative;display:inline-block}.example-code-container__buttons{position:absolute;right:0;top:-35px}", ""]);
+exports.push([module.i, ".example-opener{display:block;margin-top:20px}.example-code-container{position:relative;display:inline-block;max-width:100%}.example-code-container pre{max-width:100%}.example-code-container pre code{max-width:calc(100% - 18px)}.example-code-container__buttons{position:absolute;right:0;top:-35px}", ""]);
 // Exports
 module.exports = exports;
 
@@ -74008,6 +74176,20 @@ module.exports = code;
 
 /***/ }),
 
+/***/ "views/button/accessibility.html":
+/*!*********************************************!*\
+  !*** ./src/views/button/accessibility.html ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-layout__row\">\n    <div class=\"mdc-touch-target-wrapper\">\n      <button mdc-button touch>My Accessible Button</button>\n    </div>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
 /***/ "views/button/button":
 /*!************************************!*\
   !*** ./src/views/button/button.ts ***!
@@ -74046,6 +74228,20 @@ module.exports = code;
 
 /***/ }),
 
+/***/ "views/button/density.html":
+/*!***************************************!*\
+  !*** ./src/views/button/density.html ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-layout__row\">\n    <div class=\"demo-container\">\n      <button mdc-button class=\"demo-density-button\">Density (-3)</button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button raised class=\"demo-density-button\">Density (-3)</button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button outlined class=\"demo-density-button\">Density (-3)</button>\n    </div>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
 /***/ "views/button/examples":
 /*!**************************************!*\
   !*** ./src/views/button/examples.ts ***!
@@ -74053,16 +74249,40 @@ module.exports = code;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! !raw-loader!./default.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/default.html"), __webpack_require__(/*! !raw-loader!./default.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/default.scss")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, default_html_1, default_scss_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! !raw-loader!./default.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/default.html"), __webpack_require__(/*! !raw-loader!./default.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/default.scss"), __webpack_require__(/*! !raw-loader!./density.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/density.html"), __webpack_require__(/*! !raw-loader!./density.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/density.scss"), __webpack_require__(/*! !raw-loader!./icon.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/icon.html"), __webpack_require__(/*! !raw-loader!./icon.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/icon.scss"), __webpack_require__(/*! !raw-loader!./svg.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/svg.html"), __webpack_require__(/*! !raw-loader!./theme.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/theme.html"), __webpack_require__(/*! !raw-loader!./theme.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/theme.scss"), __webpack_require__(/*! !raw-loader!./shaped.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/shaped.html"), __webpack_require__(/*! !raw-loader!./shaped.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/shaped.scss"), __webpack_require__(/*! !raw-loader!./trailing.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/trailing.html"), __webpack_require__(/*! !raw-loader!./trailing.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/trailing.scss"), __webpack_require__(/*! !raw-loader!./accessibility.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/button/accessibility.html")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, default_html_1, default_scss_1, density_html_1, density_scss_1, icon_html_1, icon_scss_1, svg_html_1, theme_html_1, theme_scss_1, shaped_html_1, shaped_scss_1, trailing_html_1, trailing_scss_1, accessibility_html_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
     default_html_1 = tslib_1.__importDefault(default_html_1);
     default_scss_1 = tslib_1.__importDefault(default_scss_1);
+    density_html_1 = tslib_1.__importDefault(density_html_1);
+    density_scss_1 = tslib_1.__importDefault(density_scss_1);
+    icon_html_1 = tslib_1.__importDefault(icon_html_1);
+    icon_scss_1 = tslib_1.__importDefault(icon_scss_1);
+    svg_html_1 = tslib_1.__importDefault(svg_html_1);
+    theme_html_1 = tslib_1.__importDefault(theme_html_1);
+    theme_scss_1 = tslib_1.__importDefault(theme_scss_1);
+    shaped_html_1 = tslib_1.__importDefault(shaped_html_1);
+    shaped_scss_1 = tslib_1.__importDefault(shaped_scss_1);
+    trailing_html_1 = tslib_1.__importDefault(trailing_html_1);
+    trailing_scss_1 = tslib_1.__importDefault(trailing_scss_1);
+    accessibility_html_1 = tslib_1.__importDefault(accessibility_html_1);
     class Examples {
         constructor() {
             this.defaultHtml = default_html_1.default;
             this.defaultSass = default_scss_1.default;
+            this.densityHtml = density_html_1.default;
+            this.densitySass = density_scss_1.default;
+            this.iconHtml = icon_html_1.default;
+            this.iconSass = icon_scss_1.default;
+            this.svgHtml = svg_html_1.default;
+            this.themeHtml = theme_html_1.default;
+            this.themeSass = theme_scss_1.default;
+            this.shapedHtml = shaped_html_1.default;
+            this.shapedSass = shaped_scss_1.default;
+            this.trailingHtml = trailing_html_1.default;
+            this.trailingSass = trailing_scss_1.default;
+            this.accessibilityHtml = accessibility_html_1.default;
         }
     }
     exports.Examples = Examples;
@@ -74080,7 +74300,77 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <compose view=\"./default.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"defaultHtml\" sass.bind=\"defaultSass\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <button mdc-button class=\"demo-density-button\">Density (-3)</button>\n      </div>\n      <div class=\"demo-container\">\n        <button mdc-button raised class=\"demo-density-button\">Density (-3)</button>\n      </div>\n      <div class=\"demo-container\">\n        <button mdc-button outlined class=\"demo-density-button\">Density (-3)</button>\n      </div>\n    </div>\n    <!-- <example-viewer [example]=\"exampleDensity\"></example-viewer> -->\n  </div>\n\n  <div class=\"demo-content\">\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <button mdc-button>\n          <mdc-icon>favorite</mdc-icon>Icon\n        </button>\n      </div>\n      <div class=\"demo-container\">\n        <button mdc-button outlined>\n          <mdc-icon>favorite</mdc-icon>Icon\n        </button>\n      </div>\n      <div class=\"demo-container\">\n        <button mdc-button raised class=\"demo-button-primary\">\n          <mdc-icon>favorite</mdc-icon>Icon\n        </button>\n      </div>\n      <div class=\"demo-container\">\n        <button mdc-button raised class=\"demo-button-secondary\">\n          <mdc-icon>favorite</mdc-icon>Icon\n        </button>\n      </div>\n    </div>\n    <!-- <example-viewer [example]=\"exampleIcon\"></example-viewer> -->\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">SVG Icon</h3>\n    <button mdc-button raised>\n      <svg aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"#000000\">\n        <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n        <path\n          d=\"M23 12c0-6.07-4.93-11-11-11S1 5.93 1 12s4.93 11 11 11 11-4.93 11-11zM5 17.64C3.75 16.1 3 14.14 3 12c0-2.13.76-4.08 2-5.63v11.27zM17.64 5H6.36C7.9 3.75 9.86 3 12 3s4.1.75 5.64 2zM12 14.53L8.24 7h7.53L12 14.53zM17 9v8h-4l4-8zm-6 8H7V9l4 8zm6.64 2c-1.55 1.25-3.51 2-5.64 2s-4.1-.75-5.64-2h11.28zM21 12c0 2.14-.75 4.1-2 5.64V6.37c1.24 1.55 2 3.5 2 5.63z\" />\n      </svg>\n      SVG Icon\n    </button>\n    <!-- <example-viewer [example]=\"svgExample\"></example-viewer> -->\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Theme</h3>\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <button mdc-button unelevated class=\"demo-button-ink-color\">\n          <mdc-icon>favorite</mdc-icon>Ink Color\n        </button>\n      </div>\n      <div class=\"demo-container\">\n        <button mdc-button outlined class=\"demo-button-icon-color\">\n          <mdc-icon>favorite</mdc-icon>Icon Color\n        </button>\n      </div>\n    </div>\n    <!-- <example-viewer [example]=\"inkExample\"></example-viewer> -->\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Shaped</h3>\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <button mdc-button unelevated class=\"big-round-shape-button\">Corner\n          Radius</button>\n      </div>\n      <div class=\"demo-container\">\n        <button mdc-button raised class=\"big-round-shape-button\">\n          <mdc-icon>favorite</mdc-icon>Icon\n        </button>\n      </div>\n    </div>\n    <!-- <example-viewer [example]=\"shapedExample\"></example-viewer> -->\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Trailing icon</h3>\n    <p>\n      Certain icons make more sense to appear after the button's text label rather than before. This can be accomplished\n      by putting the icon markup <i>after</i> the element with the mdc-button-label attribute.\n    </p>\n    <p>\n      NOTE: The mdc-button-label attribute is required in order for the trailing icon to be styled appropriately.\n    </p>\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <button mdc-button>\n          <span mdc-button-label></span>Trailing Icon</span>\n          <mdc-icon>favorite</mdc-icon>\n        </button>\n      </div>\n      <div class=\"demo-container\">\n        <button mdc-button raised class=\"demo-button-secondary\">\n          <span mdc-button-label></span>Trailing Icon</span>\n          <mdc-icon>favorite</mdc-icon>\n        </button>\n      </div>\n      <div class=\"demo-container\">\n        <button mdc-button outlined label=\"Trailing Icon\">\n          <mdc-icon>favorite</mdc-icon>\n        </button>\n      </div>\n    </div>\n    <!-- <example-viewer [example]=\"trailingIconExample\"></example-viewer> -->\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Accessibility</h3>\n    <p>\n      Material Design spec advises that touch targets should be at least 48 x 48 px. To meet this requirement, add the\n      `touch` property.\n    </p>\n    <p>\n      Note that the outer mdc-touch-target-wrapper element is only necessary if you want to avoid potentially\n      overlapping touch targets on adjacent elements (due to collapsing margins). </p>\n    <div class=\"demo-layout__row\">\n      <div class=\"mdc-touch-target-wrapper\">\n        <button mdc-button touch>My Accessible Button</button>\n      </div>\n    </div>\n    <!-- <example-viewer [example]=\"exampleAccessibility\"></example-viewer> -->\n  </div>\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <compose view=\"./default.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"defaultHtml\" sass.bind=\"defaultSass\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <compose view=\"./density.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"densityHtml\" sass.bind=\"densitySass\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <compose view=\"./icon.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"iconHtml\" sass.bind=\"iconSass\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">SVG Icon</h3>\n    <compose view=\"./svg.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"svgHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Theme</h3>\n    <div class=\"demo-layout__row\">\n      <compose view=\"./theme.html\" class=\"demo-layout__row\"></compose>\n    </div>\n    <example-viewer html.bind=\"themeHtml\" sass.bind=\"themeSass\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Shaped</h3>\n    <div class=\"demo-layout__row\">\n      <compose view=\"./shaped.html\" class=\"demo-layout__row\"></compose>\n    </div>\n    <example-viewer html.bind=\"shapedHtml\" sass.bind=\"shapedSass\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Trailing icon</h3>\n    <p>\n      Certain icons make more sense to appear after the button's text label rather than before. This can be accomplished\n      by putting the icon markup <i>after</i> the element with the mdc-button-label attribute.\n    </p>\n    <p>\n      NOTE: The mdc-button-label attribute is required in order for the trailing icon to be styled appropriately.\n    </p>\n    <div class=\"demo-layout__row\">\n      <compose view=\"./trailing.html\" class=\"demo-layout__row\"></compose>\n    </div>\n    <example-viewer html.bind=\"trailingHtml\" sass.bind=\"trailingSass\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Accessibility</h3>\n    <p>\n      Material Design spec advises that touch targets should be at least 48 x 48 px. To meet this requirement, add the\n      `touch` property.\n    </p>\n    <p>\n      Note that the outer mdc-touch-target-wrapper element is only necessary if you want to avoid potentially\n      overlapping touch targets on adjacent elements (due to collapsing margins). </p>\n    <div class=\"demo-layout__row\">\n      <compose view=\"./accessibility.html\" class=\"demo-layout__row\"></compose>\n    </div>\n    <example-viewer html.bind=\"accessibilityHtml\"></example-viewer>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/button/icon.html":
+/*!************************************!*\
+  !*** ./src/views/button/icon.html ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-layout__row\">\n    <div class=\"demo-container\">\n      <button mdc-button>\n        <mdc-icon>favorite</mdc-icon>Icon\n      </button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button outlined>\n        <mdc-icon>favorite</mdc-icon>Icon\n      </button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button raised class=\"demo-button-primary\">\n        <mdc-icon>favorite</mdc-icon>Icon\n      </button>\n    </div>\n    <div class=\"demo-container\">\n      <button mdc-button raised class=\"demo-button-secondary\">\n        <mdc-icon>favorite</mdc-icon>Icon\n      </button>\n    </div>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/button/shaped.html":
+/*!**************************************!*\
+  !*** ./src/views/button/shaped.html ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-container\">\n    <button mdc-button unelevated class=\"big-round-shape-button\">Corner\n      Radius</button>\n  </div>\n  <div class=\"demo-container\">\n    <button mdc-button raised class=\"big-round-shape-button\">\n      <mdc-icon>favorite</mdc-icon>Icon\n    </button>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/button/svg.html":
+/*!***********************************!*\
+  !*** ./src/views/button/svg.html ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <button mdc-button raised>\n    <svg aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"#000000\" class=\"mdc-button__icon\">\n      <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n      <path\n        d=\"M23 12c0-6.07-4.93-11-11-11S1 5.93 1 12s4.93 11 11 11 11-4.93 11-11zM5 17.64C3.75 16.1 3 14.14 3 12c0-2.13.76-4.08 2-5.63v11.27zM17.64 5H6.36C7.9 3.75 9.86 3 12 3s4.1.75 5.64 2zM12 14.53L8.24 7h7.53L12 14.53zM17 9v8h-4l4-8zm-6 8H7V9l4 8zm6.64 2c-1.55 1.25-3.51 2-5.64 2s-4.1-.75-5.64-2h11.28zM21 12c0 2.14-.75 4.1-2 5.64V6.37c1.24 1.55 2 3.5 2 5.63z\" />\n    </svg>\n    SVG Icon\n  </button>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/button/theme.html":
+/*!*************************************!*\
+  !*** ./src/views/button/theme.html ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-container\">\n    <button mdc-button unelevated class=\"demo-button-ink-color\">\n      <mdc-icon>favorite</mdc-icon>Ink Color\n    </button>\n  </div>\n  <div class=\"demo-container\">\n    <button mdc-button outlined class=\"demo-button-icon-color\">\n      <mdc-icon>favorite</mdc-icon>Icon Color\n    </button>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/button/trailing.html":
+/*!****************************************!*\
+  !*** ./src/views/button/trailing.html ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-container\">\n    <button mdc-button>\n      <span mdc-button-label></span>Trailing Icon</span>\n      <mdc-icon>favorite</mdc-icon>\n    </button>\n  </div>\n  <div class=\"demo-container\">\n    <button mdc-button raised class=\"demo-button-secondary\">\n      <span mdc-button-label></span>Trailing Icon</span>\n      <mdc-icon>favorite</mdc-icon>\n    </button>\n  </div>\n  <div class=\"demo-container\">\n    <button mdc-button outlined label=\"Trailing Icon\">\n      <mdc-icon>favorite</mdc-icon>\n    </button>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -75453,7 +75743,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">List Groups</h3>\n\n    <mdc-list-group>\n      <h3>List 1</h3>\n      <mdc-list>\n        <mdc-list-item tabindex=\"0\">line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n      </mdc-list>\n      <h3>List 2</h3>\n      <mdc-list>\n        <mdc-list-item tabindex=\"0\">line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n      </mdc-list>\n    </mdc-list-group>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Expandable Items</h3>\n\n    <mdc-list single-selection>\n      <mdc-list-item tabindex=\"0\" mdclistitem:action.delegate=\"toggleExpanded()\" not-selectable>\n        line item\n        <i mdc-list-item-meta class=\"material-icons\">\n          ${expanded ? 'expand_less' :'expand_more'}\n        </i>\n      </mdc-list-item>\n      <div if.bind=\"expanded\">\n        <mdc-list-item style=\"padding-left: 30px;\">Child 1</mdc-list-item>\n        <mdc-list-item style=\"padding-left: 30px;\">Child 2</mdc-list-item>\n      </div>\n      <mdc-list-item>line item</mdc-list-item>\n      <mdc-list-item>line item</mdc-list-item>\n    </mdc-list>\n  </div>\n\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">List Groups</h3>\n\n    <mdc-list-group>\n      <h3>List 1</h3>\n      <mdc-list>\n        <mdc-list-item tabindex=\"0\">line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n      </mdc-list>\n      <h3>List 2</h3>\n      <mdc-list>\n        <mdc-list-item tabindex=\"0\">line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n        <mdc-list-item>line item</mdc-list-item>\n      </mdc-list>\n    </mdc-list-group>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Expandable Items</h3>\n\n    <mdc-list single-selection>\n      <mdc-list-item tabindex=\"0\" mdclistitem:action.delegate=\"toggleExpanded()\" no-list-action>\n        line item\n        <i mdc-list-item-meta class=\"material-icons\">\n          ${expanded ? 'expand_less' :'expand_more'}\n        </i>\n      </mdc-list-item>\n      <div if.bind=\"expanded\">\n        <mdc-list-item style=\"padding-left: 30px;\">Child 1</mdc-list-item>\n        <mdc-list-item style=\"padding-left: 30px;\">Child 2</mdc-list-item>\n      </div>\n      <mdc-list-item>line item</mdc-list-item>\n      <mdc-list-item>line item</mdc-list-item>\n    </mdc-list>\n  </div>\n\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -76384,4 +76674,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.adc54f79307faf17bc7e.bundle.map
+//# sourceMappingURL=app.f5fc1c7b9c23dd96d15b.bundle.map
