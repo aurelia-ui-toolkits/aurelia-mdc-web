@@ -5,7 +5,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @customElement('mdc-card-media')
 export class MdcCardMedia {
   @bindable.booleanAttr
-  scale: boolean;
+  square: boolean;
 
   @bindable.booleanAttr
   wide: boolean;
