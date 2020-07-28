@@ -138,8 +138,10 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
       listItemAtIndexHasClass: (index, className) => this.listElements[index].classList.contains(className),
       notifyAction: (index) => {
         const listItem = this.listElements[index];
-        const data = (listItem as IMdcListItemElement).au.controller.viewModel.actionData;
-        this.emit<IMdcListActionEventDetail>(strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
+        if (!listItem.hasAttribute('no-list-action')) {
+          const data = (listItem as IMdcListItemElement).au.controller.viewModel.actionData;
+          this.emit<IMdcListActionEventDetail>(strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
+        }
       },
       removeClassForElementIndex: (index, className) => {
         const element = this.listElements[index];
@@ -223,12 +225,9 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   handleClickEvent_(evt: MouseEvent) {
     const index = this.getListItemIndex_(evt);
     const target = evt.target as Element;
-
-    if (!target.hasAttribute('not-selectable')) {
-      // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
-      const toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
-      this.foundation?.handleClick(index, toggleCheckbox);
-    }
+    // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
+    const toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
+    this.foundation?.handleClick(index, toggleCheckbox);
   }
 
   /**
