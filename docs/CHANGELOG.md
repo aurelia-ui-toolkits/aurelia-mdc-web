@@ -1,3 +1,26 @@
+# [v1.0.0-alpha.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2020-07-29)
+
+
+### Bug Fixes
+
+* **card:** attribute name ([e597b13](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e597b1338fbfb3086bb7fcf5f29398e58a453ef6))
+* **circular-progress:** check for undefined ref ([a9eaf5a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a9eaf5a6be78c9ed74cff2eaaa68ea62e7c37cdc))
+* **data-table:** add data-table checkbox classes ([54c6bc9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/54c6bc9ccb7eb721dce9a777bd158d321af09d42))
+* **icon:** use PLATFORM.moduleName ([4a92a93](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4a92a930ad4d888aa11463cdb0032101a547888c))
+* **menu:** load necessary plugins ([2e5d64e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2e5d64e45ba070b2332bc4f841f19216af7ac3cb))
+* **menu:** use PLATFORM.moduleName ([9db4374](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9db4374b8b816f3852552f37aaaf120fd12cd20d))
+
+
+### Features
+
+* **app:** add button snippets ([97bda0d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/97bda0dd324239d52bf4c3508ed1e41ebd52ab5b))
+* **app:** more card examples ([e36b557](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e36b5576b1d533fa18b00c2547ac721d3b051042))
+* **dialog:** dynamically detect default button ([6cd9096](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6cd9096ec1d79325a5c540c1d71bf77e9d0a09ef))
+* **dialog:** register dialog instance in the DI container ([6976de4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6976de4eb820cf0312eb52f604b179b4f6054ba9))
+* **select:** pass hoist-to-body to underlying menu ([aa20f18](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/aa20f18905c181cdceeb4bb25d9becdbc27d75ca))
+
+
+
 # [v1.0.0-alpha.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2020-07-27)
 
 
