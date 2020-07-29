@@ -58707,7 +58707,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @material/dialog */ "../../node_modules/@material/dialog/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, dialog_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! ./mdc-dialog */ "@aurelia-mdc-web/dialog/mdc-dialog"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! @material/dialog */ "../../node_modules/@material/dialog/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, mdc_dialog_1, aurelia_framework_1, dialog_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.invokeLifecycle = exports.MdcDialogService = void 0;
@@ -58736,6 +58736,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 const view = controllers[0].view;
                 const slot = new aurelia_framework_1.ViewSlot(view.slots[aurelia_framework_1.ShadowDOM.defaultSlotKey].anchor, false);
                 slot.attached();
+                childView.container.registerInstance(mdc_dialog_1.MdcDialog, dialog.au.controller.viewModel);
                 let compositionContext = this.createCompositionContext(childView.container, dialog, bindingContext, {
                     viewModel: options.viewModel,
                     model: options.model
@@ -60011,6 +60012,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         constructor(root) {
             super(root);
             this.id = `mdc-checkbox-${++checkboxId}-input`;
+            this.indeterminateToChecked = true;
             defineMdcCheckboxElementApis(this.root);
         }
         disabledChanged() {
@@ -60035,12 +60037,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             else {
                 this.initialChecked = checked;
             }
+            this.indeterminate = false;
         }
-        get indeterminate() {
-            return this.nativeControl_.indeterminate;
-        }
-        set indeterminate(indeterminate) {
-            this.nativeControl_.indeterminate = indeterminate;
+        indeterminateChanged() {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                this.nativeControl_.indeterminate = this.indeterminate;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleChange();
+            });
         }
         get value() {
             return this.nativeControl_.value;
@@ -60051,7 +60056,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         // eslint-disable-next-line @typescript-eslint/require-await
         initialise() {
             return tslib_1.__awaiter(this, void 0, void 0, function* () {
-                this.nativeControl_.indeterminate = this.indeterminate;
                 this.listen(util_1.getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
                 if (this.root.hasAttribute('checked')) {
                     const attributeValue = this.root.getAttribute('checked');
@@ -60077,6 +60081,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
         handleChange_() {
             var _a;
+            if (this.indeterminate) {
+                this.indeterminate = false;
+                this.checked = this.indeterminateToChecked;
+            }
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleChange();
         }
         handleAnimationEnd_() {
@@ -60123,6 +60131,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         aurelia_typed_observable_plugin_1.bindable.booleanAttr,
         tslib_1.__metadata("design:type", Boolean)
     ], MdcCheckbox.prototype, "touch", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcCheckbox.prototype, "disableRipple", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcCheckbox.prototype, "indeterminateToChecked", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr({ defaultBindingMode: aurelia_framework_1.bindingMode.twoWay }),
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcCheckbox.prototype, "indeterminate", void 0);
     MdcCheckbox = tslib_1.__decorate([
         aurelia_framework_1.inject(Element),
         aurelia_framework_1.useView('./mdc-checkbox.html'),
@@ -60143,14 +60163,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     this.au.controller.viewModel.checked = value;
                 },
                 configurable: true
-            },
-            indeterminate: {
-                get() {
-                    return this.au.controller.viewModel.indeterminate;
-                },
-                set(value) {
-                    this.au.controller.viewModel.indeterminate = value;
-                }
             },
             focus: {
                 value() {
@@ -60180,7 +60192,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"mdc-checkbox ${touch ? 'mdc-checkbox--touch' : ''}\" mdc-ripple=\"input.bind: nativeControl_; unbounded.bind: true\">\n  <input type=\"checkbox\" class=\"mdc-checkbox__native-control\" id=\"${id}\" ref=\"nativeControl_\"\n    change.trigger=\"handleChange_()\" />\n  <div class=\"mdc-checkbox__background\">\n    <svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\n      <path class=\"mdc-checkbox__checkmark-path\" fill=\"none\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\" />\n    </svg>\n    <div class=\"mdc-checkbox__mixedmark\"></div>\n  </div>\n  <div class=\"mdc-checkbox__ripple\"></div>\n</template>\n";
+var code = "<template class=\"mdc-checkbox ${touch ? 'mdc-checkbox--touch' : ''}\"\n  mdc-ripple=\"input.bind: nativeControl_; unbounded.bind: true; disabled.bind: disableRipple\">\n  <input type=\"checkbox\" class=\"mdc-checkbox__native-control\" id=\"${id}\" ref=\"nativeControl_\"\n    change.trigger=\"handleChange_()\" />\n  <div class=\"mdc-checkbox__background\">\n    <svg class=\"mdc-checkbox__checkmark\" viewBox=\"0 0 24 24\">\n      <path class=\"mdc-checkbox__checkmark-path\" fill=\"none\" d=\"M1.73,12.91 8.1,19.28 22.79,4.59\" />\n    </svg>\n    <div class=\"mdc-checkbox__mixedmark\"></div>\n  </div>\n  <div class=\"mdc-checkbox__ripple\"></div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -60731,12 +60743,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setEscapeKeyAction(this.escapeKeyAction);
             });
         }
+        get defaultButton_() {
+            return this.root.querySelector(`[${dialog_1.strings.BUTTON_DEFAULT_ATTRIBUTE}]`);
+        }
         // eslint-disable-next-line @typescript-eslint/require-await
         initialise() {
             return tslib_1.__awaiter(this, void 0, void 0, function* () {
                 this.focusTrap_ = dialog_1.util.createFocusTrapInstance(this.root, (el, focusOptions) => new focus_trap_1.FocusTrap(el, focusOptions));
                 this.buttons_ = [].slice.call(this.root.querySelectorAll(dialog_1.strings.BUTTON_SELECTOR));
-                this.defaultButton_ = this.root.querySelector(`[${dialog_1.strings.BUTTON_DEFAULT_ATTRIBUTE}]`);
                 const content = this.root.querySelector('mdc-dialog-content');
                 content === null || content === void 0 ? void 0 : content.setAttribute('id', this.contentId);
                 const title = this.root.querySelector('mdc-dialog-title');
@@ -63112,6 +63126,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         config.globalResources([
             './mdc-menu'
         ]);
+        config.aurelia.use
+            .plugin('@aurelia-mdc-web/menu-surface')
+            .plugin('@aurelia-mdc-web/list');
     }
     exports.configure = configure;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -63687,7 +63704,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     ], MdcMenu.prototype, "anchorMargin", void 0);
     MdcMenu = tslib_1.__decorate([
         aurelia_framework_1.inject(Element),
-        aurelia_framework_1.customElement('mdc-menu')
+        aurelia_framework_1.customElement('mdc-menu'),
+        aurelia_framework_1.useView('./mdc-menu.html')
     ], MdcMenu);
     exports.MdcMenu = MdcMenu;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -64445,6 +64463,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         aurelia_typed_observable_plugin_1.bindable.booleanAttr,
         tslib_1.__metadata("design:type", Boolean)
     ], MdcSelect.prototype, "required", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr({ defaultBindingMode: aurelia_framework_1.bindingMode.oneTime }),
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcSelect.prototype, "hoistToBody", void 0);
     MdcSelect = MdcSelect_1 = tslib_1.__decorate([
         aurelia_framework_1.inject(Element),
         aurelia_framework_1.useView('./mdc-select.html'),
@@ -64648,7 +64670,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"\n    mdc-select\n    mdc-select--${outlined ? 'outlined' : 'filled'}\n    ${leadingIcon ? 'mdc-select--with-leading-icon' : ''}\n    ${required ? 'mdc-select--required' : ''}\n  \" id=\"${id}\">\n  <div class=\"mdc-select__anchor\" ref=\"selectAnchor\" mdc-ripple change.trigger=\"handleChange()\"\n    focus.trigger=\"handleFocus()\" blur.trigger=\"handleBlur()\" keydown.trigger=\"handleKeydown($event)\"\n    click.trigger=\"handleClick($event)\">\n    <span class=\"mdc-select__ripple\" if.bind=\"!outlined\"></span>\n    <slot name=\"leading-icon\"></slot>\n    <span class=\"mdc-select__selected-text\" ref=\"selectedText\"></span>\n    <span class=\"mdc-select__dropdown-icon\">\n      <svg class=\"mdc-select__dropdown-icon-graphic\" viewBox=\"7 10 10 5\">\n        <polygon class=\"mdc-select__dropdown-icon-inactive\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 10 12 15 17 10\">\n        </polygon>\n        <polygon class=\"mdc-select__dropdown-icon-active\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 15 12 10 17 15\">\n        </polygon>\n      </svg>\n    </span>\n    <mdc-floating-label if.bind=\"label && !outlined\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}\n    </mdc-floating-label>\n    <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple\"></mdc-line-ripple>\n    <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline\">\n      <mdc-floating-label if.bind=\"label\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}</mdc-floating-label>\n    </mdc-notched-outline>\n  </div>\n\n  <mdc-menu class=\"mdc-select__menu ${fullWidth ? 'mdc-menu-surface--fullwidth' : ''}\" view-model.ref=\"menu\"\n    ref=\"menuElement\" typeahead mdcmenusurface:closed.trigger=\"handleMenuClosed()\"\n    mdcmenusurface:opened.trigger=\"handleMenuOpened()\" mdcmenu:selected.trigger=\"handleMenuItemAction($event)\"\n    mdclist:itemschanged.trigger=\"handleItemsChanged($event)\">\n    <mdc-list>\n      <slot></slot>\n    </mdc-list>\n  </mdc-menu>\n</template>\n";
+var code = "<template class=\"\n    mdc-select\n    mdc-select--${outlined ? 'outlined' : 'filled'}\n    ${leadingIcon ? 'mdc-select--with-leading-icon' : ''}\n    ${required ? 'mdc-select--required' : ''}\n  \" id=\"${id}\">\n  <div class=\"mdc-select__anchor\" ref=\"selectAnchor\" mdc-ripple change.trigger=\"handleChange()\"\n    focus.trigger=\"handleFocus()\" blur.trigger=\"handleBlur()\" keydown.trigger=\"handleKeydown($event)\"\n    click.trigger=\"handleClick($event)\">\n    <span class=\"mdc-select__ripple\" if.bind=\"!outlined\"></span>\n    <slot name=\"leading-icon\"></slot>\n    <span class=\"mdc-select__selected-text\" ref=\"selectedText\"></span>\n    <span class=\"mdc-select__dropdown-icon\">\n      <svg class=\"mdc-select__dropdown-icon-graphic\" viewBox=\"7 10 10 5\">\n        <polygon class=\"mdc-select__dropdown-icon-inactive\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 10 12 15 17 10\">\n        </polygon>\n        <polygon class=\"mdc-select__dropdown-icon-active\" stroke=\"none\" fill-rule=\"evenodd\" points=\"7 15 12 10 17 15\">\n        </polygon>\n      </svg>\n    </span>\n    <mdc-floating-label if.bind=\"label && !outlined\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}\n    </mdc-floating-label>\n    <mdc-line-ripple if.bind=\"!outlined\" view-model.ref=\"lineRipple\"></mdc-line-ripple>\n    <mdc-notched-outline if.bind=\"outlined\" view-model.ref=\"outline\">\n      <mdc-floating-label if.bind=\"label\" for=\"${id}\" view-model.ref=\"mdcLabel\">${label}</mdc-floating-label>\n    </mdc-notched-outline>\n  </div>\n\n  <mdc-menu class=\"mdc-select__menu ${fullWidth ? 'mdc-menu-surface--fullwidth' : ''}\" view-model.ref=\"menu\"\n    ref=\"menuElement\" typeahead mdcmenusurface:closed.trigger=\"handleMenuClosed()\"\n    mdcmenusurface:opened.trigger=\"handleMenuOpened()\" mdcmenu:selected.trigger=\"handleMenuItemAction($event)\"\n    mdclist:itemschanged.trigger=\"handleItemsChanged($event)\" hoist-to-body.bind=\"hoistToBody\">\n    <mdc-list>\n      <slot></slot>\n    </mdc-list>\n  </mdc-menu>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -74634,6 +74656,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 /***/ }),
 
+/***/ "views/checkbox/default.html":
+/*!*****************************************!*\
+  !*** ./src/views/checkbox/default.html ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <mdc-checkbox></mdc-checkbox>\n  <mdc-checkbox checked></mdc-checkbox>\n  <mdc-checkbox disabled></mdc-checkbox>\n  <mdc-checkbox checked disabled></mdc-checkbox>\n  <mdc-checkbox indeterminate></mdc-checkbox>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
 /***/ "views/checkbox/examples":
 /*!****************************************!*\
   !*** ./src/views/checkbox/examples.ts ***!
@@ -74648,6 +74684,27 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     class Examples {
         constructor() {
             this.checked = true;
+            this.indeterminate = true;
+            this.indeterminateToChecked = true;
+            this.checked2 = true;
+        }
+        setIndeterminate() {
+            this.indeterminate = true;
+        }
+        toggle() {
+            this.checked2 = !this.checked2;
+        }
+        toggleIndeterminateToChecked() {
+            this.indeterminateToChecked = !this.indeterminateToChecked;
+        }
+        toggleAlignEnd() {
+            this.alignEnd = !this.alignEnd;
+        }
+        toggleDisabled() {
+            this.disabled = !this.disabled;
+        }
+        toggleDisableRipple() {
+            this.disableRipple = !this.disableRipple;
         }
     }
     exports.Examples = Examples;
@@ -74662,10 +74719,38 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
   !*** ./src/views/checkbox/examples.html ***!
   \******************************************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-content\">\n    <compose view=\"./default.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"defaultHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <div class=\"demo-layout__column\">\n      <compose view=\"./label.html\" class=\"demo-layout__row\"></compose>\n    </div>\n    <example-viewer html.bind=\"labelHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <div class=\"demo-layout__row\">\n      <button mdc-button click.delegate=\"setIndeterminate()\">Indeterminate</button>\n      <button mdc-button click.delegate=\"toggle()\">Toggle</button>\n    </div>\n    <div class=\"demo-layout__row\">\n      <button mdc-button click.delegate=\"toggleIndeterminateToChecked()\">\n        Indeterminate To Checked: ${indeterminateToChecked ? 'On' : 'Off'}\n      </button>\n      <button mdc-button click.delegate=\"toggleAlignEnd()\">\n        RTL: ${alignEnd ? 'On' : 'Off'}\n      </button>\n      <button mdc-button click.delegate=\"toggleDisabled()\">\n        Disabled: ${disabled ? 'On' : 'Off'}\n      </button>\n      <button mdc-button click.delegate=\"toggleDisableRipple()\">\n        Ripple: ${!disableRipple ? 'On' : 'Off'}\n      </button>\n    </div>\n    <compose view=\"./indeterminate.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"indeterminateHtml\"></example-viewer>\n  </div>\n\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/checkbox/indeterminate.html":
+/*!***********************************************!*\
+  !*** ./src/views/checkbox/indeterminate.html ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <mdc-checkbox></mdc-checkbox>\n    <mdc-checkbox checked></mdc-checkbox>\n    <mdc-checkbox disabled></mdc-checkbox>\n    <mdc-checkbox checked disabled></mdc-checkbox>\n    <mdc-checkbox indeterminate></mdc-checkbox>\n\n    <!-- <example-viewer [example]=\"exampleSimple\"></example-viewer> -->\n  </div>\n\n  <div class=\"demo-content\">\n    <div class=\"demo-layout__column\">\n      <div class=\"demo-container\">\n        <mdc-form-field>\n          <mdc-checkbox checked.bind=\"checked\"></mdc-checkbox>\n          <label>Label</label>\n        </mdc-form-field>\n      </div>\n      <div class=\"demo-container\">\n        <mdc-form-field>\n          <mdc-checkbox disabled></mdc-checkbox>\n          <label>Disabled</label>\n        </mdc-form-field>\n      </div>\n      <div class=\"demo-container\">\n        <mdc-form-field align-end>\n          <mdc-checkbox checked.bind=\"checked\"></mdc-checkbox>\n          <label>Label (RTL)</label>\n        </mdc-form-field>\n      </div>\n    </div>\n    <!-- <example-viewer [example]=\"exampleLabel\"></example-viewer> -->\n  </div>\n\n</template>\n";
+var code = "<template>\n  <mdc-form-field align-end.bind=\"alignEnd\">\n    <mdc-checkbox checked.bind=\"checked2\" indeterminate.bind=\"indeterminate\" disabled.bind=\"disabled\"\n      indeterminate-to-checked.bind=\"indeterminateToChecked\" disable-ripple.bind=\"disableRipple\"></mdc-checkbox>\n    <label>Checkbox value is ${checked2}</label>\n  </mdc-form-field>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/checkbox/label.html":
+/*!***************************************!*\
+  !*** ./src/views/checkbox/label.html ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-container\">\n    <mdc-form-field>\n      <mdc-checkbox checked.bind=\"checked\"></mdc-checkbox>\n      <label>Label</label>\n    </mdc-form-field>\n  </div>\n  <div class=\"demo-container\">\n    <mdc-form-field>\n      <mdc-checkbox disabled></mdc-checkbox>\n      <label>Disabled</label>\n    </mdc-form-field>\n  </div>\n  <div class=\"demo-container\">\n    <mdc-form-field align-end>\n      <mdc-checkbox checked.bind=\"checked\"></mdc-checkbox>\n      <label>Label (RTL)</label>\n    </mdc-form-field>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -76281,7 +76366,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = __webpack_require__(/*! ../../../
 var ___HTML_LOADER_IMPORT_0___ = __webpack_require__(/*! ../../assets/github-circle-white-transparent.svg */ "./src/assets/github-circle-white-transparent.svg");
 // Module
 var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.5</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\" tabindex=\"0\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.6</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\" tabindex=\"0\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -76852,4 +76937,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.3a42b8043ba74aa42c65.bundle.map
+//# sourceMappingURL=app.71016389264b61274661.bundle.map
