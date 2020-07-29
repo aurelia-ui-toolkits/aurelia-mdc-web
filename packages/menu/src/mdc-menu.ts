@@ -6,13 +6,14 @@ import { MDCListIndex } from '@material/list';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
-import { child, inject, customElement, bindingMode } from 'aurelia-framework';
+import { child, inject, customElement, bindingMode, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
 
 @inject(Element)
 @customElement('mdc-menu')
+@useView(PLATFORM.moduleName('./mdc-menu.html'))
 export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   private menuSurface_: MdcMenuSurface; // assigned in html
 
