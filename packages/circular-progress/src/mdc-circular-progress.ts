@@ -15,9 +15,15 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
 
   @bindable.number
   size: number = 100;
+  sizeChanged() {
+    this.updateSizeAndStroke();
+  }
 
   @bindable.number
   strokeWidth: number = 10;
+  strokeWidthChanged() {
+    this.updateSizeAndStroke();
+  }
 
   @bindable.number
   progress?: number;
@@ -30,6 +36,10 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
   }
 
   bind() {
+    this.updateSizeAndStroke();
+  }
+
+  updateSizeAndStroke() {
     this.radius = (this.size - 4) / 2 - this.strokeWidth;
     this.strokeDasharray = 2 * this.radius * Math.PI;
     this.strokeDashoffset = this.strokeDasharray / 2;
