@@ -1,4 +1,16 @@
+import defaultHtml from '!!raw-loader!./default.html';
+import indeterminateHtml from '!!raw-loader!./indeterminate.html';
+import labelHtml from '!!raw-loader!./label.html';
+import themeHtml from '!!raw-loader!./theme.html';
+import themeSass from '!!raw-loader!./theme.scss';
+
 export class Examples {
+  defaultHtml = defaultHtml;
+  indeterminateHtml = indeterminateHtml;
+  labelHtml = labelHtml;
+  themeHtml = themeHtml;
+  themeSass = themeSass;
+
   checked: boolean = true;
 
   indeterminate: boolean = true;
