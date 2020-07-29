@@ -1,4 +1,4 @@
-import { IMdcDialogElement } from './mdc-dialog';
+import { IMdcDialogElement, MdcDialog } from './mdc-dialog';
 import { TemplatingEngine, inject, ViewSlot, ShadowDOM, CompositionContext, ViewResources, Controller, CompositionEngine, Container } from 'aurelia-framework';
 import { strings, MDCDialogCloseEvent } from '@material/dialog';
 
@@ -50,6 +50,7 @@ export class MdcDialogService {
     const view = controllers[0].view;
     const slot = new ViewSlot(view.slots[ShadowDOM.defaultSlotKey].anchor, false);
     slot.attached();
+    childView.container.registerInstance(MdcDialog, dialog.au.controller.viewModel);
     let compositionContext = this.createCompositionContext(childView.container, dialog, bindingContext, {
       viewModel: options.viewModel,
       model: options.model
