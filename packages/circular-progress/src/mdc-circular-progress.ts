@@ -29,9 +29,10 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
   progress?: number;
   async progressChanged() {
     await this.initialised;
-    this.foundation?.setDeterminate(!!this.progress);
-    if (this.progress) {
-      this.foundation?.setProgress(this.progress);
+    const determinate = this.progress !== undefined && !isNaN(this.progress);
+    this.foundation?.setDeterminate(determinate);
+    if (determinate) {
+      this.foundation?.setProgress(this.progress!);
     }
   }
 
