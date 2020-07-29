@@ -29,7 +29,7 @@
   <mdc-menu class="mdc-select__menu ${fullWidth ? 'mdc-menu-surface--fullwidth' : ''}" view-model.ref="menu"
     ref="menuElement" typeahead mdcmenusurface:closed.trigger="handleMenuClosed()"
     mdcmenusurface:opened.trigger="handleMenuOpened()" mdcmenu:selected.trigger="handleMenuItemAction($event)"
-    mdclist:itemschanged.trigger="handleItemsChanged($event)">
+    mdclist:itemschanged.trigger="handleItemsChanged($event)" hoist-to-body.bind="hoistToBody">
     <mdc-list>
       <slot></slot>
     </mdc-list>

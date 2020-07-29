@@ -5,7 +5,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 
 export const mdcHelperTextCssClasses = {
   ROOT: 'mdc-select-helper-text'
-}
+};
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-select-helper-text.html'))
@@ -49,6 +49,6 @@ export interface IMdcSelectHelperTextElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcSelectHelperText;
-    }
-  }
+    };
+  };
 }
