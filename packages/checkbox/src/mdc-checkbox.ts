@@ -2,7 +2,7 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCCheckboxFoundation, MDCCheckboxAdapter } from '@material/checkbox';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { getCorrectEventName } from '@material/animation/util';
-import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
+import { inject, useView, PLATFORM, customElement, bindingMode } from 'aurelia-framework';
 
 let checkboxId = 0;
 
@@ -29,6 +29,12 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   @bindable.booleanAttr
   touch: boolean;
 
+  @bindable.booleanAttr
+  disableRipple: boolean;
+
+  @bindable.booleanAttr
+  indeterminateToChecked: boolean = true;
+
   initialChecked?: boolean;
   get checked(): boolean {
     if (this.nativeControl_) {
@@ -44,14 +50,15 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     } else {
       this.initialChecked = checked;
     }
+    this.indeterminate = false;
   }
 
-  get indeterminate(): boolean {
-    return this.nativeControl_.indeterminate;
-  }
-
-  set indeterminate(indeterminate: boolean) {
-    this.nativeControl_.indeterminate = indeterminate;
+  @bindable.booleanAttr({ defaultBindingMode: bindingMode.twoWay })
+  indeterminate: boolean;
+  async indeterminateChanged() {
+    await this.initialised;
+    this.nativeControl_.indeterminate = this.indeterminate;
+    this.foundation?.handleChange();
   }
 
   get value(): string {
@@ -64,7 +71,6 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
 
   // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
-    this.nativeControl_.indeterminate = this.indeterminate;
     this.listen(getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
 
     if (this.root.hasAttribute('checked')) {
@@ -95,6 +101,10 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   }
 
   handleChange_() {
+    if (this.indeterminate) {
+      this.indeterminate = false;
+      this.checked = this.indeterminateToChecked;
+    }
     this.foundation?.handleChange();
   }
 
@@ -160,14 +170,6 @@ function defineMdcCheckboxElementApis(element: HTMLElement) {
         this.au.controller.viewModel.checked = value;
       },
       configurable: true
-    },
-    indeterminate: {
-      get(this: IMdcCheckboxElement) {
-        return this.au.controller.viewModel.indeterminate;
-      },
-      set(this: IMdcCheckboxElement, value: boolean) {
-        this.au.controller.viewModel.indeterminate = value;
-      }
     },
     focus: {
       value(this: IMdcCheckboxElement) {
