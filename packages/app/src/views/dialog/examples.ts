@@ -1,5 +1,5 @@
 import { autoinject } from 'aurelia-framework';
-import { MdcDialogService } from "@aurelia-mdc-web/dialog";
+import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { ServiceDialog } from './service-dialog';
 
 @autoinject

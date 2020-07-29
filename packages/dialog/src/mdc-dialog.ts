@@ -20,7 +20,6 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   contentId = `mdc-dialog-content-${this.id}`;
   titleId = `mdc-dialog-title-${this.id}`;
   private buttons_!: HTMLElement[]; // assigned in initialize()
-  private defaultButton_?: HTMLElement | null; // assigned in initialize()
   private focusTrap_!: FocusTrap; // assigned in initialSyncWithDOM()
 
   @child('mdc-dialog-content')
@@ -40,12 +39,15 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
     this.foundation?.setEscapeKeyAction(this.escapeKeyAction);
   }
 
+  get defaultButton_(): HTMLElement | null {
+    return this.root.querySelector<HTMLElement>(`[${strings.BUTTON_DEFAULT_ATTRIBUTE}]`);
+  }
+
   // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     this.focusTrap_ = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions));
 
     this.buttons_ = [].slice.call(this.root.querySelectorAll<HTMLElement>(strings.BUTTON_SELECTOR));
-    this.defaultButton_ = this.root.querySelector<HTMLElement>(`[${strings.BUTTON_DEFAULT_ATTRIBUTE}]`);
     const content = this.root.querySelector('mdc-dialog-content');
     content?.setAttribute('id', this.contentId);
     const title = this.root.querySelector('mdc-dialog-title');
