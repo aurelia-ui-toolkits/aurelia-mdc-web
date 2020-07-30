@@ -59473,33 +59473,36 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
         updateErrorMessages(elements) {
             for (const el of elements.keys()) {
-                switch (el.tagName) {
-                    case 'MDC-TEXT-FIELD': {
-                        const helperLine = el.nextElementSibling;
-                        if ((helperLine === null || helperLine === void 0 ? void 0 : helperLine.tagName) === 'MDC-TEXT-FIELD-HELPER-LINE') {
-                            helperLine.au.controller.viewModel.errors = el.getErrors()
-                                .filter(x => x.message !== null).map(x => x.message);
-                        }
-                        break;
+                this.updateErrorMessagesForElement(el);
+            }
+        }
+        updateErrorMessagesForElement(el) {
+            switch (el.tagName) {
+                case 'MDC-TEXT-FIELD': {
+                    const helperLine = el.nextElementSibling;
+                    if ((helperLine === null || helperLine === void 0 ? void 0 : helperLine.tagName) === 'MDC-TEXT-FIELD-HELPER-LINE') {
+                        helperLine.au.controller.viewModel.errors = el.getErrors()
+                            .filter(x => x.message !== null).map(x => x.message);
                     }
-                    case 'MDC-SELECT': {
-                        const helperText = el.nextElementSibling;
-                        if ((helperText === null || helperText === void 0 ? void 0 : helperText.tagName) === 'MDC-SELECT-HELPER-TEXT') {
-                            helperText.au.controller.viewModel.errors = el.getErrors()
-                                .filter(x => x.message !== null).map(x => x.message);
-                        }
-                        break;
+                    break;
+                }
+                case 'MDC-SELECT': {
+                    const helperText = el.nextElementSibling;
+                    if ((helperText === null || helperText === void 0 ? void 0 : helperText.tagName) === 'MDC-SELECT-HELPER-TEXT') {
+                        helperText.au.controller.viewModel.errors = el.getErrors()
+                            .filter(x => x.message !== null).map(x => x.message);
                     }
-                    case 'MDC-LOOKUP': {
-                        const lookup = el;
-                        const input = lookup.au.controller.viewModel.input;
-                        const lookupHelperLine = input === null || input === void 0 ? void 0 : input.nextElementSibling;
-                        if ((lookupHelperLine === null || lookupHelperLine === void 0 ? void 0 : lookupHelperLine.tagName) === 'MDC-TEXT-FIELD-HELPER-LINE') {
-                            lookupHelperLine.au.controller.viewModel.errors = el.getErrors()
-                                .filter(x => x.message !== null).map(x => x.message);
-                        }
-                        break;
+                    break;
+                }
+                case 'MDC-LOOKUP': {
+                    const lookup = el;
+                    const input = lookup.au.controller.viewModel.input;
+                    const lookupHelperLine = input === null || input === void 0 ? void 0 : input.nextElementSibling;
+                    if ((lookupHelperLine === null || lookupHelperLine === void 0 ? void 0 : lookupHelperLine.tagName) === 'MDC-TEXT-FIELD-HELPER-LINE') {
+                        lookupHelperLine.au.controller.viewModel.errors = el.getErrors()
+                            .filter(x => x.message !== null).map(x => x.message);
                     }
+                    break;
                 }
             }
         }
@@ -60354,8 +60357,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             var _a, _b;
             return tslib_1.__awaiter(this, void 0, void 0, function* () {
                 yield this.initialised;
-                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setDeterminate(!!this.progress);
-                if (this.progress) {
+                const determinate = this.progress !== undefined && !isNaN(this.progress);
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setDeterminate(determinate);
+                if (determinate) {
                     (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.setProgress(this.progress);
                 }
             });
@@ -60877,6 +60881,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         handleClick_(evt) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick(evt);
+            return true;
         }
         handleKeydown_(evt) {
             var _a;
@@ -62976,13 +62981,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.optionsChanged();
         }
         attached() {
-            if (this.input) {
-                inputEvents.forEach(x => this.input.addEventListener(x, this));
-            }
-            this.valueChanged();
-            if (!this.value && this.preloadOptions) {
-                this.loadOptions().catch();
-            }
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                if (this.input) {
+                    inputEvents.forEach(x => this.input.addEventListener(x, this));
+                }
+                yield this.valueChanged();
+                if (!this.value && this.preloadOptions) {
+                    this.loadOptions().catch();
+                }
+            });
         }
         detached() {
             if (this.input) {
@@ -63019,10 +63026,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         filterChanged() {
             var _a, _b;
             return tslib_1.__awaiter(this, void 0, void 0, function* () {
-                if (this.suppressFilterChanged) {
-                    this.suppressFilterChanged = false;
-                    return;
-                }
                 (_a = this.debouncePromise) === null || _a === void 0 ? void 0 : _a.discard();
                 this.debouncePromise = new discardable_promise_1.DiscardablePromise(new Promise(r => { var _a; return setTimeout(() => r(), (_a = this.debounce) !== null && _a !== void 0 ? _a : 0); }));
                 try {
@@ -63065,7 +63068,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             if (!this.input || this.input.value === filter) {
                 return;
             }
-            this.suppressFilterChanged = true;
             this.input.value = filter !== null && filter !== void 0 ? filter : '';
         }
         updateFilterBasedOnValue() {
@@ -75167,7 +75169,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Indeterminate</h3>\n    <compose view=\"./indeterminate.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"indeterminateHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Determinate</h3>\n    <mdc-slider value.bind=\"progress\" min=\"0\" max=\"1\"></mdc-slider>\n    <compose view=\"./determinate.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"determinateHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Size/stroke</h3>\n    <div class=\"demo-layout__row\">\n      <mdc-form-field class=\"demo-container\">\n        <label>Size</label>\n        <mdc-slider value.bind=\"size\" min=\"20\" max=\"100\"></mdc-slider>\n      </mdc-form-field>\n      <mdc-form-field  class=\"demo-container\">\n        <label>Stroke</label>\n        <mdc-slider value.bind=\"stroke\" min=\"2\" max=\"10\"></mdc-slider>\n      </mdc-form-field>\n    </div>\n    <compose view=\"./size-stroke.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"sizeStrokeHtml\"></example-viewer>\n  </div>\n\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Indeterminate</h3>\n    <compose view=\"./indeterminate.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"indeterminateHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Determinate</h3>\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-container\">\n        <mdc-slider value.bind=\"progress\" min=\"0\" max=\"1\"></mdc-slider>\n      </div>\n    </div>\n    <compose view=\"./determinate.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"determinateHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Size/stroke</h3>\n    <div class=\"demo-layout__row\">\n      <mdc-form-field class=\"demo-container\">\n        <label>Size</label>\n        <mdc-slider value.bind=\"size\" min=\"20\" max=\"100\"></mdc-slider>\n      </mdc-form-field>\n      <mdc-form-field class=\"demo-container\">\n        <label>Stroke</label>\n        <mdc-slider value.bind=\"stroke\" min=\"2\" max=\"10\"></mdc-slider>\n      </mdc-form-field>\n    </div>\n    <compose view=\"./size-stroke.html\" class=\"demo-layout__row\"></compose>\n    <example-viewer html.bind=\"sizeStrokeHtml\"></example-viewer>\n  </div>\n\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -77325,4 +77327,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.529fab24fd724d8254ca.bundle.map
+//# sourceMappingURL=app.8f274e75d0419b4f930e.bundle.map
