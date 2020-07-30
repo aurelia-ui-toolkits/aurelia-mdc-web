@@ -1,3 +1,6 @@
+import standardHtml from '!!raw-loader!./standard.html';
+import selectionHtml from '!!raw-loader!./selection.html';
+
 export interface MDCDataTableRowSelectionChangedEvent {
   index: number;
   id: string | null;
@@ -5,6 +8,9 @@ export interface MDCDataTableRowSelectionChangedEvent {
 }
 
 export class Examples {
+  standardHtml = standardHtml;
+  selectionHtml = selectionHtml;
+
   desserts = [
     { checked: false, name: 'Frozen yogurt', calories: 159, carbs: 24, protein: 4, comment: 'Super tasty' },
     { checked: true, name: 'Ice cream sandwich', calories: 237, carbs: 37, protein: 4.3, comment: 'I like ice cream more' },

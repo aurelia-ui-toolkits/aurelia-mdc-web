@@ -16,8 +16,6 @@
         <mdc-tree-node class="mdc-tree-node" factory.bind="nodeViewFactory"
           root-binding-context.bind="rootBindingContext"></mdc-tree-node>
       </div>
-      <!-- show.bind is necessary to enable node search -->
-      <!-- elements hidden with if.bind would not populate treeViews array -->
       <mdc-tree-view if.bind="$node.children && $node.expanded" nodes.bind="$node.children"
         root-binding-context.bind="rootBindingContext"
         mdctree:node-selected.trigger="childNodeSelected($event.detail.node)" view-model.ref="treeViews[$index]">
