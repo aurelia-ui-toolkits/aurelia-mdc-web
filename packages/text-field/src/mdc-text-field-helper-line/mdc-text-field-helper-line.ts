@@ -13,7 +13,6 @@ export interface IMdcTextFieldHelperLineElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcTextFieldHelperLine;
-    }
-  }
+    };
+  };
 }
-

@@ -35,33 +35,37 @@ export class MdcValidationRenderer implements ValidationRenderer {
 
   protected updateErrorMessages(elements: Map<Element, boolean>) {
     for (const el of elements.keys()) {
-      switch (el.tagName) {
-        case 'MDC-TEXT-FIELD': {
-          const helperLine = el.nextElementSibling as IMdcTextFieldHelperLineElement;
-          if (helperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
-            helperLine.au.controller.viewModel.errors = ((el as IMdcTextFieldElement).getErrors() as ValidateResult[])
-              .filter(x => x.message !== null).map(x => x.message!);
-          }
-          break;
+      this.updateErrorMessagesForElement(el);
+    }
+  }
+
+  protected updateErrorMessagesForElement(el: Element) {
+    switch (el.tagName) {
+      case 'MDC-TEXT-FIELD': {
+        const helperLine = el.nextElementSibling as IMdcTextFieldHelperLineElement;
+        if (helperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
+          helperLine.au.controller.viewModel.errors = ((el as IMdcTextFieldElement).getErrors() as ValidateResult[])
+            .filter(x => x.message !== null).map(x => x.message!);
         }
-        case 'MDC-SELECT': {
-          const helperText = el.nextElementSibling as IMdcSelectHelperTextElement;
-          if (helperText?.tagName === 'MDC-SELECT-HELPER-TEXT') {
-            helperText.au.controller.viewModel.errors = ((el as IMdcSelectElement).getErrors() as ValidateResult[])
-              .filter(x => x.message !== null).map(x => x.message!);
-          }
-          break;
+        break;
+      }
+      case 'MDC-SELECT': {
+        const helperText = el.nextElementSibling as IMdcSelectHelperTextElement;
+        if (helperText?.tagName === 'MDC-SELECT-HELPER-TEXT') {
+          helperText.au.controller.viewModel.errors = ((el as IMdcSelectElement).getErrors() as ValidateResult[])
+            .filter(x => x.message !== null).map(x => x.message!);
         }
-        case 'MDC-LOOKUP': {
-          const lookup = el as IMdcLookupElement;
-          const input = lookup.au.controller.viewModel.input;
-          const lookupHelperLine = input?.nextElementSibling as IMdcTextFieldHelperLineElement;
-          if (lookupHelperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
-            lookupHelperLine.au.controller.viewModel.errors = ((el as IMdcTextFieldElement).getErrors() as ValidateResult[])
-              .filter(x => x.message !== null).map(x => x.message!);
-          }
-          break;
+        break;
+      }
+      case 'MDC-LOOKUP': {
+        const lookup = el as IMdcLookupElement;
+        const input = lookup.au.controller.viewModel.input;
+        const lookupHelperLine = input?.nextElementSibling as IMdcTextFieldHelperLineElement;
+        if (lookupHelperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
+          lookupHelperLine.au.controller.viewModel.errors = ((el as IMdcTextFieldElement).getErrors() as ValidateResult[])
+            .filter(x => x.message !== null).map(x => x.message!);
         }
+        break;
       }
     }
   }
