@@ -50,7 +50,6 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     } else {
       this.initialChecked = checked;
     }
-    this.indeterminate = false;
   }
 
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.twoWay })
