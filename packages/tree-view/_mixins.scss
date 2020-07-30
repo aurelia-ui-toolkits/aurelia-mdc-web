@@ -40,6 +40,19 @@
       .mdc-tree-view__expander {
         @include icon-button.density(-3);
       }
+
+      .mdc-tree-node {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        .mdc-tree-node__meta {
+          margin-left: auto;
+          margin-right: 0;
+
+          @include theme-mixins.prop(color, text-hint-on-background);
+        }
+      }
     }
 
     >.mdc-tree-view__list {

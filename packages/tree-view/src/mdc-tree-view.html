@@ -4,7 +4,8 @@
     <li repeat.for="$node of nodes" class="mdc-tree-view__list-item">
       <let $tree.bind="element"></let>
       <let $tree-vm.bind="$parent"></let>
-      <div class="mdc-tree-view__node ${$node.selected ? 'mdc-tree-view__node--selected' : ''}" click.trigger="nodeClicked($node)" mdc-ripple>
+      <div class="mdc-tree-view__node ${$node.selected ? 'mdc-tree-view__node--selected' : ''}"
+        click.trigger="nodeClicked($node)" mdc-ripple>
         <div class="mdc-tree-view__node__ripple"></div>
         <mdc-icon-button if.bind="$node.children" type="fab" size="small" class="mdc-tree-view__expander"
           on.bind="$node.expanded">
@@ -12,12 +13,15 @@
           <mdc-icon-button-icon class="material-icons" on>expand_more</mdc-icon-button-icon>
         </mdc-icon-button>
         <div else class="mdc-tree-view__leaf-padding"></div>
-        <mdc-tree-node factory.bind="nodeViewFactory" root-binding-context.bind="rootBindingContext"></mdc-tree-node>
+        <mdc-tree-node class="mdc-tree-node" factory.bind="nodeViewFactory"
+          root-binding-context.bind="rootBindingContext"></mdc-tree-node>
       </div>
       <!-- show.bind is necessary to enable node search -->
       <!-- elements hidden with if.bind would not populate treeViews array -->
-      <mdc-tree-view if.bind="$node.children && $node.expanded" nodes.bind="$node.children" root-binding-context.bind="rootBindingContext"
-        mdctree:node-selected.trigger="childNodeSelected($event.detail.node)" view-model.ref="treeViews[$index]"></tree-view>
+      <mdc-tree-view if.bind="$node.children && $node.expanded" nodes.bind="$node.children"
+        root-binding-context.bind="rootBindingContext"
+        mdctree:node-selected.trigger="childNodeSelected($event.detail.node)" view-model.ref="treeViews[$index]">
+      </mdc-tree-view>
     </li>
   </ul>
   <slot></slot>

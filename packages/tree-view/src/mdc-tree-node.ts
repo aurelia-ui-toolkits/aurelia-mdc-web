@@ -19,7 +19,7 @@ export class TreeNode {
 
   built: boolean;
 
-  bind(bindingContext: Record<string, unknown>, overrideContext: Record<string, any>) {
+  bind(bindingContext: Record<string, unknown>) {
     this.build();
     this.viewSlot.bind(bindingContext, this.rootBindingContext);
   }
