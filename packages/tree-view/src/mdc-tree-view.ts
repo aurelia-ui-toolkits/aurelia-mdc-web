@@ -66,6 +66,13 @@ export class MdcTreeView {
   // this is populated by the HTML template
   treeViews: MdcTreeView[] = [];
 
+  @bindable
+  rootBindingContext: Record<string, unknown>;
+
+  bind(bindingContext: Record<string, unknown>) {
+    this.rootBindingContext = this.rootBindingContext ?? bindingContext;
+  }
+
   toggleExpanded(n: INode, e: Event): boolean {
     n.expanded = !n.expanded;
     e.stopPropagation();
@@ -111,7 +118,7 @@ export class MdcTreeView {
   expandPath(path: number[]) {
     if (path.length === 1) {
       this.nodeClicked(this.nodes[path[0]]);
-      this.element.querySelectorAll('.mdc-tree-view--node')[path[0]].scrollIntoView();
+      this.element.querySelectorAll('.mdc-tree-view__node')[path[0]].scrollIntoView();
     } else {
       this.nodes[path[0]].expanded = true;
       // let Aurelia populate treeViews by queueing the task
