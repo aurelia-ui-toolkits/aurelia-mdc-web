@@ -116,11 +116,11 @@ export class MdcLookup implements EventListenerObject {
     this.optionsChanged();
   }
 
-  attached() {
+  async attached() {
     if (this.input) {
       inputEvents.forEach(x => this.input!.addEventListener(x, this));
     }
-    this.valueChanged();
+    await this.valueChanged();
     if (!this.value && this.preloadOptions) {
       this.loadOptions().catch();
     }
@@ -158,13 +158,7 @@ export class MdcLookup implements EventListenerObject {
 
   debouncePromise: DiscardablePromise<void>;
   searchPromise: DiscardablePromise<unknown[]>;
-  suppressFilterChanged: boolean;
   async filterChanged() {
-    if (this.suppressFilterChanged) {
-      this.suppressFilterChanged = false;
-      return;
-    }
-
     this.debouncePromise?.discard();
     this.debouncePromise = new DiscardablePromise(new Promise(r => setTimeout(() => r(), this.debounce ?? 0)));
     try {
@@ -203,7 +197,6 @@ export class MdcLookup implements EventListenerObject {
     if (!this.input || this.input.value === filter) {
       return;
     }
-    this.suppressFilterChanged = true;
     this.input.value = filter ?? '';
   }
 
