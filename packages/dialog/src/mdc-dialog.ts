@@ -61,6 +61,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
 
   handleClick_(evt: MouseEvent) {
     this.foundation?.handleClick(evt);
+    return true;
   }
 
   handleKeydown_(evt: KeyboardEvent) {
