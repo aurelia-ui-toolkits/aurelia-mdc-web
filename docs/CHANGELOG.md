@@ -1,3 +1,26 @@
+# [v1.0.0-alpha.7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2020-07-30)
+
+
+### Bug Fixes
+
+* **circular-progress:** do not treat 0 as indeterminate ([08688ce](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/08688ce26d5474f1b76dc15af87326ca034925ba))
+* **circular-progress:** update size and stroke on changed ([a726a40](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a726a40296f191035d904fe63bd135363d75253b))
+* **dialog:** allow further click processing ([a75125d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a75125df8361f10682c7f7a7d4f4eb05376aeb27))
+* **lookup:** remove unnecessary suppress flag ([fcac7f0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fcac7f0143c0fceaf8e41fdd4aa153cba88dae74))
+* **tree-view:** pass root binding context to children ([fe69a9d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fe69a9d73eaeeecfdc610911a002e59cc09a0b2f))
+* **tree-view:** typo ([969243c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/969243c6b16c075eed207c5e9e143d43929124ea))
+
+
+### Features
+
+* **app:** add more checkbox and circular-progress examples ([6319ae0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6319ae06f88b2670751d846d3cfcc61cb9bff604))
+* **app:** add more checkbox examples ([b63bccf](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b63bccf3e3438333bf8fb50b524b8e9beaa8b457))
+* **checkbox:** add disableRipple ([8f2b00e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8f2b00e2579ce2d0ecd5b3a78e885b4348224ad8))
+* **tree-view:** pass root context to children ([936f892](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/936f892268932e9da76adff3877cca0a3b9ec1cb))
+* **validation:** better support extensibility ([688638f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/688638f47a3eee4f6a0c62f20a12d443bd4d8ed1))
+
+
+
 # [v1.0.0-alpha.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2020-07-29)
 
 
