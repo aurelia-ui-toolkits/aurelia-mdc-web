@@ -13,11 +13,15 @@ export class TreeNode {
 
   @bindable
   factory: ViewFactory;
+
+  @bindable
+  rootBindingContext: Record<string, unknown>;
+
   built: boolean;
 
-  bind(bindingContext: Record<string, unknown>, overrideContext: Record<string, unknown>) {
+  bind(bindingContext: Record<string, unknown>, overrideContext: Record<string, any>) {
     this.build();
-    this.viewSlot.bind(bindingContext, overrideContext);
+    this.viewSlot.bind(bindingContext, this.rootBindingContext);
   }
 
   attached() {
