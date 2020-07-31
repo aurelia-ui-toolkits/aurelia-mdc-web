@@ -77,6 +77,7 @@ export class MdcListItem {
     if (!this.disabled) {
       this.root.dispatchEvent(new CustomEvent(LIST_ITEM_ACTION, { detail: { item: this, data: this.actionData }, bubbles: true }));
     }
+    return true;
   }
 
 }
