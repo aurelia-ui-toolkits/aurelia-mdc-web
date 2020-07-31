@@ -14,6 +14,17 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   @children('mdc-icon-button-icon')
   icons?: MdcIconButtonIcon[];
 
+  // this is necessary for the route-href to work
+  @bindable
+  href: string;
+  hrefChanged() {
+    if (this.href) {
+      this.root.setAttribute('href', this.href);
+    } else {
+      this.root.removeAttribute('href');
+    }
+  }
+
   async attached() {
     await this.initialise();
     if (this.icons?.length) {
