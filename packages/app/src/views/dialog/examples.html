@@ -1,17 +1,15 @@
 <template>
   <div class="demo-content">
+    <h3 class="demo-content__headline">Inline</h3>
     <button mdc-button click.delegate="dialog.open()">Open</button>
-    <button mdc-button click.delegate="open()">Open via service</button>
+    <compose view="./inline.html" class="demo-layout__row"></compose>
+    <example-viewer html.bind="inlineHtml"></example-viewer>
+  </div>
 
-    <mdc-dialog view-model.ref="dialog" mdcdialog:closing.trigger="handleClosing($event)">
-      <mdc-dialog-content>
-        Discard draft?
-        <mdc-text-field></mdc-text-field>
-      </mdc-dialog-content>
-      <mdc-dialog-actions>
-        <button mdc-button data-mdc-dialog-action="cancel">Cancel</button>
-        <button mdc-button data-mdc-dialog-action="discard" data-mdc-dialog-button-default data-mdc-dialog-initial-focus>Discard</button>
-      </mdc-dialog-actions>
-    </mdc-dialog>
+  <div class="demo-content">
+    <div class="demo-content__row">
+      <button mdc-button click.delegate="open()">Via service</button>
+    </div>
+    <example-viewer html.bind="serviceHtml" code.bind="serviceCode"></example-viewer>
   </div>
 </template>

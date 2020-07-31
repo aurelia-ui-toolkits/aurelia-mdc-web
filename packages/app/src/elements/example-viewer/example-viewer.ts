@@ -21,6 +21,9 @@ export class ExampleViewer {
   @bindable
   sass: string;
 
+  @bindable
+  code: string;
+
   highlightVM: Highlight;
 
   bind() {
@@ -29,6 +32,9 @@ export class ExampleViewer {
     }
     if (this.sass) {
       this.tabs.push({ label: 'SASS', language: 'scss', code: this.sass });
+    }
+    if (this.code) {
+      this.tabs.push({ label: 'TS', language: 'typescript', code: this.code });
     }
     this.selectedTab = this.tabs[0];
   }
