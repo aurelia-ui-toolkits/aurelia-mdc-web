@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/radio",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "publishConfig": {
     "access": "public"
   },
@@ -55,8 +55,8 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.7",
-    "@aurelia-mdc-web/ripple": "^1.0.0-alpha.7",
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.8",
+    "@aurelia-mdc-web/ripple": "^1.0.0-alpha.8",
     "@material/radio": "^7.0.0"
   },
   "devDependencies": {
