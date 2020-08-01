@@ -1,3 +1,21 @@
+# [v1.0.0-alpha.8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2020-08-01)
+
+
+### Bug Fixes
+
+* **checkbox:** indeterminate is an "override" state ([9a373e7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9a373e7e1a9f305f74b3f1cbc9897a479c0cd075))
+* **list:** allow further item click handling ([15a62c4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/15a62c4b70840cb7d44d65420bf380061179d0bc))
+* **tab-bar:** use PLATFORM.moduleName ([e1e7134](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e1e7134566f4e7524f8b5f870d3a351ea62dda4d))
+
+
+### Features
+
+* **app:** add data table snippets ([6f7c406](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6f7c406b042c85b9f0210eb629474a77676e75f9))
+* **app:** add dialog snippets ([3c55e14](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3c55e14bc251b985d33a512389d2c3911874d67c))
+* **icon-button:** add href attribute ([4eeacc9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4eeacc9bdea651d000ed0ff35896f27dbf06434b))
+
+
+
 # [v1.0.0-alpha.7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2020-07-30)
 
 
