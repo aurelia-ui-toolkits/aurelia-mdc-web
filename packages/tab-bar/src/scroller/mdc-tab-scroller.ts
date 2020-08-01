@@ -1,9 +1,12 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTabScrollerFoundation, MDCTabScrollerAdapter, util } from '@material/tab-scroller';
 import { matches } from '@material/dom/ponyfill';
-import { children } from 'aurelia-framework';
+import { children, useView, PLATFORM, customElement, inject } from 'aurelia-framework';
 import { MdcTab } from '../tab/mdc-tab';
 
+@inject(Element)
+@useView(PLATFORM.moduleName('./mdc-tab-scroller.html'))
+@customElement('mdc-tab-scroller')
 export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   private content_: HTMLElement; // assigned in html
   private area_: HTMLElement; // assigned in html
