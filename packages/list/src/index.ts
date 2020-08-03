@@ -7,6 +7,7 @@ export function configure(config: FrameworkConfiguration) {
   config.globalResources([
     PLATFORM.moduleName('./mdc-list'),
     PLATFORM.moduleName('./mdc-list-item/mdc-list-item'),
+    PLATFORM.moduleName('./mdc-list-item/enhance-mdc-list-item'),
     PLATFORM.moduleName('./mdc-list-item-primary-text'),
     PLATFORM.moduleName('./mdc-list-item-secondary-text'),
     PLATFORM.moduleName('./mdc-list-item-graphic'),
