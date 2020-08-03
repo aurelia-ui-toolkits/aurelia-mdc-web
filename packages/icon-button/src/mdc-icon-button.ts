@@ -37,6 +37,7 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
 
   handleClick() {
     this.foundation?.handleClick();
+    return true;
   }
 
   getDefaultFoundation() {
