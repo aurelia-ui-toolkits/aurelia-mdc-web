@@ -1,0 +1,5 @@
+@use '@material/list/_index' as list;
+
+.demo-list--shaped {
+  @include list.single-line-shape-radius(0 50px 50px 0);
+}

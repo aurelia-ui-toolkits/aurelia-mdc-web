@@ -1,0 +1,46 @@
+<template>
+  <div class="demo-layout__row--no-wrap demo-drawer-app">
+    <mdc-drawer ref="demoPermanent">
+      <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
+      <mdc-drawer-content>
+        <mdc-list activated>
+          <a mdc-list-item repeat.for="item of destinations" activated.bind="item.activated"
+            click.delegate="item.activated = !item.activated">
+            <mdc-icon mdc-list-item-graphic if.bind="item.icon">${item.icon}</mdc-icon>
+            <span>${item.label}</span>
+          </a>
+          <mdc-list-divider></mdc-list-divider>
+          <mdc-list-group>
+            <h6>Labels</h6>
+          </mdc-list-group>
+          <a mdc-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-list-item-graphic>bookmark</mdc-icon>
+            <span>Family</span>
+          </a>
+          <a mdc-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-list-item-graphic>bookmark</mdc-icon>
+            <span>Friends</span>
+          </a>
+          <a mdc-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-list-item-graphic>bookmark</mdc-icon>
+            <span>Work</span>
+          </a>
+          <mdc-list-divider></mdc-list-divider>
+          <a mdc-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-list-item-graphic>settings</mdc-icon>
+            <span>Settings</span>
+          </a>
+          <a mdc-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-list-item-graphic>announcement</mdc-icon>
+            <span>Help & feedback</span>
+          </a>
+        </mdc-list>
+      </mdc-drawer-content>
+    </mdc-drawer>
+    <div style="padding: 16px; height: 400px;">
+      Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque
+      voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per
+      an legere iriure blandit. Veri iisque accusamus an pri.
+    </div>
+  </div>
+</template>
