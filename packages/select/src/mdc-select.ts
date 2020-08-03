@@ -224,6 +224,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
       notifyChange: (value: string) => {
         const index = this.selectedIndex;
         this.emit<MDCSelectEventDetail>(strings.CHANGE_EVENT, { value, index }, true /* shouldBubble  */);
+        this.emit<MDCSelectEventDetail>('change', { value, index }, true /* shouldBubble  */);
       },
     };
   }
