@@ -12,6 +12,7 @@ import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
 import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './mdc-text-field-icon';
 import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
+import { MDCFoundation } from '@material/base';
 
 let textFieldId = 0;
 
@@ -183,12 +184,28 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 
   @child(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`)
-  leadingIconEl: IMdcTextFieldIconElement;
+  leadingIconEl: IMdcTextFieldIconElement | MdcComponent<MDCFoundation>;
+  leadingIconElChanged() {
+    if (this.leadingIconEl) {
+      const el = ((this.leadingIconEl as MdcComponent<MDCFoundation>).root ?? this.leadingIconEl) as IMdcTextFieldIconElement;
+      this.leadingIcon_ = el.au['mdc-text-field-icon'].viewModel;
+    } else {
+      this.leadingIcon_ = undefined;
+    }
+  }
 
   leadingIcon_: MdcTextFieldIcon | undefined;
 
   @child(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`)
-  trailingIconEl: IMdcTextFieldIconElement;
+  trailingIconEl: IMdcTextFieldIconElement | MdcComponent<MDCFoundation>;
+  trailingIconElChanged(){
+    if (this.trailingIconEl) {
+      const el = ((this.trailingIconEl as MdcComponent<MDCFoundation>).root ?? this.trailingIconEl) as IMdcTextFieldIconElement;
+      this.trailingIcon_ = el.au['mdc-text-field-icon'].viewModel;
+    } else {
+      this.trailingIcon_ = undefined;
+    }
+  }
 
   trailingIcon_: MdcTextFieldIcon | undefined;
 
@@ -209,8 +226,6 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
       this.value = this.root.getAttribute('value') ?? '';
     }
 
-    this.leadingIcon_ = this.leadingIconEl?.au['mdc-text-field-icon'].viewModel;
-    this.trailingIcon_ = this.trailingIconEl?.au['mdc-text-field-icon'].viewModel;
     const nextSibling = this.root.nextElementSibling;
     const initialisedChildren: Promise<unknown>[] = [];
     if (this.label_) {
