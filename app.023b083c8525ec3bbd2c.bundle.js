@@ -62137,6 +62137,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         handleClick() {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick();
+            return true;
         }
         getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
@@ -62591,6 +62592,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
             const toggleCheckbox = !ponyfill_1.matches(target, list_1.strings.CHECKBOX_RADIO_SELECTOR);
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.handleClick(index, toggleCheckbox);
+            return true;
         }
         /**
          * @return Whether typeahead is currently matching a user-specified prefix.
@@ -63091,7 +63093,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         constructor(root, defaultConfiguration) {
             this.root = root;
             this.defaultConfiguration = defaultConfiguration;
-            this.isOpen = false;
             this.isWrapperOpen = false;
             this.focusedOption = undefined;
             this.searching = false;
@@ -63172,7 +63173,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 }
                 yield this.valueChanged();
                 if (!this.value && this.preloadOptions) {
-                    this.loadOptions().catch();
+                    yield this.loadOptions(false);
                 }
             });
         }
@@ -63182,13 +63183,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
         }
         open() {
-            if (this.isOpen) {
+            if (this.menu.open || this.optionsArray === undefined && !this.searching) {
                 return;
             }
             this.menu.open = true;
         }
         close() {
-            this.isOpen = false;
             this.menu.open = false;
         }
         handleEvent(evt) {
@@ -63221,15 +63221,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 }
                 this.setValue(undefined);
                 (_b = this.searchPromise) === null || _b === void 0 ? void 0 : _b.discard();
-                if (!this.isOpen) {
-                    this.open();
-                }
+                yield this.loadOptions(true);
+            });
+        }
+        loadOptions(open) {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
                 this.searching = true;
                 this.errorMessage = undefined;
-                this.notFound = false;
+                if (open) {
+                    this.open();
+                }
                 this.optionsArray = [];
                 try {
-                    yield this.loadOptions();
+                    this.searchPromise = new discardable_promise_1.DiscardablePromise(this.getOptions((_a = this.input) === null || _a === void 0 ? void 0 : _a.value, undefined));
+                    this.optionsArray = yield this.searchPromise;
+                    if (this.optionsArray === undefined) {
+                        this.close();
+                    }
                 }
                 catch (e) {
                     if (e !== discardable_promise_1.DiscardablePromise.discarded) {
@@ -63241,14 +63250,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 }
             });
         }
-        loadOptions() {
-            var _a, _b;
-            return tslib_1.__awaiter(this, void 0, void 0, function* () {
-                this.searchPromise = new discardable_promise_1.DiscardablePromise(this.getOptions((_a = this.input) === null || _a === void 0 ? void 0 : _a.value, undefined));
-                this.optionsArray = yield this.searchPromise;
-                this.notFound = !((_b = this.optionsArray) === null || _b === void 0 ? void 0 : _b.length);
-            });
-        }
         setFilter(filter) {
             if (!this.input || this.input.value === filter) {
                 return;
@@ -63258,11 +63259,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         updateFilterBasedOnValue() {
             var _a;
             return tslib_1.__awaiter(this, void 0, void 0, function* () {
-                if (this.value) {
+                if (this.value !== undefined) {
                     this.optionsArray = yield this.getOptions(undefined, this.value);
                 }
                 else {
-                    this.optionsArray = [];
+                    this.optionsArray = undefined;
                 }
                 if ((_a = this.optionsArray) === null || _a === void 0 ? void 0 : _a.length) {
                     this.setFilter(this.getDisplay(this.optionsArray[0]));
@@ -63297,13 +63298,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     }
                     (_d = (_c = this.menu.list_) === null || _c === void 0 ? void 0 : _c.foundation) === null || _d === void 0 ? void 0 : _d.focusLastElement();
                     break;
-            }
-        }
-        onWindowWheel(evt) {
-            if (this.isOpen) {
-                if (evt.target === aurelia_framework_1.PLATFORM.global || !this.root.contains(evt.target)) {
-                    this.close();
-                }
             }
         }
         addError(error) {
@@ -63404,7 +63398,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"mdc-lookup\">\n  <mdc-menu view-model.ref=\"menu\" mdcmenu:selected.trigger=\"handleMenuItemAction($event)\" anchor-corner=\"BOTTOM_LEFT\"\n    anchor.bind=\"input\" hoist-to-body.bind=\"hoistToBody\">\n    <mdc-list role=\"menu\" two-line.bind=\"twoLine\" wrap-focus>\n\n      <mdc-list-item if.bind=\"searching\">\n        <template replaceable part=\"searching\">\n          ${defaultConfiguration.searchingMessage}\n        </template>\n      </mdc-list-item>\n\n      <mdc-list-item if.bind=\"errorMessage\">\n        <template replaceable part=\"error\">\n          ${errorMessage}\n        </template>\n      </mdc-list-item>\n\n      <mdc-list-item if.bind=\"notFound\">\n        <template replaceable part=\"not-found\">\n          ${defaultConfiguration.notFoundMessage}\n        </template>\n      </mdc-list-item>\n\n      <mdc-list-item role=\"menuitem\" repeat.for=\"option of optionsArray\" action-data.bind=\"option\">\n        <template replaceable part=\"option\">\n          ${getDisplay(option)}\n        </template>\n      </mdc-list-item>\n    </mdc-list>\n  </mdc-menu>\n</template>\n";
+var code = "<template class=\"mdc-lookup\">\n  <mdc-menu view-model.ref=\"menu\" mdcmenu:selected.trigger=\"handleMenuItemAction($event)\" anchor-corner=\"BOTTOM_LEFT\"\n    anchor.bind=\"input\" hoist-to-body.bind=\"hoistToBody\">\n    <mdc-list role=\"menu\" two-line.bind=\"twoLine\" wrap-focus>\n\n      <mdc-list-item if.bind=\"searching\">\n        <template replaceable part=\"searching\">\n          ${defaultConfiguration.searchingMessage}\n        </template>\n      </mdc-list-item>\n\n      <mdc-list-item if.bind=\"errorMessage\">\n        <template replaceable part=\"error\">\n          ${errorMessage}\n        </template>\n      </mdc-list-item>\n\n      <mdc-list-item if.bind=\"optionsArray && !optionsArray.length\">\n        <template replaceable part=\"not-found\">\n          ${defaultConfiguration.notFoundMessage}\n        </template>\n      </mdc-list-item>\n\n      <mdc-list-item role=\"menuitem\" repeat.for=\"option of optionsArray\" action-data.bind=\"option\">\n        <template replaceable part=\"option\">\n          ${getDisplay(option)}\n        </template>\n      </mdc-list-item>\n    </mdc-list>\n  </mdc-menu>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -64656,6 +64650,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 notifyChange: (value) => {
                     const index = this.selectedIndex;
                     this.emit(select_1.strings.CHANGE_EVENT, { value, index }, true /* shouldBubble  */);
+                    this.emit('change', { value, index }, true /* shouldBubble  */);
                 },
             };
         }
@@ -66057,8 +66052,28 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         initialSyncWithDOM() {
             this.value = this.initialValue;
         }
+        leadingIconElChanged() {
+            var _a;
+            if (this.leadingIconEl) {
+                const el = ((_a = this.leadingIconEl.root) !== null && _a !== void 0 ? _a : this.leadingIconEl);
+                this.leadingIcon_ = el.au['mdc-text-field-icon'].viewModel;
+            }
+            else {
+                this.leadingIcon_ = undefined;
+            }
+        }
+        trailingIconElChanged() {
+            var _a;
+            if (this.trailingIconEl) {
+                const el = ((_a = this.trailingIconEl.root) !== null && _a !== void 0 ? _a : this.trailingIconEl);
+                this.trailingIcon_ = el.au['mdc-text-field-icon'].viewModel;
+            }
+            else {
+                this.trailingIcon_ = undefined;
+            }
+        }
         initialise() {
-            var _a, _b, _c, _d, _e;
+            var _a, _b, _c;
             return tslib_1.__awaiter(this, void 0, void 0, function* () {
                 this.requiredChanged();
                 this.disabledChanged();
@@ -66075,16 +66090,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 if (this.root.hasAttribute('value')) {
                     this.value = (_a = this.root.getAttribute('value')) !== null && _a !== void 0 ? _a : '';
                 }
-                this.leadingIcon_ = (_b = this.leadingIconEl) === null || _b === void 0 ? void 0 : _b.au['mdc-text-field-icon'].viewModel;
-                this.trailingIcon_ = (_c = this.trailingIconEl) === null || _c === void 0 ? void 0 : _c.au['mdc-text-field-icon'].viewModel;
                 const nextSibling = this.root.nextElementSibling;
                 const initialisedChildren = [];
                 if (this.label_) {
                     initialisedChildren.push(this.label_.initialised);
                 }
                 if ((nextSibling === null || nextSibling === void 0 ? void 0 : nextSibling.tagName) === textfield_1.cssClasses.HELPER_LINE.toUpperCase()) {
-                    this.helperText_ = (_d = nextSibling.querySelector(textfield_1.helperTextStrings.ROOT_SELECTOR)) === null || _d === void 0 ? void 0 : _d.au.controller.viewModel;
-                    this.characterCounter_ = (_e = nextSibling.querySelector(textfield_1.characterCountStrings.ROOT_SELECTOR)) === null || _e === void 0 ? void 0 : _e.au.controller.viewModel;
+                    this.helperText_ = (_b = nextSibling.querySelector(textfield_1.helperTextStrings.ROOT_SELECTOR)) === null || _b === void 0 ? void 0 : _b.au.controller.viewModel;
+                    this.characterCounter_ = (_c = nextSibling.querySelector(textfield_1.characterCountStrings.ROOT_SELECTOR)) === null || _c === void 0 ? void 0 : _c.au.controller.viewModel;
                     if (this.helperText_) {
                         initialisedChildren.push(this.helperText_.initialised);
                     }
@@ -77244,7 +77257,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = __webpack_require__(/*! ../../../
 var ___HTML_LOADER_IMPORT_0___ = __webpack_require__(/*! ../../assets/github-circle-white-transparent.svg */ "./src/assets/github-circle-white-transparent.svg");
 // Module
 var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.8</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\" tabindex=\"0\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.9</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\" tabindex=\"0\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -77815,4 +77828,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.8cdeb70d3b048ce250e2.bundle.map
+//# sourceMappingURL=app.023b083c8525ec3bbd2c.bundle.map
