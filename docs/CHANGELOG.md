@@ -1,3 +1,21 @@
+# [v1.0.0-alpha.9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2020-08-04)
+
+
+### Bug Fixes
+
+* **icon-button:** do not prevent default ([7ed6f66](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7ed6f6622dc0fe72424f9d458798bc0fe759303f))
+* **list:** do not prevent default ([acd7e3d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/acd7e3df4c8b49ae10d8c447ab7cf90970a89086))
+* **text-field:** check if icons are aurelia elements ([925ead2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/925ead2893f36af7718bd21ef37a15950e0c4265))
+
+
+### Features
+
+* **app:** add drawer examples ([22c3862](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/22c38629b8525aaa0b45d4eb7699d6b3a078e7f2))
+* **list:** allow using mdc-list-item as an attribute ([4ed3437](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4ed343727a94ff1911470e12ac26f935ac5fe198))
+* **select:** emit change event ([09090d5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/09090d5d01702f18fb9b371676c7693c00160d3f))
+
+
+
 # [v1.0.0-alpha.8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2020-08-01)
 
 
