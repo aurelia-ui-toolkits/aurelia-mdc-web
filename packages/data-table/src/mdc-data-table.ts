@@ -52,7 +52,10 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     const rows = element.querySelectorAll<HTMLElement>('mdc-data-table-content>mdc-data-table-row') ?? [];
     for (const r of Array.from(rows)) {
       const tr = document.createElement('tr');
-      tr.classList.add('mdc-data-table__row', ...Array.from(r.classList));
+      for (let i = 0; i < r.attributes.length; ++i) {
+        tr.setAttribute(r.attributes[i].name, r.attributes[i].value);
+      }
+      tr.classList.add('mdc-data-table__row');
       if (r.hasAttribute('repeat.for')) {
         tr.setAttribute('repeat.for', r.getAttribute('repeat.for')!);
       }
