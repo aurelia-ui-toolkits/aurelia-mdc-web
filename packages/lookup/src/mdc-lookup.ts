@@ -18,9 +18,8 @@ export class MdcLookup implements EventListenerObject {
   }
 
   public anchor: { left: number; top: string | undefined; bottom: string | undefined; maxHeight: number; width: number } | null;
-  public isOpen: boolean = false;
   public isWrapperOpen: boolean = false;
-  public optionsArray: unknown[];
+  public optionsArray?: unknown[];
   public focusedOption: unknown = undefined;
   public searching: boolean = false;
   public errorMessage: string | undefined = undefined;
@@ -122,7 +121,7 @@ export class MdcLookup implements EventListenerObject {
     }
     await this.valueChanged();
     if (!this.value && this.preloadOptions) {
-      this.loadOptions().catch();
+      await this.loadOptions(false);
     }
   }
 
@@ -133,14 +132,13 @@ export class MdcLookup implements EventListenerObject {
   }
 
   open() {
-    if (this.isOpen) {
+    if (this.menu.open || this.optionsArray === undefined && !this.searching) {
       return;
     }
     this.menu.open = true;
   }
 
   close() {
-    this.isOpen = false;
     this.menu.open = false;
   }
 
@@ -168,16 +166,22 @@ export class MdcLookup implements EventListenerObject {
     }
     this.setValue(undefined);
     this.searchPromise?.discard();
-    if (!this.isOpen) {
-      this.open();
-    }
+    await this.loadOptions(true);
+  }
+
+  async loadOptions(open: boolean) {
     this.searching = true;
     this.errorMessage = undefined;
-    this.notFound = false;
-
+    if (open) {
+      this.open();
+    }
     this.optionsArray = [];
     try {
-      await this.loadOptions();
+      this.searchPromise = new DiscardablePromise(this.getOptions(this.input?.value, undefined));
+      this.optionsArray = await this.searchPromise;
+      if (this.optionsArray === undefined) {
+        this.close();
+      }
     } catch (e) {
       if (e !== DiscardablePromise.discarded) {
         this.errorMessage = e.message;
@@ -185,12 +189,6 @@ export class MdcLookup implements EventListenerObject {
     } finally {
       this.searching = false;
     }
-  }
-
-  async loadOptions() {
-    this.searchPromise = new DiscardablePromise(this.getOptions(this.input?.value, undefined));
-    this.optionsArray = await this.searchPromise;
-    this.notFound = !this.optionsArray?.length;
   }
 
   setFilter(filter: string | undefined) {
@@ -201,10 +199,10 @@ export class MdcLookup implements EventListenerObject {
   }
 
   async updateFilterBasedOnValue() {
-    if (this.value) {
+    if (this.value !== undefined) {
       this.optionsArray = await this.getOptions(undefined, this.value);
     } else {
-      this.optionsArray = [];
+      this.optionsArray = undefined;
     }
     if (this.optionsArray?.length) {
       this.setFilter(this.getDisplay(this.optionsArray[0]));
@@ -240,14 +238,6 @@ export class MdcLookup implements EventListenerObject {
         }
         this.menu.list_?.foundation?.focusLastElement();
         break;
-    }
-  }
-
-  onWindowWheel(evt: Event) {
-    if (this.isOpen) {
-      if (evt.target === PLATFORM.global || !this.root.contains(evt.target as HTMLElement)) {
-        this.close();
-      }
     }
   }
 

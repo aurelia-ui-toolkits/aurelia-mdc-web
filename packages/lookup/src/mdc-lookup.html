@@ -15,7 +15,7 @@
         </template>
       </mdc-list-item>
 
-      <mdc-list-item if.bind="notFound">
+      <mdc-list-item if.bind="optionsArray && !optionsArray.length">
         <template replaceable part="not-found">
           ${defaultConfiguration.notFoundMessage}
         </template>
