@@ -4,10 +4,12 @@ import { MdcDefaultLookupConfiguration } from './mdc-lookup-configuration';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
 import { IValidatedElement } from '@aurelia-mdc-web/base';
+import { closest } from '@material/dom/ponyfill';
 
 const UP = 38;
 const DOWN = 40;
 const inputEvents = ['click', 'input', 'keydown', 'blur'];
+const bodyEvents = ['touchstart', 'mousedown'];
 
 @inject(Element, MdcDefaultLookupConfiguration)
 @customElement('mdc-lookup')
@@ -123,12 +125,14 @@ export class MdcLookup implements EventListenerObject {
     if (!this.value && this.preloadOptions) {
       await this.loadOptions(false);
     }
+    bodyEvents.forEach(x => document.body.addEventListener(x, this));
   }
 
   detached() {
     if (this.input) {
       inputEvents.forEach(x => this.input!.removeEventListener(x, this));
     }
+    bodyEvents.forEach(x => document.body.removeEventListener(x, this));
   }
 
   open() {
@@ -150,6 +154,12 @@ export class MdcLookup implements EventListenerObject {
           case 'input': this.filterChanged(); break;
           case 'keydown': this.onInputKeydown(evt as KeyboardEvent); break;
           case 'blur': this.onBlur(); break;
+        }
+        break;
+      case document.body:
+        switch (evt.type) {
+          case 'mousedown': this.onBodyMousedown(evt as MouseEvent); break;
+          case 'touchstart': this.onBodyMousedown(evt as TouchEvent); break;
         }
         break;
     }
@@ -221,7 +231,12 @@ export class MdcLookup implements EventListenerObject {
     this.close();
   }
 
+  suppressBlur: boolean;
   onBlur() {
+    if (this.suppressBlur) {
+      this.suppressBlur = false;
+      return;
+    }
     this.close();
   }
 
@@ -231,15 +246,24 @@ export class MdcLookup implements EventListenerObject {
         if (!this.menu.open) {
           this.open();
         }
+        this.suppressBlur = true;
         this.menu.list_?.foundation?.focusFirstElement();
         break;
       case UP:
         if (!this.menu.open) {
           this.open();
         }
+        this.suppressBlur = true;
         this.menu.list_?.foundation?.focusLastElement();
         break;
     }
+  }
+
+  onBodyMousedown(evt: MouseEvent | TouchEvent) {
+    if (closest(evt.target as HTMLElement, 'mdc-menu')) {
+      this.suppressBlur = true;
+    }
+    return true;
   }
 
   addError(error: unknown) {
