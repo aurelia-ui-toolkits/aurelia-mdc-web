@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/slider",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.10",
   "publishConfig": {
     "access": "public"
   },
@@ -55,7 +55,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.9",
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.10",
     "@material/slider": "^7.0.0"
   },
   "devDependencies": {
