@@ -1,6 +1,6 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
-export { MdcList, mdcListStrings } from './mdc-list';
+export { MdcList, mdcListStrings, IMdcListElement } from './mdc-list';
 export { MdcListItem, IMdcListItemElement, IMdcListActionEventDetail, IMdcListActionEvent } from './mdc-list-item/mdc-list-item';
 
 export function configure(config: FrameworkConfiguration) {

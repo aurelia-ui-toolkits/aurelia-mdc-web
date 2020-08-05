@@ -291,5 +291,13 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
       this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
     }
   }
-
 }
+
+export interface IMdcListElement extends HTMLElement {
+  au: {
+    controller: {
+      viewModel: MdcList;
+    };
+  };
+}
+
