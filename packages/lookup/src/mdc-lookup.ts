@@ -136,7 +136,7 @@ export class MdcLookup implements EventListenerObject {
   }
 
   open() {
-    if (this.menu.open || this.optionsArray === undefined && !this.searching) {
+    if (this.menu.open || this.optionsArray === undefined && !this.searching && !this.errorMessage) {
       return;
     }
     this.menu.open = true;
@@ -196,6 +196,7 @@ export class MdcLookup implements EventListenerObject {
     } catch (e) {
       if (e !== DiscardablePromise.discarded) {
         this.errorMessage = e.message;
+        this.optionsArray = undefined;
       }
     } finally {
       this.searching = false;
