@@ -58175,6 +58175,84 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/elevation/basic.html":
+/*!******************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/elevation/basic.html ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <require from=\"./basic.scss\"></require>\n  <div class=\"demo-layout__row\">\n    <figure mdc-elevation.bind=\"i\" class=\"demo-elevation__surface\" repeat.for=\"i of items\">\n      <figcaption>mdc-elevation=\"${i}\"</figcaption>\n    </figure>\n  </div>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/elevation/basic.scss":
+/*!******************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/elevation/basic.scss ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".demo-elevation__surface{\n  display: inline-flex;\n  align-items: center;\n  justify-content: space-around;\n  min-height: 100px;\n  min-width: 150px;\n}\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/expandable/accordion.html":
+/*!***********************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/expandable/accordion.html ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <mdc-expandable accordion>\n    <div slot=\"caption\">Lorem ipsum dolor...</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n  <mdc-expandable accordion>\n    <div slot=\"caption\">Lorem ipsum dolor...</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/expandable/basic.html":
+/*!*******************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/expandable/basic.html ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <mdc-expandable>\n    <div slot=\"caption\">Lorem ipsum dolor...</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/expandable/child.html":
+/*!*******************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/expandable/child.html ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <mdc-expandable>\n    <div slot=\"caption\">Lorem ipsum dolor...</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n    <mdc-expandable>\n      <div slot=\"caption\">Lorem ipsum dolor...</div>\n      Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n      voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n      an legere iriure blandit. Veri iisque accusamus an pri.\n    </mdc-expandable>\n  </mdc-expandable>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/expandable/independent-accordions.html":
+/*!************************************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/expandable/independent-accordions.html ***!
+  \************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <mdc-expandable accordion=\"acc1\">\n    <div slot=\"caption\">Accordion 1</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n  <mdc-expandable accordion=\"acc1\">\n    <div slot=\"caption\">Accordion 1</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n  <mdc-expandable accordion=\"acc2\">\n    <div slot=\"caption\">Accordion 2</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n  <mdc-expandable accordion=\"acc2\">\n    <div slot=\"caption\">Accordion 2</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n</template>\n");
+
+/***/ }),
+
 /***/ "../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -60646,7 +60724,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             const rows = (_b = element.querySelectorAll('mdc-data-table-content>mdc-data-table-row')) !== null && _b !== void 0 ? _b : [];
             for (const r of Array.from(rows)) {
                 const tr = document.createElement('tr');
-                tr.classList.add('mdc-data-table__row', ...Array.from(r.classList));
+                for (let i = 0; i < r.attributes.length; ++i) {
+                    tr.setAttribute(r.attributes[i].name, r.attributes[i].value);
+                }
+                tr.classList.add('mdc-data-table__row');
                 if (r.hasAttribute('repeat.for')) {
                     tr.setAttribute('repeat.for', r.getAttribute('repeat.for'));
                 }
@@ -63082,13 +63163,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! ./discardable-promise */ "../lookup/src/discardable-promise.ts"), __webpack_require__(/*! ./mdc-lookup-configuration */ "../lookup/src/mdc-lookup-configuration.ts"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, discardable_promise_1, mdc_lookup_configuration_1, aurelia_typed_observable_plugin_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! ./discardable-promise */ "../lookup/src/discardable-promise.ts"), __webpack_require__(/*! ./mdc-lookup-configuration */ "../lookup/src/mdc-lookup-configuration.ts"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1, discardable_promise_1, mdc_lookup_configuration_1, aurelia_typed_observable_plugin_1, ponyfill_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcLookup = void 0;
     const UP = 38;
     const DOWN = 40;
-    const inputEvents = ['click', 'input', 'keydown'];
+    const inputEvents = ['click', 'input', 'keydown', 'blur'];
+    const bodyEvents = ['touchstart', 'mousedown'];
     let MdcLookup = class MdcLookup {
         constructor(root, defaultConfiguration) {
             this.root = root;
@@ -63175,15 +63257,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 if (!this.value && this.preloadOptions) {
                     yield this.loadOptions(false);
                 }
+                bodyEvents.forEach(x => document.body.addEventListener(x, this));
             });
         }
         detached() {
             if (this.input) {
                 inputEvents.forEach(x => this.input.removeEventListener(x, this));
             }
+            bodyEvents.forEach(x => document.body.removeEventListener(x, this));
         }
         open() {
-            if (this.menu.open || this.optionsArray === undefined && !this.searching) {
+            if (this.menu.open || this.optionsArray === undefined && !this.searching && !this.errorMessage) {
                 return;
             }
             this.menu.open = true;
@@ -63203,6 +63287,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             break;
                         case 'keydown':
                             this.onInputKeydown(evt);
+                            break;
+                        case 'blur':
+                            this.onBlur();
+                            break;
+                    }
+                    break;
+                case document.body:
+                    switch (evt.type) {
+                        case 'mousedown':
+                            this.onBodyMousedown(evt);
+                            break;
+                        case 'touchstart':
+                            this.onBodyMousedown(evt);
                             break;
                     }
                     break;
@@ -63243,6 +63340,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 catch (e) {
                     if (e !== discardable_promise_1.DiscardablePromise.discarded) {
                         this.errorMessage = e.message;
+                        this.optionsArray = undefined;
                     }
                 }
                 finally {
@@ -63281,6 +63379,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this.close();
         }
         onBlur() {
+            if (this.suppressBlur) {
+                this.suppressBlur = false;
+                return;
+            }
             this.close();
         }
         onInputKeydown(evt) {
@@ -63290,15 +63392,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     if (!this.menu.open) {
                         this.open();
                     }
+                    this.suppressBlur = true;
                     (_b = (_a = this.menu.list_) === null || _a === void 0 ? void 0 : _a.foundation) === null || _b === void 0 ? void 0 : _b.focusFirstElement();
                     break;
                 case UP:
                     if (!this.menu.open) {
                         this.open();
                     }
+                    this.suppressBlur = true;
                     (_d = (_c = this.menu.list_) === null || _c === void 0 ? void 0 : _c.foundation) === null || _d === void 0 ? void 0 : _d.focusLastElement();
                     break;
             }
+        }
+        onBodyMousedown(evt) {
+            if (ponyfill_1.closest(evt.target, 'mdc-menu')) {
+                this.suppressBlur = true;
+            }
+            return true;
         }
         addError(error) {
             if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
@@ -63727,7 +63837,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "@aurelia-mdc-web/base"), __webpack_require__(/*! @material/menu */ "../../node_modules/@material/menu/index.js"), __webpack_require__(/*! @aurelia-mdc-web/list */ "@aurelia-mdc-web/list"), __webpack_require__(/*! @material/list/constants */ "../../node_modules/@material/list/constants.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, menu_1, list_1, constants_1, ponyfill_1, aurelia_framework_1, aurelia_typed_observable_plugin_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @aurelia-mdc-web/base */ "@aurelia-mdc-web/base"), __webpack_require__(/*! @material/menu */ "../../node_modules/@material/menu/index.js"), __webpack_require__(/*! @material/list/constants */ "../../node_modules/@material/list/constants.js"), __webpack_require__(/*! @material/dom/ponyfill */ "../../node_modules/@material/dom/ponyfill.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework"), __webpack_require__(/*! aurelia-typed-observable-plugin */ "../../node_modules/aurelia-typed-observable-plugin/dist/es2015/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, base_1, menu_1, constants_1, ponyfill_1, aurelia_framework_1, aurelia_typed_observable_plugin_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcMenu = void 0;
@@ -63736,6 +63846,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         constructor() {
             super(...arguments);
             this.defaultFocusState = 'LIST_ROOT';
+        }
+        // @child('mdc-list')
+        get list_() {
+            var _a;
+            const el = this.root.querySelector('mdc-list');
+            return (_a = el) === null || _a === void 0 ? void 0 : _a.au.controller.viewModel;
         }
         typeaheadChanged() {
             return tslib_1.__awaiter(this, void 0, void 0, function* () {
@@ -63964,10 +64080,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return new menu_1.MDCMenuFoundation(adapter);
         }
     };
-    tslib_1.__decorate([
-        aurelia_framework_1.child('mdc-list'),
-        tslib_1.__metadata("design:type", list_1.MdcList)
-    ], MdcMenu.prototype, "list_", void 0);
     tslib_1.__decorate([
         aurelia_typed_observable_plugin_1.bindable.booleanAttr,
         tslib_1.__metadata("design:type", Boolean)
@@ -75469,7 +75581,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ComponentViewer = void 0;
     class ComponentViewer {
-        constructor() { }
         configureRouter(config, router) {
             this.router = router;
             config.map([
@@ -75501,7 +75612,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template>\n  <require from=\"./component-viewer.scss\"></require>\n  <div class=\"demo-panel-content\">\n    <div class=\"demo-panel-transition\">\n      <h1 class=\"demo-panel-title\">${template.title}</h1>\n      ${template.description}\n\n      <div if.bind=\"template.references\">\n        <h2 class=\"demo-panel-heading\">References</h2>\n        <div repeat.for=\"ref of template.references\">\n          <a mdc-button href.bind=\"ref.url\" target=\"_blank\" rel=\"noopener\">\n            <i class=\"material-icons mdc-button__icon\">link</i> ${ref.name}\n          </a>\n        </div>\n      </div>\n\n      <div if.bind=\"template.code\">\n        <h2 class=\"demo-panel-heading\">Configuration</h2>\n        <pre if.bind=\"template.code\"><code class=\"typescript\" highlight.bind=\"{code: template.code, language: 'typescript'}\"></code>\n        </pre>\n      </div>\n\n      <div if.bind=\"template.sass\">\n        <h2 class=\"demo-panel-heading\">Styles</h2>\n        <pre if.bind=\"template.sass\"><code class=\"sass\" highlight.bind=\"{code: template.sass, language: 'scss'}\"></code>\n        </pre>\n      </div>\n\n      <div repeat.for=\"mdcUrl of template.mdcUrls\" class=\"viewer-mdc-urls\">\n        <a mdc-button href.bind=\"mdcUrl.url\" target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons mdc-button__icon\">link</i> ${mdcUrl.name}\n        </a>\n      </div>\n      <mdc-tab-bar if.bind=\"tabs.length\">\n        <mdc-tab repeat.for=\"tab of tabs\" label.bind=\"tab.title\" click.trigger=\"navigateTo(tab)\" class=\"viewer-tab\"\n          active.bind=\"tab.navModel.isActive\">\n        </mdc-tab>\n      </mdc-tab-bar>\n      <router-view></router-view>\n    </div>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./component-viewer.scss\"></require>\n  <div class=\"demo-panel-content\">\n    <div class=\"demo-panel-transition\">\n      <h1 class=\"demo-panel-title\">${template.title}</h1>\n      ${template.description}\n\n      <div if.bind=\"template.references.length\">\n        <h2 class=\"demo-panel-heading\">References</h2>\n        <div repeat.for=\"ref of template.references\">\n          <a mdc-button href.bind=\"ref.url\" target=\"_blank\" rel=\"noopener\">\n            <i class=\"material-icons mdc-button__icon\">link</i> ${ref.name}\n          </a>\n        </div>\n      </div>\n\n      <div if.bind=\"template.code\">\n        <h2 class=\"demo-panel-heading\">Configuration</h2>\n        <pre if.bind=\"template.code\"><code class=\"typescript\" highlight.bind=\"{code: template.code, language: 'typescript'}\"></code>\n        </pre>\n      </div>\n\n      <div if.bind=\"template.sass\">\n        <h2 class=\"demo-panel-heading\">Styles</h2>\n        <pre if.bind=\"template.sass\"><code class=\"sass\" highlight.bind=\"{code: template.sass, language: 'scss'}\"></code>\n        </pre>\n      </div>\n\n      <div repeat.for=\"mdcUrl of template.mdcUrls\" class=\"viewer-mdc-urls\">\n        <a mdc-button href.bind=\"mdcUrl.url\" target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons mdc-button__icon\">link</i> ${mdcUrl.name}\n        </a>\n      </div>\n      <mdc-tab-bar if.bind=\"tabs.length\">\n        <mdc-tab repeat.for=\"tab of tabs\" label.bind=\"tab.title\" click.trigger=\"navigateTo(tab)\" class=\"viewer-tab\"\n          active.bind=\"tab.navModel.isActive\">\n        </mdc-tab>\n      </mdc-tab-bar>\n      <router-view></router-view>\n    </div>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -75658,17 +75769,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         },
         'expandable': {
             title: 'Expandable',
-            description: '???',
-            references: [{
-                    name: 'Material Design guidelines: Floating Action Button',
-                    url: 'https://material.io/design/components/buttons-floating-action-button.html'
-                }, {
-                    name: 'Material Components Web',
-                    url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md'
-                }],
-            mdcUrls: [
-                { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md#sass-mixins' },
-            ],
+            description: 'Expandable provides an expandable details-summary view.',
+            references: [],
+            mdcUrls: [],
             code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/expandable\'));',
             sass: '@use "@aurelia-mdc-web/expandable";'
         },
@@ -76473,6 +76576,74 @@ module.exports = code;
 
 /***/ }),
 
+/***/ "views/elevation/basic.html":
+/*!****************************************!*\
+  !*** ./src/views/elevation/basic.html ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template>\n  <require from=\"./basic.scss\"></require>\n  <div class=\"demo-layout__row\">\n    <figure mdc-elevation.bind=\"i\" class=\"demo-elevation__surface\" repeat.for=\"i of items\">\n      <figcaption>mdc-elevation=\"${i}\"</figcaption>\n    </figure>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/elevation/basic.scss":
+/*!****************************************!*\
+  !*** ./src/views/elevation/basic.scss ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".demo-elevation__surface{display:inline-flex;align-items:center;justify-content:space-around;min-height:100px;min-width:150px}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "views/elevation/basic?0e75":
+/*!**************************************!*\
+  !*** ./src/views/elevation/basic.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Basic = void 0;
+    class Basic {
+        constructor() {
+            this.items = Array.from(Array(25), (x, i) => i);
+        }
+    }
+    exports.Basic = Basic;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "views/elevation/basic?f809":
+/*!****************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/elevation/basic.ts ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("export class Basic {\n  items = Array.from(Array(25), (x, i) => i);\n}\n");
+
+/***/ }),
+
 /***/ "views/elevation/elevation":
 /*!******************************************!*\
   !*** ./src/views/elevation/elevation.ts ***!
@@ -76504,12 +76675,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! !raw-loader!./basic.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/elevation/basic.html"), __webpack_require__(/*! !raw-loader!./basic */ "views/elevation/basic?f809"), __webpack_require__(/*! !raw-loader!./basic.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/elevation/basic.scss")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, basic_html_1, basic_1, basic_scss_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
+    basic_html_1 = tslib_1.__importDefault(basic_html_1);
+    basic_1 = tslib_1.__importDefault(basic_1);
+    basic_scss_1 = tslib_1.__importDefault(basic_scss_1);
     class Examples {
         constructor() {
+            this.basicHtml = basic_html_1.default;
+            this.basicCode = basic_1.default;
+            this.basicSass = basic_scss_1.default;
             this.items = Array.from(Array(25), (x, i) => i);
         }
     }
@@ -76525,10 +76702,52 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
   !*** ./src/views/elevation/examples.html ***!
   \*******************************************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template>\n  <compose view=\"./basic.html\"></compose>\n  <example-viewer html.bind=\"basicHtml\" code.bind=\"basicCode\" sass.bind=\"basicSass\"></example-viewer>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/expandable/accordion.html":
+/*!*********************************************!*\
+  !*** ./src/views/expandable/accordion.html ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-layout__row\">\n    <figure mdc-elevation.bind=\"i\" class=\"demo-elevation__surface\" repeat.for=\"i of items\">\n      <figcaption>mdc-elevation=\"${i}\"</figcaption>\n    </figure>\n  </div>\n  </template>\n";
+var code = "<template>\n  <mdc-expandable accordion>\n    <div slot=\"caption\">Lorem ipsum dolor...</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n  <mdc-expandable accordion>\n    <div slot=\"caption\">Lorem ipsum dolor...</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/expandable/basic.html":
+/*!*****************************************!*\
+  !*** ./src/views/expandable/basic.html ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <mdc-expandable>\n    <div slot=\"caption\">Lorem ipsum dolor...</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/expandable/child.html":
+/*!*****************************************!*\
+  !*** ./src/views/expandable/child.html ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <mdc-expandable>\n    <div slot=\"caption\">Lorem ipsum dolor...</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n    <mdc-expandable>\n      <div slot=\"caption\">Lorem ipsum dolor...</div>\n      Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n      voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n      an legere iriure blandit. Veri iisque accusamus an pri.\n    </mdc-expandable>\n  </mdc-expandable>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -76541,11 +76760,21 @@ module.exports = code;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! !raw-loader!./basic.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/expandable/basic.html"), __webpack_require__(/*! !raw-loader!./child.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/expandable/child.html"), __webpack_require__(/*! !raw-loader!./accordion.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/expandable/accordion.html"), __webpack_require__(/*! !raw-loader!./independent-accordions.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/expandable/independent-accordions.html")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, basic_html_1, child_html_1, accordion_html_1, independent_accordions_html_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
+    basic_html_1 = tslib_1.__importDefault(basic_html_1);
+    child_html_1 = tslib_1.__importDefault(child_html_1);
+    accordion_html_1 = tslib_1.__importDefault(accordion_html_1);
+    independent_accordions_html_1 = tslib_1.__importDefault(independent_accordions_html_1);
     class Examples {
+        constructor() {
+            this.basicHtml = basic_html_1.default;
+            this.childHtml = child_html_1.default;
+            this.accordionHtml = accordion_html_1.default;
+            this.independentAccordionsHtml = independent_accordions_html_1.default;
+        }
     }
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -76559,10 +76788,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
   !*** ./src/views/expandable/examples.html ***!
   \********************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <mdc-expandable accordion=\"acc\">\n      <div slot=\"caption\">I'm an accordion 1</div>\n      There can be only one open accordion in a container\n      <mdc-expandable>\n        <div slot=\"caption\">I'm a child expandable</div>\n        Child expandable content\n      </mdc-expandable>\n    </mdc-expandable>\n    <mdc-expandable accordion=\"acc\">\n      <div slot=\"caption\">I'm an accordion 2</div>\n      There can be only one open accordion in a container\n    </mdc-expandable>\n    <mdc-expandable>\n      <div slot=\"caption\">I'm not an accordion</div>\n      Content\n    </mdc-expandable>\n  </div>\n</template>\n";
+var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Basic</h3>\n    <compose view=\"./basic.html\"></compose>\n    <example-viewer html.bind=\"basicHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Child</h3>\n    <compose view=\"./child.html\"></compose>\n    <example-viewer html.bind=\"childHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Accordion</h3>\n    <compose view=\"./accordion.html\"></compose>\n    <example-viewer html.bind=\"accordionHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Independent accordions</h3>\n    <compose view=\"./independent-accordions.html\"></compose>\n    <example-viewer html.bind=\"independentAccordionsHtml\"></example-viewer>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -76589,6 +76818,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
+
+/***/ }),
+
+/***/ "views/expandable/independent-accordions.html":
+/*!**********************************************************!*\
+  !*** ./src/views/expandable/independent-accordions.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <mdc-expandable accordion=\"acc1\">\n    <div slot=\"caption\">Accordion 1</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n  <mdc-expandable accordion=\"acc1\">\n    <div slot=\"caption\">Accordion 1</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n  <mdc-expandable accordion=\"acc2\">\n    <div slot=\"caption\">Accordion 2</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n  <mdc-expandable accordion=\"acc2\">\n    <div slot=\"caption\">Accordion 2</div>\n    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque\n    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per\n    an legere iriure blandit. Veri iisque accusamus an pri.\n  </mdc-expandable>\n</template>\n";
+// Exports
+module.exports = code;
 
 /***/ }),
 
@@ -77196,8 +77439,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             });
         }
         configureRouter(config) {
-            const exampleRoutes = ['button', 'card', 'checkbox', 'circular-progress', 'data-table', 'dialog', 'drawer', 'expandable',
-                'elevation', 'fab', 'form-field', 'icon-button', 'list', 'lookup', 'menu', 'radio', 'ripple', 'select', 'slider', 'switch', 'tabs',
+            const exampleRoutes = ['button', 'card', 'checkbox', 'circular-progress', 'data-table', 'dialog', 'drawer', 'elevation',
+                'expandable', 'fab', 'form-field', 'icon-button', 'list', 'lookup', 'menu', 'radio', 'ripple', 'select', 'slider', 'switch', 'tabs',
                 'text-field', 'top-app-bar', 'tree-view', 'typography']
                 .map(x => ({ route: x }));
             const menuRoutes = [
@@ -77257,7 +77500,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = __webpack_require__(/*! ../../../
 var ___HTML_LOADER_IMPORT_0___ = __webpack_require__(/*! ../../assets/github-circle-white-transparent.svg */ "./src/assets/github-circle-white-transparent.svg");
 // Module
 var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.9</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\" tabindex=\"0\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.10</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\" tabindex=\"0\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -77828,4 +78071,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.023b083c8525ec3bbd2c.bundle.map
+//# sourceMappingURL=app.3e43425bdd1b61866977.bundle.map
