@@ -16,8 +16,6 @@ export interface IComponentTemplate {
 }
 
 export class ComponentViewer {
-  constructor() { }
-
   template: IComponentTemplate;
 
   router: Router;

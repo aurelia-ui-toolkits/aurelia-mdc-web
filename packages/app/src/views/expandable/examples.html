@@ -1,20 +1,25 @@
 <template>
   <div class="demo-content">
-    <mdc-expandable accordion="acc">
-      <div slot="caption">I'm an accordion 1</div>
-      There can be only one open accordion in a container
-      <mdc-expandable>
-        <div slot="caption">I'm a child expandable</div>
-        Child expandable content
-      </mdc-expandable>
-    </mdc-expandable>
-    <mdc-expandable accordion="acc">
-      <div slot="caption">I'm an accordion 2</div>
-      There can be only one open accordion in a container
-    </mdc-expandable>
-    <mdc-expandable>
-      <div slot="caption">I'm not an accordion</div>
-      Content
-    </mdc-expandable>
+    <h3 class="demo-content__headline">Basic</h3>
+    <compose view="./basic.html"></compose>
+    <example-viewer html.bind="basicHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Child</h3>
+    <compose view="./child.html"></compose>
+    <example-viewer html.bind="childHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Accordion</h3>
+    <compose view="./accordion.html"></compose>
+    <example-viewer html.bind="accordionHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Independent accordions</h3>
+    <compose view="./independent-accordions.html"></compose>
+    <example-viewer html.bind="independentAccordionsHtml"></example-viewer>
   </div>
 </template>

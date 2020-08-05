@@ -1,7 +1,4 @@
 <template>
-  <div class="demo-layout__row">
-    <figure mdc-elevation.bind="i" class="demo-elevation__surface" repeat.for="i of items">
-      <figcaption>mdc-elevation="${i}"</figcaption>
-    </figure>
-  </div>
-  </template>
+  <compose view="./basic.html"></compose>
+  <example-viewer html.bind="basicHtml" code.bind="basicCode" sass.bind="basicSass"></example-viewer>
+</template>

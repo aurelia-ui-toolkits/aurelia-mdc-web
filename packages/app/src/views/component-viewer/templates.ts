@@ -134,17 +134,9 @@ export const templates: { [x: string]: IComponentTemplate } = {
   },
   'expandable': {
     title: 'Expandable',
-    description: '???',
-    references: [{
-      name: 'Material Design guidelines: Floating Action Button',
-      url: 'https://material.io/design/components/buttons-floating-action-button.html'
-    }, {
-      name: 'Material Components Web',
-      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md'
-    }],
-    mdcUrls: [
-      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md#sass-mixins' },
-    ],
+    description: 'Expandable provides an expandable details-summary view.',
+    references: [],
+    mdcUrls: [],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/expandable\'));',
     sass: '@use "@aurelia-mdc-web/expandable";'
   },
@@ -437,7 +429,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
     title: 'Tree View',
     description: '???',
     references: [],
-    mdcUrls: [ ],
+    mdcUrls: [],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/tree-view\'));',
     sass: '@use "@aurelia-mdc-web/tree-view";'
   },

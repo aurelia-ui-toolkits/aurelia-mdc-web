@@ -5,7 +5,7 @@
       <h1 class="demo-panel-title">${template.title}</h1>
       ${template.description}
 
-      <div if.bind="template.references">
+      <div if.bind="template.references.length">
         <h2 class="demo-panel-heading">References</h2>
         <div repeat.for="ref of template.references">
           <a mdc-button href.bind="ref.url" target="_blank" rel="noopener">
