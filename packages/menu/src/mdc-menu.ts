@@ -1,12 +1,12 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuItemComponentEventDetail, strings, cssClasses } from '@material/menu';
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
-import { MdcList, IMdcListActionEvent, IMdcListItemElement } from '@aurelia-mdc-web/list';
+import { MdcList, IMdcListActionEvent, IMdcListItemElement, IMdcListElement } from '@aurelia-mdc-web/list';
 import { MDCListIndex } from '@material/list';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
-import { child, inject, customElement, bindingMode, useView, PLATFORM } from 'aurelia-framework';
+import { inject, customElement, bindingMode, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
@@ -17,8 +17,11 @@ strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
 export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   private menuSurface_: MdcMenuSurface; // assigned in html
 
-  @child('mdc-list')
-  list_?: MdcList;
+  // @child('mdc-list')
+  get list_(): MdcList | undefined {
+    const el = this.root.querySelector('mdc-list');
+    return (el as IMdcListElement)?.au.controller.viewModel;
+  }
 
   @bindable.booleanAttr
   fixed: boolean;
