@@ -7,7 +7,7 @@ import { IValidatedElement } from '@aurelia-mdc-web/base';
 
 const UP = 38;
 const DOWN = 40;
-const inputEvents = ['click', 'input', 'keydown'];
+const inputEvents = ['click', 'input', 'keydown', 'blur'];
 
 @inject(Element, MdcDefaultLookupConfiguration)
 @customElement('mdc-lookup')
@@ -149,6 +149,7 @@ export class MdcLookup implements EventListenerObject {
           case 'click': this.open(); break;
           case 'input': this.filterChanged(); break;
           case 'keydown': this.onInputKeydown(evt as KeyboardEvent); break;
+          case 'blur': this.onBlur(); break;
         }
         break;
     }
