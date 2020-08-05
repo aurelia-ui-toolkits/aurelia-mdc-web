@@ -1,3 +1,22 @@
+# [v1.0.0-alpha.10](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2020-08-05)
+
+
+### Bug Fixes
+
+* **lookup:** close on blur ([f9dd090](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f9dd0905a6b2823e975070ab6734f45959af96b3))
+* **lookup:** open when error ([d71f052](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d71f052d2584f151916206fed91528eae3a68455))
+* **lookup:** suppress menu close when focus moves to it ([83d6ba9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/83d6ba92e62062139cc81591fe0db772204eefec))
+* **menu:** dynamically get the child list element ([218384a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/218384a0567633c3790501e9e0b50a090586a51b))
+
+
+### Features
+
+* **app:** add elevation and expandable snippets ([3d6d7fa](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3d6d7fa09e916bcaa7d4e5b4a20476a63903e0d8))
+* **data-table:** keep row attributes and classes ([cbdcfad](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/cbdcfad2de26413207919dcd8ba3be25aae86578))
+* **list:** export list element interface ([b751b46](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b751b46b12f92567248563a9a22e7847535b776f))
+
+
+
 # [v1.0.0-alpha.9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2020-08-04)
 
 
