@@ -30,6 +30,7 @@
     "@aurelia-mdc-web/icon": "^1.0.0-alpha.10",
     "@aurelia-mdc-web/icon-button": "^1.0.0-alpha.10",
     "@aurelia-mdc-web/line-ripple": "^1.0.0-alpha.10",
+    "@aurelia-mdc-web/linear-progress": "^1.0.0-alpha.10",
     "@aurelia-mdc-web/list": "^1.0.0-alpha.10",
     "@aurelia-mdc-web/lookup": "^1.0.0-alpha.10",
     "@aurelia-mdc-web/menu": "^1.0.0-alpha.10",

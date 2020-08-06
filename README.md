@@ -34,7 +34,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | icon | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/icon) |
 | icon-button | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/icon-button) |
 | image-list | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/image-list) |
-| linear-progress | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/linear-progress) |
+| linear-progress | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/linear-progress) |
 | list | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/list) |
 | lookup | Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/lookup) |
 | menu-surface | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/menu-surface) |

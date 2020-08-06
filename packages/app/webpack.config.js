@@ -48,6 +48,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'icon',
           'icon-button',
           'line-ripple',
+          'linear-progress',
           'list',
           'lookup',
           'menu',

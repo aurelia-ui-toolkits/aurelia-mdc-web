@@ -1,0 +1,7 @@
+@use '@material/linear-progress/_index' as linear-progress;
+@use '@material/theme/color-palette' as material-color;
+
+.demo-linear-progress--custom {
+  @include linear-progress.bar-color(material-color.$red-500);
+  @include linear-progress.buffer-color(material-color.$red-100);
+}
