@@ -57,6 +57,9 @@
   "dependencies": {
     "@aurelia-mdc-web/base": "^1.0.0-alpha.10",
     "@aurelia-mdc-web/checkbox": "^1.0.0-alpha.10",
+    "@aurelia-mdc-web/icon": "^1.0.0-alpha.10",
+    "@aurelia-mdc-web/linear-progress": "^1.0.0-alpha.10",
+    "@aurelia-mdc-web/select": "^1.0.0-alpha.10",
     "@material/data-table": "^7.0.0"
   },
   "devDependencies": {
