@@ -1,3 +1,20 @@
+# [v1.0.0-alpha.11](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2020-08-06)
+
+
+### Bug Fixes
+
+* **dialog:** await till composition finishes ([4c68a81](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4c68a81b81cd53b3dc9897da71a676f5b671471b))
+* **select:** do strict comparison ([fecaeb6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fecaeb60f690a58ffa3955d36bc57229563fbec2))
+
+
+### Features
+
+* **data-table:** add pagination and linear progress ([60dd548](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/60dd54862a502fcafd392830a364586f92caa139))
+* **data-table:** emit on navigation clicks ([a53ddd2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a53ddd283e34ed12dd1d4b603d8e3f06c97981ff))
+* **linear-progress:** add ([8a59e4c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8a59e4c67ed3b47791bd4261b2c90a30d213953c))
+
+
+
 # [v1.0.0-alpha.10](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2020-08-05)
 
 
