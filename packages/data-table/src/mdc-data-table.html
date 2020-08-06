@@ -15,19 +15,23 @@
       <div class="mdc-data-table__pagination-navigation">
         <div class="mdc-data-table__pagination-total">${paginationTotal}</div>
         <button mdc-icon-button class="mdc-data-table__pagination-button" data-first-page="true"
-          disabled.bind="paginationPosition === 'first'">
+          disabled.bind="!paginationPosition || paginationPosition === 'first'"
+          click.trigger="handleNavigationClick('first')">
           <mdc-icon>first_page</mdc-icon>
         </button>
         <button mdc-icon-button class="mdc-data-table__pagination-button" data-prev-page="true"
-          disabled.bind="paginationPosition === 'first'">
+          disabled.bind="!paginationPosition || paginationPosition === 'first'"
+          click.trigger="handleNavigationClick('prev')">
           <mdc-icon>chevron_left</mdc-icon>
         </button>
-        <button mdc-icon-button class="mdc-data-table__pagination-button" data-prev-page="true"
-          disabled.bind="paginationPosition === 'last'">
+        <button mdc-icon-button class="mdc-data-table__pagination-button" data-next-page="true"
+          disabled.bind="!paginationPosition || paginationPosition === 'last'"
+          click.trigger="handleNavigationClick('next')">
           <mdc-icon>chevron_right</mdc-icon>
         </button>
-        <button mdc-icon-button class="mdc-data-table__pagination-button" data-prev-page="true"
-          disabled.bind="paginationPosition === 'last'">
+        <button mdc-icon-button class="mdc-data-table__pagination-button" data-last-page="true"
+          disabled.bind="!paginationPosition || paginationPosition === 'last'"
+          click.trigger="handleNavigationClick('last')">
           <mdc-icon>last_page</mdc-icon>
         </button>
       </div>

@@ -18,6 +18,7 @@ declare module '@material/data-table' {
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();
 events.SELECTED_ALL = events.SELECTED_ALL.toLowerCase();
 events.UNSELECTED_ALL = events.UNSELECTED_ALL.toLowerCase();
+const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-data-table.html'))
@@ -99,7 +100,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   paginationTotal: string;
 
   @bindable
-  paginationPosition?: 'first' | 'last' = 'first';
+  paginationPosition?: 'first' | 'between' | 'last' = 'first';
 
   @bindable.booleanAttr
   busy: boolean;
@@ -131,6 +132,10 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
 
   headerRowClickListener(event: Event) {
     this.handleHeaderRowClick(event);
+  }
+
+  handleNavigationClick(type: 'first' | 'prev' | 'next' | 'last') {
+    this.emit(NAVIGATION_EVENT, { type }, true);
   }
 
   /**
