@@ -60,9 +60,8 @@ export class MdcDialogService {
     if (!canActivate) {
       throw new Error('modal cannot be opened');
     }
-    this.compositionEngine.compose(compositionContext).then((controller) => {
-      bindingContext.currentViewModel = (controller as Controller).viewModel;
-    });
+    const controller = await this.compositionEngine.compose(compositionContext);
+    bindingContext.currentViewModel = (controller as Controller).viewModel;
 
     await dialog.au.controller.viewModel.initialised;
     dialog.au.controller.viewModel.open();
