@@ -98,8 +98,12 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       }
     }
     this.foundation?.setFixedPosition(this.fixed);
-    this.foundation?.setAnchorCorner(Corner[this.anchorCorner]);
-    this.foundation?.setAnchorMargin(this.anchorMargin);
+    if (this.anchorCorner) {
+      this.foundation?.setAnchorCorner(Corner[this.anchorCorner]);
+    }
+    if (this.anchorMargin) {
+      this.foundation?.setAnchorMargin(this.anchorMargin);
+    }
     this.listen('keydown', this);
   }
 
