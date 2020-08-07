@@ -16,14 +16,12 @@
 
       <div if.bind="template.code">
         <h2 class="demo-panel-heading">Configuration</h2>
-        <pre if.bind="template.code"><code class="typescript" highlight.bind="{code: template.code, language: 'typescript'}"></code>
-        </pre>
+        <hljs language="typescript">${template.code}</hljs>
       </div>
 
       <div if.bind="template.sass">
         <h2 class="demo-panel-heading">Styles</h2>
-        <pre if.bind="template.sass"><code class="sass" highlight.bind="{code: template.sass, language: 'scss'}"></code>
-        </pre>
+        <hljs language="scss">${template.sass}</hljs>
       </div>
 
       <div repeat.for="mdcUrl of template.mdcUrls" class="viewer-mdc-urls">

@@ -8,21 +8,21 @@
       <h2 class="demo-panel-heading">Install Aurelia MDC</h2>
       Install each package you wish to use, e.g.
       <h4 mdc-subtitle2>npm</h4>
-      <pre><code highlight class="shell">${npmCmd}</code></pre>
+      <hljs language="shell">${npmCmd}</hljs>
 
       <h4 mdc-subtitle2>yarn</h4>
-      <pre><code highlight class="shell">${yarnCmd}</code></pre>
+      <hljs language="shell">${yarnCmd}</hljs>
 
       <h2 class="demo-panel-heading">Roboto font</h2>
       To get started, first include the Roboto font with the 300, 400 and 500 weights. You can host it yourself or
       include it from <a href="https://fonts.google.com/" target="_blank" rel="noopener">Google Fonts:</a>
 
-      <pre><code highlight>${robotoLink}</code></pre>
+      <hljs language="html">${robotoLink}</hljs>
 
       <h2 class="demo-panel-heading">Material Icons</h2>
       If you want to use Material Design Icons, load the icon font in your <code mdc-subtitle2>index.html</code>:
 
-      <pre><code highlight>${materialIconsLink}</code></pre>
+      <hljs language="html">${materialIconsLink}</hljs>
 
       For more information on using Material Icons, check out the
       <a href="https://material.io/tools/icons/?style=baseline" target="_blank" rel="noopener">Material Icons Guide.</a>
@@ -30,23 +30,28 @@
       <h2 class="demo-panel-heading">Sample index.html</h2>
       Here's an example <code mdc-subtitle2>index.html</code> demonstrating Roboto Font applied to the body element with
       <code mdc-subtitle2>mdc-typography</code>.
-      <pre><code highlight>${indexHtml}</code></pre>
+      <hljs language="html">${indexHtml}</hljs>
 
       <h2 class="demo-panel-heading">MDC Sass modules</h2>
+      <h1>This is super important! Please don't skip!</h1>
       In your <code mdc-subtitle2>webpack.config.js</code>, make sure <code mdc-subtitle2>node_modules/</code> is listed
-      as a
-      Sass include path. This is needed for the Sass compiler to be able to find the MDC Web Sass files.
-      <pre><code highlight>
+      as a Sass include path. This is needed for the Sass compiler to be able to find the MDC Web Sass files.
+
+      Explicitly setting sass implementation is also a good idea because <code mdc-subtitle2>sass-loader</code> picks
+      <code mdc-subtitle2>node-sass</code> if there is one. Even if it is installed globally! This is bound to fail as
+      <code mdc-subtitle2>node-sass</code> does not support new <code mdc-subtitle2>@use</code> syntax.
+      <hljs language="json">
 ...
 loader: 'sass-loader', options: {
+  implementation: require('sass'),
   sassOptions: {
     includePaths: [path.resolve('./node_modules')]
   }
 }
 ...
-      </code></pre>
+      </hljs>
 
-      <pre><code highlight>
+      <hljs language="scss">
 // styles.scss
 
 @use './styles/body';
@@ -65,18 +70,18 @@ loader: 'sass-loader', options: {
 
 // Angular MDC
 @use '@angular-mdc/theme/material';
-      </code></pre>
+      </hljs>
 
-      <pre><code highlight>
+      <hljs language="scss">
 // styles/_body.scss
 
 // Override user agent body margin for mdc-top-app-bar
 body {
   margin: 0;
 }
-      </code></pre>
+      </hljs>
 
-      <pre><code highlight>
+      <hljs language="scss">
 // styles/_button.scss
 
 @use '@material/button/mdc-button';
@@ -90,22 +95,22 @@ body {
 .button-secondary {
   @include button.filled-accessible(theme.$secondary);
 }
-      </code></pre>
+      </hljs>
 
       <h2 class="demo-panel-heading">Configure Aurelia MDC plugins</h2>
       Configure each plugin you want to use.
-      <pre><code highlight class="typescript">
+      <hljs language="typescript">
 // main.ts
 
 aurelia
   .use
   .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))
   .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));
-      </code></pre>
+      </hljs>
 
       <h2 class="demo-panel-heading">Start designing</h2>
       Open app.html and add the following markup:
-      <pre><code highlight class="html">${design}</code></pre>
+      <hljs language="html">${design}</hljs>
     </div>
   </div>
 </template>

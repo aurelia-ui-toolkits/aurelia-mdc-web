@@ -33,5 +33,15 @@
       "name": "one-time",
       "documentation": "flows data one direction: from the view-model to the view, once"
     }
-  ]
+  ],
+  "beautify.config": {
+    "html": {
+      "content_unformatted": [
+        "pre",
+        "textarea",
+        "hljs"
+      ]
+    }
+  },
+  "html.format.unformatted": "pre,textarea,hljs"
 }

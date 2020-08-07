@@ -8,8 +8,11 @@ const outDir = path.resolve(__dirname, 'dist');
 module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
   const cssLoaders = ['css-loader', 'postcss-loader'];
   const scssLoaders = [...cssLoaders, {
+    // this is super important as only 'sass' package supports new '@use' syntax
     loader: 'sass-loader', options: {
+      implementation: require('sass'),
       sassOptions: {
+        // this tells sass to consider following folders when looking for modules in scoped packages
         includePaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')]
       }
     }
