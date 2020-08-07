@@ -55,9 +55,9 @@ export class ExampleViewer {
 
     try {
       const returnValue = document.execCommand('copy');
-      // if (returnValue) {
-      //   this.snackbar.open('Code copied');
-      // }
+      if (returnValue) {
+        //   this.snackbar.open('Code copied');
+      }
     } catch (err) {
       // this.snackbar.open('Unable to copy');
     } finally {
