@@ -11,6 +11,9 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.twoWay })
   on: boolean;
 
+  @bindable
+  icon: string;
+
   @children('mdc-icon-button-icon')
   icons?: MdcIconButtonIcon[];
 

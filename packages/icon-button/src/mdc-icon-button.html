@@ -1,4 +1,5 @@
 <template class="mdc-icon-button ${on ? 'mdc-icon-button--on' : ''}" mdc-ripple="unbounded.bind: true"
   click.trigger="handleClick()">
   <slot></slot>
+  <span class="material-icons" if.bind="icon">${icon}</span>
 </template>

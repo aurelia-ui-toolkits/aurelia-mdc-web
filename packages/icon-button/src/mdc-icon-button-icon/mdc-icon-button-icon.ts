@@ -6,4 +6,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 export class MdcIconButtonIcon {
   @bindable.booleanAttr
   on: boolean;
+
+  @bindable
+  icon: string;
 }
