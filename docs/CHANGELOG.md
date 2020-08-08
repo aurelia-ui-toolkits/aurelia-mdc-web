@@ -1,3 +1,22 @@
+# [v1.0.0-alpha.12](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2020-08-08)
+
+
+### Bug Fixes
+
+* **app:** code snippets highlight ([f9b3fb4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f9b3fb4b22a7ba8f692ad381842ec3b546478a4a))
+* **menu-surface:** pass binding values to foundation each time attached is called ([8709e21](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8709e213be05a0395ed8b20abe6241cb58f35c07))
+* **menu-surface:** pass binding values to foundation each time attached is called ([d7bdf3b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d7bdf3b255edd4832d8583e0b85cf4475af8b7b3))
+
+
+### Features
+
+* **app:** add fab snippets ([537c76d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/537c76d77a8150a3331fde7f901aa833d81bdf5c))
+* **app:** add form-field snippets ([eba0139](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/eba013975a65ac95384c3f34135f59f1b25c5ab7))
+* **app:** add icon-button snippets ([81deb54](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/81deb54341144d8d955e217bc18d5a7e772ecfcb))
+* **icon-button:** add icon attribute which defaults to material icons ([454e2e6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/454e2e61a3f1b1c7fea893d57f6d74d45c447d11))
+
+
+
 # [v1.0.0-alpha.11](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2020-08-06)
 
 
