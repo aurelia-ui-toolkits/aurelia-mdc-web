@@ -1,5 +1,31 @@
 <template>
   <div class="demo-content">
+    <h3 class="demo-content__headline">Custom</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="wrapFocus = !wrapFocus">
+        Wrap Focus: ${wrapFocus ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="disableRipple = !disableRipple">
+        Disable Ripple: ${disableRipple ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="dense = !dense">
+        Dense: ${dense ? 'On' : 'Off'}
+      </button>
+    </div>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="singleSelection = !singleSelection">
+        Single Selection: ${singleSelection ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="activated = !activated">
+        Activated: ${activated  ? 'On' : 'Off'}
+      </button>
+    </div>
+    <compose view="./custom.html"></compose>
+    <example-viewer html.bind="customHtml" sass.bind="customSass" code.bind="customCode"></example-viewer>
+  </div>
+
+
+  <div class="demo-content">
     <h3 class="demo-content__headline">List Groups</h3>
 
     <mdc-list-group>

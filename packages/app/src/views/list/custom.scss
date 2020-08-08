@@ -1,0 +1,15 @@
+@use '@material/list';
+@use '@material/theme/color-palette' as material-color;
+
+.demo-list--custom {
+  @include list.item-graphic-ink-color(white);
+  @include list.item-graphic-fill-color(text-icon-on-background);
+
+  @include list.divider-color(material-color.$pink-50);
+
+  @include list.item-primary-text-ink-color(material-color.$blue-600);
+  @include list.item-secondary-text-ink-color(material-color.$purple-600);
+  @include list.item-graphic-fill-color(material-color.$pink-400);
+  @include list.item-graphic-ink-color(material-color.$pink-50);
+  @include list.item-meta-ink-color(material-color.$orange-500);
+}
