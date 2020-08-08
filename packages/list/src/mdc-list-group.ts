@@ -1,4 +1,4 @@
-import { inlineView, customElement, children } from 'aurelia-framework';
+import { inlineView, customElement, children, customAttribute, inject } from 'aurelia-framework';
 
 @inlineView('<template class="mdc-list-group"><slot></slot></template>')
 @customElement('mdc-list-group')
@@ -7,5 +7,15 @@ export class MdcListGroup {
   headers: HTMLElement[];
   headersChanged() {
     this.headers.forEach(x => x.classList.add('mdc-list-group__subheader'));
+  }
+}
+
+@inject(Element)
+@customAttribute('mdc-list-group-subheader')
+export class MdcListGroupSubheader {
+  constructor(private root: HTMLElement) { }
+
+  attached() {
+    this.root.classList.add('mdc-list-group__subheader');
   }
 }
