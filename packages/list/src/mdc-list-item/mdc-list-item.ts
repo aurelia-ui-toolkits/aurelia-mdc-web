@@ -60,6 +60,9 @@ export class MdcListItem {
   @bindable
   actionData: unknown;
 
+  @bindable.booleanAttr
+  disableRipple: boolean;
+
   initialSyncWithDOM() {
     if (this.role) {
       this.root.setAttribute('role', this.role);
