@@ -2,7 +2,12 @@
     ${cssClasses.ROOT}
     ${twoLine ? cssClasses.ROOT + '--two-line' : ''}
     ${dense ? cssClasses.ROOT + '--dense' : ''}
+    ${textual ? cssClasses.ROOT + '--textual-list' : ''}
     ${avatar ? cssClasses.ROOT + '--avatar-list' : ''}
+    ${icon ? cssClasses.ROOT + '--icon-list' : ''}
+    ${image ? cssClasses.ROOT + '--image-list' : ''}
+    ${thumbnail ? cssClasses.ROOT + '--thumbnail-list' : ''}
+    ${video ? cssClasses.ROOT + '--video-list' : ''}
     ${nonInteractive ? cssClasses.ROOT + '--non-interactive' : ''}
   " keydown.trigger="handleKeydownEvent_($event)" click.trigger="handleClickEvent_($event)"
   focusin.trigger="handleFocusInEvent_($event)" focusout.trigger="handleFocusOutEvent_($event)"
