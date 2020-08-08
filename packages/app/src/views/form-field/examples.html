@@ -1,3 +1,70 @@
 <template>
-  Coming soon...
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Nowrap</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="nowrap = !nowrap">Nowrap: ${nowrap ? 'On' :'Off'}</button>
+    </div>
+
+    <div class="demo-layout__row">
+      <compose view="./nowrap.html"></compose>
+    </div>
+    <example-viewer html.bind="nowrapHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Space between</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="spaceBetween = !spaceBetween">
+        Space between: ${spaceBetween ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="alignEnd = !alignEnd">
+        Align End: ${alignEnd ? 'On' : 'Off'}
+      </button>
+    </div>
+
+    <div class="demo-layout__row">
+      <compose view="./space-between.html"></compose>
+    </div>
+    <example-viewer html.bind="spaceBetweenHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Checkbox</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="checkboxAlignEnd = !checkboxAlignEnd">
+        Align End: ${checkboxAlignEnd ? 'On' : 'Off'}
+      </button>
+    </div>
+
+    <div class="demo-layout__row">
+      <compose view="./checkbox.html"></compose>
+    </div>
+    <example-viewer html.bind="checkboxHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Radio</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="radioAlignEnd = !radioAlignEnd">
+        Align End: ${radioAlignEnd ? 'On' : 'Off'}
+      </button>
+    </div>
+    <div class="demo-layout__row">
+      <compose view="./radio.html"></compose>
+    </div>
+    <example-viewer html.bind="radioHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Switch</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="switchAlignEnd = !switchAlignEnd">
+        Align End: ${switchAlignEnd ? 'On' : 'Off'}
+      </button>
+    </div>
+    <div class="demo-layout__row">
+      <compose view="./switch.html"></compose>
+    </div>
+    <example-viewer html.bind="switchHtml"></example-viewer>
+  </div>
 </template>
