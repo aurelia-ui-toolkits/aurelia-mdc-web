@@ -12,7 +12,7 @@ let chipId = 0;
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-chip.html'))
 @customElement("mdc-chip")
-export class MDCChip extends MdcComponent<MDCChipFoundation> {
+export class MdcChip extends MdcComponent<MDCChipFoundation> {
   constructor(private element: HTMLElement) {
     super(element);
   }
