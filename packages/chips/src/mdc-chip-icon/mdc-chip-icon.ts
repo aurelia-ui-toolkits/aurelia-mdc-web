@@ -1,12 +1,15 @@
-import { MdcIcon } from './../../../icon/src/mdc-icon';
-import { useView, customElement, PLATFORM } from 'aurelia-framework';
+import { useView, customElement, PLATFORM, inject } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 let chipSetIcon = 0;
 
+@inject(Element)
 @useView(PLATFORM.moduleName('./mdc-chip-icon.html'))
 @customElement("mdc-chip-icon")
-export class MdcChipIcon extends MdcIcon {
+export class MdcChipIcon {
+
+    constructor(public element: HTMLElement) {
+    }
 
     id: string = `mdc-chip-set-${++chipSetIcon}`;
 
@@ -17,4 +20,8 @@ export class MdcChipIcon extends MdcIcon {
     // Indicates that the chips in the set are filter chips, which allow multiple selection from a set of options.
     @bindable.booleanAttr
     trailing: boolean;
+
+    focus() {
+        this.element.focus();
+    }
 }
