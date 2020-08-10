@@ -16,4 +16,6 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./mdc-chip-checkmark'),
     PLATFORM.moduleName('./mdc-chip-primary-action')
   ]);
+
+  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
 }
