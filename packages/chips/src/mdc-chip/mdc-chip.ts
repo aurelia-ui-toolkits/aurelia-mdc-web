@@ -1,5 +1,5 @@
 import { inject, customElement, useView, PLATFORM, child } from 'aurelia-framework';
-import { MDCChipFoundation, MDCChipAdapter, chipCssClasses, 
+import { MDCChipFoundation, MDCChipAdapter, chipCssClasses,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail } from '@material/chips';
 import { MdcChipPrimaryAction } from './../mdc-chip-primary-action';
 import { MdcChipText } from '../mdc-chip-text';
@@ -18,7 +18,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   id: string = `mdc-chip-${++chipId}`;
 
   @child("mdc-chip-text")
-  text: MdcChipText;
+  text?: MdcChipText;
 
   @child("mdc-chip-icon.mdc-chip-icon--leading")
   leadingIcon?: MdcChipIcon;
@@ -27,13 +27,13 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   trailingIcon?: MdcChipIcon;
 
   @child("mdc-chip-checkmark")
-  checkmark: MdcChipCheckmark;
+  checkmark?: MdcChipCheckmark;
 
   @child("mdc-chip-primary-action")
-  primaryAction: MdcChipPrimaryAction;
+  primaryAction?: MdcChipPrimaryAction;
 
   focus() {
-    this.element.focus();
+    this.root.focus();
   }
 
   getDefaultFoundation() {
@@ -50,7 +50,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
       eventTargetHasClass: (target: EventTarget | null, className: string) =>
         (target && (target as Element).classList) ? (target as Element).classList.contains(className) : false,
       getAttribute: (attr: string) => this.root.getAttribute(attr),
-      notifyInteraction: () => this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.INTERACTION_EVENT, 
+      notifyInteraction: () => this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.INTERACTION_EVENT,
         { chipId: this.id }, true /* bubble */),
       notifySelection: (selected: boolean, chipSetShouldIgnore: boolean) =>
         this.emit<MDCChipSelectionEventDetail>(MDCChipFoundation.strings.SELECTION_EVENT, {
@@ -58,11 +58,11 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
           selected: selected,
           shouldIgnore: chipSetShouldIgnore
         }),
-      notifyTrailingIconInteraction: () => 
+      notifyTrailingIconInteraction: () =>
         this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.TRAILING_ICON_INTERACTION_EVENT, {
             chipId: this.id
           }),
-      notifyRemoval: () => 
+      notifyRemoval: () =>
         this.emit<MDCChipRemovalEventDetail>(MDCChipFoundation.strings.REMOVAL_EVENT, {
           chipId: this.id,
           removedAnnouncement: null
@@ -73,25 +73,25 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
           key: key,
           source: source
         }),
-      notifyEditStart: () => 
+      notifyEditStart: () =>
         this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.INTERACTION_EVENT, {
           chipId: this.id
         }),
-      notifyEditFinish: () => 
+      notifyEditFinish: () =>
         this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.INTERACTION_EVENT, {
           chipId: this.id
         }),
       getComputedStyleValue: (propertyName: string) =>
         window.getComputedStyle(this.root).getPropertyValue(propertyName),
       setStyleProperty: (propertyName: string, value: string) =>
-        (<HTMLElement>this.root).style.setProperty(propertyName, value),
+        this.root.style.setProperty(propertyName, value),
       hasLeadingIcon: () => !!this.leadingIcon,
       getRootBoundingClientRect: () => this.root.getBoundingClientRect(),
 
       getCheckmarkBoundingClientRect: () =>
         this.checkmark?.element?.getBoundingClientRect() ?? null,
-      setPrimaryActionAttr: (attr: string, value: string) => this.primaryAction.element.setAttribute(attr, value),
-      focusPrimaryAction: () => this.primaryAction.focus(),
+      setPrimaryActionAttr: (attr: string, value: string) => this.primaryAction?.root?.setAttribute(attr, value),
+      focusPrimaryAction: () => this.primaryAction?.focus(),
       focusTrailingAction: () => this.trailingIcon?.focus(),
       removeTrailingActionFocus: () => {},
       isTrailingActionNavigable: () => true,
