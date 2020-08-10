@@ -17,6 +17,7 @@
     "@aurelia-mdc-web/base": "^1.0.0-alpha.9",
     "@aurelia-mdc-web/button": "^1.0.0-alpha.9",
     "@aurelia-mdc-web/card": "^1.0.0-alpha.9",
+    "@aurelia-mdc-web/chips": "^1.0.0-alpha.9",
     "@aurelia-mdc-web/checkbox": "^1.0.0-alpha.9",
     "@aurelia-mdc-web/circular-progress": "^1.0.0-alpha.9",
     "@aurelia-mdc-web/data-table": "^1.0.0-alpha.9",
