@@ -13,10 +13,6 @@ let chipSetId = 0;
 @customElement("mdc-chip-set")
 export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
 
-  constructor(root: HTMLElement) {
-    super(root);
-  }
-
   id: string = `mdc-chip-set-${++chipSetId}`;
 
   // Indicates that the chips in the set are choice chips, which allow a single selection from a set of options.
