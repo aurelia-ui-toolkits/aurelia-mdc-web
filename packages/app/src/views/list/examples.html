@@ -17,11 +17,44 @@
         Single Selection: ${singleSelection ? 'On' : 'Off'}
       </button>
       <button mdc-button click.delegate="activated = !activated">
-        Activated: ${activated  ? 'On' : 'Off'}
+        Activated: ${activated ? 'On' : 'Off'}
       </button>
     </div>
     <compose view="./custom.html"></compose>
     <example-viewer html.bind="customHtml" sass.bind="customSass" code.bind="customCode"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Ripple disabled</h3>
+    <let disable-ripple2.bind="true"></let>
+    <compose view="./disable-ripple.html"></compose>
+    <div class="demo-layout__row">
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="disableRipple2"></mdc-checkbox>
+        <label>Disable Ripple</label>
+      </mdc-form-field>
+    </div>
+    <example-viewer html.bind="disableRippleHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Shaped</h3>
+    <compose view="./shaped.html"></compose>
+    <example-viewer html.bind="shapedHtml" sass.bind="shapedSass"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Single-Line</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="singlelineDense = !singlelineDense">
+        Dense: ${singlelineDense ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="singlelineSingleSelection = !singlelineSingleSelection">
+        Single Selection: ${singlelineSingleSelection ? 'On' : 'Off'}
+      </button>
+    </div>
+    <compose view="./single-line.html"></compose>
+    <example-viewer html.bind="singleLineHtml"></example-viewer>
   </div>
 
 
