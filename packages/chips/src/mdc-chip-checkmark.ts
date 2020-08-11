@@ -1,7 +1,7 @@
 import { customElement, inlineView, inject } from 'aurelia-framework';
 
 @inject(Element)
-@inlineView(`<template>
+@inlineView(`<template class="mdc-chip__checkmark">
 <svg class="mdc-chip__checkmark-svg"
 viewBox="-2 -3 30 30"
 focusable="false">
