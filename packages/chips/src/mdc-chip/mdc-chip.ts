@@ -6,6 +6,7 @@ import { MdcChipText } from '../mdc-chip-text';
 import { MdcChipCheckmark } from '../mdc-chip-checkmark';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcChipIcon } from '../mdc-chip-icon/mdc-chip-icon';
+import { bindable } from 'aurelia-typed-observable-plugin';
 
 let chipId = 0;
 
@@ -16,6 +17,12 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   cssClasses = chipCssClasses;
 
   id: string = `mdc-chip-${++chipId}`;
+
+  @bindable.booleanAttr
+  selected: boolean;
+
+  @bindable.booleanAttr
+  touch: boolean;
 
   @child("mdc-chip-text")
   text?: MdcChipText;
