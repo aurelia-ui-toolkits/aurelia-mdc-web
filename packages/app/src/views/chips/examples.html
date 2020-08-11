@@ -2,14 +2,133 @@
 	<div class="demo-content">
 		<h3 class="demo-content__headline">Chips</h3>
 		<div class="demo-layout__row">
+			<mdc-chip-set>
+				<mdc-chip>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="button" tabindex="0">
+							<mdc-chip-text>Chip One</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+				<mdc-chip>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="button" tabindex="-1">
+							<mdc-chip-text>Chip Two</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+			</mdc-chip-set>
+		</div>
+	</div>
+	<div class="demo-content">
+		<h3 class="demo-content__headline">Choice Chips</h3>
+		<div class="demo-layout__row">
+			<mdc-chip-set choice>
+				<mdc-chip>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="button" tabindex=0>
+							<mdc-chip-text>Extra Small</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+				<mdc-chip>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="button" tabindex=0>
+							<mdc-chip-text>Small</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+				<mdc-chip>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="button" tabindex=0>
+							<mdc-chip-text>Medium</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+				<mdc-chip>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="button" tabindex=0>
+							<mdc-chip-text>Large</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+				<mdc-chip>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="button" tabindex=0>
+							<mdc-chip-text>Extra Large</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+			</mdc-chip-set>
+		</div>
+	</div>
+	<div class="demo-content">
+		<h3 class="demo-content__headline">Choice Chips with leading icon</h3>
+		<div class="demo-layout__row">
 			<mdc-chip-set choice>
 				<mdc-chip>
 					<mdc-chip-icon leading>face</mdc-chip-icon>
-					<mdc-chip-text>Arjen</mdc-chip-text>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="button" tabindex=0>
+							<mdc-chip-text>Arjen</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
 				</mdc-chip>
 				<mdc-chip>
 					<mdc-chip-icon leading>face</mdc-chip-icon>
-					<mdc-chip-text>Maxim</mdc-chip-text>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="button" tabindex=0>
+							<mdc-chip-text>Maxim</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+			</mdc-chip-set>
+		</div>
+	</div>
+	<div class="demo-content">
+		<h3 class="demo-content__headline">Filter Chips with checkmarks</h3>
+		<div class="demo-layout__row">
+			<mdc-chip-set filter>
+				<mdc-chip>
+					<mdc-chip-checkmark></mdc-chip-checkmark>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="checkbox" tabindex=0>
+							<mdc-chip-text>One</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+				<mdc-chip>
+					<mdc-chip-checkmark></mdc-chip-checkmark>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="checkbox" tabindex=0>
+							<mdc-chip-text>Two</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+			</mdc-chip-set>
+		</div>
+	</div>
+	<div class="demo-content">
+		<h3 class="demo-content__headline">Filter Chips with leading icon</h3>
+		<div class="demo-layout__row">
+			<mdc-chip-set filter>
+				<mdc-chip>
+					<mdc-chip-icon leading>filter_1</mdc-chip-icon>
+					<mdc-chip-checkmark></mdc-chip-checkmark>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="checkbox" tabindex=0>
+							<mdc-chip-text>One</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
+				</mdc-chip>
+				<mdc-chip>
+					<mdc-chip-icon leading>filter_2</mdc-chip-icon>
+					<mdc-chip-checkmark></mdc-chip-checkmark>
+					<span role="gridcell">
+						<mdc-chip-primary-action role="checkbox" tabindex=0>
+							<mdc-chip-text>Two</mdc-chip-text>
+						</mdc-chip-primary-action>
+					</span>
 				</mdc-chip>
 			</mdc-chip-set>
 		</div>
