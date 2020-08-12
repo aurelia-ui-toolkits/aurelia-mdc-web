@@ -1,3 +1,22 @@
+# [v1.0.0-alpha.13](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2020-08-12)
+
+
+### Bug Fixes
+
+* **list:** add missing attribute ([61c87a3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/61c87a30054c43f878b32e8558254707244b99bb))
+* **list:** add missing classes ([ed175fe](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ed175feefaf611a25db3758feaac3fe9700dfac7))
+* **list:** position checkboxes correctly in DOM ([d09007b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d09007b653e0a617403c934779eda4cda5d86a6c))
+
+
+### Features
+
+* **app:** add list examples ([ad9903e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ad9903e9e98870494e200182d38dafb6971dc8c1))
+* **app:** add list snippets ([1aa6299](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1aa629993ce6c85509226cc894ccb448e7f8be46))
+* **app:** add list snippets ([991bbf1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/991bbf12d32e3231c66cc8004b569b588e1d6db5))
+* **list:** allow disabling ripple ([5ffc1a3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5ffc1a3a1250c5a43b62a598d52568fee631a6b1))
+
+
+
 # [v1.0.0-alpha.12](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2020-08-08)
 
 
