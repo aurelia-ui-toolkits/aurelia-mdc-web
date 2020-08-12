@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/button",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "publishConfig": {
     "access": "public"
   },
@@ -55,8 +55,8 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.12",
-    "@aurelia-mdc-web/ripple": "^1.0.0-alpha.12",
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.13",
+    "@aurelia-mdc-web/ripple": "^1.0.0-alpha.13",
     "@material/button": "^7.0.0"
   },
   "devDependencies": {

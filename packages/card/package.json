@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/card",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "publishConfig": {
     "access": "public"
   },
@@ -55,7 +55,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.12",
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.13",
     "@material/card": "^7.0.0"
   },
   "devDependencies": {
