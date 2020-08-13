@@ -54,6 +54,12 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
 
+  @bindable.booleanAttr
+  quickOpen: boolean;
+
+  @bindable.booleanAttr
+  closeSurfaceOnSelection: boolean;
+
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
     return true;
@@ -190,10 +196,6 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     this.menuSurface_.setAnchorCorner(corner);
   }
 
-  set quickOpen(quickOpen: boolean) {
-    this.menuSurface_.quickOpen = quickOpen;
-  }
-
   /**
    * Sets the list item as the selected row at the specified index.
    * @param index Index of list item within menu.
@@ -261,7 +263,11 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
         list[index].removeAttribute(attr);
       },
       elementContainsClass: (element, className) => element.classList.contains(className),
-      closeSurface: (skipRestoreFocus: boolean) => this.menuSurface_.close(skipRestoreFocus),
+      closeSurface: (skipRestoreFocus: boolean) => {
+        if (this.closeSurfaceOnSelection) {
+          this.menuSurface_.close(skipRestoreFocus);
+        }
+      },
       getElementIndex: (element) => this.items.indexOf(element),
       notifySelected: (evtData) => {
         const item = this.items[evtData.index];
