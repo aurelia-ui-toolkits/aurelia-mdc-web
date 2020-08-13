@@ -45,6 +45,13 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     this.foundation?.setAnchorMargin(margin);
   }
 
+  @bindable.booleanAttr
+  quickOpen: boolean;
+  async quickOpenChanged(quickOpen: boolean) {
+    await this.initialised;
+    this.foundation?.setQuickOpen(quickOpen);
+  }
+
   handleKeydown(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
   }
@@ -125,10 +132,6 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
 
   close(skipRestoreFocus = false) {
     this.foundation?.close(skipRestoreFocus);
-  }
-
-  set quickOpen(quickOpen: boolean) {
-    this.foundation?.setQuickOpen(quickOpen);
   }
 
   /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
