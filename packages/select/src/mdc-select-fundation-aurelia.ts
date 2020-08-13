@@ -130,9 +130,9 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
   }
 
   // !!! MODIFIED FOR AURELIA !!!
-  setValue(value: unknown) {
+  setValue(value: unknown, skipNotify?: boolean) {
     const index = this.adapter.getMenuItemValues().indexOf(value);
-    this.setSelectedIndex(index);
+    this.setSelectedIndex(index, undefined, skipNotify);
   }
 
   // !!! MODIFIED FOR AURELIA !!!
