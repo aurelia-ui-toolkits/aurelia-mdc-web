@@ -181,6 +181,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   initialSyncWithDOM() {
     this.value = this.initialValue;
+    this.errors = new Map<unknown, boolean>();
+    this.valid = true;
   }
 
   @child(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`)
