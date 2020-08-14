@@ -58,7 +58,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   quickOpen: boolean;
 
   @bindable.booleanAttr
-  closeSurfaceOnSelection: boolean;
+  closeSurfaceOnSelection: boolean = true;
 
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
