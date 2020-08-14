@@ -33,7 +33,7 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
   chips: MDCChip[];
 
   async initialise() {
-    this.chips = [];
+    // this.chips = [];
   }
 
   handleChipInteraction_(eventDetail: MDCChipInteractionEventDetail) {
