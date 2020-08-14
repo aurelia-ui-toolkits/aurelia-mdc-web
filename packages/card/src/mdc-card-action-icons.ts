@@ -1,5 +1,16 @@
-import { customElement, inlineView } from 'aurelia-framework';
+import { customElement, inlineView, inject } from 'aurelia-framework';
 
+@inject(Element)
 @inlineView('<template class="mdc-card__action-icons"><slot></slot></template>')
 @customElement('mdc-card-action-icons')
-export class MdcCardActionIcons { }
+export class MdcCardActionIcons {
+  constructor(private root: HTMLElement) { }
+
+  attached() {
+    const children = this.root.querySelectorAll('.mdc-icon-button');
+    for (let i = 0; i < children.length; ++i) {
+      const child = children[i];
+      child.classList.add('mdc-card__action', 'mdc-card__action--icon');
+    }
+  }
+}
