@@ -2,6 +2,7 @@ import { useView, inject, PLATFORM, customElement, children } from 'aurelia-fram
 import {
   MDCChipSetFoundation, MDCChipSetAdapter, MDCChip
 } from '@material/chips';
+import { MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail } from '@material/chips';
 import { announce } from '@material/dom/announce';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { bindable } from 'aurelia-typed-observable-plugin';
@@ -32,7 +33,20 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
   chips: MDCChip[];
 
   async initialise() {
-    this.chips = [];    
+    this.chips = [];
+  }
+
+  handleChipInteraction_(eventDetail: MDCChipInteractionEventDetail) {
+    this.foundation?.handleChipInteraction(eventDetail);
+  }
+  handleChipSelection_(eventDetail: MDCChipSelectionEventDetail) {
+    this.foundation?.handleChipSelection(eventDetail);
+  }
+  handleChipRemoval_(eventDetail: MDCChipRemovalEventDetail) {
+    this.foundation?.handleChipRemoval(eventDetail);
+  }
+  handleChipNavigation_(eventDetail: MDCChipNavigationEventDetail) {
+    this.foundation?.handleChipNavigation(eventDetail);
   }
 
   getDefaultFoundation() {

@@ -2,7 +2,6 @@ import { inject, customElement, useView, PLATFORM, child } from 'aurelia-framewo
 import { MDCChipFoundation, MDCChipAdapter, chipCssClasses,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail } from '@material/chips';
 import { MdcChipPrimaryAction } from './../mdc-chip-primary-action';
-import { MdcChipText } from '../mdc-chip-text';
 import { MdcChipCheckmark } from '../mdc-chip-checkmark';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcChipIcon } from '../mdc-chip-icon/mdc-chip-icon';
@@ -16,16 +15,48 @@ let chipId = 0;
 export class MdcChip extends MdcComponent<MDCChipFoundation> {
   cssClasses = chipCssClasses;
 
+  /**
+   * @return Whether the chip is selected.
+   */
+  get selected(): boolean {
+    return this.foundation?.isSelected() ?? false;
+  }
+
+  /**
+   * Sets selected state on the chip.
+   */
+  set selected(selected: boolean) {
+    this.foundation?.setSelected(selected);
+  }
+
+  /**
+   * @return Whether a trailing icon click should trigger exit/removal of the chip.
+   */
+  get shouldRemoveOnTrailingIconClick(): boolean {
+    return this.foundation?.getShouldRemoveOnTrailingIconClick() ?? false;
+  }
+
+  /**
+   * Sets whether a trailing icon click should trigger exit/removal of the chip.
+   */
+  set shouldRemoveOnTrailingIconClick(shouldRemove: boolean) {
+    this.foundation?.setShouldRemoveOnTrailingIconClick(shouldRemove);
+  }
+
+  /**
+   * Sets whether a clicking on the chip should focus the primary action.
+   */
+  set setShouldFocusPrimaryActionOnClick(shouldFocus: boolean) {
+    this.foundation?.setShouldFocusPrimaryActionOnClick(shouldFocus);
+  }
+
   id: string = `mdc-chip-${++chipId}`;
 
-  @bindable.booleanAttr
-  selected: boolean;
+  // @bindable.booleanAttr
+  // selected: boolean;
 
   @bindable.booleanAttr
   touch: boolean;
-
-  @child("mdc-chip-text")
-  text?: MdcChipText;
 
   @child("mdc-chip-icon.mdc-chip-icon--leading")
   leadingIcon?: MdcChipIcon;
@@ -44,6 +75,8 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   }
 
   getDefaultFoundation() {
+    console.log(MDCChipFoundation.strings.INTERACTION_EVENT);
+
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
     // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
     const adapter: MDCChipAdapter = {
@@ -69,10 +102,10 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
         this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.TRAILING_ICON_INTERACTION_EVENT, {
             chipId: this.id
           }),
-      notifyRemoval: () =>
+      notifyRemoval: (removedAnnouncement) =>
         this.emit<MDCChipRemovalEventDetail>(MDCChipFoundation.strings.REMOVAL_EVENT, {
           chipId: this.id,
-          removedAnnouncement: null
+          removedAnnouncement: removedAnnouncement
         }),
       notifyNavigation: (key: string, source: any) =>
         this.emit<MDCChipNavigationEventDetail>(MDCChipFoundation.strings.NAVIGATION_EVENT, {
@@ -94,7 +127,6 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
         this.root.style.setProperty(propertyName, value),
       hasLeadingIcon: () => !!this.leadingIcon,
       getRootBoundingClientRect: () => this.root.getBoundingClientRect(),
-
       getCheckmarkBoundingClientRect: () =>
         this.checkmark?.element?.getBoundingClientRect() ?? null,
       setPrimaryActionAttr: (attr: string, value: string) => this.primaryAction?.root?.setAttribute(attr, value),
@@ -106,5 +138,42 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
         window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl' : false,
     };
     return new MDCChipFoundation(adapter);
+  }
+
+  handleClick_(/*evt: MouseEvent*/) {
+    this.foundation?.handleClick();
+    return true;
+  }
+  handleKeydown_(evt: KeyboardEvent) {
+    this.foundation?.handleKeydown(evt);
+    return true;
+  }
+  handleTransitionEnd_(evt: TransitionEvent) {
+    this.foundation?.handleTransitionEnd(evt);
+    return true;
+  };
+  handleFocusIn_(evt: FocusEvent) {
+    this.foundation?.handleFocusIn(evt);
+    return true;
+  };
+  handleFocusOut_(evt: FocusEvent) {
+    this.foundation?.handleFocusOut(evt);
+    return true;
+  };
+
+  setSelectedFromChipSet(selected: boolean, shouldNotifyClients: boolean) {
+    this.foundation?.setSelectedFromChipSet(selected, shouldNotifyClients);
+  }
+
+  focusPrimaryAction() {
+    this.foundation?.focusPrimaryAction();
+  }
+
+  focusTrailingAction() {
+    this.foundation?.focusTrailingAction();
+  }
+
+  removeFocus() {
+    this.foundation?.removeFocus();
   }
 }
