@@ -58174,7 +58174,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <require from=\"./default.scss\"></require>\n  <mdc-card class=\"demo-card\">\n    <mdc-card-primary-action>\n      <mdc-card-media class=\"demo-card__media--16-9\" wide></mdc-card-media>\n      <div class=\"demo-card__primary\">\n        <h2 class=\"demo-card__title\" mdc-headline6>Our Changing Planet</h2>\n        <h3 class=\"demo-card__subtitle\" mdc-subtitle2>by Kurt Wagner</h3>\n      </div>\n      <div class=\"demo-card__secondary\" mdc-body2>\n        Visit ten places on our planet that are undergoing the biggest changes today.\n      </div>\n    </mdc-card-primary-action>\n    <mdc-card-actions>\n      <mdc-card-action-buttons>\n        <button mdc-button>Read</button>\n        <button mdc-button>Bookmark</button>\n      </mdc-card-action-buttons>\n      <mdc-card-action-icons>\n        <button mdc-icon-button>\n          <mdc-icon-button-icon>\n            <mdc-icon>favorite_border</mdc-icon>\n          </mdc-icon-button-icon>\n          <mdc-icon-button-icon on>\n            <mdc-icon>favorite</mdc-icon>\n          </mdc-icon-button-icon>\n        </button>\n        <button mdc-icon-button>\n          <mdc-icon>share</mdc-icon>\n        </button>\n        <button mdc-icon-button>\n          <mdc-icon>more_vert</mdc-icon>\n        </button>\n      </mdc-card-action-icons>\n    </mdc-card-actions>\n  </mdc-card>\n</template>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <require from=\"./default.scss\"></require>\n  <mdc-card class=\"demo-card\">\n    <mdc-card-primary-action>\n      <mdc-card-media class=\"demo-card__media--16-9\" wide></mdc-card-media>\n      <div class=\"demo-card__primary\">\n        <h2 class=\"demo-card__title\" mdc-headline6>Our Changing Planet</h2>\n        <h3 class=\"demo-card__subtitle\" mdc-subtitle2>by Kurt Wagner</h3>\n      </div>\n      <div class=\"demo-card__secondary\" mdc-body2>\n        Visit ten places on our planet that are undergoing the biggest changes today.\n      </div>\n    </mdc-card-primary-action>\n    <mdc-card-actions>\n      <mdc-card-action-buttons>\n        <button mdc-button>Read</button>\n        <button mdc-button>Bookmark</button>\n      </mdc-card-action-buttons>\n      <mdc-card-action-icons>\n        <button mdc-icon-button>\n          <mdc-icon-button-icon icon=\"favorite_border\"></mdc-icon-button-icon>\n          <mdc-icon-button-icon on icon=\"favorite\"></mdc-icon-button-icon>\n        </button>\n        <button mdc-icon-button icon=\"share\"></button>\n        <button mdc-icon-button icon=\"more_vert\"></button>\n      </mdc-card-action-icons>\n    </mdc-card-actions>\n  </mdc-card>\n</template>\n");
 
 /***/ }),
 
@@ -59153,6 +59153,71 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/basic.html":
+/*!*************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/menu/basic.html ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div mdc-menu-surface-anchor ref=\"demoAnchor\">\n    <button mdc-button raised click.trigger=\"demo.open = !demo.open\">Show Menu</button>\n    <mdc-menu view-model.ref=\"demo\" mdcmenu:selected.trigger=\"onMenuSelect($event.detail)\" anchor.bind=\"demoAnchor\"\n      anchor-corner.bind=\"menuSurfaceAnchorCorner\" quick-open.bind=\"quickOpen\"\n      default-focus-state.bind=\"defaultFocusState\" fixed.bind=\"fixed\"\n      close-surface-on-selection.bind=\"closeSurfaceOnSelection\" anchor-margin.bind=\"anchorMargin\">\n      <mdc-list wrap-focus.bind=\"wrapFocus\">\n        <template repeat.for=\"fruit of fruits\">\n          <mdc-list-item if.bind=\"fruit.label\" action-data.bind=\"fruit.label\">${fruit.label}</mdc-list-item>\n          <mdc-list-divider else></mdc-list-divider>\n        </template>\n      </mdc-list>\n    </mdc-menu>\n  </div>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/card.html":
+/*!************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/menu/card.html ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <require from=\"./card.scss\"></require>\n  <mdc-card class=\"demo-card\">\n    <mdc-card-primary-action>\n      <div class=\"demo-card__primary\">\n        <h2 class=\"demo-card__title\" mdc-headline6>Our Changing Planet</h2>\n        <h3 class=\"demo-card__subtitle\" mdc-subtitle2>by Kurt Wagner</h3>\n      </div>\n      <div class=\"demo-card__secondary\" mdcBody2>\n        Select the vertical menu icon button below.\n      </div>\n    </mdc-card-primary-action>\n    <mdc-card-actions>\n      <mdc-card-action-buttons>\n        <button mdc-button>Read</button>\n      </mdc-card-action-buttons>\n      <mdc-card-action-icons>\n        <button mdc-icon-button icon=\"share\"></button>\n        <div mdc-menu-surface-anchor ref=\"cardAnchor\">\n          <button mdc-icon-button icon=\"more_vert\" click.trigger=\"cardMenu.open = !cardMenu.open\"></button>\n          <mdc-menu view-model.ref=\"cardMenu\" anchor.bind=\"cardAnchor\" default-focus-state1=\"FIRST_ITEM\">\n            <mdc-list>\n              <mdc-list-item>Open</mdc-list-item>\n              <mdc-list-item>Dismiss</mdc-list-item>\n            </mdc-list>\n          </mdc-menu>\n        </div>\n      </mdc-card-action-icons>\n    </mdc-card-actions>\n  </mdc-card>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/card.scss":
+/*!************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/menu/card.scss ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@use \"@material/card\";\n@use \"@material/theme\";\n\n.demo-card {\n  width: 350px;\n  margin: 28px;\n}\n\n.demo-card__primary {\n  padding: 1rem;\n}\n\n.demo-card__title {\n  margin: 0;\n}\n\n.demo-card__subtitle {\n  @include theme.prop(color, text-secondary-on-background);\n\n  margin: 0;\n}\n\n.demo-card__secondary {\n  @include theme.prop(color, text-secondary-on-background);\n\n  padding: 0 1rem 8px 1rem;\n}\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/group-svg.html":
+/*!*****************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/menu/group-svg.html ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div mdc-menu-surface-anchor ref=\"demoSimpleAnchor\">\n    <button mdc-button raised click.trigger=\"demoSimple.open = !demoSimple.open\">\n      Show Selection Group Menu\n    </button>\n    <mdc-menu view-model.ref=\"demoSimple\" anchor.bind=\"demoSimpleAnchor\">\n      <mdc-list>\n        <mdc-menu-selection-group>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n                <path d=\"M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z\" />\n              </svg>\n            </mdc-icon>\n            Single\n          </mdc-list-item>\n          <mdc-list-item disabled>\n            <mdc-icon mdc-menu-selection-group-icon>\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n                <path d=\"M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z\" />\n              </svg>\n            </mdc-icon>\n            1.15\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n                <path d=\"M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z\" />\n              </svg>\n            </mdc-icon>\n            Double\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n                <path d=\"M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z\" />\n              </svg>\n            </mdc-icon>\n            Custom: 1.2\n          </mdc-list-item>\n        </mdc-menu-selection-group>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-list-item>Add space before paragraph</mdc-list-item>\n        <mdc-list-item>Add space after paragraph</mdc-list-item>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-list-item>Custom spacing...</mdc-list-item>\n      </mdc-list>\n    </mdc-menu>\n  </div>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/group.html":
+/*!*************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/menu/group.html ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div mdc-menu-surface-anchor ref=\"demoSelectionAnchor\">\n    <button mdc-button raised click.delegate=\"demoSelectionGroup.open = !demoSelectionGroup.open\">\n      Show Selection Group Menu\n    </button>\n    <mdc-menu view-model.ref=\"demoSelectionGroup\" anchor.bind=\"demoSelectionAnchor\">\n      <mdc-list>\n        <mdc-menu-selection-group>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Single\n          </mdc-list-item>\n          <mdc-list-item disabled>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            1.15\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Double\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Custom: 1.2\n          </mdc-list-item>\n        </mdc-menu-selection-group>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-menu-selection-group>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Item\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Another Item\n          </mdc-list-item>\n        </mdc-menu-selection-group>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-list-item>Add space before paragraph</mdc-list-item>\n        <mdc-list-item>Add space after paragraph</mdc-list-item>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-list-item>Custom spacing...</mdc-list-item>\n      </mdc-list>\n    </mdc-menu>\n  </div>\n</template>\n");
+
+/***/ }),
+
 /***/ "../../node_modules/tslib/tslib.es6.js":
 /*!*****************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/tslib/tslib.es6.js ***!
@@ -59935,9 +60000,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
         }
         // !!! MODIFIED FOR AURELIA !!!
-        setValue(value) {
+        setValue(value, skipNotify) {
             const index = this.adapter.getMenuItemValues().indexOf(value);
-            this.setSelectedIndex(index);
+            this.setSelectedIndex(index, undefined, skipNotify);
         }
         // !!! MODIFIED FOR AURELIA !!!
         getValue() {
@@ -60726,10 +60791,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCardActionButtons = void 0;
     let MdcCardActionButtons = class MdcCardActionButtons {
+        constructor(root) {
+            this.root = root;
+        }
+        attached() {
+            const children = this.root.querySelectorAll('.mdc-button');
+            for (let i = 0; i < children.length; ++i) {
+                const child = children[i];
+                child.classList.add('mdc-card__action', 'mdc-card__action--button');
+            }
+        }
     };
     MdcCardActionButtons = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
         aurelia_framework_1.inlineView('<template class="mdc-card__action-buttons"><slot></slot></template>'),
-        aurelia_framework_1.customElement('mdc-card-action-buttons')
+        aurelia_framework_1.customElement('mdc-card-action-buttons'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
     ], MdcCardActionButtons);
     exports.MdcCardActionButtons = MdcCardActionButtons;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -60750,10 +60827,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCardActionIcons = void 0;
     let MdcCardActionIcons = class MdcCardActionIcons {
+        constructor(root) {
+            this.root = root;
+        }
+        attached() {
+            const children = this.root.querySelectorAll('.mdc-icon-button');
+            for (let i = 0; i < children.length; ++i) {
+                const child = children[i];
+                child.classList.add('mdc-card__action', 'mdc-card__action--icon');
+            }
+        }
     };
     MdcCardActionIcons = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
         aurelia_framework_1.inlineView('<template class="mdc-card__action-icons"><slot></slot></template>'),
-        aurelia_framework_1.customElement('mdc-card-action-icons')
+        aurelia_framework_1.customElement('mdc-card-action-icons'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
     ], MdcCardActionIcons);
     exports.MdcCardActionIcons = MdcCardActionIcons;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -60774,32 +60863,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MdcCardActions = void 0;
     let MdcCardActions = class MdcCardActions {
-        constructor(root) {
-            this.root = root;
-        }
-        attached() {
-            const children = this.root.children;
-            for (let i = 0; i < children.length; ++i) {
-                const child = children[i];
-                child.classList.add('mdc-card__action');
-                if (child.classList.contains('mdc-icon-button')) {
-                    child.classList.add('mdc-card__action--icon');
-                }
-                if (child.classList.contains('mdc-button')) {
-                    child.classList.add('mdc-card__action--button');
-                }
-            }
-        }
     };
     tslib_1.__decorate([
         aurelia_typed_observable_plugin_1.bindable.booleanAttr,
         tslib_1.__metadata("design:type", Boolean)
     ], MdcCardActions.prototype, "fullBleed", void 0);
     MdcCardActions = tslib_1.__decorate([
-        aurelia_framework_1.inject(Element),
         aurelia_framework_1.useView('./mdc-card-actions.html'),
-        aurelia_framework_1.customElement('mdc-card-actions'),
-        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+        aurelia_framework_1.customElement('mdc-card-actions')
     ], MdcCardActions);
     exports.MdcCardActions = MdcCardActions;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -62982,7 +63053,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"mdc-icon-button__icon ${on ? 'mdc-icon-button__icon--on' : ''}\">\n  <slot></slot>\n  <span class=\"material-icons\" if.bind=\"icon\">${icon}</span>\n</template>\n";
+var code = "<template class=\"mdc-icon-button__icon ${on ? 'mdc-icon-button__icon--on' : ''} material-icons\">\n  <slot></slot>\n  <span class=\"material-icons\" if.bind=\"icon\">${icon}</span>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -64410,7 +64481,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Object.defineProperty(exports, "MdcMenu", { enumerable: true, get: function () { return mdc_menu_1.MdcMenu; } });
     function configure(config) {
         config.globalResources([
-            './mdc-menu'
+            './mdc-menu',
+            './mdc-menu-selection-group',
+            './mdc-menu-selection-group-icon'
         ]);
         config.aurelia.use
             .plugin('@aurelia-mdc-web/menu-surface')
@@ -64487,6 +64560,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return tslib_1.__awaiter(this, void 0, void 0, function* () {
                 yield this.initialised;
                 (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setAnchorMargin(margin);
+            });
+        }
+        quickOpenChanged(quickOpen) {
+            var _a;
+            return tslib_1.__awaiter(this, void 0, void 0, function* () {
+                yield this.initialised;
+                (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setQuickOpen(quickOpen);
             });
         }
         handleKeydown(evt) {
@@ -64570,10 +64650,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         close(skipRestoreFocus = false) {
             var _a;
             (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.close(skipRestoreFocus);
-        }
-        set quickOpen(quickOpen) {
-            var _a;
-            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setQuickOpen(quickOpen);
         }
         /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
         setAbsolutePosition(x, y) {
@@ -64672,6 +64748,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         aurelia_typed_observable_plugin_1.bindable,
         tslib_1.__metadata("design:type", Object)
     ], MdcMenuSurface.prototype, "anchorMargin", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcMenuSurface.prototype, "quickOpen", void 0);
     MdcMenuSurface = tslib_1.__decorate([
         aurelia_framework_1.inject(Element),
         aurelia_framework_1.customAttribute('mdc-menu-surface')
@@ -64730,6 +64810,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         constructor() {
             super(...arguments);
             this.defaultFocusState = 'LIST_ROOT';
+            this.closeSurfaceOnSelection = true;
         }
         // @child('mdc-list')
         get list_() {
@@ -64877,9 +64958,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         setAnchorCorner(corner) {
             this.menuSurface_.setAnchorCorner(corner);
         }
-        set quickOpen(quickOpen) {
-            this.menuSurface_.quickOpen = quickOpen;
-        }
         /**
          * Sets the list item as the selected row at the specified index.
          * @param index Index of list item within menu.
@@ -64944,7 +65022,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     list[index].removeAttribute(attr);
                 },
                 elementContainsClass: (element, className) => element.classList.contains(className),
-                closeSurface: (skipRestoreFocus) => this.menuSurface_.close(skipRestoreFocus),
+                closeSurface: (skipRestoreFocus) => {
+                    if (this.closeSurfaceOnSelection) {
+                        this.menuSurface_.close(skipRestoreFocus);
+                    }
+                },
                 getElementIndex: (element) => this.items.indexOf(element),
                 notifySelected: (evtData) => {
                     var _a;
@@ -64992,12 +65074,75 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         aurelia_typed_observable_plugin_1.bindable,
         tslib_1.__metadata("design:type", Object)
     ], MdcMenu.prototype, "anchorMargin", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcMenu.prototype, "quickOpen", void 0);
+    tslib_1.__decorate([
+        aurelia_typed_observable_plugin_1.bindable.booleanAttr,
+        tslib_1.__metadata("design:type", Boolean)
+    ], MdcMenu.prototype, "closeSurfaceOnSelection", void 0);
     MdcMenu = tslib_1.__decorate([
         aurelia_framework_1.inject(Element),
         aurelia_framework_1.customElement('mdc-menu'),
         aurelia_framework_1.useView('./mdc-menu.html')
     ], MdcMenu);
     exports.MdcMenu = MdcMenu;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/menu/mdc-menu-selection-group":
+/*!***********************************************!*\
+  !*** ../menu/src/mdc-menu-selection-group.ts ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcMenuSelectionGroup = void 0;
+    let MdcMenuSelectionGroup = class MdcMenuSelectionGroup {
+    };
+    MdcMenuSelectionGroup = tslib_1.__decorate([
+        aurelia_framework_1.inlineView('<template class="mdc-menu__selection-group"><slot></slot></template>'),
+        aurelia_framework_1.customElement('mdc-menu-selection-group')
+    ], MdcMenuSelectionGroup);
+    exports.MdcMenuSelectionGroup = MdcMenuSelectionGroup;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ "@aurelia-mdc-web/menu/mdc-menu-selection-group-icon":
+/*!****************************************************!*\
+  !*** ../menu/src/mdc-menu-selection-group-icon.ts ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! aurelia-framework */ "aurelia-framework")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MdcMenuSelectionGroupIcon = void 0;
+    let MdcMenuSelectionGroupIcon = class MdcMenuSelectionGroupIcon {
+        constructor(root) {
+            this.root = root;
+        }
+        attached() {
+            this.root.classList.add('mdc-menu__selection-group-icon');
+        }
+    };
+    MdcMenuSelectionGroupIcon = tslib_1.__decorate([
+        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.customAttribute('mdc-menu-selection-group-icon'),
+        tslib_1.__metadata("design:paramtypes", [HTMLElement])
+    ], MdcMenuSelectionGroupIcon);
+    exports.MdcMenuSelectionGroupIcon = MdcMenuSelectionGroupIcon;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -65012,7 +65157,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template class=\"mdc-menu\"\n  mdc-menu-surface=\"fixed.bind: fixed; anchor-corner.bind: anchorCorner; anchor-margin.bind: anchorMargin; hoist-to-body.bind: hoistToBody; anchor.bind: anchor\"\n  mdc-menu-surface.ref=\"menuSurface_\" keydown.trigger=\"handleKeydown_($event)\"\n  mdcmenusurface:opened.trigger=\"handleMenuSurfaceOpened_()\" mdclist:action.trigger=\"handleItemAction_($event)\">\n  <slot></slot>\n</template>\n";
+var code = "<template class=\"mdc-menu\"\n  mdc-menu-surface=\"fixed.bind: fixed; anchor-corner.bind: anchorCorner; anchor-margin.bind: anchorMargin; hoist-to-body.bind: hoistToBody; anchor.bind: anchor; quick-open.bind: quickOpen\"\n  mdc-menu-surface.ref=\"menuSurface_\" keydown.trigger=\"handleKeydown_($event)\"\n  mdcmenusurface:opened.trigger=\"handleMenuSurfaceOpened_()\" mdclist:action.trigger=\"handleItemAction_($event)\">\n  <slot></slot>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -65561,7 +65706,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             });
         }
         initialSyncWithDOM() {
-            this.value = this.initialValue;
+            var _a, _b;
+            // set initial value without emitting change events
+            (_a = this.foundation) === null || _a === void 0 ? void 0 : _a.setValue(this.initialValue, true);
+            (_b = this.foundation) === null || _b === void 0 ? void 0 : _b.layout();
+            this.errors = new Map();
+            this.valid = true;
         }
         getDefaultFoundation() {
             // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
@@ -67047,6 +67197,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         bind() { }
         initialSyncWithDOM() {
             this.value = this.initialValue;
+            this.errors = new Map();
+            this.valid = true;
         }
         leadingIconElChanged() {
             var _a;
@@ -76048,7 +76200,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 // Module
-var code = "<template>\n  <require from=\"./default.scss\"></require>\n  <mdc-card class=\"demo-card\">\n    <mdc-card-primary-action>\n      <mdc-card-media class=\"demo-card__media--16-9\" wide></mdc-card-media>\n      <div class=\"demo-card__primary\">\n        <h2 class=\"demo-card__title\" mdc-headline6>Our Changing Planet</h2>\n        <h3 class=\"demo-card__subtitle\" mdc-subtitle2>by Kurt Wagner</h3>\n      </div>\n      <div class=\"demo-card__secondary\" mdc-body2>\n        Visit ten places on our planet that are undergoing the biggest changes today.\n      </div>\n    </mdc-card-primary-action>\n    <mdc-card-actions>\n      <mdc-card-action-buttons>\n        <button mdc-button>Read</button>\n        <button mdc-button>Bookmark</button>\n      </mdc-card-action-buttons>\n      <mdc-card-action-icons>\n        <button mdc-icon-button>\n          <mdc-icon-button-icon>\n            <mdc-icon>favorite_border</mdc-icon>\n          </mdc-icon-button-icon>\n          <mdc-icon-button-icon on>\n            <mdc-icon>favorite</mdc-icon>\n          </mdc-icon-button-icon>\n        </button>\n        <button mdc-icon-button>\n          <mdc-icon>share</mdc-icon>\n        </button>\n        <button mdc-icon-button>\n          <mdc-icon>more_vert</mdc-icon>\n        </button>\n      </mdc-card-action-icons>\n    </mdc-card-actions>\n  </mdc-card>\n</template>\n";
+var code = "<template>\n  <require from=\"./default.scss\"></require>\n  <mdc-card class=\"demo-card\">\n    <mdc-card-primary-action>\n      <mdc-card-media class=\"demo-card__media--16-9\" wide></mdc-card-media>\n      <div class=\"demo-card__primary\">\n        <h2 class=\"demo-card__title\" mdc-headline6>Our Changing Planet</h2>\n        <h3 class=\"demo-card__subtitle\" mdc-subtitle2>by Kurt Wagner</h3>\n      </div>\n      <div class=\"demo-card__secondary\" mdc-body2>\n        Visit ten places on our planet that are undergoing the biggest changes today.\n      </div>\n    </mdc-card-primary-action>\n    <mdc-card-actions>\n      <mdc-card-action-buttons>\n        <button mdc-button>Read</button>\n        <button mdc-button>Bookmark</button>\n      </mdc-card-action-buttons>\n      <mdc-card-action-icons>\n        <button mdc-icon-button>\n          <mdc-icon-button-icon icon=\"favorite_border\"></mdc-icon-button-icon>\n          <mdc-icon-button-icon on icon=\"favorite\"></mdc-icon-button-icon>\n        </button>\n        <button mdc-icon-button icon=\"share\"></button>\n        <button mdc-icon-button icon=\"more_vert\"></button>\n      </mdc-card-action-icons>\n    </mdc-card-actions>\n  </mdc-card>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -79028,6 +79180,52 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 /***/ }),
 
+/***/ "views/menu/basic.html":
+/*!***********************************!*\
+  !*** ./src/views/menu/basic.html ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div mdc-menu-surface-anchor ref=\"demoAnchor\">\n    <button mdc-button raised click.trigger=\"demo.open = !demo.open\">Show Menu</button>\n    <mdc-menu view-model.ref=\"demo\" mdcmenu:selected.trigger=\"onMenuSelect($event.detail)\" anchor.bind=\"demoAnchor\"\n      anchor-corner.bind=\"menuSurfaceAnchorCorner\" quick-open.bind=\"quickOpen\"\n      default-focus-state.bind=\"defaultFocusState\" fixed.bind=\"fixed\"\n      close-surface-on-selection.bind=\"closeSurfaceOnSelection\" anchor-margin.bind=\"anchorMargin\">\n      <mdc-list wrap-focus.bind=\"wrapFocus\">\n        <template repeat.for=\"fruit of fruits\">\n          <mdc-list-item if.bind=\"fruit.label\" action-data.bind=\"fruit.label\">${fruit.label}</mdc-list-item>\n          <mdc-list-divider else></mdc-list-divider>\n        </template>\n      </mdc-list>\n    </mdc-menu>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/menu/card.html":
+/*!**********************************!*\
+  !*** ./src/views/menu/card.html ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template>\n  <require from=\"./card.scss\"></require>\n  <mdc-card class=\"demo-card\">\n    <mdc-card-primary-action>\n      <div class=\"demo-card__primary\">\n        <h2 class=\"demo-card__title\" mdc-headline6>Our Changing Planet</h2>\n        <h3 class=\"demo-card__subtitle\" mdc-subtitle2>by Kurt Wagner</h3>\n      </div>\n      <div class=\"demo-card__secondary\" mdcBody2>\n        Select the vertical menu icon button below.\n      </div>\n    </mdc-card-primary-action>\n    <mdc-card-actions>\n      <mdc-card-action-buttons>\n        <button mdc-button>Read</button>\n      </mdc-card-action-buttons>\n      <mdc-card-action-icons>\n        <button mdc-icon-button icon=\"share\"></button>\n        <div mdc-menu-surface-anchor ref=\"cardAnchor\">\n          <button mdc-icon-button icon=\"more_vert\" click.trigger=\"cardMenu.open = !cardMenu.open\"></button>\n          <mdc-menu view-model.ref=\"cardMenu\" anchor.bind=\"cardAnchor\" default-focus-state1=\"FIRST_ITEM\">\n            <mdc-list>\n              <mdc-list-item>Open</mdc-list-item>\n              <mdc-list-item>Dismiss</mdc-list-item>\n            </mdc-list>\n          </mdc-menu>\n        </div>\n      </mdc-card-action-icons>\n    </mdc-card-actions>\n  </mdc-card>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/menu/card.scss":
+/*!**********************************!*\
+  !*** ./src/views/menu/card.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".demo-card{width:350px;margin:28px}.demo-card__primary{padding:1rem}.demo-card__title{margin:0}.demo-card__subtitle{margin:0}.demo-card__secondary,.demo-card__subtitle{color:rgba(0,0,0,.54);color:var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))}.demo-card__secondary{padding:0 1rem 8px}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "views/menu/examples":
 /*!************************************!*\
   !*** ./src/views/menu/examples.ts ***!
@@ -79035,12 +79233,66 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! @material/menu */ "../../node_modules/@material/menu/index.js"), __webpack_require__(/*! aurelia-binding */ "../../node_modules/aurelia-binding/dist/es2015/aurelia-binding.js"), __webpack_require__(/*! !raw-loader!./basic.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/basic.html"), __webpack_require__(/*! !raw-loader!./group.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/group.html"), __webpack_require__(/*! !raw-loader!./group-svg.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/group-svg.html"), __webpack_require__(/*! !raw-loader!./card.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/card.html"), __webpack_require__(/*! !raw-loader!./card.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/menu/card.scss")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, menu_1, aurelia_binding_1, basic_html_1, group_html_1, group_svg_html_1, card_html_1, card_scss_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
+    basic_html_1 = tslib_1.__importDefault(basic_html_1);
+    group_html_1 = tslib_1.__importDefault(group_html_1);
+    group_svg_html_1 = tslib_1.__importDefault(group_svg_html_1);
+    card_html_1 = tslib_1.__importDefault(card_html_1);
+    card_scss_1 = tslib_1.__importDefault(card_scss_1);
     class Examples {
+        constructor() {
+            this.basicHtml = basic_html_1.default;
+            this.groupHtml = group_html_1.default;
+            this.groupSvgHtml = group_svg_html_1.default;
+            this.cardHtml = card_html_1.default;
+            this.cardSass = card_scss_1.default;
+            this.corners = Object.values(menu_1.Corner).filter(x => typeof x === 'string');
+            this.menuSurfaceAnchorCorner = 'BOTTOM_LEFT';
+            this.defaultFocusStates = Object.values(menu_1.DefaultFocusState).filter(x => typeof x === 'string');
+            this.defaultFocusState = this.defaultFocusStates[1];
+            this.fruits = [
+                { label: 'Passionfruit' },
+                { label: 'Orange' },
+                { label: 'Guava' },
+                { label: 'Pitaya' },
+                { label: null },
+                { label: 'Pinaeapple' },
+                { label: 'Mango' },
+                { label: 'Papaya' },
+                { label: 'Lychee' }
+            ];
+            this.marginTop = '0';
+            this.marginBottom = '0';
+            this.marginLeft = '0';
+            this.marginRight = '0';
+            this.quickOpen = false;
+            this.fixed = false;
+            this.wrapFocus = false;
+            this.closeSurfaceOnSelection = true;
+        }
+        get anchorMargin() {
+            return {
+                top: this.marginTop ? parseInt(this.marginTop) : undefined,
+                bottom: this.marginBottom ? parseInt(this.marginBottom) : undefined,
+                left: this.marginLeft ? parseInt(this.marginLeft) : undefined,
+                right: this.marginRight ? parseInt(this.marginRight) : undefined
+            };
+        }
+        onMenuSelect(event) {
+            this.lastSelection = event.index;
+        }
+        addFruit() {
+            this.fruits.push({ label: 'New fruit item' });
+        }
     }
+    tslib_1.__decorate([
+        aurelia_binding_1.computedFrom('marginTop', 'marginBottom', 'marginLeft', 'marginRight'),
+        tslib_1.__metadata("design:type", Object),
+        tslib_1.__metadata("design:paramtypes", [])
+    ], Examples.prototype, "anchorMargin", null);
     exports.Examples = Examples;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -79053,10 +79305,38 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
   !*** ./src/views/menu/examples.html ***!
   \**************************************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-content\">\n    <div class=\"demo-layout--center\">\n      <compose view=\"./basic.html\"></compose>\n    </div>\n\n    <div class=\"demo-layout__row\">\n      <div class=\"demo-content\">\n        <h3 class=\"demo-content__headline\">Anchor Corner</h3>\n        <div class=\"demo-layout__column\">\n          <mdc-radio-group class=\"demo-layout__column\">\n            <mdc-form-field repeat.for=\"corner of corners\">\n              <mdc-radio model.bind=\"corner\" checked.bind=\"menuSurfaceAnchorCorner\"></mdc-radio>\n              <label>${corner}</label>\n            </mdc-form-field>\n          </mdc-radio-group>\n        </div>\n      </div>\n\n      <div class=\"demo-content\">\n        <h3 class=\"demo-content__headline\">Anchor Margin</h3>\n        <div class=\"demo-layout__column\">\n          <mdc-text-field value.bind=\"marginTop\" label=\"Top margin\" type=\"number\">\n          </mdc-text-field>\n          <mdc-text-field value.bind=\"marginBottom\" label=\"Bottom margin\" type=\"number\">\n          </mdc-text-field>\n          <mdc-text-field value.bind=\"marginLeft\" label=\"Left margin\" type=\"number\">\n          </mdc-text-field>\n          <mdc-text-field value.bind=\"marginRight\" label=\"Right margin\" type=\"number\">\n          </mdc-text-field>\n        </div>\n      </div>\n\n      <div class=\"demo-content\">\n        <div class=\"demo-layout__column\">\n          <mdc-form-field>\n            <mdc-checkbox checked.bind=\"quickOpen\"></mdc-checkbox>\n            <label>Disable open animation</label>\n          </mdc-form-field>\n          <mdc-form-field>\n            <mdc-checkbox checked.bind=\"fixed\"></mdc-checkbox>\n            <label>Fixed position</label>\n          </mdc-form-field>\n          <mdc-form-field>\n            <mdc-checkbox checked.bind=\"wrapFocus\"></mdc-checkbox>\n            <label>Wrap keyboard focus</label>\n          </mdc-form-field>\n          <mdc-form-field>\n            <mdc-checkbox checked.bind=\"closeSurfaceOnSelection\"></mdc-checkbox>\n            <label>Close Surface on Selection</label>\n          </mdc-form-field>\n          <mdc-select value.bind=\"defaultFocusState\" label=\"Default Focus State\">\n            <mdc-list-item repeat.for=\"dfs of defaultFocusStates\" value.bind=\"dfs\">${dfs}</mdc-list-item>\n          </mdc-select>\n        </div>\n      </div>\n    </div>\n\n    <button mdc-button click.delegate=\"addFruit()\">Add Fruit</button>\n    <p>Selected index: ${lastSelection}</p>\n    <p>Anchor corner: ${menuSurfaceAnchorCorner}</p>\n    <example-viewer html.bind=\"basicHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Selection Group Menu</h3>\n    <compose view=\"./group.html\"></compose>\n    <example-viewer html.bind=\"groupHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Selection Group Menu - Svg</h3>\n    <compose view=\"./group-svg.html\"></compose>\n    <example-viewer html.bind=\"groupSvgHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Open Menu from Card icon</h3>\n    <compose view=\"./card.html\"></compose>\n    <example-viewer html.bind=\"cardHtml\" sass.bind=\"cardSass\"></example-viewer>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/menu/group-svg.html":
+/*!***************************************!*\
+  !*** ./src/views/menu/group-svg.html ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Basic</h3>\n    <div mdc-menu-surface-anchor>\n      <button mdc-button raised click.trigger=\"menu.toggle()\" style=\"width: 200px\" ref=\"button\">Open</button>\n      <mdc-menu view-model.ref=\"menu\" anchor.bind=\"button\">\n        <mdc-list role=\"menu\">\n          <mdc-list-item role=\"menuitem\">Cats</mdc-list-item>\n          <mdc-list-item role=\"menuitem\">Dogs</mdc-list-item>\n        </mdc-list>\n      </mdc-menu>\n    </div>\n  </div>\n</template>\n";
+var code = "<template>\n  <div mdc-menu-surface-anchor ref=\"demoSimpleAnchor\">\n    <button mdc-button raised click.trigger=\"demoSimple.open = !demoSimple.open\">\n      Show Selection Group Menu\n    </button>\n    <mdc-menu view-model.ref=\"demoSimple\" anchor.bind=\"demoSimpleAnchor\">\n      <mdc-list>\n        <mdc-menu-selection-group>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n                <path d=\"M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z\" />\n              </svg>\n            </mdc-icon>\n            Single\n          </mdc-list-item>\n          <mdc-list-item disabled>\n            <mdc-icon mdc-menu-selection-group-icon>\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n                <path d=\"M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z\" />\n              </svg>\n            </mdc-icon>\n            1.15\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n                <path d=\"M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z\" />\n              </svg>\n            </mdc-icon>\n            Double\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n                <path d=\"M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z\" />\n              </svg>\n            </mdc-icon>\n            Custom: 1.2\n          </mdc-list-item>\n        </mdc-menu-selection-group>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-list-item>Add space before paragraph</mdc-list-item>\n        <mdc-list-item>Add space after paragraph</mdc-list-item>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-list-item>Custom spacing...</mdc-list-item>\n      </mdc-list>\n    </mdc-menu>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/menu/group.html":
+/*!***********************************!*\
+  !*** ./src/views/menu/group.html ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div mdc-menu-surface-anchor ref=\"demoSelectionAnchor\">\n    <button mdc-button raised click.delegate=\"demoSelectionGroup.open = !demoSelectionGroup.open\">\n      Show Selection Group Menu\n    </button>\n    <mdc-menu view-model.ref=\"demoSelectionGroup\" anchor.bind=\"demoSelectionAnchor\">\n      <mdc-list>\n        <mdc-menu-selection-group>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Single\n          </mdc-list-item>\n          <mdc-list-item disabled>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            1.15\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Double\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Custom: 1.2\n          </mdc-list-item>\n        </mdc-menu-selection-group>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-menu-selection-group>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Item\n          </mdc-list-item>\n          <mdc-list-item>\n            <mdc-icon mdc-menu-selection-group-icon>check</mdc-icon>\n            Another Item\n          </mdc-list-item>\n        </mdc-menu-selection-group>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-list-item>Add space before paragraph</mdc-list-item>\n        <mdc-list-item>Add space after paragraph</mdc-list-item>\n        <mdc-list-divider></mdc-list-divider>\n        <mdc-list-item>Custom spacing...</mdc-list-item>\n      </mdc-list>\n    </mdc-menu>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -79286,7 +79566,7 @@ var ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___ = __webpack_require__(/*! ../../../
 var ___HTML_LOADER_IMPORT_0___ = __webpack_require__(/*! ../../assets/github-circle-white-transparent.svg */ "./src/assets/github-circle-white-transparent.svg");
 // Module
 var ___HTML_LOADER_REPLACER_0___ = ___HTML_LOADER_GET_SOURCE_FROM_IMPORT___(___HTML_LOADER_IMPORT_0___);
-var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.12</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\" tabindex=\"0\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
+var code = "<template>\n  <require from=\"./root.scss\"></require>\n  <mdc-top-app-bar fixed class=\"demo-top-app-bar\">\n    <mdc-top-app-bar-row>\n      <mdc-top-app-bar-section>\n        <button mdc-top-app-bar-nav-icon click.delegate=\"drawer.toggle()\"><i class=\"material-icons\">menu</i></button>\n        <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>\n      </mdc-top-app-bar-section>\n      <mdc-top-app-bar-section align=\"end\">\n        <span>v1.0.0-alpha.13</span>\n        <a mdc-top-app-bar-action-item href=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web\" alt=\"GitHub\"\n          target=\"_blank\" rel=\"noopener\">\n          <i class=\"material-icons\" aria-hidden=\"true\" role=\"img\">\n            <img src=\"" + ___HTML_LOADER_REPLACER_0___ + "\" height=\"24\">\n          </i>\n        </a>\n      </mdc-top-app-bar-section>\n    </mdc-top-app-bar-row>\n  </mdc-top-app-bar>\n  <div class=\"demo-panel\">\n    <mdc-drawer view-model.ref=\"drawer\" type=\"dismissible\" mdc-top-app-bar-fixed-adjust>\n      <mdc-drawer-header title=\"Aurelia\" subtitle=\"Material Components Web\"></mdc-drawer-header>\n      <mdc-drawer-content>\n        <mdc-list activated wrap-focus mdclist:action.delegate=\"navigateTo($event.detail)\" tabindex=\"0\">\n          <template repeat.for=\"m of navModels\">\n            <mdc-list-item activated.bind=\"m.isActive\" action-data.bind=\"m\">\n              ${m.title}\n            </mdc-list-item>\n            <mdc-list-divider if.bind=\"m.config.divider\"></mdc-list-divider>\n          </template>\n        </mdc-list>\n      </mdc-drawer-content>\n    </mdc-drawer>\n    <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class=\"demo-panel-section\">\n      <router-view></router-view>\n    </mdc-drawer-app-content>\n  </div>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -79857,4 +80137,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.ad056e34b400fd92b18b.bundle.map
+//# sourceMappingURL=app.ba71b89236fc8cb849b2.bundle.map
