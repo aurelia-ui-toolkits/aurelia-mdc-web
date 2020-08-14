@@ -3,7 +3,7 @@
   <div class="demo-content">
     <div class="demo-layout--center">
       <div mdc-menu-surface-anchor ref="demoAnchor">
-        <button mdc-button raised click.delegate="demo.open = !demo.open">Show Menu</button>
+        <button mdc-button raised click.trigger="demo.open = !demo.open">Show Menu</button>
         <mdc-menu view-model.ref="demo" mdcmenu:selected.trigger="onMenuSelect($event.detail)" anchor.bind="demoAnchor"
           anchor-corner.bind="menuSurfaceAnchorCorner" quick-open.bind="quickOpen"
           default-focus-state.bind="defaultFocusState" fixed.bind="fixed"
@@ -127,7 +127,7 @@
   <div class="demo-content">
     <h3 class="demo-content__headline">Selection Group Menu - Svg</h3>
     <div mdc-menu-surface-anchor ref="demoSimpleAnchor">
-      <button mdc-button raised click.delegate="demoSimple.open = !demoSimple.open">
+      <button mdc-button raised click.trigger="demoSimple.open = !demoSimple.open">
         Show Selection Group Menu
       </button>
       <mdc-menu view-model.ref="demoSimple" anchor.bind="demoSimpleAnchor">
@@ -200,7 +200,7 @@
         <mdc-card-action-icons>
           <button mdc-icon-button icon="share"></button>
           <div mdc-menu-surface-anchor ref="cardAnchor">
-            <button mdc-icon-button icon="more_vert" click.delegate="cardMenu.open = !cardMenu.open"></button>
+            <button mdc-icon-button icon="more_vert" click.trigger="cardMenu.open = !cardMenu.open"></button>
             <mdc-menu view-model.ref="cardMenu" anchor.bind="cardAnchor" default-focus-state1="FIRST_ITEM">
               <mdc-list>
                 <mdc-list-item>Open</mdc-list-item>
