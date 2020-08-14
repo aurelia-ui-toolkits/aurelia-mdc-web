@@ -1,8 +1,19 @@
 import { Corner, DefaultFocusState } from '@material/menu';
 import { computedFrom } from 'aurelia-binding';
 import { MDCMenuDistance } from '@material/menu-surface';
+import basicHtml from '!!raw-loader!./basic.html';
+import groupHtml from '!!raw-loader!./group.html';
+import groupSvgHtml from '!!raw-loader!./group-svg.html';
+import cardHtml from '!!raw-loader!./card.html';
+import cardSass from '!!raw-loader!./card.scss';
 
 export class Examples {
+  basicHtml = basicHtml;
+  groupHtml = groupHtml;
+  groupSvgHtml = groupSvgHtml;
+  cardHtml = cardHtml;
+  cardSass = cardSass;
+
   corners = Object.values(Corner).filter(x => typeof x === 'string');
   menuSurfaceAnchorCorner = 'BOTTOM_LEFT';
 
