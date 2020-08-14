@@ -103,30 +103,30 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
           chipId: this.id,
           selected: selected,
           shouldIgnore: chipSetShouldIgnore
-        }),
+        }, true),
       notifyTrailingIconInteraction: () =>
         this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.TRAILING_ICON_INTERACTION_EVENT, {
             chipId: this.id
-          }),
+          }, true),
       notifyRemoval: (removedAnnouncement) =>
         this.emit<MDCChipRemovalEventDetail>(MDCChipFoundation.strings.REMOVAL_EVENT, {
           chipId: this.id,
           removedAnnouncement: removedAnnouncement
-        }),
+        }, true),
       notifyNavigation: (key: string, source: any) =>
         this.emit<MDCChipNavigationEventDetail>(MDCChipFoundation.strings.NAVIGATION_EVENT, {
           chipId: this.id,
           key: key,
           source: source
-        }),
+        }, true),
       notifyEditStart: () =>
         this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.INTERACTION_EVENT, {
           chipId: this.id
-        }),
+        }, true),
       notifyEditFinish: () =>
         this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.INTERACTION_EVENT, {
           chipId: this.id
-        }),
+        }, true),
       getComputedStyleValue: (propertyName: string) =>
         window.getComputedStyle(this.root).getPropertyValue(propertyName),
       setStyleProperty: (propertyName: string, value: string) =>
