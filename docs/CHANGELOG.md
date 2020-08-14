@@ -1,3 +1,28 @@
+# [v1.0.0-alpha.14](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2020-08-14)
+
+
+### Bug Fixes
+
+* **app:** open menu on `trigger` ([101fef8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/101fef846af813fedace6522e640f87c1394339d))
+* **card:** set action classes on correct element ([14387af](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/14387afe63669b2e88b5e36716fd45ae037669d9))
+* **icon-button:** set button icon size height ([2b94361](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2b94361355d644ca1d3fccf531587eccf857df9a))
+* **menu:** close menu by default ([9de0438](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9de04383296dc9fdd2065d85d83365e6cdc5eba3))
+* **menu:** expose quick open as an attribute ([b512cb9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b512cb962e56ede33a50fc73e72b2a85b9e0b6c6))
+* **menu-surface:** expose quick open as an attribute ([d48ada0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d48ada0577031000b24b056cbe4804d7e7131fe8))
+* **select:** reset validation on attached ([e057b77](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e057b77c10423303eb4c495e327b9aab0d43bbc5))
+* **select:** set initial value without emitting change events ([77e9f2a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/77e9f2a3c212a3fca87d3931963d6eca40c2cd09))
+* **text-field:** reset validation on attached ([81b6807](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/81b6807aa56f5d48ee0e6a1faefa59e800923ccc))
+
+
+### Features
+
+* **app:** menu example ([2f8e08a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2f8e08ad214d9b92c56dc7df3502bae34b5a07a5))
+* **app:** menu example snippets ([8297875](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/829787532361842e283d0559b7780a9813636f20))
+* **app:** menu examples ([ba45625](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ba4562575ee6e1b19aec20e4a800650d53414314))
+* **menu:** add selection groups ([dd2bc62](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/dd2bc621a24d41f246144baa8f9397595c621757))
+
+
+
 # [v1.0.0-alpha.13](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2020-08-12)
 
 
