@@ -7,6 +7,12 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcChipIcon } from '../mdc-chip-icon/mdc-chip-icon';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
+MDCChipFoundation.strings.REMOVAL_EVENT = MDCChipFoundation.strings.REMOVAL_EVENT.toLowerCase();
+MDCChipFoundation.strings.SELECTION_EVENT = MDCChipFoundation.strings.SELECTION_EVENT.toLowerCase();
+MDCChipFoundation.strings.NAVIGATION_EVENT = MDCChipFoundation.strings.NAVIGATION_EVENT.toLowerCase();
+MDCChipFoundation.strings.INTERACTION_EVENT = MDCChipFoundation.strings.INTERACTION_EVENT.toLowerCase();
+MDCChipFoundation.strings.TRAILING_ICON_INTERACTION_EVENT = MDCChipFoundation.strings.TRAILING_ICON_INTERACTION_EVENT.toLowerCase();
+
 let chipId = 0;
 
 @inject(Element)
