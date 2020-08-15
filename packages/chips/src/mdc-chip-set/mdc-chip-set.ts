@@ -1,7 +1,9 @@
 import { useView, inject, PLATFORM, customElement, children } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
-import { MDCChipSetFoundation, MDCChipSetAdapter, MDCChip, 
-  MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail } from '@material/chips';
+import {
+  MDCChipSetFoundation, MDCChipSetAdapter, MDCChip,
+  MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail
+} from '@material/chips';
 import { announce } from '@material/dom/announce';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 
@@ -65,7 +67,7 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
         }
       },
       getIndexOfChipById: (chipId: string): number => {
-        return this.chips.findIndex(_ => _.id == chipId);
+        return this.chips.findIndex(_ => _.id === chipId);
       },
       focusChipPrimaryActionAtIndex: (index: number) => this.chips[index].focusPrimaryAction(),
       focusChipTrailingActionAtIndex: (index: number) => this.chips[index].focusTrailingAction(),
