@@ -1,17 +1,15 @@
 import { useView, inject, PLATFORM, customElement, children } from 'aurelia-framework';
-import {
-  MDCChipSetFoundation, MDCChipSetAdapter, MDCChip
-} from '@material/chips';
-import { MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail } from '@material/chips';
+import { bindable } from 'aurelia-typed-observable-plugin';
+import { MDCChipSetFoundation, MDCChipSetAdapter, MDCChip, 
+  MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail } from '@material/chips';
 import { announce } from '@material/dom/announce';
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { bindable } from 'aurelia-typed-observable-plugin';
 
 let chipSetId = 0;
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-chip-set.html'))
-@customElement("mdc-chip-set")
+@customElement('mdc-chip-set')
 export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
 
   id: string = `mdc-chip-set-${++chipSetId}`;
@@ -29,7 +27,7 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
   input: boolean;
 
   // a list of MDC chips
-  @children("mdc-chip")
+  @children('mdc-chip')
   chips: MDCChip[];
 
   // async initialise() {

@@ -1,10 +1,10 @@
 import { inject, customElement, useView, PLATFORM, child, ViewCompiler, ViewResources, processContent } from 'aurelia-framework';
 import { MDCChipFoundation, MDCChipAdapter, chipCssClasses,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail } from '@material/chips';
-import { MdcChipPrimaryAction } from './../mdc-chip-primary-action/mdc-chip-primary-action';
-import { MdcChipCheckmark } from '../mdc-chip-checkmark';
+import { MdcChipPrimaryAction, IMdcChipPrimaryActionElement } from '../mdc-chip-primary-action/mdc-chip-primary-action';
+import { MdcChipCheckmark, IMdcChipCheckmarkElement } from '../mdc-chip-checkmark';
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MdcChipIcon } from '../mdc-chip-icon/mdc-chip-icon';
+import { MdcChipIcon, IMdcChipIconElement } from '../mdc-chip-icon/mdc-chip-icon';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 MDCChipFoundation.strings.REMOVAL_EVENT = MDCChipFoundation.strings.REMOVAL_EVENT.toLowerCase();
@@ -17,34 +17,63 @@ let chipId = 0;
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-chip.html'))
-@customElement("mdc-chip")
+@customElement('mdc-chip')
 @processContent(MdcChip.processContent)
 export class MdcChip extends MdcComponent<MDCChipFoundation> {
   cssClasses = chipCssClasses;
 
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
 
-    const primaryAction = element.querySelector("mdc-chip-primary-action");
+    const primaryAction = element.querySelector('mdc-chip-primary-action');
     primaryAction?.setAttribute('slot', 'primary-action');
 
-    const chipText = element.querySelector("mdc-chip-text");
+    const chipText = element.querySelector('mdc-chip-text');
     chipText?.setAttribute('slot', 'chip-text');
 
     // move icon to the slot - this allows omitting slot specification
-    const leadingIcon = element.querySelector("mdc-chip-icon[leading]");
+    const leadingIcon = element.querySelector('mdc-chip-icon[leading]');
     leadingIcon?.setAttribute('slot', 'leading-icon');
 
     // move icon to the slot - this allows omitting slot specification
-    const trailingIcon = element.querySelector("mdc-chip-icon[trailing]");
+    const trailingIcon = element.querySelector('mdc-chip-icon[trailing]');
     trailingIcon?.setAttribute('slot', 'trailing-icon');
 
-    const checkMark = element.querySelector("mdc-chip-checkmark");
+    const checkMark = element.querySelector('mdc-chip-checkmark');
     checkMark?.setAttribute('slot', 'checkmark');
 
     return true;
   }
 
-  /**
+  id: string = `mdc-chip-${++chipId}`;
+
+  @bindable.booleanAttr
+  touch: boolean;
+
+  @child('mdc-chip-primary-action')
+  primaryActionElement?: MdcChipPrimaryAction;
+
+  @child('mdc-chip-icon.mdc-chip-icon--leading')
+  leadingIconElement?: MdcChipIcon;
+
+  @child('mdc-chip-icon.mdc-chip-icon--trailing')
+  trailingIconElement?: MdcChipIcon;
+
+  @child('mdc-chip-checkmark')
+  checkmarkElement?: MdcChipCheckmark;
+
+  @bindable.number
+  tabindex: number = 0;
+
+  @bindable
+  role: string = 'button';
+
+  @bindable
+  leadingIcon?: string;
+
+  @bindable.booleanAttr
+  checkmark?: boolean;
+
+    /**
    * @return Whether the chip is selected.
    */
   get selected(): boolean {
@@ -79,60 +108,31 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     this.foundation?.setShouldFocusPrimaryActionOnClick(shouldFocus);
   }
 
-  id: string = `mdc-chip-${++chipId}`;
-
-  @bindable.booleanAttr
-  touch: boolean;
-  
-  @child("mdc-chip-primary-action")
-  primaryActionElement?: MdcChipPrimaryAction;
-
-  @child("mdc-chip-icon.mdc-chip-icon--leading")
-  leadingIconElement?: MdcChipIcon;
-
-  @child("mdc-chip-icon.mdc-chip-icon--trailing")
-  trailingIconElement?: MdcChipIcon;
-
-  @child("mdc-chip-checkmark")
-  checkmarkElement?: MdcChipCheckmark;
-
-  @bindable.number
-  tabindex: number = 0;
-
-  @bindable
-  role: string = "button";
-
-  @bindable
-  leadingIcon?: string;
-
-  @bindable.booleanAttr
-  checkmark?: boolean;
-
   async attached(): Promise<void> {
     /* @Child does not really work well when there is a span element between the chip and the child element;
        it has also problems with defaults for slots */
     if(this.primaryActionElement === undefined) {
-      const element = this.root.querySelector("mdc-chip-primary-action");
+      const element = this.root.querySelector('mdc-chip-primary-action');
       if(element) {
-        this.primaryActionElement = (<any>element).au.controller.viewModel;
+        this.primaryActionElement = (element as IMdcChipPrimaryActionElement).au.controller.viewModel;
       }
     }
     if(this.leadingIconElement === undefined) {
-      const element = this.root.querySelector("mdc-chip-icon.mdc-chip-icon--leading");
+      const element = this.root.querySelector('mdc-chip-icon.mdc-chip-icon--leading');
       if(element) {
-        this.leadingIconElement = (<any>element).au.controller.viewModel;
+        this.leadingIconElement = (element as IMdcChipIconElement).au.controller.viewModel;
       }
     }
     if(this.trailingIconElement === undefined) {
-      const element = this.root.querySelector("mdc-chip-icon.mdc-chip-icon--trailing");
+      const element = this.root.querySelector('mdc-chip-icon.mdc-chip-icon--trailing');
       if(element) {
-        this.trailingIconElement = (<any>element).au.controller.viewModel;
+        this.trailingIconElement = (element as IMdcChipIconElement).au.controller.viewModel;
       }
     }
     if(this.checkmarkElement === undefined) {
-      const element = this.root.querySelector("mdc-chip-checkmark");
+      const element = this.root.querySelector('mdc-chip-checkmark');
       if(element) {
-        this.checkmarkElement = (<any>element).au.controller.viewModel;
+        this.checkmarkElement = (element as IMdcChipCheckmarkElement).au.controller.viewModel;
       }
     }
     return super.attached();

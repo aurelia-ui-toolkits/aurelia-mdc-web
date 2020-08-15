@@ -1,10 +1,10 @@
-import { customElement, inject, bindable, useView, PLATFORM } from 'aurelia-framework';
+import { customElement, inject, bindable, useView, PLATFORM, View } from 'aurelia-framework';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-chip-primary-action.html'))
-@customElement("mdc-chip-primary-action")
+@customElement('mdc-chip-primary-action')
 export class MdcChipPrimaryAction {
-  @bindable role: string = "button";
+  @bindable role: string = 'button';
   @bindable tabindex: number = 0;
 
   constructor(public root: HTMLElement) { }
@@ -12,4 +12,13 @@ export class MdcChipPrimaryAction {
   focus() {
     this.root.focus();
   }
+}
+
+export interface IMdcChipPrimaryActionElement extends HTMLElement {
+  au: {
+    controller: {
+      view: View;
+      viewModel: MdcChipPrimaryAction;
+    };
+  };
 }
