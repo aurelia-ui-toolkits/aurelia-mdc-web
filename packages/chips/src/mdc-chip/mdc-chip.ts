@@ -1,7 +1,7 @@
-import { inject, customElement, useView, PLATFORM, child } from 'aurelia-framework';
+import { inject, customElement, useView, PLATFORM, child, ViewCompiler, ViewResources, processContent } from 'aurelia-framework';
 import { MDCChipFoundation, MDCChipAdapter, chipCssClasses,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail } from '@material/chips';
-import { MdcChipPrimaryAction } from './../mdc-chip-primary-action';
+import { MdcChipPrimaryAction } from './../mdc-chip-primary-action/mdc-chip-primary-action';
 import { MdcChipCheckmark } from '../mdc-chip-checkmark';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcChipIcon } from '../mdc-chip-icon/mdc-chip-icon';
@@ -18,8 +18,31 @@ let chipId = 0;
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-chip.html'))
 @customElement("mdc-chip")
+@processContent(MdcChip.processContent)
 export class MdcChip extends MdcComponent<MDCChipFoundation> {
   cssClasses = chipCssClasses;
+
+  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
+
+    const primaryAction = element.querySelector("mdc-chip-primary-action");
+    primaryAction?.setAttribute('slot', 'primary-action');
+
+    const chipText = element.querySelector("mdc-chip-text");
+    chipText?.setAttribute('slot', 'chip-text');
+
+    // move icon to the slot - this allows omitting slot specification
+    const leadingIcon = element.querySelector("mdc-chip-icon[leading]");
+    leadingIcon?.setAttribute('slot', 'leading-icon');
+
+    // move icon to the slot - this allows omitting slot specification
+    const trailingIcon = element.querySelector("mdc-chip-icon[trailing]");
+    trailingIcon?.setAttribute('slot', 'trailing-icon');
+
+    const checkMark = element.querySelector("mdc-chip-checkmark");
+    checkMark?.setAttribute('slot', 'checkmark');
+
+    return true;
+  }
 
   /**
    * @return Whether the chip is selected.
@@ -58,31 +81,68 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
 
   id: string = `mdc-chip-${++chipId}`;
 
-  // @bindable.booleanAttr
-  // selected: boolean;
-
   @bindable.booleanAttr
   touch: boolean;
+  
+  @child("mdc-chip-primary-action")
+  primaryActionElement?: MdcChipPrimaryAction;
 
   @child("mdc-chip-icon.mdc-chip-icon--leading")
-  leadingIcon?: MdcChipIcon;
+  leadingIconElement?: MdcChipIcon;
 
   @child("mdc-chip-icon.mdc-chip-icon--trailing")
-  trailingIcon?: MdcChipIcon;
+  trailingIconElement?: MdcChipIcon;
 
   @child("mdc-chip-checkmark")
-  checkmark?: MdcChipCheckmark;
+  checkmarkElement?: MdcChipCheckmark;
 
-  @child("mdc-chip-primary-action")
-  primaryAction?: MdcChipPrimaryAction;
+  @bindable.number
+  tabindex: number = 0;
+
+  @bindable
+  role: string = "button";
+
+  @bindable
+  leadingIcon?: string;
+
+  @bindable.booleanAttr
+  checkmark?: boolean;
+
+  async attached(): Promise<void> {
+    /* @Child does not really work well when there is a span element between the chip and the child element;
+       it has also problems with defaults for slots */
+    if(this.primaryActionElement === undefined) {
+      const element = this.root.querySelector("mdc-chip-primary-action");
+      if(element) {
+        this.primaryActionElement = (<any>element).au.controller.viewModel;
+      }
+    }
+    if(this.leadingIconElement === undefined) {
+      const element = this.root.querySelector("mdc-chip-icon.mdc-chip-icon--leading");
+      if(element) {
+        this.leadingIconElement = (<any>element).au.controller.viewModel;
+      }
+    }
+    if(this.trailingIconElement === undefined) {
+      const element = this.root.querySelector("mdc-chip-icon.mdc-chip-icon--trailing");
+      if(element) {
+        this.trailingIconElement = (<any>element).au.controller.viewModel;
+      }
+    }
+    if(this.checkmarkElement === undefined) {
+      const element = this.root.querySelector("mdc-chip-checkmark");
+      if(element) {
+        this.checkmarkElement = (<any>element).au.controller.viewModel;
+      }
+    }
+    return super.attached();
+  }
 
   focus() {
     this.root.focus();
   }
 
   getDefaultFoundation() {
-    console.log(MDCChipFoundation.strings.INTERACTION_EVENT);
-
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
     // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
     const adapter: MDCChipAdapter = {
@@ -90,9 +150,9 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
       removeClass: (className) => this.root.classList.remove(className),
       hasClass: (className) => this.root.classList.contains(className),
       addClassToLeadingIcon: (className: string) =>
-        this.leadingIcon?.element?.classList?.add(className),
+        this.leadingIconElement?.element?.classList?.add(className),
       removeClassFromLeadingIcon: (className: string) =>
-        this.leadingIcon?.element?.classList?.remove(className),
+        this.leadingIconElement?.element?.classList?.remove(className),
       eventTargetHasClass: (target: EventTarget | null, className: string) =>
         (target && (target as Element).classList) ? (target as Element).classList.contains(className) : false,
       getAttribute: (attr: string) => this.root.getAttribute(attr),
@@ -131,13 +191,13 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
         window.getComputedStyle(this.root).getPropertyValue(propertyName),
       setStyleProperty: (propertyName: string, value: string) =>
         this.root.style.setProperty(propertyName, value),
-      hasLeadingIcon: () => !!this.leadingIcon,
+      hasLeadingIcon: () => !!this.leadingIconElement,
       getRootBoundingClientRect: () => this.root.getBoundingClientRect(),
       getCheckmarkBoundingClientRect: () =>
-        this.checkmark?.element?.getBoundingClientRect() ?? null,
-      setPrimaryActionAttr: (attr: string, value: string) => this.primaryAction?.root?.setAttribute(attr, value),
-      focusPrimaryAction: () => this.primaryAction?.focus(),
-      focusTrailingAction: () => this.trailingIcon?.focus(),
+        this.checkmarkElement?.element?.getBoundingClientRect() ?? null,
+      setPrimaryActionAttr: (attr: string, value: string) => this.primaryActionElement?.root?.setAttribute(attr, value),
+      focusPrimaryAction: () => this.primaryActionElement?.focus(),
+      focusTrailingAction: () => this.trailingIconElement?.focus(),
       removeTrailingActionFocus: () => {},
       isTrailingActionNavigable: () => true,
       isRTL: () => typeof window !== 'undefined' ?

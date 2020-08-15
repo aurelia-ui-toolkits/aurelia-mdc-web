@@ -1,7 +1,7 @@
-import { customElement, inlineView, inject, bindable } from 'aurelia-framework';
+import { customElement, inject, bindable, useView, PLATFORM } from 'aurelia-framework';
 
 @inject(Element)
-@inlineView("<template class='mdc-chip__action--primary' role='${role}' tabindex=${tabindex}><slot></slot></template>")
+@useView(PLATFORM.moduleName('./mdc-chip-primary-action.html'))
 @customElement("mdc-chip-primary-action")
 export class MdcChipPrimaryAction {
   @bindable role: string = "button";

@@ -3,19 +3,21 @@
 		<h3 class="demo-content__headline">Chips</h3>
 		<div class="demo-layout__row">
 			<mdc-chip-set>
-				<mdc-chip>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="button" tabindex="0">
-							<mdc-chip-text>Chip One</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+				<!-- Compact notation -->
+				<mdc-chip tabindex="0">
+					Chip One
 				</mdc-chip>
+				<!-- Notation with primary action -->
 				<mdc-chip>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="button" tabindex="-1">
-							<mdc-chip-text>Chip Two</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+					<mdc-chip-primary-action tabindex=-1>
+						Chip Two
+					</mdc-chip-primary-action>
+				</mdc-chip>
+				<!-- Full notation with primary action and chip text -->
+				<mdc-chip>
+					<mdc-chip-primary-action role="button" tabindex=-1>
+						<mdc-chip-text>Chip Three</mdc-chip-text>
+					</mdc-chip-primary-action>
 				</mdc-chip>
 			</mdc-chip-set>
 		</div>
@@ -24,40 +26,27 @@
 		<h3 class="demo-content__headline">Choice Chips</h3>
 		<div class="demo-layout__row">
 			<mdc-chip-set choice>
-				<mdc-chip>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="button" tabindex=0>
-							<mdc-chip-text>Extra Small</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+				<!-- Compact notation -->
+				<mdc-chip tabindex=0>
+					Extra Small
 				</mdc-chip>
-				<mdc-chip>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="button" tabindex=0>
-							<mdc-chip-text>Small</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+				<mdc-chip tabindex=0>
+					Small
 				</mdc-chip>
-				<mdc-chip>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="button" tabindex=0>
-							<mdc-chip-text>Medium</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+				<mdc-chip tabindex=0>
+					Medium
 				</mdc-chip>
+				<!-- Notation with primary action -->
 				<mdc-chip>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="button" tabindex=0>
-							<mdc-chip-text>Large</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+					<mdc-chip-primary-action role="button" tabindex=0>
+						Large
+					</mdc-chip-primary-action>
 				</mdc-chip>
+				<!-- Full notation with primary action and chip text -->
 				<mdc-chip>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="button" tabindex=0>
-							<mdc-chip-text>Extra Large</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+					<mdc-chip-primary-action role="button" tabindex=0>
+						<mdc-chip-text>Extra Large</mdc-chip-text>
+					</mdc-chip-primary-action>
 				</mdc-chip>
 			</mdc-chip-set>
 		</div>
@@ -66,21 +55,21 @@
 		<h3 class="demo-content__headline">Choice Chips with leading icon</h3>
 		<div class="demo-layout__row">
 			<mdc-chip-set choice>
-				<mdc-chip>
-					<mdc-chip-icon leading>face</mdc-chip-icon>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="button" tabindex=0>
-							<mdc-chip-text>Arjen</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+				<!-- Compact notation -->
+				<mdc-chip leading-icon="face">
+					Arjen
 				</mdc-chip>
+				<!-- Compact notation with chip icon -->
 				<mdc-chip>
 					<mdc-chip-icon leading>face</mdc-chip-icon>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="button" tabindex=0>
-							<mdc-chip-text>Maxim</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+					Maxim
+				</mdc-chip>
+				<!-- Full notation -->
+				<mdc-chip>
+					<mdc-chip-icon leading>face</mdc-chip-icon>
+					<mdc-chip-primary-action role="button" tabindex=0>
+						<mdc-chip-text>John</mdc-chip-text>
+					</mdc-chip-primary-action>
 				</mdc-chip>
 			</mdc-chip-set>
 		</div>
@@ -89,21 +78,21 @@
 		<h3 class="demo-content__headline">Filter Chips with checkmarks</h3>
 		<div class="demo-layout__row">
 			<mdc-chip-set filter>
-				<mdc-chip>
-					<mdc-chip-checkmark></mdc-chip-checkmark>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="checkbox" tabindex=0>
-							<mdc-chip-text>One</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+				<!-- Compact notation -->
+				<mdc-chip role="checkbox" checkmark>
+					One
 				</mdc-chip>
+				<!-- Compact notation with check-mark -->
+				<mdc-chip role="checkbox">
+					<mdc-chip-checkmark></mdc-chip-checkmark>
+					Two
+				</mdc-chip>
+				<!-- Full notation -->
 				<mdc-chip>
 					<mdc-chip-checkmark></mdc-chip-checkmark>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="checkbox" tabindex=0>
-							<mdc-chip-text>Two</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
+					<mdc-chip-primary-action role="checkbox" tabindex=0>
+						<mdc-chip-text>Three</mdc-chip-text>
+					</mdc-chip-primary-action>
 				</mdc-chip>
 			</mdc-chip-set>
 		</div>
@@ -111,26 +100,27 @@
 	<div class="demo-content">
 		<h3 class="demo-content__headline">Filter Chips with leading icon</h3>
 		<div class="demo-layout__row">
-			<mdc-chip-set filter>
-				<mdc-chip>
-					<mdc-chip-icon leading>filter_1</mdc-chip-icon>
-					<mdc-chip-checkmark></mdc-chip-checkmark>
-					<span role="gridcell">
+			<div class="demo-layout__row">
+				<mdc-chip-set filter>
+					<!-- Compact notation -->
+					<mdc-chip role="checkbox" leading-icon="filter_1" checkmark>
+						One
+					</mdc-chip>
+					<!-- Compact notation with check-mark -->
+					<mdc-chip role="checkbox" leading-icon="filter_2">
+						<mdc-chip-checkmark></mdc-chip-checkmark>
+						Two
+					</mdc-chip>
+					<!-- Full notation -->
+					<mdc-chip>
+						<mdc-chip-icon leading>filter_3</mdc-chip-icon>
+						<mdc-chip-checkmark></mdc-chip-checkmark>
 						<mdc-chip-primary-action role="checkbox" tabindex=0>
-							<mdc-chip-text>One</mdc-chip-text>
+							<mdc-chip-text>Three</mdc-chip-text>
 						</mdc-chip-primary-action>
-					</span>
-				</mdc-chip>
-				<mdc-chip>
-					<mdc-chip-icon leading>filter_2</mdc-chip-icon>
-					<mdc-chip-checkmark></mdc-chip-checkmark>
-					<span role="gridcell">
-						<mdc-chip-primary-action role="checkbox" tabindex=0>
-							<mdc-chip-text>Two</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</span>
-				</mdc-chip>
-			</mdc-chip-set>
+					</mdc-chip>
+				</mdc-chip-set>
+			</div>
 		</div>
 	</div>
 </template>

@@ -5,6 +5,21 @@
   click.trigger="handleClick_($event)" keydown.trigger="handleKeydown_($event)"
   transitionend.trigger="handleTransitionEnd_($event)" focusin.trigger="handleFocusIn_($event)" focusout.trigger="handleFocusOut_($event)">
   <div class="mdc-chip__ripple"></div>
-  <slot>
+  <slot name="leading-icon">
+    <mdc-chip-icon leading if.bind="leadingIcon != undefined">${leadingIcon}</mdc-chip-icon>
   </slot>
+  <slot name="checkmark">
+    <mdc-chip-checkmark if.bind="checkmark"></mdc-chip-checkmark>
+  </slot>
+  <span role="gridcell">
+    <slot name="primary-action">
+      <mdc-chip-primary-action role.bind="role" tabindex.bind="tabindex">
+        <slot></slot>
+      </mdc-chip-primary-action>
+    </slot>
+  </span>
+  <span role="gridcell">
+    <slot name="trailing-icon">
+    </slot>
+  </span>
 </template>
