@@ -52,6 +52,18 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     this.foundation?.setQuickOpen(quickOpen);
   }
 
+  get open(): boolean {
+    return this.foundation!.isOpen();
+  }
+
+  set open(value: boolean) {
+    if (value) {
+      this.foundation?.open();
+    } else {
+      this.foundation?.close();
+    }
+  }
+
   handleKeydown(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
   }
@@ -120,14 +132,6 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       this.originalParent.appendChild(document.body.removeChild(this.root));
     }
     super.destroy();
-  }
-
-  isOpen(): boolean {
-    return this.foundation!.isOpen();
-  }
-
-  open() {
-    this.foundation?.open();
   }
 
   close(skipRestoreFocus = false) {

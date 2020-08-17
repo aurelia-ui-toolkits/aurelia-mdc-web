@@ -76,15 +76,11 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   }
 
   get open(): boolean {
-    return this.menuSurface_.isOpen();
+    return this.menuSurface_.open;
   }
 
   set open(value: boolean) {
-    if (value) {
-      this.menuSurface_.open();
-    } else {
-      this.menuSurface_.close();
-    }
+    this.menuSurface_.open = value;
   }
 
   toggle() {
