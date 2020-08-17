@@ -2,6 +2,7 @@
     material-icons mdc-chip__icon
     ${leading ? 'mdc-chip-icon--leading' : ''}
     ${trailing ? 'mdc-chip-icon--trailing' : ''}
-    ">
+    "
+    click.trigger="handleClick_($event)" keydown.trigger="handleKeydown_($event)">
     <slot></slot>
 </template>

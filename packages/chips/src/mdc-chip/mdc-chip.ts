@@ -1,4 +1,4 @@
-import { inject, customElement, useView, PLATFORM, child, ViewCompiler, ViewResources, processContent } from 'aurelia-framework';
+import { inject, customElement, useView, PLATFORM, child, ViewCompiler, ViewResources, processContent, View } from 'aurelia-framework';
 import {
   MDCChipFoundation, MDCChipAdapter, chipCssClasses,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail
@@ -72,6 +72,9 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
 
   @bindable
   leadingIcon?: string;
+
+  @bindable
+  trailingIcon?: string;
 
   @bindable.booleanAttr
   checkmark?: boolean;
@@ -158,9 +161,9 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
       removeClass: (className) => this.root.classList.remove(className),
       hasClass: (className) => this.root.classList.contains(className),
       addClassToLeadingIcon: (className: string) =>
-        this.leadingIconElement?.element?.classList?.add(className),
+        this.leadingIconElement?.root?.classList?.add(className),
       removeClassFromLeadingIcon: (className: string) =>
-        this.leadingIconElement?.element?.classList?.remove(className),
+        this.leadingIconElement?.root?.classList?.remove(className),
       eventTargetHasClass: (target: EventTarget | null, className: string) =>
         (target && (target as Element).classList) ? (target as Element).classList.contains(className) : false,
       getAttribute: (attr: string) => this.root.getAttribute(attr),
@@ -238,6 +241,10 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     return true;
   }
 
+  handleTrailingIconInteraction(): void {
+    this.foundation?.handleTrailingActionInteraction();
+  }
+
   setSelectedFromChipSet(selected: boolean, shouldNotifyClients: boolean) {
     this.foundation?.setSelectedFromChipSet(selected, shouldNotifyClients);
   }
@@ -253,4 +260,13 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   removeFocus() {
     this.foundation?.removeFocus();
   }
+}
+
+export interface IMdcChipElement extends HTMLElement {
+  au: {
+      controller: {
+          view: View;
+          viewModel: MdcChip;
+      };
+  };
 }
