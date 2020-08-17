@@ -5,9 +5,11 @@
   click.trigger="handleClick_($event)" keydown.trigger="handleKeydown_($event)"
   transitionend.trigger="handleTransitionEnd_($event)" focusin.trigger="handleFocusIn_($event)" focusout.trigger="handleFocusOut_($event)">
   <div class="mdc-chip__ripple"></div>
-  <slot name="leading-icon">
-    <mdc-chip-icon leading if.bind="leadingIcon != undefined">${leadingIcon}</mdc-chip-icon>
-  </slot>
+  <span show.bind="!hideLeadingIcon">
+    <slot name="leading-icon">
+      <mdc-chip-icon leading if.bind="leadingIcon != undefined">${leadingIcon}</mdc-chip-icon>
+    </slot>
+  </span>
   <slot name="checkmark">
     <mdc-chip-checkmark if.bind="checkmark"></mdc-chip-checkmark>
   </slot>

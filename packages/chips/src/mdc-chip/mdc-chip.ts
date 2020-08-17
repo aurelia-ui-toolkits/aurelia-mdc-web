@@ -111,6 +111,11 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     this.foundation?.setShouldFocusPrimaryActionOnClick(shouldFocus);
   }
 
+  // indicates that leading icon should be hidden if checkmark is shown
+  get hideLeadingIcon(): boolean {
+    return this.checkmarkElement?.visible ?? false;
+  }
+
   async attached(): Promise<void> {
     /* @Child does not really work well when there is a span element between the chip and the child element;
        it has also problems with defaults for slots */
@@ -196,7 +201,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
       hasLeadingIcon: () => !!this.leadingIconElement,
       getRootBoundingClientRect: () => this.root.getBoundingClientRect(),
       getCheckmarkBoundingClientRect: () =>
-        this.checkmarkElement?.element?.getBoundingClientRect() ?? null,
+        this.checkmarkElement?.root?.getBoundingClientRect() ?? null,
       setPrimaryActionAttr: (attr: string, value: string) => this.primaryActionElement?.root?.setAttribute(attr, value),
       focusPrimaryAction: () => this.primaryActionElement?.focus(),
       focusTrailingAction: () => this.trailingIconElement?.focus(),

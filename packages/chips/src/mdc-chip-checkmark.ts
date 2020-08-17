@@ -10,8 +10,11 @@ focusable="false">
 </template>`)
 @customElement('mdc-chip-checkmark')
 export class MdcChipCheckmark {
-    constructor(public element: HTMLElement) {
+    constructor(public root: HTMLElement) {
+    }
 
+    get visible() {
+        return this.root.clientWidth > 0;
     }
 }
 
