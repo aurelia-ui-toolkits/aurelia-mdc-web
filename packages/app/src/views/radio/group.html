@@ -1,0 +1,6 @@
+<template>
+  <mdc-form-field repeat.for="season of seasons">
+    <mdc-radio model.bind="season" checked.bind="favoriteSeason" disabled.bind="demoRadioGroupDisabled"></mdc-radio>
+    <label>${season}</label>
+  </mdc-form-field>
+</template>

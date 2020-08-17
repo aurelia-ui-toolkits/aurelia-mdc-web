@@ -35,6 +35,7 @@
     }
   ],
   "beautify.config": {
+    "indent_size": 2,
     "html": {
       "content_unformatted": [
         "pre",
