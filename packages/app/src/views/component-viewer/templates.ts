@@ -277,6 +277,20 @@ export const templates: { [x: string]: IComponentTemplate } = {
 @use '@material/list/mdc-list';
 @use '@material/menu-surface/mdc-menu-surface';`
   },
+  'menu-surface': {
+    title: 'Menu Surface',
+    description: 'The MDC Menu Surface component is a reusable surface that appears above the content of the page and can be positioned adjacent to an element.',
+    references: [{
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu-surface/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu-surface/README.md#sass-mixins' },
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/menu-surface\'));',
+    sass: `@use '@material/menu-surface/mdc-menu-surface';
+@use '@material/menu-surface';`
+  },
   'radio': {
     title: 'Radio Buttons',
     description: 'Radio buttons allow the user to select one option from a set while seeing all available options.',
