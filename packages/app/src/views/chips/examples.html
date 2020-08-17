@@ -1,126 +1,27 @@
 <template>
 	<div class="demo-content">
 		<h3 class="demo-content__headline">Chips</h3>
-		<div class="demo-layout__row">
-			<mdc-chip-set>
-				<!-- Compact notation -->
-				<mdc-chip tabindex="0">
-					Chip One
-				</mdc-chip>
-				<!-- Notation with primary action -->
-				<mdc-chip>
-					<mdc-chip-primary-action tabindex=-1>
-						Chip Two
-					</mdc-chip-primary-action>
-				</mdc-chip>
-				<!-- Full notation with primary action and chip text -->
-				<mdc-chip>
-					<mdc-chip-primary-action role="button" tabindex=-1>
-						<mdc-chip-text>Chip Three</mdc-chip-text>
-					</mdc-chip-primary-action>
-				</mdc-chip>
-			</mdc-chip-set>
-		</div>
-	</div>
+		<compose view="./default.html" class="demo-layout__row"></compose>
+		<example-viewer html.bind="defaultHtml"></example-viewer>
+    </div>
 	<div class="demo-content">
 		<h3 class="demo-content__headline">Choice Chips</h3>
-		<div class="demo-layout__row">
-			<mdc-chip-set choice>
-				<!-- Compact notation -->
-				<mdc-chip tabindex=0>
-					Extra Small
-				</mdc-chip>
-				<mdc-chip tabindex=0>
-					Small
-				</mdc-chip>
-				<mdc-chip tabindex=0>
-					Medium
-				</mdc-chip>
-				<!-- Notation with primary action -->
-				<mdc-chip>
-					<mdc-chip-primary-action role="button" tabindex=0>
-						Large
-					</mdc-chip-primary-action>
-				</mdc-chip>
-				<!-- Full notation with primary action and chip text -->
-				<mdc-chip>
-					<mdc-chip-primary-action role="button" tabindex=0>
-						<mdc-chip-text>Extra Large</mdc-chip-text>
-					</mdc-chip-primary-action>
-				</mdc-chip>
-			</mdc-chip-set>
-		</div>
+		<compose view="./choice.html" class="demo-layout__row"></compose>
+		<example-viewer html.bind="choiceHtml"></example-viewer>
 	</div>
 	<div class="demo-content">
 		<h3 class="demo-content__headline">Choice Chips with leading icon</h3>
-		<div class="demo-layout__row">
-			<mdc-chip-set choice>
-				<!-- Compact notation -->
-				<mdc-chip leading-icon="face">
-					Arjen
-				</mdc-chip>
-				<!-- Compact notation with chip icon -->
-				<mdc-chip>
-					<mdc-chip-icon leading>face</mdc-chip-icon>
-					Maxim
-				</mdc-chip>
-				<!-- Full notation -->
-				<mdc-chip>
-					<mdc-chip-icon leading>face</mdc-chip-icon>
-					<mdc-chip-primary-action role="button" tabindex=0>
-						<mdc-chip-text>John</mdc-chip-text>
-					</mdc-chip-primary-action>
-				</mdc-chip>
-			</mdc-chip-set>
-		</div>
+		<compose view="./choice-leading.html" class="demo-layout__row"></compose>
+		<example-viewer html.bind="choiceLeadingHtml"></example-viewer>
 	</div>
 	<div class="demo-content">
 		<h3 class="demo-content__headline">Filter Chips with checkmarks</h3>
-		<div class="demo-layout__row">
-			<mdc-chip-set filter>
-				<!-- Compact notation -->
-				<mdc-chip role="checkbox" checkmark>
-					One
-				</mdc-chip>
-				<!-- Compact notation with check-mark -->
-				<mdc-chip role="checkbox">
-					<mdc-chip-checkmark></mdc-chip-checkmark>
-					Two
-				</mdc-chip>
-				<!-- Full notation -->
-				<mdc-chip>
-					<mdc-chip-checkmark></mdc-chip-checkmark>
-					<mdc-chip-primary-action role="checkbox" tabindex=0>
-						<mdc-chip-text>Three</mdc-chip-text>
-					</mdc-chip-primary-action>
-				</mdc-chip>
-			</mdc-chip-set>
-		</div>
+		<compose view="./filter.html" class="demo-layout__row"></compose>
+		<example-viewer html.bind="filterHtml"></example-viewer>
 	</div>
 	<div class="demo-content">
 		<h3 class="demo-content__headline">Filter Chips with leading icon</h3>
-		<div class="demo-layout__row">
-			<div class="demo-layout__row">
-				<mdc-chip-set filter>
-					<!-- Compact notation -->
-					<mdc-chip role="checkbox" leading-icon="filter_1" checkmark>
-						One
-					</mdc-chip>
-					<!-- Compact notation with check-mark -->
-					<mdc-chip role="checkbox" leading-icon="filter_2">
-						<mdc-chip-checkmark></mdc-chip-checkmark>
-						Two
-					</mdc-chip>
-					<!-- Full notation -->
-					<mdc-chip>
-						<mdc-chip-icon leading>filter_3</mdc-chip-icon>
-						<mdc-chip-checkmark></mdc-chip-checkmark>
-						<mdc-chip-primary-action role="checkbox" tabindex=0>
-							<mdc-chip-text>Three</mdc-chip-text>
-						</mdc-chip-primary-action>
-					</mdc-chip>
-				</mdc-chip-set>
-			</div>
-		</div>
+		<compose view="./filter-leading.html" class="demo-layout__row"></compose>
+		<example-viewer html.bind="filterLeadingHtml"></example-viewer>
 	</div>
 </template>
