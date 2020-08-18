@@ -1,14 +1,14 @@
 import { inject, customElement, useView, PLATFORM, child, ViewCompiler, ViewResources, processContent, View } from 'aurelia-framework';
+import { bindable } from 'aurelia-typed-observable-plugin';
 import {
   MDCChipFoundation, MDCChipAdapter, chipCssClasses,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail
 } from '@material/chips';
 import { EventSource } from '@material/chips/chip/constants';
+import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcChipPrimaryAction, IMdcChipPrimaryActionElement } from '../mdc-chip-primary-action/mdc-chip-primary-action';
 import { MdcChipCheckmark, IMdcChipCheckmarkElement } from '../mdc-chip-checkmark';
-import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcChipIcon, IMdcChipIconElement } from '../mdc-chip-icon/mdc-chip-icon';
-import { bindable } from 'aurelia-typed-observable-plugin';
 
 MDCChipFoundation.strings.REMOVAL_EVENT = MDCChipFoundation.strings.REMOVAL_EVENT.toLowerCase();
 MDCChipFoundation.strings.SELECTION_EVENT = MDCChipFoundation.strings.SELECTION_EVENT.toLowerCase();
