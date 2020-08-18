@@ -15,11 +15,11 @@ export class MdcChipIcon {
 
     id: string = `mdc-chip-icon-${++chipSetIcon}`;
 
-    // Indicates that the chips in the set are choice chips, which allow a single selection from a set of options.
+    // Indicates that the icon is before the primary action.
     @bindable.booleanAttr
     leading: boolean;
 
-    // Indicates that the chips in the set are filter chips, which allow multiple selection from a set of options.
+    // Indicates that the icon is after the primary action.
     @bindable.booleanAttr
     trailing: boolean;
 
