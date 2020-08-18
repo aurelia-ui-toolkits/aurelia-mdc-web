@@ -1,9 +1,7 @@
-<template id="${id}"
-          click.trigger="handleClick_($event)" keydown.trigger="handleKeydown_($event)">
-    <button class="mdc-chip-trailing-action"
-        aria-label="Remove chip"
-        tabindex="-1">
-        <span class="mdc-chip-trailing-action__ripple"></span>
-        <span class="mdc-chip-trailing-action__icon material-icons"><slot></slot></span>
-    </button>
+<template class="mdc-chip-trailing-action" id="${id}" click.trigger="handleClick_($event)"
+  keydown.trigger="handleKeydown_($event)" mdc-ripple tabindex="-1">
+  <span class="mdc-chip-trailing-action__ripple"></span>
+  <span class="mdc-chip-trailing-action__icon material-icons">
+    <slot></slot>
+  </span>
 </template>

@@ -33,5 +33,8 @@
       "name": "one-time",
       "documentation": "flows data one direction: from the view-model to the view, once"
     }
-  ]
+  ],
+  "beautify.config": {
+    "indent_size": 2
+  }
 }

@@ -32,18 +32,18 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
   @children('mdc-chip')
   chips: MDCChip[];
 
-  // async initialise() {
-  // }
-
   handleChipInteraction_(eventDetail: MDCChipInteractionEventDetail) {
     this.foundation?.handleChipInteraction(eventDetail);
   }
+
   handleChipSelection_(eventDetail: MDCChipSelectionEventDetail) {
     this.foundation?.handleChipSelection(eventDetail);
   }
+
   handleChipRemoval_(eventDetail: MDCChipRemovalEventDetail) {
     this.foundation?.handleChipRemoval(eventDetail);
   }
+
   handleChipNavigation_(eventDetail: MDCChipNavigationEventDetail) {
     this.foundation?.handleChipNavigation(eventDetail);
   }
@@ -68,15 +68,12 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
       getIndexOfChipById: (chipId: string): number => {
         return this.chips.findIndex(_ => _.id === chipId);
       },
-      focusChipPrimaryActionAtIndex: (index: number) => this.chips[index].focusPrimaryAction(),
-      focusChipTrailingActionAtIndex: (index: number) => this.chips[index].focusTrailingAction(),
-      removeFocusFromChipAtIndex: (index: number) => this.chips[index].removeFocus(),
-      isRTL: () => typeof window !== 'undefined' ?
-        window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl' : false,
+      focusChipPrimaryActionAtIndex: (index: number) => this.chips[index]?.focusPrimaryAction(),
+      focusChipTrailingActionAtIndex: (index: number) => this.chips[index]?.focusTrailingAction(),
+      removeFocusFromChipAtIndex: (index: number) => this.chips[index]?.removeFocus(),
+      isRTL: () => typeof window !== 'undefined' ? window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl' : false,
       getChipListCount: (): number => this.chips.length,
-      announceMessage: (message: string) => {
-        announce(message);
-      }
+      announceMessage: (message: string) => announce(message)
     };
     const foundation = new MDCChipSetFoundation(adapter);
     return foundation;

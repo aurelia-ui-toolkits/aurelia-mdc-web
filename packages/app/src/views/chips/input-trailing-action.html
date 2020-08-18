@@ -1,20 +1,18 @@
 <template>
   <mdc-chip-set input>
     <!-- Compact notation -->
-    <mdc-chip trailing-action="remove">
-      Arjen
-    </mdc-chip>
+    <mdc-chip trailing-action="remove">Arjen</mdc-chip>
     <!-- Compact notation with chip icon -->
     <mdc-chip>
       Maxim
-      <mdc-chip-trailing-action>remove</mdc-chip-trailing-action>
+      <button mdc-chip-trailing-action>remove</button>
     </mdc-chip>
     <!-- Full notation -->
     <mdc-chip>
-      <mdc-chip-primary-action role="button" tabindex=0>
+      <mdc-chip-primary-action role="button" tabindex="0">
         <mdc-chip-text>John</mdc-chip-text>
       </mdc-chip-primary-action>
-      <mdc-chip-trailing-action>remove</mdc-chip-trailing-action>
+      <button mdc-chip-trailing-action>close</button>
     </mdc-chip>
   </mdc-chip-set>
 </template>

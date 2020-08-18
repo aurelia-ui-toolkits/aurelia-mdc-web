@@ -39,6 +39,7 @@
 @use "@material/data-table/mdc-data-table";
 @use "@aurelia-mdc-web/tree-view";
 @use "@material/chips/mdc-chips";
+@use "@aurelia-mdc-web/chips"as AuChips;
 
 @use "./icon-button";
 @use "./landing";

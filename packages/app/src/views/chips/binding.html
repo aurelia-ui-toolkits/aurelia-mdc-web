@@ -1,0 +1,8 @@
+<template>
+  <mdc-chip-set filter mdcchip:removal.trigger="removed($event.detail.data)">
+    <mdc-chip role="checkbox" checkmark repeat.for="c of chips" checked.bind="c.selected" trailing-icon="cancel"
+      data.bind="c">
+      ${c.label}
+    </mdc-chip>
+  </mdc-chip-set>
+</template>

@@ -1,4 +1,4 @@
-import { inject, customElement, useView, PLATFORM, child, ViewCompiler, ViewResources, processContent, View } from 'aurelia-framework';
+import { inject, customElement, useView, PLATFORM, ViewCompiler, ViewResources, processContent, View } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import {
   MDCChipFoundation, MDCChipAdapter, chipCssClasses,
@@ -9,6 +9,7 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcChipPrimaryAction, IMdcChipPrimaryActionElement } from '../mdc-chip-primary-action/mdc-chip-primary-action';
 import { MdcChipCheckmark, IMdcChipCheckmarkElement } from '../mdc-chip-checkmark';
 import { MdcChipIcon, IMdcChipIconElement } from '../mdc-chip-icon/mdc-chip-icon';
+import { MdcChipTrailingAction, IMdcChipTrailingActionElement } from '../mdc-chip-trailing-action/mdc-chip-trailing-action';
 
 MDCChipFoundation.strings.REMOVAL_EVENT = MDCChipFoundation.strings.REMOVAL_EVENT.toLowerCase();
 MDCChipFoundation.strings.SELECTION_EVENT = MDCChipFoundation.strings.SELECTION_EVENT.toLowerCase();
@@ -23,6 +24,11 @@ let chipId = 0;
 @customElement('mdc-chip')
 @processContent(MdcChip.processContent)
 export class MdcChip extends MdcComponent<MDCChipFoundation> {
+  constructor(root: IMdcChipElement) {
+    super(root);
+    defineMdcChipElementApis(this.root);
+  }
+
   cssClasses = chipCssClasses;
 
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
@@ -44,8 +50,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     const checkMark = element.querySelector('mdc-chip-checkmark');
     checkMark?.setAttribute('slot', 'checkmark');
 
-    // move icon to the slot - this allows omitting slot specification
-    const trailingAction = element.querySelector('mdc-chip-trailing-action');
+    const trailingAction = element.querySelector('[mdc-chip-trailing-action]');
     trailingAction?.setAttribute('slot', 'trailing-action');
 
     return true;
@@ -56,23 +61,11 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   @bindable.booleanAttr
   touch: boolean;
 
-  @child('mdc-chip-primary-action')
-  primaryActionElement?: MdcChipPrimaryAction;
-
-  @child('mdc-chip-icon.mdc-chip-icon--leading')
-  leadingIconElement?: MdcChipIcon;
-
-  @child('mdc-chip-icon.mdc-chip-icon--trailing')
-  trailingIconElement?: MdcChipIcon;
-
-  @child('mdc-chip-checkmark')
-  checkmarkElement?: MdcChipCheckmark;
-
-  @bindable.number
-  tabindex: number = 0;
-
-  @bindable
-  role: string = 'button';
+  primaryAction_?: MdcChipPrimaryAction;
+  leadingIcon_?: MdcChipIcon;
+  trailingIcon_?: MdcChipIcon;
+  checkmark_?: MdcChipCheckmark;
+  trailingAction_?: MdcChipTrailingAction;
 
   @bindable
   leadingIcon?: string;
@@ -86,18 +79,30 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   @bindable.booleanAttr
   checkmark?: boolean;
 
+  @bindable
+  data: unknown;
+
+  initialSelected?: boolean;
   /**
  * @return Whether the chip is selected.
  */
   get selected(): boolean {
-    return this.foundation?.isSelected() ?? false;
+    if (this.foundation) {
+      return this.foundation.isSelected();
+    } else {
+      return this.initialSelected ?? false;
+    }
   }
 
   /**
    * Sets selected state on the chip.
    */
   set selected(selected: boolean) {
-    this.foundation?.setSelected(selected);
+    if (this.foundation) {
+      this.foundation.setSelected(selected);
+    } else {
+      this.initialSelected = selected;
+    }
   }
 
   /**
@@ -121,39 +126,19 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     this.foundation?.setShouldFocusPrimaryActionOnClick(shouldFocus);
   }
 
-  // indicates that leading icon should be hidden if checkmark is shown
-  get hideLeadingIcon(): boolean {
-    return this.checkmarkElement?.visible ?? false;
+  // eslint-disable-next-line @typescript-eslint/require-await
+  async initialise() {
+    this.primaryAction_ = this.root.querySelector<IMdcChipPrimaryActionElement>('mdc-chip-primary-action')?.au.controller.viewModel;
+    this.leadingIcon_ = this.root.querySelector<IMdcChipIconElement>('mdc-chip-icon.mdc-chip__icon--leading')?.au.controller.viewModel;
+    this.trailingIcon_ = this.root.querySelector<IMdcChipIconElement>('mdc-chip-icon.mdc-chip__icon--trailing')?.au.controller.viewModel;
+    this.checkmark_ = this.root.querySelector<IMdcChipCheckmarkElement>('mdc-chip-checkmark')?.au.controller.viewModel;
+    this.trailingAction_ = this.root.querySelector<IMdcChipTrailingActionElement>('.mdc-chip-trailing-action')?.au.controller.viewModel;
   }
 
-  async attached(): Promise<void> {
-    /* @Child does not really work well when there is a span element between the chip and the child element;
-       it has also problems with defaults for slots */
-    if (this.primaryActionElement === undefined) {
-      const element = this.root.querySelector<IMdcChipPrimaryActionElement>('mdc-chip-primary-action');
-      if (element) {
-        this.primaryActionElement = element.au.controller.viewModel;
-      }
+  initialSyncWithDOM() {
+    if (this.initialSelected !== undefined) {
+      this.selected = this.initialSelected;
     }
-    if (this.leadingIconElement === undefined) {
-      const element = this.root.querySelector<IMdcChipIconElement>('mdc-chip-icon.mdc-chip-icon--leading');
-      if (element) {
-        this.leadingIconElement = element.au.controller.viewModel;
-      }
-    }
-    if (this.trailingIconElement === undefined) {
-      const element = this.root.querySelector<IMdcChipIconElement>('mdc-chip-icon.mdc-chip-icon--trailing');
-      if (element) {
-        this.trailingIconElement = element.au.controller.viewModel;
-      }
-    }
-    if (this.checkmarkElement === undefined) {
-      const element = this.root.querySelector<IMdcChipCheckmarkElement>('mdc-chip-checkmark');
-      if (element) {
-        this.checkmarkElement = element.au.controller.viewModel;
-      }
-    }
-    return super.attached();
   }
 
   focus() {
@@ -167,10 +152,8 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
       hasClass: (className) => this.root.classList.contains(className),
-      addClassToLeadingIcon: (className: string) =>
-        this.leadingIconElement?.root?.classList?.add(className),
-      removeClassFromLeadingIcon: (className: string) =>
-        this.leadingIconElement?.root?.classList?.remove(className),
+      addClassToLeadingIcon: (className: string) => this.leadingIcon_?.root?.classList?.add(className),
+      removeClassFromLeadingIcon: (className: string) => this.leadingIcon_?.root?.classList?.remove(className),
       eventTargetHasClass: (target: EventTarget | null, className: string) =>
         (target && (target as Element).classList) ? (target as Element).classList.contains(className) : false,
       getAttribute: (attr: string) => this.root.getAttribute(attr),
@@ -186,8 +169,9 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
           chipId: this.id
         }, true),
       notifyRemoval: (removedAnnouncement) =>
-        this.emit<MDCChipRemovalEventDetail>(MDCChipFoundation.strings.REMOVAL_EVENT, {
+        this.emit<MDCChipRemovalEventDetail & { data: unknown }>(MDCChipFoundation.strings.REMOVAL_EVENT, {
           chipId: this.id,
+          data: this.data,
           removedAnnouncement: removedAnnouncement
         }, true),
       notifyNavigation: (key: string, source: EventSource) =>
@@ -204,26 +188,25 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
         this.emit<MDCChipInteractionEventDetail>(MDCChipFoundation.strings.INTERACTION_EVENT, {
           chipId: this.id
         }, true),
-      getComputedStyleValue: (propertyName: string) =>
-        window.getComputedStyle(this.root).getPropertyValue(propertyName),
-      setStyleProperty: (propertyName: string, value: string) =>
-        this.root.style.setProperty(propertyName, value),
-      hasLeadingIcon: () => !!this.leadingIconElement,
+      getComputedStyleValue: (propertyName: string) => window.getComputedStyle(this.root).getPropertyValue(propertyName),
+      setStyleProperty: (propertyName: string, value: string) => this.root.style.setProperty(propertyName, value),
+      hasLeadingIcon: () => !!this.leadingIcon_,
       getRootBoundingClientRect: () => this.root.getBoundingClientRect(),
-      getCheckmarkBoundingClientRect: () =>
-        this.checkmarkElement?.root?.getBoundingClientRect() ?? null,
-      setPrimaryActionAttr: (attr: string, value: string) => this.primaryActionElement?.root?.setAttribute(attr, value),
-      focusPrimaryAction: () => this.primaryActionElement?.focus(),
-      focusTrailingAction: () => this.trailingIconElement?.focus(),
-      removeTrailingActionFocus: () => { },
-      isTrailingActionNavigable: () => true,
-      isRTL: () => typeof window !== 'undefined' ?
-        window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl' : false,
+      getCheckmarkBoundingClientRect: () => this.checkmark_?.root?.getBoundingClientRect() ?? null,
+      setPrimaryActionAttr: (attr: string, value: string) => this.primaryAction_?.root?.setAttribute(attr, value),
+      focusPrimaryAction: () => this.primaryAction_?.focus(),
+      focusTrailingAction: () => this.trailingAction_?.focus(),
+      removeTrailingActionFocus: () => this.trailingAction_?.removeFocus(),
+      isTrailingActionNavigable: () => this.trailingAction_?.isNavigable() ?? false,
+      isRTL: () => typeof window !== 'undefined' ? window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl' : false,
     };
     return new MDCChipFoundation(adapter);
   }
 
-  handleClick_() {
+  handleClick_(evt: MouseEvent) {
+    if (evt.target === this.trailingIcon_?.root) {
+      this.foundation?.handleTrailingActionInteraction();
+    }
     this.foundation?.handleClick();
     return true;
   }
@@ -246,10 +229,6 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   handleFocusOut_(evt: FocusEvent) {
     this.foundation?.handleFocusOut(evt);
     return true;
-  }
-
-  handleTrailingIconInteraction(): void {
-    this.foundation?.handleTrailingActionInteraction();
   }
 
   handleTrailingActionInteraction_(): void {
@@ -284,4 +263,27 @@ export interface IMdcChipElement extends HTMLElement {
       viewModel: MdcChip;
     };
   };
+}
+
+function defineMdcChipElementApis(element: HTMLElement) {
+  Object.defineProperties(element, {
+    type: {
+      value: 'checkbox',
+    },
+    checked: {
+      get(this: IMdcChipElement) {
+        return this.au.controller.viewModel.selected;
+      },
+      set(this: IMdcChipElement, value: boolean) {
+        this.au.controller.viewModel.selected = value;
+      },
+      configurable: true
+    },
+    focus: {
+      value(this: IMdcChipElement) {
+        this.au.controller.viewModel.focus();
+      },
+      configurable: true
+    }
+  });
 }
