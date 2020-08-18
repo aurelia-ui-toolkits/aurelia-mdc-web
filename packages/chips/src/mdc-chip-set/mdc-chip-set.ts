@@ -1,4 +1,4 @@
-import { useView, inject, PLATFORM, customElement, children } from 'aurelia-framework';
+import { useView, inject, PLATFORM, customElement, children, View } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import {
   MDCChipSetFoundation, MDCChipSetAdapter, MDCChip,
@@ -78,4 +78,13 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
     const foundation = new MDCChipSetFoundation(adapter);
     return foundation;
   }
+}
+
+export interface IMdcChipSetElement extends HTMLElement {
+  au: {
+    controller: {
+      view: View;
+      viewModel: MdcChipSet;
+    };
+  };
 }
