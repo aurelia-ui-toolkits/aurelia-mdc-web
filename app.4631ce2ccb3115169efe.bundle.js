@@ -59244,6 +59244,84 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/accessibility.html":
+/*!**********************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/radio/accessibility.html ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <div class=\"mdc-touch-target-wrapper\">\n    <mdc-form-field>\n      <mdc-radio name=\"demo-radio-set\" touch></mdc-radio>\n      <label>My Accessibility Radio</label>\n    </mdc-form-field>\n  </div>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/basic.html":
+/*!**************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/radio/basic.html ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <mdc-radio></mdc-radio>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/custom.html":
+/*!***************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/radio/custom.html ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <require from=\"./custom.scss\"></require>\n  <mdc-form-field align-end.bind=\"demoFormFieldAlignEnd\">\n    <mdc-radio ref=\"demoRadio2\" disabled.bind=\"demoRadio2Disabled\"></mdc-radio>\n    <label>Radio Button</label>\n  </mdc-form-field>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/custom.scss":
+/*!***************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/radio/custom.scss ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@use '@material/radio/_index'as radio;\n@use '@material/ripple/_index'as ripple;\n@use '@material/theme/color-palette'as material-color;\n\n.demo-radio--custom {\n  $color: material-color.$red-500;\n\n  @include radio.unchecked-stroke-color($color);\n  @include radio.checked-stroke-color($color);\n  @include radio.ink-color(material-color.$orange-500);\n  @include radio.focus-indicator-color($color);\n  @include ripple.states($color);\n}\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/group.html":
+/*!**************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/radio/group.html ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <mdc-form-field repeat.for=\"season of seasons\">\n    <mdc-radio model.bind=\"season\" checked.bind=\"favoriteSeason\" disabled.bind=\"demoRadioGroupDisabled\"></mdc-radio>\n    <label>${season}</label>\n  </mdc-form-field>\n</template>\n");
+
+/***/ }),
+
+/***/ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/set.html":
+/*!************************************************************************************************!*\
+  !*** C:/Dev/au/aurelia-mdc-web/node_modules/raw-loader/dist/cjs.js!./src/views/radio/set.html ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<template>\n  <mdc-form-field>\n    <mdc-radio></mdc-radio>\n    <label>Radio 1</label>\n  </mdc-form-field>\n  <mdc-form-field>\n    <mdc-radio></mdc-radio>\n    <label>Radio 2</label>\n  </mdc-form-field>\n</template>\n");
+
+/***/ }),
+
 /***/ "../../node_modules/tslib/tslib.es6.js":
 /*!*****************************************************************!*\
   !*** C:/Dev/au/aurelia-mdc-web/node_modules/tslib/tslib.es6.js ***!
@@ -79524,6 +79602,66 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 /***/ }),
 
+/***/ "views/radio/accessibility.html":
+/*!********************************************!*\
+  !*** ./src/views/radio/accessibility.html ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <div class=\"mdc-touch-target-wrapper\">\n    <mdc-form-field>\n      <mdc-radio name=\"demo-radio-set\" touch></mdc-radio>\n      <label>My Accessibility Radio</label>\n    </mdc-form-field>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/radio/basic.html":
+/*!************************************!*\
+  !*** ./src/views/radio/basic.html ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <mdc-radio></mdc-radio>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/radio/custom.html":
+/*!*************************************!*\
+  !*** ./src/views/radio/custom.html ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template>\n  <require from=\"./custom.scss\"></require>\n  <mdc-form-field align-end.bind=\"demoFormFieldAlignEnd\">\n    <mdc-radio ref=\"demoRadio2\" disabled.bind=\"demoRadio2Disabled\"></mdc-radio>\n    <label>Radio Button</label>\n  </mdc-form-field>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/radio/custom.scss":
+/*!*************************************!*\
+  !*** ./src/views/radio/custom.scss ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "../../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".demo-radio--custom .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle,.demo-radio--custom .mdc-radio__native-control:enabled:not(:checked)+.mdc-radio__background .mdc-radio__outer-circle{border-color:#f44336}.demo-radio--custom .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle{border-color:#ff9800}.demo-radio--custom .mdc-radio__background:before,.demo-radio--custom:after,.demo-radio--custom:before{background-color:#f44336}.demo-radio--custom:hover:before{opacity:.04}.demo-radio--custom.mdc-ripple-upgraded--background-focused:before,.demo-radio--custom:not(.mdc-ripple-upgraded):focus:before{transition-duration:75ms;opacity:.12}.demo-radio--custom:not(.mdc-ripple-upgraded):after{transition:opacity .15s linear}.demo-radio--custom:not(.mdc-ripple-upgraded):active:after{transition-duration:75ms;opacity:.12}.demo-radio--custom.mdc-ripple-upgraded{--mdc-ripple-fg-opacity:0.12}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "views/radio/examples":
 /*!*************************************!*\
   !*** ./src/views/radio/examples.ts ***!
@@ -79531,13 +79669,29 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! tslib */ "../../node_modules/tslib/tslib.es6.js"), __webpack_require__(/*! !raw-loader!./basic.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/basic.html"), __webpack_require__(/*! !raw-loader!./group.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/group.html"), __webpack_require__(/*! !raw-loader!./custom.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/custom.html"), __webpack_require__(/*! !raw-loader!./custom.scss */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/custom.scss"), __webpack_require__(/*! !raw-loader!./set.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/set.html"), __webpack_require__(/*! !raw-loader!./accessibility.html */ "../../node_modules/raw-loader/dist/cjs.js!./src/views/radio/accessibility.html")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, tslib_1, basic_html_1, group_html_1, custom_html_1, custom_scss_1, set_html_1, accessibility_html_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Examples = void 0;
+    basic_html_1 = tslib_1.__importDefault(basic_html_1);
+    group_html_1 = tslib_1.__importDefault(group_html_1);
+    custom_html_1 = tslib_1.__importDefault(custom_html_1);
+    custom_scss_1 = tslib_1.__importDefault(custom_scss_1);
+    set_html_1 = tslib_1.__importDefault(set_html_1);
+    accessibility_html_1 = tslib_1.__importDefault(accessibility_html_1);
     class Examples {
         constructor() {
-            this.value = 'cats';
+            this.basicHtml = basic_html_1.default;
+            this.groupHtml = group_html_1.default;
+            this.customHtml = custom_html_1.default;
+            this.customSass = custom_scss_1.default;
+            this.setHtml = set_html_1.default;
+            this.accessibilityHtml = accessibility_html_1.default;
+            this.seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
+        }
+        alternateColors(input) {
+            const demoInput = 'demo-radio--custom';
+            input.classList.toggle(demoInput);
         }
     }
     exports.Examples = Examples;
@@ -79552,10 +79706,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
   !*** ./src/views/radio/examples.html ***!
   \***************************************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Module
+var code = "<template>\n  <div class=\"demo-content\">\n    <div class=\"demo-layout__row\">\n      <compose view=\"./basic.html\"></compose>\n    </div>\n    <example-viewer html.bind=\"basicHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <div class=\"demo-layout__row\">\n      <compose view=\"./set.html\"></compose>\n    </div>\n    <example-viewer html.bind=\"setHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <div class=\"demo-layout__row\">\n      <button mdc-button click.delegate=\"demoFormFieldAlignEnd = !demoFormFieldAlignEnd\">\n        RTL: ${demoFormFieldAlignEnd ? 'On' : 'Off'}\n      </button>\n      <button mdc-button click.delegate=\"demoRadio2Disabled = !demoRadio2Disabled\">\n        Disabled: ${demoRadio2Disabled ? 'On' : 'Off'}\n      </button>\n      <button mdc-button click.delegate=\"alternateColors(demoRadio2)\">\n        Alternate Colors\n      </button>\n    </div>\n    <div class=\"demo-layout__row\">\n      <compose view=\"./custom.html\"></compose>\n    </div>\n    <example-viewer html.bind=\"customHtml\" sass.bind=\"customSass\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Radio Group</h3>\n    <div class=\"demo-layout__row\">\n      <button mdc-button click.delegate=\"demoRadioGroupDisabled = !demoRadioGroupDisabled\">\n        Disabled: ${demoRadioGroupDisabled ? 'On' : 'Off'}\n      </button>\n    </div>\n    <div class=\"demo-layout__row\">\n      <compose view=\"./group.html\"></compose>\n    </div>\n    <p>Your favorite season is: ${favoriteSeason}</p>\n    <example-viewer html.bind=\"groupHtml\"></example-viewer>\n  </div>\n\n  <div class=\"demo-content\">\n    <h3 class=\"demo-content__headline\">Accessibility</h3>\n    <p> Material Design spec advises that touch targets should be at least 48 x 48 px. To meet this requirement, add the\n      `touch` property.</p>\n    <p> Note that the outer mdc-touch-target-wrapper element is only necessary if you want to avoid potentially\n      overlapping touch targets on adjacent elements (due to collapsing margins). </p>\n    <div class=\"demo-layout__row\">\n      <compose view=\"./accessibility.html\"></compose>\n    </div>\n    <example-viewer html.bind=\"accessibilityHtml\"></example-viewer>\n  </div>\n</template>\n";
+// Exports
+module.exports = code;
+
+/***/ }),
+
+/***/ "views/radio/group.html":
+/*!************************************!*\
+  !*** ./src/views/radio/group.html ***!
+  \************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Module
-var code = "<template>\n  <div class=\"demo-content\">\n    <mdc-form-field>\n      <mdc-radio model.bind=\"'cats'\" checked.bind=\"value\">Cats</mdc-radio>\n      <label>Cats</label>\n    </mdc-form-field>\n    <mdc-form-field>\n      <mdc-radio model.bind=\"'dogs'\" checked.bind=\"value\">Dogs</mdc-radio>\n      <label>Dogs</label>\n    </mdc-form-field>\n    You've picked ${value}\n    <!-- <example-viewer [example]=\"exampleSimple\"></example-viewer> -->\n  </div>\n</template>\n";
+var code = "<template>\n  <mdc-form-field repeat.for=\"season of seasons\">\n    <mdc-radio model.bind=\"season\" checked.bind=\"favoriteSeason\" disabled.bind=\"demoRadioGroupDisabled\"></mdc-radio>\n    <label>${season}</label>\n  </mdc-form-field>\n</template>\n";
 // Exports
 module.exports = code;
 
@@ -79581,6 +79749,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
+
+/***/ }),
+
+/***/ "views/radio/set.html":
+/*!**********************************!*\
+  !*** ./src/views/radio/set.html ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Module
+var code = "<template>\n  <mdc-form-field>\n    <mdc-radio></mdc-radio>\n    <label>Radio 1</label>\n  </mdc-form-field>\n  <mdc-form-field>\n    <mdc-radio></mdc-radio>\n    <label>Radio 2</label>\n  </mdc-form-field>\n</template>\n";
+// Exports
+module.exports = code;
 
 /***/ }),
 
@@ -80295,4 +80477,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.0b97a54f2c191f79a7d5.bundle.map
+//# sourceMappingURL=app.4631ce2ccb3115169efe.bundle.map
