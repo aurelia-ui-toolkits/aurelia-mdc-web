@@ -1,0 +1,13 @@
+@use '@material/menu-surface/_index' as menu-surface;
+@use '@material/image-list';
+
+.demo-menu-surface--shaped {
+  @include menu-surface.shape-radius(4px);
+}
+
+.menu-surface-image-list {
+  @include image-list.aspect(1.5); // Images are 3:2
+  @include image-list.standard-columns(1);
+
+  width: 220px;
+}

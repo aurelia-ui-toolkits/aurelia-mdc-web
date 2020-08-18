@@ -1,17 +1,27 @@
+import themeHtml from '!!raw-loader!./theme.html';
+import themeSass from '!!raw-loader!./theme.scss';
+import customHtml from '!!raw-loader!./custom.html';
+import customSass from '!!raw-loader!./custom.scss';
+import extendedHtml from '!!raw-loader!./extended.html';
+import extendedSass from '!!raw-loader!./extended.scss';
+import shapedHtml from '!!raw-loader!./shaped.html';
+import shapedSass from '!!raw-loader!./shaped.scss';
+import accessibilityHtml from '!!raw-loader!./accessibility.html';
+import animationHtml from '!!raw-loader!./animation.html';
+import miniHtml from '!!raw-loader!./mini.html';
+import defaultHtml from '!!raw-loader!./default.html';
+
 export class Examples {
-  mini = false;
-  mini2 = false;
-  exited = false;
-
-  toggleMini() {
-    this.mini = !this.mini;
-  }
-
-  toggleMini2() {
-    this.mini2 = !this.mini2;
-  }
-
-  toggleExited() {
-    this.exited = !this.exited;
-  }
+  themeHtml = themeHtml;
+  themeSass = themeSass;
+  customHtml = customHtml;
+  customSass = customSass;
+  extendedHtml = extendedHtml;
+  extendedSass = extendedSass;
+  shapedHtml = shapedHtml;
+  shapedSass = shapedSass;
+  accessibilityHtml = accessibilityHtml;
+  animationHtml = animationHtml;
+  miniHtml = miniHtml;
+  defaultHtml = defaultHtml;
 }

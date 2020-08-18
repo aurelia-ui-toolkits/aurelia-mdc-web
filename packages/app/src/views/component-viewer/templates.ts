@@ -241,6 +241,23 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/list/mdc-list';
 @use '@material/list';`
   },
+  'linear-progress': {
+    title: 'Linear Progress',
+    description: 'Progress indicators express an unspecified wait time or display the length of a process.',
+    references: [{
+      name: 'Material Design guidelines: Progress Activity',
+      url: 'https://material.io/components/progress-indicators/'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-linear-progress/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-linear-progress/README.md#sass-mixins' },
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/linear-progress\'));',
+    sass: `@use '@material/linear-progress/mdc-linear-progress';
+@use '@material/linear-progress';`
+  },
   'lookup': {
     title: 'Lookup',
     description: '???',
@@ -278,6 +295,20 @@ export const templates: { [x: string]: IComponentTemplate } = {
 @use '@material/menu';
 @use '@material/list/mdc-list';
 @use '@material/menu-surface/mdc-menu-surface';`
+  },
+  'menu-surface': {
+    title: 'Menu Surface',
+    description: 'The MDC Menu Surface component is a reusable surface that appears above the content of the page and can be positioned adjacent to an element.',
+    references: [{
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu-surface/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu-surface/README.md#sass-mixins' },
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/menu-surface\'));',
+    sass: `@use '@material/menu-surface/mdc-menu-surface';
+@use '@material/menu-surface';`
   },
   'radio': {
     title: 'Radio Buttons',

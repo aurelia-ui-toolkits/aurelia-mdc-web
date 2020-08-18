@@ -1,5 +1,4 @@
-import { customElement, bindable, Loader, TaskQueue } from 'aurelia-framework';
-import { Highlight } from 'src/attributes/highlight';
+import { customElement, bindable } from 'aurelia-framework';
 
 interface ITab {
   label: string;
@@ -9,8 +8,6 @@ interface ITab {
 
 @customElement('example-viewer')
 export class ExampleViewer {
-  constructor(private loader: Loader, private taskQueue: TaskQueue) { }
-
   tabs: ITab[] = [];
   selectedTab: ITab;
   open: boolean;
@@ -23,8 +20,6 @@ export class ExampleViewer {
 
   @bindable
   code: string;
-
-  highlightVM: Highlight;
 
   bind() {
     if (this.html) {
@@ -45,7 +40,6 @@ export class ExampleViewer {
 
   select(t: ITab) {
     this.selectedTab = t;
-    this.taskQueue.queueTask(() => { this.highlightVM.attached(); });
   }
 
   copyCode(): void {
@@ -61,9 +55,9 @@ export class ExampleViewer {
 
     try {
       const returnValue = document.execCommand('copy');
-      // if (returnValue) {
-      //   this.snackbar.open('Code copied');
-      // }
+      if (returnValue) {
+        //   this.snackbar.open('Code copied');
+      }
     } catch (err) {
       // this.snackbar.open('Unable to copy');
     } finally {

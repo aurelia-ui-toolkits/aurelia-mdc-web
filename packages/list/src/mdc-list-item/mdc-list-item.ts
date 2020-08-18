@@ -17,7 +17,7 @@ export class MdcListItem {
   constructor(public root: HTMLElement) { }
 
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
-    const graphic = element.querySelector('[mdc-list-item-graphic]');
+    const graphic = element.querySelector('mdc-checkbox:not([mdc-list-item-meta]),[mdc-list-item-graphic]');
     if (graphic) {
       element.removeChild(graphic);
     }
@@ -59,6 +59,9 @@ export class MdcListItem {
 
   @bindable
   actionData: unknown;
+
+  @bindable.booleanAttr
+  disableRipple: boolean;
 
   initialSyncWithDOM() {
     if (this.role) {

@@ -1,0 +1,14 @@
+@use '@material/fab';
+@use '@material/theme/color-palette' as material-color;
+
+.mdc-fab.red800Fab {
+  @include fab.accessible(material-color.$red-800);
+}
+
+.mdc-fab.yellow800Fab {
+  @include fab.accessible(material-color.$yellow-800);
+}
+
+.mdc-fab.purple500Fab {
+  @include fab.accessible(material-color.$purple-500);
+}

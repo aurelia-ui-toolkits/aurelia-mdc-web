@@ -7,5 +7,9 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./mdc-data-table')
   ]);
 
-  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'));
+  config.aurelia.use
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/linear-progress'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'));
 }

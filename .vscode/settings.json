@@ -35,6 +35,14 @@
     }
   ],
   "beautify.config": {
-    "indent_size": 2
-  }
+    "indent_size": 2,
+    "html": {
+      "content_unformatted": [
+        "pre",
+        "textarea",
+        "hljs"
+      ]
+    }
+  },
+  "html.format.unformatted": "pre,textarea,hljs"
 }

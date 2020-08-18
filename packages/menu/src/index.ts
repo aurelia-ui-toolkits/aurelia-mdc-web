@@ -4,7 +4,9 @@ export { MdcMenu, IMdcMenuItemComponentEventDetail, IMdcMenuItemComponentEvent }
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([
-    PLATFORM.moduleName('./mdc-menu')
+    PLATFORM.moduleName('./mdc-menu'),
+    PLATFORM.moduleName('./mdc-menu-selection-group'),
+    PLATFORM.moduleName('./mdc-menu-selection-group-icon')
   ]);
 
   config.aurelia.use

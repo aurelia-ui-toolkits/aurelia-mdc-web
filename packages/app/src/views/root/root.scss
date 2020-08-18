@@ -38,16 +38,15 @@
 @use "@material/elevation/mdc-elevation";
 @use "@material/data-table/mdc-data-table";
 @use "@aurelia-mdc-web/tree-view";
+@use "@material/linear-progress/mdc-linear-progress";
+@use "@material/image-list/mdc-image-list";
 @use "@material/chips/mdc-chips";
 @use "@aurelia-mdc-web/chips"as AuChips;
 
-@use "./icon-button";
 @use "./landing";
 @use "./layout";
-@use "./list";
 @use "./text-field";
 @use "./slider";
-@use "./fab";
 @use "./drawer";
 
 body {

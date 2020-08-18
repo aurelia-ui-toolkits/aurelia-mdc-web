@@ -1,3 +1,102 @@
+# [v1.0.0-alpha.14](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2020-08-14)
+
+
+### Bug Fixes
+
+* **app:** open menu on `trigger` ([101fef8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/101fef846af813fedace6522e640f87c1394339d))
+* **card:** set action classes on correct element ([14387af](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/14387afe63669b2e88b5e36716fd45ae037669d9))
+* **icon-button:** set button icon size height ([2b94361](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2b94361355d644ca1d3fccf531587eccf857df9a))
+* **menu:** close menu by default ([9de0438](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9de04383296dc9fdd2065d85d83365e6cdc5eba3))
+* **menu:** expose quick open as an attribute ([b512cb9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b512cb962e56ede33a50fc73e72b2a85b9e0b6c6))
+* **menu-surface:** expose quick open as an attribute ([d48ada0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d48ada0577031000b24b056cbe4804d7e7131fe8))
+* **select:** reset validation on attached ([e057b77](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e057b77c10423303eb4c495e327b9aab0d43bbc5))
+* **select:** set initial value without emitting change events ([77e9f2a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/77e9f2a3c212a3fca87d3931963d6eca40c2cd09))
+* **text-field:** reset validation on attached ([81b6807](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/81b6807aa56f5d48ee0e6a1faefa59e800923ccc))
+
+
+### Features
+
+* **app:** menu example ([2f8e08a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2f8e08ad214d9b92c56dc7df3502bae34b5a07a5))
+* **app:** menu example snippets ([8297875](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/829787532361842e283d0559b7780a9813636f20))
+* **app:** menu examples ([ba45625](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ba4562575ee6e1b19aec20e4a800650d53414314))
+* **menu:** add selection groups ([dd2bc62](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/dd2bc621a24d41f246144baa8f9397595c621757))
+
+
+
+# [v1.0.0-alpha.13](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2020-08-12)
+
+
+### Bug Fixes
+
+* **list:** add missing attribute ([61c87a3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/61c87a30054c43f878b32e8558254707244b99bb))
+* **list:** add missing classes ([ed175fe](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ed175feefaf611a25db3758feaac3fe9700dfac7))
+* **list:** position checkboxes correctly in DOM ([d09007b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d09007b653e0a617403c934779eda4cda5d86a6c))
+
+
+### Features
+
+* **app:** add list examples ([ad9903e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ad9903e9e98870494e200182d38dafb6971dc8c1))
+* **app:** add list snippets ([1aa6299](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1aa629993ce6c85509226cc894ccb448e7f8be46))
+* **app:** add list snippets ([991bbf1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/991bbf12d32e3231c66cc8004b569b588e1d6db5))
+* **list:** allow disabling ripple ([5ffc1a3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5ffc1a3a1250c5a43b62a598d52568fee631a6b1))
+
+
+
+# [v1.0.0-alpha.12](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2020-08-08)
+
+
+### Bug Fixes
+
+* **app:** code snippets highlight ([f9b3fb4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f9b3fb4b22a7ba8f692ad381842ec3b546478a4a))
+* **menu-surface:** pass binding values to foundation each time attached is called ([8709e21](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8709e213be05a0395ed8b20abe6241cb58f35c07))
+* **menu-surface:** pass binding values to foundation each time attached is called ([d7bdf3b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d7bdf3b255edd4832d8583e0b85cf4475af8b7b3))
+
+
+### Features
+
+* **app:** add fab snippets ([537c76d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/537c76d77a8150a3331fde7f901aa833d81bdf5c))
+* **app:** add form-field snippets ([eba0139](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/eba013975a65ac95384c3f34135f59f1b25c5ab7))
+* **app:** add icon-button snippets ([81deb54](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/81deb54341144d8d955e217bc18d5a7e772ecfcb))
+* **icon-button:** add icon attribute which defaults to material icons ([454e2e6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/454e2e61a3f1b1c7fea893d57f6d74d45c447d11))
+
+
+
+# [v1.0.0-alpha.11](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2020-08-06)
+
+
+### Bug Fixes
+
+* **dialog:** await till composition finishes ([4c68a81](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4c68a81b81cd53b3dc9897da71a676f5b671471b))
+* **select:** do strict comparison ([fecaeb6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fecaeb60f690a58ffa3955d36bc57229563fbec2))
+
+
+### Features
+
+* **data-table:** add pagination and linear progress ([60dd548](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/60dd54862a502fcafd392830a364586f92caa139))
+* **data-table:** emit on navigation clicks ([a53ddd2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a53ddd283e34ed12dd1d4b603d8e3f06c97981ff))
+* **linear-progress:** add ([8a59e4c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8a59e4c67ed3b47791bd4261b2c90a30d213953c))
+
+
+
+# [v1.0.0-alpha.10](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2020-08-05)
+
+
+### Bug Fixes
+
+* **lookup:** close on blur ([f9dd090](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f9dd0905a6b2823e975070ab6734f45959af96b3))
+* **lookup:** open when error ([d71f052](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d71f052d2584f151916206fed91528eae3a68455))
+* **lookup:** suppress menu close when focus moves to it ([83d6ba9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/83d6ba92e62062139cc81591fe0db772204eefec))
+* **menu:** dynamically get the child list element ([218384a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/218384a0567633c3790501e9e0b50a090586a51b))
+
+
+### Features
+
+* **app:** add elevation and expandable snippets ([3d6d7fa](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3d6d7fa09e916bcaa7d4e5b4a20476a63903e0d8))
+* **data-table:** keep row attributes and classes ([cbdcfad](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/cbdcfad2de26413207919dcd8ba3be25aae86578))
+* **list:** export list element interface ([b751b46](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b751b46b12f92567248563a9a22e7847535b776f))
+
+
+
 # [v1.0.0-alpha.9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2020-08-04)
 
 

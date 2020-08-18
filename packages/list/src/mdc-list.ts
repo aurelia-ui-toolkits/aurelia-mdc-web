@@ -46,7 +46,22 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   dense: boolean;
 
   @bindable.booleanAttr
+  textual: boolean;
+
+  @bindable.booleanAttr
   avatar: boolean;
+
+  @bindable.booleanAttr
+  icon: boolean;
+
+  @bindable.booleanAttr
+  image: boolean;
+
+  @bindable.booleanAttr
+  thumbnail: boolean;
+
+  @bindable.booleanAttr
+  video: boolean;
 
   @children('mdc-list-item')
   items: MdcListItem[];

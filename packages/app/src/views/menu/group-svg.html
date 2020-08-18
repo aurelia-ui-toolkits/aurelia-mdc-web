@@ -1,0 +1,54 @@
+<template>
+  <div mdc-menu-surface-anchor ref="demoSimpleAnchor">
+    <button mdc-button raised click.trigger="demoSimple.open = !demoSimple.open">
+      Show Selection Group Menu
+    </button>
+    <mdc-menu view-model.ref="demoSimple" anchor.bind="demoSimpleAnchor">
+      <mdc-list>
+        <mdc-menu-selection-group>
+          <mdc-list-item>
+            <mdc-icon mdc-menu-selection-group-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+              </svg>
+            </mdc-icon>
+            Single
+          </mdc-list-item>
+          <mdc-list-item disabled>
+            <mdc-icon mdc-menu-selection-group-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+              </svg>
+            </mdc-icon>
+            1.15
+          </mdc-list-item>
+          <mdc-list-item>
+            <mdc-icon mdc-menu-selection-group-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+              </svg>
+            </mdc-icon>
+            Double
+          </mdc-list-item>
+          <mdc-list-item>
+            <mdc-icon mdc-menu-selection-group-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+              </svg>
+            </mdc-icon>
+            Custom: 1.2
+          </mdc-list-item>
+        </mdc-menu-selection-group>
+        <mdc-list-divider></mdc-list-divider>
+        <mdc-list-item>Add space before paragraph</mdc-list-item>
+        <mdc-list-item>Add space after paragraph</mdc-list-item>
+        <mdc-list-divider></mdc-list-divider>
+        <mdc-list-item>Custom spacing...</mdc-list-item>
+      </mdc-list>
+    </mdc-menu>
+  </div>
+</template>

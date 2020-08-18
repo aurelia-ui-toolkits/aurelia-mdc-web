@@ -1,0 +1,19 @@
+@use '@material/icon-button';
+@use '@material/ripple';
+@use '@material/theme';
+
+.demo-icon-button-custom {
+  @include icon-button.ink-color(#de442c);
+  @include ripple.states-base-color(#de442c);
+  @include ripple.states-hover-opacity(0.09);
+  @include ripple.states-focus-opacity(0.26);
+  @include ripple.states-press-opacity(0.35);
+}
+
+.demo-icon-button-primary {
+  @include icon-button.ink-color(theme.$primary);
+}
+
+.demo-icon-button-secondary {
+  @include icon-button.ink-color(theme.$secondary);
+}

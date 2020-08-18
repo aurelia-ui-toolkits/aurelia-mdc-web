@@ -130,9 +130,9 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
   }
 
   // !!! MODIFIED FOR AURELIA !!!
-  setValue(value: unknown) {
+  setValue(value: unknown, skipNotify?: boolean) {
     const index = this.adapter.getMenuItemValues().indexOf(value);
-    this.setSelectedIndex(index);
+    this.setSelectedIndex(index, undefined, skipNotify);
   }
 
   // !!! MODIFIED FOR AURELIA !!!
@@ -192,7 +192,7 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
    */
   layout() {
     if (this.adapter.hasLabel()) {
-      const optionHasValue = !!this.getValue(); // !!! MODIFIED FOR AURELIA !!!
+      const optionHasValue = this.getValue() !== undefined; // !!! MODIFIED FOR AURELIA !!!
       const isFocused = this.adapter.hasClass(cssClasses.FOCUSED);
       const shouldFloatAndNotch = optionHasValue || isFocused;
       const isRequired = this.adapter.hasClass(cssClasses.REQUIRED);

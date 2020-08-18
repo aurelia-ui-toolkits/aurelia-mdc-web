@@ -131,7 +131,11 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   initialSyncWithDOM() {
-    this.value = this.initialValue;
+    // set initial value without emitting change events
+    this.foundation?.setValue(this.initialValue, true);
+    this.foundation?.layout();
+    this.errors = new Map<unknown, boolean>();
+    this.valid = true;
   }
 
   getDefaultFoundation() {

@@ -1,14 +1,59 @@
 <template>
   <div class="demo-content">
-    <mdc-form-field>
-      <mdc-radio model.bind="'cats'" checked.bind="value">Cats</mdc-radio>
-      <label>Cats</label>
-    </mdc-form-field>
-    <mdc-form-field>
-      <mdc-radio model.bind="'dogs'" checked.bind="value">Dogs</mdc-radio>
-      <label>Dogs</label>
-    </mdc-form-field>
-    You've picked ${value}
-    <!-- <example-viewer [example]="exampleSimple"></example-viewer> -->
+    <div class="demo-layout__row">
+      <compose view="./basic.html"></compose>
+    </div>
+    <example-viewer html.bind="basicHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-layout__row">
+      <compose view="./set.html"></compose>
+    </div>
+    <example-viewer html.bind="setHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="demoFormFieldAlignEnd = !demoFormFieldAlignEnd">
+        RTL: ${demoFormFieldAlignEnd ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="demoRadio2Disabled = !demoRadio2Disabled">
+        Disabled: ${demoRadio2Disabled ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="alternateColors(demoRadio2)">
+        Alternate Colors
+      </button>
+    </div>
+    <div class="demo-layout__row">
+      <compose view="./custom.html"></compose>
+    </div>
+    <example-viewer html.bind="customHtml" sass.bind="customSass"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Radio Group</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="demoRadioGroupDisabled = !demoRadioGroupDisabled">
+        Disabled: ${demoRadioGroupDisabled ? 'On' : 'Off'}
+      </button>
+    </div>
+    <div class="demo-layout__row">
+      <compose view="./group.html"></compose>
+    </div>
+    <p>Your favorite season is: ${favoriteSeason}</p>
+    <example-viewer html.bind="groupHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Accessibility</h3>
+    <p> Material Design spec advises that touch targets should be at least 48 x 48 px. To meet this requirement, add the
+      `touch` property.</p>
+    <p> Note that the outer mdc-touch-target-wrapper element is only necessary if you want to avoid potentially
+      overlapping touch targets on adjacent elements (due to collapsing margins). </p>
+    <div class="demo-layout__row">
+      <compose view="./accessibility.html"></compose>
+    </div>
+    <example-viewer html.bind="accessibilityHtml"></example-viewer>
   </div>
 </template>

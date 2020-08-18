@@ -6,7 +6,8 @@ import {
 } from '@material/data-table';
 import { MdcCheckbox, IMdcCheckboxElement } from '@aurelia-mdc-web/checkbox';
 import { closest } from '@material/dom/ponyfill';
-import { inject, customElement, useView, PLATFORM, processContent, ViewCompiler, ViewResources } from 'aurelia-framework';
+import { inject, customElement, useView, PLATFORM, processContent, ViewCompiler, ViewResources, bindingMode } from 'aurelia-framework';
+import { bindable } from 'aurelia-typed-observable-plugin';
 
 declare module '@material/data-table' {
   interface MDCDataTableAdapter {
@@ -17,6 +18,7 @@ declare module '@material/data-table' {
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();
 events.SELECTED_ALL = events.SELECTED_ALL.toLowerCase();
 events.UNSELECTED_ALL = events.UNSELECTED_ALL.toLowerCase();
+const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-data-table.html'))
@@ -82,6 +84,35 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   header: HTMLElement;
   content: HTMLElement;
 
+  @bindable.booleanAttr
+  pagination: boolean;
+
+  @bindable
+  rowsPerPageLabel: string = 'Rows per page';
+
+  @bindable
+  pageSizes: unknown[] = [10, 25, 100];
+
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  pageSize: unknown = 10;
+
+  @bindable
+  paginationTotal: string;
+
+  @bindable
+  paginationPosition?: 'first' | 'between' | 'last' = 'first';
+
+  @bindable.booleanAttr
+  busy: boolean;
+  async busyChanged() {
+    await this.initialised;
+    if (this.busy) {
+      this.foundation?.showProgress();
+    } else {
+      this.foundation?.hideProgress();
+    }
+  }
+
   get rowCheckboxList(): MdcCheckbox[] {
     return Array.from(this.root.querySelectorAll<IMdcCheckboxElement>('.mdc-data-table__row .mdc-checkbox'))
       .map(x => x.au?.controller.viewModel);
@@ -101,6 +132,10 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
 
   headerRowClickListener(event: Event) {
     this.handleHeaderRowClick(event);
+  }
+
+  handleNavigationClick(type: 'first' | 'prev' | 'next' | 'last') {
+    this.emit(NAVIGATION_EVENT, { type }, true);
   }
 
   /**
@@ -192,7 +227,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
     // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-    const adapter: Partial<MDCDataTableAdapter> = {
+    const adapter: MDCDataTableAdapter = {
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
       getHeaderCellElements: () => this.getHeaderCells(),
@@ -205,6 +240,10 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       },
       notifySortAction: (data) => {
         this.emit(events.SORTED, data, /** shouldBubble */ true);
+      },
+      getTableBodyHeight: () => {
+        const body = this.root.querySelector('table>tbody');
+        return `${body?.getBoundingClientRect().height}px`;
       },
       getTableContainerHeight: () => {
         const tableContainer =
@@ -225,8 +264,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
           throw new Error('MDCDataTable: Table header element not found.');
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
-        return tableHeader.getBoundingClientRect().height as any;
+        return `${tableHeader.getBoundingClientRect().height}px`;
       },
       setProgressIndicatorStyles: (styles) => {
         const progressIndicator = this.root.querySelector<HTMLElement>(selectors.PROGRESS_INDICATOR);
@@ -245,8 +283,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       getRowIdAtIndex: (rowIndex: number) =>
         this.getRows()[rowIndex].getAttribute(dataAttributes.ROW_ID),
       getRowIndexByChildElement: (el: Element) => this.getRows().indexOf((closest(el, selectors.ROW) as HTMLElement)),
-      getSelectedRowCount: () =>
-        this.root.querySelectorAll(selectors.ROW_SELECTED).length,
+      getSelectedRowCount: () => this.root.querySelectorAll(selectors.ROW_SELECTED).length,
       isCheckboxAtRowIndexChecked: (rowIndex: number) => this.rowCheckboxList[rowIndex].checked,
       isHeaderRowCheckboxChecked: () => this.headerRowCheckbox?.checked ?? false,
       isRowsSelectable: () => !!this.root.querySelector(selectors.ROW_CHECKBOX),
@@ -309,7 +346,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
 
         sortStatusLabel.textContent =
           this.getSortStatusMessageBySortValue(sortValue);
-      },
+      }
     };
     return new MDCDataTableFoundation(adapter);
   }

@@ -1,0 +1,13 @@
+@use '@material/radio/_index'as radio;
+@use '@material/ripple/_index'as ripple;
+@use '@material/theme/color-palette'as material-color;
+
+.demo-radio--custom {
+  $color: material-color.$red-500;
+
+  @include radio.unchecked-stroke-color($color);
+  @include radio.checked-stroke-color($color);
+  @include radio.ink-color(material-color.$orange-500);
+  @include radio.focus-indicator-color($color);
+  @include ripple.states($color);
+}

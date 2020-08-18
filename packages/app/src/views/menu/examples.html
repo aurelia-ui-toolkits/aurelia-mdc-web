@@ -1,14 +1,82 @@
 <template>
   <div class="demo-content">
-    <h3 class="demo-content__headline">Basic</h3>
-    <div mdc-menu-surface-anchor>
-      <button mdc-button raised click.trigger="menu.toggle()" style="width: 200px" ref="button">Open</button>
-      <mdc-menu view-model.ref="menu" anchor.bind="button">
-        <mdc-list role="menu">
-          <mdc-list-item role="menuitem">Cats</mdc-list-item>
-          <mdc-list-item role="menuitem">Dogs</mdc-list-item>
-        </mdc-list>
-      </mdc-menu>
+    <div class="demo-layout--center">
+      <compose view="./basic.html"></compose>
     </div>
+
+    <div class="demo-layout__row">
+      <div class="demo-content">
+        <h3 class="demo-content__headline">Anchor Corner</h3>
+        <div class="demo-layout__column">
+          <mdc-radio-group class="demo-layout__column">
+            <mdc-form-field repeat.for="corner of corners">
+              <mdc-radio model.bind="corner" checked.bind="menuSurfaceAnchorCorner"></mdc-radio>
+              <label>${corner}</label>
+            </mdc-form-field>
+          </mdc-radio-group>
+        </div>
+      </div>
+
+      <div class="demo-content">
+        <h3 class="demo-content__headline">Anchor Margin</h3>
+        <div class="demo-layout__column">
+          <mdc-text-field value.bind="marginTop" label="Top margin" type="number">
+          </mdc-text-field>
+          <mdc-text-field value.bind="marginBottom" label="Bottom margin" type="number">
+          </mdc-text-field>
+          <mdc-text-field value.bind="marginLeft" label="Left margin" type="number">
+          </mdc-text-field>
+          <mdc-text-field value.bind="marginRight" label="Right margin" type="number">
+          </mdc-text-field>
+        </div>
+      </div>
+
+      <div class="demo-content">
+        <div class="demo-layout__column">
+          <mdc-form-field>
+            <mdc-checkbox checked.bind="quickOpen"></mdc-checkbox>
+            <label>Disable open animation</label>
+          </mdc-form-field>
+          <mdc-form-field>
+            <mdc-checkbox checked.bind="fixed"></mdc-checkbox>
+            <label>Fixed position</label>
+          </mdc-form-field>
+          <mdc-form-field>
+            <mdc-checkbox checked.bind="wrapFocus"></mdc-checkbox>
+            <label>Wrap keyboard focus</label>
+          </mdc-form-field>
+          <mdc-form-field>
+            <mdc-checkbox checked.bind="closeSurfaceOnSelection"></mdc-checkbox>
+            <label>Close Surface on Selection</label>
+          </mdc-form-field>
+          <mdc-select value.bind="defaultFocusState" label="Default Focus State">
+            <mdc-list-item repeat.for="dfs of defaultFocusStates" value.bind="dfs">${dfs}</mdc-list-item>
+          </mdc-select>
+        </div>
+      </div>
+    </div>
+
+    <button mdc-button click.delegate="addFruit()">Add Fruit</button>
+    <p>Selected index: ${lastSelection}</p>
+    <p>Anchor corner: ${menuSurfaceAnchorCorner}</p>
+    <example-viewer html.bind="basicHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Selection Group Menu</h3>
+    <compose view="./group.html"></compose>
+    <example-viewer html.bind="groupHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Selection Group Menu - Svg</h3>
+    <compose view="./group-svg.html"></compose>
+    <example-viewer html.bind="groupSvgHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Open Menu from Card icon</h3>
+    <compose view="./card.html"></compose>
+    <example-viewer html.bind="cardHtml" sass.bind="cardSass"></example-viewer>
   </div>
 </template>

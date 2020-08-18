@@ -8,9 +8,9 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .developmentLogging()
     .standardConfiguration()
     .globalResources([
-      PLATFORM.moduleName('attributes/highlight'),
       PLATFORM.moduleName('converters/json'),
-      PLATFORM.moduleName('elements/example-viewer/example-viewer')
+      PLATFORM.moduleName('elements/example-viewer/example-viewer'),
+      PLATFORM.moduleName('elements/hljs/hljs')
     ])
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'))
@@ -27,6 +27,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/form-field'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon-button'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/linear-progress'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/list'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/lookup'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'))

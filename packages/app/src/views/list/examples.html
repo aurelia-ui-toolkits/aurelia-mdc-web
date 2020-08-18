@@ -1,40 +1,120 @@
 <template>
   <div class="demo-content">
-    <h3 class="demo-content__headline">List Groups</h3>
+    <h3 class="demo-content__headline">Custom</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="wrapFocus = !wrapFocus">
+        Wrap Focus: ${wrapFocus ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="disableRipple = !disableRipple">
+        Disable Ripple: ${disableRipple ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="dense = !dense">
+        Dense: ${dense ? 'On' : 'Off'}
+      </button>
+    </div>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="singleSelection = !singleSelection">
+        Single Selection: ${singleSelection ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="activated = !activated">
+        Activated: ${activated ? 'On' : 'Off'}
+      </button>
+    </div>
+    <compose view="./custom.html"></compose>
+    <example-viewer html.bind="customHtml" sass.bind="customSass" code.bind="customCode"></example-viewer>
+  </div>
 
-    <mdc-list-group>
-      <h3>List 1</h3>
-      <mdc-list>
-        <mdc-list-item tabindex="0">line item</mdc-list-item>
-        <mdc-list-item>line item</mdc-list-item>
-        <mdc-list-item>line item</mdc-list-item>
-      </mdc-list>
-      <h3>List 2</h3>
-      <mdc-list>
-        <mdc-list-item tabindex="0">line item</mdc-list-item>
-        <mdc-list-item>line item</mdc-list-item>
-        <mdc-list-item>line item</mdc-list-item>
-      </mdc-list>
-    </mdc-list-group>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Ripple disabled</h3>
+    <let disable-ripple2.bind="true"></let>
+    <compose view="./disable-ripple.html"></compose>
+    <div class="demo-layout__row">
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="disableRipple2"></mdc-checkbox>
+        <label>Disable Ripple</label>
+      </mdc-form-field>
+    </div>
+    <example-viewer html.bind="disableRippleHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Shaped</h3>
+    <compose view="./shaped.html"></compose>
+    <example-viewer html.bind="shapedHtml" sass.bind="shapedSass"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Single-Line</h3>
+    <compose view="./single-line.html"></compose>
+    <example-viewer html.bind="singleLineHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Two-Line</h3>
+    <compose view="./two-line.html"></compose>
+    <example-viewer html.bind="twoLineHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Leading Icon</h3>
+    <compose view="./leading-icon.html"></compose>
+    <example-viewer html.bind="leadingIconHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Trailing Icon</h3>
+    <compose view="./trailing-icon.html"></compose>
+    <example-viewer html.bind="trailingIconHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Leading and Trailing Icon</h3>
+    <compose view="./leading-trailing-icon.html"></compose>
+    <example-viewer html.bind="leadingTrailingIconHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Two-Line with Leading and Trailing Icon</h3>
+    <compose view="./two-line-leading-trailing-icon.html"></compose>
+    <example-viewer html.bind="twoLineLeadingTrailingIconHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">List with Leading Checkbox</h3>
+    <compose view="./leading-checkbox.html"></compose>
+    <example-viewer html.bind="leadingCheckboxHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">List with Trailing Checkbox</h3>
+    <compose view="./trailing-checkbox.html"></compose>
+    <example-viewer html.bind="trailingCheckboxHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Avatar List</h3>
+    <compose view="./avatar.html"></compose>
+    <example-viewer html.bind="avatarHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Group Lists</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="dividerInset = !dividerInset">
+        Divider Inset: ${dividerInset ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="dividerPadded = !dividerPadded">
+        Divider Padded: ${dividerPadded ? 'On' : 'Off'}
+      </button>
+    </div>
+    <compose view="./avatar.html"></compose>
+    <example-viewer html.bind="groupHtml"></example-viewer>
   </div>
 
   <div class="demo-content">
     <h3 class="demo-content__headline">Expandable Items</h3>
-
-    <mdc-list single-selection>
-      <mdc-list-item tabindex="0" mdclistitem:action.delegate="toggleExpanded()" no-list-action>
-        line item
-        <i mdc-list-item-meta class="material-icons">
-          ${expanded ? 'expand_less' :'expand_more'}
-        </i>
-      </mdc-list-item>
-      <div if.bind="expanded">
-        <mdc-list-item style="padding-left: 30px;">Child 1</mdc-list-item>
-        <mdc-list-item style="padding-left: 30px;">Child 2</mdc-list-item>
-      </div>
-      <mdc-list-item>line item</mdc-list-item>
-      <mdc-list-item>line item</mdc-list-item>
-    </mdc-list>
+    <compose view="./expandable.html"></compose>
+    <example-viewer html.bind="expandableHtml"></example-viewer>
   </div>
 
 </template>

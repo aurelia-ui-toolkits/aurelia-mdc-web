@@ -2,4 +2,43 @@
   <div class="mdc-data-table__table-container">
     <slot></slot>
   </div>
+  <div class="mdc-data-table__pagination" if.bind="pagination">
+    <div class="mdc-data-table__pagination-trailing">
+      <div class="mdc-data-table__pagination-rows-per-page">
+        <div class="mdc-data-table__pagination-rows-per-page-label">${rowsPerPageLabel}</div>
+
+        <mdc-select value.bind="pageSize" outlined class="mdc-data-table__pagination-rows-per-page-select">
+          <mdc-list-item repeat.for="ps of pageSizes" value.bind="ps">${ps}</mdc-list-item>
+        </mdc-select>
+      </div>
+
+      <div class="mdc-data-table__pagination-navigation">
+        <div class="mdc-data-table__pagination-total">${paginationTotal}</div>
+        <button mdc-icon-button class="mdc-data-table__pagination-button" data-first-page="true"
+          disabled.bind="!paginationPosition || paginationPosition === 'first'"
+          click.trigger="handleNavigationClick('first')">
+          <mdc-icon>first_page</mdc-icon>
+        </button>
+        <button mdc-icon-button class="mdc-data-table__pagination-button" data-prev-page="true"
+          disabled.bind="!paginationPosition || paginationPosition === 'first'"
+          click.trigger="handleNavigationClick('prev')">
+          <mdc-icon>chevron_left</mdc-icon>
+        </button>
+        <button mdc-icon-button class="mdc-data-table__pagination-button" data-next-page="true"
+          disabled.bind="!paginationPosition || paginationPosition === 'last'"
+          click.trigger="handleNavigationClick('next')">
+          <mdc-icon>chevron_right</mdc-icon>
+        </button>
+        <button mdc-icon-button class="mdc-data-table__pagination-button" data-last-page="true"
+          disabled.bind="!paginationPosition || paginationPosition === 'last'"
+          click.trigger="handleNavigationClick('last')">
+          <mdc-icon>last_page</mdc-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mdc-data-table__progress-indicator">
+    <div class="mdc-data-table__scrim"></div>
+    <mdc-linear-progress class="mdc-data-table__linear-progress"></mdc-linear-progress>
+  </div>
 </template>

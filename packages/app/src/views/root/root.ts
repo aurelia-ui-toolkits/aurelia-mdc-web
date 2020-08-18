@@ -18,8 +18,8 @@ export class Root {
 
   configureRouter(config: RouterConfiguration) {
     const exampleRoutes: RouteConfig[] = ['button', 'card', 'checkbox', 'chips', 'circular-progress', 'data-table', 'dialog', 'drawer', 'elevation',
-      'expandable', 'fab', 'form-field', 'icon-button', 'list', 'lookup', 'menu', 'radio', 'ripple', 'select', 'slider', 'switch', 'tabs',
-      'text-field', 'top-app-bar', 'tree-view', 'typography']
+      'expandable', 'fab', 'form-field', 'icon-button', 'list', 'linear-progress', 'lookup', 'menu', 'menu-surface', 'radio', 'ripple', 'select',
+      'slider', 'switch', 'tabs', 'text-field', 'top-app-bar', 'tree-view', 'typography']
       .map(x => ({ route: x }));
 
     const menuRoutes: RouteConfig[] = [
