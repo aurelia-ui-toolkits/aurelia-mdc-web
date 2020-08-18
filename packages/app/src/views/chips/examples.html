@@ -1,0 +1,47 @@
+<template>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Chips</h3>
+    <compose view="./default.html" class="demo-layout__row"></compose>
+    <example-viewer html.bind="defaultHtml"></example-viewer>
+  </div>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Choice Chips</h3>
+    <compose view="./choice.html" class="demo-layout__row"></compose>
+    <example-viewer html.bind="choiceHtml"></example-viewer>
+  </div>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Choice Chips with leading icon</h3>
+    <compose view="./choice-leading.html" class="demo-layout__row"></compose>
+    <example-viewer html.bind="choiceLeadingHtml"></example-viewer>
+  </div>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Filter Chips with checkmarks</h3>
+    <compose view="./filter.html" class="demo-layout__row"></compose>
+    <example-viewer html.bind="filterHtml"></example-viewer>
+  </div>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Filter Chips with leading icon</h3>
+    <compose view="./filter-leading.html" class="demo-layout__row"></compose>
+    <example-viewer html.bind="filterLeadingHtml"></example-viewer>
+  </div>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Input Chips with trailing icon</h3>
+    <compose view="./input.html" class="demo-layout__row"></compose>
+    <example-viewer html.bind="inputHtml"></example-viewer>
+  </div>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Input Chips with trailing action button</h3>
+    <compose view="./input-trailing-action.html" class="demo-layout__row"></compose>
+    <example-viewer html.bind="inputTrailingActionHtml"></example-viewer>
+  </div>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Binding</h3>
+    <div class="demo-layout__row">
+      <compose view="./binding.html"></compose>
+    </div>
+    <mdc-text-field value.bind="newChip"></mdc-text-field>
+    <mdc-button raised click.delegate="add()">Add</mdc-button>
+  </div>
+  <example-viewer html.bind="bindingHtml"></example-viewer>
+  </div>
+</template>

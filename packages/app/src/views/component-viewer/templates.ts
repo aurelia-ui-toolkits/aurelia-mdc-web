@@ -63,6 +63,25 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/checkbox/mdc-checkbox';
 @use '@material/checkbox';`
   },
+  'chips': {
+    title: 'Chips',
+    description: 'Chips are compact elements that allow users to enter information, select a choice, filter content, or trigger an action.',
+    references: [{
+      name: 'Material Design guidelines: Chips',
+      url: 'https://material.io/guidelines/components/chips.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-chips/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-chips/README.md#sass-mixins' },
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/chips\'));',
+    sass: `@use '@material/chips/mdc-chips';
+@use '@material/chips';
+@use '@aurelia-mdc-web/chips' as AuChips;
+`
+  },
   'circular-progress': {
     title: 'Circular Progress',
     description: 'Progress indicators express an unspecified wait time or display the length of a process.',

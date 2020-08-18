@@ -1,0 +1,13 @@
+<template class="
+    mdc-chip-set
+    ${choice ? 'mdc-chip-set--choice' : ''}
+    ${filter ? 'mdc-chip-set--filter' : ''}
+    ${input ? 'mdc-chip-set--input' : ''}
+  "
+  role="grid"
+  mdcchip:interaction.delegate="handleChipInteraction_($event.detail)"
+  mdcchip:selection.delegate="handleChipSelection_($event.detail)"
+  mdcchip:removal.delegate="handleChipRemoval_($event.detail)"
+  mdcchip:navigation.delegate="handleChipNavigation_($event.detail)">
+  <slot></slot>
+</template>
