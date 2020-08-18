@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/chips",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.15",
   "publishConfig": {
     "access": "public"
   },
@@ -54,10 +54,10 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.9",
-    "@aurelia-mdc-web/ripple": "^1.0.0-alpha.9",
-    "@material/ripple": "^7.0.0",
-    "@material/chips": "^7.0.0"
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.15",
+    "@aurelia-mdc-web/ripple": "^1.0.0-alpha.15",
+    "@material/chips": "^7.0.0",
+    "@material/ripple": "^7.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
