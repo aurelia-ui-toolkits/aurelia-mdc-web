@@ -55,9 +55,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.15",
-    "@aurelia-mdc-web/ripple": "^1.0.0-alpha.15",
-    "@material/icon-button": "^7.0.0"
+    "@material/layout-grid": "^7.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
