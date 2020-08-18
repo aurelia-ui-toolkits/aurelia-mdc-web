@@ -42,6 +42,8 @@
 @use "@material/image-list/mdc-image-list";
 @use "@material/chips/mdc-chips";
 @use "@aurelia-mdc-web/chips"as AuChips;
+@use "@material/layout-grid/mdc-layout-grid";
+@use "@aurelia-mdc-web/layout-grid"as AuLayoutGrid;
 
 @use "./landing";
 @use "./layout";

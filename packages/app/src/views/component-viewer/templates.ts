@@ -224,6 +224,22 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/icon-button/mdc-icon-button';
 @use '@material/icon-button/_index' as icon-button;`
   },
+  'layout-grid': {
+    title: 'Layout Grids',
+    description: 'Material design’s responsive UI is based on a column-variate grid layout.',
+    references: [{
+      name: 'Material Design guidelines: Layout Grid',
+      url: 'https://material.io/design/layout/responsive-layout-grid'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-layout-grid/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-layout-grid/README.md#sass-mixins' },
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/layout-grid\'));',
+    sass: '@use "@material/layout-grid/mdc-layout-grid";'
+  },
   'list': {
     title: 'Lists',
     description: 'Lists are continuous, vertical indexes of text or images.',
