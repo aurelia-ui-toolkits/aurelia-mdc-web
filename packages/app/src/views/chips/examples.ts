@@ -6,10 +6,10 @@ import filterLeadingHtml from '!!raw-loader!./filter-leading.html';
 import inputHtml from '!!raw-loader!./input.html';
 
 export class Examples {
-    defaultHtml = defaultHtml;
-    choiceHtml = choiceHtml;
-    choiceLeadingHtml = choiceLeadingHtml;
-    filterHtml = filterHtml;
-    filterLeadingHtml = filterLeadingHtml;
-    inputHtml = inputHtml;
+  defaultHtml = defaultHtml;
+  choiceHtml = choiceHtml;
+  choiceLeadingHtml = choiceLeadingHtml;
+  filterHtml = filterHtml;
+  filterLeadingHtml = filterLeadingHtml;
+  inputHtml = inputHtml;
 }
