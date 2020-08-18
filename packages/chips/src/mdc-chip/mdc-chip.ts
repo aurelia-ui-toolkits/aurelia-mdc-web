@@ -123,27 +123,27 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     /* @Child does not really work well when there is a span element between the chip and the child element;
        it has also problems with defaults for slots */
     if (this.primaryActionElement === undefined) {
-      const element = this.root.querySelector('mdc-chip-primary-action');
+      const element = this.root.querySelector<IMdcChipPrimaryActionElement>('mdc-chip-primary-action');
       if (element) {
-        this.primaryActionElement = (element as IMdcChipPrimaryActionElement).au.controller.viewModel;
+        this.primaryActionElement = element.au.controller.viewModel;
       }
     }
     if (this.leadingIconElement === undefined) {
-      const element = this.root.querySelector('mdc-chip-icon.mdc-chip-icon--leading');
+      const element = this.root.querySelector<IMdcChipIconElement>('mdc-chip-icon.mdc-chip-icon--leading');
       if (element) {
-        this.leadingIconElement = (element as IMdcChipIconElement).au.controller.viewModel;
+        this.leadingIconElement = element.au.controller.viewModel;
       }
     }
     if (this.trailingIconElement === undefined) {
-      const element = this.root.querySelector('mdc-chip-icon.mdc-chip-icon--trailing');
+      const element = this.root.querySelector<IMdcChipIconElement>('mdc-chip-icon.mdc-chip-icon--trailing');
       if (element) {
-        this.trailingIconElement = (element as IMdcChipIconElement).au.controller.viewModel;
+        this.trailingIconElement = element.au.controller.viewModel;
       }
     }
     if (this.checkmarkElement === undefined) {
-      const element = this.root.querySelector('mdc-chip-checkmark');
+      const element = this.root.querySelector<IMdcChipCheckmarkElement>('mdc-chip-checkmark');
       if (element) {
-        this.checkmarkElement = (element as IMdcChipCheckmarkElement).au.controller.viewModel;
+        this.checkmarkElement = element.au.controller.viewModel;
       }
     }
     return super.attached();
@@ -264,9 +264,9 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
 
 export interface IMdcChipElement extends HTMLElement {
   au: {
-      controller: {
-          view: View;
-          viewModel: MdcChip;
-      };
+    controller: {
+      view: View;
+      viewModel: MdcChip;
+    };
   };
 }
