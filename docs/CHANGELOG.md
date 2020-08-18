@@ -1,3 +1,20 @@
+# [v1.0.0-alpha.15](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2020-08-18)
+
+
+### Bug Fixes
+
+* **menu-surface:** expose open as a property ([c741727](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c74172761760e2a00a0230ccea43b93883bccb71))
+
+
+### Features
+
+* **app:** add menu surface example ([76a22d5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/76a22d5e543e8d289160b82bb32a8846e7ca70c0))
+* **app:** add radio examples ([68f96fd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/68f96fd4ed18660ff0f050cb568c6d1c62f579e7))
+* **layout-grid:** add ([993a45c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/993a45cc649ac481de5e0784fb6508e071607c04))
+* **chips:** add ([035c186](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fb4d0d433d9ba31632fa29efa25141718035c186))
+
+
+
 # [v1.0.0-alpha.14](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2020-08-14)
 
 
