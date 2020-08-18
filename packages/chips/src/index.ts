@@ -6,6 +6,7 @@ export { MdcChipIcon } from './mdc-chip-icon/mdc-chip-icon';
 export { MdcChipPrimaryAction } from './mdc-chip-primary-action/mdc-chip-primary-action';
 export { MdcChipCheckmark } from './mdc-chip-checkmark';
 export { MdcChipText } from './mdc-chip-text';
+export { MdcChipTrailingAction} from './mdc-chip-trailing-action/mdc-chip-trailing-action';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([
@@ -14,7 +15,8 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./mdc-chip-icon/mdc-chip-icon'),
     PLATFORM.moduleName('./mdc-chip-primary-action/mdc-chip-primary-action'),
     PLATFORM.moduleName('./mdc-chip-checkmark'),
-    PLATFORM.moduleName('./mdc-chip-text')
+    PLATFORM.moduleName('./mdc-chip-text'),
+    PLATFORM.moduleName('./mdc-chip-trailing-action/mdc-chip-trailing-action')
   ]);
 
   config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));

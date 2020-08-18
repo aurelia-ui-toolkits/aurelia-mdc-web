@@ -57,7 +57,6 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
       removeChipAtIndex: (index: number) => {
         if (index >= 0 && index < this.chips.length) {
           this.chips[index].destroy();
-          this.chips[index].remove();
           this.chips.splice(index, 1);
         }
       },

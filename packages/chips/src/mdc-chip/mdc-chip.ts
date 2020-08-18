@@ -2,7 +2,7 @@ import { inject, customElement, useView, PLATFORM, child, ViewCompiler, ViewReso
 import { bindable } from 'aurelia-typed-observable-plugin';
 import {
   MDCChipFoundation, MDCChipAdapter, chipCssClasses,
-  MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail
+  MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail, MDCChipTrailingActionNavigationEvent
 } from '@material/chips';
 import { EventSource } from '@material/chips/chip/constants';
 import { MdcComponent } from '@aurelia-mdc-web/base';
@@ -44,6 +44,10 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     const checkMark = element.querySelector('mdc-chip-checkmark');
     checkMark?.setAttribute('slot', 'checkmark');
 
+    // move icon to the slot - this allows omitting slot specification
+    const trailingAction = element.querySelector('mdc-chip-trailing-action');
+    trailingAction?.setAttribute('slot', 'trailing-action');
+
     return true;
   }
 
@@ -75,6 +79,9 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
 
   @bindable
   trailingIcon?: string;
+
+  @bindable
+  trailingAction?: string;
 
   @bindable.booleanAttr
   checkmark?: boolean;
@@ -243,6 +250,14 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
 
   handleTrailingIconInteraction(): void {
     this.foundation?.handleTrailingActionInteraction();
+  }
+
+  handleTrailingActionInteraction_(): void {
+    this.foundation?.handleTrailingActionInteraction();
+  }
+
+  handleTrailingActionNavigation_(evt: MDCChipTrailingActionNavigationEvent): void {
+    this.foundation?.handleTrailingActionNavigation(evt);
   }
 
   setSelectedFromChipSet(selected: boolean, shouldNotifyClients: boolean) {
