@@ -78,8 +78,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
     ],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/chips\'));',
     sass: `@use '@material/chips/mdc-chips';
-@use '@material/chips';
-@use '@aurelia-mdc-web/chips' as AuChips;
+@use '@aurelia-mdc-web/chips';
 `
   },
   'circular-progress': {
@@ -238,7 +237,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-layout-grid/README.md#sass-mixins' },
     ],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/layout-grid\'));',
-    sass: '@use "@material/layout-grid/mdc-layout-grid";'
+    sass: `@use "@material/layout-grid/mdc-layout-grid";
+@use "@aurelia-mdc-web/layout-grid";`
   },
   'list': {
     title: 'Lists',
@@ -469,9 +469,10 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/icon/README.md#sass-mixins' },
     ],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/text-field\'));',
-    sass: `@use '@material/textfield/mdc-text-field';
-@use '@material/textfield/_index' as textfield;
-@use '@material/form-field/_index' as form-field;`
+    sass: `@use "@material/textfield/mdc-text-field";
+@use "@material/textfield/_index" as textfield;
+@use "@material/form-field/_index" as form-field;
+@use "@aurelia-mdc-web/text-field" as AuTextField;`
   },
   'top-app-bar': {
     title: 'Top App Bar',

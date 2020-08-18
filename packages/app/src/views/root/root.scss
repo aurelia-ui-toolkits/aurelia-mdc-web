@@ -6,12 +6,12 @@
 
 @use "@material/button/mdc-button";
 @use "@material/list/mdc-list";
-@use "@aurelia-mdc-web/list" as AuList;
+@use "@aurelia-mdc-web/list";
 @use "@material/icon-button/mdc-icon-button";
 @use "@material/top-app-bar/mdc-top-app-bar";
 @use "@material/drawer/mdc-drawer";
 @use "@material/textfield/mdc-text-field";
-@use "@aurelia-mdc-web/text-field" as AuTextField;
+@use "@aurelia-mdc-web/text-field"as AuTextField;
 @use "@material/floating-label/mdc-floating-label";
 @use "@material/form-field/mdc-form-field";
 @use "@material/line-ripple/mdc-line-ripple";
@@ -41,9 +41,9 @@
 @use "@material/linear-progress/mdc-linear-progress";
 @use "@material/image-list/mdc-image-list";
 @use "@material/chips/mdc-chips";
-@use "@aurelia-mdc-web/chips"as AuChips;
+@use "@aurelia-mdc-web/chips";
 @use "@material/layout-grid/mdc-layout-grid";
-@use "@aurelia-mdc-web/layout-grid"as AuLayoutGrid;
+@use "@aurelia-mdc-web/layout-grid";
 
 @use "./landing";
 @use "./layout";
