@@ -1,5 +1,47 @@
 <template>
   <div class="demo-content">
+    <h3 class="demo-content__headline">Select</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="standardSelectOutlined = !standardSelectOutlined">
+        Outlined: ${standardSelectOutlined ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="standardSelectRequired = !standardSelectRequired">
+        Required: ${standardSelectRequired ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="standardSelectDisabled = !standardSelectDisabled">
+        Disabled: ${standardSelectDisabled ? 'On' : 'Off'}
+      </button>
+      <button mdc-button click.delegate="standardSelect.value = 'banana'">
+        Select Banana
+      </button>
+      <button mdc-button click.delegate="standardSelect.selectedIndex = 2">
+        Set Index (2)
+      </button>
+      <button mdc-button click.delegate="standardSelect.selectedIndex = 0">
+        Set Index (0)
+      </button>
+      <button mdc-button click.delegate="standardSelect.focus()">Focus</button>
+    </div>
+    <div class="au-select">
+      <mdc-select ref="standardSelect" label="Fruit" required.bind="standardSelectRequired"
+        change.delegate="onSelectionChange($event)" anchor-margin.bind="{top: 10}"
+        outlined.bind="standardSelectOutlined" disabled.bind="standardSelectDisabled">
+        <mdc-list-item></mdc-list-item>
+        <mdc-list-item value="apple">Apple</mdc-list-item>
+        <mdc-list-item value="orange">Orange</mdc-list-item>
+        <mdc-list-item value="banana">Banana</mdc-list-item>
+        <mdc-list-item disabled value="mango">Mango</mdc-list-item>
+      </mdc-select>
+      <mdc-select-helper-text if.bind="standardSelect.valid">Helper text</mdc-select-helper-text>
+      <mdc-select-helper-text validation>Field is required</mdc-select-helper-text>
+    </div>
+    <p> Value: ${standardSelect.value}</p>
+    <!-- <example-viewer [example]="exampleStandard"></example-viewer> -->
+  </div>
+
+
+
+  <div class="demo-content">
     <h3 class="demo-content__headline">Basic</h3>
 
     <div class="demo-layout__row">
@@ -38,6 +80,6 @@
       </mdc-select>
       <mdc-select-helper-text validation></mdc-select-helper-text>
     </div>
-</div>
+  </div>
 
 </template>

@@ -30,4 +30,9 @@ export class Examples {
   removeOption() {
     this.options.pop();
   }
+
+  onSelectionChange(event: CustomEvent) {
+    console.log('onSelectionChange', event.detail);
+  }
+
 }
