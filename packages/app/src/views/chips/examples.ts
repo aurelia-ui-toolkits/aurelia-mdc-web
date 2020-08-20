@@ -5,6 +5,8 @@ import filterHtml from '!!raw-loader!./filter.html';
 import filterLeadingHtml from '!!raw-loader!./filter-leading.html';
 import inputHtml from '!!raw-loader!./input.html';
 import inputTrailingActionHtml from '!!raw-loader!./input-trailing-action.html';
+import filterBindingHtml from '!!raw-loader!./filter-binding.html';
+import filterBindingCode from '!!raw-loader!./filter-binding-code';
 
 export class Examples {
   defaultHtml = defaultHtml;
@@ -14,17 +16,6 @@ export class Examples {
   filterLeadingHtml = filterLeadingHtml;
   inputHtml = inputHtml;
   inputTrailingActionHtml = inputTrailingActionHtml;
-
-  chips = [{ label: 'One', selected: true }, { label: 'Two' }, { label: 'Three' }];
-  newChip: string;
-
-  add() {
-    this.chips.push({ label: this.newChip });
-    this.newChip = '';
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  removed(data: any) {
-    this.chips.splice(this.chips.indexOf(data), 1);
-  }
+  filterBindingHtml = filterBindingHtml;
+  filterBindingCode = filterBindingCode;
 }
