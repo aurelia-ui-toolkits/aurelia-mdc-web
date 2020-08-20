@@ -5,7 +5,7 @@
       <let $tree.bind="element"></let>
       <let $tree-vm.bind="$parent"></let>
       <div class="mdc-tree-view__node ${$node.selected ? 'mdc-tree-view__node--selected' : ''}"
-        click.trigger="nodeClicked($node)" mdc-ripple>
+        click.trigger="nodeClicked($node)" mdc-ripple="no-class.bind: true;">
         <div class="mdc-tree-view__node__ripple"></div>
         <mdc-icon-button if.bind="$node.children" type="fab" size="small" class="mdc-tree-view__expander"
           on.bind="$node.expanded">

@@ -3,7 +3,7 @@
       mdc-expandable__header
       mdc-expandable__header--${open ? 'open' : 'closed'}
       ${focused ? 'mdc-expandable__header--focused' : ''}
-    " ref="header" click.trigger="toggle()" focus.trigger="handleFocus()" blur.trigger="handleBlur()" mdc-ripple
+    " ref="header" click.trigger="toggle()" focus.trigger="handleFocus()" blur.trigger="handleBlur()" mdc-ripple="no-class.bind: true;"
     tabindex="0" keydown.trigger="handleKeydown($event)">
     <div class="mdc-expandable__caption">
       <slot name="caption"></slot>

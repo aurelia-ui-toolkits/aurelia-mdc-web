@@ -2,7 +2,6 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCRippleFoundation, MDCRippleAdapter, util } from '@material/ripple';
 import { matches } from '@material/dom/ponyfill';
 import { applyPassive } from '@material/dom/events';
-import { inject, customAttribute } from 'aurelia-framework';
 import { inject, customAttribute, Binding, BehaviorPropertyObserver } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
@@ -25,7 +24,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
 
   @bindable.booleanAttr
   unbounded: boolean;
-  async unboundedChanged(){
+  async unboundedChanged() {
     await this.initialised;
     this.foundation?.setUnbounded(Boolean(this.unbounded));
   }
@@ -33,7 +32,25 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   @bindable.booleanAttr
   activeSurface: boolean;
 
+  @bindable.booleanAttr
+  noClass: boolean;
+
+  @bindable.booleanAttr
+  primary: boolean;
+
+  @bindable.booleanAttr
+  accent: boolean;
+
   async initialise() {
+    if (!this.noClass) {
+      (this.surface ?? this.root).classList.add('mdc-ripple-surface');
+      if (this.primary) {
+        (this.surface ?? this.root).classList.add('mdc-ripple-surface--primary');
+      }
+      if (this.accent) {
+        (this.surface ?? this.root).classList.add('mdc-ripple-surface--accent');
+      }
+    }
     const inputBinding = (this.root as IMdcRippleElement).au['mdc-ripple'].boundProperties.find(x => x.binding.targetProperty === 'input');
     if (inputBinding) {
       await this.inputBindingPromise;
