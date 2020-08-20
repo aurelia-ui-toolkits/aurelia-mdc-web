@@ -1,6 +1,6 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { cssClasses, MDCSelectFoundationMap, MDCSelectEventDetail, strings } from '@material/select';
-import { inject, useView, customElement, child, processContent, ViewCompiler, ViewResources, children, bindingMode } from 'aurelia-framework';
+import { inject, useView, customElement, child, processContent, ViewCompiler, ViewResources, children, bindingMode, TaskQueue } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { MdcSelectIcon, IMdcSelectIconElement, mdcIconStrings } from './mdc-select-icon';
 import { MdcSelectHelperText, mdcHelperTextCssClasses, IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
@@ -359,6 +359,15 @@ function defineMdcSelectElementApis(element: HTMLElement) {
         // aurelia binding converts "undefined" and "null" into empty string
         // this does not translate well into "empty" menu items when several selects are bound to the same field
         this.au.controller.viewModel.value = value === '' ? undefined : value;
+      },
+      configurable: true
+    },
+    selectedIndex: {
+      get(this: IMdcSelectElement) {
+        return this.au.controller.viewModel.selectedIndex;
+      },
+      set(this: IMdcSelectElement, value: number) {
+        this.au.controller.viewModel.selectedIndex = value;
       },
       configurable: true
     },
