@@ -1,3 +1,16 @@
 <template>
-  Coming soon...
+  <div class="demo-content">
+    <compose view="./basic.html"></compose>
+    <example-viewer html.bind="basicHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <compose view="./primary.html"></compose>
+    <example-viewer html.bind="primaryHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <compose view="./accent.html"></compose>
+    <example-viewer html.bind="accentHtml"></example-viewer>
+  </div>
 </template>

@@ -4,7 +4,7 @@
     ${extended ? 'mdc-fab--extended' : ''}
     ${exited ? 'mdc-fab--exited' : ''}
     ${touch ? 'mdc-fab--touch' : ''}
-  " tabindex.bind="disabled ? -1 : 0" mdc-ripple>
+  " tabindex.bind="disabled ? -1 : 0" mdc-ripple="no-class.bind: true;">
   <div class="mdc-fab__ripple"></div>
   <slot></slot>
   <span class="material-icons mdc-fab__icon" if.bind="icon">${icon}</span>

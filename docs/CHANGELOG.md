@@ -1,3 +1,19 @@
+# [v1.0.0-alpha.16](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2020-08-20)
+
+
+### Bug Fixes
+
+* **layout-grid:** deps ([f00a889](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f00a889c02f8bdfb34b31d2c184de016e4033fb3))
+* **ripple:** add ripple classes unless a consumer tells otherwise ([4dd503d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4dd503de73f6fd16f6014353ffa2a5e38975dd6f))
+* **ripple:** delay initialisation until input is bound ([d315dff](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d315dff993b057d8c6c12aecb6fa9170b0619b96))
+
+
+### Features
+
+* **app:** add ripple examples ([2be5830](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2be5830c3dd8de6178928b1505b2d68d6fb725dc))
+
+
+
 # [v1.0.0-alpha.15](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2020-08-18)
 
 
