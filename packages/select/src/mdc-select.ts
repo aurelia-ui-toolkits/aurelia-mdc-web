@@ -13,12 +13,13 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcListItem, IMdcListItemElement } from '@aurelia-mdc-web/list';
 import { MDCSelectFoundationAurelia } from './mdc-select-fundation-aurelia';
 import { MDCSelectAdapterAurelia } from './mdc-select-adapter-aurelia';
+import { MDCMenuDistance } from '@material/menu-surface';
 
 strings.CHANGE_EVENT = strings.CHANGE_EVENT.toLowerCase();
 
 let selectId = 0;
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @useView(PLATFORM.moduleName('./mdc-select.html'))
 @customElement(cssClasses.ROOT)
 @processContent(MdcSelect.processContent)
@@ -31,7 +32,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     return true;
   }
 
-  constructor(root: HTMLElement) {
+  constructor(root: HTMLElement, private taskQueue: TaskQueue) {
     super(root);
     defineMdcSelectElementApis(this.root);
   }
@@ -81,6 +82,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
+
+  @bindable
+  anchorMargin: Partial<MDCMenuDistance>;
 
   private initialValue: unknown;
   get value(): unknown {
