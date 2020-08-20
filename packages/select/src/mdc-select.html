@@ -3,7 +3,7 @@
     mdc-select--${outlined ? 'outlined' : 'filled'}
     ${leadingIcon ? 'mdc-select--with-leading-icon' : ''}
     ${required ? 'mdc-select--required' : ''}
-  " id="${id}">
+  " role="button" aria-haspopup="listbox" id="${id}">
   <div class="mdc-select__anchor" ref="selectAnchor" mdc-ripple="no-class.bind: true;" change.trigger="handleChange()"
     focus.trigger="handleFocus()" blur.trigger="handleBlur()" keydown.trigger="handleKeydown($event)"
     click.trigger="handleClick($event)">
