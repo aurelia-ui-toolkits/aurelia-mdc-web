@@ -80,6 +80,13 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     this.taskQueue.queueTask(() => this.foundation?.layout());
   }
 
+  @bindable.booleanAttr
+  disabled: boolean;
+  async disabledChanged() {
+    await this.initialised;
+    this.foundation?.setDisabled(this.disabled);
+  }
+
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
