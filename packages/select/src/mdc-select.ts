@@ -62,6 +62,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   @bindable.booleanAttr
   outlined: boolean;
+  outlinedChanged() {
+    this.taskQueue.queueTask(() => this.foundation?.layout());
+  }
 
   @bindable.booleanAttr
   required: boolean;
@@ -72,6 +75,8 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     } else {
       this.selectAnchor.removeAttribute('aria-required');
     }
+    this.foundation?.setRequired(this.required);
+    this.taskQueue.queueTask(() => this.foundation?.layout());
   }
 
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
