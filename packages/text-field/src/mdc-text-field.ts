@@ -376,6 +376,24 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       },
       configurable: true
     },
+    disabled: {
+      get(this: IMdcTextFieldElement) {
+        return this.au.controller.viewModel.disabled;
+      },
+      set(this: IMdcTextFieldElement, value: boolean) {
+        this.au.controller.viewModel.disabled = value;
+      },
+      configurable: true
+    },
+    readonly: {
+      get(this: IMdcTextFieldElement) {
+        return this.au.controller.viewModel.readonly;
+      },
+      set(this: IMdcTextFieldElement, value: boolean) {
+        this.au.controller.viewModel.readonly = value;
+      },
+      configurable: true
+    },
     valid: {
       get(this: IMdcTextFieldElement) {
         return this.au.controller.viewModel.valid;
