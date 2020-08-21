@@ -67,8 +67,10 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   @bindable.booleanAttr
   disabled: boolean;
-  disabledChanged() {
+  async disabledChanged() {
     this.input_.disabled = this.disabled;
+    await this.initialised;
+    this.foundation?.setDisabled(this.disabled);
   }
 
   @bindable.booleanAttr
