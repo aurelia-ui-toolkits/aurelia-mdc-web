@@ -385,7 +385,7 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       },
       configurable: true
     },
-    readonly: {
+    readOnly: {
       get(this: IMdcTextFieldElement) {
         return this.au.controller.viewModel.readonly;
       },
