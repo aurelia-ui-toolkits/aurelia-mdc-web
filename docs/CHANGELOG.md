@@ -1,3 +1,23 @@
+# [v1.0.0-alpha.17](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2020-08-21)
+
+
+### Bug Fixes
+
+* **lookup:** do not open on disabled or readonly inputs ([ab35d92](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ab35d92b0489e67cab1d674ae762491517e42de9))
+* **select:** add anchor margin attribute ([807fb9d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/807fb9d20d14199c006f609af5146b9ad35d28fe))
+* **select:** add disabled ([07b97cf](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/07b97cfe5990f08e4e53a0fa951fd2250d71ecef))
+* **select:** add missing attributes ([7b32ce7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7b32ce71b597f3d6130442e61e11d3a322cac3fe))
+* **select:** re-layout on attributes change ([171cd0d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/171cd0db2662498ef7fa339c29dadef454ecc1ca))
+* **text-field:** propagate disabled to foundation ([7ace40d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7ace40d495c7230c2098bcd0cee6b05457c6c0e8))
+
+
+### Features
+
+* **app:** wip - select examples ([aff933e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/aff933e45ef823019fc8a5bc1e79ade117ad1ce6))
+* **select:** expose selected index on an element ([c921ee6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c921ee6820f5c12e8e586b87bbadd943ecb8c5ad))
+* **text-field:** expose disabled and readonly on an element ([e2770b3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e2770b3d9e89636e6db863be99195afeb0f9ea09))
+
+
 # [v1.0.0-alpha.16](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2020-08-20)
 
 
