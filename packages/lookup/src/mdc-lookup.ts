@@ -136,7 +136,7 @@ export class MdcLookup implements EventListenerObject {
   }
 
   open() {
-    if (this.menu.open || this.optionsArray === undefined && !this.searching && !this.errorMessage) {
+    if (this.input?.disabled || this.input?.readOnly || this.menu.open || this.optionsArray === undefined && !this.searching && !this.errorMessage) {
       return;
     }
     this.menu.open = true;
