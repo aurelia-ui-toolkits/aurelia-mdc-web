@@ -1,0 +1,14 @@
+<template class="mdc-snackbar ${classes}
+  ${stacked ? 'mdc-snackbar--stacked' : ''}
+  ${leading ? 'mdc-snackbar--leading' : ''}
+" keydown.trigger="handleKeyDown($event)">
+  <div class="mdc-snackbar__surface" ref="surfaceEl_">
+    <div class="mdc-snackbar__label" role="status" aria-live="polite" ref="labelEl_">${label}</div>
+    <div class="mdc-snackbar__actions">
+      <button repeat.for="a of actions" class="mdc-button mdc-snackbar__action ${actionClasses}"
+        click.trigger="handleAction(a)">${a}</button>
+      <button if.bind="dismissible" class="mdc-icon-button mdc-snackbar__dismiss material-icons ${dismissClasses}"
+        click.trigger="handleDismiss()">close</button>
+    </div>
+  </div>
+</template>

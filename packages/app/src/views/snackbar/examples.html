@@ -1,0 +1,18 @@
+<template>
+  <div class="demo-content">
+    <compose view="./basic.html"></compose>
+    <example-viewer html.bind="basicHtml" code.bind="basicCode"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Custom</h3>
+    <compose view="./custom.html"></compose>
+    <example-viewer html.bind="customHtml" sass.bind="customSass" code.bind="customCode"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Theme</h3>
+    <compose view="./theme.html"></compose>
+    <example-viewer html.bind="themeHtml" sass.bind="themeSass" code.bind="themeCode"></example-viewer>
+  </div>
+</template>

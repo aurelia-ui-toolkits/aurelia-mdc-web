@@ -400,6 +400,23 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/slider/mdc-slider';
 @use '@material/slider';`
   },
+  'snackbar': {
+    title: 'Snackbars',
+    description: 'Snackbars provide brief messages about app processes at the bottom of the screen.',
+    references: [{
+      name: 'Material Design guidelines: Snackbars',
+      url: 'https://material.io/design/components/snackbars.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-snackbar/README.md'
+    }],
+    mdcUrls: [
+      {name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-snackbar/README.md#sass-mixins'},
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/snackbar\'))',
+    sass: `@use '@material/snackbar/mdc-snackbar';
+@use '@material/snackbar';`
+  },
   'switch': {
     title: 'Switches',
     description: 'Buttons allow users to take actions, and make choices, with a single tap.',

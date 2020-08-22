@@ -44,7 +44,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | ripple | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/ripple) |
 | select | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/select) |
 | slider | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/slider) |
-| snackbar | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/snackbar) |
+| snackbar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/snackbar) |
 | switch | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/switch) |
 | tabs | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tabs) |
 | text-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/text-field) |
