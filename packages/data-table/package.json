@@ -68,7 +68,6 @@
     "copyfiles": "^1.2.0",
     "cross-env": "^7.0.2",
     "rimraf": "^3.0.2",
-    "sass": "^1.26.9",
     "typescript": "^3.9.5"
   }
 }
