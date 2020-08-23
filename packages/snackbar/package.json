@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/snackbar",
-  "version": "1.0.0-alpha.17",
+  "version": "1.0.0-alpha.18",
   "publishConfig": {
     "access": "public"
   },
@@ -55,9 +55,9 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0-alpha.17",
-    "@aurelia-mdc-web/button": "^1.0.0-alpha.17",
-    "@aurelia-mdc-web/icon-button": "^1.0.0-alpha.17",
+    "@aurelia-mdc-web/base": "^1.0.0-alpha.18",
+    "@aurelia-mdc-web/button": "^1.0.0-alpha.18",
+    "@aurelia-mdc-web/icon-button": "^1.0.0-alpha.18",
     "@material/snackbar": "^7.0.0"
   },
   "devDependencies": {
@@ -66,7 +66,6 @@
     "copyfiles": "^1.2.0",
     "cross-env": "^7.0.2",
     "rimraf": "^3.0.2",
-
     "typescript": "^3.9.5"
   }
 }
