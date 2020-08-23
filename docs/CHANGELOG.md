@@ -1,3 +1,13 @@
+# [v1.0.0-alpha.18](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2020-08-23)
+
+
+### Features
+
+* **image-list:** add ([c2ecd6c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c2ecd6c4f9c060ee4ee3ea5950e3d874f5223328))
+* **snackbar:** add ([56ea99f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/56ea99faffb9d77f10ef2e9d1c0abc8ad5235af1))
+
+
+
 # [v1.0.0-alpha.17](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2020-08-21)
 
 
