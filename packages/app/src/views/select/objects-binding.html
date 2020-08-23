@@ -1,0 +1,10 @@
+<template>
+  <div class="au-select">
+    <mdc-select label="Make your choice" value.bind="value" required>
+      <mdc-icon mdc-select-icon>pets</mdc-icon>
+      <mdc-list-item>choose</mdc-list-item>
+      <mdc-list-item repeat.for="pet of pets" value.bind="pet">${pet.name}</mdc-list-item>
+    </mdc-select>
+    <mdc-select-helper-text validation>Required</mdc-select-helper-text>
+  </div>
+</template>

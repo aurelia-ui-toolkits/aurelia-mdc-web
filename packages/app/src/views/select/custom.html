@@ -1,0 +1,26 @@
+<template>
+  <require from="./custom.scss"></require>
+  <div class="demo-layout__row">
+    <div class="demo-container">
+      <mdc-select label="Standard" class="custom-select-shape-radius">
+        <mdc-list-item repeat.for="food of foods" value.bind="food.value" disabled.bind="food.disabled">
+          ${food.viewValue}
+        </mdc-list-item>
+      </mdc-select>
+    </div>
+    <div class="demo-container">
+      <mdc-select label="Standard" outlined class="custom-select-outline-shape-radius">
+        <mdc-list-item repeat.for="food of foods" value.bind="food.value" disabled.bind="food.disabled">
+          ${food.viewValue}
+        </mdc-list-item>
+      </mdc-select>
+    </div>
+    <div class="demo-container">
+      <mdc-select label="Standard" outlined class="custom-select-outline-color">
+        <mdc-list-item repeat.for="food of foods" value.bind="food.value" disabled.bind="food.disabled">
+          ${food.viewValue}
+        </mdc-list-item>
+      </mdc-select>
+    </div>
+  </div>
+</template>

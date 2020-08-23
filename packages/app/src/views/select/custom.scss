@@ -1,0 +1,13 @@
+@use '@material/select/_index' as select;
+
+.custom-select-shape-radius {
+  @include select.shape-radius(50%);
+}
+
+.custom-select-outline-color {
+  @include select.outline-color(green);
+}
+
+.custom-select-outline-shape-radius {
+  @include select.outline-shape-radius(50%);
+}

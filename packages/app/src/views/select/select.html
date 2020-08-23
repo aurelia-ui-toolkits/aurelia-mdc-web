@@ -1,0 +1,15 @@
+<template>
+  <div class="au-select">
+    <mdc-select ref="standardSelect" label="Fruit" required.bind="standardSelectRequired"
+      change.delegate="onSelectionChange($event)" anchor-margin.bind="{top: 10}" outlined.bind="standardSelectOutlined"
+      disabled.bind="standardSelectDisabled">
+      <mdc-list-item></mdc-list-item>
+      <mdc-list-item value="apple">Apple</mdc-list-item>
+      <mdc-list-item value="orange">Orange</mdc-list-item>
+      <mdc-list-item value="banana">Banana</mdc-list-item>
+      <mdc-list-item disabled value="mango">Mango</mdc-list-item>
+    </mdc-select>
+    <mdc-select-helper-text if.bind="standardSelect.valid">Helper text</mdc-select-helper-text>
+    <mdc-select-helper-text validation>Field is required</mdc-select-helper-text>
+  </div>
+</template>
