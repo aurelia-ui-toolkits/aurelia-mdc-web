@@ -30,6 +30,7 @@
     "@aurelia-mdc-web/form-field": "^1.0.0-alpha.17",
     "@aurelia-mdc-web/icon": "^1.0.0-alpha.17",
     "@aurelia-mdc-web/icon-button": "^1.0.0-alpha.17",
+    "@aurelia-mdc-web/image-list": "^1.0.0-alpha.17",
     "@aurelia-mdc-web/layout-grid": "^1.0.0-alpha.17",
     "@aurelia-mdc-web/line-ripple": "^1.0.0-alpha.17",
     "@aurelia-mdc-web/linear-progress": "^1.0.0-alpha.17",

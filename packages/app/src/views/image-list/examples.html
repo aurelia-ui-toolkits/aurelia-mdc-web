@@ -1,0 +1,23 @@
+<template>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Standard Image List</h3>
+    Images in a Standard Image list are constrained to 1:1 aspect ratio by default this can be overridden using the
+    aspect attribute.
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="demolistTextProtection = !demolistTextProtection">
+        Text Protection: ${demolistTextProtection ? 'On' : 'Off'}</button>
+    </div>
+    <compose view="./standard.html"></compose>
+    <example-viewer html.bind="standardHtml" sass.bind="standardSass"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Masonry Image List</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="demomasonryTextProtection = !demomasonryTextProtection">
+        Text Protection: ${demomasonryTextProtection ? 'On' : 'Off'}</button>
+    </div>
+    <compose view="./masonry.html"></compose>
+    <example-viewer html.bind="masonryHtml" sass.bind="masonrySass"></example-viewer>
+  </div>
+</template>

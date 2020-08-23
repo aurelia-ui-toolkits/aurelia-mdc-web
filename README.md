@@ -33,7 +33,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | form-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/form-field) |
 | icon | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/icon) |
 | icon-button | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/icon-button) |
-| image-list | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/image-list) |
+| image-list | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/image-list) |
 | layout-grid | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/layout-grid) |
 | linear-progress | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/linear-progress) |
 | list | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/list) |
@@ -48,6 +48,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | switch | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/switch) |
 | tabs | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tabs) |
 | text-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/text-field) |
+| tooltip | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tooltip) |
 | top-app-bar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/top-app-bar) |
 | tree-view | Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tree-view) |
 | typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |

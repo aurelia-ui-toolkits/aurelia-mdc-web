@@ -1,0 +1,9 @@
+<template class="mdc-image-list__item">
+  <div class="mdc-image-list__image-aspect-container" if.bind="hasAspect">
+    <img class="mdc-image-list__image" src.bind="src">
+  </div>
+  <img class="mdc-image-list__image" src.bind="src" if.bind="!hasAspect">
+  <div class="mdc-image-list__supporting" if.bind="label">
+    <span class="mdc-image-list__label">${label}</span>
+  </div>
+</template>

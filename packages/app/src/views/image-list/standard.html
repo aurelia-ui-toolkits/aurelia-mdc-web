@@ -1,0 +1,9 @@
+<template>
+  <require from="./standard.scss"></require>
+  <mdc-image-list text-protection.bind="demolistTextProtection" class="standard-image-list image-list--rounded-corners"
+    columns.bind="[{count: 5}, {media: 'max-width: 899px', count: 3}]">
+    <mdc-image-list-item repeat.for="i of images" aspect="1.5"
+      src="https://material-components-web.appspot.com/images/photos/3x2/${i+1}.jpg" label="Text label">
+    </mdc-image-list-item>
+  </mdc-image-list>
+</template>

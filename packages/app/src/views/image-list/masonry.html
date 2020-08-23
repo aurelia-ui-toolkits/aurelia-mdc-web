@@ -1,0 +1,8 @@
+<template>
+  <require from="./standard.scss"></require>
+  <mdc-image-list text-protection.bind="demomasonryTextProtection" class="image-list--rounded-corners"
+    columns.bind="[{count: 5}, {media: 'max-width: 899px', count: 3}]" masonry>
+    <mdc-image-list-item repeat.for="i of masonryImages" src="${i.image}" label="Text label">
+    </mdc-image-list-item>
+  </mdc-image-list>
+</template>

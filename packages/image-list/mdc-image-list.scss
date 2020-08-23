@@ -1,0 +1,7 @@
+.mdc-image-list__image-aspect-container {
+  padding-bottom: calc(100% / var(--mdc-image-list-item-aspect, 1));
+}
+
+.mdc-image-list__item {
+  display: block;
+}

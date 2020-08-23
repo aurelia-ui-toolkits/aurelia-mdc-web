@@ -27,6 +27,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/form-field'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon-button'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/image-list'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/layout-grid'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/linear-progress'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/list'))

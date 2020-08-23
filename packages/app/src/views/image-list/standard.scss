@@ -1,0 +1,5 @@
+@use '@material/image-list';
+
+.image-list--rounded-corners {
+  @include image-list.shape-radius(8px);
+}

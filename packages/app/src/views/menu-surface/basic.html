@@ -8,27 +8,12 @@
       mdc-menu-surface="fixed.bind: fixed; anchor-corner.bind: anchorCorner; anchor-margin.bind: anchorMargin; anchor.bind: demoAnchor; quick-open.bind: quickOpen"
       mdc-menu-surface.ref="demoSurface">
 
-      <ul class="mdc-image-list menu-surface-image-list">
-        <li class="mdc-image-list__item" repeat.for="i of images">
-          <div class="mdc-image-list__image-aspect-container">
-            <img class="mdc-image-list__image" src="https://material-components-web.appspot.com/images/photos/3x2/${i+1}.jpg" />
-          </div>
-          <div class="mdc-image-list__supporting">
-            <span class="mdc-image-list__label">Text label</span>
-          </div>
-        </li>
-      </ul>
-
-      <!-- <mdc-image-list class="menu-surface-image-list">
-        <mdc-image-list-item repeat.for="i of images">
-          <mdc-image-list-image-aspect>
-            <img mdcImageListImage src="https://material-components-web.appspot.com/images/photos/3x2/${i+1}.jpg" />
-          </mdc-image-list-image-aspect>
-          <mdc-image-list-supporting>
-            <span mdc-image-list-label>Text label</span>
-          </mdc-image-list-supporting>
+      <mdc-image-list class="menu-surface-image-list">
+        <mdc-image-list-item repeat.for="i of images"
+          src="https://material-components-web.appspot.com/images/photos/3x2/${i+1}.jpg" label="Text label">
         </mdc-image-list-item>
-      </mdc-image-list> -->
+      </mdc-image-list>
+
     </div>
   </div>
 </template>

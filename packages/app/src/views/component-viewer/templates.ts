@@ -223,6 +223,24 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/icon-button/mdc-icon-button';
 @use '@material/icon-button/_index' as icon-button;`
   },
+  'image-list': {
+    title: 'Image List',
+    description: 'MDC Image List provides a RTL-aware Material Design image list component. An Image List consists of several items, each containing an image and optionally supporting content (i.e. a text label).',
+    references: [{
+      name: 'Material Design guidelines: Image Lists',
+      url: 'https://material.io/design/components/image-lists.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-image-list/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-image-list/README.md#sass-mixins' },
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/image-list\'))',
+    sass: `@use '@material/image-list/mdc-image-list';
+@use '@material/image-list';
+@use '@aurelia-mdc-web/image-list';`
+  },
   'layout-grid': {
     title: 'Layout Grids',
     description: 'Material design’s responsive UI is based on a column-variate grid layout.',
@@ -411,7 +429,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
       url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-snackbar/README.md'
     }],
     mdcUrls: [
-      {name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-snackbar/README.md#sass-mixins'},
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-snackbar/README.md#sass-mixins' },
     ],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/snackbar\'))',
     sass: `@use '@material/snackbar/mdc-snackbar';

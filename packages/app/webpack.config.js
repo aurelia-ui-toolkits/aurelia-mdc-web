@@ -51,6 +51,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'form-field',
           'icon',
           'icon-button',
+          'image-list',
           'layout-grid',
           'line-ripple',
           'linear-progress',
