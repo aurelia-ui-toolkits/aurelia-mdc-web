@@ -6,7 +6,7 @@ import { MDCFoundation } from '@material/base';
 import { KEY, normalizeKey } from '@material/dom/keyboard';
 
 /**
- * This is almost a complete copy of the default foundation with exception to handling values.
+ * This is an almost complete copy of the default foundation with exception to handling values.
  * It supports values of unknown types which must be bound to mdc-list-item.value.
  */
 export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAurelia> {

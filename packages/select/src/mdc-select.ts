@@ -1,6 +1,6 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { cssClasses, MDCSelectFoundationMap, MDCSelectEventDetail, strings } from '@material/select';
-import { inject, useView, customElement, child, processContent, ViewCompiler, ViewResources, children, bindingMode, TaskQueue } from 'aurelia-framework';
+import { inject, useView, customElement, processContent, ViewCompiler, ViewResources, children, bindingMode, TaskQueue } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { MdcSelectIcon, IMdcSelectIconElement, mdcIconStrings } from './mdc-select-icon';
 import { MdcSelectHelperText, mdcHelperTextCssClasses, IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
@@ -11,7 +11,7 @@ import { MdcMenu } from '@aurelia-mdc-web/menu';
 import { MDCMenuItemEvent, Corner } from '@material/menu';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcListItem, IMdcListItemElement } from '@aurelia-mdc-web/list';
-import { MDCSelectFoundationAurelia } from './mdc-select-fundation-aurelia';
+import { MDCSelectFoundationAurelia } from './mdc-select-foundation-aurelia';
 import { MDCSelectAdapterAurelia } from './mdc-select-adapter-aurelia';
 import { MDCMenuDistance } from '@material/menu-surface';
 
@@ -43,9 +43,6 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private selectedText: HTMLElement;
 
   private menuElement: Element;
-
-  @child(`[${mdcIconStrings.ATTRIBUTE}]`)
-  leadingIconEl: IMdcSelectIconElement;
 
   @children('mdc-list-items')
   items: MdcListItem;
@@ -138,7 +135,8 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   async initialise() {
-    this.leadingIcon = this.leadingIconEl?.au['mdc-select-icon'].viewModel;
+    const leadingIconEl = this.root.querySelector<IMdcSelectIconElement>(`[${mdcIconStrings.ATTRIBUTE}]`);
+    this.leadingIcon = leadingIconEl?.au['mdc-select-icon'].viewModel;
     const nextSibling = this.root.nextElementSibling;
     if (nextSibling?.tagName === mdcHelperTextCssClasses.ROOT.toUpperCase()) {
       this.helperText = (nextSibling as IMdcSelectHelperTextElement).au.controller.viewModel;
