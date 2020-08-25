@@ -1,0 +1,11 @@
+@use '@material/slider';
+@use '@material/theme/color-palette';
+
+.demo-slider-custom {
+  @include slider.highlight-color(color-palette.$red-700);
+  @include slider.rail-color(color-palette.$yellow-600, 1);
+  @include slider.rail-tick-mark-color(blue);
+  @include slider.thumb-color(color-palette.$orange-500);
+  @include slider.focus-halo-color(color-palette.$yellow-900);
+  @include slider.value-pin-fill-color-accessible(color-palette.$pink-500);
+}
