@@ -42,7 +42,6 @@
     "build-assets:cjs": "copyfiles -u 1 src/**/*.html src/**/*.css dist/commonjs",
     "build-assets:ntv": "copyfiles -u 1 src/**/*.html src/**/*.css dist/native-modules",
     "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css dist/es2015",
-    "build-sass": "node ../../build-sass.js ./src/mdc-list.scss ./src/mdc-list.css",
     "prebuild": "rimraf dist",
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\"",
     "_predoc": "cross-env rimraf doc/api.json && rimraf dist/doc-temp && tsc --project tsconfig.json --outFile dist/doc-temp/aurelia-ux.js && node doc/shape-defs && copyfiles tsconfig.json dist/doc-temp",

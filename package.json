@@ -25,6 +25,7 @@
     "@material/chips": "^7.0.0",
     "@material/circular-progress": "^7.0.0",
     "@material/data-table": "^7.0.0",
+    "@material/density": "^7.0.0",
     "@material/dialog": "^7.0.0",
     "@material/drawer": "^7.0.0",
     "@material/elevation": "^7.0.0",
@@ -104,6 +105,5 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@material/density": "^7.0.0"
   }
 }
