@@ -1,29 +1,18 @@
 <template>
   <div class="demo-content">
-    <div class="demo-layout__row">
-      <div class="demo-container" style="align-items: center; padding: 6px;">
-        <mdc-switch checked.bind="checked"></mdc-switch>
-      </div>
-      <div class="demo-container">
-        <mdc-form-field>
-          <mdc-switch checked.bind="checked"></mdc-switch>
-          <label>off/on</label>
-        </mdc-form-field>
-      </div>
-      <div class="demo-container">
-        <mdc-form-field>
-          <mdc-switch disabled></mdc-switch>
-          <label>Disabled</label>
-        </mdc-form-field>
-      </div>
-      <div class="demo-container">
-        <mdc-form-field align-end>
-          <mdc-switch></mdc-switch>
-          <label>RTL</label>
-        </mdc-form-field>
-      </div>
-    </div>
-    <!-- <example-viewer [example]="exampleBasic"></example-viewer> -->
+    <compose view="./basic.html"></compose>
+    <example-viewer html.bind="basicHtml"></example-viewer>
   </div>
 
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Custom</h3>
+    <compose view="./custom.html"></compose>
+    <example-viewer html.bind="customHtml" sass.bind="customScss"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Theme</h3>
+    <compose view="./theme.html"></compose>
+    <example-viewer html.bind="themeHtml" sass.bind="themeScss"></example-viewer>
+  </div>
 </template>

@@ -1,0 +1,25 @@
+<template>
+  <div class="demo-layout__row">
+    <div class="demo-container" style="align-items: center; padding: 6px;">
+      <mdc-switch checked.bind="checked"></mdc-switch>
+    </div>
+    <div class="demo-container">
+      <mdc-form-field>
+        <mdc-switch checked.bind="checked"></mdc-switch>
+        <label>off/on</label>
+      </mdc-form-field>
+    </div>
+    <div class="demo-container">
+      <mdc-form-field>
+        <mdc-switch disabled></mdc-switch>
+        <label>Disabled</label>
+      </mdc-form-field>
+    </div>
+    <div class="demo-container">
+      <mdc-form-field align-end>
+        <mdc-switch></mdc-switch>
+        <label>RTL</label>
+      </mdc-form-field>
+    </div>
+  </div>
+</template>

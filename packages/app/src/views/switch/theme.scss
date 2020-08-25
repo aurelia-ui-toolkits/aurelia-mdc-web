@@ -1,0 +1,18 @@
+@use '@material/switch';
+@use '@material/theme/color-palette';
+
+$custom-switch-color: color-palette.$red-500;
+
+.demo-switch--custom {
+  @include switch.toggled-on-color($custom-switch-color);
+}
+
+.custom-switch--thumb-color {
+  @include switch.toggled-on-thumb-color($custom-switch-color);
+  @include switch.toggled-off-thumb-color($custom-switch-color);
+}
+
+.custom-switch--track-color {
+  @include switch.toggled-on-track-color($custom-switch-color);
+  @include switch.toggled-off-track-color($custom-switch-color);
+}
