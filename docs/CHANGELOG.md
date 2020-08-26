@@ -1,3 +1,21 @@
+# [v1.0.0-alpha.19](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2020-08-26)
+
+
+### Bug Fixes
+
+* **select:** do not use `child` to get the icon reference ([2e5af34](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2e5af342982e6f6cdc95323be941354403756bf8))
+* **tab-bar:** add missing attributes ([f6badb5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f6badb5cb2fea8df70904662a8b9e4f5f5565431))
+
+
+### Features
+
+* **app:** add select examples ([be5a66b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/be5a66ba129d106c3b4a9c68293cd1443f730dac))
+* **app:** add tab bar examples ([4bbd2a0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4bbd2a07bb66aa4a984923254deee8575053001a))
+* **app:** slider example snippets ([9d07b5e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9d07b5ee7b13b7c420ac11d1f74bb913b577b817))
+* **app:** switch examples ([e656b3d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e656b3d06657fc014f200cc043ac46782893a18a))
+
+
+
 # [v1.0.0-alpha.18](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2020-08-23)
 
 
