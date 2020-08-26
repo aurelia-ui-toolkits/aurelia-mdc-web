@@ -3,6 +3,7 @@ import { MDCTabScrollerFoundation, MDCTabScrollerAdapter, util } from '@material
 import { matches } from '@material/dom/ponyfill';
 import { children, useView, PLATFORM, customElement, inject } from 'aurelia-framework';
 import { MdcTab } from '../tab/mdc-tab';
+import { bindable } from 'aurelia-typed-observable-plugin';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-tab-scroller.html'))
@@ -10,6 +11,9 @@ import { MdcTab } from '../tab/mdc-tab';
 export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   private content_: HTMLElement; // assigned in html
   private area_: HTMLElement; // assigned in html
+
+  @bindable
+  align: 'start' | 'end' | 'center';
 
   @children('mdc-tab')
   tabs: MdcTab[];

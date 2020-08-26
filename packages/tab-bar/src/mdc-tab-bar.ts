@@ -7,7 +7,8 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import { MDCTabInteractionEvent, MDCTabFoundation } from '@material/tab';
 
 // aurelia is case insensitive
-MDCTabFoundation.strings.INTERACTED_EVENT = 'mdctab:interacted';
+MDCTabFoundation.strings.INTERACTED_EVENT = MDCTabFoundation.strings.INTERACTED_EVENT.toLowerCase();
+strings.TAB_ACTIVATED_EVENT = strings.TAB_ACTIVATED_EVENT.toLowerCase();
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-tab-bar.html'))
@@ -28,6 +29,9 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
     await this.initialised;
     this.foundation?.setUseAutomaticActivation(this.useAutomaticActivation);
   }
+
+  @bindable
+  align: MdcTabScroller['align'];
 
   async initialise() {
     await this.tabScroller_!.initialised;

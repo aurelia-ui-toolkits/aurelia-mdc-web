@@ -32,6 +32,15 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   @bindable.booleanAttr
   minWidth: boolean;
 
+  @bindable.booleanAttr
+  fade: boolean;
+
+  @bindable.booleanAttr
+  stacked: boolean;
+
+  @bindable
+  indicatorIcon: string;
+
   handleClick_() {
     this.foundation?.handleClick();
     return true;

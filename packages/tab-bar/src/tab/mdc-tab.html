@@ -2,13 +2,19 @@
     mdc-tab
     ${active ? 'mdc-tab--active' : ''}
     ${minWidth ? 'mdc-tab--min-width' : ''}
+    ${stacked ? 'mdc-tab--stacked' : ''}
   " role="tab" aria-selected="false" tabindex="-1" mdc-ripple="surface.bind: rippleSurface"
   click.trigger="handleClick_()">
   <span class="mdc-tab__content" ref="content_">
     <span class="mdc-tab__icon material-icons" aria-hidden="true" if.bind="icon">${icon}</span>
     <span class="mdc-tab__text-label" if.bind="label">${label}</span>
-    <mdc-tab-indicator if.bind="fixed" active.bind="active" view-model.ref="tabIndicator_"></mdc-tab-indicator>
+    <slot></slot>
+    <mdc-tab-indicator if.bind="fixed" active.bind="active" fade.bind="fade" view-model.ref="tabIndicator_"
+      icon.bind="indicatorIcon">
+    </mdc-tab-indicator>
   </span>
-  <mdc-tab-indicator if.bind="!fixed" active.bind="active" view-model.ref="tabIndicator_"></mdc-tab-indicator>
+  <mdc-tab-indicator if.bind="!fixed" active.bind="active" fade.bind="fade" view-model.ref="tabIndicator_"
+    icon.bind="indicatorIcon">
+  </mdc-tab-indicator>
   <span class="mdc-tab__ripple" ref="rippleSurface"></span>
 </template>

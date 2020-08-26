@@ -1,4 +1,6 @@
-<template class="mdc-tab-scroller" wheel.trigger="handleInteraction_()" touchstart.trigger="handleInteraction_()"
+<template class="mdc-tab-scroller
+  ${align ? 'mdc-tab-scroller--align-' + align : ''}
+  " wheel.trigger="handleInteraction_()" touchstart.trigger="handleInteraction_()"
   pointerdown.trigger="handleInteraction_()" mousedown.trigger="handleInteraction_()"
   keydown.trigger="handleInteraction_()" transitionend.trigger="handleTransitionEnd_($event)">
   <div class=" mdc-tab-scroller__scroll-area" ref="area_">
