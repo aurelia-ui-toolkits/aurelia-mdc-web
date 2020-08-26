@@ -1,0 +1,6 @@
+<template>
+  <mdc-tab-bar view-model.ref="demoScrollingTabBar" focus-on-activate.bind="false" style="width: 600px; display: block">
+    <mdc-tab repeat.for="tab of scrollingTabs" label.bind="tab.label" icon.bind="tab.icon"
+      stacked.bind="demoScrollingTabBarStacked" fade.bind="demoScrollingTabBarFade"></mdc-tab>
+  </mdc-tab-bar>
+</template>

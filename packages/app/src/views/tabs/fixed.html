@@ -1,0 +1,8 @@
+<template>
+  <mdc-tab-bar align.bind="demoFixedTabsTabBarAlign" focus-on-activate.bind="false"
+    use-automatic-activation.bind="demoFixedTabsTabBarUseAutomaticActivation">
+    <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" icon.bind="tab.icon"
+      stacked.bind="demoFixedTabsTabBarStacked" fade.bind="demoFixedTabsTabBarFade" fixed min-width>
+    </mdc-tab>
+  </mdc-tab-bar>
+</template>
