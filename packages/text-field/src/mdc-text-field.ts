@@ -51,6 +51,15 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   textarea: boolean;
 
   @bindable.booleanAttr
+  endAligned: boolean;
+
+  @bindable.booleanAttr
+  ltrText: boolean;
+
+  @bindable.booleanAttr
+  fullwidth: boolean;
+
+  @bindable.booleanAttr
   outlined: boolean;
 
   @bindable
