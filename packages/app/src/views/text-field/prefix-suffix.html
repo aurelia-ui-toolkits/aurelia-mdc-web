@@ -1,0 +1,26 @@
+<template>
+  <div class="demo-container">
+    <mdc-text-field label="Currency Value" type="number" prefix="$" suffix=".00"></mdc-text-field>
+  </div>
+  <div class="demo-container">
+    <mdc-text-field outlined label="Currency Value" type="number" prefix="$" suffix=".00"></mdc-text-field>
+  </div>
+  <div class="demo-layout__row">
+    <button mdc-button click.delegate="endAlignedExampleEndAligned = !endAlignedExampleEndAligned">
+      End Aligned: ${endAlignedExampleEndAligned ? 'On' : 'Off'}</button>
+  </div>
+  <div class="demo-container">
+    <mdc-text-field outlined type="number" prefix="$" suffix=".00" end-aligned.bind="endAlignedExampleEndAligned">
+    </mdc-text-field>
+  </div>
+  <div class="demo-layout__row">
+    <button mdc-button click.delegate="ltrTextExampleLtrText = !ltrTextExampleLtrText">
+      LTR Text: ${ltrTextExampleLtrText ? 'On' : 'Off'}</button>
+  </div>
+  <div class="demo-container">
+    <div dir="rtl">
+      <mdc-text-field outlined label="Label" type="number" suffix="/100" ltr-text.bind="ltrTextExampleLtrText">
+      </mdc-text-field>
+    </div>
+  </div>
+</template>

@@ -1,49 +1,120 @@
 <template>
   <div class="demo-content">
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="standardOutlined = !standardOutlined">
+        Outlined: ${standardOutlined ? 'On' : 'Off'}</button>
+      <button mdc-button click.delegate="standardRequired = !standardRequired">
+        Required: ${standardRequired ? 'On' : 'Off'}</button>
+      <button mdc-button click.delegate="standardDisabled = !standardDisabled">
+        Disabled: ${standardDisabled ? 'On' : 'Off'}</button>
+      <button mdc-button click.delegate="standardReadonly = !standardReadonly">
+        Read Only: ${standardReadonly ? 'On' : 'Off'}</button>
+      <button mdc-button click.delegate="alternateColors(standard)">
+        Alternate Colors</button>
+    </div>
+    <div class="demo-layout__row">
+      <compose view="./standard.html"></compose>
+    </div>
+    <example-viewer html.bind="standardHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Input and Change events</h3>
+    <div class="demo-layout__row">
+      <compose view="./events.html"></compose>
+    </div>
+    <example-viewer html.bind="eventsHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Numeric</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="demoweightOutlined = !demoweightOutlined">
+        Outlined: ${demoweightOutlined ? 'On' : 'Off'}</button>
+    </div>
+    <div class="demo-layout__row">
+      <compose view="./numeric.html"></compose>
+    </div>
+    <p>Value: ${demoWeightModelValue}</p>
+    <example-viewer html.bind="numericHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Prefix and suffix text</h3>
+    <compose view="./prefix-suffix.html"></compose>
+    <example-viewer html.bind="prefixSuffixHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
     <h3 class="demo-content__headline">Character Counter</h3>
     <div class="demo-layout__row">
-      <div class="demo-container">
-        <div class="au-text-field">
-          <mdc-text-field label="Label" maxlength="100" value.bind="value" type="number" required>
-            <i class="material-icons" mdc-text-field-icon leading>event</i>
-            <i class="material-icons" mdc-text-field-icon trailing>science</i>
-          </mdc-text-field>
-          <mdc-text-field-helper-line>
-            <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
-            <mdc-text-field-helper-text validation>Required</mdc-text-field-helper-text>
-            <mdc-text-field-character-counter></mdc-text-field-character-counter>
-          </mdc-text-field-helper-line>
-        </div>
-      </div>
-
-      <div class="demo-container">
-        <div class="au-text-field">
-          <mdc-text-field label="Label" outlined value.bind="value" maxlength="100" required type="number">
-            <i class="material-icons" mdc-text-field-icon leading>event</i>
-            <i class="material-icons" mdc-text-field-icon trailing>science</i>
-          </mdc-text-field>
-          <mdc-text-field-helper-line>
-            <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
-            <mdc-text-field-helper-text validation>Validation text</mdc-text-field-helper-text>
-            <mdc-text-field-character-counter></mdc-text-field-character-counter>
-          </mdc-text-field-helper-line>
-        </div>
-        <div>${value}</div>
-      </div>
+      <compose view="./counter.html"></compose>
     </div>
+    <example-viewer html.bind="counterHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">No Label</h3>
+    <div class="demo-layout__row">
+      <compose view="./no-label.html"></compose>
+    </div>
+    <example-viewer html.bind="noLabelHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Leading and Trailing Icons</h3>
+    <compose view="./icons.html"></compose>
+    <example-viewer html.bind="iconsHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Svg Icon</h3>
+    <div class="demo-container">
+      <compose view="./svg-icon.html"></compose>
+    </div>
+    <example-viewer html.bind="svgIconHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Density</h3>
+    <compose view="./density.html"></compose>
+    <example-viewer html.bind="densityHtml" sass.bind="densityScss"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Shape</h3>
+    <compose view="./shape.html"></compose>
+    <example-viewer html.bind="shapeHtml" sass.bind="shapeScss"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Prefilled</h3>
+    <compose view="./prefilled.html"></compose>
+    <example-viewer html.bind="prefilledHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">RTL</h3>
+    <compose view="./rtl.html"></compose>
+    <example-viewer html.bind="rtlHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Date / Time / Color / Password</h3>
+    <compose view="./types.html"></compose>
+    <example-viewer html.bind="typesHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Full Width</h3>
+    <compose view="./fullwidth.html"></compose>
+    <example-viewer html.bind="fullwidthHtml"></example-viewer>
   </div>
 
   <div class="demo-content">
     <h3 class="demo-content__headline">Aurelia validation</h3>
-    <div class="demo-container1">
-      <div class="au-text-field">
-        <mdc-text-field label="Type 'error'" value.bind="valueStr & validate" type="text"></mdc-text-field>
-        <mdc-text-field-helper-line>
-          <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
-        </mdc-text-field-helper-line>
-      </div>
-      <button mdc-button click.delegate="validate()">Validate</button>
-    </div>
+    <compose view="./validation.html"></compose>
+    <example-viewer html.bind="validationHtml" code.bind="validationCode"></example-viewer>
   </div>
 
   <div class="demo-content">
@@ -58,18 +129,13 @@
       <button mdc-button click.delegate="alternateColors(comments)">
         Alternate Colors
       </button>
-      <!-- <button mdc-button click.delegate="comments.endAligned = !comments.endAligned">
-        End Aligned: ${comments.endAligned ? 'On' : 'Off'}</button> -->
+      <button mdc-button click.delegate="textareaEndAligned = !textareaEndAligned">
+        End Aligned: ${textareaEndAligned ? 'On' : 'Off'}</button>
     </div>
-    <div class="au-text-field">
-      <mdc-text-field textarea ref="comments" label="Comments" rows="8" cols="40" required.bind="textareaRequired"
-        disabled.bind="textareaDisabled" maxlength="100"></mdc-text-field>
-      <mdc-text-field-helper-line>
-        <mdc-text-field-helper-text validation>Comments are required</mdc-text-field-helper-text>
-        <mdc-text-field-character-counter></mdc-text-field-character-counter>
-      </mdc-text-field-helper-line>
+    <div class="demo-layout__row">
+      <compose view="./textarea.html"></compose>
     </div>
-    <!-- <example-viewer [example]="exampleTextarea"></example-viewer> -->
+    <example-viewer html.bind="textareaHtml" sass.bind="textareaScss"></example-viewer>
   </div>
 
 </template>

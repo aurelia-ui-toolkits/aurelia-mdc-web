@@ -1,0 +1,13 @@
+@use '@material/textfield';
+
+.demo-density-text-field {
+  @include textfield.density(-1);
+}
+
+.demo-density-outlined-text-field {
+  @include textfield.outlined-density(-3);
+}
+
+.demo-density-outlined-text-field-with-leading-icon {
+  @include textfield.outlined-with-leading-icon-density(-3);
+}

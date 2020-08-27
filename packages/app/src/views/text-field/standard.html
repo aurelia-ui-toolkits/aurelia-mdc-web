@@ -1,0 +1,14 @@
+<template>
+  <require from="./standard.scss"></require>
+  <div class="demo-layout__row">
+    <div class="au-text-field">
+      <mdc-text-field ref="standard" label="Standard" outlined.bind="standardOutlined" required.bind="standardRequired"
+        disabled.bind="standardDisabled" readonly.bind="standardReadonly">
+      </mdc-text-field>
+      <mdc-text-field-helper-line>
+        <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
+        <mdc-text-field-helper-text validation>Required</mdc-text-field-helper-text>
+      </mdc-text-field-helper-line>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,11 @@
+<template>
+  <require from="./textarea.scss"></require>
+  <div>
+    <mdc-text-field textarea ref="comments" label="Comments" rows="8" cols="40" required.bind="textareaRequired"
+      disabled.bind="textareaDisabled" maxlength="100" end-aligned.bind="textareaEndAligned"></mdc-text-field>
+    <mdc-text-field-helper-line>
+      <mdc-text-field-helper-text validation>Comments are required</mdc-text-field-helper-text>
+      <mdc-text-field-character-counter></mdc-text-field-character-counter>
+    </mdc-text-field-helper-line>
+  </div>
+</template>
