@@ -70,8 +70,10 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   @bindable.booleanAttr
   required: boolean;
-  requiredChanged() {
+  async requiredChanged() {
+    await this.initialised;
     this.input_.required = this.required;
+    this.foundation!.setUseNativeValidation(true);
   }
 
   @bindable.booleanAttr
@@ -211,7 +213,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   @child(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`)
   trailingIconEl: IMdcTextFieldIconElement | MdcComponent<MDCFoundation>;
-  trailingIconElChanged(){
+  trailingIconElChanged() {
     if (this.trailingIconEl) {
       const el = ((this.trailingIconEl as MdcComponent<MDCFoundation>).root ?? this.trailingIconEl) as IMdcTextFieldIconElement;
       this.trailingIcon_ = el.au['mdc-text-field-icon'].viewModel;
