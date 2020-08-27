@@ -342,9 +342,9 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.value = value;
   }
 
-  async onFocus() {
-    await this.initialised;
+  onFocus() {
     this.foundation?.activateFocus();
+    this.emit('focus', {}, true);
   }
 
   onChange(evt: Event): void {
