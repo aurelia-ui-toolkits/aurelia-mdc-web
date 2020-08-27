@@ -1,3 +1,20 @@
+# [v1.0.0-alpha.20](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.19...v1.0.0-alpha.20) (2020-08-27)
+
+
+### Bug Fixes
+
+* **icon:** store host reference ([bf8a007](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/bf8a007026e98ec93a3bc099331f58bffdcf423b))
+* **text-field:** add missing attributes ([87e24fe](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/87e24fe26ea89c27ea3d46d3bd092aeb6bd70e23))
+* **text-field:** emit on focus ([f2fbd51](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f2fbd51802b9873fc6842075de118ccb98eb1c50))
+* **text-field:** propagate required to foundation ([c30f96b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c30f96bf6e539619898af3b167a43cd71355ecbb))
+
+
+### Features
+
+* **app:** add text field examples ([17e64d2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/17e64d2dde04a0218c523ae2cd1d7925bc573da2))
+
+
+
 # [v1.0.0-alpha.19](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2020-08-26)
 
 
