@@ -1,3 +1,19 @@
+# [v1.0.0-alpha.21](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.20...v1.0.0-alpha.21) (2020-08-28)
+
+
+### Bug Fixes
+
+* **top-app-bar:** allow tweaking "fixed" attribute ([d51c891](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d51c8913ee6ca35a08bd919907e70ea80064d939))
+* **top-app-bar:** expose scroll target ([3604181](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/36041815dbb087c299b33f09e18be733aafcc101))
+* **top-app-bar:** instantiate correct foundation ([d41f26d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d41f26de8336af45f5acb072d390eea16d0db8b3))
+
+
+### Features
+
+* **app:** add top app bar examples ([9db395c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9db395cf1a024f66d49da6fa085e1f3d8cfe93cf))
+
+
+
 # [v1.0.0-alpha.20](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.19...v1.0.0-alpha.20) (2020-08-27)
 
 
