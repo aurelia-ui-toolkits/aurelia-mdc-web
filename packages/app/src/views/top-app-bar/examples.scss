@@ -1,0 +1,19 @@
+.demo-app-bar-content {
+  padding-left: 16px;
+  padding-right: 16px;
+  overflow: auto;
+  height: 200px;
+}
+
+.demo-drawer-app-content {
+  border: 1px solid rgba(0, 0, 0, .15);
+  min-height: 16.7rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.demo-top-app-bar-container {
+  border: 1px solid rgba(0, 0, 0, .15);
+  max-height: 16.7rem;
+  overflow: auto;
+}

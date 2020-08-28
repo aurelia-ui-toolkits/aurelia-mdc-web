@@ -1,0 +1,20 @@
+<template>
+  <mdc-top-app-bar dense style="position: relative" scroll-target.bind="denseContent">
+    <mdc-top-app-bar-row>
+      <mdc-top-app-bar-section align="start">
+        <button mdc-top-app-bar-nav-icon>
+          <mdc-icon>menu</mdc-icon>
+        </button>
+        <mdc-top-app-bar-title>App</mdc-top-app-bar-title>
+      </mdc-top-app-bar-section>
+      <mdc-top-app-bar-section align="end">
+        <mdc-icon mdc-top-app-bar-action-item>file_download</mdc-icon>
+        <mdc-icon mdc-top-app-bar-action-item>print</mdc-icon>
+        <mdc-icon mdc-top-app-bar-action-item>bookmark</mdc-icon>
+      </mdc-top-app-bar-section>
+    </mdc-top-app-bar-row>
+  </mdc-top-app-bar>
+  <div class="demo-app-bar-content" ref="denseContent">
+    <p repeat.for="lorem of lorems">${lorem}</p>
+  </div>
+</template>

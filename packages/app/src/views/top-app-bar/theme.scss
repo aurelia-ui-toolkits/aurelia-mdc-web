@@ -1,0 +1,7 @@
+@use '@material/top-app-bar';
+@use '@material/theme/color-palette';
+
+.demo-top-app-bar-themed {
+  @include top-app-bar.fill-color(color-palette.$yellow-800);
+  @include top-app-bar.icon-ink-color(color-palette.$blue-900)
+}

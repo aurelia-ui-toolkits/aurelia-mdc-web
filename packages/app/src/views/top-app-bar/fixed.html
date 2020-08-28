@@ -1,0 +1,31 @@
+<template>
+  <mdc-top-app-bar style="position: unset" fixed prominent.bind="fixedProminent" dense.bind="fixedDense"
+    scroll-target.bind="fixedContent">
+    <mdc-top-app-bar-row>
+      <mdc-top-app-bar-section align="start">
+        <button mdc-top-app-bar-nav-icon>
+          <mdc-icon>menu</mdc-icon>
+        </button>
+        <mdc-top-app-bar-title>App</mdc-top-app-bar-title>
+      </mdc-top-app-bar-section>
+      <mdc-top-app-bar-section align="end">
+        <mdc-icon mdc-top-app-bar-action-item>file_download</mdc-icon>
+        <mdc-icon mdc-top-app-bar-action-item>print</mdc-icon>
+        <mdc-icon mdc-top-app-bar-action-item>bookmark</mdc-icon>
+      </mdc-top-app-bar-section>
+    </mdc-top-app-bar-row>
+  </mdc-top-app-bar>
+  <div class="demo-app-bar-content" ref="fixedContent">
+    <p repeat.for="lorem of lorems">${lorem}</p>
+  </div>
+  <div class="demo-layout__row">
+    <mdc-form-field>
+      <mdc-checkbox checked.bind="fixedProminent"></mdc-checkbox>
+      <label>Prominent</label>
+    </mdc-form-field>
+    <mdc-form-field>
+      <mdc-checkbox checked.bind="fixedDense"></mdc-checkbox>
+      <label>Dense</label>
+    </mdc-form-field>
+  </div>
+</template>

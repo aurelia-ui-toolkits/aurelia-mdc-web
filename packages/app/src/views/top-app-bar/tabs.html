@@ -1,0 +1,54 @@
+<template>
+  <require from="./tabs.scss"></require>
+  <mdc-top-app-bar style="position: unset" class="demo-top-app-bar-with-tabs">
+    <mdc-top-app-bar-row>
+      <mdc-top-app-bar-section align="start">
+        <button mdc-top-app-bar-nav-icon click.delegate="drawer.open = !drawer.open">
+          <mdc-icon>menu</mdc-icon>
+        </button>
+        <mdc-top-app-bar-title>App</mdc-top-app-bar-title>
+      </mdc-top-app-bar-section>
+      <mdc-top-app-bar-section align="end">
+        <mdc-icon mdc-top-app-bar-action-item>search</mdc-icon>
+        <mdc-icon mdc-top-app-bar-action-item>notifications_none</mdc-icon>
+        <mdc-icon mdc-top-app-bar-action-item click.delegate="profileMenu.open = !profileMenu.open">more_vert</mdc-icon>
+        <div mdc-menu-surface-anchor ref="menuAnchor">
+          <mdc-menu view-model.ref="profileMenu" anchor.bind="menuAnchor">
+            <mdc-list>
+              <mdc-list-item>My Profile</mdc-list-item>
+              <mdc-list-divider></mdc-list-divider>
+              <mdc-list-item>Sign out</mdc-list-item>
+            </mdc-list>
+          </mdc-menu>
+        </div>
+      </mdc-top-app-bar-section>
+    </mdc-top-app-bar-row>
+    <mdc-top-app-bar-row>
+      <mdc-top-app-bar-section>
+        <mdc-tab-bar focus-on-activate.bind="false">
+          <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" icon.bind="tab.icon"></mdc-tab>
+        </mdc-tab-bar>
+      </mdc-top-app-bar-section>
+    </mdc-top-app-bar-row>
+  </mdc-top-app-bar>
+
+  <div class="demo-drawer-app-content">
+    <mdc-drawer type="dismissible" view-model.ref="drawer">
+      <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
+      <mdc-drawer-content>
+        <mdc-list>
+          <mdc-list-item repeat.for="link of links">
+            <mdc-icon mdc-list-item-graphic>${link.icon}</mdc-icon>${link.label}
+          </mdc-list-item>
+        </mdc-list>
+      </mdc-drawer-content>
+    </mdc-drawer>
+    <mdc-drawer-app-content style="display: block; padding: 16px; height: 400px;">
+      Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam
+      quo et. Diam phaedrum ei mea, quaeque
+      voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo
+      invidunt mel id, in vim dictas detraxit. Per an
+      legere iriure blandit. Veri iisque accusamus an pri.
+    </mdc-drawer-app-content>
+  </div>
+</template>
