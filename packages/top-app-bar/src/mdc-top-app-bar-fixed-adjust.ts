@@ -5,7 +5,9 @@ import { customAttribute, inject } from 'aurelia-framework';
 export class MdcTopAppBarFixedAdjust {
   constructor(private root: HTMLElement) { }
 
+  value: 'prominent' | 'dense' | 'dense-prominent' | 'short';
+
   attached() {
-    this.root.classList.add('mdc-top-app-bar--fixed-adjust');
+    this.root.classList.add(this.value ? `mdc-top-app-bar--${this.value}-fixed-adjust` : 'mdc-top-app-bar--fixed-adjust');
   }
 }
