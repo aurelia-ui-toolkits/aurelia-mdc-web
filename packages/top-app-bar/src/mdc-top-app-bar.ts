@@ -88,9 +88,9 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
 
     let foundation: MDCTopAppBarBaseFoundation;
     if (this.root.classList.contains(cssClasses.SHORT_CLASS)) {
-      foundation = new MDCTopAppBarBaseFoundation(adapter);
+      foundation = new MDCShortTopAppBarFoundation(adapter);
     } else if (this.root.classList.contains(cssClasses.FIXED_CLASS)) {
-      foundation = new MDCTopAppBarBaseFoundation(adapter);
+      foundation = new MDCFixedTopAppBarFoundation(adapter);
     } else {
       foundation = new MDCTopAppBarFoundation(adapter);
     }
