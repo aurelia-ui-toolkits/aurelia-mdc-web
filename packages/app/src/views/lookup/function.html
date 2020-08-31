@@ -1,0 +1,13 @@
+<template>
+  <div mdc-menu-surface-anchor>
+    <mdc-text-field label="Lookup" ref="functionInput"></mdc-text-field>
+    <mdc-text-field-helper-line></mdc-text-field-helper-line>
+    <mdc-lookup options.bind="getOptions" display-field="name" value.bind="functionValue"
+      input.bind="functionInput" two-line preload-options>
+      <template replace-part="option">
+        <mdc-list-item-primary-text>${option.name}</mdc-list-item-primary-text>
+        <mdc-list-item-secondary-text>with id=${option.id}</mdc-list-item-secondary-text>
+      </template>
+    </mdc-lookup>
+  </div>
+</template>

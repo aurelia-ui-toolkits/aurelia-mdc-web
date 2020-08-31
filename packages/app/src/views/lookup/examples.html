@@ -1,21 +1,45 @@
 <template>
   <div class="demo-content">
+    <h3 class="demo-content__headline">Basic</h3>
+    <div class="demo-layout__row">
+      <compose view="./basic.html"></compose>
+    </div>
+    <div class="demo-layout__row">
+      You've picked ${basicValue}
+    </div>
+    <example-viewer html.bind="basicHtml" code.bind="basicCode"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Objects binding</h3>
+    <div class="demo-layout__row">
+      <compose view="./objects.html"></compose>
+    </div>
+    <div class="demo-layout__row">
+      You've picked ${objectsValue | json}
+    </div>
+    <example-viewer html.bind="objectsHtml" code.bind="objectsCode"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Objects function</h3>
+    <div class="demo-layout__row">
+      <compose view="./function.html"></compose>
+    </div>
+    <div class="demo-layout__row">
+      You've picked ${functionValue | json}
+    </div>
+    <example-viewer html.bind="functionHtml" code.bind="functionCode"></example-viewer>
+  </div>
+
+  <div class="demo-content">
     <h3 class="demo-content__headline">Aurelia validation</h3>
     <div class="demo-layout__row">
-      <div mdc-menu-surface-anchor>
-        <mdc-text-field label="Lookup" ref="input"></mdc-text-field>
-        <mdc-text-field-helper-line></mdc-text-field-helper-line>
-        <mdc-lookup options.bind="lookupOptions" display-field="name" value.bind="lookupValue & validateOnChange" input.bind="input"
-          two-line>
-          <template replace-part="option">
-            <mdc-list-item-primary-text>${option.name}</mdc-list-item-primary-text>
-            <mdc-list-item-secondary-text>with id=${option.id}</mdc-list-item-secondary-text>
-          </template>
-        </mdc-lookup>
-      </div>
+      <compose view="./validation.html"></compose>
     </div>
     <div class="demo-layout__row">
-      You've picked ${lookupValue | json}
+      You've picked ${validationValue | json}
     </div>
+    <example-viewer html.bind="validationHtml" code.bind="validationCode"></example-viewer>
   </div>
 </template>
