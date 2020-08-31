@@ -79,7 +79,7 @@ export class MdcLookup implements EventListenerObject {
 
   async getOptionsDefault(filter: string, value: unknown): Promise<unknown[]> {
     const options = this.options as unknown[];
-    if (value) {
+    if (value !== undefined) {
       return Promise.resolve([options.find(x => this.getValue(x) === value)]);
     } else {
       return Promise.resolve(options.filter(x => this.getDisplay(x).toUpperCase().includes((filter || '').toUpperCase())));
