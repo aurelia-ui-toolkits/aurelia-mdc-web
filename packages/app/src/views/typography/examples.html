@@ -1,35 +1,26 @@
 <template>
   <div class="demo-content">
-    Set page to use Roboto.
-    <!-- <example-viewer [example]="exampleRoboto"></example-viewer> -->
+    <div>Set page to use Roboto.</div>
+    <example-viewer html.bind="pageHtml"></example-viewer>
   </div>
 
   <div class="demo-content">
-    <div mdc-headline1>Headline 1</div>
-    <div mdc-headline2>Headline 2</div>
-    <div mdc-headline3>Headline 3</div>
-    <div mdc-headline4>Headline 4</div>
-    <div mdc-headline5>Headline 5</div>
-    <div mdc-headline6>Headline 6</div>
-    <!-- <example-viewer [example]="exampleHeadline"></example-viewer> -->
+    <compose view="./headline.html"></compose>
+    <example-viewer html.bind="headlineHtml"></example-viewer>
   </div>
 
   <div class="demo-content">
-    <div mdc-subtitle1>Subtitle 1</div>
-    <div mdc-subtitle2>Subtitle 2</div>
-    <!-- <example-viewer [example]="exampleSubtitle"></example-viewer> -->
+    <compose view="./subtitle.html"></compose>
+    <example-viewer html.bind="subtitleHtml"></example-viewer>
   </div>
 
   <div class="demo-content">
-    <div mdc-body1>Body 1</div>
-    <div mdc-body2>Body 2</div>
-    <!-- <example-viewer [example]="exampleBody"></example-viewer> -->
+    <compose view="./body.html"></compose>
+    <example-viewer html.bind="bodyHtml"></example-viewer>
   </div>
 
   <div class="demo-content">
-    <div mdc-typography-button>Button text</div>
-    <div mdc-caption>Caption text</div>
-    <div mdc-overline>Overline text</div>
-    <!-- <example-viewer [example]="exampleMisc"></example-viewer> -->
+    <compose view="./caption.html"></compose>
+    <example-viewer html.bind="captionHtml"></example-viewer>
   </div>
 </template>
