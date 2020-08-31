@@ -1,3 +1,21 @@
+# [v1.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.21...v1.0.0) (2020-08-31)
+
+
+### Bug Fixes
+
+* **app:** compose correct html ([899491e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/899491e787e5ec8ef6e75b04a5676697aa8b683e))
+* **lookup:** check for undefined explicitly ([8e7c400](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8e7c400c943ec13a0c5c3e1906418f3465127773))
+
+
+### Features
+
+* **app:** add lookup examples ([6f3f04b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6f3f04bda5c95f801a674e13ec5bd826db94cb19))
+* **app:** add tree view example snippet ([e89c088](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e89c0884f0c99a3c2476fba3c2b58682cfd0d3d2))
+* **app:** add typography example snippets ([6df56a7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6df56a77b4af4479961ff1f8a4d99d6517e5378b))
+* **app:** data table pagination example ([d754b15](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d754b1519804804a734554589e64cdc61161afe7))
+
+
+
 # [v1.0.0-alpha.21](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.20...v1.0.0-alpha.21) (2020-08-28)
 
 
