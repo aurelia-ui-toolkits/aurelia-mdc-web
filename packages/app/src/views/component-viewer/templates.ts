@@ -294,7 +294,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
   },
   'lookup': {
     title: 'Lookup',
-    description: '???',
+    description: 'The lookup is a normal text input enhanced by a panel of suggested options.',
     references: [{
       name: 'Material Design guidelines: Menus',
       url: 'https://material.io/design/components/menus.html'
@@ -529,7 +529,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
   },
   'tree-view': {
     title: 'Tree View',
-    description: '???',
+    description: 'The tree view provides a Material Design styled tree that can be used to display hierarchy data.',
     references: [],
     mdcUrls: [],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/tree-view\'));',

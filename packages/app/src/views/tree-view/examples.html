@@ -1,11 +1,6 @@
 <template>
   <div class="demo-content">
-    <mdc-tree-view nodes.bind="treeViewNodes">
-      <mdc-tree-node>${$node.name}
-        <mdc-icon-button mdc-tree-node-meta>
-          <mdc-icon>edit</mdc-icon>
-        </mdc-icon-button>
-      </mdc-tree-node>
-    </mdc-tree-view>
+    <compose view="./basic.html"></compose>
+    <example-viewer html.bind="basicHtml" code.bind="basicCode"></example-viewer>
   </div>
 </template>
