@@ -1,3 +1,13 @@
+# [v1.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0...v1.0.1) (2020-09-01)
+
+
+### Features
+
+* **all:** add aggregate package ([03b185d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/03b185d87dc31db368efb70d0629ae037ae7ff8d))
+* **base:** export material palette ([4c13377](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4c13377e54cf5005276ff1b106a152a01336bb6a))
+
+
+
 # [v1.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0-alpha.21...v1.0.0) (2020-08-31)
 
 
