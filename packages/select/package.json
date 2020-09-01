@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -54,13 +54,13 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.0.0",
-    "@aurelia-mdc-web/floating-label": "^1.0.0",
-    "@aurelia-mdc-web/line-ripple": "^1.0.0",
-    "@aurelia-mdc-web/list": "^1.0.0",
-    "@aurelia-mdc-web/menu": "^1.0.0",
-    "@aurelia-mdc-web/notched-outline": "^1.0.0",
-    "@aurelia-mdc-web/ripple": "^1.0.0",
+    "@aurelia-mdc-web/base": "^1.0.1",
+    "@aurelia-mdc-web/floating-label": "^1.0.1",
+    "@aurelia-mdc-web/line-ripple": "^1.0.1",
+    "@aurelia-mdc-web/list": "^1.0.1",
+    "@aurelia-mdc-web/menu": "^1.0.1",
+    "@aurelia-mdc-web/notched-outline": "^1.0.1",
+    "@aurelia-mdc-web/ripple": "^1.0.1",
     "@material/select": "^7.0.0"
   },
   "devDependencies": {
