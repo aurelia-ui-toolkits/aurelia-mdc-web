@@ -35,6 +35,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         'src': path.resolve(__dirname, 'src'),
         // alias all packages to src code
         ...([
+          'all',
           'base',
           'button',
           'card',

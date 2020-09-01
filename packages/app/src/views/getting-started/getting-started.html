@@ -6,12 +6,19 @@
           target="_blank" rel="noopener">Aurelia CLI</a>.</p>
       <p>For existing apps, follow this guide to use Aurelia MDC.</p>
       <h2 class="demo-panel-heading">Install Aurelia MDC</h2>
-      Install each package you wish to use, e.g.
+      Install all packages at once
       <h4 mdc-subtitle2>npm</h4>
-      <hljs language="shell">${npmCmd}</hljs>
+      <hljs language="shell">npm i @aurelia-mdc/all</hljs>
 
       <h4 mdc-subtitle2>yarn</h4>
-      <hljs language="shell">${yarnCmd}</hljs>
+      <hljs language="shell">yarn add @aurelia-mdc/all</hljs>
+
+      or individual packages you wish to use, e.g.
+      <h4 mdc-subtitle2>npm</h4>
+      <hljs language="shell">npm i @aurelia-mdc/button</hljs>
+
+      <h4 mdc-subtitle2>yarn</h4>
+      <hljs language="shell">yarn add @aurelia-mdc/button</hljs>
 
       <h2 class="demo-panel-heading">Roboto font</h2>
       To get started, first include the Roboto font with the 300, 400 and 500 weights. You can host it yourself or
@@ -62,14 +69,17 @@ loader: 'sass-loader', options: {
   $background: #fff,
 );
 
+// all styles
+@use "@aurelia-mdc-web/all";
+
+// or individual packages
+@use "@material/button/mdc-button";
+
 // MDC Typography
 @use '@material/typography/mdc-typography';
 
 // MDC Button
 @use './styles/button';
-
-// Angular MDC
-@use '@angular-mdc/theme/material';
       </hljs>
 
       <hljs language="scss">
@@ -104,6 +114,9 @@ body {
 
 aurelia
   .use
+  // all packages
+  .plugin(PLATFORM.moduleName('@aurelia-mdc-web/all'))
+  // or individual
   .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))
   .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));
       </hljs>

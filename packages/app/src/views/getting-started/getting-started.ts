@@ -1,8 +1,6 @@
 export class GettingStarted {
-  npmCmd = `npm i @aurelia-mdc/button`;
-  yarnCmd = `yarn add @aurelia-mdc/button`;
-  materialIconsLink = `<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">`;
-  robotoLink = `<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">`;
+  materialIconsLink = '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
+  robotoLink = '<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">';
   indexHtml = `<html>
   <head>
     ...

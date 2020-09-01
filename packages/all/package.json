@@ -1,0 +1,102 @@
+{
+  "name": "@aurelia-mdc-web/all",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Wrappers for Material Components Web",
+  "keywords": [
+    "aurelia",
+    "material",
+    "components",
+    "web"
+  ],
+  "homepage": "http://aurelia.io",
+  "bugs": {
+    "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues"
+  },
+  "license": "MIT",
+  "author": "Maxim Balaganskiy <m.balaganskiy@gmail.com>",
+  "contributors": [],
+  "main": "dist/commonjs/index.js",
+  "module": "dist/native-modules/index.js",
+  "typings": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web"
+  },
+  "files": [
+    "dist",
+    "*.scss"
+  ],
+  "scripts": {
+    "_test": "karma start --single-run",
+    "_develop": "cross-env TS_NODE_PROJECT=\"../../tsconfig-tsnode.json\" karma start",
+    "build-ts:amd": "tsc -p tsconfig.build.json -t es5 -m amd      --outDir dist/amd",
+    "build-ts:cjs": "tsc -p tsconfig.build.json -t es5 -m commonjs --outDir dist/commonjs",
+    "build-ts:ntv": "tsc -p tsconfig.build.json -t es5 -m es6      --outDir dist/native-modules",
+    "build-ts:es6": "tsc -p tsconfig.build.json -t es6 -m es6      --outDir dist/es2015",
+    "build-ts:types": "tsc -p tsconfig.build.json --skipLibCheck -d --emitDeclarationOnly --declarationDir dist/types",
+    "build-assets:amd": "copyfiles -u 1 src/**/*.html src/**/*.css dist/amd",
+    "build-assets:cjs": "copyfiles -u 1 src/**/*.html src/**/*.css dist/commonjs",
+    "build-assets:ntv": "copyfiles -u 1 src/**/*.html src/**/*.css dist/native-modules",
+    "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css dist/es2015",
+    "prebuild": "rimraf dist",
+    "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\"",
+    "_predoc": "cross-env rimraf doc/api.json && rimraf dist/doc-temp && tsc --project tsconfig.json --outFile dist/doc-temp/aurelia-ux.js && node doc/shape-defs && copyfiles tsconfig.json dist/doc-temp",
+    "_doc": "cross-env typedoc --json doc/api.json --excludeExternals --includeDeclarations --mode modules --target ES6 --name aurelia-ux-docs dist/doc-temp/",
+    "_postdoc": "cross-env node doc/shape-doc && rimraf dist/doc-temp",
+    "_changelog": "cross-env conventional-changelog -p aurelia-material-components-web -i doc/CHANGELOG.md -s",
+    "_bump-version": "npm --no-git-tag-version version",
+    "_preprepare-release": "cross-env npm run test",
+    "_prepare-release": "cross-env npm run changelog && npm run build && npm run doc",
+    "_version": "node ../update-peers.js"
+  },
+  "dependencies": {
+    "@aurelia-mdc-web/base": "^1.0.0",
+    "@aurelia-mdc-web/button": "^1.0.0",
+    "@aurelia-mdc-web/card": "^1.0.0",
+    "@aurelia-mdc-web/checkbox": "^1.0.0",
+    "@aurelia-mdc-web/chips": "^1.0.0",
+    "@aurelia-mdc-web/circular-progress": "^1.0.0",
+    "@aurelia-mdc-web/data-table": "^1.0.0",
+    "@aurelia-mdc-web/dialog": "^1.0.0",
+    "@aurelia-mdc-web/drawer": "^1.0.0",
+    "@aurelia-mdc-web/elevation": "^1.0.0",
+    "@aurelia-mdc-web/expandable": "^1.0.0",
+    "@aurelia-mdc-web/fab": "^1.0.0",
+    "@aurelia-mdc-web/floating-label": "^1.0.0",
+    "@aurelia-mdc-web/form-field": "^1.0.0",
+    "@aurelia-mdc-web/icon": "^1.0.0",
+    "@aurelia-mdc-web/icon-button": "^1.0.0",
+    "@aurelia-mdc-web/image-list": "^1.0.0",
+    "@aurelia-mdc-web/layout-grid": "^1.0.0",
+    "@aurelia-mdc-web/line-ripple": "^1.0.0",
+    "@aurelia-mdc-web/linear-progress": "^1.0.0",
+    "@aurelia-mdc-web/list": "^1.0.0",
+    "@aurelia-mdc-web/lookup": "^1.0.0",
+    "@aurelia-mdc-web/menu": "^1.0.0",
+    "@aurelia-mdc-web/menu-surface": "^1.0.0",
+    "@aurelia-mdc-web/notched-outline": "^1.0.0",
+    "@aurelia-mdc-web/radio": "^1.0.0",
+    "@aurelia-mdc-web/ripple": "^1.0.0",
+    "@aurelia-mdc-web/select": "^1.0.0",
+    "@aurelia-mdc-web/slider": "^1.0.0",
+    "@aurelia-mdc-web/snackbar": "^1.0.0",
+    "@aurelia-mdc-web/switch": "^1.0.0",
+    "@aurelia-mdc-web/tab-bar": "^1.0.0",
+    "@aurelia-mdc-web/text-field": "^1.0.0",
+    "@aurelia-mdc-web/top-app-bar": "^1.0.0",
+    "@aurelia-mdc-web/tree-view": "^1.0.0",
+    "@aurelia-mdc-web/typography": "^1.0.0",
+    "@aurelia-mdc-web/validation": "^1.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "conventional-changelog-cli": "^2.0.34",
+    "copyfiles": "^1.2.0",
+    "cross-env": "^7.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.5"
+  }
+}
