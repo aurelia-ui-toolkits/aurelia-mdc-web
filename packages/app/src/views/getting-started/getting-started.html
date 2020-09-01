@@ -39,8 +39,9 @@
       <code mdc-subtitle2>mdc-typography</code>.
       <hljs language="html">${indexHtml}</hljs>
 
-      <h2 class="demo-panel-heading">MDC Sass modules</h2>
+    
       <h1>This is super important! Please don't skip!</h1>
+      <h2 class="demo-panel-heading">MDC Sass modules - Webpack</h2>
       In your <code mdc-subtitle2>webpack.config.js</code>, make sure <code mdc-subtitle2>node_modules/</code> is listed
       as a Sass include path. This is needed for the Sass compiler to be able to find the MDC Web Sass files.
 
@@ -57,6 +58,30 @@ loader: 'sass-loader', options: {
 }
 ...
       </hljs>
+
+      <h2 class="demo-panel-heading">MDC Sass modules - Aurelia CLI bundler</h2>
+      Be sure to use Sass as your css pre-processer.<br><br>
+
+      In your <code mdc-subtitle2>aurelia_project\tasks\process-css.ts</code>, add <code mdc-subtitle2>includePaths: ["node_modules"]</code> to the Sass options. This is needed for the Sass compiler to be able to find the MDC Web Sass files.
+      <br>
+      This example uses <code mdc-subtitle2>gulp-dart-sass</code>.
+      
+      <hljs language="javascript">
+    import { build } from 'aurelia-cli';
+    import * as gulp from 'gulp';
+    import * as project from '../aurelia.json';
+    import * as sass from 'gulp-dart-sass';
+    export default function processCSS() {
+      return gulp.src(project.cssProcessor.source, { sourcemaps: true })
+      .pipe(sass.sync({
+          includePaths: ["node_modules"]
+           }).on('error', sass.logError))
+      .pipe(build.bundle());
+    }
+      </hljs>
+
+
+
 
       <hljs language="scss">
 // styles.scss
