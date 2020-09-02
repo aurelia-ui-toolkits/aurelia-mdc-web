@@ -2,14 +2,16 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCDialogFoundation, strings, MDCDialogAdapter, util, MDCDialogCloseEventDetail } from '@material/dialog';
 import { MdcDialogContent } from './mdc-dialog-content';
 import { FocusTrap } from '@material/dom/focus-trap';
-import { child, customElement, useView, inject, View, bindable, PLATFORM } from 'aurelia-framework';
+import { child, customElement, useView, inject, View, PLATFORM } from 'aurelia-framework';
 import { closest, matches } from '@material/dom/ponyfill';
+import { bindable } from 'aurelia-typed-observable-plugin';
 
 const LAYOUT_EVENTS = ['resize', 'orientationchange'];
 let dialogId = 0;
 
 strings.OPENING_EVENT = strings.OPENING_EVENT.toLowerCase();
 strings.CLOSING_EVENT = strings.CLOSING_EVENT.toLowerCase();
+strings.OPENED_EVENT = strings.OPENED_EVENT.toLowerCase();
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-dialog.html'))
@@ -20,7 +22,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   contentId = `mdc-dialog-content-${this.id}`;
   titleId = `mdc-dialog-title-${this.id}`;
   private buttons_!: HTMLElement[]; // assigned in initialize()
-  private focusTrap_!: FocusTrap; // assigned in initialSyncWithDOM()
+  focusTrap_!: FocusTrap | undefined; // assigned in initialSyncWithDOM()
 
   @child('mdc-dialog-content')
   content_?: MdcDialogContent; // assigned in initialize()
@@ -39,19 +41,28 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
     this.foundation?.setEscapeKeyAction(this.escapeKeyAction);
   }
 
+  @bindable.booleanAttr
+  delayFocusTrap: boolean;
+
   get defaultButton_(): HTMLElement | null {
     return this.root.querySelector<HTMLElement>(`[${strings.BUTTON_DEFAULT_ATTRIBUTE}]`);
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
-    this.focusTrap_ = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions));
+    if (!this.delayFocusTrap) {
+      this.focusTrap_ = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions));
+    }
 
     this.buttons_ = [].slice.call(this.root.querySelectorAll<HTMLElement>(strings.BUTTON_SELECTOR));
     const content = this.root.querySelector('mdc-dialog-content');
     content?.setAttribute('id', this.contentId);
     const title = this.root.querySelector('mdc-dialog-title');
     title?.setAttribute('id', this.titleId);
+  }
+
+  createFocusTrap() {
+    this.focusTrap_ = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions));
   }
 
   destroy() {
@@ -126,7 +137,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
       notifyClosing: (action) => this.emit<MDCDialogCloseEventDetail>(strings.CLOSING_EVENT, action ? { action } : {}),
       notifyOpened: () => this.emit(strings.OPENED_EVENT, {}),
       notifyOpening: () => this.emit(strings.OPENING_EVENT, {}),
-      releaseFocus: () => this.focusTrap_.releaseFocus(),
+      releaseFocus: () => this.focusTrap_?.releaseFocus(),
       removeBodyClass: (className) => document.body.classList.remove(className),
       removeClass: (className) => this.root.classList.remove(className),
       reverseButtons: () => {
@@ -135,7 +146,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
           button.parentElement!.appendChild(button);
         });
       },
-      trapFocus: () => this.focusTrap_.trapFocus(),
+      trapFocus: () => this.focusTrap_?.trapFocus(),
     };
     return new MDCDialogFoundation(adapter);
   }

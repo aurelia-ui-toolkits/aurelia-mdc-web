@@ -25,6 +25,7 @@ interface IMdcDialogBindingContext {
     detached?: (result: unknown) => unknown;
   };
   handleClosing(evt: MDCDialogCloseEvent): void;
+  handleOpened(): void;
 }
 
 @inject(TemplatingEngine, ViewResources, CompositionEngine)
@@ -35,14 +36,21 @@ export class MdcDialogService {
   async open(options: IMdcDialogOptions) {
     const dialog = document.createElement('mdc-dialog') as IMdcDialogElement;
     dialog.setAttribute(`${strings.CLOSING_EVENT}.trigger`, 'handleClosing($event)');
+    dialog.setAttribute(`${strings.OPENED_EVENT}.trigger`, 'handleOpened()');
+    dialog.setAttribute('delay-focus-trap', 'delay-focus-trap');
     document.body.appendChild(dialog);
     let closingResolver: (action?: string) => void;
     const closingPromise = new Promise<string>(r => closingResolver = r);
+    let openedResolver: () => void;
+    const openedPromise = new Promise<void>(r => openedResolver = r);
     const bindingContext: IMdcDialogBindingContext = {
       handleClosing: (evt: MDCDialogCloseEvent) => {
         closingResolver(evt.detail.action);
         childView.detached();
         dialog.remove();
+      },
+      handleOpened: () => {
+        openedResolver();
       }
     };
     const childView = this.templatingEngine.enhance({ element: dialog, bindingContext });
@@ -51,6 +59,13 @@ export class MdcDialogService {
     const slot = new ViewSlot(view.slots[ShadowDOM.defaultSlotKey].anchor, false);
     slot.attached();
     childView.container.registerInstance(MdcDialog, dialog.au.controller.viewModel);
+
+    const dialogVm=dialog.au.controller.viewModel;
+    await dialogVm.initialised;
+    dialogVm.open();
+    await openedPromise;
+
+    // add content only after the dialog has opened to avoid layout issues
     let compositionContext = this.createCompositionContext(childView.container, dialog, bindingContext, {
       viewModel: options.viewModel,
       model: options.model
@@ -62,9 +77,10 @@ export class MdcDialogService {
     }
     const controller = await this.compositionEngine.compose(compositionContext);
     bindingContext.currentViewModel = (controller as Controller).viewModel;
+    // instantiate focus trap manually after the content has been added because it need at least one focusable element
+    dialogVm.createFocusTrap();
+    dialogVm.focusTrap_?.trapFocus();
 
-    await dialog.au.controller.viewModel.initialised;
-    dialog.au.controller.viewModel.open();
     return closingPromise;
   }
 
