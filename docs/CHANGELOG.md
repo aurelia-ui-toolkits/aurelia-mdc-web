@@ -1,3 +1,14 @@
+# [v1.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.1...v1.0.2) (2020-09-05)
+
+
+### Bug Fixes
+
+* **all:** apply top bar styling later than icon button's ([041ab71](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/041ab710b20301456fe18750237908246896a76a))
+* **dialog:** add content only after the dialog has opened ([1fef2cc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1fef2cc682ea01d3b6f67e7b62335bdc9cac5c75))
+* **text-field:** workaround Safari alignment issue ([4339a94](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4339a9447978ac382f0a676a3ff3fda05059ac20)), closes [#11](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/11)
+
+
+
 # [v1.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.0...v1.0.1) (2020-09-01)
 
 
