@@ -1,21 +1,38 @@
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
+/**
+ * @selector button[mdc-button]
+ * @selector a[mdc-button]
+ * @selector mdc-button
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-button.html'))
 @customElement('mdc-button')
 export class MdcButton {
   constructor(private root: HTMLElement) { }
 
+  /**
+   * Set the component touch target to 48 x 48 px
+   */
   @bindable.booleanAttr
   touch: boolean;
 
+  /**
+   * A contained button that is elevated upon the surface
+   */
   @bindable.booleanAttr
   raised: boolean;
 
+  /**
+   * A contained button that is flush with the surface
+   */
   @bindable.booleanAttr
   unelevated: boolean;
 
+  /**
+   * A contained button that is flush with the surface and has a visible border
+   */
   @bindable.booleanAttr
   outlined: boolean;
 

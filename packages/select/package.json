@@ -45,7 +45,7 @@
     "prebuild": "rimraf dist",
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\"",
     "_predoc": "cross-env rimraf doc/api.json && rimraf dist/doc-temp && tsc --project tsconfig.json --outFile dist/doc-temp/aurelia-ux.js && node doc/shape-defs && copyfiles tsconfig.json dist/doc-temp",
-    "_doc": "cross-env typedoc --json doc/api.json --excludeExternals --includeDeclarations --mode modules --target ES6 --name aurelia-ux-docs dist/doc-temp/",
+    "doc": "cross-env typedoc --json doc/api.json --excludeExternals --includeDeclarations --mode modules --target ES6 --name aurelia-mdc-web-docs src/",
     "_postdoc": "cross-env node doc/shape-doc && rimraf dist/doc-temp",
     "_changelog": "cross-env conventional-changelog -p aurelia-material-components-web -i doc/CHANGELOG.md -s",
     "_bump-version": "npm --no-git-tag-version version",
@@ -74,6 +74,7 @@
     "copyfiles": "^1.2.0",
     "cross-env": "^7.0.2",
     "rimraf": "^3.0.2",
+    "typedoc": "^0.19.1",
     "typescript": "^3.9.5"
   }
 }

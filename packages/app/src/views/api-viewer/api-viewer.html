@@ -1,5 +1,30 @@
 <template>
-  Coming soon...
+  <require from="./api-viewer.scss"></require>
+  <div class="docs-api" repeat.for="a of classesApi">
+    <div class="section-header" mdc-headline6>${a.name}</div>
+    <div>${a.comment.shortText}</div>
+    <div if.bind="a.comment.selectors" class="section-selector__label">
+      <span mdc-body1>Selector:</span>
+      <div class="markdown-code section-selectors" repeat.for="selector of a.comment.selectors">${selector.text}</div>
+    </div>
+    <div repeat.for="category of a.categories" class="section-category">
+      <h4 mdcSubtitle2>${category.name}</h4>
+      <!-- <div mdcSubtitle1 *ngIf="category.summary">{{category?.summary}}</div> -->
+      <mdc-data-table>
+        <mdc-data-table-header>
+          <mdc-data-table-header-cell>Name</mdc-data-table-header-cell>
+          <mdc-data-table-header-cell>Description</mdc-data-table-header-cell>
+        </mdc-data-table-header>
+        <mdc-data-table-content>
+          <mdc-data-table-row repeat.for="c of category.children">
+            <mdc-data-table-cell>${c.name}: ${c.type.name}</mdc-data-table-cell>
+            <mdc-data-table-cell>${c.comment.shortText}</mdc-data-table-cell>
+          </mdc-data-table-row>
+        </mdc-data-table-content>
+      </mdc-data-table>
+    </div>
+
+  </div>
   <!-- <div class="docs-api" *ngFor="let section of docApi?.sections">
     <div class="section-header" mdcHeadline6>{{section?.header}}</div>
     <div *ngIf="section.summary">{{section?.summary}}</div>

@@ -1,5 +1,9 @@
 import { customElement, inlineView, inject } from 'aurelia-framework';
 
+/**
+ * Optional. A group of action buttons, displayed on the left side of the card (in LTR).
+ * @selector mdc-card-action-buttons
+ */
 @inject(Element)
 @inlineView('<template class="mdc-card__action-buttons"><slot></slot></template>')
 @customElement('mdc-card-action-buttons')

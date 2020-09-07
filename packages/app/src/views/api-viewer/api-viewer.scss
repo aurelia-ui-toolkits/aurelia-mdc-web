@@ -1,0 +1,37 @@
+@use '@material/data-table/_index' as data-table;
+
+.markdown-code {
+  background-color: rgba(27, 31, 35, .05);
+  border-radius: 3px;
+  font-size: 105%;
+  font-family: monospace;
+  margin: 0;
+  padding: .2em .4em;
+  width: fit-content;
+}
+
+.docs-api {
+  .section-header {
+    margin-top: 25px;
+  }
+
+  .section-selector__label {
+    padding-top: 7px;
+  }
+
+  .section-selectors {
+    margin-left: 7px;
+    margin-bottom: 7px;
+  }
+
+  .section-exportedAs {
+    padding-top: 7px;
+  }
+
+  .section-category {
+    .mdc-data-table__table {
+      max-width: 1200px;
+      white-space: initial;
+    }
+  }
+}
