@@ -289,6 +289,7 @@ export interface IMdcMenuItemComponentEventDetail extends MDCMenuItemComponentEv
   data: unknown;
 }
 
+/** @hidden */
 export interface IMdcMenuItemComponentEvent extends Event {
   readonly detail: IMdcMenuItemComponentEventDetail;
 }

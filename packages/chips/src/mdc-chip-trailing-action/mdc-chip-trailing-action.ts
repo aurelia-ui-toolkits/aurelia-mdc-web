@@ -53,6 +53,7 @@ export class MdcChipTrailingAction extends MdcComponent<MDCChipTrailingActionFou
   }
 }
 
+/** @hidden */
 export interface IMdcChipTrailingActionElement extends HTMLElement {
   au: {
     controller: {

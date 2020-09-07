@@ -108,6 +108,7 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
 
 }
 
+/** @hidden */
 export interface IMdcTabElement extends HTMLElement {
   au: {
     controller: {

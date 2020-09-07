@@ -152,6 +152,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
 
 }
 
+/** @hidden */
 export interface IMdcSliderElement extends HTMLElement {
   checked: boolean;
   indeterminate: boolean;

@@ -80,6 +80,7 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
   }
 }
 
+/** @hidden */
 export interface IMdcChipSetElement extends HTMLElement {
   au: {
     controller: {

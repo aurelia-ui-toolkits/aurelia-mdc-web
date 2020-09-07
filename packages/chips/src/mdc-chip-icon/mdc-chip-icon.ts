@@ -20,6 +20,7 @@ export class MdcChipIcon {
   trailing: boolean;
 }
 
+/** @hidden */
 export interface IMdcChipIconElement extends HTMLElement {
   au: {
     controller: {

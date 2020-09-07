@@ -156,6 +156,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   }
 }
 
+/** @hidden */
 export interface IMdcDialogElement extends HTMLElement {
   au: {
     controller: {

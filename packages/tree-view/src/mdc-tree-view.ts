@@ -145,6 +145,7 @@ export class MdcTreeView {
   }
 }
 
+/** @hidden */
 export interface IMdcTreeElement extends HTMLElement {
   au: {
     controller: {

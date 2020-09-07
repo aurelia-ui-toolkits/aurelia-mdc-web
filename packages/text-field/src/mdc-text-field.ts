@@ -368,6 +368,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 }
 
+/** @hidden */
 export interface IMdcTextFieldElement extends IValidatedElement {
   au: {
     controller: {

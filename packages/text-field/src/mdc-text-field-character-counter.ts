@@ -23,6 +23,7 @@ export class MdcTextFieldCharacterCounter extends MdcComponent<MDCTextFieldChara
   }
 }
 
+/** @hidden */
 export interface IMdcTextFieldCharacterCounterElement extends HTMLElement {
   au: {
     controller: {

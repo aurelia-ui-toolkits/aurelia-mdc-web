@@ -1,6 +1,3 @@
-/**
- * @hidden
- */
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
 export { MdcButton } from './mdc-button';

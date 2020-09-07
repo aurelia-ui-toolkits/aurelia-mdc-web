@@ -256,6 +256,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   }
 }
 
+/** @hidden */
 export interface IMdcChipElement extends HTMLElement {
   au: {
     controller: {

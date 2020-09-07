@@ -37,10 +37,11 @@ export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextF
   }
 }
 
+/** @hidden */
 export interface IMdcTextFieldHelperTextElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcTextFieldHelperText;
-    }
-  }
+    };
+  };
 }

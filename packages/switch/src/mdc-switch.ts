@@ -88,6 +88,7 @@ export class MdcSwitch extends MdcComponent<MDCSwitchFoundation> {
   }
 }
 
+/** @hidden */
 export interface IMdcSwitchElement extends HTMLElement {
   checked: boolean;
   indeterminate: boolean;

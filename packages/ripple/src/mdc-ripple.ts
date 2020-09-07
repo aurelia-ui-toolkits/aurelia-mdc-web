@@ -95,6 +95,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   }
 }
 
+/** @hidden */
 export interface IMdcRippleElement extends HTMLElement {
   au: {
     'mdc-ripple': {

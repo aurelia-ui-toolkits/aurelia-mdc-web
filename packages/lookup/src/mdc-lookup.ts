@@ -288,6 +288,7 @@ export class MdcLookup implements EventListenerObject {
   }
 }
 
+/** @hidden */
 export interface IMdcLookupElement extends HTMLElement {
   au: {
     controller: {

@@ -47,6 +47,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   }
 
   /**
+   * @hidden
    * Fires a cross-browser-compatible custom event from the component root of the given type, with the given data.
    */
   emit<T>(evtType: string, evtData: T, shouldBubble = false) {

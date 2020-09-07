@@ -20,6 +20,7 @@ export class MdcChipPrimaryAction {
   }
 }
 
+/** @hidden */
 export interface IMdcChipPrimaryActionElement extends HTMLElement {
   au: {
     controller: {

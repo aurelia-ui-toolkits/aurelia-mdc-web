@@ -93,6 +93,7 @@ export class MdcExpandable {
   }
 }
 
+/** @hidden */
 export interface IMdcExpandableElement extends HTMLElement {
   au: {
     controller: {

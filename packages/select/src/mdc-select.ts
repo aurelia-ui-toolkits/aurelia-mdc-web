@@ -338,6 +338,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 }
 
+/** @hidden */
 export interface IMdcSelectElement extends HTMLElement {
   au: {
     controller: {

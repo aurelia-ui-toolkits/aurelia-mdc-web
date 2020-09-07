@@ -45,6 +45,7 @@ export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundat
   }
 }
 
+/** @hidden */
 export interface IMdcSelectHelperTextElement extends HTMLElement {
   au: {
     controller: {

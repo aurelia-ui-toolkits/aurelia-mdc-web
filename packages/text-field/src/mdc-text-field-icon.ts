@@ -47,6 +47,7 @@ export class MdcTextFieldIcon extends MdcComponent<MDCTextFieldIconFoundation> {
 
 }
 
+/** @hidden */
 export interface IMdcTextFieldIconElement extends HTMLElement {
   au: {
     'mdc-text-field-icon': {

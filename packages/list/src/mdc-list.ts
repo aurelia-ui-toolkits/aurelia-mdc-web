@@ -308,6 +308,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   }
 }
 
+/** @hidden */
 export interface IMdcListElement extends HTMLElement {
   au: {
     controller: {

@@ -91,6 +91,7 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
   }
 }
 
+/** @hidden */
 export interface IMdcRadioElement extends HTMLElement {
   checked: boolean;
   indeterminate: boolean;

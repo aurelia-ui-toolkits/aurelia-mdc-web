@@ -14,6 +14,7 @@ export class MdcChipCheckmark {
   }
 }
 
+/** @hidden */
 export interface IMdcChipCheckmarkElement extends HTMLElement {
   au: {
     controller: {

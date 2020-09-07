@@ -32,6 +32,7 @@ export class MdcSelectIcon extends MdcComponent<MDCSelectIconFoundation> {
   }
 }
 
+/** @hidden */
 export interface IMdcSelectIconElement extends HTMLElement {
   au: {
     'mdc-select-icon': {

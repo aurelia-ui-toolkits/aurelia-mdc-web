@@ -1,5 +1,6 @@
 import { Corner } from '@material/menu-surface/constants';
 
+/** @hidden */
 export interface MDCSelectAdapterAurelia {
   /**
    * Adds class to select anchor element.

@@ -85,6 +85,7 @@ export class MdcListItem {
 
 }
 
+/** @hidden */
 export interface IMdcListItemElement extends HTMLElement {
   au: {
     controller: {
@@ -98,6 +99,7 @@ export interface IMdcListActionEventDetail {
   data: unknown;
 }
 
+/** @hidden */
 export interface IMdcListActionEvent extends Event {
   detail: IMdcListActionEventDetail;
 }

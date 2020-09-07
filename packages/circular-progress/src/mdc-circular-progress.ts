@@ -71,6 +71,7 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
   }
 }
 
+/** @hidden */
 export interface IMdcCircularProgressElement extends HTMLElement {
   checked: boolean;
   indeterminate: boolean;

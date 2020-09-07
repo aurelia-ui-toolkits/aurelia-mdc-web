@@ -9,6 +9,7 @@ export class MdcTextFieldHelperLine {
   errors: string[];
 }
 
+/** @hidden */
 export interface IMdcTextFieldHelperLineElement extends HTMLElement {
   au: {
     controller: {

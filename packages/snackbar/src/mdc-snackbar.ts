@@ -96,6 +96,7 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
 
 }
 
+/** @hidden */
 export interface IMdcSnackbarElement extends HTMLElement {
   au: {
     controller: {
