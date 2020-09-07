@@ -10,7 +10,7 @@ export interface Size {
 @inject(Element)
 export class MdcSizeCustomAttribute {
 
-  private observer: any;
+  private observer: { observe(element: Element): void; disconnect(): void } | undefined;
   @bindable({ defaultBindingMode: bindingMode.fromView, primaryProperty: true })
   public value: Size = { width: 0, height: 0 };
 
@@ -22,17 +22,18 @@ export class MdcSizeCustomAttribute {
 
   public bind() {
     this.observer = this.getObserver();
-    this.observer.observe(this.element);
+    this.observer?.observe(this.element);
   }
 
   public unbind() {
-    this.observer.disconnect();
+    this.observer?.disconnect();
     this.observer = void 0;
   }
 
   public getObserver() {
     if (typeof PLATFORM.global.ResizeObserver === 'function') {
-      return new PLATFORM.global.ResizeObserver((records: Array<{ contentRect: DOMRectReadOnly }>) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return new PLATFORM.global.ResizeObserver((records: { contentRect: DOMRectReadOnly }[]) => {
         const rect = records[0].contentRect;
         this.value = { width: rect.width, height: rect.height };
       });
@@ -52,12 +53,12 @@ export class MdcSizeCustomAttribute {
 
 class ElementSizeDirtyChecker {
 
-  private callback: (size: Size) => any;
+  private callback: (size: Size) => unknown;
   private rate: number;
-  private size: { width: number, height: number };
-  private timerId: any;
+  private size: { width: number; height: number };
+  private timerId: unknown;
 
-  constructor(callback: (size: Size) => any, rate = 330 /*3 times a second*/) {
+  constructor(callback: (size: Size) => unknown, rate = 330 /* 3 times a second */) {
     this.callback = callback;
     this.rate = rate;
     this.size = { width: 0, height: 0 };
@@ -77,6 +78,6 @@ class ElementSizeDirtyChecker {
   }
 
   public disconnect() {
-    clearInterval(this.timerId);
+    clearInterval(this.timerId as number);
   }
 }
