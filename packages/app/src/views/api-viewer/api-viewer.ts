@@ -1,8 +1,18 @@
 import { NavigationInstruction, RouteConfig } from 'aurelia-router';
 import { NavigationItem } from 'typedoc';
 
+interface ICategoryItem {
+  name: string;
+  description: string;
+}
+
 declare module 'typedoc' {
   interface NavigationItem {
+    name: string;
+    signatures: {
+      comment: NavigationItem['comment'];
+      parameters: any[];
+    }[];
     comment: {
       shortText: string;
       tags: {
@@ -13,9 +23,13 @@ declare module 'typedoc' {
     };
     categories: {
       name: string;
-      children: NavigationItem['children'];
+      children: ICategoryItem[];
     }[];
     kindString: string;
+    type: { name: string };
+    getSignature: {
+      type: { name: string };
+    }[];
   }
 }
 
@@ -40,13 +54,27 @@ export class ApiViewer {
     }, [] as NavigationItem[]);
     this.classesApi?.forEach(x => {
       x.categories = [];
-      const attributes = x.children?.filter(y => y.kindString === 'Property' && y.comment?.shortText);
+      const attributes = x.children?.filter(y => ['Property', 'Accessor'].includes(y.kindString) && y.comment?.shortText)
+        .map(y => ({
+          name: `${y.name}: ${y.kindString === 'Accessor' ? y.getSignature[0].type.name : y.type.name}`,
+          description: y.comment.shortText
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));
       if (attributes?.length) {
         x.categories.push({ name: 'Attributes', children: attributes });
       }
-      const methods = x.children?.filter(y => y.kindString === 'Method' && y.comment?.shortText);
+      const methods = x.children?.filter(y => y.kindString === 'Method' && y.signatures[0].comment?.shortText)
+        .map(y => ({
+          name: `${y.name}(${(y.signatures[0].parameters ?? []).reduce((p, c, i) => `${p}${i > 0 ? ', ' : ''}${c.name}: ${c.type.name}`, '')})`,
+          description: y.signatures[0].comment.shortText
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));
       if (methods?.length) {
         x.categories.push({ name: 'Methods', children: methods });
+      }
+      const events = x.comment.tags.filter(t => t.tag === 'emits').map(y => ({ name: y.tag, description: y.text }));
+      if (events.length) {
+        x.categories.push({ name: 'Events', children: events });
       }
     });
   }
