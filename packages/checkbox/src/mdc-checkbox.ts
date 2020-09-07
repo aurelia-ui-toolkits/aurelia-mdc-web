@@ -8,7 +8,7 @@ let checkboxId = 0;
 
 /**
  * @selector mdc-checkbox
- * @emits change
+ * @emits change | Event dispatched on checked change.
  */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-checkbox.html'))

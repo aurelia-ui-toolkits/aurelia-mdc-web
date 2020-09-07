@@ -11,6 +11,7 @@ declare module 'typedoc' {
     name: string;
     signatures: {
       comment: NavigationItem['comment'];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       parameters: any[];
     }[];
     comment: {
@@ -72,7 +73,7 @@ export class ApiViewer {
       if (methods?.length) {
         x.categories.push({ name: 'Methods', children: methods });
       }
-      const events = x.comment.tags.filter(t => t.tag === 'emits').map(y => ({ name: y.tag, description: y.text }));
+      const events = x.comment.tags.filter(t => t.tag === 'emits').map(y => ({ name: y.text.split('|')[0], description: y.text.split('|')[1] }));
       if (events.length) {
         x.categories.push({ name: 'Events', children: events });
       }
