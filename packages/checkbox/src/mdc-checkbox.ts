@@ -6,6 +6,10 @@ import { inject, useView, PLATFORM, customElement, bindingMode } from 'aurelia-f
 
 let checkboxId = 0;
 
+/**
+ * @selector mdc-checkbox
+ * @emits change
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-checkbox.html'))
 @customElement('mdc-checkbox')
@@ -19,6 +23,9 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
 
   id = `mdc-checkbox-${++checkboxId}-input`;
 
+  /**
+   * Disables the component.
+   */
   @bindable.booleanAttr
   disabled: boolean;
   async disabledChanged() {
@@ -26,16 +33,26 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     this.nativeControl_.disabled = this.disabled;
   }
 
+  /**
+   * Set the component touch target to 48 x 48 px.
+   */
   @bindable.booleanAttr
   touch: boolean;
 
+  /**
+   * Whether ripple ink is disabled.
+   */
   @bindable.booleanAttr
   disableRipple: boolean;
 
+  /**
+   * Whether the checkbox should go to checked state or unchecked when toggled from indeterminate state.
+   */
   @bindable.booleanAttr
   indeterminateToChecked: boolean = true;
 
   initialChecked?: boolean;
+
   get checked(): boolean {
     if (this.nativeControl_) {
       return this.nativeControl_.checked;
@@ -44,6 +61,9 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     }
   }
 
+  /**
+   * Whether the checkbox is checked.
+   */
   set checked(checked: boolean) {
     if (this.nativeControl_) {
       this.nativeControl_.checked = checked;
@@ -52,6 +72,9 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     }
   }
 
+  /**
+   * Represent a checkbox with three states (e.g. a nested list of checkable items).
+   */
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.twoWay })
   indeterminate: boolean;
   async indeterminateChanged() {
@@ -137,15 +160,22 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     return new MDCCheckboxFoundation(adapter);
   }
 
+  /**
+   * Set focus to the checkbox.
+   */
   focus() {
     this.nativeControl_.focus();
   }
 
+  /**
+   * Moves focus from the checkbox.
+   */
   blur() {
     this.nativeControl_.blur();
   }
 }
 
+/** @hidden */
 export interface IMdcCheckboxElement extends HTMLElement {
   checked: boolean;
   indeterminate: boolean;
