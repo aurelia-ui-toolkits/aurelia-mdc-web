@@ -8,12 +8,18 @@ MDCChipTrailingActionFoundation.strings.INTERACTION_EVENT = MDCChipTrailingActio
 
 let chipTrailingAction = 0;
 
+/**
+ * Optional. Placed inside mdc-chip to add an action which should be accessible via keyboard navigation.
+ * Used implicitly if mdc-chip[trailing-action] is set.
+ * @selector mdc-chip-trailing-action
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-chip-trailing-action.html'))
 @customElement('mdc-chip-trailing-action')
 export class MdcChipTrailingAction extends MdcComponent<MDCChipTrailingActionFoundation> {
   id: string = `mdc-chip-trailing-action-${++chipTrailingAction}`;
 
+  /** Set focus to the action */
   focus() {
     this.root.focus();
   }
@@ -48,6 +54,7 @@ export class MdcChipTrailingAction extends MdcComponent<MDCChipTrailingActionFou
     return this.foundation?.isNavigable();
   }
 
+  /** Remove focus from the action */
   removeFocus() {
     this.foundation?.removeFocus();
   }

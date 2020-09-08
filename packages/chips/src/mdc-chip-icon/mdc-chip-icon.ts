@@ -3,6 +3,11 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 
 let chipSetIcon = 0;
 
+/**
+ * Optional. Indicates an icon in the chip.
+ * Added implicitly if mdc-chip[leading-icon] or mdc-chip[trailing-icon] are set.
+ * @selector mdc-chip-icon
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-chip-icon.html'))
 @customElement('mdc-chip-icon')
@@ -11,11 +16,11 @@ export class MdcChipIcon {
 
   id: string = `mdc-chip-icon-${++chipSetIcon}`;
 
-  // Indicates that the icon is before the primary action.
+  /** Indicates that the icon is before the primary action. */
   @bindable.booleanAttr
   leading: boolean;
 
-  // Indicates that the icon is after the primary action.
+  /** Indicates that the icon is after the primary action. */
   @bindable.booleanAttr
   trailing: boolean;
 }
