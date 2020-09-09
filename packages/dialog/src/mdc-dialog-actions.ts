@@ -1,5 +1,9 @@
 import { customElement, inject, inlineView } from 'aurelia-framework';
 
+/**
+ * Optional. Footer area containing the dialog's action buttons.
+ * @selector mdc-dialog-actions
+ */
 @inject(Element)
 @inlineView('<template class="mdc-dialog__actions"><slot></slot></template>')
 @customElement('mdc-dialog-actions')

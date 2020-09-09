@@ -13,6 +13,9 @@ strings.OPENING_EVENT = strings.OPENING_EVENT.toLowerCase();
 strings.CLOSING_EVENT = strings.CLOSING_EVENT.toLowerCase();
 strings.OPENED_EVENT = strings.OPENED_EVENT.toLowerCase();
 
+/**
+ * @selector mdc-dialog
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-dialog.html'))
 @customElement('mdc-dialog')
@@ -27,6 +30,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   @child('mdc-dialog-content')
   content_?: MdcDialogContent; // assigned in initialize()
 
+  /** Action returned when the dialog is closed via the scrim click */
   @bindable
   scrimClickAction: string;
   async scrimClickActionChanged() {
@@ -34,6 +38,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
     this.foundation?.setScrimClickAction(this.scrimClickAction);
   }
 
+  /** Action returned when the dialog is closed via the ESC key */
   @bindable
   escapeKeyAction: string;
   async escapeKeyActionChanged() {
@@ -106,10 +111,15 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
     document.removeEventListener('keydown', this);
   }
 
+  /** Opens the dialog */
   open() {
     this.foundation?.open();
   }
 
+  /**
+   * Closes the dialog
+   * @param action Action to close the dialog with
+   */
   close(action = '') {
     this.foundation?.close(action);
   }

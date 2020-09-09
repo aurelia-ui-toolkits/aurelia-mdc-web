@@ -2,8 +2,12 @@ import { IMdcDialogElement, MdcDialog } from './mdc-dialog';
 import { TemplatingEngine, inject, ViewSlot, ShadowDOM, CompositionContext, ViewResources, Controller, CompositionEngine, Container } from 'aurelia-framework';
 import { strings, MDCDialogCloseEvent } from '@material/dialog';
 
+/** Dialog service open method options */
 export interface IMdcDialogOptions {
+  /** A class represeting the dialog content view model */
   viewModel: unknown;
+
+  /** Data to pass to the view model's activate method */
   model?: unknown;
 }
 
@@ -28,11 +32,13 @@ interface IMdcDialogBindingContext {
   handleOpened(): void;
 }
 
+/** Service to open MDC dialogs */
 @inject(TemplatingEngine, ViewResources, CompositionEngine)
 export class MdcDialogService {
   constructor(private templatingEngine: TemplatingEngine, private viewResources: ViewResources,
     private compositionEngine: CompositionEngine) { }
 
+  /** Opens the dialog specified in the options */
   async open(options: IMdcDialogOptions) {
     const dialog = document.createElement('mdc-dialog') as IMdcDialogElement;
     dialog.setAttribute(`${strings.CLOSING_EVENT}.trigger`, 'handleClosing($event)');
@@ -60,7 +66,7 @@ export class MdcDialogService {
     slot.attached();
     childView.container.registerInstance(MdcDialog, dialog.au.controller.viewModel);
 
-    const dialogVm=dialog.au.controller.viewModel;
+    const dialogVm = dialog.au.controller.viewModel;
     await dialogVm.initialised;
     dialogVm.open();
     await openedPromise;
