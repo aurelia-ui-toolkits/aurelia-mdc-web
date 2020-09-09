@@ -20,6 +20,9 @@ events.SELECTED_ALL = events.SELECTED_ALL.toLowerCase();
 events.UNSELECTED_ALL = events.UNSELECTED_ALL.toLowerCase();
 const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 
+/**
+ * @selector mdc-data-table
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-data-table.html'))
 @customElement('mdc-data-table')
@@ -87,24 +90,31 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   header: HTMLElement;
   content: HTMLElement;
 
+  /** Shows pagination footer */
   @bindable.booleanAttr
   pagination: boolean;
 
+  /** Caption for the page size selector */
   @bindable
   rowsPerPageLabel: string = 'Rows per page';
 
+  /** Page sizes available for selection, e.g. [10, 25, 100, 'All'] */
   @bindable
   pageSizes: unknown[] = [10, 25, 100];
 
+  /** Selected page size */
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   pageSize: unknown = 10;
 
+  /** The current page summary, e.g. "10-20 of 200" */
   @bindable
   paginationTotal: string;
 
+  /** The current page position in the sequence of pages. Navigation buttons are enabled or disabled based on this value. */
   @bindable
   paginationPosition?: 'first' | 'between' | 'last' = 'first';
 
+  /** Turns on a linear progress indicator at the top of the table */
   @bindable.booleanAttr
   busy: boolean;
   async busyChanged() {
@@ -390,5 +400,4 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
         return '';
     }
   }
-
 }
