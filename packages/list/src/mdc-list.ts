@@ -173,6 +173,9 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
       setCheckedCheckboxOrRadioAtIndex: (index, isChecked) => {
         const listItem = this.listElements[index];
         const toggleEl = listItem.querySelector<HTMLInputElement>(strings.CHECKBOX_RADIO_SELECTOR);
+        if (toggleEl?.disabled) {
+          return;
+        }
         toggleEl!.checked = isChecked;
 
         const event = document.createEvent('Event');
