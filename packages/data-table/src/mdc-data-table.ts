@@ -39,6 +39,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     const headerCells = element.querySelectorAll<HTMLElement>('mdc-data-table-header>mdc-data-table-header-cell') ?? [];
     for (const c of Array.from(headerCells)) {
       const th = document.createElement('th');
+      for (let i = 0; i < c.attributes.length; ++i) {
+        th.setAttribute(c.attributes[i].name, c.attributes[i].value);
+      }
       th.classList.add('mdc-data-table__header-cell', ...Array.from(c.classList));
       th.classList.toggle('mdc-data-table__header-cell--numeric', c.hasAttribute('numeric'));
       th.setAttribute('role', 'columnheader');
@@ -58,14 +61,14 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
         tr.setAttribute(r.attributes[i].name, r.attributes[i].value);
       }
       tr.classList.add('mdc-data-table__row');
-      if (r.hasAttribute('repeat.for')) {
-        tr.setAttribute('repeat.for', r.getAttribute('repeat.for')!);
-      }
       tbody.appendChild(tr);
       const cells = r.querySelectorAll<HTMLElement>('mdc-data-table-cell');
       for (const c of Array.from(cells)) {
         const isHeader = c.hasAttribute('header');
         const cell = document.createElement(isHeader ? 'th' : 'td');
+        for (let i = 0; i < c.attributes.length; ++i) {
+          cell.setAttribute(c.attributes[i].name, c.attributes[i].value);
+        }
         cell.classList.add('mdc-data-table__cell', ...Array.from(c.classList));
         cell.classList.toggle('mdc-data-table__cell--numeric', c.hasAttribute('numeric'));
         if (isHeader) {
