@@ -9,6 +9,8 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @inlineView('<template class="mdc-card__primary-action" mdc-ripple="disabled.bind: disableRipple"><slot></slot></template>')
 @customElement('mdc-card-primary-action')
 export class MdcCardPrimaryAction {
+
+  /** Disables ripple effect */
   @bindable.booleanAttr
   disableRipple: boolean;
 }
