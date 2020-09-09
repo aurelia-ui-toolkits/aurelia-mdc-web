@@ -4,7 +4,12 @@ import { NavigationItem } from 'typedoc';
 interface ICategoryItem {
   name: string;
   type?: string;
-  description: string;
+  description?: string;
+}
+
+interface ITag {
+  tag: string;
+  text: string;
 }
 
 declare module 'typedoc' {
@@ -15,15 +20,12 @@ declare module 'typedoc' {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       parameters: any[];
     }[];
-    comment: {
+    comment?: {
       shortText: string;
-      tags: {
-        tag: string;
-        text: string;
-      }[];
-      selectors: NavigationItem['comment']['tags'];
+      tags?: ITag[];
+      selectors?: ITag[];
     };
-    categories: {
+    categories?: {
       name: string;
       children: ICategoryItem[];
       hasType?: boolean;
@@ -54,8 +56,8 @@ export class ApiViewer {
         if (!x.comment) {
           return false;
         }
-        x.comment.selectors = x.comment?.tags.filter(y => y.tag === 'selector');
-        return x.comment?.selectors.length;
+        x.comment.selectors = x.comment?.tags?.filter(y => y.tag === 'selector');
+        return !!x.comment;
       });
       p.push(...elementsAndAttributes ?? []);
       return p;
@@ -67,7 +69,7 @@ export class ApiViewer {
           return {
             name: y.name,
             type: y.kindString === 'Accessor' ? this.getType(y.getSignature[0].type) : this.getType(y.type),
-            description: y.comment.shortText
+            description: y.comment?.shortText
           };
         })
         .sort((a, b) => a.name.localeCompare(b.name));
@@ -77,14 +79,14 @@ export class ApiViewer {
       const methods = x.children?.filter(y => y.kindString === 'Method' && y.signatures[0].comment?.shortText)
         .map(y => ({
           name: `${y.name}(${(y.signatures[0].parameters ?? []).reduce((p, c, i) => `${p}${i > 0 ? ', ' : ''}${c.name}: ${this.getType(c.type)}`, '')})`,
-          description: y.signatures[0].comment.shortText
+          description: y.signatures[0].comment?.shortText
         }))
         .sort((a, b) => a.name.localeCompare(b.name));
       if (methods?.length) {
         x.categories.push({ name: 'Methods', children: methods });
       }
-      const events = x.comment.tags.filter(t => t.tag === 'emits').map(y => ({ name: y.text.split('|')[0], description: y.text.split('|')[1] }));
-      if (events.length) {
+      const events = x.comment?.tags?.filter(t => t.tag === 'emits').map(y => ({ name: y.text.split('|')[0], description: y.text.split('|')[1] }));
+      if (events?.length) {
         x.categories.push({ name: 'Events', children: events });
       }
     });
