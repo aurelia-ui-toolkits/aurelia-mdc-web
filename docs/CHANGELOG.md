@@ -1,3 +1,23 @@
+# [v1.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.2...v1.0.3) (2020-09-11)
+
+
+### Bug Fixes
+
+* **app:** api doc clean up ([30b9fbd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/30b9fbdcd9950937d67e3a13516284c28465a836))
+* **app:** handle complex doc types ([946f4f6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/946f4f66f359fe457453c5ade47236a51eccf2e0))
+* **base:** make lint happy ([cbdae0c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/cbdae0c0512ad2527ce6f00b144db7d00a490469))
+* **card:** add disable ripple ([c92c9e5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c92c9e57e53b21352f095ed15443205b7b53cd6b))
+* **data-table:** copy cell attributes ([362abb7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/362abb79a870f1614eb9899523a56a4f225926ba))
+* **list:** do not update a disabled row checkbox ([6e7fa21](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6e7fa21dcbeb56989893660f382c97503c287cd2))
+* **text-field:** do not ruin it for full width ([bb7d72f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/bb7d72f3a8f80f6825cdfb3ca403f36627adbf03))
+
+
+### Features
+
+* **app:** display event docs ([a8af61c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a8af61c3c51f48a6a6b77a21ee2bfc6d027b19f6))
+
+
+
 # [v1.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.1...v1.0.2) (2020-09-05)
 
 
