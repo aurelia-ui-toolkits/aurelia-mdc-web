@@ -7,6 +7,8 @@ import { PLATFORM } from 'aurelia-pal';
 
 let tabId = 0;
 
+MDCTabFoundation.strings.INTERACTED_EVENT = MDCTabFoundation.strings.INTERACTED_EVENT.toLowerCase();
+
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-tab.html'))
 @customElement('mdc-tab')
