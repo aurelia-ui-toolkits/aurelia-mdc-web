@@ -1,3 +1,18 @@
+# [v1.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.3...v1.0.4) (2020-09-14)
+
+
+### Bug Fixes
+
+* **app:** add explicit references ([549c0e0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/549c0e068448990e0b82436ac438818c63db71bd))
+* **tabs:** make event lowercase ([303e506](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/303e506f6510e7eef5e9b8340730ca559a8b6d35))
+
+
+### Features
+
+* **dialog:** allow dialog customisation via the service ([adadae5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/adadae5db4b58e6d48575e22d14d45648837d24b))
+
+
+
 # [v1.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.2...v1.0.3) (2020-09-11)
 
 
