@@ -89,18 +89,10 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   readonlyChanged() {
     this.input_.readOnly = this.readonly;
   }
-  
+
+  /** Makes the element blur on Enter key press */
   @bindable.booleanAttr
   blurOnEnter: boolean;
-  async blurOnEnterChanged() {
-    await this.initialised;
-    if (this.blurOnEnter) {
-      this.input_.addEventListener("keyup", this.blurOnEnterHandler);
-    }
-    else {
-      this.input_.removeEventListener("keyup", this.blurOnEnterHandler);
-    }
-  }
 
   @bindable
   maxlength: string;
@@ -248,7 +240,6 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.maxChanged();
     this.stepChanged();
     this.typeChanged();
-    this.blurOnEnterChanged();
     // handle the case when attribute value was set, not bound, in html
     if (this.root.hasAttribute('value')) {
       this.value = this.root.getAttribute('value') ?? '';
@@ -380,10 +371,11 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.input_.blur();
   }
 
-  blurOnEnterHandler = (e:KeyboardEvent) => {
-    if (e.keyCode && e.keyCode === 13) {
+  onKeyup(e: KeyboardEvent) {
+    if (this.blurOnEnter && e.keyCode === 13) {
       this.blur();
     }
+    return true;
   }
 }
 
