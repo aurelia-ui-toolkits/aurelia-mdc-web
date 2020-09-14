@@ -9,6 +9,8 @@ export interface IMdcDialogOptions {
 
   /** Data to pass to the view model's activate method */
   model?: unknown;
+
+  class?: string;
 }
 
 declare module 'aurelia-templating' {
@@ -44,6 +46,9 @@ export class MdcDialogService {
     dialog.setAttribute(`${strings.CLOSING_EVENT}.trigger`, 'handleClosing($event)');
     dialog.setAttribute(`${strings.OPENED_EVENT}.trigger`, 'handleOpened()');
     dialog.setAttribute('delay-focus-trap', 'delay-focus-trap');
+    if (options.class) {
+      dialog.classList.add(options.class);
+    }
     document.body.appendChild(dialog);
     let closingResolver: (action?: string) => void;
     const closingPromise = new Promise<string>(r => closingResolver = r);
