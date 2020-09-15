@@ -90,6 +90,10 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.input_.readOnly = this.readonly;
   }
 
+  /** Makes the element blur on Enter key press */
+  @bindable.booleanAttr
+  blurOnEnter: boolean;
+
   @bindable
   maxlength: string;
   maxlengthChanged() {
@@ -365,6 +369,13 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   blur() {
     this.input_.blur();
+  }
+
+  onKeyup(e: KeyboardEvent) {
+    if (this.blurOnEnter && e.keyCode === 13) {
+      this.blur();
+    }
+    return true;
   }
 }
 
