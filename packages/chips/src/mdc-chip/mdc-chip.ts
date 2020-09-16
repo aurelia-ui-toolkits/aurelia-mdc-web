@@ -101,7 +101,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   removable: boolean;
   async removableChanged() {
     await this.initialised;
-    this.foundation?.setShouldRemoveOnTrailingIconClick(this.removable);
+    this.foundation?.setShouldRemoveOnTrailingIconClick(!this.removable);
   }
 
   /** Sets whether a click should trigger the primary action focus. */
