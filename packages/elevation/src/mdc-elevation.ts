@@ -1,5 +1,8 @@
 import { customAttribute, inject } from 'aurelia-framework';
 
+/**
+ * @selector [mdc-elevation]
+ */
 @inject(Element)
 @customAttribute('mdc-elevation')
 export class MdcElevation {
