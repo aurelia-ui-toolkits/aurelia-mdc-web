@@ -10,11 +10,17 @@ import { PLATFORM } from 'aurelia-pal';
 strings.CLOSE_EVENT = strings.CLOSE_EVENT.toLowerCase();
 strings.OPEN_EVENT = strings.OPEN_EVENT.toLowerCase();
 
+/**
+ * @selector mdc-drawer
+ * @emits mdcdrawer:closed | Event dispatched on drawer close
+ * @emits mdcdrawer:opened | Event dispatched on drawer open
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-drawer.html'))
 @customElement(cssClasses.ROOT)
 export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDCModalDrawerFoundation> {
 
+  /** Set the drawer implementation */
   @bindable
   type: 'standard' | 'dismissible' | 'modal' = 'standard';
 
