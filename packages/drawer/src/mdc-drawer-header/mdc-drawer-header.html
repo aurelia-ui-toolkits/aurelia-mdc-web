@@ -1,4 +1,5 @@
 <template class="mdc-drawer__header">
-  <h3 class="mdc-drawer__title">${title}</h3>
-  <h6 class="mdc-drawer__subtitle">${subtitle}</h6>
+  <h3 class="mdc-drawer__title" if.bind="title">${title}</h3>
+  <h6 class="mdc-drawer__subtitle" if.bind="subtitle">${subtitle}</h6>
+  <slot></slot>
 </template>
