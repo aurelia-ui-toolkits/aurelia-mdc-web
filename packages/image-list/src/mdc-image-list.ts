@@ -9,6 +9,9 @@ export interface IColumnsOptions {
 
 let id = 0;
 
+/**
+ * @selector mdc-image-list
+ */
 @useView(PLATFORM.moduleName('./mdc-image-list.html'))
 @customElement('mdc-image-list')
 export class MdcImageList {
@@ -16,12 +19,15 @@ export class MdcImageList {
 
   id = `mdc-image-list-${++id}`;
 
+  /** Indicates that this Image List should use the Masonry variant */
   @bindable.booleanAttr
   masonry: boolean;
 
+  /** Indicates that supporting content should be positioned in a scrim overlaying each image (instead of positioned separately under each image) */
   @bindable.booleanAttr
   textProtection: boolean;
 
+  /** Number of columns in the list */
   @bindable
   columns: string | Partial<IColumnsOptions>[];
   columnsChanged() {
