@@ -5,6 +5,7 @@ const OPEN_CHANGED_EVENT = 'mdcexpandable:open-changed';
 const ENTER = 13;
 const SPACE = 32;
 
+/** @selector mdc-expandable */
 @inject(Element, TaskQueue)
 @customElement('mdc-expandable')
 @useView(PLATFORM.moduleName('./mdc-expandable.html'))
@@ -16,6 +17,7 @@ export class MdcExpandable {
   contentContainer: HTMLElement;
   focused: boolean;
 
+  /** Toggles the expandable open and closed */
   @bindable.booleanAttr
   open: boolean;
   openChanged() {
@@ -26,6 +28,7 @@ export class MdcExpandable {
     ));
   }
 
+  /** Set the expandable to be in an accordion group */
   @bindable
   accordion?: string;
 
@@ -65,6 +68,7 @@ export class MdcExpandable {
     }
   }
 
+  /** Toggles the expandable open and closed */
   toggle() {
     if (!this.open && this.accordion !== undefined) {
       const otherAccordions = this.accordion === ''
