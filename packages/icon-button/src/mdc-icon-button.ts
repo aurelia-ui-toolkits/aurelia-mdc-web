@@ -4,13 +4,20 @@ import { MDCIconButtonToggleFoundation, MDCIconButtonToggleAdapter, MDCIconButto
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcIconButtonIcon } from './mdc-icon-button-icon/mdc-icon-button-icon';
 
+/**
+ * @selector button[mdc-icon-button]
+ * @selector a[mdc-icon-button]
+ * @selector mdc-icon-button
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-icon-button.html'))
 @customElement('mdc-icon-button')
 export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
+  /** Sets the toggle state to the provided value */
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.twoWay })
   on: boolean;
 
+  /** Optional. Set a Material icon as a non-toggle icon. */
   @bindable
   icon: string;
 
