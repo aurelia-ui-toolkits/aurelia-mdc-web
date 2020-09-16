@@ -7,6 +7,9 @@ import { FocusTrap } from '@material/dom/focus-trap';
 import { inject, useView, customElement, bindable } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 
+strings.CLOSE_EVENT = strings.CLOSE_EVENT.toLowerCase();
+strings.OPEN_EVENT = strings.OPEN_EVENT.toLowerCase();
+
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-drawer.html'))
 @customElement(cssClasses.ROOT)
