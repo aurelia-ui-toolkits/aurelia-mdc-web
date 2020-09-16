@@ -1,3 +1,19 @@
+# [v1.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.4...v1.0.5) (2020-09-16)
+
+
+### Bug Fixes
+
+* **drawer:** allow random header content ([8beb72b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8beb72b0e2c2ade124802356e14da8fe4760d658))
+* **drawer:** normalise events ([e62e444](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e62e444e00beef183f303fc37545bc27b318930f))
+* **text-field:** use aurelia delegate for keyup event ([45c41ec](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/45c41ec1ac96beb6da49e8bc4aff8e0786f9743e))
+
+
+### Features
+
+* **text-field:** add blur-on-enter attribute ([948f5df](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/948f5df8b64c3b0533e2bcf11446a2a57a2367b4))
+
+
+
 # [v1.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.3...v1.0.4) (2020-09-14)
 
 
