@@ -10,6 +10,7 @@ export interface IMdcDialogOptions {
   /** Data to pass to the view model's activate method */
   model?: unknown;
 
+  /** A css class to customise a dialog opened via the service */
   class?: string;
 }
 
