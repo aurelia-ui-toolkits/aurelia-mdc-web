@@ -4,6 +4,9 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcRipple, IMdcRippleElement } from '@aurelia-mdc-web/ripple';
 
+/**
+ * @selector mdc-form-field
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-form-field.html'))
 @customElement(cssClasses.ROOT)
@@ -14,12 +17,15 @@ export class MdcFormField extends MdcComponent<MDCFormFieldFoundation> {
 
   label?: HTMLLabelElement | null;
 
+  /** Force label text to stay on a single line and ellipse the overflow text */
   @bindable.booleanAttr
   nowrap: boolean;
 
+  /** Position the input after the label */
   @bindable.booleanAttr
   alignEnd: boolean;
 
+  /** Distributes space between label text and control */
   @bindable.booleanAttr
   spaceBetween: boolean;
 
