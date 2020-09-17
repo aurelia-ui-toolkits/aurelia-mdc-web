@@ -96,12 +96,12 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   @bindable
   data: unknown;
 
-  /** Sets whether a trailing icon click should trigger exit/removal of the chip. (Default is true) */
+  /** Sets whether a trailing icon click should not trigger exit/removal of the chip. (Default is false) */
   @bindable.booleanAttr
-  removable: boolean;
+  nonRemovable: boolean;
   async removableChanged() {
     await this.initialised;
-    this.foundation?.setShouldRemoveOnTrailingIconClick(this.removable);
+    this.foundation?.setShouldRemoveOnTrailingIconClick(!this.nonRemovable);
   }
 
   /** Sets whether a click should trigger the primary action focus. */
