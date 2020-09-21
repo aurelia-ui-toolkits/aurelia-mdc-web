@@ -1,5 +1,36 @@
 import { NavigationInstruction, RouteConfig } from 'aurelia-router';
 import { NavigationItem } from 'typedoc';
+import buttonApi from '../../../../button/doc/api.json';
+import cardApi from '../../../../card/doc/api.json';
+import checkboxApi from '../../../../checkbox/doc/api.json';
+import chipsApi from '../../../../chips/doc/api.json';
+import circularProgressApi from '../../../../circular-progress/doc/api.json';
+import dataTableApi from '../../../../data-table/doc/api.json';
+import dialogApi from '../../../../dialog/doc/api.json';
+import drawerApi from '../../../../drawer/doc/api.json';
+import elevationApi from '../../../../elevation/doc/api.json';
+import expandableApi from '../../../../expandable/doc/api.json';
+import fabApi from '../../../../fab/doc/api.json';
+import formFieldApi from '../../../../form-field/doc/api.json';
+import iconButtonApi from '../../../../icon-button/doc/api.json';
+import imageListApi from '../../../../image-list/doc/api.json';
+
+const apis: Record<string, unknown> = {
+  'button': buttonApi,
+  'card': cardApi,
+  'checkbox': checkboxApi,
+  'chips': chipsApi,
+  'circular-progress': circularProgressApi,
+  'data-table': dataTableApi,
+  'dialog': dialogApi,
+  'drawer': drawerApi,
+  'elevation': elevationApi,
+  'expandable': expandableApi,
+  'fab': fabApi,
+  'form-field': formFieldApi,
+  'icon-button': iconButtonApi,
+  'image-list': imageListApi
+};
 
 interface ICategoryItem {
   name: string;
@@ -46,11 +77,8 @@ declare module 'typedoc' {
 export class ApiViewer {
   classesApi?: NavigationItem[];
 
-  async activate(_params: unknown, _routeConfig: RouteConfig, instruction: NavigationInstruction) {
-    const api = await import(
-      /* webpackExclude: /node_modules\/.*api\.json$/ */
-      `../../../../${instruction.parentInstruction.config.name}/doc/api.json`
-    ) as NavigationItem;
+  activate(_params: unknown, _routeConfig: RouteConfig, instruction: NavigationInstruction) {
+    const api = (instruction.parentInstruction.config.name !== undefined ? apis[instruction.parentInstruction.config.name] : {}) as NavigationItem;
     this.classesApi = api.children?.reduce((p, c) => {
       const elementsAndAttributes = c.children?.filter(x => {
         if (!x.comment) {
