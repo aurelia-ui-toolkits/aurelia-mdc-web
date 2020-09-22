@@ -54,22 +54,19 @@ export class MdcListItem {
   @bindable
   value: unknown;
 
-  @bindable
-  actionData: unknown;
-
   @bindable.booleanAttr
   disableRipple: boolean;
 
   onKeydown(evt: KeyboardEvent) {
     if ((evt.keyCode === ENTER || evt.keyCode === SPACE) && !this.disabled) {
-      this.root.dispatchEvent(new CustomEvent(LIST_ITEM_ACTION, { detail: { item: this, data: this.actionData }, bubbles: true }));
+      this.root.dispatchEvent(new CustomEvent(LIST_ITEM_ACTION, { detail: { item: this, data: this.value }, bubbles: true }));
     }
     return true;
   }
 
   onClick() {
     if (!this.disabled) {
-      this.root.dispatchEvent(new CustomEvent(LIST_ITEM_ACTION, { detail: { item: this, data: this.actionData }, bubbles: true }));
+      this.root.dispatchEvent(new CustomEvent(LIST_ITEM_ACTION, { detail: { item: this, data: this.value }, bubbles: true }));
     }
     return true;
   }

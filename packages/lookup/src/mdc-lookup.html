@@ -21,7 +21,7 @@
         </template>
       </mdc-list-item>
 
-      <mdc-list-item role="menuitem" repeat.for="option of optionsArray" action-data.bind="option">
+      <mdc-list-item role="menuitem" repeat.for="option of optionsArray" value.bind="option">
         <template replaceable part="option">
           ${getDisplay(option)}
         </template>

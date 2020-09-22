@@ -148,7 +148,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
       notifyAction: (index) => {
         const listItem = this.listElements[index];
         if (!listItem.hasAttribute('no-list-action')) {
-          const data = (listItem as IMdcListItemElement).au.controller.viewModel.actionData;
+          const data = (listItem as IMdcListItemElement).au.controller.viewModel.value;
           this.emit<IMdcListActionEventDetail>(strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
         }
       },

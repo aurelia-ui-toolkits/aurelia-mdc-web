@@ -25,7 +25,7 @@
       <mdc-drawer-content>
         <mdc-list activated wrap-focus mdclist:action.delegate="navigateTo($event.detail)" tabindex="0">
           <template repeat.for="m of navModels">
-            <mdc-list-item activated.bind="m.isActive" action-data.bind="m">
+            <mdc-list-item activated.bind="m.isActive" value.bind="m">
               ${m.title}
             </mdc-list-item>
             <mdc-list-divider if.bind="m.config.divider"></mdc-list-divider>

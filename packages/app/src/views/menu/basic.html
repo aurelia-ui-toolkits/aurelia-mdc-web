@@ -7,7 +7,7 @@
       close-surface-on-selection.bind="closeSurfaceOnSelection" anchor-margin.bind="anchorMargin">
       <mdc-list wrap-focus.bind="wrapFocus">
         <template repeat.for="fruit of fruits">
-          <mdc-list-item if.bind="fruit.label" action-data.bind="fruit.label">${fruit.label}</mdc-list-item>
+          <mdc-list-item if.bind="fruit.label" value.bind="fruit.label">${fruit.label}</mdc-list-item>
           <mdc-list-divider else></mdc-list-divider>
         </template>
       </mdc-list>
