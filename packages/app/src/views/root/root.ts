@@ -18,7 +18,7 @@ export class Root {
 
   configureRouter(config: RouterConfiguration) {
     const exampleRoutes: RouteConfig[] = ['button', 'card', 'checkbox', 'chips', 'circular-progress', 'data-table', 'dialog', 'drawer', 'elevation',
-      'expandable', 'fab', 'form-field', 'icon-button', 'image-list', 'layout-grid', 'list', 'linear-progress', 'lookup', 'menu', 'menu-surface',
+      'expandable', 'fab', 'form-field', 'icon-button', 'image-list', 'layout-grid', 'linear-progress', 'list', 'lookup', 'menu', 'menu-surface',
       'radio', 'ripple', 'select', 'slider', 'snackbar', 'switch', 'tabs', 'text-field', 'top-app-bar', 'tree-view', 'typography']
       .map(x => ({ route: x }));
 

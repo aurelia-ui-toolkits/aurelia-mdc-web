@@ -1,5 +1,9 @@
 import { inlineView, customElement, children, customAttribute, inject } from 'aurelia-framework';
 
+/**
+ * Optional. Wrapper around two or more mdc-list elements to be grouped together.
+ * @selector mdc-list-group
+ */
 @inlineView('<template class="mdc-list-group"><slot></slot></template>')
 @customElement('mdc-list-group')
 export class MdcListGroup {

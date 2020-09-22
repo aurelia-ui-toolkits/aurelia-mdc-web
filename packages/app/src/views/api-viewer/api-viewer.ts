@@ -14,6 +14,9 @@ import fabApi from '../../../../fab/doc/api.json';
 import formFieldApi from '../../../../form-field/doc/api.json';
 import iconButtonApi from '../../../../icon-button/doc/api.json';
 import imageListApi from '../../../../image-list/doc/api.json';
+import layoutGridApi from '../../../../layout-grid/doc/api.json';
+import linearProgressApi from '../../../../linear-progress/doc/api.json';
+import listApi from '../../../../list/doc/api.json';
 
 const apis: Record<string, unknown> = {
   'button': buttonApi,
@@ -29,7 +32,10 @@ const apis: Record<string, unknown> = {
   'fab': fabApi,
   'form-field': formFieldApi,
   'icon-button': iconButtonApi,
-  'image-list': imageListApi
+  'image-list': imageListApi,
+  'layout-grid': layoutGridApi,
+  'linear-progress': linearProgressApi,
+  'list': listApi
 };
 
 interface ICategoryItem {

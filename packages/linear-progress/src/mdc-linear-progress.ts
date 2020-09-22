@@ -3,11 +3,15 @@ import { MDCLinearProgressFoundation, MDCLinearProgressAdapter } from '@material
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { useView, inject, PLATFORM, customElement } from 'aurelia-framework';
 
+/**
+ * @selector mdc-linear-progress
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-linear-progress.html'))
 @customElement('mdc-linear-progress')
 export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation> {
 
+  /** Sets the progress bar to this value. Value should be between [0, 1] or undefined for indeterminate progress indicator. */
   @bindable.number
   progress?: number;
   async progressChanged() {
@@ -19,6 +23,7 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
     }
   }
 
+  /** Reverses the direction of the linear progress indicator */
   @bindable.booleanAttr
   reverse: boolean;
   async reverseChanged() {
@@ -26,6 +31,7 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
     this.foundation?.setReverse(this.reverse);
   }
 
+  /** Sets the buffer bar to this value. Value should be between [0, 1] or undefined. */
   @bindable.number
   buffer?: number;
   async bufferChanged() {
@@ -35,6 +41,7 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
     }
   }
 
+  /** Sets the component open state */
   @bindable.booleanAttr
   open: boolean;
   async openChanged() {

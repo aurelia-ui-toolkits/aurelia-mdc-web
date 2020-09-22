@@ -9,6 +9,9 @@ const ENTER = 13;
 const SPACE = 32;
 const LIST_ITEM_ACTION = 'mdclistitem:action';
 
+/**
+ * @selector mdc-list-item
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-list-item.html'))
 @customElement(cssClasses.LIST_ITEM_CLASS)
@@ -45,15 +48,19 @@ export class MdcListItem {
 
   id = ++listItemId;
 
+  /** Disables the list item */
   @bindable.booleanAttr
   disabled: boolean;
 
+  /** Styles the row in an activated state */
   @bindable.booleanAttr
   activated: boolean;
 
+  /** Random data associated with the list item. Passed in events payload. */
   @bindable
   value: unknown;
 
+  /** Disables ripple effect */
   @bindable.booleanAttr
   disableRipple: boolean;
 

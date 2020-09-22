@@ -4,7 +4,7 @@
     <div class="demo-layout__row">
       <button mdc-button click.delegate="ipReverse = !ipReverse">Reverse</button>
       <button mdc-button click.delegate="ipOpen = true">Open</button>
-      <button mdc-button click.delegate="ipClose = true">Close</button>
+      <button mdc-button click.delegate="ipOpen = false">Close</button>
       <button mdc-button click.delegate="alternateColors(ip)">Alternate Colors</button>
     </div>
     <compose view="./indeterminate.html" class="demo-layout__row"></compose>
@@ -16,7 +16,7 @@
     <div class="demo-layout__row">
       <button mdc-button click.delegate="dpReverse = !dpReverse">Reverse</button>
       <button mdc-button click.delegate="dpOpen = true">Open</button>
-      <button mdc-button click.delegate="dpClose = true">Close</button>
+      <button mdc-button click.delegate="dpOpen = false">Close</button>
       <button mdc-button click.delegate="alternateColors(dp)">Alternate Colors</button>
     </div>
     <compose view="./determinate.html" class="demo-layout__row"></compose>
