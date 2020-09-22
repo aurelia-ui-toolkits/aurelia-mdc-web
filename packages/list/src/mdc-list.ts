@@ -22,9 +22,6 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   @bindable.booleanAttr
   twoLine: boolean;
 
-  @bindable
-  role: string;
-
   @bindable.booleanAttr
   singleSelection: boolean;
   async singleSelectionChanged() {
@@ -89,9 +86,6 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   initialSyncWithDOM() {
     this.layout();
     this.initializeListType();
-    if (this.role) {
-      this.root.setAttribute('role', this.role);
-    }
   }
 
   get listElements(): Element[] {

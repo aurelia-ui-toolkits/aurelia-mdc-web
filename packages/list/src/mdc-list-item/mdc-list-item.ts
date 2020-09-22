@@ -45,9 +45,6 @@ export class MdcListItem {
 
   id = ++listItemId;
 
-  @bindable
-  role: string;
-
   @bindable.booleanAttr
   disabled: boolean;
 
@@ -62,12 +59,6 @@ export class MdcListItem {
 
   @bindable.booleanAttr
   disableRipple: boolean;
-
-  initialSyncWithDOM() {
-    if (this.role) {
-      this.root.setAttribute('role', this.role);
-    }
-  }
 
   onKeydown(evt: KeyboardEvent) {
     if ((evt.keyCode === ENTER || evt.keyCode === SPACE) && !this.disabled) {
