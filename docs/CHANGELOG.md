@@ -1,3 +1,17 @@
+# [v1.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.5...v1.1.0) (2020-09-22)
+
+
+### Bug Fixes
+
+* **app:** make webpack job easier ([d48184c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d48184c92a44d1099e59dad8e9f9afb4d80ba71c))
+* **chips:** rename attribute and reverse its logic ([3112389](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/31123892785b989bbf275a259c82a6fe78393663))
+* **list:** remove duplicate attribute ([d3bebfe](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d3bebfef54f1c1fc989ee75a90b0097c81b58d1e))
+
+### BREAKING CHANGES
+* `mdc-chip[removable]` has been renamed to `mdc-chip[non-removable]`
+* `mdc-list[action-data]` attribute has been removed in favour of `mdc-list[value]`
+
+
 # [v1.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.4...v1.0.5) (2020-09-16)
 
 
