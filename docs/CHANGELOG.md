@@ -1,3 +1,18 @@
+# [v1.1.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.0...v1.1.1) (2020-09-24)
+
+
+### Bug Fixes
+
+* **app:** data table pagination example ([70ff59f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/70ff59fd7871890a622eea172cc5732b72b96314))
+* **chips:** typo ([084ded4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/084ded4b8b04df37c77977cd7b16f392358401d2)), closes [#15](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/15)
+
+
+### Features
+
+* **data-table:** update pagination based on active page ([0fe510b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0fe510b2b11d8150d2a29d3696541c78bd95433a))
+
+
+
 # [v1.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.0.5...v1.1.0) (2020-09-22)
 
 
