@@ -6,7 +6,7 @@ import {
 } from '@material/data-table';
 import { MdcCheckbox, IMdcCheckboxElement } from '@aurelia-mdc-web/checkbox';
 import { closest } from '@material/dom/ponyfill';
-import { inject, customElement, useView, PLATFORM, processContent, ViewCompiler, ViewResources, bindingMode } from 'aurelia-framework';
+import { inject, customElement, useView, PLATFORM, ViewCompiler, ViewResources, bindingMode, computedFrom, processContent } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 declare module '@material/data-table' {
@@ -82,8 +82,12 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       }
     }
 
+    const paginationTotal = element.querySelector<HTMLElement>('[replace-part="pagination-total"]');
     element.innerHTML = '';
     element.appendChild(table);
+    if (paginationTotal) {
+      element.appendChild(paginationTotal);
+    }
     return true;
   }
 
@@ -106,13 +110,34 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   pageSize: unknown = 10;
 
-  /** The current page summary, e.g. "10-20 of 200" */
-  @bindable
-  paginationTotal: string;
+  @computedFrom('pageSize', 'recordsCount', 'activePage')
+  get paginationPosition(): 'first' | 'between' | 'last' | undefined {
+    if (typeof this.pageSize !== 'number' || this.pageSize === undefined || isNaN(this.activePage) || isNaN(this.recordsCount)) {
+      return undefined;
+    }
+    const pagesCount = Math.ceil(this.recordsCount / this.pageSize);
+    return this.activePage === 1
+      ? (pagesCount === 1 ? undefined : 'first')
+      : (this.activePage === pagesCount ? 'last' : 'between');
+  }
 
-  /** The current page position in the sequence of pages. Navigation buttons are enabled or disabled based on this value. */
-  @bindable
-  paginationPosition?: 'first' | 'between' | 'last' = 'first';
+  /** Sets total number of records. Used in navigation row. */
+  @bindable.number
+  recordsCount: number;
+
+  /** Sets the active page number. Used in navigation row. */
+  @bindable.number
+  activePage: number;
+
+  @computedFrom('pageSize', 'recordsCount', 'activePage')
+  get paginationTotal(): string | undefined {
+    if (typeof this.pageSize !== 'number' || this.pageSize === undefined || isNaN(this.activePage) || isNaN(this.recordsCount)) {
+      return undefined;
+    }
+    const firstRecord = this.pageSize * (this.activePage - 1) + 1;
+    const lastRecord = Math.min(this.pageSize * this.activePage, this.recordsCount);
+    return `${firstRecord}-${lastRecord} of ${this.recordsCount}`;
+  }
 
   /** Turns on a linear progress indicator at the top of the table */
   @bindable.booleanAttr

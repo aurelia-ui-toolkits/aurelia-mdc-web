@@ -13,7 +13,9 @@
       </div>
 
       <div class="mdc-data-table__pagination-navigation">
-        <div class="mdc-data-table__pagination-total">${paginationTotal}</div>
+        <div class="mdc-data-table__pagination-total">
+          <template replaceable part="pagination-total">${paginationTotal}</template>
+        </div>
         <button mdc-icon-button class="mdc-data-table__pagination-button" data-first-page="true"
           disabled.bind="!paginationPosition || paginationPosition === 'first'"
           click.trigger="handleNavigationClick('first')">
