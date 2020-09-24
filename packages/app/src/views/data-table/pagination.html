@@ -1,5 +1,5 @@
 <template>
-  <mdc-data-table pagination page-sizes.bind="[10,20,30]" page-size.bind="10"
+  <mdc-data-table pagination page-sizes.bind="[10,20,30]" page-size.bind="10" records-count="35" active-page.bind="activePage"
   pagination-total="1-3 of 3" mdcdatatable:navigation.trigger="handleNavigation($event.detail.type)"
   pagination-position="between">
     <mdc-data-table-header>

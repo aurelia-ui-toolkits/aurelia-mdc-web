@@ -17,6 +17,7 @@ export class Examples {
   standardHtml = standardHtml;
   selectionHtml = selectionHtml;
   paginationHtml = paginationHtml;
+  activePage = 1;
 
   desserts = [
     { checked: false, name: 'Frozen yogurt', calories: 159, carbs: 24, protein: 4, comment: 'Super tasty' },
@@ -31,6 +32,12 @@ export class Examples {
 
   handleNavigation(type: string) {
     this.snackbarService.open(`navigation type: ${type}`);
+    switch (type) {
+      case 'first': this.activePage = 1; break;
+      case 'prev': this.activePage--; break;
+      case 'next': this.activePage++; break;
+      case 'last': this.activePage = 4; break;
+    }
   }
 
 }

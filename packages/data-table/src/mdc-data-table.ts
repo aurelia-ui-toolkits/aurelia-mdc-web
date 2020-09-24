@@ -21,6 +21,7 @@ events.UNSELECTED_ALL = events.UNSELECTED_ALL.toLowerCase();
 const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 
 /**
+ * Use `pagination-total` replaceable part to customise pagination total label.
  * @selector mdc-data-table
  */
 @inject(Element)
