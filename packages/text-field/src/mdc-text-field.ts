@@ -130,8 +130,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     if (this.max === undefined) {
       this.input_.removeAttribute('max');
     } else {
-    this.input_.max = this.max;
-  }
+      this.input_.max = this.max;
+    }
   }
 
   @bindable
@@ -140,8 +140,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     if (this.min === undefined) {
       this.input_.removeAttribute('min');
     } else {
-    this.input_.min = this.min;
-  }
+      this.input_.min = this.min;
+    }
   }
 
   @bindable
@@ -150,8 +150,18 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     if (this.step === undefined) {
       this.input_.removeAttribute('step');
     } else {
-    this.input_.step = this.step;
+      this.input_.step = this.step;
+    }
   }
+
+  @bindable
+  autocomplete: string;
+  autocompleteChanged() {
+    if (this.autocomplete === undefined) {
+      this.input_.removeAttribute('autocomplete');
+    } else {
+      this.input_.autocomplete = this.autocomplete;
+    }
   }
 
   @bindable.number
@@ -160,8 +170,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     if (isNaN(this.tabindex)) {
       this.input_.removeAttribute('tabindex');
     } else {
-    this.input_.tabIndex = this.tabindex;
-  }
+      this.input_.tabIndex = this.tabindex;
+    }
   }
 
   @bindable
@@ -171,10 +181,23 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
       if (this.type === undefined) {
         this.input_.removeAttribute('type');
       } else {
-      this.input_.type = this.type;
+        this.input_.type = this.type;
+      }
     }
   }
+
+  @bindable
+  name: string;
+  nameChanged() {
+    if (this.name === undefined) {
+      this.input_.removeAttribute('name');
+    } else {
+      this.input_.name = this.name;
+    }
   }
+
+  @bindable
+  placeholder: string = ' '; // non empty placeholder solves the issue of misplaced labels in Safari
 
   private initialValue: string;
   get value(): string {
@@ -260,6 +283,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.maxChanged();
     this.stepChanged();
     this.typeChanged();
+    this.autocompleteChanged();
+    this.nameChanged();
     // handle the case when attribute value was set, not bound, in html
     if (this.root.hasAttribute('value')) {
       this.value = this.root.getAttribute('value') ?? '';
