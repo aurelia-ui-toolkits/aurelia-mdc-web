@@ -127,33 +127,53 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable
   max: string;
   maxChanged() {
+    if (this.max === undefined) {
+      this.input_.removeAttribute('max');
+    } else {
     this.input_.max = this.max;
+  }
   }
 
   @bindable
   min: string;
   minChanged() {
+    if (this.min === undefined) {
+      this.input_.removeAttribute('min');
+    } else {
     this.input_.min = this.min;
+  }
   }
 
   @bindable
   step: string;
   stepChanged() {
+    if (this.step === undefined) {
+      this.input_.removeAttribute('step');
+    } else {
     this.input_.step = this.step;
+  }
   }
 
   @bindable.number
   tabindex: number;
   tabindexChanged() {
+    if (isNaN(this.tabindex)) {
+      this.input_.removeAttribute('tabindex');
+    } else {
     this.input_.tabIndex = this.tabindex;
+  }
   }
 
   @bindable
   type: string;
   typeChanged() {
     if (!this.textarea) {
+      if (this.type === undefined) {
+        this.input_.removeAttribute('type');
+      } else {
       this.input_.type = this.type;
     }
+  }
   }
 
   private initialValue: string;
