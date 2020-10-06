@@ -11,6 +11,9 @@ const DOWN = 40;
 const inputEvents = ['click', 'input', 'keydown', 'blur'];
 const bodyEvents = ['touchstart', 'mousedown'];
 
+/**
+ * @selector mdc-lookup
+ */
 @inject(Element, MdcDefaultLookupConfiguration)
 @customElement('mdc-lookup')
 @useView(PLATFORM.moduleName('./mdc-lookup.html'))
@@ -28,14 +31,22 @@ export class MdcLookup implements EventListenerObject {
   public notFound: boolean = false;
   public menu: MdcMenu;
 
+  /** Reference to the input */
   @bindable
   public input?: HTMLInputElement;
 
+  /** Sets the menu list to have two lines */
   @bindable.booleanAttr
   twoLine: boolean;
 
+  /**
+   * Sets the way an option is displayed in the input element.
+   * When set to a string, the object property with such name is used.
+   * When set to a function, it is called with an option as a parameter to retrieve the display string.
+   * When undefined, an option.toString() is used.
+   */
   @bindable
-  displayField: ((option: unknown) => string) | string | undefined;
+  displayField: string | undefined | ((option: unknown) => string);
   displayFieldChanged() {
     if (this.displayField instanceof Function) {
       this.getDisplay = this.displayField;
@@ -48,8 +59,14 @@ export class MdcLookup implements EventListenerObject {
 
   getDisplay: (option: unknown) => string = option => (option as Record<string, unknown>).toString();
 
+  /**
+   * Sets the way a value is set.
+   * When set to a string, the object property with such name is used.
+   * When set to a function, it is called with an option as a parameter to retrieve the value.
+   * When undefined, an option is used as a value.
+   */
   @bindable
-  valueField: ((option: unknown) => unknown) | string | undefined;
+  valueField: string | undefined | ((option: unknown) => unknown);
   valueFieldChanged() {
     if (this.valueField instanceof Function) {
       this.getValue = this.valueField;
@@ -62,8 +79,12 @@ export class MdcLookup implements EventListenerObject {
 
   getValue: (option: unknown) => unknown = option => option;
 
+  /**
+   * Sets the array of options to display.
+   * Can be an async function which returns an array.
+   */
   @bindable
-  options: ((filter: string, value: unknown) => Promise<unknown[]>) | unknown[] | undefined;
+  options: unknown[] | undefined | ((filter: string, value: unknown) => Promise<unknown[]>);
   optionsChanged() {
     if (this.options instanceof Function) {
       this.getOptions = this.options;
@@ -72,6 +93,7 @@ export class MdcLookup implements EventListenerObject {
     }
   }
 
+  /** Hoists the menu to document body */
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
@@ -86,6 +108,7 @@ export class MdcLookup implements EventListenerObject {
     }
   }
 
+  /** The selected value */
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   value: unknown;
   suppressValueChanged: boolean;
@@ -105,9 +128,11 @@ export class MdcLookup implements EventListenerObject {
     this.value = value;
   }
 
+  /** Sets debounce in milliseconds */
   @bindable.number
   debounce: number = this.defaultConfiguration.debounce;
 
+  /** Loads the options to the menu when attached */
   @bindable.booleanAttr
   preloadOptions: boolean;
 
@@ -135,6 +160,7 @@ export class MdcLookup implements EventListenerObject {
     bodyEvents.forEach(x => document.body.removeEventListener(x, this));
   }
 
+  /** Opens lookup menu */
   open() {
     if (this.input?.disabled || this.input?.readOnly || this.menu.open || this.optionsArray === undefined && !this.searching && !this.errorMessage) {
       return;
@@ -142,6 +168,7 @@ export class MdcLookup implements EventListenerObject {
     this.menu.open = true;
   }
 
+  /** Closes lookup menu */
   close() {
     this.menu.open = false;
   }

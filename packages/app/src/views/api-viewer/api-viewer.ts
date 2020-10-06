@@ -17,6 +17,7 @@ import imageListApi from '../../../../image-list/doc/api.json';
 import layoutGridApi from '../../../../layout-grid/doc/api.json';
 import linearProgressApi from '../../../../linear-progress/doc/api.json';
 import listApi from '../../../../list/doc/api.json';
+import lookupApi from '../../../../lookup/doc/api.json';
 
 const apis: Record<string, unknown> = {
   'button': buttonApi,
@@ -35,7 +36,8 @@ const apis: Record<string, unknown> = {
   'image-list': imageListApi,
   'layout-grid': layoutGridApi,
   'linear-progress': linearProgressApi,
-  'list': listApi
+  'list': listApi,
+  'lookup': lookupApi
 };
 
 interface ICategoryItem {
@@ -49,14 +51,31 @@ interface ITag {
   text: string;
 }
 
+interface IType {
+  type: string;
+  name: string;
+  value: string;
+  types: IType[];
+  elementType: { name: string };
+  declaration: { signatures: ISignature[] };
+  typeArguments: IType[];
+}
+
+interface IParameter {
+  name: string;
+  type: IType;
+}
+
+interface ISignature {
+  comment: NavigationItem['comment'];
+  parameters: IParameter[];
+  type: IType;
+}
+
 declare module 'typedoc' {
   interface NavigationItem {
     name: string;
-    signatures: {
-      comment: NavigationItem['comment'];
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      parameters: any[];
-    }[];
+    signatures: ISignature[];
     comment?: {
       shortText: string;
       tags?: ITag[];
@@ -68,14 +87,9 @@ declare module 'typedoc' {
       hasType?: boolean;
     }[];
     kindString: string;
-    type: {
-      type: string;
-      name: string;
-      types: { type: string; name: string; value: string }[];
-      elementType: { name: string };
-    };
+    type: IType;
     getSignature: {
-      type: NavigationItem['type'];
+      type: IType;
     }[];
   }
 }
@@ -126,10 +140,22 @@ export class ApiViewer {
     });
   }
 
-  getType(t: NavigationItem['type']): string {
+  getType(t: IType): string {
     switch (t.type) {
-      case 'union': return t.types.reduce((p, c, i) => `${p}${i > 0 ? ' | ' : ''}${c.name ?? `'${c.value}'`}`, '');
+      case 'union': return t.types.reduce((p, c, i) => `${p}${i > 0 ? ' | ' : ''}${this.getType(c)}`, '');
       case 'array': return `${t.elementType.name}[]`;
+      case 'intrinsic': return t.name;
+      case 'stringLiteral': return `'${t.value}'`;
+      case 'reflection': {
+        const signature = t['declaration'].signatures[0];
+        return `(${(signature.parameters ?? []).reduce((p, c, i) => `${p}${i > 0 ? ', ' : ''}${c.name}: ${this.getType(c.type)}`, '')}) => ${this.getType(signature.type)}`;
+      }
+      case 'reference':
+        if (t.typeArguments) {
+          return `${t.name}<${t.typeArguments.reduce((p, c, i) => `${p}${i > 0 ? ', ' : ''}${this.getType(c)}`, '')}>`;
+        } else {
+          return t.name;
+        }
       default: return t.name;
     }
 
