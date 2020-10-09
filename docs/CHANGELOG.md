@@ -1,3 +1,13 @@
+# [v1.1.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.1...v1.1.2) (2020-10-09)
+
+
+### Bug Fixes
+
+* **text-field:** add missing name, autocomplete, placeholder ([d9e7805](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d9e78054771dabeb5462c465c522fcaa0a4fcec6))
+* **text-field:** do not set unused attributes ([8c098d8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8c098d8718a4cd9f60813ee655aa90d8508d7111))
+
+
+
 # [v1.1.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.0...v1.1.1) (2020-09-24)
 
 
