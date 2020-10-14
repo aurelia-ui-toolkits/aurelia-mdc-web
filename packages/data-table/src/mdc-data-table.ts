@@ -152,6 +152,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     }
   }
 
+  @bindable.booleanAttr
+  hoistPageSelectToBody: boolean;
+
   get rowCheckboxList(): MdcCheckbox[] {
     return Array.from(this.root.querySelectorAll<IMdcCheckboxElement>('.mdc-data-table__row .mdc-checkbox'))
       .map(x => x.au?.controller.viewModel);
