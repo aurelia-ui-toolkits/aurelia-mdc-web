@@ -53,6 +53,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private lineRipple?: MdcLineRipple;
   private mdcLabel: MdcFloatingLabel;
   private outline?: MDCNotchedOutline;
+  // private mutationObserver: MutationObserver;
   errors = new Map<unknown, boolean>();
 
   @bindable
@@ -142,6 +143,19 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
       this.helperText = (nextSibling as IMdcSelectHelperTextElement).au.controller.viewModel;
     }
     await Promise.all([this.helperText?.initialised, this.menu.initialised].filter(x => x));
+    // TODO: leave it here for now
+    // this.mutationObserver = DOM.createMutationObserver((mutations: MutationRecord[]) => {
+    //   console.log(mutations);
+    //   this.foundation?.setValue(this.value, true);
+    // });
+    // this.mutationObserver.observe(this.menuElement, {attributes: true, childList: true, characterData: true, subtree: true });
+  }
+
+  destroy() {
+    // if (this.mutationObserver) {
+    //   this.mutationObserver.disconnect();
+    //   this.mutationObserver.takeRecords();
+    // }
   }
 
   initialSyncWithDOM() {
