@@ -30,4 +30,16 @@ export class MdcLayoutGridCell {
   /** Optional, specifies the number of columns the cell spans on a phone */
   @bindable
   phoneSpan: string;
+
+  /** Optional, specifies the number of columns the cell spans for all screen sizes */
+  @bindable
+  spans: string;
+  spansChanged() {
+    const sizes = this.spans.split(' ');
+    if (sizes.length === 3) {
+      this.phoneSpan = sizes[0];
+      this.tabletSpan = sizes[1];
+      this.desktopSpan = sizes[2];
+    }
+  }
 }
