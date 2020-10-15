@@ -346,7 +346,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
       getNativeInput: () => this.input_,
       isFocused: () => document.activeElement === this.input_,
       registerInputInteractionHandler: (evtType, handler) => this.input_.addEventListener(evtType, handler, applyPassive()),
-      deregisterInputInteractionHandler: (evtType, handler) => this.input_.removeEventListener(evtType, handler, applyPassive()),
+      deregisterInputInteractionHandler: (evtType, handler) => this.input_?.removeEventListener(evtType, handler, applyPassive()),
     };
   }
 
