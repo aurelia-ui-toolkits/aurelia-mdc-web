@@ -30,7 +30,11 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   disabled: boolean;
   async disabledChanged() {
     await this.initialised;
-    this.nativeControl_.disabled = this.disabled;
+    // still need to check because a component might already be destroyed
+    // by the time the binding is applied
+    if (this.nativeControl_) {
+      this.nativeControl_.disabled = this.disabled;
+    }
   }
 
   /**
