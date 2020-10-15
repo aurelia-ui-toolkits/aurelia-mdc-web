@@ -1,3 +1,20 @@
+# [v1.1.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.2...v1.1.3) (2020-10-15)
+
+
+### Bug Fixes
+
+* **checkbox:** check for null reference ([d3d9722](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d3d97229e29df578c13b07b54549b3113314fbd3))
+* **layout-grid:** class name ([f7ddb44](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f7ddb44aac2c99f0c75b216566603822d127671f))
+* **text-field:** prevent HMR crashes during development ([259fade](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/259fade2bcb7e345be98fde6871e5295ff0c48af))
+
+
+### Features
+
+* **data-table:** allow hoisting page select to body ([dd241a7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/dd241a76e3774bef49007dc7dd8ae0bb217e033e))
+* **layout-grid:** allow setting all span attributes at once ([b6e36bd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b6e36bd3a18d8e37bb55b225be82b8b45c13b337))
+
+
+
 # [v1.1.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.1...v1.1.2) (2020-10-09)
 
 
