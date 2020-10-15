@@ -35,11 +35,6 @@ export class MdcLayoutGridCell {
   @bindable
   spans: string;
   spansChanged() {
-    const sizes = this.spans.split(' ');
-    if (sizes.length === 3) {
-      this.phoneSpan = sizes[0];
-      this.tabletSpan = sizes[1];
-      this.desktopSpan = sizes[2];
-    }
+    [this.phoneSpan, this.tabletSpan, this.desktopSpan] = this.spans.split(' ');
   }
 }
