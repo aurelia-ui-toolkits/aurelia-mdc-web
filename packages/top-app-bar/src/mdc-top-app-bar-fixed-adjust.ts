@@ -1,6 +1,5 @@
-import { customAttribute, inject } from 'aurelia-framework';
+import { customAttribute } from 'aurelia';
 
-@inject(Element)
 @customAttribute('mdc-top-app-bar-fixed-adjust')
 export class MdcTopAppBarFixedAdjust {
   constructor(private root: HTMLElement) { }

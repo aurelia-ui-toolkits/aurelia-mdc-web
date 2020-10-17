@@ -1,7 +1,9 @@
 {
   "packages": [
     "packages/base",
-    "packages/circular-progress"
+    "packages/circular-progress",
+    "packages/ripple",
+    "packages/top-app-bar"
   ],
   "version": "1.1.3"
 }

@@ -1,6 +1,5 @@
-import { customAttribute, inject } from 'aurelia-framework';
+import { customAttribute } from 'aurelia';
 
-@inject(Element)
 @customAttribute('mdc-top-app-bar-nav-icon')
 export class MdcTopAppBarNavIcon {
   constructor(private root: HTMLElement) { }

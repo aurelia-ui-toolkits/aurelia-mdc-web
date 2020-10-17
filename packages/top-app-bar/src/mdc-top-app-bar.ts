@@ -1,11 +1,9 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTopAppBarFoundation, MDCTopAppBarAdapter, MDCTopAppBarBaseFoundation, cssClasses, strings, MDCShortTopAppBarFoundation, MDCFixedTopAppBarFoundation } from '@material/top-app-bar';
-import { inject, useView, customElement, PLATFORM } from 'aurelia-framework';
 import { SpecificEventListener } from '@material/base';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { inject, customElement, bindable } from 'aurelia';
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-top-app-bar.html'))
 @customElement('mdc-top-app-bar')
 export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
 
@@ -15,19 +13,19 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
   private navIcon_!: Element | null;
   hasActionItems: boolean;
 
-  @bindable.booleanAttr
+  @bindable({set: booleanAttr})
   short: boolean;
 
-  @bindable.booleanAttr
+  @bindable({set: booleanAttr})
   collapsed: boolean;
 
-  @bindable.booleanAttr
+  @bindable({set: booleanAttr})
   fixed: boolean;
 
-  @bindable.booleanAttr
+  @bindable({set: booleanAttr})
   prominent: boolean;
 
-  @bindable.booleanAttr
+  @bindable({set: booleanAttr})
   dense: boolean;
 
   @bindable

@@ -1,7 +1,5 @@
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, bindable } from 'aurelia';
 
-@useView(PLATFORM.moduleName('./mdc-top-app-bar-section.html'))
 @customElement('mdc-top-app-bar-section')
 export class MdcTopAppBarSection {
   @bindable

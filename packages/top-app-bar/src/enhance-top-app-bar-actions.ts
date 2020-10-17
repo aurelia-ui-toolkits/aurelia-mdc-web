@@ -1,6 +1,6 @@
-import { viewEngineHooks } from 'aurelia-framework';
+// import { viewEngineHooks } from 'aurelia-framework';
 
-@viewEngineHooks
+// @viewEngineHooks
 export class EnhanceTopAppBarActions {
 	beforeCompile(template: DocumentFragment) {
 		const actions = template.querySelectorAll('[mdc-top-app-bar-action-item],[mdc-top-app-bar-nav-icon]');

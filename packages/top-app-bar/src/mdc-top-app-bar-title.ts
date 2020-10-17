@@ -1,5 +1,7 @@
-import { inlineView, customElement } from 'aurelia-framework';
+import { customElement } from 'aurelia';
 
-@inlineView('<template class="mdc-top-app-bar__title"><slot></slot></template>')
-@customElement('mdc-top-app-bar-title')
+@customElement({
+  name: 'mdc-top-app-bar-title',
+  template: '<template class="mdc-top-app-bar__title"><slot></slot></template>'
+})
 export class MdcTopAppBarTitle { }

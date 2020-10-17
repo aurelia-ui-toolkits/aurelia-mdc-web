@@ -1,11 +1,9 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCRippleFoundation, MDCRippleAdapter, util } from '@material/ripple';
 import { matches } from '@material/dom/ponyfill';
 import { applyPassive } from '@material/dom/events';
-import { inject, customAttribute, Binding, BehaviorPropertyObserver } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customAttribute, bindable } from 'aurelia';
 
-@inject(Element)
 @customAttribute('mdc-ripple')
 export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   inputBindingPromiseResolver: () => void;
@@ -19,26 +17,26 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   @bindable
   surface?: HTMLElement;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disabled: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   unbounded: boolean;
   async unboundedChanged() {
     await this.initialised;
     this.foundation?.setUnbounded(Boolean(this.unbounded));
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   activeSurface: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   noClass: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   primary: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   accent: boolean;
 
   async initialise() {
@@ -51,10 +49,11 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
         (this.surface ?? this.root).classList.add('mdc-ripple-surface--accent');
       }
     }
-    const inputBinding = (this.root as IMdcRippleElement).au['mdc-ripple'].boundProperties.find(x => x.binding.targetProperty === 'input');
-    if (inputBinding) {
-      await this.inputBindingPromise;
-    }
+    // TODO check if this is still needed
+    // const inputBinding = (this.root as IMdcRippleElement).au['mdc-ripple'].boundProperties.find(x => x.binding.targetProperty === 'input');
+    // if (inputBinding) {
+    await this.inputBindingPromise;
+    // }
   }
 
   activate() {
@@ -100,7 +99,7 @@ export interface IMdcRippleElement extends HTMLElement {
   au: {
     'mdc-ripple': {
       viewModel: MdcRipple;
-      boundProperties: { binding: Binding & { targetProperty: string }; observer: BehaviorPropertyObserver }[];
+      // boundProperties: { binding: Binding & { targetProperty: string }; observer: BehaviorPropertyObserver }[];
     };
   };
 }
