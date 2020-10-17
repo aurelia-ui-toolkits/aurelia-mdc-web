@@ -1,20 +1,14 @@
-import { inject, bindingMode, ObserverLocator, InternalPropertyObserver } from 'aurelia-framework';
-import { SyntaxInterpreter } from 'aurelia-templating-binding';
-
-export type GetElementObserver = (
-  obj: Element,
-  propertyName: string,
-  observerLocator: ObserverLocator,
-  descriptor?: PropertyDescriptor | null) => InternalPropertyObserver | null;
+import { ObserverLocator, IObjectObservationAdapter, AttrSyntax } from '@aurelia/runtime';
+import { IAttrSyntaxTransformer } from '@aurelia/runtime-html';
+import { inject, LifecycleFlags } from 'aurelia';
 
 export interface MdcElementObserverAdapter {
   tagName: string;
   properties: Record<string, MdcElementPropertyObserver>;
 }
 
-export interface MdcElementPropertyObserver {
-  defaultBindingMode: bindingMode;
-  getObserver: GetElementObserver;
+export interface MdcElementPropertyObserver extends IObjectObservationAdapter {
+  shouldDefaultToTwoWay: boolean;
 }
 
 @inject(ObserverLocator)
@@ -23,23 +17,24 @@ export class MdcComponentAdapters {
   private adapters: Record<string, MdcElementObserverAdapter> = {};
   private bindingModeIntercepted: boolean;
 
-  constructor(private observerLocator: ObserverLocator) { }
+  constructor(private observerLocator: ObserverLocator, @IAttrSyntaxTransformer private syntaxTransformer: IAttrSyntaxTransformer) { }
 
   private createAdapter() {
     this.observerLocator.addAdapter({
-      getObserver: (obj: Element, propertyName: string, descriptor: PropertyDescriptor) => {
-        if (obj instanceof Element) {
-          const tagName = obj.getAttribute('as-element') ?? obj.tagName;
-          const elAdapters = this.adapters[tagName];
-          if (!elAdapters) {
-            return null;
-          }
-          const propertyAdapter = elAdapters.properties[propertyName];
-          if (propertyAdapter) {
-            const observer = propertyAdapter.getObserver(obj, propertyName, this.observerLocator, descriptor);
-            if (observer) {
-              return observer;
-            }
+      getObserver: (flags: LifecycleFlags, obj: unknown, propertyName: string, descriptor: PropertyDescriptor) => {
+        if (!(obj instanceof Element)) {
+          return null;
+        }
+        const tagName = obj.getAttribute('as-element') ?? obj.tagName;
+        const elAdapters = this.adapters[tagName];
+        if (!elAdapters) {
+          return null;
+        }
+        const propertyAdapter = elAdapters.properties[propertyName];
+        if (propertyAdapter) {
+          const observer = propertyAdapter.getObserver(flags, obj, propertyName, descriptor);
+          if (observer) {
+            return observer;
           }
         }
         return null;
@@ -63,24 +58,18 @@ export class MdcComponentAdapters {
   private interceptDetermineDefaultBindingMode(): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const mdc = this;
-    const originalFn = SyntaxInterpreter.prototype.determineDefaultBindingMode;
+    const originalFn = this.syntaxTransformer.transform;
 
-    SyntaxInterpreter.prototype.determineDefaultBindingMode = function (
-      this: SyntaxInterpreter,
-      element: Element,
-      attrName: string,
-      context?: unknown
-    ) {
-      const tagName = element.getAttribute('as-element') ?? element.tagName;
-      const elAdapters = mdc.adapters[tagName];
-      if (elAdapters) {
-        const propertyAdapter = elAdapters.properties[attrName];
-        if (propertyAdapter) {
-          return propertyAdapter.defaultBindingMode;
+    this.syntaxTransformer.transform = originalFn;
+
+    this.syntaxTransformer.transform = function (node: HTMLElement, attrSyntax: AttrSyntax): void {
+      if (attrSyntax.command === 'bind') {
+        const tagName = node.getAttribute('as-element') ?? node.tagName;
+        if (mdc.adapters[tagName]?.properties[attrSyntax.target]?.shouldDefaultToTwoWay) {
+          attrSyntax.command = 'two-way';
         }
       }
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return originalFn.call(this, element, attrName, context);
+      originalFn.call(this, node, attrSyntax);
     };
   }
 

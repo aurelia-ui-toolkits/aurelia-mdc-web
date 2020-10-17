@@ -1,6 +1,7 @@
 {
   "packages": [
-    "packages/*"
+    "packages/base",
+    "packages/circular-progress"
   ],
   "version": "1.1.3"
 }

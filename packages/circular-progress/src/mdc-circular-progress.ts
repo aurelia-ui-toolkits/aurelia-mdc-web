@@ -1,14 +1,11 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, number } from '@aurelia-mdc-web/base';
 import { MDCCircularProgressFoundation, MDCCircularProgressAdapter } from '@material/circular-progress';
-import { bindable } from 'aurelia-typed-observable-plugin';
-import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
+import { inject, bindable } from 'aurelia';
 
 /**
  * @selector mdc-circular-progress
  */
-@inject(Element)
-@useView(PLATFORM.moduleName('./mdc-circular-progress.html'))
-@customElement('mdc-circular-progress')
+@inject()
 export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundation> {
   private determinateCircle_?: HTMLElement;
 
@@ -17,21 +14,21 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
   strokeDashoffset: number;
 
   /** Size in pixels */
-  @bindable.number
+  @bindable({ set: number })
   size: number = 100;
   sizeChanged() {
     this.updateSizeAndStroke();
   }
 
   /** Stroke width in pixels */
-  @bindable.number
+  @bindable({ set: number })
   strokeWidth: number = 10;
   strokeWidthChanged() {
     this.updateSizeAndStroke();
   }
 
   /** The current progress value, which must be between 0 and 1 or undefined for an indeterminate spinner */
-  @bindable.number
+  @bindable({ set: number })
   progress?: number;
   async progressChanged() {
     await this.initialised;
