@@ -56,25 +56,28 @@ function buildCss(src) {
 }
 
 function build() {
-  // Merge all js/css/html file streams to feed dumber.
-  // dumber knows nothing about .ts/.less/.scss/.md files,
-  // gulp-* plugins transpiled them into js/css/html before
-  // sending to dumber.
-  return merge2(
-    gulp.src('src/**/*.json'),
-    buildHtml('src/**/*.html'),
-    buildJs('src/**/*.ts'),
-    // buildCss('src/**/*.{scss,css}')
-  )
-    // Note we did extra call `dr()` here, this is designed to cater watch mode.
-    // dumber here consumes (swallows) all incoming Vinyl files,
-    // then generates new Vinyl files for all output bundle files.
-    // .pipe(dr())
-    // Terser fast minify mode
-    // https://github.com/terser-js/terser#terser-fast-minify-mode
-    // It's a good balance on size and speed to turn off compress.
-    .pipe(gulpif(isProduction, terser({ compress: false })))
-    .pipe(gulp.dest(dist, { sourcemaps: isProduction ? false : '.' }));
+	const tsResult = buildJs('src/**/*.ts');
+	// Merge all js/css/html file streams to feed dumber.
+	// dumber knows nothing about .ts/.less/.scss/.md files,
+	// gulp-* plugins transpiled them into js/css/html before
+	// sending to dumber.
+	const code = merge2(
+		gulp.src('src/**/*.json'),
+		tsResult.js,
+		buildHtml('src/**/*.html'),
+		// buildCss('src/**/*.scss')
+	)
+		// Note we did extra call `dr()` here, this is designed to cater watch mode.
+		// dumber here consumes (swallows) all incoming Vinyl files,
+		// then generates new Vinyl files for all output bundle files.
+		// .pipe(dr())
+		// Terser fast minify mode
+		// https://github.com/terser-js/terser#terser-fast-minify-mode
+		// It's a good balance on size and speed to turn off compress.
+		// .pipe(gulpif(isProduction, terser({compress: false})))
+		.pipe(gulp.dest(dist, { sourcemaps: isProduction ? false : '.' }));
+
+	return merge2(code, tsResult.dts.pipe(gulp.dest('dist/types')));
 }
 
 function clean() {
