@@ -15,7 +15,7 @@ export class MdcLayoutGrid {
   position: 'left' | 'right';
 
   /** Specifies the grid should have fixed column width */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   fixedColumnWidth: boolean;
 
   /** Set desktop column width */

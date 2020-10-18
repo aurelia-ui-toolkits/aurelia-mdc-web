@@ -10,10 +10,10 @@ import { PLATFORM } from 'aurelia-pal';
 export class MdcTabIndicator extends MdcComponent<MDCTabIndicatorFoundation> {
   private content_: HTMLElement; // assigned in html
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   fade: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   active: boolean;
 
   @bindable

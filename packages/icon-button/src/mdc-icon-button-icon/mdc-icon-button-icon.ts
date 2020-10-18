@@ -9,7 +9,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @customElement('mdc-icon-button-icon')
 export class MdcIconButtonIcon {
   /** Indicates an "on" toggle element */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   on: boolean;
 
   /** Optional. Set a Material icon. */

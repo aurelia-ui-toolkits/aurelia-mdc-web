@@ -46,7 +46,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
     this.foundation?.setEscapeKeyAction(this.escapeKeyAction);
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   delayFocusTrap: boolean;
 
   get defaultButton_(): HTMLElement | null {

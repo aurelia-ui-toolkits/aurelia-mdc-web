@@ -1,13 +1,11 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from '@aurelia/kernel';
+import { MdcButton } from './mdc-button';
+import { MdcButtonLabel } from './mdc-button-label';
 
-export { MdcButton } from './mdc-button';
+export { MdcButton, MdcButtonLabel };
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-button'),
-    PLATFORM.moduleName('./enhance-mdc-button'),
-    PLATFORM.moduleName('./mdc-button-label')
-  ]);
-
-  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
-}
+export const ButtonConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcButton, MdcButtonLabel);
+  }
+};

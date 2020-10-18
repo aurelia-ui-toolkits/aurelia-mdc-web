@@ -47,19 +47,19 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable
   label: string;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   textarea: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   endAligned: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   ltrText: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   fullwidth: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   outlined: boolean;
 
   @bindable
@@ -68,7 +68,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable
   suffix: string;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   required: boolean;
   async requiredChanged() {
     await this.initialised;
@@ -76,7 +76,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.foundation!.setUseNativeValidation(true);
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disabled: boolean;
   async disabledChanged() {
     this.input_.disabled = this.disabled;
@@ -84,14 +84,14 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.foundation?.setDisabled(this.disabled);
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   readonly: boolean;
   readonlyChanged() {
     this.input_.readOnly = this.readonly;
   }
 
   /** Makes the element blur on Enter key press */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   blurOnEnter: boolean;
 
   @bindable

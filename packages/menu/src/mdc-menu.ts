@@ -23,10 +23,10 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     return (el as IMdcListElement)?.au.controller.viewModel;
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   fixed: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   typeahead: boolean;
   async typeaheadChanged() {
     await this.initialised;
@@ -35,7 +35,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     }
   }
 
-  @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
+  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
   @bindable
@@ -54,10 +54,10 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   quickOpen: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   closeSurfaceOnSelection: boolean = true;
 
   handleKeydown_(evt: KeyboardEvent) {

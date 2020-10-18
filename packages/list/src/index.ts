@@ -1,20 +1,32 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from '@aurelia/kernel';
+import { MdcList } from './mdc-list';
+import { MdcListDivider } from './mdc-list-divider/mdc-list-divider';
+import { MdcListGroup, MdcListGroupSubheader } from './mdc-list-group';
+import { MdcListItem } from './mdc-list-item/mdc-list-item';
+import { MdcListItemGraphic } from './mdc-list-item-graphic';
+import { MdcListItemMeta } from './mdc-list-item-meta';
+import { MdcListItemText } from './mdc-list-item-text';
+import { MdcListItemPrimaryText } from './mdc-list-item-primary-text';
+import { MdcListItemSecondaryText } from './mdc-list-item-secondary-text';
 
-export { MdcList, mdcListStrings, IMdcListElement } from './mdc-list';
-export { MdcListItem, IMdcListItemElement, IMdcListActionEventDetail, IMdcListActionEvent } from './mdc-list-item/mdc-list-item';
+export {
+  MdcList, MdcListDivider, MdcListGroup, MdcListGroupSubheader, MdcListItem, MdcListItemGraphic, MdcListItemMeta,
+  MdcListItemText, MdcListItemPrimaryText, MdcListItemSecondaryText
+};
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-list'),
-    PLATFORM.moduleName('./mdc-list-item/mdc-list-item'),
-    PLATFORM.moduleName('./mdc-list-item/enhance-mdc-list-item'),
-    PLATFORM.moduleName('./mdc-list-item-primary-text'),
-    PLATFORM.moduleName('./mdc-list-item-secondary-text'),
-    PLATFORM.moduleName('./mdc-list-item-graphic'),
-    PLATFORM.moduleName('./mdc-list-item-meta'),
-    PLATFORM.moduleName('./mdc-list-divider/mdc-list-divider'),
-    PLATFORM.moduleName('./mdc-list-group'),
-  ]);
-
-  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
-}
+export const ListConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(
+      MdcList,
+      MdcListDivider,
+      MdcListGroup,
+      MdcListGroupSubheader,
+      MdcListItem,
+      MdcListItemGraphic,
+      MdcListItemMeta,
+      MdcListItemText,
+      MdcListItemPrimaryText,
+      MdcListItemSecondaryText
+    );
+  }
+};

@@ -1,7 +1,11 @@
 {
   "packages": [
+    "packages/all",
     "packages/base",
+    "packages/button",
+    "packages/drawer",
     "packages/circular-progress",
+    "packages/list",
     "packages/ripple",
     "packages/top-app-bar"
   ],

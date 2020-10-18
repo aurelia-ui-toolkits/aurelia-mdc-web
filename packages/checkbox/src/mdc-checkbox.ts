@@ -26,7 +26,7 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   /**
    * Disables the component.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disabled: boolean;
   async disabledChanged() {
     await this.initialised;
@@ -40,19 +40,19 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   /**
    * Set the component touch target to 48 x 48 px.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   touch: boolean;
 
   /**
    * Whether ripple ink is disabled.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disableRipple: boolean;
 
   /**
    * Whether the checkbox should go to checked state or unchecked when toggled from indeterminate state.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   indeterminateToChecked: boolean = true;
 
   initialChecked?: boolean;
@@ -79,7 +79,7 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   /**
    * Represent a checkbox with three states (e.g. a nested list of checkable items).
    */
-  @bindable.booleanAttr({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.twoWay })
   indeterminate: boolean;
   async indeterminateChanged() {
     await this.initialised;

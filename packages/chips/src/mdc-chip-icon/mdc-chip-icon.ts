@@ -17,11 +17,11 @@ export class MdcChipIcon {
   id: string = `mdc-chip-icon-${++chipSetIcon}`;
 
   /** Indicates that the icon is before the primary action. */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   leading: boolean;
 
   /** Indicates that the icon is after the primary action. */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   trailing: boolean;
 }
 

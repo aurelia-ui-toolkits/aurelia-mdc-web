@@ -96,7 +96,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   content: HTMLElement;
 
   /** Shows pagination footer */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   pagination: boolean;
 
   /** Caption for the page size selector */
@@ -141,7 +141,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   }
 
   /** Turns on a linear progress indicator at the top of the table */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   busy: boolean;
   async busyChanged() {
     await this.initialised;
@@ -152,7 +152,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     }
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   hoistPageSelectToBody: boolean;
 
   get rowCheckboxList(): MdcCheckbox[] {

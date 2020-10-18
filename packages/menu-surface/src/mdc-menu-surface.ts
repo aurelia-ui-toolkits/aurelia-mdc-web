@@ -16,10 +16,10 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   anchor?: Element | null;
 
   /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
-  @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
+  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   fixed: boolean;
   async fixedChanged() {
     if (this.fixed) {
@@ -45,7 +45,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     this.foundation?.setAnchorMargin(margin);
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   quickOpen: boolean;
   async quickOpenChanged(quickOpen: boolean) {
     await this.initialised;

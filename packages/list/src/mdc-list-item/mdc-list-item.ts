@@ -1,7 +1,6 @@
-import { inject, useView, customElement, processContent, ViewCompiler, ViewResources } from 'aurelia-framework';
-import { PLATFORM } from 'aurelia-pal';
 import { cssClasses } from '@material/list';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, bindable } from 'aurelia';
+import { booleanAttr } from '@aurelia-mdc-web/base';
 
 let listItemId = 0;
 
@@ -12,48 +11,20 @@ const LIST_ITEM_ACTION = 'mdclistitem:action';
 /**
  * @selector mdc-list-item
  */
-@inject(Element)
-@useView(PLATFORM.moduleName('./mdc-list-item.html'))
 @customElement(cssClasses.LIST_ITEM_CLASS)
-@processContent(MdcListItem.processContent)
 export class MdcListItem {
   constructor(public root: HTMLElement) { }
-
-  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
-    const graphic = element.querySelector('mdc-checkbox:not([mdc-list-item-meta]),[mdc-list-item-graphic]');
-    if (graphic) {
-      element.removeChild(graphic);
-    }
-    const meta = element.querySelector('[mdc-list-item-meta]');
-    if (meta) {
-      element.removeChild(meta);
-    }
-    const itemText = document.createElement('span');
-    itemText.classList.add(cssClasses.LIST_ITEM_TEXT_CLASS);
-    const children = [].slice.call(element.childNodes) as ChildNode[];
-    for (let i = 0; i < children.length; ++i) {
-      itemText.appendChild(children[i]);
-    }
-    if (graphic) {
-      element.appendChild(graphic);
-    }
-    element.appendChild(itemText);
-    if (meta) {
-      element.appendChild(meta);
-    }
-    return true;
-  }
 
   cssClasses = cssClasses;
 
   id = ++listItemId;
 
   /** Disables the list item */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disabled: boolean;
 
   /** Styles the row in an activated state */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   activated: boolean;
 
   /** Random data associated with the list item. Passed in events payload. */
@@ -61,7 +32,7 @@ export class MdcListItem {
   value: unknown;
 
   /** Disables ripple effect */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disableRipple: boolean;
 
   onKeydown(evt: KeyboardEvent) {

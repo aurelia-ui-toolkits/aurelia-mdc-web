@@ -1,11 +1,9 @@
-import { inject, customElement, useView, PLATFORM, bindable } from 'aurelia-framework';
+import { customElement, bindable } from 'aurelia';
 
 /**
  * Optional. Non-scrollable element that exists at the top of the drawer.
  * @selector mdc-drawer-header
  */
-@inject(Element)
-@useView(PLATFORM.moduleName('./mdc-drawer-header.html'))
 @customElement('mdc-drawer-header')
 export class MdcDrawerHeader {
 

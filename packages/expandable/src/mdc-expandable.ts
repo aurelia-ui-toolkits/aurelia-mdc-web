@@ -18,7 +18,7 @@ export class MdcExpandable {
   focused: boolean;
 
   /** Toggles the expandable open and closed */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   open: boolean;
   openChanged() {
     this.updateContainerHeight();

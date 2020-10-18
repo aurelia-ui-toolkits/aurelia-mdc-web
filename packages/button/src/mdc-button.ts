@@ -1,13 +1,11 @@
-import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, bindable } from 'aurelia';
+import { booleanAttr } from '@aurelia-mdc-web/base';
 
 /**
  * @selector button[mdc-button]
  * @selector a[mdc-button]
  * @selector mdc-button
  */
-@inject(Element)
-@useView(PLATFORM.moduleName('./mdc-button.html'))
 @customElement('mdc-button')
 export class MdcButton {
   constructor(private root: HTMLElement) { }
@@ -15,25 +13,25 @@ export class MdcButton {
   /**
    * Set the component touch target to 48 x 48 px
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   touch: boolean;
 
   /**
    * A contained button that is elevated upon the surface
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   raised: boolean;
 
   /**
    * A contained button that is flush with the surface
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   unelevated: boolean;
 
   /**
    * A contained button that is flush with the surface and has a visible border
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   outlined: boolean;
 
   // this is necessary for the route-href to work

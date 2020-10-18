@@ -19,10 +19,10 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   @bindable
   id: string = `mdc-tab-${++tabId}`;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   fixed: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   active: boolean;
 
   @bindable
@@ -31,13 +31,13 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   @bindable
   label: string;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   minWidth: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   fade: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   stacked: boolean;
 
   @bindable

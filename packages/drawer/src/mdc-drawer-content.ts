@@ -1,10 +1,11 @@
-import { inlineView, inject, customElement } from 'aurelia-framework';
+import { customElement } from 'aurelia';
 
 /**
  * Scrollable content area of the drawer
  * @selector mdc-drawer-content
  */
-@inject(Element)
-@inlineView('<template class="mdc-drawer__content"><slot></slot></template>')
-@customElement('mdc-drawer-content')
+@customElement({
+  name: 'mdc-drawer-content',
+  template: '<template class="mdc-drawer__content"><slot></slot></template>'
+})
 export class MdcDrawerContent { }

@@ -36,7 +36,7 @@ export class MdcLookup implements EventListenerObject {
   public input?: HTMLInputElement;
 
   /** Sets the menu list to have two lines */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   twoLine: boolean;
 
   /**
@@ -94,7 +94,7 @@ export class MdcLookup implements EventListenerObject {
   }
 
   /** Hoists the menu to document body */
-  @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
+  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
   getOptions: (filter: string | undefined, value: unknown) => Promise<unknown[]>;
@@ -133,7 +133,7 @@ export class MdcLookup implements EventListenerObject {
   debounce: number = this.defaultConfiguration.debounce;
 
   /** Loads the options to the menu when attached */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   preloadOptions: boolean;
 
   bind() {

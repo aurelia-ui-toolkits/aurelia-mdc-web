@@ -1,10 +1,8 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCListFoundation, MDCListAdapter, strings, cssClasses, MDCListIndex } from '@material/list';
-import { inject, useView, customElement, children } from 'aurelia-framework';
-import { PLATFORM } from 'aurelia-pal';
 import { closest, matches } from '@material/dom/ponyfill';
-import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcListItem, IMdcListItemElement, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';
+import { customElement, bindable, children } from 'aurelia';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
 
@@ -17,19 +15,17 @@ export const mdcListStrings = {
  * @emits mdclist:action | Indicates that a list item with the specified index has been activated
  * @emits mdclist:itemschanged | Indicates that the list of items has changed
  */
-@inject(Element)
-@useView(PLATFORM.moduleName('./mdc-list.html'))
 @customElement(cssClasses.ROOT)
 export class MdcList extends MdcComponent<MDCListFoundation>{
 
   cssClasses = cssClasses;
 
   /** Increases the height of the row to give it greater visual separation from adjacent rows */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   twoLine: boolean;
 
   /** When enabled, the space and enter keys (or click event) will trigger an single list item to become selected and any other previous selected element to become deselected */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   singleSelection: boolean;
   async singleSelectionChanged() {
     await this.initialised;
@@ -37,7 +33,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   }
 
   /** Sets the selection logic to apply/remove the mdc-list-item--activated class */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   activated: boolean;
   async activatedChanged() {
     await this.initialised;
@@ -45,44 +41,46 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   }
 
   /** Sets the list to an orientation causing the keys used for navigation to change. true results in the Up/Down arrow keys being used. If false, the Left/Right arrow keys are used. */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   vertical: boolean = true;
 
   /** Increases the density of the list, making it appear more compact */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   dense: boolean;
 
   /** Optional, configures lists that start with text */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   textual: boolean;
 
   /** Configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   avatar: boolean;
 
   /** Optional, configures the leading tile of each row to display icons */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   icon: boolean;
 
   /** Optional, configures the leading tile of each row to display images */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   image: boolean;
 
   /** Optional, configures the leading tile of each row to display smaller images (this is analogous to an avatar list but the image will	not be rounded) */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   thumbnail: boolean;
 
   /** Optional, configures the leading tile of each row to display videos */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   video: boolean;
 
-  @children('mdc-list-item')
+  @children({
+    filter: el => (el as HTMLElement).tagName === 'MDC-LIST-ITEM'
+  })
   items: MdcListItem[];
   itemsChanged() {
     this.emit(mdcListStrings.ITEMS_CHANGED, { items: this.items }, true);
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   typeahead: boolean;
   async typeaheadChanged(hasTypeahead: boolean) {
     await this.initialised;
@@ -90,11 +88,11 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   }
 
   /** Prevent list items receive styles for hover, focus, and press states (including the ripple) */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   nonInteractive: boolean;
 
   /** Sets the list to allow the up arrow on the first element to focus the last element of the list and vice versa */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   wrapFocus: boolean;
   async wrapFocusChanged() {
     await this.initialised;

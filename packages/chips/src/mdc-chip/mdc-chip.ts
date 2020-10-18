@@ -67,7 +67,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   id: string = `mdc-chip-${++chipId}`;
 
   /** Set the component touch target to 48 x 48 px. */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   touch: boolean;
 
   primaryAction_?: MdcChipPrimaryAction;
@@ -89,7 +89,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   trailingAction?: string;
 
   /** Indicates the presence of a checkmark. */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   checkmark?: boolean;
 
   /** Data to pass with events. */
@@ -97,7 +97,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   data: unknown;
 
   /** Sets whether a trailing icon click should not trigger exit/removal of the chip. (Default is false) */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   nonRemovable: boolean;
   async nonRemovableChanged() {
     await this.initialised;
@@ -105,7 +105,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   }
 
   /** Sets whether a click should trigger the primary action focus. */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   focusPrimary: boolean;
   async focusPrimaryChanged() {
     await this.initialised;

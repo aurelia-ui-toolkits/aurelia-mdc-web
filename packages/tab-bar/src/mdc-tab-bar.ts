@@ -16,14 +16,14 @@ strings.TAB_ACTIVATED_EVENT = strings.TAB_ACTIVATED_EVENT.toLowerCase();
 export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
   private tabScroller_?: MdcTabScroller; // assigned in html
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   focusOnActivate: boolean;
   async focusOnActivateChanged() {
     await this.initialised;
     this.tabScroller_?.tabs.forEach((tab) => tab.focusOnActivate = this.focusOnActivate);
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   useAutomaticActivation: boolean;
   async useAutomaticActivationChanged() {
     await this.initialised;

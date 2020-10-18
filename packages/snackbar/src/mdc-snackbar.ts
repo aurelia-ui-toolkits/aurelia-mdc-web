@@ -21,10 +21,10 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
   @bindable
   actions: string[];
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   dismissible: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   stacked: boolean;
 
   @bindable.number
@@ -34,7 +34,7 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
     this.foundation?.setTimeoutMs(this.timeout);
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   closeOnEscape: boolean = true;
   async closeOnEscapeChanged() {
     await this.initialised;
@@ -50,7 +50,7 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
   @bindable
   dismissClasses: string;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   leading: boolean;
 
   getDefaultFoundation() {

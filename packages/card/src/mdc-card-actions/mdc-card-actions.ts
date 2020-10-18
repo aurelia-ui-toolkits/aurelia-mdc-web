@@ -10,6 +10,6 @@ export class MdcCardActions {
   /**
    * Removes the action area's padding and causes its only child (an mdc-card__action element) to consume 100% of the action area's width.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   fullBleed: boolean;
 }

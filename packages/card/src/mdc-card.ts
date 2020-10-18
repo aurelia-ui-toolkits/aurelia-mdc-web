@@ -11,6 +11,6 @@ export class MdcCard {
   /**
    * Removes the shadow and displays a hairline stroke instead.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   outlined: boolean;
 }

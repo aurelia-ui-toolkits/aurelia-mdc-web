@@ -20,11 +20,11 @@ export class MdcImageList {
   id = `mdc-image-list-${++id}`;
 
   /** Indicates that this Image List should use the Masonry variant */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   masonry: boolean;
 
   /** Indicates that supporting content should be positioned in a scrim overlaying each image (instead of positioned separately under each image) */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   textProtection: boolean;
 
   /** Number of columns in the list */

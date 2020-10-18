@@ -11,6 +11,6 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 export class MdcCardPrimaryAction {
 
   /** Disables ripple effect */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disableRipple: boolean;
 }

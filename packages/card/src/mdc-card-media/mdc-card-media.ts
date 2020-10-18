@@ -10,12 +10,12 @@ export class MdcCardMedia {
   /**
    * Automatically scales the media area's height to equal its width.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   square: boolean;
 
   /**
    * Automatically scales the media area's height according to its width, maintaining a 16:9 aspect ratio.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   wide: boolean;
 }

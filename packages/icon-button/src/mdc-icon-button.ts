@@ -14,7 +14,7 @@ import { MdcIconButtonIcon } from './mdc-icon-button-icon/mdc-icon-button-icon';
 @customElement('mdc-icon-button')
 export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   /** Sets the toggle state to the provided value */
-  @bindable.booleanAttr({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.twoWay })
   on: boolean;
 
   /** Optional. Set a Material icon as a non-toggle icon. */

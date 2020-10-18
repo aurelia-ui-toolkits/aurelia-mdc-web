@@ -18,14 +18,14 @@ export class MdcSwitch extends MdcComponent<MDCSwitchFoundation> {
 
   id = `mdc-switch-${++switchId}-input`;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disabled: boolean;
   async disabledChanged() {
     await this.initialised;
     this.nativeControl_.disabled = this.disabled;
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   touch: boolean;
 
   initialChecked?: boolean;

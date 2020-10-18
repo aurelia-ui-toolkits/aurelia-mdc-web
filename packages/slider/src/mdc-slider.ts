@@ -29,13 +29,13 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     this.foundation?.layout();
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   discrete: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   markers: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disabled: boolean;
   async disabledChanged() {
     await this.initialised;

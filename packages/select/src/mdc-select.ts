@@ -59,13 +59,13 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   @bindable
   label: string;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   outlined: boolean;
   outlinedChanged() {
     this.taskQueue.queueTask(() => this.foundation?.layout());
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   required: boolean;
   async requiredChanged() {
     await this.initialised;
@@ -78,14 +78,14 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     this.taskQueue.queueTask(() => this.foundation?.layout());
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disabled: boolean;
   async disabledChanged() {
     await this.initialised;
     this.foundation?.setDisabled(this.disabled);
   }
 
-  @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
+  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
   @bindable

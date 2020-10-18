@@ -18,14 +18,14 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
 
   id = `mdc-radio-${++radioId}-input`;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disabled: boolean;
   async disabledChanged() {
     await this.initialised;
     this.nativeControl_.disabled = this.disabled;
   }
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   touch: boolean;
 
   initialChecked?: boolean;

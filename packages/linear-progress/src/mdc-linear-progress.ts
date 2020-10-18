@@ -24,7 +24,7 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
   }
 
   /** Reverses the direction of the linear progress indicator */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   reverse: boolean;
   async reverseChanged() {
     await this.initialised;
@@ -42,7 +42,7 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
   }
 
   /** Sets the component open state */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   open: boolean;
   async openChanged() {
     await this.initialised;

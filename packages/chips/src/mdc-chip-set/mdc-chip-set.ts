@@ -19,19 +19,19 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
   /**
    * Indicates that the chips in the set are choice chips, which allow a single selection from a set of options.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   choice: boolean;
 
   /**
    * Indicates that the chips in the set are filter chips, which allow multiple selection from a set of options.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   filter: boolean;
 
   /**
    * Indicates that the chips in the set are input chips, which enable user input by converting text into chips.
    */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   input: boolean;
 
   // a list of MDC chips

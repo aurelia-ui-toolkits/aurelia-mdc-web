@@ -1,9 +1,11 @@
-import { inlineView, customElement } from 'aurelia-framework';
+import { customElement } from 'aurelia';
 
 /**
  * Optional, primary text for the list item
  * @selector mdc-list-item-primary-text
  */
-@inlineView('<template class="mdc-list-item__primary-text"><slot></slot></template>')
-@customElement('mdc-list-item-primary-text')
+@customElement({
+  name: 'mdc-list-item-primary-text',
+  template: '<template class="mdc-list-item__primary-text"><slot></slot></template>'
+})
 export class MdcListItemPrimaryText { }

@@ -18,15 +18,15 @@ export class MdcFormField extends MdcComponent<MDCFormFieldFoundation> {
   label?: HTMLLabelElement | null;
 
   /** Force label text to stay on a single line and ellipse the overflow text */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   nowrap: boolean;
 
   /** Position the input after the label */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   alignEnd: boolean;
 
   /** Distributes space between label text and control */
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   spaceBetween: boolean;
 
   // eslint-disable-next-line @typescript-eslint/require-await

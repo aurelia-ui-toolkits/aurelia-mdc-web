@@ -4,8 +4,7 @@ import { MDCDrawerFocusTrapFactory } from '@material/drawer/util';
 import { SpecificEventListener } from '@material/base';
 import { MDCListFoundation } from '@material/list';
 import { FocusTrap } from '@material/dom/focus-trap';
-import { inject, useView, customElement, bindable } from 'aurelia-framework';
-import { PLATFORM } from 'aurelia-pal';
+import { customElement, bindable } from 'aurelia';
 
 strings.CLOSE_EVENT = strings.CLOSE_EVENT.toLowerCase();
 strings.OPEN_EVENT = strings.OPEN_EVENT.toLowerCase();
@@ -15,8 +14,6 @@ strings.OPEN_EVENT = strings.OPEN_EVENT.toLowerCase();
  * @emits mdcdrawer:closed | Event dispatched on drawer close
  * @emits mdcdrawer:opened | Event dispatched on drawer open
  */
-@inject(Element)
-@useView(PLATFORM.moduleName('./mdc-drawer.html'))
 @customElement(cssClasses.ROOT)
 export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDCModalDrawerFoundation> {
 

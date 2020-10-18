@@ -14,10 +14,10 @@ export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundat
   helperTextCssClasses = helperTextCssClasses;
   ROOT = mdcHelperTextCssClasses.ROOT;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   persistent: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   validation: boolean;
 
   @bindable

@@ -1,6 +1,5 @@
-import { viewEngineHooks } from 'aurelia-framework';
 
-@viewEngineHooks
+// @viewEngineHooks
 export class EnhanceMdcButton {
 	beforeCompile(template: DocumentFragment) {
 		const actions = template.querySelectorAll('[mdc-button]');

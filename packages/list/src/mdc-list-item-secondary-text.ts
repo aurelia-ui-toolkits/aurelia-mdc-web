@@ -1,9 +1,11 @@
-import { inlineView, customElement } from 'aurelia-framework';
+import { customElement } from 'aurelia';
 
 /**
  * Optional, secondary text for the list item. Displayed below the primary text.
  * @selector mdc-list-item-secondary-text
  */
-@inlineView('<template class="mdc-list-item__secondary-text"><slot></slot></template>')
-@customElement('mdc-list-item-secondary-text')
-export class MdcListItemPrimaryText { }
+@customElement({
+  name: 'mdc-list-item-secondary-text',
+  template: '<template class="mdc-list-item__secondary-text"><slot></slot></template>'
+})
+export class MdcListItemSecondaryText { }

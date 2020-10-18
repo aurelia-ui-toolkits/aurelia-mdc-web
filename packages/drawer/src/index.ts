@@ -1,12 +1,14 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
-export { MdcDrawer } from './mdc-drawer';
+import { IContainer } from '@aurelia/kernel';
+import { MdcDrawer } from './mdc-drawer';
+import { MdcDrawerContent } from './mdc-drawer-content';
+import { MdcDrawerAppContent } from './mdc-drawer-app-content';
+import { MdcDrawerHeader } from './mdc-drawer-header/mdc-drawer-header';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-drawer'),
-    PLATFORM.moduleName('./mdc-drawer-content'),
-    PLATFORM.moduleName('./mdc-drawer-app-content'),
-    PLATFORM.moduleName('./mdc-drawer-header/mdc-drawer-header')
-  ]);
-}
+export { MdcDrawer, MdcDrawerContent, MdcDrawerAppContent, MdcDrawerHeader };
+
+export const DrawerConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcDrawer, MdcDrawerContent, MdcDrawerAppContent, MdcDrawerHeader);
+  }
+};

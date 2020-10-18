@@ -9,10 +9,10 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextFoundation> {
   helperTextCssClasses = helperTextCssClasses;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   persistent: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   validation: boolean;
 
   // Provided for access by MDCTextField component
