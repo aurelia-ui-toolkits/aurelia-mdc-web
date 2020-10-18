@@ -1,6 +1,7 @@
 {
   "packages": [
     "packages/all",
+    "packages/app",
     "packages/base",
     "packages/button",
     "packages/drawer",

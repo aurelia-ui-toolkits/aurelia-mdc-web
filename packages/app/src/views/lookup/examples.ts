@@ -1,5 +1,3 @@
-import { ValidationControllerFactory, ValidationRules, ValidationController, Rule } from 'aurelia-validation';
-import { inject } from 'aurelia-framework';
 import basicHtml from '!!raw-loader!./basic.html';
 import basicCode from '!!raw-loader!./basic';
 import functionHtml from '!!raw-loader!./function.html';
@@ -8,6 +6,7 @@ import objectsHtml from '!!raw-loader!./objects.html';
 import objectsCode from '!!raw-loader!./objects';
 import validationHtml from '!!raw-loader!./validation.html';
 import validationCode from '!!raw-loader!./validation';
+import { inject } from 'aurelia';
 
 interface IOption {
   id: number;

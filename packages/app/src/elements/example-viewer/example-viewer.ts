@@ -1,4 +1,4 @@
-import { customElement, bindable } from 'aurelia-framework';
+import { customElement, bindable } from 'aurelia';
 
 interface ITab {
   label: string;

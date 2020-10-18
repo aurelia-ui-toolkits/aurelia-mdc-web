@@ -1,11 +1,11 @@
-import { autoinject } from 'aurelia-framework';
 import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { ServiceDialog } from './service-dialog';
 import inlineHtml from '!!raw-loader!./inline.html';
 import serviceHtml from '!!raw-loader!./service-dialog.html';
 import serviceCode from '!!raw-loader!./service-dialog';
+import { inject } from 'aurelia';
 
-@autoinject
+@inject()
 export class Examples {
   constructor(private dialogService: MdcDialogService) { }
 

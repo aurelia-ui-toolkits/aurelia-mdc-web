@@ -1,5 +1,5 @@
-import { RouterConfiguration, Router, RouteConfig } from 'aurelia-router';
 import { templates } from './templates';
+import { Router } from 'aurelia';
 
 interface IReference {
   name: string;

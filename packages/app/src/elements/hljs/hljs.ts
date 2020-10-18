@@ -1,9 +1,6 @@
-import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
 import { highlight } from 'highlightjs';
+import { customElement, bindable } from 'aurelia';
 
-@inject(Element)
-@useView(PLATFORM.moduleName('./hljs.html'))
 @customElement('hljs')
 export class Hljs {
   constructor(private root: HTMLElement) { }

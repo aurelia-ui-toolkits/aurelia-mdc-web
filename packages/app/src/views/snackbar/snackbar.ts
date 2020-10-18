@@ -1,6 +1,6 @@
-import { useView } from 'aurelia-framework';
-import { PLATFORM } from 'aurelia-pal';
+import template from '../component-viewer/component-viewer.html';
+import { customElement } from 'aurelia';
 import { ComponentViewer } from '../component-viewer/component-viewer';
 
-@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+@customElement({ name: 'snackbar-page', template })
 export class Snackbar extends ComponentViewer { }

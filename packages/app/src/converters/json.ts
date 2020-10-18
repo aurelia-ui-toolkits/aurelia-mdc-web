@@ -1,4 +1,4 @@
-import { valueConverter } from 'aurelia-binding';
+import { valueConverter } from 'aurelia';
 
 @valueConverter('json')
 export class JsonValueConverter {

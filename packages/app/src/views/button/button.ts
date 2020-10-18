@@ -1,6 +1,6 @@
 import { ComponentViewer } from '../component-viewer/component-viewer';
-import { useView, PLATFORM, autoinject } from 'aurelia-framework';
+import { customElement } from 'aurelia';
+import template from '../component-viewer/component-viewer.html';
 
-@autoinject
-@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+@customElement({ name: 'button-page', template })
 export class Button extends ComponentViewer { }

@@ -1,20 +1,21 @@
-// eslint-disable-next-line import/no-unassigned-import
-import 'aurelia-bootstrapper';
-import { Aurelia, PLATFORM } from 'aurelia-framework';
+import Aurelia, { RouterConfiguration } from 'aurelia';
+import { Root } from './views/root/root';
+import { AllConfiguration } from '@aurelia-mdc-web/all';
+// Css files imported in this main file are NOT processed by style-loader
+// They are for sharedStyles in shadowDOM.
+// However, css files imported in other js/ts files are processed by style-loader.
+// import shared from './shared.scss';
 
-export async function configure(aurelia: Aurelia): Promise<void> {
-  aurelia
-    .use
-    .developmentLogging()
-    .standardConfiguration()
-    .globalResources([
-      PLATFORM.moduleName('converters/json'),
-      PLATFORM.moduleName('elements/example-viewer/example-viewer'),
-      PLATFORM.moduleName('elements/hljs/hljs')
-    ])
-    .plugin(PLATFORM.moduleName('aurelia-validation'))
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/all'));
-
-  await aurelia.start();
-  await aurelia.setRoot(PLATFORM.moduleName('views/root/root'));
-}
+Aurelia
+  /*
+  .register(StyleConfiguration.shadowDOM({
+    // optionally add the shared styles for all components
+    sharedStyles: [shared]
+  }))
+  */
+  .register(RouterConfiguration, AllConfiguration)
+  // To use HTML5 pushState routes, replace previous line with the following
+  // customized router config.
+  // .register(RouterConfiguration.customize({ useUrlFragmentHash: false }))
+  .app(Root)
+  .start();

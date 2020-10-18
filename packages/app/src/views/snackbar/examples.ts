@@ -1,5 +1,4 @@
 import { MdcSnackbarService, ISnackbarOptions } from '@aurelia-mdc-web/snackbar';
-import { autoinject } from 'aurelia-framework';
 
 import basicHtml from '!!raw-loader!./basic.html';
 import basicCode from '!!raw-loader!./basic';
@@ -9,8 +8,9 @@ import customCode from '!!raw-loader!./custom';
 import themeHtml from '!!raw-loader!./theme.html';
 import themeSass from '!!raw-loader!./theme.scss';
 import themeCode from '!!raw-loader!./theme';
+import { inject } from 'aurelia';
 
-@autoinject
+@inject()
 export class Examples {
   constructor(private snackbar: MdcSnackbarService) { }
 

@@ -1,7 +1,6 @@
-import { useView } from 'aurelia-framework';
-import { PLATFORM } from 'aurelia-pal';
+import template from '../component-viewer/component-viewer.html';
+import { customElement } from 'aurelia';
 import { ComponentViewer } from '../component-viewer/component-viewer';
-import { Router } from 'aurelia-router';
 
-@useView(PLATFORM.moduleName('../component-viewer/component-viewer.html'))
+@customElement({ name: 'list-page', template })
 export class List extends ComponentViewer { }
