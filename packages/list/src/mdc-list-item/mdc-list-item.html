@@ -2,7 +2,7 @@
     ${cssClasses.LIST_ITEM_CLASS}
     ${disabled ? cssClasses.LIST_ITEM_CLASS + '--disabled' : ''}
     ${activated ? cssClasses.LIST_ITEM_CLASS + '--activated' : ''}
-  " id="mdc-list-item-${id}" mdc-ripple="disabled.bind: disabled || disableRipple" keydown.trigger="onKeydown($event)"
+  " id1="mdc-list-item-${id}" mdc-ripple="disabled.bind: disabled || disableRipple" keydown.trigger="onKeydown($event)"
   click.trigger="onClick()">
   <div class="mdc-list-item__ripple"></div>
   <slot></slot>

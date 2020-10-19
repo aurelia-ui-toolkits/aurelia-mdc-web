@@ -1,9 +1,10 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from '@aurelia/kernel';
+import { MdcIcon } from './mdc-icon';
 
-export { MdcIcon } from './mdc-icon';
+export { MdcIcon };
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-icon')
-  ]);
-}
+export const IconConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcIcon);
+  }
+};

@@ -2,8 +2,9 @@ import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCRippleFoundation, MDCRippleAdapter, util } from '@material/ripple';
 import { matches } from '@material/dom/ponyfill';
 import { applyPassive } from '@material/dom/events';
-import { customAttribute, bindable } from 'aurelia';
+import { customAttribute, bindable, inject } from 'aurelia';
 
+@inject(Element)
 @customAttribute('mdc-ripple')
 export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   inputBindingPromiseResolver: () => void;
@@ -39,6 +40,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   @bindable({ set: booleanAttr })
   accent: boolean;
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     if (!this.noClass) {
       (this.surface ?? this.root).classList.add('mdc-ripple-surface');
@@ -52,7 +54,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
     // TODO check if this is still needed
     // const inputBinding = (this.root as IMdcRippleElement).au['mdc-ripple'].boundProperties.find(x => x.binding.targetProperty === 'input');
     // if (inputBinding) {
-    await this.inputBindingPromise;
+    // await this.inputBindingPromise;
     // }
   }
 

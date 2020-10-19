@@ -5,7 +5,7 @@ import { inject, customElement, bindable } from 'aurelia';
 /**
  * @selector mdc-circular-progress
  */
-@inject()
+@inject(Element)
 @customElement('mdc-circular-progress')
 export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundation> {
   private determinateCircle_?: HTMLElement;

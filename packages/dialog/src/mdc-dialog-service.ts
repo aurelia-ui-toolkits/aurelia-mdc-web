@@ -69,7 +69,7 @@ export class MdcDialogService {
     const controllers = childView.controllers;
     const view = controllers[0].view;
     const slot = new ViewSlot(view.slots[ShadowDOM.defaultSlotKey].anchor, false);
-    slot.attached();
+    slot.afterAttach();
     childView.container.registerInstance(MdcDialog, dialog.au.controller.viewModel);
 
     const dialogVm = dialog.au.controller.viewModel;

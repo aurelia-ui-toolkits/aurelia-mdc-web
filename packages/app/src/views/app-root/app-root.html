@@ -1,0 +1,39 @@
+<import from="../../styles/shared.scss"></import>
+
+<mdc-top-app-bar fixed class="demo-top-app-bar mdc-typography">
+  <mdc-top-app-bar-row>
+    <mdc-top-app-bar-section>
+      <button mdc-top-app-bar-nav-icon click.trigger="drawer.toggle()" mdc-ripple="unbounded.bind: true">
+        <mdc-icon>menu</mdc-icon>
+      </button>
+      <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>
+    </mdc-top-app-bar-section>
+    <mdc-top-app-bar-section align="end">
+      <span>v1.1.3</span>
+      <a mdc-top-app-bar-action-item href="https://github.com/aurelia-ui-toolkits/aurelia-mdc-web" alt="GitHub"
+        target="_blank" rel="noopener" mdc-ripple="unbounded.bind: true">
+        <i class="material-icons" aria-hidden="true" role="img">
+          <img src="../../assets/github-circle-white-transparent.svg" height="24">
+        </i>
+      </a>
+    </mdc-top-app-bar-section>
+  </mdc-top-app-bar-row>
+</mdc-top-app-bar>
+<div class="demo-panel mdc-typography">
+  <mdc-drawer view-model.ref="drawer" type="dismissible" mdc-top-app-bar-fixed-adjust>
+    <mdc-drawer-header title="Aurelia" subtitle="Material Components Web"></mdc-drawer-header>
+    <mdc-drawer-content>
+      <mdc-list activated wrap-focus mdclist:action.trigger="navigateTo($event.detail)" tabindex="0">
+        <mdc-list-item repeat.for="m of navRoutes" activated.bind="m.isActive" value.bind="m">
+          <mdc-list-item-text>
+            ${m.title}
+          </mdc-list-item-text>
+        </mdc-list-item>
+        <mdc-list-divider if.bind="m.meta.divider"></mdc-list-divider>
+      </mdc-list>
+    </mdc-drawer-content>
+  </mdc-drawer>
+  <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class="demo-panel-section">
+    <au-viewport default="home"></au-viewport>
+  </mdc-drawer-app-content>
+</div>

@@ -6,9 +6,11 @@
     "packages/button",
     "packages/drawer",
     "packages/circular-progress",
+    "packages/icon",
     "packages/list",
     "packages/ripple",
-    "packages/top-app-bar"
+    "packages/top-app-bar",
+    "packages/typography"
   ],
   "version": "1.1.3"
 }

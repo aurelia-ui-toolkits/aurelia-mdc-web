@@ -23,7 +23,7 @@ export class MdcListGroup {
 export class MdcListGroupSubheader {
   constructor(private root: HTMLElement) { }
 
-  attached() {
+  afterAttach() {
     this.root.classList.add('mdc-list-group__subheader');
   }
 }

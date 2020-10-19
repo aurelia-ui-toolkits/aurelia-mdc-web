@@ -9,7 +9,7 @@ import { MdcRipple, IMdcRippleElement } from '@aurelia-mdc-web/ripple';
  */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-form-field.html'))
-@customElement(cssClasses.ROOT)
+@customElement('mdc-form-field')
 export class MdcFormField extends MdcComponent<MDCFormFieldFoundation> {
   cssClasses = cssClasses;
 

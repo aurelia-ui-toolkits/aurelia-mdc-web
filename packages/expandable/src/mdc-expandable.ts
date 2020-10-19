@@ -49,7 +49,7 @@ export class MdcExpandable {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   bind() { }
 
-  attached() {
+  afterAttach() {
     this.openChanged();
   }
 

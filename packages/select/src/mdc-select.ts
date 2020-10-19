@@ -21,7 +21,7 @@ let selectId = 0;
 
 @inject(Element, TaskQueue)
 @useView(PLATFORM.moduleName('./mdc-select.html'))
-@customElement(cssClasses.ROOT)
+@customElement('mdc-select')
 @processContent(MdcSelect.processContent)
 export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 

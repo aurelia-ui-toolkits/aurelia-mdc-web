@@ -1,8 +1,8 @@
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCListFoundation, MDCListAdapter, strings, cssClasses, MDCListIndex } from '@material/list';
 import { closest, matches } from '@material/dom/ponyfill';
-import { MdcListItem, IMdcListItemElement, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';
-import { customElement, bindable, children } from 'aurelia';
+import { MdcListItem, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';
+import { customElement, bindable, children, inject, CustomElement } from 'aurelia';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
 
@@ -15,7 +15,8 @@ export const mdcListStrings = {
  * @emits mdclist:action | Indicates that a list item with the specified index has been activated
  * @emits mdclist:itemschanged | Indicates that the list of items has changed
  */
-@customElement(cssClasses.ROOT)
+@inject(Element)
+@customElement('mdc-list')
 export class MdcList extends MdcComponent<MDCListFoundation>{
 
   cssClasses = cssClasses;
@@ -164,7 +165,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
       notifyAction: (index) => {
         const listItem = this.listElements[index];
         if (!listItem.hasAttribute('no-list-action')) {
-          const data = (listItem as IMdcListItemElement).au.controller.viewModel.value;
+          const data = CustomElement.for<Element, MdcListItem>(listItem).viewModel.value;
           this.emit<IMdcListActionEventDetail>(strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
         }
       },

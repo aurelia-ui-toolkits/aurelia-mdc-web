@@ -145,7 +145,7 @@ module.exports = {
     'array-callback-return': 'error',
     'eol-last': ['error', 'always'],
     'func-call-spacing': 'off', // See @typescript-eslint/func-call-spacing
-    'function-call-argument-newline': ['error', 'consistent'],
+    'function-call-argument-newline': ['off', 'consistent'],
     'grouped-accessor-pairs': ['error', 'getBeforeSet'],
     'max-lines-per-function': ['error', 200],
     'new-parens': ['error', 'always'],

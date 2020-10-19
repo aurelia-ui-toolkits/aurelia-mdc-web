@@ -14,7 +14,7 @@ export class MdcChipPrimaryAction {
 
   role: string;
 
-  attached() {
+  afterAttach() {
     const chipSet = (closest(this.root, '.mdc-chip-set') as IMdcChipSetElement)?.au.controller.viewModel;
     this.root.setAttribute('role', chipSet.filter ? 'checkbox' : (chipSet.choice ? 'radio' : 'button'));
   }

@@ -18,7 +18,7 @@ let textFieldId = 0;
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-text-field.html'))
-@customElement(cssClasses.ROOT)
+@customElement('mdc-text-field')
 @processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   constructor(root: HTMLElement) {

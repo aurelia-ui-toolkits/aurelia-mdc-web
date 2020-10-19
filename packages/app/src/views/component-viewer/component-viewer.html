@@ -1,5 +1,5 @@
 <template>
-  <require from="./component-viewer.scss"></require>
+  <import from="./component-viewer.scss"></import>
   <div class="demo-panel-content">
     <div class="demo-panel-transition">
       <h1 class="demo-panel-title">${template.title}</h1>
@@ -16,12 +16,12 @@
 
       <div if.bind="template.code">
         <h2 class="demo-panel-heading">Configuration</h2>
-        <hljs language="typescript">${template.code}</hljs>
+        <demo-hljs language="typescript">${template.code}</demo-hljs>
       </div>
 
       <div if.bind="template.sass">
         <h2 class="demo-panel-heading">Styles</h2>
-        <hljs language="scss">${template.sass}</hljs>
+        <demo-hljs language="scss">${template.sass}</demo-hljs>
       </div>
 
       <div repeat.for="mdcUrl of template.mdcUrls" class="viewer-mdc-urls">
@@ -34,7 +34,7 @@
           active.bind="tab.navModel.isActive">
         </mdc-tab>
       </mdc-tab-bar>
-      <router-view></router-view>
+      <!-- <router-view></router-view> -->
     </div>
   </div>
 </template>

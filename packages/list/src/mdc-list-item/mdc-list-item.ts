@@ -1,8 +1,9 @@
 import { cssClasses } from '@material/list';
-import { customElement, bindable } from 'aurelia';
+import { customElement, bindable, inject } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
+import { nextId } from '@aurelia/kernel';
 
-let listItemId = 0;
+// let listItemId = 0;
 
 const ENTER = 13;
 const SPACE = 32;
@@ -11,13 +12,14 @@ const LIST_ITEM_ACTION = 'mdclistitem:action';
 /**
  * @selector mdc-list-item
  */
-@customElement(cssClasses.LIST_ITEM_CLASS)
+@inject(Element)
+ @customElement('mdc-list-item')
 export class MdcListItem {
   constructor(public root: HTMLElement) { }
 
   cssClasses = cssClasses;
 
-  id = ++listItemId;
+  id =  nextId('mdc-list-item');
 
   /** Disables the list item */
   @bindable({ set: booleanAttr })
@@ -49,15 +51,6 @@ export class MdcListItem {
     return true;
   }
 
-}
-
-/** @hidden */
-export interface IMdcListItemElement extends HTMLElement {
-  au: {
-    controller: {
-      viewModel: MdcListItem;
-    };
-  };
 }
 
 export interface IMdcListActionEventDetail {

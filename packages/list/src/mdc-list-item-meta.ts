@@ -8,7 +8,7 @@ import { customAttribute } from 'aurelia';
 export class MdcListItemMeta {
   constructor(private root: HTMLElement) { }
 
-  attached() {
+  afterAttach() {
     this.root.classList.add('mdc-list-item__meta');
   }
 }

@@ -1,26 +1,32 @@
 /* eslint-disable */
 const path = require('path');
-const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const AureliaWebpackPlugin = require('aurelia-webpack-plugin');
+
+const cssLoader = 'css-loader';
+const sassLoader = {
+  loader: 'sass-loader',
+  options: {
+    sassOptions: {
+      includePaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')]
+    }
+  }
+};
+
+const postcssLoader = {
+  loader: 'postcss-loader',
+  options: {
+    postcssOptions: {
+      plugins: ['autoprefixer']
+    }
+  }
+};
 
 const outDir = path.resolve(__dirname, 'dist');
 module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
-  const cssLoaders = ['css-loader', 'postcss-loader'];
-  const scssLoaders = [...cssLoaders, {
-    // this is super important as only 'sass' package supports new '@use' syntax
-    loader: 'sass-loader', options: {
-      implementation: require('sass'),
-      sassOptions: {
-        // this tells sass to consider following folders when looking for modules in scoped packages
-        includePaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')]
-      }
-    }
-  }];
-
   return {
     mode: production === 'production' ? 'production' : 'development',
-    devtool: production ? false : 'source-map',
+    devtool: production ? 'source-maps' : 'inline-source-map',
+    entry: './src/main.ts',
     output: {
       path: outDir,
       filename: production ? '[name].[chunkhash].bundle.js' : '[name].[hash].bundle.js',
@@ -81,33 +87,75 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
       },
 
     },
-    entry: {
-      app: './src/main.ts'
-    },
     module: {
       rules: [
-        { test: /\.(woff|woff2)(\?|$)/, loader: 'url-loader?limit=1' },
-        { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000, esModule: false } } },
-        { test: /\.ts$/, loader: 'ts-loader' },
-        { test: /\.html$/, loader: 'html-loader' },
-        { test: /\.scss$/i, issuer: /(\.html|empty-entry\.js)$/i, use: scssLoaders },
-        { test: /\.scss$/i, issuer: /\.ts$/i, use: ['style-loader', ...scssLoaders] },
-        { test: /\.css$/i, issuer: [{ not: [{ test: /\.html$/i }] }], use: ['style-loader', 'css-loader'] },
+        { test: /\.(png|gif|jpg|cur)$/i, loader: 'url-loader', options: { limit: 8192 } },
+        { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
+        { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
+        { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000 } } },
+        // { test: /\.css$/i, use: [ 'style-loader', cssLoader, postcssLoader ] },
+        // { test: /\.scss$/i, use: [ 'style-loader', cssLoader, postcssLoader, sassLoader ] },
+        // { test: /\.ts$/i, use: ['ts-loader', '@aurelia/webpack-loader'], exclude: /node_modules/ },
+        // { test: /\.html$/i, use: '@aurelia/webpack-loader', exclude: /node_modules/ }
+
         {
-          test: /\.css$/i, issuer: [{ test: /\.html$/i }],
-          // CSS required in templates cannot be extracted safely
-          // because Aurelia would try to require it again in runtime
-          use: ['css-loader']
+          test: /\.css$/i,
+          // For style loaded in src/main.js, it's not loaded by style-loader.
+          // It's for shared styles for shadow-dom only.
+          issuer: /[/\\]src[/\\]main\.(js|ts)$/,
+          use: ['to-string-loader', cssLoader/*, postcssLoader*/]
         },
+        {
+          test: /\.scss$/i,
+          // For style loaded in src/main.js, it's not loaded by style-loader.
+          // It's for shared styles for shadow-dom only.
+          issuer: /[/\\]src[/\\]main\.(js|ts)$/,
+          use: ['to-string-loader', cssLoader/*, postcssLoader*/, sassLoader]
+        },
+        {
+          test: /\.css$/i,
+          // For style loaded in other js/ts files, it's loaded by style-loader.
+          // They are directly injected to HTML head.
+          issuer: /(?<![/\\]src[/\\]main)\.(js|ts)$/,
+          use: ['style-loader', cssLoader/*, postcssLoader*/]
+        },
+        {
+          test: /\.scss$/i,
+          // For style loaded in other js/ts files, it's loaded by style-loader.
+          // They are directly injected to HTML head.
+          issuer: /(?<![/\\]src[/\\]main)\.(js|ts)$/,
+          use: ['style-loader', cssLoader/*, postcssLoader*/, sassLoader]
+        },
+        {
+          test: /\.css$/i,
+          // For style loaded in html files, Aurelia will handle it.
+          issuer: /\.html$/,
+          use: ['to-string-loader', cssLoader/*, postcssLoader*/]
+        },
+        {
+          test: /\.scss$/i,
+          // For style loaded in html files, Aurelia will handle it.
+          issuer: /\.html$/,
+          use: ['to-string-loader', cssLoader/*, postcssLoader*/, sassLoader]
+        },
+        { test: /\.ts$/i, use: ['ts-loader', '@aurelia/webpack-loader'], exclude: /node_modules/ },
+        {
+          test: /\.html$/i,
+          use: {
+            loader: '@aurelia/webpack-loader',
+            options: {
+              // The other possible Shadow DOM mode is 'closed'.
+              // If you turn on "closed" mode, there will be difficulty to perform e2e
+              // tests (such as Cypress). Because shadowRoot is not accessible through
+              // standard DOM APIs in "closed" mode.
+              defaultShadowOptions: { mode: 'open' }
+            }
+          },
+          exclude: /node_modules/
+        }
       ]
     },
     plugins: [
-      new AureliaWebpackPlugin.AureliaPlugin({
-        aureliaApp: 'src/main',
-        dist: 'es2015',
-        viewsFor: '{**/!(tslib)*.{ts,js},../**/*.{ts,js}}'
-      }),
-      new AureliaWebpackPlugin.GlobDependenciesPlugin({ 'main': ['src/{views,elements,converters,attributes}/**/*.{ts,html}'] }),
       new HtmlWebpackPlugin({ template: './index.ejs' })
     ]
   };

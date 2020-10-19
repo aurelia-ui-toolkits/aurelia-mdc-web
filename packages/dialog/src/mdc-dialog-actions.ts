@@ -10,7 +10,7 @@ import { customElement, inject, inlineView } from 'aurelia-framework';
 export class MdcDialogActions {
   constructor(private root: HTMLElement) { }
 
-  attached() {
+  afterAttach() {
     const children = this.root.children;
     for (let i = 0; i < children.length; ++i) {
       const child = children[i];

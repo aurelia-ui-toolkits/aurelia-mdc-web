@@ -5,7 +5,7 @@ import { customAttribute, inject } from 'aurelia-framework';
 export class MdcTreeViewNOdeMeta {
   constructor(private root: HTMLElement) { }
 
-  attached() {
+  afterAttach() {
     this.root.classList.add('mdc-tree-node__meta');
   }
 }

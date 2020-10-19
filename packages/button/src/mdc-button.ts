@@ -1,4 +1,4 @@
-import { customElement, bindable } from 'aurelia';
+import { customElement, bindable, inject } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 
 /**
@@ -6,6 +6,7 @@ import { booleanAttr } from '@aurelia-mdc-web/base';
  * @selector a[mdc-button]
  * @selector mdc-button
  */
+@inject(Element)
 @customElement('mdc-button')
 export class MdcButton {
   constructor(private root: HTMLElement) { }
@@ -45,7 +46,7 @@ export class MdcButton {
     }
   }
 
-  attached() {
+  afterAttach() {
     const icons = this.root.querySelectorAll('mdc-icon');
     Array.from(icons).forEach(x => x.classList.add('mdc-button__icon'));
   }

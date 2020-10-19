@@ -35,7 +35,7 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
     }
   }
 
-  async attached() {
+  async afterAttach() {
     await this.initialise();
     if (this.icons?.length) {
       this.foundation = this.getDefaultFoundation();

@@ -1,4 +1,4 @@
-import { customAttribute, inject } from 'aurelia-framework';
+import { inject, customAttribute } from 'aurelia';
 
 class MdcTypography {
   constructor(private root: HTMLElement) { }
@@ -6,7 +6,7 @@ class MdcTypography {
   type: 'headline1' | 'headline2' | 'headline3' | 'headline4' | 'headline5' | 'headline6'
     | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline';
 
-  attached() {
+  afterAttach() {
     this.root.classList.add(this.type ? `mdc-typography--${this.type}` : 'mdc-typography');
   }
 }
