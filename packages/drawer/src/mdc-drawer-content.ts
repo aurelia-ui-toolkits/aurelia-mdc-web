@@ -6,6 +6,6 @@ import { customElement } from 'aurelia';
  */
 @customElement({
   name: 'mdc-drawer-content',
-  template: '<template class="mdc-drawer__content"><slot></slot></template>'
+  template: '<template class="mdc-drawer__content"></template>'
 })
 export class MdcDrawerContent { }

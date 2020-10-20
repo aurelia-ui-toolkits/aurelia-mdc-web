@@ -6,7 +6,7 @@ import { customElement, children, customAttribute } from 'aurelia';
  */
 @customElement({
   name: 'mdc-list-group',
-  template: '<template class="mdc-list-group"><slot></slot></template>'
+  template: '<template class="mdc-list-group"></template>'
 })
 export class MdcListGroup {
   @children({

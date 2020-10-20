@@ -2,8 +2,8 @@ import { highlight, highlightBlock } from 'highlightjs';
 import { customElement, bindable, inject } from 'aurelia';
 
 @inject(Element)
-@customElement('demo-hljs')
-export class DemoHljs {
+@customElement('hljs')
+export class Hljs {
   constructor(private root: HTMLElement) { }
 
   source: HTMLDivElement;
@@ -14,12 +14,12 @@ export class DemoHljs {
   language: string;
 
   afterAttach() {
-    // this.observer = new MutationObserver(() => this.highlight());
-    // this.observer.observe(this.root, {
-    //   characterData: true,
-    //   childList: true,
-    //   subtree: true
-    // });
+    this.observer = new MutationObserver(() => this.highlight());
+    this.observer.observe(this.source, {
+      characterData: true,
+      childList: true,
+      subtree: true
+    });
 
     this.highlight();
   }
@@ -32,7 +32,8 @@ export class DemoHljs {
   }
 
   highlight() {
-    highlightBlock(this.codeEl);
-    // this.codeEl.innerHTML = highlight(this.language, this.source.innerText).value;
+    if (this.source) {
+      this.codeEl.innerHTML = highlight(this.language, this.source.innerText).value;
+    }
   }
 }

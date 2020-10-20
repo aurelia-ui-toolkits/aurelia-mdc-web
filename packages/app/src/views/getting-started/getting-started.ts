@@ -1,7 +1,4 @@
-import { customElement } from 'aurelia';
-
-// @customElement('getting-started')
-export class Gettingstarted {
+export class GettingStarted {
   materialIconsLink = '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
   robotoLink = '<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">';
   indexHtml = `<html>

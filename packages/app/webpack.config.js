@@ -93,66 +93,66 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
         { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
         { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000 } } },
-        // { test: /\.css$/i, use: [ 'style-loader', cssLoader, postcssLoader ] },
-        // { test: /\.scss$/i, use: [ 'style-loader', cssLoader, postcssLoader, sassLoader ] },
-        // { test: /\.ts$/i, use: ['ts-loader', '@aurelia/webpack-loader'], exclude: /node_modules/ },
-        // { test: /\.html$/i, use: '@aurelia/webpack-loader', exclude: /node_modules/ }
-
-        {
-          test: /\.css$/i,
-          // For style loaded in src/main.js, it's not loaded by style-loader.
-          // It's for shared styles for shadow-dom only.
-          issuer: /[/\\]src[/\\]main\.(js|ts)$/,
-          use: ['to-string-loader', cssLoader/*, postcssLoader*/]
-        },
-        {
-          test: /\.scss$/i,
-          // For style loaded in src/main.js, it's not loaded by style-loader.
-          // It's for shared styles for shadow-dom only.
-          issuer: /[/\\]src[/\\]main\.(js|ts)$/,
-          use: ['to-string-loader', cssLoader/*, postcssLoader*/, sassLoader]
-        },
-        {
-          test: /\.css$/i,
-          // For style loaded in other js/ts files, it's loaded by style-loader.
-          // They are directly injected to HTML head.
-          issuer: /(?<![/\\]src[/\\]main)\.(js|ts)$/,
-          use: ['style-loader', cssLoader/*, postcssLoader*/]
-        },
-        {
-          test: /\.scss$/i,
-          // For style loaded in other js/ts files, it's loaded by style-loader.
-          // They are directly injected to HTML head.
-          issuer: /(?<![/\\]src[/\\]main)\.(js|ts)$/,
-          use: ['style-loader', cssLoader/*, postcssLoader*/, sassLoader]
-        },
-        {
-          test: /\.css$/i,
-          // For style loaded in html files, Aurelia will handle it.
-          issuer: /\.html$/,
-          use: ['to-string-loader', cssLoader/*, postcssLoader*/]
-        },
-        {
-          test: /\.scss$/i,
-          // For style loaded in html files, Aurelia will handle it.
-          issuer: /\.html$/,
-          use: ['to-string-loader', cssLoader/*, postcssLoader*/, sassLoader]
-        },
+        { test: /\.css$/i, use: [ 'style-loader', cssLoader/*, postcssLoader*/ ] },
+        { test: /\.scss$/i, use: [ 'style-loader', cssLoader/*, postcssLoader*/, sassLoader ] },
         { test: /\.ts$/i, use: ['ts-loader', '@aurelia/webpack-loader'], exclude: /node_modules/ },
-        {
-          test: /\.html$/i,
-          use: {
-            loader: '@aurelia/webpack-loader',
-            options: {
-              // The other possible Shadow DOM mode is 'closed'.
-              // If you turn on "closed" mode, there will be difficulty to perform e2e
-              // tests (such as Cypress). Because shadowRoot is not accessible through
-              // standard DOM APIs in "closed" mode.
-              defaultShadowOptions: { mode: 'open' }
-            }
-          },
-          exclude: /node_modules/
-        }
+        { test: /\.html$/i, use: '@aurelia/webpack-loader', exclude: /node_modules/ }
+
+        // {
+        //   test: /\.css$/i,
+        //   // For style loaded in src/main.js, it's not loaded by style-loader.
+        //   // It's for shared styles for shadow-dom only.
+        //   issuer: /[/\\]src[/\\]main\.(js|ts)$/,
+        //   use: ['to-string-loader', cssLoader/*, postcssLoader*/]
+        // },
+        // {
+        //   test: /\.scss$/i,
+        //   // For style loaded in src/main.js, it's not loaded by style-loader.
+        //   // It's for shared styles for shadow-dom only.
+        //   issuer: /[/\\]src[/\\]main\.(js|ts)$/,
+        //   use: ['to-string-loader', cssLoader/*, postcssLoader*/, sassLoader]
+        // },
+        // {
+        //   test: /\.css$/i,
+        //   // For style loaded in other js/ts files, it's loaded by style-loader.
+        //   // They are directly injected to HTML head.
+        //   issuer: /(?<![/\\]src[/\\]main)\.(js|ts)$/,
+        //   use: ['style-loader', cssLoader/*, postcssLoader*/]
+        // },
+        // {
+        //   test: /\.scss$/i,
+        //   // For style loaded in other js/ts files, it's loaded by style-loader.
+        //   // They are directly injected to HTML head.
+        //   issuer: /(?<![/\\]src[/\\]main)\.(js|ts)$/,
+        //   use: ['style-loader', cssLoader/*, postcssLoader*/, sassLoader]
+        // },
+        // {
+        //   test: /\.css$/i,
+        //   // For style loaded in html files, Aurelia will handle it.
+        //   issuer: /\.html$/,
+        //   use: ['to-string-loader', cssLoader/*, postcssLoader*/]
+        // },
+        // {
+        //   test: /\.scss$/i,
+        //   // For style loaded in html files, Aurelia will handle it.
+        //   issuer: /\.html$/,
+        //   use: ['to-string-loader', cssLoader/*, postcssLoader*/, sassLoader]
+        // },
+        // { test: /\.ts$/i, use: ['ts-loader', '@aurelia/webpack-loader'], exclude: /node_modules/ },
+        // {
+        //   test: /\.html$/i,
+        //   use: {
+        //     loader: '@aurelia/webpack-loader',
+        //     options: {
+        //       // The other possible Shadow DOM mode is 'closed'.
+        //       // If you turn on "closed" mode, there will be difficulty to perform e2e
+        //       // tests (such as Cypress). Because shadowRoot is not accessible through
+        //       // standard DOM APIs in "closed" mode.
+        //       defaultShadowOptions: { mode: 'open' }
+        //     }
+        //   },
+        //   exclude: /node_modules/
+        // }
       ]
     },
     plugins: [

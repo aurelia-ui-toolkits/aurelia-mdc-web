@@ -17,9 +17,11 @@ export interface IComponentTemplate {
 }
 
 export class ComponentViewer {
-  template: IComponentTemplate;
+  constructor(private router: Router) {
 
-  router: Router;
+  }
+
+  template: IComponentTemplate;
 
   // configureRouter(config: RouterConfiguration, router: Router) {
   //   this.router = router;

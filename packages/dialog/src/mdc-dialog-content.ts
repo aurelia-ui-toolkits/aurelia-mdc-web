@@ -5,7 +5,7 @@ import { customElement, inlineView, inject } from 'aurelia-framework';
  * @selector mdc-dialog-content
  */
 @inject(Element)
-@inlineView('<template class="mdc-dialog__content"><slot></slot></template>')
+@inlineView('<template class="mdc-dialog__content"><au-slot></au-slot></template>')
 @customElement('mdc-dialog-content')
 export class MdcDialogContent {
   constructor(public root: HTMLElement) { }

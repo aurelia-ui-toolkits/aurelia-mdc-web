@@ -8,7 +8,7 @@
       <div if.bind="template.references.length">
         <h2 class="demo-panel-heading">References</h2>
         <div repeat.for="ref of template.references">
-          <a mdc-button href.bind="ref.url" target="_blank" rel="noopener">
+          <a as-element="mdc-button" href.bind="ref.url" target="_blank" rel="noopener">
             <i class="material-icons mdc-button__icon">link</i> ${ref.name}
           </a>
         </div>
@@ -16,16 +16,16 @@
 
       <div if.bind="template.code">
         <h2 class="demo-panel-heading">Configuration</h2>
-        <demo-hljs language="typescript">${template.code}</demo-hljs>
+        <hljs language="typescript"><span au-slot>${template.code}</span></hljs>
       </div>
 
       <div if.bind="template.sass">
         <h2 class="demo-panel-heading">Styles</h2>
-        <demo-hljs language="scss">${template.sass}</demo-hljs>
+        <hljs language="scss"><span au-slot>${template.sass}</span></hljs>
       </div>
 
       <div repeat.for="mdcUrl of template.mdcUrls" class="viewer-mdc-urls">
-        <a mdc-button href.bind="mdcUrl.url" target="_blank" rel="noopener">
+        <a as-element="mdc-button" href.bind="mdcUrl.url" target="_blank" rel="noopener">
           <i class="material-icons mdc-button__icon">link</i> ${mdcUrl.name}
         </a>
       </div>
@@ -34,7 +34,7 @@
           active.bind="tab.navModel.isActive">
         </mdc-tab>
       </mdc-tab-bar>
-      <!-- <router-view></router-view> -->
+      <au-viewport default="examples"></au-viewport>
     </div>
   </div>
 </template>

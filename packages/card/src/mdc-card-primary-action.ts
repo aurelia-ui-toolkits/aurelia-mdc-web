@@ -6,7 +6,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
  * Only applicable to cards that have a primary action that the main surface should trigger.
  * @selector mdc-card-primary-action
  */
-@inlineView('<template class="mdc-card__primary-action" mdc-ripple="disabled.bind: disableRipple"><slot></slot></template>')
+@inlineView('<template class="mdc-card__primary-action" mdc-ripple="disabled.bind: disableRipple"><au-slot></au-slot></template>')
 @customElement('mdc-card-primary-action')
 export class MdcCardPrimaryAction {
 

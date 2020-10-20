@@ -3,20 +3,25 @@ import { IMdcListActionEventDetail } from '@aurelia-mdc-web/list';
 import { Router, NavRoute, inject, IRouter } from 'aurelia';
 import { observable } from '@aurelia/runtime';
 import { Home } from '../home/home';
-import { Gettingstarted } from '../gettingstarted/gettingstarted';
+import { GettingStarted } from '../getting-started/getting-started';
 import { Button } from '../button/button';
 import { CircularProgress } from '../circular-progress/circular-progress';
 import { Drawer } from '../drawer/drawer';
 import { List } from '../list/list';
 import { TopAppBar } from '../top-app-bar/top-app-bar';
+import { Examples as ButtonExamples } from '../button/examples';
 
 @inject(Router)
-export class AppRoot {
+export class Root {
   constructor(@IRouter private router: IRouter) {
     this.router.addNav('main-nav', [
       { title: 'Home', route: Home, meta: { divider: true } },
-      { title: 'Getting started', route: Gettingstarted, meta: { divider: true } },
-      { title: 'Button', route: Button },
+      { title: 'Getting Started', route: GettingStarted, meta: { divider: true } },
+      {
+        title: 'Button', route: Button, children: [
+          { title: 'Examples', route: ButtonExamples }
+        ]
+      },
       // { title: 'Circular progress', route: CircularProgress },
       // { title: 'Drawer', route: Drawer },
       // { title: 'List', route: List },

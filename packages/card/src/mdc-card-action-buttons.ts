@@ -5,7 +5,7 @@ import { customElement, inlineView, inject } from 'aurelia-framework';
  * @selector mdc-card-action-buttons
  */
 @inject(Element)
-@inlineView('<template class="mdc-card__action-buttons"><slot></slot></template>')
+@inlineView('<template class="mdc-card__action-buttons"><au-slot></au-slot></template>')
 @customElement('mdc-card-action-buttons')
 export class MdcCardActionButtons {
   constructor(private root: HTMLElement) { }

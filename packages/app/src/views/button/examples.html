@@ -1,11 +1,11 @@
 <template>
   <div class="demo-content">
-    <compose view="./default.html" class="demo-layout__row"></compose>
+    <au-compose subject.bind="default" containerless></au-compose>
     <example-viewer html.bind="defaultHtml" sass.bind="defaultSass"></example-viewer>
   </div>
 
   <div class="demo-content">
-    <compose view="./density.html" class="demo-layout__row"></compose>
+    <au-compose subject.bind="density" containerless></au-compose>
     <example-viewer html.bind="densityHtml" sass.bind="densitySass"></example-viewer>
   </div>
 

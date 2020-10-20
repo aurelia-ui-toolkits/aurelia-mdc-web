@@ -19,8 +19,13 @@ import trailingHtml from '!!raw-loader!./trailing.html';
 import trailingSass from '!!raw-loader!./trailing.scss';
 
 import accessibilityHtml from '!!raw-loader!./accessibility.html';
+import { Default } from './default';
+import { Density } from './density';
 
 export class Examples {
+  default = Default;
+  density = Density;
+
   defaultHtml = defaultHtml;
   defaultSass = defaultSass;
 

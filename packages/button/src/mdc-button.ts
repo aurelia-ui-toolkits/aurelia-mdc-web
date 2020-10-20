@@ -12,6 +12,12 @@ export class MdcButton {
   constructor(private root: HTMLElement) { }
 
   /**
+   * Set the component label
+   */
+  @bindable
+  label: string;
+
+  /**
    * Set the component touch target to 48 x 48 px
    */
   @bindable({ set: booleanAttr })
@@ -44,6 +50,11 @@ export class MdcButton {
     } else {
       this.root.removeAttribute('href');
     }
+  }
+
+  compileChildren(...args: any[]){
+    console.log(args);
+
   }
 
   afterAttach() {

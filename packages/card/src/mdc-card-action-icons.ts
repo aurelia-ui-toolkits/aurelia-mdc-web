@@ -5,7 +5,7 @@ import { customElement, inlineView, inject } from 'aurelia-framework';
  * @selector mdc-card-action-icons
  */
 @inject(Element)
-@inlineView('<template class="mdc-card__action-icons"><slot></slot></template>')
+@inlineView('<template class="mdc-card__action-icons"><au-slot></au-slot></template>')
 @customElement('mdc-card-action-icons')
 export class MdcCardActionIcons {
   constructor(private root: HTMLElement) { }
