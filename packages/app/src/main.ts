@@ -11,6 +11,8 @@ import { GettingStarted } from './views/getting-started/getting-started';
 import { Hljs } from './elements/hljs/hljs';
 import { Button } from './views/button/button';
 import { Examples as ButtonExamples } from './views/button/examples';
+import { ApiViewer } from './views/api-viewer/api-viewer';
+import { ExampleViewer } from './elements/example-viewer/example-viewer';
 
 Aurelia
   // .register(StyleConfiguration.shadowDOM({
@@ -18,7 +20,7 @@ Aurelia
   //   sharedStyles: [shared]
   // }))
   .register(DebugConfiguration, RouterConfiguration, MaterialConfiguration,
-    Home, GettingStarted, Hljs, Button, ButtonExamples)
+    Home, GettingStarted, Hljs, Button, ButtonExamples, ApiViewer, ExampleViewer)
   // To use HTML5 pushState routes, replace previous line with the following
   // customized router config.
   // .register(RouterConfiguration.customize({ useUrlFragmentHash: false }))

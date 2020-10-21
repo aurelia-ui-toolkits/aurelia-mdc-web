@@ -1,25 +1,23 @@
-<template>
-  <require from="./icon.scss"></require>
-  <div class="demo-layout__row">
-    <div class="demo-container">
-      <button mdc-button>
-        <mdc-icon>favorite</mdc-icon>Icon
-      </button>
-    </div>
-    <div class="demo-container">
-      <button mdc-button outlined>
-        <mdc-icon>favorite</mdc-icon>Icon
-      </button>
-    </div>
-    <div class="demo-container">
-      <button mdc-button raised class="demo-button-primary">
-        <mdc-icon>favorite</mdc-icon>Icon
-      </button>
-    </div>
-    <div class="demo-container">
-      <button mdc-button raised class="demo-button-secondary">
-        <mdc-icon>favorite</mdc-icon>Icon
-      </button>
-    </div>
+<import from="./icon.scss"></import>
+<div class="demo-layout__row">
+  <div class="demo-container">
+    <button as-element="mdc-button">
+      <mdc-icon>favorite</mdc-icon>Icon
+    </button>
   </div>
-</template>
+  <div class="demo-container">
+    <button as-element="mdc-button" outlined>
+      <mdc-icon>favorite</mdc-icon>Icon
+    </button>
+  </div>
+  <div class="demo-container">
+    <button as-element="mdc-button" raised class="demo-button-primary">
+      <mdc-icon>favorite</mdc-icon>Icon
+    </button>
+  </div>
+  <div class="demo-container">
+    <button as-element="mdc-button" raised class="demo-button-secondary">
+      <mdc-icon>favorite</mdc-icon>Icon
+    </button>
+  </div>
+</div>

@@ -1,6 +1,5 @@
 import { templates } from './templates';
-import { Router } from 'aurelia';
-import { Navigation } from '@aurelia/router';
+import { Navigation, IRouter } from '@aurelia/router';
 
 interface IReference {
   name: string;
@@ -16,31 +15,17 @@ export interface IComponentTemplate {
   mdcUrls?: IReference[];
 }
 
-export class ComponentViewer {
-  constructor(private router: Router) {
+interface ITab { title: string; link: string }
 
-  }
+export class ComponentViewer {
+  constructor(@IRouter private router: IRouter) { }
 
   template: IComponentTemplate;
 
-  // configureRouter(config: RouterConfiguration, router: Router) {
-  //   this.router = router;
-  //   config.map([
-  //     { route: '', redirect: 'examples' },
-  //     { route: 'examples', name: 'examples', title: 'Examples', moduleId: './examples' },
-  //     { route: 'api', name: 'api', title: 'Api', moduleId: '../api-viewer/api-viewer' }
-  //   ]);
-  // }
+  tabs: ITab[] = [{ title: 'Examples', link: 'examples' }, { title: 'Api', link: 'api-viewer' }];
 
-  // tabs: RouteConfig[];
-
-  load(parameters: Record<string, unknown>, nextInstruction: Navigation, instruction: Navigation) {
+  load(parameters: Record<string, unknown>, nextInstruction: Navigation) {
     // this.tabs = this.router.routes.filter(x => !x.redirect);
     this.template = templates[(nextInstruction.instruction as string).replace('/', '').replace('-page', '')];
   }
-
-  // navigateTo(tab: RouteConfig) {
-  //   this.router.navigateToRoute(tab.route as string);
-  // }
-
 }

@@ -1,4 +1,4 @@
-import { customElement, bindable, inject } from 'aurelia';
+import { customElement, bindable, inject, Controller } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 
 /**
@@ -52,10 +52,15 @@ export class MdcButton {
     }
   }
 
-  compileChildren(...args: any[]){
-    console.log(args);
-
-  }
+  // beforeCompile(controller: Controller) {
+  //   const t = document.createElement('template');
+  //   t.setAttribute('au-slot', '');
+  //   const host = (controller.host as HTMLElement);
+  //   const nodes = Array.from(host.childNodes);
+  //   nodes.forEach(x => t.appendChild(x));
+  //   host.innerHTML = '';
+  //   host.appendChild(t);
+  // }
 
   afterAttach() {
     const icons = this.root.querySelectorAll('mdc-icon');

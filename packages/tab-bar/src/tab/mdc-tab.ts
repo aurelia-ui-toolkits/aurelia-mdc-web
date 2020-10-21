@@ -1,16 +1,13 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTabFoundation, MDCTabAdapter, MDCTabInteractionEventDetail, MDCTabDimensions } from '@material/tab';
-import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcTabIndicator } from '../indicator/mdc-tab-indicator';
-import { inject, useView, customElement } from 'aurelia-framework';
-import { PLATFORM } from 'aurelia-pal';
+import { inject, customElement, bindable } from 'aurelia';
 
 let tabId = 0;
 
 MDCTabFoundation.strings.INTERACTED_EVENT = MDCTabFoundation.strings.INTERACTED_EVENT.toLowerCase();
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-tab.html'))
 @customElement('mdc-tab')
 export class MdcTab extends MdcComponent<MDCTabFoundation> {
   private tabIndicator_: MdcTabIndicator; // assigned in initialize();

@@ -1,12 +1,13 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from '@aurelia/kernel';
+import { MdcTabBar } from './mdc-tab-bar';
+import { MdcTab, IMdcTabElement } from './tab/mdc-tab';
+import { MdcTabScroller } from './scroller/mdc-tab-scroller';
+import { MdcTabIndicator } from './indicator/mdc-tab-indicator';
 
-export { MdcTabBar } from './mdc-tab-bar';
+export { MdcTabBar, MdcTab, IMdcTabElement, MdcTabScroller, MdcTabIndicator };
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-tab-bar'),
-    PLATFORM.moduleName('./tab/mdc-tab'),
-    PLATFORM.moduleName('./scroller/mdc-tab-scroller'),
-    PLATFORM.moduleName('./indicator/mdc-tab-indicator'),
-  ]);
-}
+export const TabBarConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcTabBar, MdcTab, MdcTabScroller, MdcTabIndicator);
+  }
+};

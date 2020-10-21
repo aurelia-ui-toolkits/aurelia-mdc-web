@@ -1,16 +1,36 @@
-<template>
-  <require from="./api-viewer.scss"></require>
-  <div class="docs-api" repeat.for="a of classesApi">
-    <div class="section-header" mdc-headline6>${a.name}</div>
-    <div>${a.comment.shortText}</div>
-    <div if.bind="a.comment.selectors" class="section-selector__label">
-      <span mdc-body1>Selector:</span>
-      <div class="markdown-code section-selectors" repeat.for="selector of a.comment.selectors">${selector.text}</div>
+<import from="./api-viewer.scss"></import>
+<div class="docs-api" repeat.for="a of classesApi">
+  <div class="section-header" mdc-headline6>${a.name}</div>
+  <div if.bind="a.comment.shortText">${a.comment.shortText}</div>
+  <div if.bind="a.comment.selectors" class="section-selector__label">
+    <span mdc-body1>Selector:</span>
+    <div class="markdown-code section-selectors" repeat.for="selector of a.comment.selectors">${selector.text}</div>
+  </div>
+  <div repeat.for="category of a.categories" class="section-category">
+    <h4 mdc-subtitle2>${category.name}</h4>
+
+    <div class="mdc-data-table">
+      <div class="mdc-data-table__table-container">
+        <table class="mdc-data-table__table" aria-label="Dessert calories">
+          <thead>
+            <tr class="mdc-data-table__header-row">
+              <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Name</th>
+              <th class="mdc-data-table__header-cell" role="columnheader" scope="col" if.bind="category.hasType">Type
+              </th>
+              <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody class="mdc-data-table__content">
+            <tr class="mdc-data-table__row" repeat.for="c of category.children">
+              <th class="mdc-data-table__cell" scope="row">${c.name}</th>
+              <td class="mdc-data-table__cell" if.bind="category.hasType">${c.type}</td>
+              <td class="mdc-data-table__cell">${c.description}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div repeat.for="category of a.categories" class="section-category">
-      <h4 mdc-subtitle2>${category.name}</h4>
-      <!-- <div mdcSubtitle1 *ngIf="category.summary">{{category?.summary}}</div> -->
-      <mdc-data-table>
+    <!-- <mdc-data-table>
         <mdc-data-table-header>
           <mdc-data-table-header-cell>Name</mdc-data-table-header-cell>
           <mdc-data-table-header-cell if.bind="category.hasType">Type</mdc-data-table-header-cell>
@@ -23,43 +43,6 @@
             <mdc-data-table-cell>${c.description}</mdc-data-table-cell>
           </mdc-data-table-row>
         </mdc-data-table-content>
-      </mdc-data-table>
-    </div>
-
+      </mdc-data-table> -->
   </div>
-  <!-- <div class="docs-api" *ngFor="let section of docApi?.sections">
-    <div class="section-header" mdcHeadline6>{{section?.header}}</div>
-    <div *ngIf="section.summary">{{section?.summary}}</div>
-    <pre *ngIf="section?.summaryCode"><code highlight='{{section?.summaryCode}}'></code></pre>
-    <div *ngIf="section.selectors" class="section-selector__label">
-      <span mdcBody1>Selector:</span>
-      <div class="markdown-code section-selectors" *ngFor="let selector of section?.selectors">{{selector}}</div>
-    </div>
-    <div *ngIf="section.exportedAs" mdcBody1 class="section-exportedAs">Exported
-      as: <span class="markdown-code">{{section?.exportedAs}}</span>
-    </div>
-
-    <div *ngFor="let category of section?.categories" class="section-category">
-      <h4 mdcSubtitle2>{{category?.name}}</h4>
-      <div mdcSubtitle1 *ngIf="category.summary">{{category?.summary}}</div>
-      <mdc-data-table>
-        <table mdcDataTableTable>
-          <thead>
-            <tr mdcDataTableHeaderRow>
-              <th mdcDataTableHeaderCell>Name</th>
-              <th mdcDataTableHeaderCell>Description</th>
-            </tr>
-          </thead>
-          <tbody mdcDataTableContent>
-            <tr mdcDataTableRow *ngFor="let item of category?.items">
-              <td mdcDataTableCell>{{item?.name}}</td>
-              <td mdcDataTableCell>{{item?.summary}}
-                <pre *ngIf="item?.summaryCode"><code highlight='{{item?.summaryCode}}'></code></pre>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </mdc-data-table>
-    </div>
-  </div> -->
-</template>
+</div>

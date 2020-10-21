@@ -8,8 +8,8 @@ interface ITab {
 
 @customElement('example-viewer')
 export class ExampleViewer {
-  tabs: ITab[] = [];
-  selectedTab: ITab;
+  tabs: ITab[];
+  selectedTab: ITab | undefined = undefined;
   open: boolean;
 
   @bindable
@@ -21,17 +21,19 @@ export class ExampleViewer {
   @bindable
   code: string;
 
-  bind() {
+  afterBind() {
+    const tabs: ITab[] = [];
     if (this.html) {
-      this.tabs.push({ label: 'HTML', language: 'html', code: this.html });
+      tabs.push({ label: 'HTML', language: 'html', code: this.html });
     }
     if (this.sass) {
-      this.tabs.push({ label: 'SASS', language: 'scss', code: this.sass });
+      tabs.push({ label: 'SASS', language: 'scss', code: this.sass });
     }
     if (this.code) {
-      this.tabs.push({ label: 'TS', language: 'typescript', code: this.code });
+      tabs.push({ label: 'TS', language: 'typescript', code: this.code });
     }
-    this.selectedTab = this.tabs[0];
+    this.tabs = tabs;
+    this.selectedTab = tabs[0];
   }
 
   toggle() {
@@ -49,7 +51,7 @@ export class ExampleViewer {
     tempTextarea.style.top = '0';
     tempTextarea.style.left = '0';
     tempTextarea.style.opacity = '0';
-    tempTextarea.textContent = this.selectedTab.code;
+    tempTextarea.textContent = this.selectedTab!.code;
     document.body.appendChild(tempTextarea);
     tempTextarea.select();
 

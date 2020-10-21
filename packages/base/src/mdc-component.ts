@@ -18,12 +18,13 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   initialSyncWithDOM() { }
 
-  async afterAttach() {
-    await this.initialise();
-    this.foundation = this.getDefaultFoundation();
-    this.foundation.init();
-    this.initialisedResolve();
-    this.initialSyncWithDOM();
+  afterAttach() {
+    this.initialise().then(() => {
+      this.foundation = this.getDefaultFoundation();
+      this.foundation.init();
+      this.initialisedResolve();
+      this.initialSyncWithDOM();
+    });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function

@@ -12,10 +12,10 @@
 // @use "@material/line-ripple/mdc-line-ripple";
 // @use "@material/notched-outline/mdc-notched-outline";
 @use "@material/ripple/mdc-ripple";
-// @use "@material/tab-bar/mdc-tab-bar";
-// @use "@material/tab-scroller/mdc-tab-scroller";
-// @use "@material/tab-indicator/mdc-tab-indicator";
-// @use "@material/tab/mdc-tab";
+@use "@material/tab-bar/mdc-tab-bar";
+@use "@material/tab-scroller/mdc-tab-scroller";
+@use "@material/tab-indicator/mdc-tab-indicator";
+@use "@material/tab/mdc-tab";
 // @use "@material/menu/mdc-menu";
 // @use "@material/menu-surface/mdc-menu-surface";
 // @use "@material/select/mdc-select";
@@ -31,7 +31,7 @@
 // @use "@material/fab/mdc-fab";
 // @use "@aurelia-mdc-web/expandable";
 // @use "@material/elevation/mdc-elevation";
-// @use "@material/data-table/mdc-data-table";
+@use "@material/data-table/mdc-data-table";
 // @use "@aurelia-mdc-web/tree-view";
 // @use "@material/linear-progress/mdc-linear-progress";
 // @use "@material/chips/mdc-chips";

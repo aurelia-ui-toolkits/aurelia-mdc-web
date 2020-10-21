@@ -9,6 +9,7 @@
     "packages/icon",
     "packages/list",
     "packages/ripple",
+    "packages/tab-bar",
     "packages/top-app-bar",
     "packages/typography"
   ],

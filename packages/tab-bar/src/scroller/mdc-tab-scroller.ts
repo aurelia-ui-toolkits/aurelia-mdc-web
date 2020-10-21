@@ -1,12 +1,10 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTabScrollerFoundation, MDCTabScrollerAdapter, util } from '@material/tab-scroller';
 import { matches } from '@material/dom/ponyfill';
-import { children, useView, PLATFORM, customElement, inject } from 'aurelia-framework';
 import { MdcTab } from '../tab/mdc-tab';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { inject, customElement, bindable, children, CustomElement } from 'aurelia';
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-tab-scroller.html'))
 @customElement('mdc-tab-scroller')
 export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   private content_: HTMLElement; // assigned in html
@@ -15,8 +13,12 @@ export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   @bindable
   align: 'start' | 'end' | 'center';
 
-  @children('mdc-tab')
-  tabs: MdcTab[];
+  // TODO: this does not work yet
+  // @children({ filter: el => (el as HTMLElement).tagName === 'MDC-TAB' })
+  // tabs: MdcTab[];
+  get tabs(): MdcTab[] {
+    return Array.from(this.root.querySelectorAll('.mdc-tab')).map(x => CustomElement.for<Element, MdcTab>(x).viewModel);
+  }
 
   getDefaultFoundation() {
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.

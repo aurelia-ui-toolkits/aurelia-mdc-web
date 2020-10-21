@@ -1,18 +1,18 @@
-<template>
-  <require from="./example-viewer.scss"></require>
-  <button mdc-button raised class="example-opener" if.bind="!open" click.delegate="toggle()">
-    View source
-  </button>
-  <mdc-tab-bar fixed if.bind="open" (activated)="onActivatedTab($event)">
-    <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" click.delegate="select(tab)" min-width
-      active.bind="tab === selectedTab"></mdc-tab>
-  </mdc-tab-bar>
-  <div class="example-code-container" if.bind="open && selectedTab">
-    <div class="example-code-container__buttons">
-      <button mdc-icon-button click.delegate="copyCode()" title="Copy to clipboard"
-        class="material-icons">file_copy</button>
-      <button mdc-icon-button click.delegate="toggle()" title="Close" class="material-icons">close</button>
-    </div>
-    <hljs language.bind="selectedTab.language">${selectedTab.code}</hljs>
+<import from="./example-viewer.scss"></import>
+<button as-element="mdc-button" raised class="example-opener" if.bind="!open" click.delegate="toggle()">
+  View source
+</button>
+<mdc-tab-bar fixed if.bind="open">
+  <template au-slot>
+    <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" min-width click.delegate="select(tab)"
+      active.bind="tab === selectedTab" icon.bind="undefined"></mdc-tab>
+  </template>
+</mdc-tab-bar>
+<div class="example-code-container" if.bind="open && selectedTab">
+  <div class="example-code-container__buttons">
+    <button mdc-icon-button click.delegate="copyCode()" title="Copy to clipboard"
+      class="material-icons">file_copy</button>
+    <button mdc-icon-button click.delegate="toggle()" title="Close" class="material-icons">close</button>
   </div>
-</template>
+  <hljs language.bind="selectedTab.language"><template au-slot>${selectedTab.code}</template></hljs>
+</div>

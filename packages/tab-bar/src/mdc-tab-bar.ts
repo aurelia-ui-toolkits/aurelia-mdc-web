@@ -1,17 +1,15 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTabBarFoundation, MDCTabBarAdapter, MDCTabBarActivatedEventDetail, strings } from '@material/tab-bar';
 import { IMdcTabElement } from './tab/mdc-tab';
 import { MdcTabScroller } from './scroller/mdc-tab-scroller';
-import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
 import { MDCTabInteractionEvent, MDCTabFoundation } from '@material/tab';
+import { inject, customElement, bindable } from 'aurelia';
 
 // aurelia is case insensitive
 MDCTabFoundation.strings.INTERACTED_EVENT = MDCTabFoundation.strings.INTERACTED_EVENT.toLowerCase();
 strings.TAB_ACTIVATED_EVENT = strings.TAB_ACTIVATED_EVENT.toLowerCase();
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-tab-bar.html'))
 @customElement('mdc-tab-bar')
 export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
   private tabScroller_?: MdcTabScroller; // assigned in html

@@ -1,14 +1,11 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTabIndicatorFoundation, MDCTabIndicatorAdapter, MDCFadingTabIndicatorFoundation, MDCSlidingTabIndicatorFoundation } from '@material/tab-indicator';
-import { bindable } from 'aurelia-typed-observable-plugin';
-import { inject, useView, customElement } from 'aurelia-framework';
-import { PLATFORM } from 'aurelia-pal';
+import { inject, customElement, bindable } from 'aurelia';
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-tab-indicator.html'))
 @customElement('mdc-tab-indicator')
 export class MdcTabIndicator extends MdcComponent<MDCTabIndicatorFoundation> {
-  private content_: HTMLElement; // assigned in html
+  private content: HTMLElement; // assigned in html
 
   @bindable({ set: booleanAttr })
   fade: boolean;
@@ -29,8 +26,8 @@ export class MdcTabIndicator extends MdcComponent<MDCTabIndicatorFoundation> {
     const adapter: MDCTabIndicatorAdapter = {
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
-      computeContentClientRect: () => this.content_.getBoundingClientRect(),
-      setContentStyleProperty: (prop, value) => this.content_.style.setProperty(prop, value),
+      computeContentClientRect: () => this.content.getBoundingClientRect(),
+      setContentStyleProperty: (prop, value) => this.content.style.setProperty(prop, value),
     };
 
     if (this.root.classList.contains(

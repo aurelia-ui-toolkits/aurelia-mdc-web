@@ -3,6 +3,7 @@
     ${fade ? 'mdc-tab-indicator--fade' : ''}
     ${active ? 'mdc-tab-indicator--active' : ''}
   ">
-  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--${icon ? 'icon' : 'underline'} ${icon ? 'material-icons' : ''}"
-    aria-hidden="true" ref="content_">${icon}</span>
+  <span
+    class="mdc-tab-indicator__content mdc-tab-indicator__content--${icon ? 'icon' : 'underline'} ${icon ? 'material-icons' : ''}"
+    aria-hidden="true" element.ref="content"><span if.bind="icon">${icon}</span></span>
 </template>

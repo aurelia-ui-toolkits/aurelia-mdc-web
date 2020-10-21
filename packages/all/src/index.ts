@@ -5,6 +5,7 @@ import { CircularProgressConfiguration } from '@aurelia-mdc-web/circular-progres
 import { IconConfiguration } from '@aurelia-mdc-web/icon';
 import { ListConfiguration } from '@aurelia-mdc-web/list';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { TabBarConfiguration } from '@aurelia-mdc-web/tab-bar';
 import { TopAppBarConfiguration } from '@aurelia-mdc-web/top-app-bar';
 import { TypographyConfiguration } from '@aurelia-mdc-web/typography';
 
@@ -15,7 +16,7 @@ export const AllConfiguration = {
   register(container: IContainer): IContainer {
     return container.register(
       ButtonConfiguration, DrawerConfiguration, CircularProgressConfiguration, ListConfiguration, IconConfiguration, RippleConfiguration,
-      TopAppBarConfiguration, TypographyConfiguration
+      TopAppBarConfiguration, TypographyConfiguration, TabBarConfiguration
     );
   },
   /**

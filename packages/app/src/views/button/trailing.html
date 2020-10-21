@@ -1,20 +1,20 @@
-<template>
-  <require from="./trailing.scss"></require>
+<import from="./trailing.scss"></import>
+<div class="demo-layout__row">
   <div class="demo-container">
-    <button mdc-button>
+    <button as-element="mdc-button">
       <span mdc-button-label>Trailing Icon</span>
       <mdc-icon>favorite</mdc-icon>
     </button>
   </div>
   <div class="demo-container">
-    <button mdc-button raised class="demo-button-secondary">
+    <button as-element="mdc-button" raised class="demo-button-secondary">
       <span mdc-button-label>Trailing Icon</span>
       <mdc-icon>favorite</mdc-icon>
     </button>
   </div>
   <div class="demo-container">
-    <button mdc-button outlined label="Trailing Icon">
+    <button as-element="mdc-button" outlined label="Trailing Icon">
       <mdc-icon>favorite</mdc-icon>
     </button>
   </div>
-</template>
+</div>
