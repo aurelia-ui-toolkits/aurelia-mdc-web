@@ -1,21 +1,28 @@
-import { customElement, children, customAttribute } from 'aurelia';
+import { customElement, children, customAttribute, inject } from 'aurelia';
 
 /**
  * Optional. Wrapper around two or more mdc-list elements to be grouped together.
  * @selector mdc-list-group
  */
+@inject(Element)
 @customElement({
   name: 'mdc-list-group',
   template: '<template class="mdc-list-group"></template>'
 })
 export class MdcListGroup {
-  @children({
-    filter: el => ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes((el as HTMLElement).tagName)
-  })
-  // @children({ } 'h1,h2,h3,h4,h5,h6')
-  headers: HTMLElement[];
-  headersChanged() {
-    this.headers.forEach(x => x.classList.add('mdc-list-group__subheader'));
+  constructor(private root: HTMLElement) { }
+
+  // TODO: this is not working yet
+  // @children({
+  //   filter: el => ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes((el as HTMLElement).tagName)
+  // })
+  // headers: HTMLElement[];
+  // headersChanged() {
+  //   this.headers.forEach(x => x.classList.add('mdc-list-group__subheader'));
+  // }
+
+  afterAttach() {
+    this.root.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(x => x.classList.add('mdc-list-group__subheader'));
   }
 }
 

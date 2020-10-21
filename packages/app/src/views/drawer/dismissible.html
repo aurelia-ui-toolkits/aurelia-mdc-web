@@ -6,7 +6,7 @@
         <mdc-list>
           <mdc-list-item repeat.for="item of destinations" activated.bind="item.activated">
             <mdc-icon mdc-list-item-graphic if.bind="item.icon">${item.icon}</mdc-icon>
-            <span>${item.label}</span>
+            <mdc-list-item-text>${item.label}</mdc-list-item-text>
           </mdc-list-item>
         </mdc-list>
       </mdc-drawer-content>
@@ -16,5 +16,14 @@
       voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumo invidunt mel id, in vim dictas detraxit. Per
       an legere iriure blandit. Veri iisque accusamus an pri.
     </mdc-drawer-app-content>
+  </div>
+  <div class="demo-layout__row">
+    <button as-element="mdc-button" click.delegate="demoDismissible.toggle()">Open/Close</button>
+    <button as-element="mdc-button" click.delegate="alternateColors(demoDismissible.root, 'demo-drawer--custom')">
+      Custom Colors
+    </button>
+    <button as-element="mdc-button" click.delegate="alternateColors(demoDismissible.root, 'demo-drawer--accessible')">
+      Accessible Colors
+    </button>
   </div>
 </template>

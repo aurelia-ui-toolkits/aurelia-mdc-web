@@ -20,9 +20,9 @@
 </mdc-top-app-bar>
 <div class="demo-panel mdc-typography">
   <mdc-drawer view-model.ref="drawer" type="dismissible" mdc-top-app-bar-fixed-adjust>
-    <mdc-drawer-header au-slot1 title="Aurelia" subtitle="Material Components Web"></mdc-drawer-header>
-    <mdc-drawer-content au-slot1>
-      <mdc-list au-slot1 activated wrap-focus mdclist:action.trigger="navigateTo($event.detail)" tabindex="0">
+    <mdc-drawer-header title="Aurelia" subtitle="Material Components Web"></mdc-drawer-header>
+    <mdc-drawer-content>
+      <mdc-list activated wrap-focus mdclist:action.trigger="navigateTo($event.detail)" tabindex="0">
         <template repeat.for="m of navRoutes">
           <mdc-list-item activated1.bind="m.active" value.bind="m">
             <mdc-list-item-text>

@@ -4,35 +4,35 @@
       <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
       <mdc-drawer-content>
         <mdc-list activated>
-          <a mdc-list-item repeat.for="item of destinations" activated.bind="item.activated"
+          <a as-element="mdc-list-item" repeat.for="item of destinations" activated.bind="item.activated"
             click.delegate="item.activated = !item.activated">
             <mdc-icon mdc-list-item-graphic if.bind="item.icon">${item.icon}</mdc-icon>
-            <span>${item.label}</span>
+            <mdc-list-item-text>${item.label}</mdc-list-item-text>
           </a>
           <mdc-list-divider></mdc-list-divider>
           <mdc-list-group>
             <h6>Labels</h6>
           </mdc-list-group>
-          <a mdc-list-item href="#/drawer-demo/examples">
+          <a as-element="mdc-list-item" href="#/drawer-demo/examples">
             <mdc-icon mdc-list-item-graphic>bookmark</mdc-icon>
-            <span>Family</span>
+            <mdc-list-item-text>Family</mdc-list-item-text>
           </a>
-          <a mdc-list-item href="#/drawer-demo/examples">
+          <a as-element="mdc-list-item" href="#/drawer-demo/examples">
             <mdc-icon mdc-list-item-graphic>bookmark</mdc-icon>
-            <span>Friends</span>
+            <mdc-list-item-text>Friends</mdc-list-item-text>
           </a>
-          <a mdc-list-item href="#/drawer-demo/examples">
+          <a as-element="mdc-list-item" href="#/drawer-demo/examples">
             <mdc-icon mdc-list-item-graphic>bookmark</mdc-icon>
-            <span>Work</span>
+            <mdc-list-item-text>Work</mdc-list-item-text>
           </a>
           <mdc-list-divider></mdc-list-divider>
-          <a mdc-list-item href="#/drawer-demo/examples">
+          <a as-element="mdc-list-item" href="#/drawer-demo/examples">
             <mdc-icon mdc-list-item-graphic>settings</mdc-icon>
-            <span>Settings</span>
+            <mdc-list-item-text>Settings</mdc-list-item-text>
           </a>
-          <a mdc-list-item href="#/drawer-demo/examples">
+          <a as-element="mdc-list-item" href="#/drawer-demo/examples">
             <mdc-icon mdc-list-item-graphic>announcement</mdc-icon>
-            <span>Help & feedback</span>
+            <mdc-list-item-text>Help & feedback</mdc-list-item-text>
           </a>
         </mdc-list>
       </mdc-drawer-content>

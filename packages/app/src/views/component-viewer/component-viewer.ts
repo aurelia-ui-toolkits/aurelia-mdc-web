@@ -22,10 +22,11 @@ export class ComponentViewer {
 
   template: IComponentTemplate;
 
-  tabs: ITab[] = [{ title: 'Examples', link: 'examples' }, { title: 'Api', link: 'api-viewer' }];
+  tabs: ITab[];
 
   load(parameters: Record<string, unknown>, nextInstruction: Navigation) {
-    // this.tabs = this.router.routes.filter(x => !x.redirect);
-    this.template = templates[(nextInstruction.instruction as string).replace('/', '').replace('-page', '')];
+    const component = (nextInstruction.instruction as string).replace('/', '').replace('-page', '');
+    this.template = templates[component];
+    this.tabs = [{ title: 'Examples', link: `${component}-examples` }, { title: 'Api', link: 'api-viewer' }];
   }
 }

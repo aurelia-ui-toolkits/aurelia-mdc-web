@@ -1,8 +1,8 @@
 
 import { IContainer } from '@aurelia/kernel';
-import { MdcCircularProgress, IMdcCircularProgressElement } from './mdc-circular-progress';
+import { MdcCircularProgress } from './mdc-circular-progress';
 
-export { MdcCircularProgress, IMdcCircularProgressElement };
+export { MdcCircularProgress };
 
 export const CircularProgressConfiguration = {
   register(container: IContainer): IContainer {

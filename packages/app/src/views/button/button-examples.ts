@@ -21,25 +21,23 @@ import trailingSass from '!!raw-loader!./trailing.scss';
 import accessibilityHtml from '!!raw-loader!./accessibility.html';
 
 import * as Default from './default.html';
-import * as Density from './density.html';
-import * as  Icon from './icon.html';
-import * as  Accessibility from './accessibility.html';
-import * as  Theme from './theme.html';
-import * as  Trailing from './trailing.html';
-import * as  SvgExample from './svg-example.html';
-import * as  Shaped from './shaped.html';
+import * as density from './density.html';
+import * as  icon from './icon.html';
+import * as  accessibility from './accessibility.html';
+import * as  theme from './theme.html';
+import * as  trailing from './trailing.html';
+import * as  svgExample from './svg-example.html';
+import * as  shaped from './shaped.html';
 
-export class Examples {
-  tabs = [{ title: 'Examples', link: 'examples' }, { title: 'Api', link: 'api-viewer' }];
-
-  accessibility = Accessibility;
+export class ButtonExamples {
+  accessibility = accessibility;
   default = Default;
-  density = Density;
-  icon = Icon;
-  shaped = Shaped;
-  svgExample = SvgExample;
-  theme = Theme;
-  trailing = Trailing;
+  density = density;
+  icon = icon;
+  shaped = shaped;
+  svgExample = svgExample;
+  theme = theme;
+  trailing = trailing;
 
   defaultHtml = defaultHtml;
   defaultSass = defaultSass;

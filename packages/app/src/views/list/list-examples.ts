@@ -16,7 +16,22 @@ import avatarHtml from '!!raw-loader!./avatar.html';
 import groupHtml from '!!raw-loader!./group.html';
 import expandableHtml from '!!raw-loader!./expandable.html';
 
-export class Examples {
+import * as avatar from './avatar.html';
+import * as custom from './custom.html';
+import * as disableRipple from './disable-ripple.html';
+import * as expandable from './expandable.html';
+import * as group from './group.html';
+import * as leadingCheckbox from './leading-checkbox.html';
+import * as leadingIcon from './leading-icon.html';
+import * as leadingTrailingIcon from './leading-trailing-icon.html';
+import * as shaped from './shaped.html';
+import * as singleLine from './single-line.html';
+import * as trailingCeckbox from './trailing-checkbox.html';
+import * as trailingIcon from './trailing-icon.html';
+import * as twoLine from './two-line.html';
+import * as twoLineLeadingTrailingIcon from './two-line-leading-trailing-icon.html';
+
+export class ListExamples {
   customHtml = customHtml;
   customSass = customSass;
   customCode = customCode;
@@ -34,6 +49,21 @@ export class Examples {
   avatarHtml = avatarHtml;
   groupHtml = groupHtml;
   expandableHtml = expandableHtml;
+
+  avatar = avatar;
+  custom = custom;
+  disableRipple = disableRipple;
+  expandable = expandable;
+  group = group;
+  leadingCheckbox = leadingCheckbox;
+  leadingIcon = leadingIcon;
+  leadingTrailingIcon = leadingTrailingIcon;
+  shaped = shaped;
+  singleLine = singleLine;
+  trailingCeckbox = trailingCeckbox;
+  trailingIcon = trailingIcon;
+  twoLine = twoLine;
+  twoLineLeadingTrailingIcon = twoLineLeadingTrailingIcon;
 
   items = [
     { label: 'Wi-Fi', icon: 'network_wifi' },

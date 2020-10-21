@@ -1,14 +1,18 @@
 <template>
   <mdc-list single-selection>
     <mdc-list-item tabindex="0" mdclistitem:action.delegate="expanded = !expanded" no-list-action>
-      line item
+      <mdc-list-item-text>line item</mdc-list-item-text>
       <mdc-icon mdc-list-item-meta>${expanded ? 'expand_less' :'expand_more'}</mdc-icon>
     </mdc-list-item>
     <div if.bind="expanded">
       <mdc-list-item style="padding-left: 30px;">Child 1</mdc-list-item>
       <mdc-list-item style="padding-left: 30px;">Child 2</mdc-list-item>
     </div>
-    <mdc-list-item>line item</mdc-list-item>
-    <mdc-list-item>line item</mdc-list-item>
+    <mdc-list-item>
+      <mdc-list-item-text>line item</mdc-list-item-text>
+    </mdc-list-item>
+    <mdc-list-item>
+      <mdc-list-item-text>line item</mdc-list-item-text>
+    </mdc-list-item>
   </mdc-list>
 </template>

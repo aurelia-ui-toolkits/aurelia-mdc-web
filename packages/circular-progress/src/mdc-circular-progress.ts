@@ -40,7 +40,7 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
     }
   }
 
-  bind() {
+  afterBind() {
     this.updateSizeAndStroke();
   }
 
@@ -75,13 +75,3 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
   }
 }
 
-/** @hidden */
-export interface IMdcCircularProgressElement extends HTMLElement {
-  checked: boolean;
-  indeterminate: boolean;
-  au: {
-    controller: {
-      viewModel: MdcCircularProgress;
-    };
-  };
-}

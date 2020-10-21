@@ -6,8 +6,10 @@
       single-selection.bind="singleSelection" two-line avatar class="demo-list--custom">
       <mdc-list-item repeat.for="folder of folders" disable-ripple.bind="disableRipple">
         <mdc-icon mdc-list-item-graphic>${folder.icon}</mdc-icon>
-        <mdc-list-item-primary-text>${folder.name}</mdc-list-item-primary-text>
-        <mdc-list-item-secondary-text>${folder.addDate}</mdc-list-item-secondary-text>
+        <mdc-list-item-text>
+          <mdc-list-item-primary-text>${folder.name}</mdc-list-item-primary-text>
+          <mdc-list-item-secondary-text>${folder.addDate}</mdc-list-item-secondary-text>
+        </mdc-list-item-text>
         <a href="#/list/examples" mdc-list-item-meta aria-label="View more" title="More info">
           <mdc-icon>info</mdc-icon>
         </a>
@@ -16,8 +18,10 @@
       <h3 mdc-list-group-subheader>Files</h3>
       <mdc-list-item repeat.for="file of files" disable-ripple.bind="disableRipple">
         <mdc-icon mdc-list-item-graphic>${file.icon}</mdc-icon>
-        <mdc-list-item-primary-text>${file.name}</mdc-list-item-primary-text>
-        <mdc-list-item-secondary-text>${file.addDate}</mdc-list-item-secondary-text>
+        <mdc-list-item-text>
+          <mdc-list-item-primary-text>${file.name}</mdc-list-item-primary-text>
+          <mdc-list-item-secondary-text>${file.addDate}</mdc-list-item-secondary-text>
+        </mdc-list-item-text>
         <a href="#/list/examples" mdc-list-item-meta aria-label="View more" title="More info">
           <mdc-icon>info</mdc-icon>
         </a>

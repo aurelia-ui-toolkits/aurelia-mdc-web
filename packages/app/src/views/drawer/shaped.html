@@ -1,21 +1,27 @@
-<template>
-  <require from="./shaped.scss"></require>
-  <div class="demo-layout__row--no-wrap demo-drawer-app">
-    <mdc-drawer ref="demoShaped">
-      <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
-      <mdc-drawer-content>
-        <mdc-list class="demo-list--shaped">
-          <a mdc-list-item repeat.for="item of destinations" activated.bind="item.activated">
-            <mdc-icon mdc-list-item-graphic if.bind="item.icon">${item.icon}</mdc-icon>
-            <span>${item.label}</span>
-          </a>
-        </mdc-list>
-      </mdc-drawer-content>
-    </mdc-drawer>
-    <div style="padding: 16px; height: 400px;">
-      Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque
-      voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumoinvidunt mel id, in vim dictas detraxit. Per an
-      legere iriure blandit. Veri iisque accusamus an pri.
-    </div>
+<import from="./shaped.scss"></import>
+<div class="demo-layout__row--no-wrap demo-drawer-app">
+  <mdc-drawer ref="demoShaped">
+    <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
+    <mdc-drawer-content>
+      <mdc-list class="demo-list--shaped">
+        <a as-element="mdc-list-item" repeat.for="item of destinations" activated.bind="item.activated">
+          <mdc-icon mdc-list-item-graphic if.bind="item.icon">${item.icon}</mdc-icon>
+          <mdc-list-item-text>${item.label}</mdc-list-item-text>
+        </a>
+      </mdc-list>
+    </mdc-drawer-content>
+  </mdc-drawer>
+  <div style="padding: 16px; height: 400px;">
+    Lorem ipsum dolor sit amet, ad erat postea ullamcorper nec, veri veniam quo et. Diam phaedrum ei mea, quaeque
+    voluptaria efficiantur duo no. Eu adhuc veritus civibus nec, sumoinvidunt mel id, in vim dictas detraxit. Per an
+    legere iriure blandit. Veri iisque accusamus an pri.
   </div>
-</template>
+</div>
+<div class="demo-layout__row">
+  <button as-element="mdc-button" click.delegate="alternateColors(demoShaped, 'demo-drawer--custom')">
+    Custom Colors
+  </button>
+  <button as-element="mdc-button" click.delegate="alternateColors(demoShaped, 'demo-drawer--accessible')">
+    Accessible Colors
+  </button>
+</div>
