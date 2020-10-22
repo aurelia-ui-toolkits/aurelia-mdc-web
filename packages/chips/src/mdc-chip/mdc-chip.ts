@@ -112,7 +112,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     this.foundation?.setShouldFocusPrimaryActionOnClick(this.focusPrimary);
   }
 
-  initialSelected?: boolean;
+  selected_?: boolean;
   /**
    * @return Whether the chip is selected.
    */
@@ -120,16 +120,15 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     if (this.foundation) {
       return this.foundation.isSelected();
     } else {
-      return this.initialSelected ?? false;
+      return this.selected_ ?? false;
     }
   }
 
   /** Sets selected state on the chip. */
   set selected(selected: boolean) {
+    this.selected_ = selected;
     if (this.foundation) {
       this.foundation.setSelected(selected);
-    } else {
-      this.initialSelected = selected;
     }
   }
 
@@ -143,8 +142,8 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   }
 
   initialSyncWithDOM() {
-    if (this.initialSelected !== undefined) {
-      this.selected = this.initialSelected;
+    if (this.selected_ !== undefined) {
+      this.selected = this.selected_;
     }
   }
 
