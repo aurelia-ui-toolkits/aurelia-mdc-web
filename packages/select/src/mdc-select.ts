@@ -292,7 +292,11 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   handleBlur() {
     this.foundation?.handleBlur();
-    this.emit('blur', {}, true);
+    // if class is set it means the menu is open,
+    // do not emit blur since "conceptually" the element is still active
+    if (!this.root.classList.contains(cssClasses.FOCUSED)) {
+      this.emit('blur', {}, true);
+    }
   }
 
   handleClick(evt: MouseEvent) {
@@ -315,6 +319,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   handleMenuClosed() {
     this.foundation?.handleMenuClosed();
+    if (!this.root.classList.contains(cssClasses.FOCUSED)) {
+      this.emit('blur', {}, true);
+    }
   }
 
   handleItemsChanged() {

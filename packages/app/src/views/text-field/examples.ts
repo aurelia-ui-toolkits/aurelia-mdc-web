@@ -65,7 +65,7 @@ export class Examples {
   rules: Rule<Examples, unknown>[][];
 
   value = 0;
-  valueStr: string = 'test';
+  valueStr: string = '';
 
   textareaDisabled: boolean;
   textareaRequired: boolean;
