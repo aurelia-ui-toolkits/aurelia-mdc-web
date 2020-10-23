@@ -91,6 +91,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
 
+  @bindable.booleanAttr
+  twoLine: boolean;
+
   private initialValue: unknown;
   get value(): unknown {
     if (this.foundation) {
