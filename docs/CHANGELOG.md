@@ -1,3 +1,18 @@
+# [v1.1.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.3...v1.1.4) (2020-10-25)
+
+
+### Bug Fixes
+
+* **chip:** avoid dirty checking ([c4d8e52](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c4d8e52c06749a09301893cd50ae99b8807a609f)), closes [#17](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/17)
+
+
+### Features
+
+* **select:** add two-line attribute ([62630be](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/62630bec5ae066c2c6315f815c98b5b56125468f))
+* **select:** do not emit blur if select is focused ([c62523b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c62523b960b7f8e52cbdc1f7af19ae8114504a54)), closes [#18](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/18)
+
+
+
 # [v1.1.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.2...v1.1.3) (2020-10-15)
 
 
