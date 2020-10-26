@@ -261,7 +261,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
       elementContainsClass: (element, className) => element.classList.contains(className),
       closeSurface: (skipRestoreFocus: boolean) => {
         if (this.closeSurfaceOnSelection) {
-          this.menuSurface_.close(skipRestoreFocus);
+          this.menuSurface_?.close(skipRestoreFocus);
         }
       },
       getElementIndex: (element) => this.items.indexOf(element),
