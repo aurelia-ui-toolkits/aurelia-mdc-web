@@ -2,7 +2,7 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTabFoundation, MDCTabAdapter, MDCTabInteractionEventDetail, MDCTabDimensions } from '@material/tab';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcTabIndicator } from '../indicator/mdc-tab-indicator';
-import { inject, useView, customElement } from 'aurelia-framework';
+import { inject, useView, customElement, bindingMode } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 
 let tabId = 0;
@@ -22,7 +22,7 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   @bindable.booleanAttr
   fixed: boolean;
 
-  @bindable.booleanAttr
+  @bindable.booleanAttr({ defaultBindingMode: bindingMode.twoWay })
   active: boolean;
 
   @bindable
@@ -81,6 +81,7 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
    */
   activate(computeIndicatorClientRect?: ClientRect) {
     this.foundation?.activate(computeIndicatorClientRect);
+    this.active = true;
   }
 
   /**
@@ -88,6 +89,7 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
    */
   deactivate() {
     this.foundation?.deactivate();
+    this.active = false;
   }
 
   /**
