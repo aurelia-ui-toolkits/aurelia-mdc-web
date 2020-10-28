@@ -96,7 +96,6 @@ export const templates: { [x: string]: IComponentTemplate } = {
     ],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/circular-progress\'));',
     sass: `@use '@material/circular-progress/mdc-circular-progress';
-@use '@material/circular-progress';
 @use "@aurelia-mdc-web/circular-progress";`
   },
   'data-table': {
