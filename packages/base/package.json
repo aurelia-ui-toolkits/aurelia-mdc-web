@@ -54,7 +54,8 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@material/base": "^7.0.0"
+    "@material/base": "^7.0.0",
+    "aurelia-typed-observable-plugin": "^0.4.2"
   },
   "peerDependencies": {
     "aurelia-binding": "^2.5.4",
@@ -66,7 +67,6 @@
     "aurelia-templating": "^1.10.4",
     "aurelia-templating-binding": "^1.5.3",
     "aurelia-templating-resources": "^1.13.0",
-    "aurelia-typed-observable-plugin": "^0.4.2",
     "tslib": "^1.9.3"
   },
   "devDependencies": {
