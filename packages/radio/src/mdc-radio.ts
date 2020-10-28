@@ -45,12 +45,21 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
     }
   }
 
+  initialValue?: string;
   get value(): string {
-    return this.nativeControl_.value;
+    if (this.nativeControl_) {
+      return this.nativeControl_.value;
+    } else {
+      return this.initialValue ?? '';
+    }
   }
 
   set value(value: string) {
-    this.nativeControl_.value = value;
+    if (this.nativeControl_) {
+      this.nativeControl_.value = value;
+    } else {
+      this.initialValue = value;
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
@@ -68,6 +77,9 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
     if (this.initialChecked !== undefined) {
       this.checked = this.initialChecked;
     }
+    if (this.initialValue !== undefined) {
+      this.value = this.initialValue;
+    }
   }
 
   getDefaultFoundation() {
@@ -77,7 +89,7 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
       setNativeControlDisabled: (disabled) => this.nativeControl_.disabled =
-          disabled,
+        disabled,
     };
     return new MDCRadioFoundation(adapter);
   }
