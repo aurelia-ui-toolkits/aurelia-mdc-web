@@ -1,3 +1,15 @@
+# [v1.1.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.4...v1.1.5) (2020-10-29)
+
+
+### Bug Fixes
+
+* **mdc-menu:** check for undefined reference ([8defc59](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8defc59e691ae6910aeeddf1736dc84c9c6efab8))
+* **radio:** check for undefined native input ([b46b81b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b46b81bf890dddcfd3aa426d294c73798594f562))
+* **select:** check for undefined menu reference ([229f047](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/229f0477b43eee35aece87d022a8ca9d1ff29d25))
+* **tabs:** set bindable active ([b99b48e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b99b48e72fa1a1d3ee7730145a0137d31243427e))
+
+
+
 # [v1.1.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.3...v1.1.4) (2020-10-25)
 
 
