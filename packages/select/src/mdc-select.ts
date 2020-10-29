@@ -42,7 +42,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private selectAnchor: HTMLElement;
   private selectedText: HTMLElement;
 
-  private menuElement: Element;
+  private menuElement?: Element;
 
   @children('mdc-list-items')
   items: MdcListItem;
@@ -183,7 +183,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   private getSelectAdapterMethods() {
     return {
-      getSelectedMenuItem: () => this.menuElement.querySelector(strings.SELECTED_ITEM_SELECTOR),
+      getSelectedMenuItem: () => this.menuElement?.querySelector(strings.SELECTED_ITEM_SELECTOR) ?? null,
       getMenuItemAttr: (menuItem: Element, attr: string) => menuItem.getAttribute(attr),
       setSelectedText: (text: string) => {
         this.selectedText.textContent = text;
@@ -197,10 +197,10 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
         this.selectAnchor.removeAttribute(attr);
       },
       addMenuClass: (className: string) => {
-        this.menuElement.classList.add(className);
+        this.menuElement?.classList.add(className);
       },
       removeMenuClass: (className: string) => {
-        this.menuElement.classList.remove(className);
+        this.menuElement?.classList.remove(className);
       },
       openMenu: () => { this.menu.open = true; },
       closeMenu: () => { this.menu.open = false; },
