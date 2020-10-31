@@ -25,21 +25,29 @@ export class MdcLayoutGrid {
   /** Set desktop column width */
   @bindable.number
   desktopColumnWidth: string;
-  desktopColumnWidthChanged(){
+  desktopColumnWidthChanged() {
     this.root.style.setProperty('--mdc-layout-grid-column-width-desktop', `${this.desktopColumnWidth}px`);
   }
 
   /** Set tablet column width */
   @bindable.number
   tabletColumnWidth: string;
-  tabletColumnWidthChanged(){
+  tabletColumnWidthChanged() {
     this.root.style.setProperty('--mdc-layout-grid-column-width-tablet', `${this.tabletColumnWidth}px`);
   }
 
   /** Set phone column width */
   @bindable.number
   phoneColumnWidth: string;
-  phoneColumnWidthChanged(){
+  phoneColumnWidthChanged() {
     this.root.style.setProperty('--mdc-layout-grid-column-width-phone', `${this.phoneColumnWidth}px`);
   }
+
+  /** Set all column widths at once */
+  @bindable.number
+  columnWidths: string;
+  columnWidthsChanged() {
+    [this.phoneColumnWidth, this.tabletColumnWidth, this.desktopColumnWidth] = this.columnWidths.split(' ');
+  }
+
 }
