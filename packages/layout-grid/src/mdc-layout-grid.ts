@@ -18,6 +18,10 @@ export class MdcLayoutGrid {
   @bindable.booleanAttr
   fixedColumnWidth: boolean;
 
+  /** Specifies the grid should have no padding */
+  @bindable.booleanAttr
+  noPadding: boolean;
+
   /** Set desktop column width */
   @bindable.number
   desktopColumnWidth: string;

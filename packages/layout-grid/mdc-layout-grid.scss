@@ -1,3 +1,7 @@
 .mdc-layout-grid {
   display: block;
+
+  &--no-padding {
+    padding: 0;
+  }
 }
