@@ -4,7 +4,7 @@ import {
   MDCTextFieldLineRippleAdapter, cssClasses, MDCTextFieldOutlineAdapter, helperTextStrings, characterCountStrings
 } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
-import { MdcComponent, IValidatedElement } from '@aurelia-mdc-web/base';
+import { MdcComponent, IValidatedElement, IError } from '@aurelia-mdc-web/base';
 import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
 import { bindable } from 'aurelia-typed-observable-plugin';
@@ -13,6 +13,7 @@ import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './md
 import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
 import { MDCFoundation } from '@material/base';
+import { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 
 let textFieldId = 0;
 
@@ -42,7 +43,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   outline_!: MdcNotchedOutline | null; // assigned in html
   helperText_: MdcTextFieldHelperText | undefined;
   characterCounter_: MdcTextFieldCharacterCounter | undefined;
-  errors = new Map<unknown, boolean>();
+  errors = new Map<IError, boolean>();
 
   @bindable
   label: string;
@@ -217,12 +218,12 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  addError(error: unknown) {
+  addError(error: IError) {
     this.errors.set(error, true);
     this.valid = false;
   }
 
-  removeError(error: unknown) {
+  removeError(error: IError) {
     this.errors.delete(error);
     this.valid = this.errors.size === 0;
   }
@@ -236,12 +237,20 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.foundation?.setValid(value);
   }
 
+  updateErrors() {
+    const helperLine = this.root.nextElementSibling as IMdcTextFieldHelperLineElement;
+    if (helperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
+      helperLine.au.controller.viewModel.errors = Array.from(this.errors.keys())
+        .filter(x => x.message !== null).map(x => x.message!);
+    }
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   bind() { }
 
   initialSyncWithDOM() {
     this.value = this.initialValue;
-    this.errors = new Map<unknown, boolean>();
+    this.errors = new Map<IError, boolean>();
     this.valid = true;
   }
 
@@ -472,20 +481,20 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       configurable: true
     },
     addError: {
-      value(this: IMdcTextFieldElement, error: unknown) {
+      value(this: IMdcTextFieldElement, error: IError) {
         this.au.controller.viewModel.addError(error);
       },
       configurable: true
     },
     removeError: {
-      value(this: IMdcTextFieldElement, error: unknown) {
+      value(this: IMdcTextFieldElement, error: IError) {
         this.au.controller.viewModel.removeError(error);
       },
       configurable: true
     },
-    getErrors: {
-      value(this: IMdcTextFieldElement): unknown[] {
-        return Array.from(this.au.controller.viewModel.errors.keys());
+    updateErrors: {
+      value(this: IMdcTextFieldElement): void {
+        this.au.controller.viewModel.updateErrors();
       },
       configurable: true
     },

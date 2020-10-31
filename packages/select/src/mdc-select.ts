@@ -1,4 +1,4 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, IValidatedElement, IError } from '@aurelia-mdc-web/base';
 import { cssClasses, MDCSelectFoundationMap, MDCSelectEventDetail, strings } from '@material/select';
 import { inject, useView, customElement, processContent, ViewCompiler, ViewResources, children, bindingMode, TaskQueue } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
@@ -54,7 +54,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private mdcLabel: MdcFloatingLabel;
   private outline?: MDCNotchedOutline;
   // private mutationObserver: MutationObserver;
-  errors = new Map<unknown, boolean>();
+  errors = new Map<IError, boolean>();
 
   @bindable
   label: string;
@@ -128,14 +128,22 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     this.foundation?.setSelectedIndex(selectedIndex, /** closeMenu */ true);
   }
 
-  addError(error: unknown) {
+  addError(error: IError) {
     this.errors.set(error, true);
     this.valid = false;
   }
 
-  removeError(error: unknown) {
+  removeError(error: IError) {
     this.errors.delete(error);
     this.valid = this.errors.size === 0;
+  }
+
+  updateErrors() {
+    const helperText = this.root.nextElementSibling as IMdcSelectHelperTextElement;
+    if (helperText?.tagName === 'MDC-SELECT-HELPER-TEXT') {
+      helperText.au.controller.viewModel.errors = Array.from(this.errors.keys())
+        .filter(x => x.message !== null).map(x => x.message!);
+    }
   }
 
   async initialise() {
@@ -165,7 +173,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     // set initial value without emitting change events
     this.foundation?.setValue(this.initialValue, true);
     this.foundation?.layout();
-    this.errors = new Map<unknown, boolean>();
+    this.errors = new Map<IError, boolean>();
     this.valid = true;
   }
 
@@ -363,13 +371,12 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 }
 
 /** @hidden */
-export interface IMdcSelectElement extends HTMLElement {
+export interface IMdcSelectElement extends IValidatedElement {
   au: {
     controller: {
       viewModel: MdcSelect;
     };
   };
-  getErrors(): unknown[];
 }
 
 function defineMdcSelectElementApis(element: HTMLElement) {
@@ -404,20 +411,20 @@ function defineMdcSelectElementApis(element: HTMLElement) {
       configurable: true
     },
     addError: {
-      value(this: IMdcSelectElement, error: unknown) {
+      value(this: IMdcSelectElement, error: IError) {
         this.au.controller.viewModel.addError(error);
       },
       configurable: true
     },
     removeError: {
-      value(this: IMdcSelectElement, error: unknown) {
+      value(this: IMdcSelectElement, error: IError) {
         this.au.controller.viewModel.removeError(error);
       },
       configurable: true
     },
-    getErrors: {
-      value(this: IMdcSelectElement) {
-        return Array.from(this.au.controller.viewModel.errors.keys());
+    updateErrors: {
+      value(this: IMdcSelectElement): void {
+        this.au.controller.viewModel.updateErrors();
       },
       configurable: true
     },

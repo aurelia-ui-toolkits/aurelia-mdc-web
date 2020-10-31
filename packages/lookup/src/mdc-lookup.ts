@@ -3,7 +3,7 @@ import { DiscardablePromise } from './discardable-promise';
 import { MdcDefaultLookupConfiguration } from './mdc-lookup-configuration';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
-import { IValidatedElement } from '@aurelia-mdc-web/base';
+import { IValidatedElement, IError } from '@aurelia-mdc-web/base';
 import { closest } from '@material/dom/ponyfill';
 
 const UP = 38;
@@ -294,56 +294,53 @@ export class MdcLookup implements EventListenerObject {
     return true;
   }
 
-  addError(error: unknown) {
+  addError(error: IError) {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
       (this.input as HTMLElement as IValidatedElement).addError(error);
     }
   }
 
-  removeError(error: unknown) {
+  removeError(error: IError) {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
       (this.input as HTMLElement as IValidatedElement).removeError(error);
     }
   }
 
-  getErrors(): unknown[] {
-    if (this.input && Object.getOwnPropertyDescriptor(this.input, 'getErrors')) {
-      return (this.input as HTMLElement as IValidatedElement).getErrors();
-    } else {
-      return [];
+  updateErrors() {
+    if (this.input && Object.getOwnPropertyDescriptor(this.input, 'updateErrors')) {
+      (this.input as HTMLElement as IValidatedElement).updateErrors();
     }
   }
 }
 
 /** @hidden */
-export interface IMdcLookupElement extends HTMLElement {
+export interface IMdcLookupElement extends IValidatedElement {
   au: {
     controller: {
       viewModel: MdcLookup;
     };
   };
-  getErrors(): unknown[];
 }
 
 function defineMdcLookupElementApis(element: HTMLElement) {
   Object.defineProperties(element, {
     addError: {
-      value(this: IMdcLookupElement, error: unknown) {
+      value(this: IMdcLookupElement, error: IError) {
         this.au.controller.viewModel.addError(error);
       },
       configurable: true
     },
     removeError: {
-      value(this: IMdcLookupElement, error: unknown) {
+      value(this: IMdcLookupElement, error: IError) {
         this.au.controller.viewModel.removeError(error);
       },
       configurable: true
     },
-    getErrors: {
-      value(this: IMdcLookupElement): unknown[] {
-        return this.au.controller.viewModel.getErrors();
+    updateErrors: {
+      value(this: IMdcLookupElement): void {
+        this.au.controller.viewModel.updateErrors();
       },
       configurable: true
-    }
+    },
   });
 }

@@ -1,6 +1,11 @@
 /** @hidden */
+export interface IError {
+  message: string | null;
+}
+
+/** @hidden */
 export interface IValidatedElement extends HTMLElement {
-  addError(error: unknown): void;
-  removeError(error: unknown): void;
-  getErrors(): unknown[];
+  addError(error: IError): void;
+  removeError(error: IError): void;
+  updateErrors(): void;
 }
