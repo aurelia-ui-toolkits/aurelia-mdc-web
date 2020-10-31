@@ -28,8 +28,8 @@ export class MdcValidationRenderer implements ValidationRenderer {
     }
 
     for (const el of elements.keys()) {
-      if (Object.getOwnPropertyDescriptor(el, 'updateErrors')) {
-        el.updateErrors();
+      if (Object.getOwnPropertyDescriptor(el, 'renderErrors')) {
+        el.renderErrors();
       }
     }
   }

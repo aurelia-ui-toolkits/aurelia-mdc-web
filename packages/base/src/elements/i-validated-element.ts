@@ -7,5 +7,5 @@ export interface IError {
 export interface IValidatedElement extends HTMLElement {
   addError(error: IError): void;
   removeError(error: IError): void;
-  updateErrors(): void;
+  renderErrors(): void;
 }

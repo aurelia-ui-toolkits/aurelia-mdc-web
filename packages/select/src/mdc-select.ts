@@ -138,7 +138,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     this.valid = this.errors.size === 0;
   }
 
-  updateErrors() {
+  renderErrors() {
     const helperText = this.root.nextElementSibling as IMdcSelectHelperTextElement;
     if (helperText?.tagName === 'MDC-SELECT-HELPER-TEXT') {
       helperText.au.controller.viewModel.errors = Array.from(this.errors.keys())
@@ -422,9 +422,9 @@ function defineMdcSelectElementApis(element: HTMLElement) {
       },
       configurable: true
     },
-    updateErrors: {
+    renderErrors: {
       value(this: IMdcSelectElement): void {
-        this.au.controller.viewModel.updateErrors();
+        this.au.controller.viewModel.renderErrors();
       },
       configurable: true
     },

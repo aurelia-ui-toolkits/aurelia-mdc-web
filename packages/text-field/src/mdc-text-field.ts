@@ -237,7 +237,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.foundation?.setValid(value);
   }
 
-  updateErrors() {
+  renderErrors() {
     const helperLine = this.root.nextElementSibling as IMdcTextFieldHelperLineElement;
     if (helperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
       helperLine.au.controller.viewModel.errors = Array.from(this.errors.keys())
@@ -492,9 +492,9 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
       },
       configurable: true
     },
-    updateErrors: {
+    renderErrors: {
       value(this: IMdcTextFieldElement): void {
-        this.au.controller.viewModel.updateErrors();
+        this.au.controller.viewModel.renderErrors();
       },
       configurable: true
     },

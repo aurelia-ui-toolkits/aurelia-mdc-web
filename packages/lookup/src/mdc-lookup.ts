@@ -306,9 +306,9 @@ export class MdcLookup implements EventListenerObject {
     }
   }
 
-  updateErrors() {
+  renderErrors() {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'updateErrors')) {
-      (this.input as HTMLElement as IValidatedElement).updateErrors();
+      (this.input as HTMLElement as IValidatedElement).renderErrors();
     }
   }
 }
@@ -336,9 +336,9 @@ function defineMdcLookupElementApis(element: HTMLElement) {
       },
       configurable: true
     },
-    updateErrors: {
+    renderErrors: {
       value(this: IMdcLookupElement): void {
-        this.au.controller.viewModel.updateErrors();
+        this.au.controller.viewModel.renderErrors();
       },
       configurable: true
     },
