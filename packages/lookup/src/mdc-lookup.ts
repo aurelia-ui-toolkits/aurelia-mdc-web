@@ -307,7 +307,7 @@ export class MdcLookup implements EventListenerObject {
   }
 
   renderErrors() {
-    if (this.input && Object.getOwnPropertyDescriptor(this.input, 'updateErrors')) {
+    if (this.input && Object.getOwnPropertyDescriptor(this.input, 'renderErrors')) {
       (this.input as HTMLElement as IValidatedElement).renderErrors();
     }
   }
