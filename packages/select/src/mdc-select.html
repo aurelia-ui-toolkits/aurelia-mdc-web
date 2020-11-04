@@ -9,7 +9,9 @@
     click.trigger="handleClick($event)">
     <span class="mdc-select__ripple" if.bind="!outlined"></span>
     <slot name="leading-icon"></slot>
-    <span class="mdc-select__selected-text" ref="selectedText"></span>
+    <span class="mdc-select__selected-text-container">
+      <span class="mdc-select__selected-text" ref="selectedText"></span>
+    </span>
     <span class="mdc-select__dropdown-icon">
       <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5">
         <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd" points="7 10 12 15 17 10">
@@ -30,8 +32,6 @@
     ref="menuElement" typeahead mdcmenusurface:closed.trigger="handleMenuClosed()" anchor-margin.bind="anchorMargin"
     mdcmenusurface:opened.trigger="handleMenuOpened()" mdcmenu:selected.trigger="handleMenuItemAction($event)"
     mdclist:itemschanged.trigger="handleItemsChanged($event)" hoist-to-body.bind="hoistToBody">
-    <mdc-list two-line.bind="twoLine">
-      <slot></slot>
-    </mdc-list>
+    <slot></slot>
   </mdc-menu>
 </template>

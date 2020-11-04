@@ -91,9 +91,6 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
 
-  @bindable.booleanAttr
-  twoLine: boolean;
-
   private initialValue: unknown;
   get value(): unknown {
     if (this.foundation) {
@@ -191,8 +188,6 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   private getSelectAdapterMethods() {
     return {
-      getSelectedMenuItem: () => this.menuElement?.querySelector(strings.SELECTED_ITEM_SELECTOR) ?? null,
-      getMenuItemAttr: (menuItem: Element, attr: string) => menuItem.getAttribute(attr),
       setSelectedText: (text: string) => {
         this.selectedText.textContent = text;
       },
@@ -229,9 +224,6 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
       setSelectedIndex: (index: number) => {
         this.menu.selectedIndex = index;
       },
-      setAttributeAtIndex: (index: number, attributeName: string, attributeValue: string) => {
-        this.menu.items[index].setAttribute(attributeName, attributeValue);
-      },
       removeAttributeAtIndex: (index: number, attributeName: string) => {
         this.menu.items[index].removeAttribute(attributeName);
       },
@@ -241,12 +233,6 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
       getMenuItemCount: () => this.menu.items.length,
       getMenuItemValues: () => this.menu.items.map(x => (x as IMdcListItemElement).au.controller.viewModel.value),
       getMenuItemTextAtIndex: (index: number) => this.menu.getPrimaryTextAtIndex(index),
-      addClassAtIndex: (index: number, className: string) => {
-        this.menu.items[index].classList.add(className);
-      },
-      removeClassAtIndex: (index: number, className: string) => {
-        this.menu.items[index].classList.remove(className);
-      },
       isTypeaheadInProgress: () => this.menu.typeaheadInProgress,
       typeaheadMatchItem: (nextChar: string, startingIndex: number) => this.menu.typeaheadMatchItem(nextChar, startingIndex),
     };
