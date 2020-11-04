@@ -1,3 +1,13 @@
+# [v1.1.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.5...v1.1.6) (2020-11-04)
+
+
+### Features
+
+* **layout-grid:** add no-padding attribute ([4c0a662](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4c0a6626a8b04ab59c37b20afeef558b69b5c804))
+* **layout-grid:** allow setting all widths at once ([14b79f0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/14b79f083c37535a4245137c63fbb53530ace8ce))
+
+
+
 # [v1.1.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.4...v1.1.5) (2020-10-29)
 
 
