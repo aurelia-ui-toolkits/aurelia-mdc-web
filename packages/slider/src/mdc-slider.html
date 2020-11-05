@@ -2,7 +2,7 @@
   ${range ? 'mdc-slider--range' : ''}
   ${discrete ? 'mdc-slider--discrete' : ''}
   ${discrete && tickMarks ? 'mdc-slider--tick-marks' : ''}
-  " style="display: block; overflow: visible;" data-step="${step}">
+  " data-step="${step}">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="mdc-slider__thumb" role="slider" tabindex="0" mdc-ripple="unbounded.bind: true" ref="startThumb"
-    if.bind="range" aria-valuenow="${_valueStart}" style="overflow: visible;">
+    if.bind="range" aria-valuenow="${_valueStart}">
     <div class="mdc-slider__value-indicator-container" if.bind="discrete">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text"></span>
