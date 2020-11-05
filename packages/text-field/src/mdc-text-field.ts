@@ -353,6 +353,12 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   private getInputAdapterMethods_(): MDCTextFieldInputAdapter {
     return {
       getNativeInput: () => this.input_,
+      setInputAttr: (attr, value) => {
+        this.input_.setAttribute(attr, value);
+      },
+      removeInputAttr: (attr) => {
+        this.input_.removeAttribute(attr);
+      },
       isFocused: () => document.activeElement === this.input_,
       registerInputInteractionHandler: (evtType, handler) => this.input_.addEventListener(evtType, handler, applyPassive()),
       deregisterInputInteractionHandler: (evtType, handler) => this.input_?.removeEventListener(evtType, handler, applyPassive()),
