@@ -48,6 +48,9 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
 
   updateSizeAndStroke() {
     this.radius = (this.size - 4) / 2 - this.strokeWidth;
+    // foundation gets the radius from the element itself
+    // set the attribute explicitly to avoid issues related to async binding
+    this.determinateCircle_?.setAttribute('r', this.radius.toString());
     this.strokeDasharray = 2 * this.radius * Math.PI;
     this.strokeDashoffset = this.strokeDasharray / 2;
   }
