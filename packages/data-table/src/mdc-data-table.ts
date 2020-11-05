@@ -9,12 +9,6 @@ import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, useView, PLATFORM, ViewCompiler, ViewResources, bindingMode, computedFrom, processContent } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
-declare module '@material/data-table' {
-  interface MDCDataTableAdapter {
-    getTableContainerHeight(): number;
-  }
-}
-
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();
 events.SELECTED_ALL = events.SELECTED_ALL.toLowerCase();
 events.UNSELECTED_ALL = events.UNSELECTED_ALL.toLowerCase();
@@ -283,10 +277,6 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       notifySortAction: (data) => {
         this.emit(events.SORTED, data, /** shouldBubble */ true);
       },
-      getTableBodyHeight: () => {
-        const body = this.root.querySelector('table>tbody');
-        return `${body?.getBoundingClientRect().height}px`;
-      },
       getTableContainerHeight: () => {
         const tableContainer =
           this.root.querySelector<HTMLElement>('.mdc-data-table__container');
@@ -306,7 +296,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
           throw new Error('MDCDataTable: Table header element not found.');
         }
 
-        return `${tableHeader.getBoundingClientRect().height}px`;
+        return tableHeader.getBoundingClientRect().height;
       },
       setProgressIndicatorStyles: (styles) => {
         const progressIndicator = this.root.querySelector<HTMLElement>(selectors.PROGRESS_INDICATOR);
