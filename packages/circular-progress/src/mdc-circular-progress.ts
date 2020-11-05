@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCCircularProgressFoundation, MDCCircularProgressAdapter } from '@material/circular-progress';
+import { MDCCircularProgressFoundation, MDCCircularProgressAdapter, strings } from '@material/circular-progress';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 
@@ -71,7 +71,14 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
       removeClass: (className: string) => this.root.classList.remove(className),
       removeAttribute: (attributeName: string) => this.root.removeAttribute(attributeName),
       setAttribute: (attributeName: string, value: string) => this.root.setAttribute(attributeName, value),
-      setDeterminateCircleAttribute: (attributeName: string, value: string) => this.determinateCircle_?.setAttribute(attributeName, value),
+      setDeterminateCircleAttribute: (attributeName: string, value: string) => {
+        if (attributeName === strings.STROKE_DASHOFFSET) {
+          // set offset via binding, otherwise it gets overwritten
+          this.strokeDashoffset = parseInt(value);
+        } else {
+          this.determinateCircle_?.setAttribute(attributeName, value);
+        }
+      },
     };
     return new MDCCircularProgressFoundation(adapter);
   }
