@@ -92,6 +92,20 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
       setAttribute: (attributeName: string, value: string) => {
         this.root.setAttribute(attributeName, value);
       },
+      setStyle: (name: string, value: string) => {
+        this.root.style.setProperty(name, value);
+      },
+      // eslint-disable-next-line no-undef
+      attachResizeObserver: (callback: ResizeObserverCallback) => {
+        if (window.ResizeObserver) {
+          const ro = new ResizeObserver(callback);
+          ro.observe(this.root);
+          return ro;
+        }
+
+        return null;
+      },
+      getWidth: () => this.root.offsetWidth,
     };
     return new MDCLinearProgressFoundation(adapter);
   }
