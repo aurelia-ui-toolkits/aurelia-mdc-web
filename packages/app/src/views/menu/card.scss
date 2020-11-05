@@ -15,13 +15,13 @@
 }
 
 .demo-card__subtitle {
-  @include theme.prop(color, text-secondary-on-background);
+  @include theme.property(color, text-secondary-on-background);
 
   margin: 0;
 }
 
 .demo-card__secondary {
-  @include theme.prop(color, text-secondary-on-background);
+  @include theme.property(color, text-secondary-on-background);
 
   padding: 0 1rem 8px 1rem;
 }

@@ -1,12 +1,11 @@
 /* eslint-disable */
 const path = require('path');
-const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AureliaWebpackPlugin = require('aurelia-webpack-plugin');
 
 const outDir = path.resolve(__dirname, 'dist');
 module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
-  const cssLoaders = ['css-loader', 'postcss-loader'];
+  const cssLoaders = [{ loader: 'css-loader', options: { esModule: false } }, 'postcss-loader'];
   const scssLoaders = [...cssLoaders, {
     // this is super important as only 'sass' package supports new '@use' syntax
     loader: 'sass-loader', options: {

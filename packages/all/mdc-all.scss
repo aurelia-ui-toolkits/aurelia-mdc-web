@@ -24,8 +24,7 @@
 @use "@material/checkbox/mdc-checkbox";
 @use "@material/radio/mdc-radio";
 @use "@material/circular-progress/mdc-circular-progress";
-@use "@aurelia-mdc-web/circular-progress";
-@use "@material/slider/mdc-slider";
+@use "@material/slider/slider" as slider;
 @use "@material/switch/mdc-switch";
 @use "@material/fab/mdc-fab";
 @use "@aurelia-mdc-web/expandable";
@@ -40,3 +39,5 @@
 @use "@material/snackbar/mdc-snackbar";
 @use "@material/image-list/mdc-image-list";
 @use "@aurelia-mdc-web/image-list";
+
+@include slider.core-styles;

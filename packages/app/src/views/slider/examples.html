@@ -2,8 +2,8 @@
   <div class="demo-content">
     <h3 class="demo-content__headline">Continuous</h3>
     <compose view="./continuous.html"></compose>
-    <mdc-text-field label="Min" type="number" size="1" min="0" max="200" value.bind="continuousMin"></mdc-text-field>
-    <mdc-text-field label="Max" type="number" size="1" min="0" max="200" value.bind="continuousMax"></mdc-text-field>
+    <mdc-text-field label="Min" type="number" size="1" min="0" max="200" value.bind="continuousMin & updateTrigger: 'blur'"></mdc-text-field>
+    <mdc-text-field label="Max" type="number" size="1" min="0" max="200" value.bind="continuousMax & updateTrigger: 'blur'"></mdc-text-field>
     <div class="demo-layout__row">
       <mdc-form-field>
         <mdc-checkbox checked.bind="continuousDisabled"></mdc-checkbox>
@@ -59,4 +59,15 @@
     <compose view="./theme.html"></compose>
     <example-viewer html.bind="themeHtml" sass.bind="themeScss"></example-viewer>
   </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Range</h3>
+    <compose view="./range.html"></compose>
+    <mdc-text-field label="Min" type="number" size="1" min="0" max="200" value.bind="rangeMin & updateTrigger: 'blur'"></mdc-text-field>
+    <mdc-text-field label="Max" type="number" size="1" min="0" max="200" value.bind="rangeMax & updateTrigger: 'blur'"></mdc-text-field>
+    <p>Value Start: ${rangeValueStart}</p>
+    <p>Value End: ${rangeValue}</p>
+    <example-viewer html.bind="rangeHtml"></example-viewer>
+  </div>
+
 </template>

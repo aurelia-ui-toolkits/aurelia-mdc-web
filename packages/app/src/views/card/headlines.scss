@@ -13,7 +13,7 @@
 }
 
 .demo-card-article-group-heading {
-  @include theme.prop(color, text-secondary-on-light);
+  @include theme.property(color, text-secondary-on-light);
 
   padding: 8px 16px;
 }
@@ -23,7 +23,7 @@
 }
 
 .demo-card-article__snippet {
-  @include theme.prop(color, text-secondary-on-light);
+  @include theme.property(color, text-secondary-on-light);
 
   margin: 0;
 }
