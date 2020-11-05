@@ -50,9 +50,6 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
     this.radius = (this.size - 4) / 2 - this.strokeWidth;
     this.strokeDasharray = 2 * this.radius * Math.PI;
     this.strokeDashoffset = this.strokeDasharray / 2;
-    this.root.style.setProperty('--mdc-circular-progress-size', `${this.size}px`);
-    this.root.style.setProperty('--mdc-circular-progress-stroke-width', `${this.strokeWidth}px`);
-    this.root.style.setProperty('--mdc-circular-progress-gap-patch-stroke-width', `${this.strokeWidth * 0.8}px`);
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
