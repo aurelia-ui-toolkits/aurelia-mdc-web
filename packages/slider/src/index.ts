@@ -1,6 +1,6 @@
 import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, EventSubscriber } from 'aurelia-framework';
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
-import { strings } from '@material/slider';
+import { events } from '@material/slider';
 
 export { MdcSlider, IMdcSliderElement } from './mdc-slider';
 
@@ -15,10 +15,16 @@ export function configure(config: FrameworkConfiguration) {
 const checkboxConfig = {
   tagName: 'mdc-slider',
   properties: {
-    value: {
+    'value': {
       defaultBindingMode: bindingMode.twoWay,
       getObserver(element: Element) {
-        return new ValueAttributeObserver(element, 'value', new EventSubscriber([strings.CHANGE_EVENT, strings.INPUT_EVENT]));
+        return new ValueAttributeObserver(element, 'value', new EventSubscriber([events.CHANGE, events.INPUT]));
+      }
+    },
+    'value-start': {
+      defaultBindingMode: bindingMode.twoWay,
+      getObserver(element: Element) {
+        return new ValueAttributeObserver(element, 'value-start', new EventSubscriber([events.CHANGE, events.INPUT]));
       }
     }
   }

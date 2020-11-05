@@ -1,4 +1,38 @@
 <template class="mdc-slider
+  ${range ? 'mdc-slider--range' : ''}
+  ${discrete ? 'mdc-slider--discrete' : ''}
+  ${discrete && tickMarks ? 'mdc-slider--tick-marks' : ''}
+  " style="display: block" data-step="${step}">
+  <div class="mdc-slider__track">
+    <div class="mdc-slider__track--inactive"></div>
+    <div class="mdc-slider__track--active" ref="trackActive">
+      <div class="mdc-slider__track--active_fill"></div>
+    </div>
+    <div class="mdc-slider__tick-marks" if.bind="discrete && tickMarks">
+      <div repeat.for="s of tickMarkStatuses"
+        class="mdc-slider__tick-mark--${s === TickMark.ACTIVE ? 'active' : 'inactive' }"></div>
+    </div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" mdc-ripple="unbounded.bind: true" ref="startThumb"
+    if.bind="range">
+    <div class="mdc-slider__value-indicator-container" if.bind="discrete">
+      <div class="mdc-slider__value-indicator">
+        <span class="mdc-slider__value-indicator-text"></span>
+      </div>
+    </div>
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" mdc-ripple="unbounded.bind: true" ref="endThumb">
+    <div class="mdc-slider__value-indicator-container" if.bind="discrete">
+      <div class="mdc-slider__value-indicator">
+        <span class="mdc-slider__value-indicator-text"></span>
+      </div>
+    </div>
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+</template>
+
+<!-- <template class="mdc-slider
     ${discrete ? 'mdc-slider--discrete' : ''}
     ${discrete && markers ? 'mdc-slider--display-markers' : ''}
   " role="slider" style="display: block">
@@ -15,4 +49,4 @@
     </svg>
     <div class="mdc-slider__focus-ring"></div>
   </div>
-</template>
+</template> -->
