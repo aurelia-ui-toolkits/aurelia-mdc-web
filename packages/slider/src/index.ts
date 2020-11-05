@@ -15,16 +15,16 @@ export function configure(config: FrameworkConfiguration) {
 const checkboxConfig = {
   tagName: 'mdc-slider',
   properties: {
-    'value': {
+    value: {
       defaultBindingMode: bindingMode.twoWay,
       getObserver(element: Element) {
         return new ValueAttributeObserver(element, 'value', new EventSubscriber([events.CHANGE, events.INPUT]));
       }
     },
-    'value-start': {
+    valuestart: {
       defaultBindingMode: bindingMode.twoWay,
       getObserver(element: Element) {
-        return new ValueAttributeObserver(element, 'value-start', new EventSubscriber([events.CHANGE, events.INPUT]));
+        return new ValueAttributeObserver(element, 'valuestart', new EventSubscriber([events.CHANGE, events.INPUT]));
       }
     }
   }

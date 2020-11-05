@@ -1,7 +1,7 @@
-import { MdcComponent, Size } from '@aurelia-mdc-web/base';
+import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCSliderAdapter, Thumb, cssClasses, TickMark, MDCSliderChangeEventDetail, events, attributes } from '@material/slider';
 import { bindable } from 'aurelia-typed-observable-plugin';
-import { inject, useView, PLATFORM, customElement, observable } from 'aurelia-framework';
+import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
 
 events.INPUT = events.INPUT.toLowerCase();
@@ -22,18 +22,14 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   tickMarkStatuses: TickMark[];
   TickMark = TickMark;
 
-  @observable
-  size: Size;
-  async sizeChanged() {
-    await this.initialised;
-    this.foundation?.layout();
-  }
-
   @bindable.booleanAttr
   discrete: boolean;
 
   @bindable.booleanAttr
   tickMarks: boolean;
+
+  @bindable.booleanAttr
+  range: boolean;
 
   @bindable.booleanAttr
   disabled: boolean;
@@ -43,32 +39,38 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   }
 
   @bindable
-  min: string;
-  minChanged() {
+  min: string = '0';
+  async minChanged() {
+    await this.initialised;
     this.endThumb.setAttribute(attributes.ARIA_VALUEMIN, this.min);
+    this.foundation?.init();
   }
 
   @bindable
-  max: string;
-  maxChanged() {
-    this.endThumb.setAttribute(attributes.ARIA_VALUEMAX, this.min);
+  max: string = '100';
+  async maxChanged() {
+    await this.initialised;
+    this.endThumb.setAttribute(attributes.ARIA_VALUEMAX, this.max);
+    this.foundation?.init();
   }
 
   @bindable
-  step: string;
-  stepChanged() {
+  step: string = '1';
+  async stepChanged() {
+    await this.initialised;
     this.root.setAttribute(attributes.DATA_ATTR_STEP, this.step);
+    this.foundation?.init();
   }
 
   @bindable
-  valueToAriaValueTextFn: ((value: number) => string)|null = null;
+  valueToAriaValueTextFn: ((value: number) => string) | null = null;
 
-  initialValue: number;
+  _value: number;
   get value(): number {
     if (this.foundation) {
       return this.foundation.getValue();
     } else {
-      return this.initialValue;
+      return this._value;
     }
   }
 
@@ -76,16 +78,16 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     if (this.foundation) {
       this.foundation.setValue(value);
     } else {
-      this.initialValue = value;
+      this._value = value;
     }
   }
 
-  initialValueStart: number;
+  _valueStart: number;
   get valueStart(): number {
     if (this.foundation) {
       return this.foundation.getValueStart();
     } else {
-      return this.initialValueStart;
+      return this._valueStart;
     }
   }
 
@@ -93,13 +95,18 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     if (this.foundation) {
       this.foundation.setValueStart(value);
     } else {
-      this.initialValueStart = value;
+      this._valueStart = value;
     }
   }
 
   initialSyncWithDOM() {
-    this.value = this.initialValue;
-    this.valueStart = this.initialValueStart;
+    this.endThumb.setAttribute(attributes.ARIA_VALUEMIN, this.min);
+    this.endThumb.setAttribute(attributes.ARIA_VALUEMAX, this.max);
+    this.endThumb.setAttribute(attributes.DATA_ATTR_STEP, this.step);
+    this.value = this._value;
+    if (this.range) {
+      this.valueStart = this._valueStart;
+    }
     this.foundation?.layout();
   }
 
@@ -234,7 +241,7 @@ export interface IMdcSliderElement extends HTMLElement {
 
 function defineMdcSliderElementApis(element: HTMLElement) {
   Object.defineProperties(element, {
-    'value': {
+    value: {
       get(this: IMdcSliderElement) {
         return this.au.controller.viewModel.value;
       },
@@ -243,7 +250,7 @@ function defineMdcSliderElementApis(element: HTMLElement) {
       },
       configurable: true
     },
-    'value-start': {
+    valuestart: {
       get(this: IMdcSliderElement) {
         return this.au.controller.viewModel.valueStart;
       },
@@ -252,13 +259,13 @@ function defineMdcSliderElementApis(element: HTMLElement) {
       },
       configurable: true
     },
-    'focus': {
+    focus: {
       value(this: IMdcSliderElement) {
         this.au.controller.viewModel.focus();
       },
       configurable: true
     },
-    'blur': {
+    blur: {
       value(this: IMdcSliderElement) {
         this.au.controller.viewModel.blur();
       },
