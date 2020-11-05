@@ -9,7 +9,7 @@
     <h3 class="demo-content__headline">Determinate</h3>
     <div class="demo-layout__row">
       <div class="demo-container">
-        <mdc-slider value.bind="progress" min="0" max="1"></mdc-slider>
+        <mdc-slider value.bind="progress" min="0" max="1" style="flex: 1"></mdc-slider>
       </div>
     </div>
     <compose view="./determinate.html" class="demo-layout__row"></compose>
@@ -21,11 +21,11 @@
     <div class="demo-layout__row">
       <mdc-form-field class="demo-container">
         <label>Size</label>
-        <mdc-slider value.bind="size" min="20" max="100"></mdc-slider>
+        <mdc-slider value.bind="size" min="20" max="100" style="flex: 1"></mdc-slider>
       </mdc-form-field>
       <mdc-form-field class="demo-container">
         <label>Stroke</label>
-        <mdc-slider value.bind="stroke" min="2" max="10"></mdc-slider>
+        <mdc-slider value.bind="stroke" min="2" max="10" style="flex: 1"></mdc-slider>
       </mdc-form-field>
     </div>
     <compose view="./size-stroke.html" class="demo-layout__row"></compose>
