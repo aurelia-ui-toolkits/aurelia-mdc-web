@@ -1,6 +1,6 @@
 <template>
   <div class="demo-container">
-    <mdc-text-field label="Currency Value" type="number" prefix="$" suffix=".00"></mdc-text-field>
+    <label mdc-text-field label="Currency Value" type="number" prefix="$" suffix=".00"></label>
   </div>
   <div class="demo-container">
     <mdc-text-field outlined label="Currency Value" type="number" prefix="$" suffix=".00"></mdc-text-field>
@@ -10,8 +10,8 @@
       End Aligned: ${endAlignedExampleEndAligned ? 'On' : 'Off'}</button>
   </div>
   <div class="demo-container">
-    <mdc-text-field outlined type="number" prefix="$" suffix=".00" end-aligned.bind="endAlignedExampleEndAligned">
-    </mdc-text-field>
+    <label mdc-text-field outlined type="number" prefix="$" suffix=".00" end-aligned.bind="endAlignedExampleEndAligned">
+    </label>
   </div>
   <div class="demo-layout__row">
     <button mdc-button click.delegate="ltrTextExampleLtrText = !ltrTextExampleLtrText">
@@ -19,8 +19,8 @@
   </div>
   <div class="demo-container">
     <div dir="rtl">
-      <mdc-text-field outlined label="Label" type="number" suffix="/100" ltr-text.bind="ltrTextExampleLtrText">
-      </mdc-text-field>
+      <label mdc-text-field outlined label="Label" type="number" suffix="/100" ltr-text.bind="ltrTextExampleLtrText">
+      </label>
     </div>
   </div>
 </template>
