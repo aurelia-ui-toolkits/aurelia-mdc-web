@@ -4,9 +4,11 @@
       <mdc-select ref="meal" required.bind="mealRequired" outlined.bind="mealOutlined" disabled.bind="mealDisabled"
         label="Pick a Meal">
         <mdc-icon mdc-select-icon>fastfood</mdc-icon>
-        <mdc-list-item repeat.for="food of foods" value.bind="food.value" disabled.bind="food.disabled">
-          ${food.viewValue}
-        </mdc-list-item>
+        <mdc-list>
+          <mdc-list-item repeat.for="food of foods" value.bind="food.value" disabled.bind="food.disabled">
+            ${food.viewValue}
+          </mdc-list-item>
+        </mdc-list>
         <mdc-select-helper-text validation>Meal selection is required</mdc-select-helper-text>
       </mdc-select>
     </div>
