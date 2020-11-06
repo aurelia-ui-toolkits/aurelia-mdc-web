@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/text-field",
-  "version": "1.1.6",
+  "version": "2.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -54,11 +54,11 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^1.1.6",
-    "@aurelia-mdc-web/floating-label": "^1.1.6",
-    "@aurelia-mdc-web/line-ripple": "^1.1.6",
-    "@aurelia-mdc-web/notched-outline": "^1.1.6",
-    "@aurelia-mdc-web/ripple": "^1.1.6",
+    "@aurelia-mdc-web/base": "^2.0.0",
+    "@aurelia-mdc-web/floating-label": "^2.0.0",
+    "@aurelia-mdc-web/line-ripple": "^2.0.0",
+    "@aurelia-mdc-web/notched-outline": "^2.0.0",
+    "@aurelia-mdc-web/ripple": "^2.0.0",
     "@material/ripple": "^8.0.0",
     "@material/textfield": "^8.0.0"
   },
