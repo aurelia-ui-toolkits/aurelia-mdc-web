@@ -9,7 +9,9 @@
 
         <mdc-select value.bind="pageSize" outlined class="mdc-data-table__pagination-rows-per-page-select"
           hoist-to-body.bind="hoistPageSelectToBody">
-          <mdc-list-item repeat.for="ps of pageSizes" value.bind="ps">${ps}</mdc-list-item>
+          <mdc-list>
+            <mdc-list-item repeat.for="ps of pageSizes" value.bind="ps">${ps}</mdc-list-item>
+          </mdc-list>
         </mdc-select>
       </div>
 

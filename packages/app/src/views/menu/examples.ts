@@ -26,7 +26,7 @@ export class Examples {
     { label: 'Guava' },
     { label: 'Pitaya' },
     { label: null }, // null label sets a mdc-list-divider
-    { label: 'Pinaeapple' },
+    { label: 'Pineapple' },
     { label: 'Mango' },
     { label: 'Papaya' },
     { label: 'Lychee' }
