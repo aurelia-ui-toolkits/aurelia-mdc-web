@@ -1,3 +1,32 @@
+# [v2.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.6...v2.0.0) (2020-11-06)
+
+### BREAKING CHANGES
+* **circular-progress:**: bridge style "@aurelia-mdc-web/circular-progress" has been removed
+* **layout-grid**: `mdc-layout-grid-cell` elements need to be explicitly wrapped with `mdc-layout-grid-inner`
+* **select:**: `mdc-list-item` elements need to be explicitly wrapped with `mdc-list`
+* **select:**: `two-line` attribute has been removed
+* **slider:**: `markers` attribute has been renamed to `tick-marks`
+* **text-field:**: `mdc-text-field` tag is automatically replaced by `label` in the DOM
+* **MDC**: has been upgraded to v8.0.0, make sure you check breaking changes there
+
+### Bug Fixes
+
+* **text-field:** allow using mdc-text-field as an attribute ([94cf8ec](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/94cf8ec27922ee90057cb4202c6b4874db2f0073)), closes [#22](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/22)
+* **text-field:** automatically replace `mdc-text-field` tag with `label` ([18ec9a8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/18ec9a8166aeb3bad2c141664826b7b9e0d757ac)), closes [#22](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/22)
+
+
+### Features
+
+* **all:** wip: upgrade to v8.0 ([432760f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/432760f3bd667630b125172712e3d7d84c0bc5ca))
+* **app:** upgrade to v8.0 ([1f3e7df](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1f3e7df94c3116046e973f51c19dc4779c4d33d1))
+* **circular-progress:** upgrade to v8.0 ([1f69d2f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1f69d2f544be431a224b515b312b2fba661a885b))
+* **data-table:** upgrade to v8.0 ([92d8bde](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/92d8bdebc89fb2aa73d9bad15739a12ac66c0c66))
+* **linear-progress:** upgrade to v8.0 ([0f2bf43](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0f2bf43b0b7a65f2719e82a62f331894046a6881))
+* **select:** upgrade to v8.0 ([eae4845](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/eae4845fb561850e82d46a6b08fd6f66a7a48a5d))
+* **slider:** upgrade to v8.0 ([fc9a803](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fc9a8038ec035fc57ff1719987e936027b3b74dd))
+* **text-field:** upgrade to v8.0 ([d8a1249](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d8a1249718806fa06fa4593c46bb8bd85a79250e))
+
+
 # [v1.1.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.5...v1.1.6) (2020-11-04)
 
 
