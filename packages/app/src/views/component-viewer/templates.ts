@@ -414,8 +414,9 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-slider/README.md#theming' },
     ],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/slider\'));',
-    sass: `@use '@material/slider/mdc-slider';
-@use '@material/slider';`
+    sass: `@use '@material/slider/slider';
+@use '@aurelia-mdc-web/slider' as auSlider;
+@include slider.core-styles;`
   },
   'snackbar': {
     title: 'Snackbars',
