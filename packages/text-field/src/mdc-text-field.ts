@@ -58,9 +58,6 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   ltrText: boolean;
 
   @bindable.booleanAttr
-  fullwidth: boolean;
-
-  @bindable.booleanAttr
   outlined: boolean;
 
   @bindable

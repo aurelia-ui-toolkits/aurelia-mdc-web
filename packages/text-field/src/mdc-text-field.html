@@ -3,8 +3,7 @@
     ${textarea ? 'mdc-text-field--textarea' : ''}
     ${endAligned ? 'mdc-text-field--end-aligned' : ''}
     ${ltrText ? 'mdc-text-field--ltr-text' : ''}
-    ${fullwidth ? 'mdc-text-field--fullwidth' : ''}
-    ${label && !fullwidth ? '' : 'mdc-text-field--no-label'}
+    ${label ? '' : 'mdc-text-field--no-label'}
     mdc-text-field--${outlined ? 'outlined' : 'filled'}
     ${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''}
     ${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}
@@ -17,7 +16,7 @@
   </mdc-notched-outline>
   <input if.bind="!textarea" class="mdc-text-field__input" type="text" aria-labelledby.bind="id" ref="input_"
     focus.trigger="onFocus()" input.trigger="onInput($event)" change.trigger="onChange($event)" blur.trigger="onBlur()"
-    placeholder.bind="fullwidth && label ? label : placeholder" keyup.trigger="onKeyup($event)">
+    placeholder.bind="label ? label : placeholder" keyup.trigger="onKeyup($event)">
   <span if.bind="textarea" class="mdc-text-field__resizer">
     <textarea class="mdc-text-field__input" aria-labelledby.bind="id" ref="input_"
       focus.trigger="onFocus()" input.trigger="onInput($event)" change.trigger="onChange($event)"
