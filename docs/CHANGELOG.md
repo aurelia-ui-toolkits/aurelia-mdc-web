@@ -1,13 +1,13 @@
 # [v2.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.6...v2.0.0) (2020-11-06)
 
 ### BREAKING CHANGES
-* **circular-progress:**: bridge style "@aurelia-mdc-web/circular-progress" has been removed
-* **layout-grid**: `mdc-layout-grid-cell` elements need to be explicitly wrapped with `mdc-layout-grid-inner`
-* **select:**: `mdc-list-item` elements need to be explicitly wrapped with `mdc-list`
-* **select:**: `two-line` attribute has been removed
-* **slider:**: `markers` attribute has been renamed to `tick-marks`
-* **text-field:**: `mdc-text-field` tag is automatically replaced by `label` in the DOM
-* **MDC**: has been upgraded to v8.0.0, make sure you check breaking changes there
+* **circular-progress:** bridge style "@aurelia-mdc-web/circular-progress" has been removed
+* **layout-grid:** `mdc-layout-grid-cell` elements need to be explicitly wrapped with `mdc-layout-grid-inner`
+* **select:** `mdc-list-item` elements need to be explicitly wrapped with `mdc-list`
+* **select:** `two-line` attribute has been removed
+* **slider:** `markers` attribute has been renamed to `tick-marks`
+* **text-field:** `mdc-text-field` tag is automatically replaced by `label` in the DOM
+* **MDC:** has been upgraded to v8.0.0, make sure you check breaking changes there
 
 ### Bug Fixes
 
