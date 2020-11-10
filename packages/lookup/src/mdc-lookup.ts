@@ -118,7 +118,7 @@ export class MdcLookup implements EventListenerObject {
       return;
     }
     await this.updateFilterBasedOnValue();
-    this.root.dispatchEvent(new CustomEvent('change', { detail: { value: this.value } }));
+    this.root.dispatchEvent(new CustomEvent('change', { bubbles: true, detail: { value: this.value } }));
   }
   setValue(value: unknown) {
     if (this.value === value) {
