@@ -1,4 +1,4 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, EventSubscriber, SelectValueObserver, ObserverLocator, InternalPropertyObserver } from 'aurelia-framework';
+import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, InternalPropertyObserver } from 'aurelia-framework';
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 import { strings } from '@material/select';
 import { MdcSelectValueObserver } from './mdc-select-value-observer';
