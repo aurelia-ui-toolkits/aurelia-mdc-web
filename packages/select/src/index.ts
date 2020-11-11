@@ -1,6 +1,7 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, EventSubscriber } from 'aurelia-framework';
+import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, EventSubscriber, SelectValueObserver, ObserverLocator, InternalPropertyObserver } from 'aurelia-framework';
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 import { strings } from '@material/select';
+import { MdcSelectValueObserver } from './mdc-select-value-observer';
 
 export { MdcSelect, IMdcSelectElement } from './mdc-select';
 export { IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
@@ -30,7 +31,7 @@ const selectConfig = {
     value: {
       defaultBindingMode: bindingMode.twoWay,
       getObserver(element: Element) {
-        return new ValueAttributeObserver(element, 'value', new EventSubscriber([strings.CHANGE_EVENT]));
+        return new MdcSelectValueObserver(element, new EventSubscriber([strings.CHANGE_EVENT])) as unknown as InternalPropertyObserver;
       }
     }
   }

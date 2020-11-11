@@ -28,6 +28,13 @@
   </div>
 
   <div class="demo-content">
+    <h3 class="demo-content__headline">Delayed</h3>
+    <compose view="./delayed.html"></compose>
+    <p> Value: ${delayedItem}</p>
+    <example-viewer html.bind="delayedHtml" code.bind="delayedCode"></example-viewer>
+  </div>
+
+  <div class="demo-content">
     <h3 class="demo-content__headline">No label</h3>
     <compose view="./no-label.html"></compose>
     <example-viewer html.bind="noLabelHtml"></example-viewer>

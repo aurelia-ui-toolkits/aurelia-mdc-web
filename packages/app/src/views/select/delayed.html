@@ -1,0 +1,9 @@
+<template>
+  <div class="au-select">
+    <mdc-select ref="delayedSelect" label="Wait for 10 seconds" change.delegate="onSelectionChange($event)" value.bind="delayedItem">
+      <mdc-list>
+        <mdc-list-item repeat.for="i of delayedItems" value.bind="i">${i}</mdc-list-item>
+      </mdc-list>
+    </mdc-select>
+  </div>
+</template>

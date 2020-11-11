@@ -11,6 +11,8 @@ import objectsBindingCode from '!!raw-loader!./objects-binding';
 import selectHtml from '!!raw-loader!./select.html';
 import validationHtml from '!!raw-loader!./validation.html';
 import validationCode from '!!raw-loader!./validation';
+import delayedHtml from '!!raw-loader!./delayed.html';
+import delayedCode from '!!raw-loader!./delayed';
 
 @autoinject
 export class Examples {
@@ -34,6 +36,8 @@ export class Examples {
   selectHtml = selectHtml;
   validationHtml = validationHtml;
   validationCode = validationCode;
+  delayedHtml = delayedHtml;
+  delayedCode = delayedCode;
 
   validationController: ValidationController;
   rules: Rule<Examples, unknown>[][];
@@ -49,6 +53,14 @@ export class Examples {
     { value: 'tacos-2', viewValue: 'Tacos is disabled', disabled: true },
     { value: 'fruit-3', viewValue: 'Fruit' },
   ];
+
+  delayedItems: string[];
+  delayedItem = 'item2';
+
+  activate() {
+    new Promise<string[]>(r => setTimeout(() => r(['item1', 'item2', 'item3']), 10000))
+      .then(x => this.delayedItems = x);
+  }
 
   attached() {
     this.validationController.addObject(this, this.rules);

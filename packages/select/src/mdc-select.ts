@@ -45,7 +45,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private menuElement?: Element;
 
   @children('mdc-list-items')
-  items: MdcListItem;
+  items: MdcListItem[];
 
   private leadingIcon?: MdcSelectIcon;
 
@@ -363,6 +363,7 @@ export interface IMdcSelectElement extends IValidatedElement {
       viewModel: MdcSelect;
     };
   };
+  value: unknown;
 }
 
 function defineMdcSelectElementApis(element: HTMLElement) {
@@ -375,6 +376,12 @@ function defineMdcSelectElementApis(element: HTMLElement) {
         // aurelia binding converts "undefined" and "null" into empty string
         // this does not translate well into "empty" menu items when several selects are bound to the same field
         this.au.controller.viewModel.value = value === '' ? undefined : value;
+      },
+      configurable: true
+    },
+    options: {
+      get(this: IMdcSelectElement) {
+        return this.au.controller.viewModel.root.querySelectorAll('.mdc-list-item');
       },
       configurable: true
     },
