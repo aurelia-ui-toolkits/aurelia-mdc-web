@@ -33,7 +33,7 @@ export class MdcSelectValueObserver {
     // do not pass the value to the element if options has never been set
     // the value will be passed on when options do arrive
     if (this.optionsWereSet) {
-      this.element.au.controller.viewModel.foundation?.setValue(this.value, skipNotify);
+      this.element.au.controller.viewModel.setValue(this.value, skipNotify);
     }
   }
 

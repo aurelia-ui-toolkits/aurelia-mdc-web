@@ -101,8 +101,12 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   set value(value: unknown) {
+    this.setValue(value);
+  }
+
+  setValue(value: unknown, skipNotify: boolean = false) {
     if (this.foundation) {
-      this.foundation.setValue(value);
+      this.foundation.setValue(value, skipNotify);
       this.foundation.layout();
     } else {
       this.initialValue = value;
