@@ -1,3 +1,15 @@
+# [v2.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.0...v2.0.1) (2020-11-11)
+
+
+### Bug Fixes
+
+* **lookup:** let change event bubble ([f2cbf0f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f2cbf0fec1b46b1353e960aee00d7f27c8482473))
+* **select:** add custom select value observer ([f18bb0d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f18bb0dead7eb19e5e6fe5582189d53376077816)), closes [#26](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/26)
+* **select:** set the value through a view model function ([194960d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/194960d06ea7a2007ac5882bac0865146e12252b))
+* **text-field:** remove fullwidth ([a6e8bc4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a6e8bc41336b31e05dcc6ef23569fc1e6fc15429))
+
+
+
 # [v2.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v1.1.6...v2.0.0) (2020-11-06)
 
 ### BREAKING CHANGES
