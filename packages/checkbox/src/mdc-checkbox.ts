@@ -55,13 +55,13 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   @bindable.booleanAttr
   indeterminateToChecked: boolean = true;
 
-  initialChecked?: boolean;
+  _checked?: boolean;
 
   get checked(): boolean {
     if (this.nativeControl_) {
       return this.nativeControl_.checked;
     } else {
-      return this.initialChecked ?? false;
+      return this._checked ?? false;
     }
   }
 
@@ -69,10 +69,9 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
    * Whether the checkbox is checked.
    */
   set checked(checked: boolean) {
+    this._checked = checked;
     if (this.nativeControl_) {
       this.nativeControl_.checked = checked;
-    } else {
-      this.initialChecked = checked;
     }
   }
 
@@ -117,8 +116,8 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   }
 
   initialSyncWithDOM() {
-    if (this.initialChecked !== undefined) {
-      this.checked = this.initialChecked;
+    if (this._checked !== undefined) {
+      this.checked = this._checked;
     }
   }
 
