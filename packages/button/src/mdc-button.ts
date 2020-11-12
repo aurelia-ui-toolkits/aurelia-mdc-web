@@ -36,6 +36,12 @@ export class MdcButton {
   @bindable.booleanAttr
   outlined: boolean;
 
+  /**
+   * Set the button label
+   */
+  @bindable
+  label: string;
+
   // this is necessary for the route-href to work
   @bindable
   href: string;
