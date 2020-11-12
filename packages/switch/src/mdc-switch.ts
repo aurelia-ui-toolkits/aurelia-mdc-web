@@ -28,20 +28,19 @@ export class MdcSwitch extends MdcComponent<MDCSwitchFoundation> {
   @bindable.booleanAttr
   touch: boolean;
 
-  initialChecked?: boolean;
+  _checked?: boolean;
   get checked(): boolean {
     if (this.nativeControl_) {
       return this.nativeControl_.checked;
     } else {
-      return this.initialChecked ?? false;
+      return this._checked ?? false;
     }
   }
 
   set checked(checked: boolean) {
+    this._checked = checked;
     if (this.foundation) {
       this.foundation?.setChecked(checked);
-    } else {
-      this.initialChecked = checked;
     }
   }
 
@@ -57,8 +56,8 @@ export class MdcSwitch extends MdcComponent<MDCSwitchFoundation> {
   }
 
   initialSyncWithDOM() {
-    if (this.initialChecked !== undefined) {
-      this.checked = this.initialChecked;
+    if (this._checked !== undefined) {
+      this.checked = this._checked;
     }
   }
 
