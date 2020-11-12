@@ -8,7 +8,6 @@
     ${image ? cssClasses.ROOT + '--image-list' : ''}
     ${thumbnail ? cssClasses.ROOT + '--thumbnail-list' : ''}
     ${video ? cssClasses.ROOT + '--video-list' : ''}
-    ${nonInteractive ? cssClasses.ROOT + '--non-interactive' : ''}
   " keydown.trigger="handleKeydownEvent_($event)" click.trigger="handleClickEvent_($event)"
   focusin.trigger="handleFocusInEvent_($event)" focusout.trigger="handleFocusOutEvent_($event)"
   aria-orientation="${vertical ? 'vertical' : 'horizontal' }">

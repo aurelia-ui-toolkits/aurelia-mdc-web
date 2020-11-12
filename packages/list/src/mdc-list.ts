@@ -89,10 +89,6 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
     this.foundation?.setHasTypeahead(hasTypeahead);
   }
 
-  /** Prevent list items receive styles for hover, focus, and press states (including the ripple) */
-  @bindable.booleanAttr
-  nonInteractive: boolean;
-
   /** Sets the list to allow the up arrow on the first element to focus the last element of the list and vice versa */
   @bindable.booleanAttr
   wrapFocus: boolean;
