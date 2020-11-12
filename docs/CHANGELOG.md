@@ -1,3 +1,12 @@
+# [v2.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.1...v2.0.2) (2020-11-12)
+
+
+### Bug Fixes
+
+* **text-field:** do not put label into placeholder ([d24982c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d24982c1c77089d1e35e9781e90bd089de05d163))
+
+
+
 # [v2.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.0...v2.0.1) (2020-11-11)
 
 
