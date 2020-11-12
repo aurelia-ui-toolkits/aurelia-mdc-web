@@ -7,7 +7,6 @@ import densityHtml from '!!raw-loader!./density.html';
 import densityScss from '!!raw-loader!./density.scss';
 import eventsHtml from '!!raw-loader!./events.html';
 import examplesHtml from '!!raw-loader!./examples.html';
-import fullwidthHtml from '!!raw-loader!./fullwidth.html';
 import iconsHtml from '!!raw-loader!./icons.html';
 import noLabelHtml from '!!raw-loader!./no-label.html';
 import numericHtml from '!!raw-loader!./numeric.html';
@@ -42,7 +41,6 @@ export class Examples {
   densityScss = densityScss;
   eventsHtml = eventsHtml;
   examplesHtml = examplesHtml;
-  fullwidthHtml = fullwidthHtml;
   iconsHtml = iconsHtml;
   noLabelHtml = noLabelHtml;
   numericHtml = numericHtml;
