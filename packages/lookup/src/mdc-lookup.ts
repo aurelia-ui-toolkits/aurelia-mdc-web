@@ -266,6 +266,8 @@ export class MdcLookup implements EventListenerObject {
       this.suppressBlur = false;
       return;
     }
+    // re-emit on root
+    this.root.dispatchEvent(new CustomEvent('blur'));
     this.close();
   }
 
