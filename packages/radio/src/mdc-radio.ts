@@ -28,37 +28,35 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
   @bindable.booleanAttr
   touch: boolean;
 
-  initialChecked?: boolean;
+  _checked?: boolean;
   get checked(): boolean {
     if (this.nativeControl_) {
       return this.nativeControl_.checked;
     } else {
-      return this.initialChecked ?? false;
+      return this._checked ?? false;
     }
   }
 
   set checked(checked: boolean) {
+    this._checked = checked;
     if (this.nativeControl_) {
       this.nativeControl_.checked = checked;
-    } else {
-      this.initialChecked = checked;
     }
   }
 
-  initialValue?: string;
+  _value?: string;
   get value(): string {
     if (this.nativeControl_) {
       return this.nativeControl_.value;
     } else {
-      return this.initialValue ?? '';
+      return this._value ?? '';
     }
   }
 
   set value(value: string) {
+    this._value = value;
     if (this.nativeControl_) {
       this.nativeControl_.value = value;
-    } else {
-      this.initialValue = value;
     }
   }
 
@@ -74,11 +72,11 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
   }
 
   initialSyncWithDOM() {
-    if (this.initialChecked !== undefined) {
-      this.checked = this.initialChecked;
+    if (this._checked !== undefined) {
+      this.checked = this._checked;
     }
-    if (this.initialValue !== undefined) {
-      this.value = this.initialValue;
+    if (this._value !== undefined) {
+      this.value = this._value;
     }
   }
 
