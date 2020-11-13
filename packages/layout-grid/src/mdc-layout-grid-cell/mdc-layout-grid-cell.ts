@@ -31,6 +31,9 @@ export class MdcLayoutGridCell {
   @bindable
   phoneSpan: string;
 
+  @bindable.booleanAttr
+  newRow: string;
+
   /** Optional, specifies the number of columns the cell spans for all screen sizes */
   @bindable
   spans: string;
