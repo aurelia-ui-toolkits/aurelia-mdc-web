@@ -1,3 +1,23 @@
+# [v2.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.2...v2.0.3) (2020-11-13)
+
+
+### Bug Fixes
+
+* **button:** add label attribute ([fbde989](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fbde989aace7657416d20218304058040a32cfb9))
+* **checkox:** always set backing field ([82bcf0a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/82bcf0ae5381d40fedc30f58de63e5594ea59386))
+* **lookup:** focus input on option select ([1b54c64](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1b54c64daaf97ecb93ae343b94bf956173906ce7))
+* **lookup:** keyboard handling ([b9fabcb](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b9fabcba21bd9614d64fa93879bec744f5aa8ef3))
+* **lookup:** re-emit input's blur event ([8088b2d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8088b2d8127a3c85be523552060b6da8c661c2ae))
+* **radio:** always set backing fields ([cfda4e9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/cfda4e903a515ea672c6101121dcdf0449924870))
+* **switch:** always set backing field ([7b115a3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7b115a3f8e6758c93bd65844ed1cb30e7b06c81e))
+
+
+### Features
+
+* **layout-grid:** add new-row attribute ([5bebb57](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5bebb57a774f1ee604db4ec0e5f445a87eb79b75))
+
+
+
 # [v2.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.1...v2.0.2) (2020-11-12)
 
 
