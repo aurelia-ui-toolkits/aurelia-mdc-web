@@ -52,6 +52,16 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     this.foundation?.setQuickOpen(quickOpen);
   }
 
+  @bindable.booleanAttr
+  fullWidth: boolean;
+  fullWidthChanged() {
+    if (this.fullWidth) {
+      this.root.classList.add('mdc-menu-surface--fullwidth');
+    } else {
+      this.root.classList.remove('mdc-menu-surface--fullwidth');
+    }
+  }
+
   get open(): boolean {
     return this.foundation!.isOpen();
   }
