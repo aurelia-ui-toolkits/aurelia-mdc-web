@@ -88,8 +88,14 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
+  @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
+  fixed: boolean;
+
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
+
+  @bindable.booleanAttr
+  naturalWidth: boolean;
 
   private initialValue: unknown;
   get value(): unknown {
