@@ -1,3 +1,14 @@
+# [v2.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.3...v2.0.4) (2020-11-19)
+
+
+### Bug Fixes
+
+* **dialog:** pass initial focus element for a focus trap ([1f805f2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1f805f2d9b2d27efdeb5a04539b6e91ec82643b7))
+* **menu-surface:** add full-width attribute ([4634da3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4634da3eddb8e3364d97b451f285803e1fba7cf5))
+* **select:** add fixed, natural-width attributes ([45e13aa](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/45e13aa741ccbfd16c74c566e6036682fca136cb))
+
+
+
 # [v2.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.2...v2.0.3) (2020-11-13)
 
 
