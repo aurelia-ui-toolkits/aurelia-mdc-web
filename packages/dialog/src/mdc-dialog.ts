@@ -56,7 +56,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     if (!this.delayFocusTrap) {
-      this.focusTrap_ = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions));
+      this.createFocusTrap();
     }
 
     this.buttons_ = [].slice.call(this.root.querySelectorAll<HTMLElement>(strings.BUTTON_SELECTOR));
@@ -67,7 +67,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   }
 
   createFocusTrap() {
-    this.focusTrap_ = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions));
+    this.focusTrap_ = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions), this.getInitialFocusEl_() ?? undefined);
   }
 
   destroy() {
