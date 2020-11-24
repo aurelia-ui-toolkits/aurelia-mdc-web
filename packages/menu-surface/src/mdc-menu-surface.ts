@@ -62,6 +62,9 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     }
   }
 
+  @bindable.booleanAttr
+  stayOpen: boolean;
+
   get open(): boolean {
     return this.foundation!.isOpen();
   }
@@ -79,7 +82,9 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   }
 
   handleBodyClick(evt: MouseEvent) {
-    this.foundation?.handleBodyClick(evt);
+    if (!this.stayOpen) {
+      this.foundation?.handleBodyClick(evt);
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
