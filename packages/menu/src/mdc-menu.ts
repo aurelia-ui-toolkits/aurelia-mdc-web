@@ -11,6 +11,10 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 
 strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
 
+/**
+ * @selector mdc-menu
+ * @emits mdcmenu:selected | Indicates that a menu item has been selected
+ */
 @inject(Element)
 @customElement('mdc-menu')
 @useView(PLATFORM.moduleName('./mdc-menu.html'))
@@ -23,6 +27,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     return (el as IMdcListElement)?.au.controller.viewModel;
   }
 
+  /** Used to indicate that the menu is using fixed positioning */
   @bindable.booleanAttr
   fixed: boolean;
 
@@ -35,12 +40,15 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     }
   }
 
+  /** Makes the menu element direct child of the body */
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
+  /** Set to indicate an element the menu should be anchored to */
   @bindable
   anchor?: Element | null;
 
+  /** Sets default focus state where the menu should focus every time when menu is opened. Focuses the list root ('list') element by default. */
   @bindable
   defaultFocusState: keyof typeof DefaultFocusState = 'LIST_ROOT';
   async defaultFocusStateChanged() {
@@ -48,17 +56,21 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     this.foundation?.setDefaultFocusState(DefaultFocusState[this.defaultFocusState]);
   }
 
+  /** Override the opening point of the menu. (Default: TOP_START) */
   @bindable
   anchorCorner: keyof typeof Corner;
 
+  /** Sets the distance from the anchor point that the menu surface should be shown */
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
 
+  /** Sets whether the menu should open and close without animation when the open/close methods are called */
   @bindable.booleanAttr
   quickOpen: boolean;
 
+  /** Sets whether the menu surface should stay open after item selection */
   @bindable.booleanAttr
-  closeSurfaceOnSelection: boolean = true;
+  stayOpenOnSelection: boolean;
 
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
@@ -83,6 +95,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     this.menuSurface_.open = value;
   }
 
+  /** Toggles the menu to open or close */
   toggle() {
     this.open = !this.open;
   }
@@ -111,18 +124,6 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
    */
   get items(): Element[] {
     return this.list_ ? this.list_.listElements : [];
-  }
-
-  /**
-   * Turns on/off the underlying list's single selection mode. Used mainly
-   * by select menu.
-   *
-   * @param singleSelection Whether to enable single selection mode.
-   */
-  set singleSelection(singleSelection: boolean) {
-    if (this.list_) {
-      this.list_.singleSelection = singleSelection;
-    }
   }
 
   /**
@@ -260,7 +261,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
       },
       elementContainsClass: (element, className) => element.classList.contains(className),
       closeSurface: (skipRestoreFocus: boolean) => {
-        if (this.closeSurfaceOnSelection) {
+        if (!this.stayOpenOnSelection) {
           this.menuSurface_?.close(skipRestoreFocus);
         }
       },

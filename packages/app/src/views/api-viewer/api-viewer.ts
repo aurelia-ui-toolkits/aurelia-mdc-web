@@ -18,6 +18,7 @@ import layoutGridApi from '../../../../layout-grid/doc/api.json';
 import linearProgressApi from '../../../../linear-progress/doc/api.json';
 import listApi from '../../../../list/doc/api.json';
 import lookupApi from '../../../../lookup/doc/api.json';
+import menuApi from '../../../../menu/doc/api.json';
 
 const apis: Record<string, unknown> = {
   'button': buttonApi,
@@ -37,7 +38,8 @@ const apis: Record<string, unknown> = {
   'layout-grid': layoutGridApi,
   'linear-progress': linearProgressApi,
   'list': listApi,
-  'lookup': lookupApi
+  'lookup': lookupApi,
+  'menu': menuApi
 };
 
 interface ICategoryItem {
@@ -59,6 +61,7 @@ interface IType {
   elementType: { name: string };
   declaration: { signatures: ISignature[] };
   typeArguments: IType[];
+  target: { queryType: { name: string } };
 }
 
 interface IParameter {
@@ -91,6 +94,9 @@ declare module 'typedoc' {
     getSignature: {
       type: IType;
     }[];
+    setSignature: {
+      type: IType;
+    }[];
   }
 }
 
@@ -116,7 +122,7 @@ export class ApiViewer {
         .map(y => {
           return {
             name: y.name,
-            type: y.kindString === 'Accessor' ? this.getType(y.getSignature[0].type) : this.getType(y.type),
+            type: y.kindString === 'Accessor' ? this.getType((y.getSignature ?? y.setSignature)[0].type) : this.getType(y.type),
             description: y.comment?.shortText
           };
         })
@@ -156,6 +162,7 @@ export class ApiViewer {
         } else {
           return t.name;
         }
+      case 'typeOperator': return t.target.queryType.name;
       default: return t.name;
     }
 
