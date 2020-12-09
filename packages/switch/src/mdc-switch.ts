@@ -60,6 +60,10 @@ export class MdcSwitch extends MdcComponent<MDCSwitchFoundation> {
       this.checked = this._checked;
     }
   }
+  
+  destroy() {
+    this._checked = undefined;
+  }
 
   handleChange_(evt: Event) {
     this.foundation?.handleChange(evt);

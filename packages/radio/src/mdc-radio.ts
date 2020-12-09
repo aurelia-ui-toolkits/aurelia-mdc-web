@@ -80,6 +80,10 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
     }
   }
 
+  destroy() {
+    this._checked = undefined;
+  }
+
   getDefaultFoundation() {
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
     // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
