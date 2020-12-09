@@ -123,6 +123,7 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
 
   destroy() {
     this.unlisten(getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
+    this._checked = undefined;
   }
 
   handleChange_() {
