@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/layout-grid",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "publishConfig": {
     "access": "public"
   },

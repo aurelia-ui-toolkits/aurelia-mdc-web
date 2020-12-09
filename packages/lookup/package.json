@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/lookup",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "publishConfig": {
     "access": "public"
   },
@@ -54,8 +54,8 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^2.0.4",
-    "@aurelia-mdc-web/menu": "^2.0.4"
+    "@aurelia-mdc-web/base": "^2.0.5",
+    "@aurelia-mdc-web/menu": "^2.0.5"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
