@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 * **radio:** reset checked value on destroy ([561a04d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/561a04d22d92699c37906c830213329bfd40710c))
+* **switch:** reset checked value on destroy ([561a04d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/561a04d22d92699c37906c830213329bfd40710c))
 * **tree-view:** allow de-selecting a node ([03d9717](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/03d971779a4c57896c729ea6f89f44a8069dbd50))
 
 
