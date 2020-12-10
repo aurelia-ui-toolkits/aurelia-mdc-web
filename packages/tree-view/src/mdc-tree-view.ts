@@ -58,7 +58,7 @@ export class MdcTreeView {
   }
 
   nodeViewFactory: ViewFactory;
-  selectedNode: INode;
+  selectedNode?: INode;
 
   @bindable
   nodes: INode[];
@@ -79,11 +79,13 @@ export class MdcTreeView {
     return false;
   }
 
-  nodeClicked(n: INode) {
+  nodeClicked(n?: INode) {
     if (this.selectedNode) {
       this.selectedNode.selected = false;
     }
-    n.selected = true;
+    if (n) {
+      n.selected = true;
+    }
     this.selectedNode = n;
     this.element.dispatchEvent(new CustomEvent(NODE_SELECTED_EVENT,
       { detail: { node: n }, bubbles: true })
