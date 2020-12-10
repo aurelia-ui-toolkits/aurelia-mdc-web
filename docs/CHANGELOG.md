@@ -1,3 +1,13 @@
+# [v2.0.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.5...v2.0.6) (2020-12-10)
+
+
+### Bug Fixes
+
+* **radio:** reset checked value on destroy ([561a04d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/561a04d22d92699c37906c830213329bfd40710c))
+* **tree-view:** allow de-selecting a node ([03d9717](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/03d971779a4c57896c729ea6f89f44a8069dbd50))
+
+
+
 # [v2.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.4...v2.0.5) (2020-12-09)
 
 
