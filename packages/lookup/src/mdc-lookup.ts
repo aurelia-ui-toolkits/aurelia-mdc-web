@@ -86,10 +86,18 @@ export class MdcLookup implements EventListenerObject {
   @bindable
   options: unknown[] | undefined | ((filter: string, value: unknown) => Promise<unknown[]>);
   optionsChanged() {
+    const shouldRefresh = this.getOptions !== undefined;
     if (this.options instanceof Function) {
       this.getOptions = this.options;
     } else {
       this.getOptions = this.getOptionsDefault;
+    }
+    if (shouldRefresh) {
+      this.optionsArray = undefined;
+      this.value = undefined;
+      if (this.preloadOptions) {
+        this.loadOptions(false);
+      }
     }
   }
 
