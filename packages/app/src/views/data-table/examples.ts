@@ -18,6 +18,7 @@ export class Examples {
   selectionHtml = selectionHtml;
   paginationHtml = paginationHtml;
   activePage = 1;
+  busy = false;
 
   desserts = [
     { checked: false, name: 'Frozen yogurt', calories: 159, carbs: 24, protein: 4, comment: 'Super tasty' },

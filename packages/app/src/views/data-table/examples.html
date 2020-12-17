@@ -1,6 +1,9 @@
 <template>
   <div class="demo-content">
     <h3 class="demo-content__headline">Standard</h3>
+    <div class="demo-layout__row">
+      <button mdc-button click.delegate="busy = !busy">Toggle Busy</button>
+    </div>
     <compose view="./standard.html" class="demo-layout__row"></compose>
     <example-viewer html.bind="standardHtml"></example-viewer>
   </div>
