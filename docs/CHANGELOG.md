@@ -1,3 +1,13 @@
+# [v2.0.7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.6...v2.0.7) (2020-12-17)
+
+
+### Bug Fixes
+
+* **data-table:** get rid of magic strings ([1c74794](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1c74794e070d996a5c5da142a275a2fa8cdb7638)), closes [#34](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/34)
+* **lookup:** reset value and visible options on options change ([805dea7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/805dea79e3cb62db7f3335e97ad52efbcad3fe8d))
+
+
+
 # [v2.0.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.5...v2.0.6) (2020-12-10)
 
 
