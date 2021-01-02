@@ -61,7 +61,7 @@
     "@aurelia-mdc-web/menu": "^2.0.7",
     "@aurelia-mdc-web/notched-outline": "^2.0.7",
     "@aurelia-mdc-web/ripple": "^2.0.7",
-    "@material/select": "^8.0.0"
+    "@material/select": "^9.0.0"
   },
   "devDependencies": {
     "@aurelia-mdc-web/base": "^1.1.6",

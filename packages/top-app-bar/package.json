@@ -56,8 +56,8 @@
   "dependencies": {
     "@aurelia-mdc-web/base": "^2.0.7",
     "@aurelia-mdc-web/ripple": "^2.0.7",
-    "@material/ripple": "^8.0.0",
-    "@material/top-app-bar": "^8.0.0"
+    "@material/ripple": "^9.0.0",
+    "@material/top-app-bar": "^9.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

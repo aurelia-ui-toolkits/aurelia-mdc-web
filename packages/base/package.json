@@ -54,7 +54,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@material/base": "^8.0.0",
+    "@material/base": "^9.0.0",
     "aurelia-typed-observable-plugin": "^0.4.2"
   },
   "peerDependencies": {

@@ -54,7 +54,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@material/image-list": "^8.0.0"
+    "@material/image-list": "^9.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

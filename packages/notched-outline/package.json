@@ -56,8 +56,8 @@
   "dependencies": {
     "@aurelia-mdc-web/base": "^2.0.7",
     "@aurelia-mdc-web/floating-label": "^2.0.7",
-    "@material/floating-label": "^8.0.0",
-    "@material/notched-outline": "^8.0.0"
+    "@material/floating-label": "^9.0.0",
+    "@material/notched-outline": "^9.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

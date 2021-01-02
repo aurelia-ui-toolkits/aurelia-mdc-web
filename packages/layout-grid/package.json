@@ -54,7 +54,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@material/layout-grid": "^8.0.0"
+    "@material/layout-grid": "^9.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
