@@ -31,7 +31,7 @@ export class Examples {
   dmValue = 50;
   dmDisabled = false;
 
-  rangedValue = 500;
+  rangedValue = 700;
 
   rangeMin = 0;
   rangeMax = 100;

@@ -3,6 +3,7 @@ import { MDCSliderAdapter, Thumb, cssClasses, TickMark, MDCSliderChangeEventDeta
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
+import { MdcRipple } from '@aurelia-mdc-web/ripple';
 
 events.INPUT = events.INPUT.toLowerCase();
 events.CHANGE = events.CHANGE.toLowerCase();
@@ -16,8 +17,12 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     defineMdcSliderElementApis(this.root);
   }
 
+  private startInput?: HTMLInputElement;
+  private endInput: HTMLInputElement;
   private startThumb?: HTMLElement;
   private endThumb: HTMLElement;
+  private startRipple?: MdcRipple;
+  private endRipple: MdcRipple;
   private trackActive: HTMLElement;
   tickMarkStatuses: TickMark[];
   TickMark = TickMark;
@@ -42,7 +47,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   min: string = '0';
   async minChanged() {
     await this.initialised;
-    this.endThumb.setAttribute(attributes.ARIA_VALUEMIN, this.min);
+    this.endInput.setAttribute(attributes.INPUT_MIN, this.min);
     this.foundation?.init();
   }
 
@@ -50,7 +55,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   max: string = '100';
   async maxChanged() {
     await this.initialised;
-    this.endThumb.setAttribute(attributes.ARIA_VALUEMAX, this.max);
+    this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
     this.foundation?.init();
   }
 
@@ -58,14 +63,15 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   step: string = '1';
   async stepChanged() {
     await this.initialised;
-    this.root.setAttribute(attributes.DATA_ATTR_STEP, this.step);
+    this.startInput?.setAttribute(attributes.INPUT_STEP, this.step);
+    this.endInput.setAttribute(attributes.INPUT_STEP, this.step);
     this.foundation?.init();
   }
 
   @bindable
   valueToAriaValueTextFn: ((value: number) => string) | null = null;
 
-  _value: number;
+  _value: number = 0;
   get value(): number {
     if (this.foundation) {
       return this.foundation.getValue();
@@ -75,14 +81,11 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   }
 
   set value(value: number) {
-    if (this.foundation) {
-      this.foundation.setValue(value);
-    } else {
-      this._value = value;
-    }
+    this._value = value;
+    this.foundation?.setValue(value);
   }
 
-  _valueStart: number;
+  _valueStart: number = 0;
   get valueStart(): number {
     if (this.foundation) {
       return this.foundation.getValueStart();
@@ -92,17 +95,21 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   }
 
   set valueStart(value: number) {
-    if (this.foundation) {
-      this.foundation.setValueStart(value);
-    } else {
-      this._valueStart = value;
-    }
+    this._valueStart = value;
+    this.foundation?.setValueStart(value);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/require-await
+  async initialise() {
+    this.endInput.setAttribute(attributes.INPUT_MIN, this.min);
+    this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
+    this.endInput.setAttribute(attributes.INPUT_VALUE, this.value.toString());
+    this.endInput.setAttribute(attributes.INPUT_STEP, this.step);
+    this.startInput?.setAttribute(attributes.INPUT_VALUE, this.valueStart.toString());
+    this.startInput?.setAttribute(attributes.INPUT_STEP, this.step);
   }
 
   initialSyncWithDOM() {
-    this.endThumb.setAttribute(attributes.ARIA_VALUEMIN, this.min);
-    this.endThumb.setAttribute(attributes.ARIA_VALUEMAX, this.max);
-    this.endThumb.setAttribute(attributes.DATA_ATTR_STEP, this.step);
     this.value = this._value;
     if (this.range) {
       this.valueStart = this._valueStart;
@@ -129,20 +136,25 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
         this.getThumbEl(thumb)?.classList.remove(className);
       },
       getAttribute: (attribute) => this.root.getAttribute(attribute),
-      getThumbAttribute: (attribute, thumb: Thumb) => this.getThumbEl(thumb)?.getAttribute(attribute) ?? null,
-      setThumbAttribute: (attribute, value, thumb: Thumb) => {
-        this.getThumbEl(thumb)?.setAttribute(attribute, value);
+      getInputValue: (thumb: Thumb) => this.getInput(thumb)!.value,
+      setInputValue: (value: string, thumb: Thumb) => {
+        this.getInput(thumb)!.value = value;
       },
-      isThumbFocused: (thumb: Thumb) =>
-        this.getThumbEl(thumb) === document.activeElement,
-      focusThumb: (thumb: Thumb) => {
-        this.getThumbEl(thumb)?.focus();
+      getInputAttribute: (attribute, thumb: Thumb) =>
+        this.getInput(thumb)!.getAttribute(attribute),
+      setInputAttribute: (attribute, value, thumb: Thumb) => {
+        this.getInput(thumb)!.setAttribute(attribute, value);
       },
-      getThumbKnobWidth: (thumb: Thumb) => {
-        return this.getThumbEl(thumb)?.querySelector<HTMLElement>(`.${cssClasses.THUMB_KNOB}`)!
-          .getBoundingClientRect()
-          .width ?? 0;
+      removeInputAttribute: (attribute, thumb: Thumb) => {
+        this.getInput(thumb)?.removeAttribute(attribute);
       },
+      focusInput: (thumb: Thumb) => { this.getInput(thumb)?.focus(); },
+      isInputFocused: (thumb: Thumb) =>
+        this.getInput(thumb) === document.activeElement, getThumbKnobWidth: (thumb: Thumb) => {
+          return this.getThumbEl(thumb)?.querySelector<HTMLElement>(`.${cssClasses.THUMB_KNOB}`)!
+            .getBoundingClientRect()
+            .width ?? 0;
+        },
       getThumbBoundingClientRect: (thumb: Thumb) => this.getThumbEl(thumb)!.getBoundingClientRect(),
       getBoundingClientRect: () => this.root.getBoundingClientRect(),
       isRTL: () => getComputedStyle(this.root).direction === 'rtl',
@@ -177,13 +189,17 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
       emitInputEvent: (value, thumb: Thumb) => {
         this.emit<MDCSliderChangeEventDetail>(events.INPUT, { value, thumb });
       },
-      emitDragStartEvent: () => {
-        // Not yet implemented. See issue:
+      emitDragStartEvent: (_, thumb: Thumb) => {
+        // Emitting event is not yet implemented. See issue:
         // https://github.com/material-components/material-components-web/issues/6448
+
+        this.getRipple(thumb)?.activate();
       },
-      emitDragEndEvent: () => {
-        // Not yet implemented. See issue:
+      emitDragEndEvent: (_, thumb: Thumb) => {
+        // Emitting event is not yet implemented. See issue:
         // https://github.com/material-components/material-components-web/issues/6448
+
+        this.getRipple(thumb)?.deactivate();
       },
       registerEventHandler: (evtType, handler) => {
         this.listen(evtType, handler);
@@ -196,6 +212,12 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
       },
       deregisterThumbEventHandler: (thumb, evtType, handler) => {
         this.getThumbEl(thumb)?.removeEventListener(evtType, handler);
+      },
+      registerInputEventHandler: (thumb, evtType, handler) => {
+        this.getInput(thumb)?.addEventListener(evtType, handler);
+      },
+      deregisterInputEventHandler: (thumb, evtType, handler) => {
+        this.getInput(thumb)?.removeEventListener(evtType, handler);
       },
       registerBodyEventHandler: (evtType, handler) => {
         document.body.addEventListener(evtType, handler);
@@ -216,6 +238,14 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
 
   getThumbEl(thumb: Thumb) {
     return thumb === Thumb.END ? this.endThumb : this.startThumb;
+  }
+
+  private getInput(thumb: Thumb) {
+    return thumb === Thumb.END ? this.endInput : this.startInput;
+  }
+
+  private getRipple(thumb: Thumb) {
+    return thumb === Thumb.END ? this.endRipple : this.startRipple;
   }
 
   focus() {
