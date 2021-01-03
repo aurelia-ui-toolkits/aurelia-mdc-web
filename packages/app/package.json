@@ -47,6 +47,8 @@
     "@aurelia-mdc-web/snackbar": "^2.0.7",
     "@aurelia-mdc-web/switch": "^2.0.7",
     "@aurelia-mdc-web/text-field": "^2.0.7",
+    "@aurelia-mdc-web/tooltip": "^2.0.7",
+    "@aurelia-mdc-web/top-app-bar": "^2.0.7",
     "@aurelia-mdc-web/tree-view": "^2.0.7",
     "@aurelia-mdc-web/typography": "^2.0.7",
     "@aurelia-mdc-web/validation": "^2.0.7"

@@ -53,6 +53,7 @@
     "@material/tab-indicator": "^9.0.0",
     "@material/tab-scroller": "^9.0.0",
     "@material/textfield": "^9.0.0",
+    "@material/tooltip": "^9.0.0",
     "@material/top-app-bar": "^9.0.0",
     "@material/typography": "^9.0.0",
     "@types/highlightjs": "^9.12.0",

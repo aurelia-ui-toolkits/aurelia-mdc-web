@@ -101,6 +101,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
 
   // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
+    // assign initial values explicitly
     this.endInput.setAttribute(attributes.INPUT_MIN, this.min);
     this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
     this.endInput.setAttribute(attributes.INPUT_VALUE, this.value.toString());

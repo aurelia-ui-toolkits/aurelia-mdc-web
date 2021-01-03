@@ -24,7 +24,6 @@ export function configure(config: FrameworkConfiguration) {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/lookup'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu-surface'))
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/top-app-bar'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/radio'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/slider'))
@@ -32,6 +31,8 @@ export function configure(config: FrameworkConfiguration) {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/switch'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/tab-bar'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/tooltip'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/top-app-bar'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/tree-view'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/typography'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/validation'));

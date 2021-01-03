@@ -67,8 +67,9 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'snackbar',
           'switch',
           'tab-bar',
-          'top-app-bar',
           'text-field',
+          'tooltip',
+          'top-app-bar',
           'tree-view',
           'typography',
           'validation'
