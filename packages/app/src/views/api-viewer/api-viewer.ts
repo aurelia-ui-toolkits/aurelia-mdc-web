@@ -19,6 +19,7 @@ import linearProgressApi from '../../../../linear-progress/doc/api.json';
 import listApi from '../../../../list/doc/api.json';
 import lookupApi from '../../../../lookup/doc/api.json';
 import menuApi from '../../../../menu/doc/api.json';
+import tooltipApi from '../../../../tooltip/doc/api.json';
 
 const apis: Record<string, unknown> = {
   'button': buttonApi,
@@ -39,7 +40,8 @@ const apis: Record<string, unknown> = {
   'linear-progress': linearProgressApi,
   'list': listApi,
   'lookup': lookupApi,
-  'menu': menuApi
+  'menu': menuApi,
+  'tooltip': tooltipApi
 };
 
 interface ICategoryItem {

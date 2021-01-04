@@ -1,5 +1,53 @@
 <template>
   <div class="demo-content">
-    <button mdc-button raised mdc-tooltip="value: Tooltip!; x-position: START">Hover over me</button>
+    <div class="demo-layout--center">
+      <compose view="./basic.html"></compose>
+    </div>
+    <example-viewer html.bind="basicHtml"></example-viewer>
   </div>
+
+  <div class="demo-content">
+    <div class="demo-layout--center">
+      <compose view="./positions.html"></compose>
+    </div>
+
+    <div class="demo-layout__row">
+      <div class="demo-content">
+        <h3 class="demo-content__headline">X position</h3>
+        <div class="demo-layout__column">
+          <mdc-radio-group class="demo-layout__column">
+            <mdc-form-field repeat.for="p of xPositions">
+              <mdc-radio model.bind="p" checked.bind="xPosition"></mdc-radio>
+              <label>${p}</label>
+            </mdc-form-field>
+          </mdc-radio-group>
+        </div>
+      </div>
+      <div class="demo-content">
+        <h3 class="demo-content__headline">Y position</h3>
+        <div class="demo-layout__column">
+          <mdc-radio-group class="demo-layout__column">
+            <mdc-form-field repeat.for="p of yPositions">
+              <mdc-radio model.bind="p" checked.bind="yPosition"></mdc-radio>
+              <label>${p}</label>
+            </mdc-form-field>
+          </mdc-radio-group>
+        </div>
+      </div>
+      <div class="demo-content">
+        <h3 class="demo-content__headline">Boundary type</h3>
+        <div class="demo-layout__column">
+          <mdc-radio-group class="demo-layout__column">
+            <mdc-form-field repeat.for="bt of boundaryTypes">
+              <mdc-radio model.bind="bt" checked.bind="boundaryType"></mdc-radio>
+              <label>${bt}</label>
+            </mdc-form-field>
+          </mdc-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <example-viewer html.bind="positionsHtml"></example-viewer>
+  </div>
+
 </template>

@@ -1,13 +1,17 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition } from '@material/tooltip';
+import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes } from '@material/tooltip';
 import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
+/**
+ * @selector mdc-tooltip
+ */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-tooltip.html'))
 @customElement('mdc-tooltip')
 export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements EventListenerObject {
 
+  /** Sets the anchor element */
   @bindable
   anchorElem?: HTMLElement;
 
@@ -17,18 +21,43 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
   @bindable.booleanAttr
   persistent: boolean;
 
+  /** Sets the horizontal alignment of the tooltip */
   @bindable
-  xPosition: keyof typeof XPosition;
+  xPosition?: keyof typeof XPosition;
   async xPositionChanged() {
-    await this.initialised;
-    this.foundation?.setTooltipPosition({ xPos: XPosition[this.xPosition] });
+    if (this.xPosition !== undefined) {
+      await this.initialised;
+      this.foundation?.setTooltipPosition({ xPos: XPosition[this.xPosition] });
+    }
   }
 
+  /** Sets the vertical alignment of the tooltip */
   @bindable
-  yPosition: keyof typeof YPosition;
+  yPosition?: keyof typeof YPosition;
   async yPositionChanged() {
-    await this.initialised;
-    this.foundation?.setTooltipPosition({ yPos: YPosition[this.yPosition] });
+    if (this.yPosition !== undefined) {
+      await this.initialised;
+      this.foundation?.setTooltipPosition({ yPos: YPosition[this.yPosition] });
+    }
+  }
+
+  /** Specifies whether the anchor element is bounded (element has an identifiable boundary such as a button) or unbounded (element does not have a visually declared boundary such as a text link).
+   * Tooltips are placed closer to bounded anchor elements compared to unbounded anchor elements. If no type is specified, defaults to BOUNDED.
+   **/
+  @bindable
+  boundaryType?: keyof typeof AnchorBoundaryType;
+  async boundaryTypeChanged() {
+    if (this.boundaryType !== undefined) {
+      await this.initialised;
+      this.foundation?.setAnchorBoundaryType(AnchorBoundaryType[this.boundaryType]);
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/require-await
+  async initialise() {
+    if (this.persistent) {
+      this.root.setAttribute(attributes.PERSISTENT, 'true');
+    }
   }
 
   initialSyncWithDOM() {

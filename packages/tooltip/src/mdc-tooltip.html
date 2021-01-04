@@ -1,4 +1,6 @@
-<template class="mdc-tooltip" role="tooltip" aria-hidden="true" transitionend.trigger="handleTransitionEnd()">
+<template class="mdc-tooltip
+  ${rich ? 'mdc-tooltip--rich' : ''}
+" role="tooltip" aria-hidden="true" transitionend.trigger="handleTransitionEnd()">
   <div class="mdc-tooltip__surface">
     <slot></slot>
   </div>

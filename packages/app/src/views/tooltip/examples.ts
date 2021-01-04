@@ -1,22 +1,18 @@
-// import basicHtml from '!!raw-loader!./basic.html';
-// import customHtml from '!!raw-loader!./custom.html';
-// import customScss from '!!raw-loader!./custom.scss';
-// import themeHtml from '!!raw-loader!./theme.html';
-// import themeScss from '!!raw-loader!./theme.scss';
+import basicHtml from '!!raw-loader!./basic.html';
+import positionsHtml from '!!raw-loader!./positions.html';
+import { XPosition, YPosition, AnchorBoundaryType } from '@material/tooltip';
 
 export class Examples {
-  // basicHtml = basicHtml;
-  // customHtml = customHtml;
-  // customScss = customScss;
-  // themeHtml = themeHtml;
-  // themeScss = themeScss;
+  basicHtml = basicHtml;
+  positionsHtml = positionsHtml;
 
-  // checked: boolean = true;
+  xPositions = Object.values(XPosition).filter(x => typeof x === 'string');
+  xPosition = XPosition[XPosition.DETECTED];
 
-  // changeEvent: CustomEvent;
+  yPositions = Object.values(YPosition).filter(x => typeof x === 'string');
+  yPosition = YPosition[YPosition.DETECTED];
 
-  // onChange(evt: CustomEvent): void {
-  //   this.changeEvent = evt;
-  // }
+  boundaryTypes = Object.values(AnchorBoundaryType).filter(x => typeof x === 'string');
+  boundaryType = AnchorBoundaryType[AnchorBoundaryType.BOUNDED];
 
 }

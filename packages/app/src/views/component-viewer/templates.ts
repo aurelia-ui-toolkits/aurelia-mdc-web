@@ -509,6 +509,22 @@ export const templates: { [x: string]: IComponentTemplate } = {
 @use "@material/form-field/_index" as form-field;
 @use "@aurelia-mdc-web/text-field" as AuTextField;`
   },
+  'tooltip': {
+    title: 'Tooltip',
+    description: 'Tooltips display informative text when users hover over, focus on, or tap an element.',
+    references: [{
+      name: 'Material Design guidelines: Tooltips',
+      url: 'https://material.io/components/tooltips'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tooltip/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tooltip/README.md#sass-mixins' }
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/tooltip\'));',
+    sass: '@use "@material/tooltip/styles";'
+  },
   'top-app-bar': {
     title: 'Top App Bar',
     description: 'The top app bar displays information and actions relating to the current screen.',
