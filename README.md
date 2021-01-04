@@ -43,13 +43,14 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | menu | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/menu) |
 | radio | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/radio) |
 | ripple | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/ripple) |
+| segmented-button | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/segmented-button) |
 | select | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/select) |
 | slider | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/slider) |
 | snackbar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/snackbar) |
 | switch | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/switch) |
 | tabs | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tabs) |
 | text-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/text-field) |
-| tooltip | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tooltip) |
+| tooltip | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tooltip) |
 | top-app-bar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/top-app-bar) |
 | tree-view | Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tree-view) |
 | typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |
