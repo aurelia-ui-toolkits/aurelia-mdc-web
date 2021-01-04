@@ -1,3 +1,18 @@
+# [v3.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.7...v3.0.0) (2021-01-04)
+
+
+### Bug Fixes
+
+* **slider:** upgrade to MDC 9 ([79ca739](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/79ca739f33e7e7dca8a0bf845459a521a4a16ce7))
+
+
+### Features
+
+* **tooltip:** add ([ba66efd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ba66efd452ab84e21cc296d44460a90fd501e7c5))
+* **tooltip:** wip ([e57acc0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e57acc06f54dfb5a47fd56e646d5ae161fe39f05))
+
+
+
 # [v2.0.7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.6...v2.0.7) (2020-12-17)
 
 
