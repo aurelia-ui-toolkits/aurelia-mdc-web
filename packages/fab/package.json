@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/fab",
-  "version": "2.0.7",
+  "version": "3.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -54,8 +54,8 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^2.0.7",
-    "@aurelia-mdc-web/ripple": "^2.0.7",
+    "@aurelia-mdc-web/base": "^3.0.0",
+    "@aurelia-mdc-web/ripple": "^3.0.0",
     "@material/fab": "^9.0.0"
   },
   "devDependencies": {
