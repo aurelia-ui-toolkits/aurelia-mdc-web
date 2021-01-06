@@ -5,7 +5,7 @@
       anchor-corner.bind="menuSurfaceAnchorCorner" quick-open.bind="quickOpen"
       default-focus-state.bind="defaultFocusState" fixed.bind="fixed"
       stay-open-on-selection.bind="stayOpenOnSelection" anchor-margin.bind="anchorMargin">
-      <mdc-list wrap-focus.bind="wrapFocus">
+      <mdc-list wrap-focus.bind="wrapFocus" tabindex="-1">
         <template repeat.for="fruit of fruits">
           <mdc-list-item if.bind="fruit.label" value.bind="fruit.label">${fruit.label}</mdc-list-item>
           <mdc-list-divider else></mdc-list-divider>
