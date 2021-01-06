@@ -52,7 +52,7 @@ export class Examples {
   quickOpen = false;
   fixed = false;
   wrapFocus = false;
-  closeSurfaceOnSelection = true;
+  stayOpenOnSelection = false;
 
   onMenuSelect(event: { index: number; item: string }) {
     this.lastSelection = event.index;

@@ -11,7 +11,7 @@
         <div class="demo-layout__column">
           <mdc-form-field repeat.for="corner of corners">
             <mdc-radio model.bind="corner" checked.bind="menuSurfaceAnchorCorner"></mdc-radio>
-              <label>${corner}</label>
+            <label>${corner}</label>
           </mdc-form-field>
         </div>
       </div>
@@ -45,11 +45,13 @@
             <label>Wrap keyboard focus</label>
           </mdc-form-field>
           <mdc-form-field>
-            <mdc-checkbox checked.bind="closeSurfaceOnSelection"></mdc-checkbox>
-            <label>Close Surface on Selection</label>
+            <mdc-checkbox checked.bind="stayOpenOnSelection"></mdc-checkbox>
+            <label>Stay Open on Selection</label>
           </mdc-form-field>
           <mdc-select value.bind="defaultFocusState" label="Default Focus State">
-            <mdc-list-item repeat.for="dfs of defaultFocusStates" value.bind="dfs">${dfs}</mdc-list-item>
+            <mdc-list>
+              <mdc-list-item repeat.for="dfs of defaultFocusStates" value.bind="dfs">${dfs}</mdc-list-item>
+            </mdc-list>
           </mdc-select>
         </div>
       </div>
