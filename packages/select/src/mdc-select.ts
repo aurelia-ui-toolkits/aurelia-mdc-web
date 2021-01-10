@@ -58,6 +58,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   @bindable
   label: string;
+  labelChanged() {
+    this.taskQueue.queueTask(() => this.foundation?.layout());
+  }
 
   @bindable.booleanAttr
   outlined: boolean;
