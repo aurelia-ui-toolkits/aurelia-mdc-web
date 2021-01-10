@@ -47,7 +47,11 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   min: string = '0';
   async minChanged() {
     await this.initialised;
-    this.endInput.setAttribute(attributes.INPUT_MIN, this.min);
+    if (this.startInput) {
+      this.startInput?.setAttribute(attributes.INPUT_MIN, this.min);
+    } else {
+      this.endInput.setAttribute(attributes.INPUT_MIN, this.min);
+    }
     this.foundation?.init();
   }
 
