@@ -53,6 +53,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
       this.endInput.setAttribute(attributes.INPUT_MIN, this.min);
     }
     this.foundation?.init();
+    this.foundation?.layout();
   }
 
   @bindable
@@ -61,6 +62,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     await this.initialised;
     this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
     this.foundation?.init();
+    this.foundation?.layout();
   }
 
   @bindable
