@@ -12,17 +12,13 @@ export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation>
 
   @child(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`)
   label: MdcFloatingLabel;
-
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  labelChanged(){
     if (this.label) {
       this.label.root.style.transitionDuration = '0s';
       this.root.classList.add(cssClasses.OUTLINE_UPGRADED);
       requestAnimationFrame(() => {
         this.label.root.style.transitionDuration = '';
       });
-    } else {
-      this.root.classList.add(cssClasses.NO_LABEL);
     }
   }
 
