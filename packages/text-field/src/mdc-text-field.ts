@@ -1,4 +1,4 @@
-import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, PLATFORM, child } from 'aurelia-framework';
+import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, PLATFORM, child, TaskQueue } from 'aurelia-framework';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
   MDCTextFieldLineRippleAdapter, cssClasses, MDCTextFieldOutlineAdapter, helperTextStrings, characterCountStrings
@@ -17,12 +17,12 @@ import { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc
 
 let textFieldId = 0;
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @useView(PLATFORM.moduleName('./mdc-text-field.html'))
 @customElement(cssClasses.ROOT)
 @processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
-  constructor(root: HTMLElement) {
+  constructor(root: HTMLElement, private taskQueue: TaskQueue) {
     super(root);
     defineMdcTextFieldElementApis(this.root);
   }
@@ -47,6 +47,13 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   @bindable
   label: string;
+  async labelChanged() {
+    await this.initialised;
+    this.taskQueue.queueTask(() => {
+      const openNotch = this.foundation!.shouldFloat;
+      this.foundation!.notchOutline(openNotch);
+    });
+  }
 
   @bindable.booleanAttr
   textarea: boolean;
