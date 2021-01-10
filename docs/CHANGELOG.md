@@ -3,8 +3,8 @@
 
 ### Bug Fixes
 
-* Range Slider not respecting minimum value ([3c0e1ea](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3c0e1eae9394f538787940672cf9ad98ba90c7b0))
-* Range Slider not updating position of other thumb when min/max are updated. ([2ff9fb9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2ff9fb945d2a3e6421738e16c2672e67c17fda66))
+* **slider:** Set minimum value on the start input ([3c0e1ea](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3c0e1eae9394f538787940672cf9ad98ba90c7b0))
+* **slider:** Update layout when min/max are updated. ([2ff9fb9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2ff9fb945d2a3e6421738e16c2672e67c17fda66))
 
 
 
