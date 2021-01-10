@@ -1,3 +1,14 @@
+# [v3.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.0...v3.0.1) (2021-01-10)
+
+
+### Bug Fixes
+
+* **notch-outline:** update classes on label change ([20744dc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/20744dcac90af3c3fcee8b9a8104fb6516f9acba)), closes [#36](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/36)
+* **select:** re-layout on label change ([5b84d6f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5b84d6ff2ae9276cc8c4e6b5d505f06c5dc59692))
+* **text-field:** re-layout on label change ([0e5e156](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0e5e156ec5fcb655639e39854e1579f293757333))
+
+
+
 # [v3.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v2.0.7...v3.0.0) (2021-01-04)
 
 
