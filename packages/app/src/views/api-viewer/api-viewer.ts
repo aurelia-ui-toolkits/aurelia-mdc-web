@@ -20,6 +20,7 @@ import listApi from '../../../../list/doc/api.json';
 import lookupApi from '../../../../lookup/doc/api.json';
 import menuApi from '../../../../menu/doc/api.json';
 import tooltipApi from '../../../../tooltip/doc/api.json';
+import selectApi from '../../../../select/doc/api.json';
 
 const apis: Record<string, unknown> = {
   'button': buttonApi,
@@ -41,7 +42,8 @@ const apis: Record<string, unknown> = {
   'list': listApi,
   'lookup': lookupApi,
   'menu': menuApi,
-  'tooltip': tooltipApi
+  'tooltip': tooltipApi,
+  'select': selectApi
 };
 
 interface ICategoryItem {

@@ -19,6 +19,10 @@ strings.CHANGE_EVENT = strings.CHANGE_EVENT.toLowerCase();
 
 let selectId = 0;
 
+/**
+ * @selector mdc-select
+ * @emits mdcselect:change | Emitted if user changed the value
+ */
 @inject(Element, TaskQueue)
 @useView(PLATFORM.moduleName('./mdc-select.html'))
 @customElement(cssClasses.ROOT)
@@ -56,18 +60,21 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   // private mutationObserver: MutationObserver;
   errors = new Map<IError, boolean>();
 
+  /** Sets the select label */
   @bindable
   label: string;
   labelChanged() {
     this.taskQueue.queueTask(() => this.foundation?.layout());
   }
 
+  /** Styles the select as an outlined select */
   @bindable.booleanAttr
   outlined: boolean;
   outlinedChanged() {
     this.taskQueue.queueTask(() => this.foundation?.layout());
   }
 
+  /** Makes the value required */
   @bindable.booleanAttr
   required: boolean;
   async requiredChanged() {
@@ -81,6 +88,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     this.taskQueue.queueTask(() => this.foundation?.layout());
   }
 
+  /** Enables/disables the select */
   @bindable.booleanAttr
   disabled: boolean;
   async disabledChanged() {
@@ -88,15 +96,19 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     this.foundation?.setDisabled(this.disabled);
   }
 
+  /** Hoists the select DOM to document.body */
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
+  /** Sets the select DOM position to fixed */
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   fixed: boolean;
 
+  /** Sets the margin between the select input and the dropdown */
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
 
+  /** Sets the select dropdown width to match content */
   @bindable.booleanAttr
   naturalWidth: boolean;
 
@@ -332,6 +344,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   /**
+   * @hidden
    * Calculates where the line ripple should start based on the x coordinate within the component.
    */
   private getNormalizedXCoordinate(evt: MouseEvent | TouchEvent): number {
@@ -346,6 +359,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   /**
+   * @hidden
    * Returns a map of all subcomponents to subfoundations.
    */
   private getFoundationMap(): Partial<MDCSelectFoundationMap> {
