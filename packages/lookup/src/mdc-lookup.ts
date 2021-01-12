@@ -22,7 +22,6 @@ export class MdcLookup implements EventListenerObject {
     defineMdcLookupElementApis(this.root);
   }
 
-  public anchor: { left: number; top: string | undefined; bottom: string | undefined; maxHeight: number; width: number } | null;
   public isWrapperOpen: boolean = false;
   public optionsArray?: unknown[];
   public focusedOption: unknown = undefined;
@@ -105,6 +104,9 @@ export class MdcLookup implements EventListenerObject {
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
+  @bindable.booleanAttr
+  naturalWidth: boolean;
+
   getOptions: (filter: string | undefined, value: unknown) => Promise<unknown[]>;
 
   async getOptionsDefault(filter: string, value: unknown): Promise<unknown[]> {
@@ -172,6 +174,9 @@ export class MdcLookup implements EventListenerObject {
   open() {
     if (this.input?.disabled || this.input?.readOnly || this.menu.open || this.optionsArray === undefined && !this.searching && !this.errorMessage) {
       return;
+    }
+    if (!this.naturalWidth) {
+      this.menu.root.style.width = `${this.input?.clientWidth}px`;
     }
     this.menu.open = true;
   }
