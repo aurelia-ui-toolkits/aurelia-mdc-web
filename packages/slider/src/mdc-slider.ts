@@ -48,6 +48,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   async minChanged() {
     await this.initialised;
     (this.startInput ?? this.endInput).setAttribute(attributes.INPUT_MIN, this.min);
+    this.foundation?.destroy();
     this.foundation?.init();
     this.foundation?.layout();
   }
@@ -57,6 +58,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   async maxChanged() {
     await this.initialised;
     this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
+    this.foundation?.destroy();
     this.foundation?.init();
     this.foundation?.layout();
   }
@@ -67,6 +69,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     await this.initialised;
     this.startInput?.setAttribute(attributes.INPUT_STEP, this.step);
     this.endInput.setAttribute(attributes.INPUT_STEP, this.step);
+    this.foundation?.destroy();
     this.foundation?.init();
   }
 
