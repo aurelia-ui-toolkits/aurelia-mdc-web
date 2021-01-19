@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/expandable",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -54,8 +54,8 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^3.0.2",
-    "@aurelia-mdc-web/ripple": "^3.0.2",
+    "@aurelia-mdc-web/base": "^3.0.3",
+    "@aurelia-mdc-web/ripple": "^3.0.3",
     "@material/feature-targeting": "^9.0.0",
     "@material/theme": "^9.0.0"
   },
