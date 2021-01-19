@@ -4,9 +4,16 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
 import { MdcRipple } from '@aurelia-mdc-web/ripple';
+import { EventType, SpecificEventListener } from '@material/base';
 
 events.INPUT = events.INPUT.toLowerCase();
 events.CHANGE = events.CHANGE.toLowerCase();
+
+interface IEventHandler {
+  element: HTMLElement | Window;
+  evtType: EventType;
+  handler: SpecificEventListener<EventType>;
+}
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-slider.html'))
@@ -26,6 +33,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   private trackActive: HTMLElement;
   tickMarkStatuses: TickMark[];
   TickMark = TickMark;
+  eventHandlers: IEventHandler[] = [];
 
   @bindable.booleanAttr
   discrete: boolean;
@@ -49,6 +57,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     await this.initialised;
     (this.startInput ?? this.endInput).setAttribute(attributes.INPUT_MIN, this.min);
     this.foundation?.destroy();
+    this.cleanupEventHandlers();
     this.foundation?.init();
     this.foundation?.layout();
   }
@@ -59,6 +68,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     await this.initialised;
     this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
     this.foundation?.destroy();
+    this.cleanupEventHandlers();
     this.foundation?.init();
     this.foundation?.layout();
   }
@@ -70,6 +80,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     this.startInput?.setAttribute(attributes.INPUT_STEP, this.step);
     this.endInput.setAttribute(attributes.INPUT_STEP, this.step);
     this.foundation?.destroy();
+    this.cleanupEventHandlers();
     this.foundation?.init();
   }
 
@@ -155,12 +166,12 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
         this.getInput(thumb)?.removeAttribute(attribute);
       },
       focusInput: (thumb: Thumb) => { this.getInput(thumb)?.focus(); },
-      isInputFocused: (thumb: Thumb) =>
-        this.getInput(thumb) === document.activeElement, getThumbKnobWidth: (thumb: Thumb) => {
-          return this.getThumbEl(thumb)?.querySelector<HTMLElement>(`.${cssClasses.THUMB_KNOB}`)!
-            .getBoundingClientRect()
-            .width ?? 0;
-        },
+      isInputFocused: (thumb: Thumb) => this.getInput(thumb) === document.activeElement,
+      getThumbKnobWidth: (thumb: Thumb) => {
+        return this.getThumbEl(thumb)?.querySelector<HTMLElement>(`.${cssClasses.THUMB_KNOB}`)!
+          .getBoundingClientRect()
+          .width ?? 0;
+      },
       getThumbBoundingClientRect: (thumb: Thumb) => this.getThumbEl(thumb)!.getBoundingClientRect(),
       getBoundingClientRect: () => this.root.getBoundingClientRect(),
       isRTL: () => getComputedStyle(this.root).direction === 'rtl',
@@ -209,37 +220,77 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
       },
       registerEventHandler: (evtType, handler) => {
         this.listen(evtType, handler);
+        this.addEventHandler(this.root, evtType, handler);
       },
       deregisterEventHandler: (evtType, handler) => {
         this.unlisten(evtType, handler);
+        this.removeEventHandler(this.root, evtType, handler);
       },
       registerThumbEventHandler: (thumb, evtType, handler) => {
-        this.getThumbEl(thumb)?.addEventListener(evtType, handler);
+        const thumbEl = this.getThumbEl(thumb);
+        if (thumbEl) {
+          thumbEl.addEventListener(evtType, handler);
+          this.addEventHandler(thumbEl, evtType, handler);
+        }
       },
       deregisterThumbEventHandler: (thumb, evtType, handler) => {
-        this.getThumbEl(thumb)?.removeEventListener(evtType, handler);
+        const thumbEl = this.getThumbEl(thumb);
+        if (thumbEl) {
+          thumbEl.removeEventListener(evtType, handler);
+          this.removeEventHandler(thumbEl, evtType, handler);
+        }
       },
       registerInputEventHandler: (thumb, evtType, handler) => {
-        this.getInput(thumb)?.addEventListener(evtType, handler);
+        const thumbInput = this.getThumbEl(thumb);
+        if (thumbInput) {
+          thumbInput.addEventListener(evtType, handler);
+          this.addEventHandler(thumbInput, evtType, handler);
+        }
       },
       deregisterInputEventHandler: (thumb, evtType, handler) => {
-        this.getInput(thumb)?.removeEventListener(evtType, handler);
+        const thumbInput = this.getThumbEl(thumb);
+        if (thumbInput) {
+          thumbInput.removeEventListener(evtType, handler);
+          this.removeEventHandler(thumbInput, evtType, handler);
+        }
       },
       registerBodyEventHandler: (evtType, handler) => {
         document.body.addEventListener(evtType, handler);
+        this.addEventHandler(document.body, evtType, handler);
       },
       deregisterBodyEventHandler: (evtType, handler) => {
         document.body.removeEventListener(evtType, handler);
+        this.removeEventHandler(document.body, evtType, handler);
       },
       registerWindowEventHandler: (evtType, handler) => {
         window.addEventListener(evtType, handler);
+        this.addEventHandler(window, evtType, handler);
       },
       deregisterWindowEventHandler: (evtType, handler) => {
         window.removeEventListener(evtType, handler);
+        this.removeEventHandler(window, evtType, handler);
       },
       // tslint:enable:object-literal-sort-keys
     };
     return new MdcSliderFoundationAurelia(adapter);
+  }
+
+  addEventHandler(element: HTMLElement | Window, evtType: EventType, handler: SpecificEventListener<EventType>) {
+    this.eventHandlers.push({ element, evtType, handler });
+  }
+
+  removeEventHandler(element: HTMLElement | Window, evtType: EventType, handler: SpecificEventListener<EventType>) {
+    const i = this.eventHandlers.findIndex(x => x.element === element && x.evtType === evtType && x.handler === handler);
+    if (i !== -1) {
+      this.eventHandlers.splice(i, 1);
+    }
+  }
+
+  cleanupEventHandlers() {
+    this.eventHandlers.forEach(x => {
+      x.element.removeEventListener(x.evtType, x.handler);
+    });
+    this.eventHandlers = [];
   }
 
   getThumbEl(thumb: Thumb) {
