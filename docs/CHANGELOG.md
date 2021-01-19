@@ -1,3 +1,14 @@
+# [v3.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.2...v3.0.3) (2021-01-19)
+
+
+### Bug Fixes
+
+* **lookup:** restrict to input width by default ([2fadfd1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2fadfd120055ab8027f768f5536cb3979f0ea330))
+* **slider:** clean up event handlers on attributes changes ([a2f55fb](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a2f55fbe755ab6e4e95b34a2200e0e4835c6c869))
+* **slider:** de-register event handlers on attribute changes ([5257423](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5257423680692d9fe71529fb455a03a84d1f0eed))
+
+
+
 # [v3.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.1...v3.0.2) (2021-01-10)
 
 
