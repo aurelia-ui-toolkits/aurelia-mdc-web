@@ -79,6 +79,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   @children('mdc-list-item')
   items: MdcListItem[];
   itemsChanged() {
+    this.foundation?.layout();
     this.emit(mdcListStrings.ITEMS_CHANGED, { items: this.items }, true);
   }
 
