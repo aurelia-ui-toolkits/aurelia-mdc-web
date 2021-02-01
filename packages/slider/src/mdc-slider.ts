@@ -241,14 +241,14 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
         }
       },
       registerInputEventHandler: (thumb, evtType, handler) => {
-        const thumbInput = this.getThumbEl(thumb);
+        const thumbInput = this.getInput(thumb);
         if (thumbInput) {
           thumbInput.addEventListener(evtType, handler);
           this.addEventHandler(thumbInput, evtType, handler);
         }
       },
       deregisterInputEventHandler: (thumb, evtType, handler) => {
-        const thumbInput = this.getThumbEl(thumb);
+        const thumbInput = this.getInput(thumb);
         if (thumbInput) {
           thumbInput.removeEventListener(evtType, handler);
           this.removeEventHandler(thumbInput, evtType, handler);
