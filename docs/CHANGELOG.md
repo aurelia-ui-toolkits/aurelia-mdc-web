@@ -1,3 +1,13 @@
+# [v3.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.3...v3.0.4) (2021-02-01)
+
+
+### Bug Fixes
+
+* **list:** layout on items change ([a55bfa5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a55bfa5ffbefb5179234323c797f2029ea007285))
+* **slider:** typo ([9b12b7d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9b12b7dd0f6392c2d8c1c866bad8b89004eaeff7))
+
+
+
 # [v3.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.2...v3.0.3) (2021-01-19)
 
 
