@@ -226,7 +226,7 @@ export class MdcLookup implements EventListenerObject {
     if (open) {
       this.open();
     }
-    this.optionsArray = [];
+    this.optionsArray = undefined;
     try {
       this.searchPromise = new DiscardablePromise(this.getOptions(this.input?.value, undefined));
       this.optionsArray = await this.searchPromise;

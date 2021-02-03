@@ -11,7 +11,7 @@ export class Examples {
     if (value) {
       return Promise.resolve([this.options.find(x => x === value)]);
     } else {
-      return Promise.resolve(this.options.filter(x => x.name.toUpperCase().includes((filter || '').toUpperCase())));
+      return new Promise(r => setTimeout(() => r(this.options.filter(x => x.name.toUpperCase().includes((filter || '').toUpperCase()))), 3000));
     }
   };
 }

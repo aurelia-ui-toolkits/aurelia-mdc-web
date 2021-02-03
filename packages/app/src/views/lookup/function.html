@@ -8,6 +8,9 @@
         <mdc-list-item-primary-text>${option.name}</mdc-list-item-primary-text>
         <mdc-list-item-secondary-text>with id=${option.id}</mdc-list-item-secondary-text>
       </template>
+      <template replace-part="searching">
+        <mdc-list-item-primary-text>Wait for 3 seconds...</mdc-list-item-primary-text>
+      </template>
     </mdc-lookup>
   </div>
 </template>
