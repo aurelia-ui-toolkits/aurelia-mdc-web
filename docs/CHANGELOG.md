@@ -1,3 +1,12 @@
+# [v3.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.4...v3.0.5) (2021-02-03)
+
+
+### Bug Fixes
+
+* **lookup:** set "searching" flag correctly ([361e0bd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/361e0bdaa023c58b150d136fd7b92baf8dd48057))
+
+
+
 # [v3.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.3...v3.0.4) (2021-02-01)
 
 
