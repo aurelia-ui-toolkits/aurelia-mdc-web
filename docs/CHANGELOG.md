@@ -1,3 +1,13 @@
+# [v3.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.5...v3.1.0) (2021-02-04)
+
+
+### Features
+
+* **dialog:** pass scrim action from service to the dialog ([ac5e591](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ac5e59136ea45956ab6bd771edd9b6b5d59259f0))
+* **lookup:** enable body hoisted menu CSS customisation ([994cf00](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/994cf0048243a96c7ead1bc14bc233e11d3d0ada))
+
+
+
 # [v3.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.4...v3.0.5) (2021-02-03)
 
 
