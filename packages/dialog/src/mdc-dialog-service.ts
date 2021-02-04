@@ -12,6 +12,8 @@ export interface IMdcDialogOptions {
 
   /** A css class to customise a dialog opened via the service */
   class?: string;
+
+  scrimClickAction?: string;
 }
 
 declare module 'aurelia-templating' {
@@ -49,6 +51,9 @@ export class MdcDialogService {
     dialog.setAttribute('delay-focus-trap', 'delay-focus-trap');
     if (options.class) {
       dialog.classList.add(options.class);
+    }
+    if (options.scrimClickAction !== undefined) {
+      dialog.setAttribute('scrim-click-action', options.scrimClickAction);
     }
     document.body.appendChild(dialog);
     let closingResolver: (action?: string) => void;
