@@ -104,8 +104,13 @@ export class MdcLookup implements EventListenerObject {
   @bindable.booleanAttr({ defaultBindingMode: bindingMode.oneTime })
   hoistToBody: boolean;
 
+  /** Sets the menu width to fit content */
   @bindable.booleanAttr
   naturalWidth: boolean;
+
+  /** The CSS class to set on the menu. Helps styling body hoisted menus */
+  @bindable
+  menuClass: string;
 
   getOptions: (filter: string | undefined, value: unknown) => Promise<unknown[]>;
 
