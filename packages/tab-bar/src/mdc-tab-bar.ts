@@ -35,7 +35,9 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
 
   async initialise() {
     await this.tabScroller_!.initialised;
-    await Promise.all(this.tabScroller_!.tabs.map(async x => x.initialised));
+    if (this.tabScroller_!.tabs) {
+      await Promise.all(this.tabScroller_!.tabs.map(async x => x.initialised));
+    }
   }
 
   initialSyncWithDOM() {
