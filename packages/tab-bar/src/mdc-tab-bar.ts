@@ -41,10 +41,12 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
   }
 
   initialSyncWithDOM() {
-    for (let i = 0; i < this.tabScroller_!.tabs.length; i++) {
-      if (this.tabScroller_!.tabs[i].active) {
-        this.scrollIntoView(i);
-        break;
+    if (this.tabScroller_!.tabs) {
+      for (let i = 0; i < this.tabScroller_!.tabs.length; i++) {
+        if (this.tabScroller_!.tabs[i].active) {
+          this.scrollIntoView(i);
+          break;
+        }
       }
     }
   }
