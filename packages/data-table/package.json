@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/data-table",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -54,11 +54,11 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^4.0.0",
-    "@aurelia-mdc-web/checkbox": "^4.0.0",
-    "@aurelia-mdc-web/icon": "^4.0.0",
-    "@aurelia-mdc-web/linear-progress": "^4.0.0",
-    "@aurelia-mdc-web/select": "^4.0.0",
+    "@aurelia-mdc-web/base": "^4.0.1",
+    "@aurelia-mdc-web/checkbox": "^4.0.1",
+    "@aurelia-mdc-web/icon": "^4.0.1",
+    "@aurelia-mdc-web/linear-progress": "^4.0.1",
+    "@aurelia-mdc-web/select": "^4.0.1",
     "@material/data-table": "^10.0.0"
   },
   "devDependencies": {
