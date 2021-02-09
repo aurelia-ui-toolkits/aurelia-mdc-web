@@ -1,7 +1,8 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCMenuSurfaceFoundation, MDCMenuSurfaceAdapter, cssClasses, Corner, MDCMenuDistance, util, strings } from '@material/menu-surface';
+import { MDCMenuSurfaceFoundation, MDCMenuSurfaceAdapter, cssClasses, Corner, MDCMenuDistance, strings } from '@material/menu-surface';
 import { inject, customAttribute, bindingMode } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
+import { getCorrectPropertyName } from '@material/animation/util';
 
 strings.OPENED_EVENT = strings.OPENED_EVENT.toLowerCase();
 strings.CLOSED_EVENT = strings.CLOSED_EVENT.toLowerCase();
@@ -178,6 +179,9 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
         this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
         this.deregisterBodyClickListener();
       },
+      notifyClosing: () => {
+        this.emit(MDCMenuSurfaceFoundation.strings.CLOSING_EVENT, {});
+      },
       notifyOpen: () => {
         this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
         this.registerBodyClickListener();
@@ -185,7 +189,8 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       isElementInContainer: (el) => this.root.contains(el),
       isRtl: () => getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
-        const propertyName = `${util.getTransformPropertyName(window)}-origin`;
+        const propertyName =
+          `${getCorrectPropertyName(window, 'transform')}-origin`;
         this.root.style.setProperty(propertyName, origin);
       },
       isFocused: () => document.activeElement === this.root,
