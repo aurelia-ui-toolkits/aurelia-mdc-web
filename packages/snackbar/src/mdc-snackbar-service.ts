@@ -25,7 +25,7 @@ export class MdcSnackbarService {
     const snackbar = document.createElement('mdc-snackbar') as IMdcSnackbarElement;
     snackbar.setAttribute(`${strings.CLOSED_EVENT}.trigger`, 'handleClosed($event)');
     document.body.appendChild(snackbar);
-    let closedResolver: (reason?: string) => void;
+    let closedResolver: (reason?: string | PromiseLike<string> | undefined) => void;
     const closedPromise = new Promise<string>(r => closedResolver = r);
     const bindingContext: IMdcSnackbarBindingContext = {
       handleClosed: (evt: MDCSnackbarCloseEvent) => {
