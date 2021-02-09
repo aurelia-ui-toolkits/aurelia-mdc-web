@@ -1,3 +1,12 @@
+# [v4.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.0...v4.0.1) (2021-02-09)
+
+
+### Bug Fixes
+
+* **dialog:** typo ([6262f1d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6262f1d3bf3e9830f49df6d48760fbc487e81fd7))
+
+
+
 # [v4.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.1.0...v4.0.0) (2021-02-09)
 
 ### BREAKING CHANGES
