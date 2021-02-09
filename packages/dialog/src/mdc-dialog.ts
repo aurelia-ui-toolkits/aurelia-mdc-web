@@ -54,7 +54,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   }
 
   get content(): HTMLElement | null {
-    return this.root.querySelector<HTMLElement>(`[${strings.CONTENT_SELECTOR}]`);
+    return this.root.querySelector<HTMLElement>(`${strings.CONTENT_SELECTOR}`);
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
