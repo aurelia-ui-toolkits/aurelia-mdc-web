@@ -1,3 +1,22 @@
+# [v4.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.1.0...v4.0.0) (2021-02-09)
+
+### BREAKING CHANGES
+* **linear-progress:** remove deprecated reverse attribute ([a8b3d27](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/
+* **dialog:** remove class parameter ([4c1cd1c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4c1cd1c6b2343ba86d310b9823bcdf282dd59cf7))
+
+### Bug Fixes
+
+a8b3d27e3dcaf04cbfe98803a85c6579628a51f5))
+* **tab-bar:** check for undefined array ([c0093af](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c0093af79871d0c677a76d5153aa9d15fa287691))
+* **tab-bar:** check for undefined array ([4b34f21](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4b34f2116758ca294d1e9ab70ffe05b83fe0ab14))
+
+
+### Features
+
+* **all:** upgrade MDC ([c6f9f55](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c6f9f5579eccc7c922afa80ff2749225f2f1c1f6))
+
+
+
 # [v3.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v3.0.5...v3.1.0) (2021-02-04)
 
 
