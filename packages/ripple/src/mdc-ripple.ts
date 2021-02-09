@@ -8,7 +8,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @inject(Element)
 @customAttribute('mdc-ripple')
 export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
-  inputBindingPromiseResolver: () => void;
+  inputBindingPromiseResolver: (value?: unknown) => void;
   inputBindingPromise = new Promise(r => this.inputBindingPromiseResolver = r);
   @bindable
   input?: HTMLInputElement;
