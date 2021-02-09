@@ -10,9 +10,6 @@ export interface IMdcDialogOptions {
   /** Data to pass to the view model's activate method */
   model?: unknown;
 
-  /** A css class to customise a dialog opened via the service */
-  class?: string;
-
   scrimClickAction?: string;
 }
 
@@ -49,9 +46,6 @@ export class MdcDialogService {
     dialog.setAttribute(`${strings.CLOSING_EVENT}.trigger`, 'handleClosing($event)');
     dialog.setAttribute(`${strings.OPENED_EVENT}.trigger`, 'handleOpened()');
     dialog.setAttribute('delay-focus-trap', 'delay-focus-trap');
-    if (options.class) {
-      dialog.classList.add(options.class);
-    }
     if (options.scrimClickAction !== undefined) {
       dialog.setAttribute('scrim-click-action', options.scrimClickAction);
     }
@@ -132,7 +126,7 @@ export type LifecycleMethodName = 'canActivate' | 'activate' | 'canDeactivate' |
 export async function invokeLifecycle(instance: Record<string, unknown>, name: LifecycleMethodName, model?: unknown): Promise<unknown> {
   if (typeof instance[name] === 'function') {
     return new Promise(resolve => {
-      resolve((instance[name] as (model: unknown) => void)(model));
+      resolve((instance[name] as (m: unknown) => void)(model));
     }).then(result => {
       if (result !== null && result !== undefined) {
         return result;
