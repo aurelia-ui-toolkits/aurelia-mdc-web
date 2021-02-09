@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCLinearProgressFoundation, MDCLinearProgressAdapter } from '@material/linear-progress';
+import { MDCLinearProgressFoundation, MDCLinearProgressAdapter, WithMDCResizeObserver } from '@material/linear-progress';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { useView, inject, PLATFORM, customElement } from 'aurelia-framework';
 
@@ -21,14 +21,6 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
     if (determinate) {
       this.foundation?.setProgress(this.progress!);
     }
-  }
-
-  /** Reverses the direction of the linear progress indicator */
-  @bindable.booleanAttr
-  reverse: boolean;
-  async reverseChanged() {
-    await this.initialised;
-    this.foundation?.setReverse(this.reverse);
   }
 
   /** Sets the buffer bar to this value. Value should be between [0, 1] or undefined. */
@@ -95,16 +87,25 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
       setStyle: (name: string, value: string) => {
         this.root.style.setProperty(name, value);
       },
-      // eslint-disable-next-line no-undef
-      attachResizeObserver: (callback: ResizeObserverCallback) => {
-        if (window.ResizeObserver) {
-          const ro = new ResizeObserver(callback);
+      attachResizeObserver: (callback) => {
+        const RO = (window as unknown as WithMDCResizeObserver).ResizeObserver;
+        if (RO) {
+          const ro = new RO(callback);
           ro.observe(this.root);
           return ro;
         }
 
         return null;
       },
+      // attachResizeObserver: (callback: ResizeObserverCallback) => {
+      //   if (window.ResizeObserver) {
+      //     const ro = new ResizeObserver(callback);
+      //     ro.observe(this.root);
+      //     return ro;
+      //   }
+
+      //   return null;
+      // },
       getWidth: () => this.root.offsetWidth,
     };
     return new MDCLinearProgressFoundation(adapter);
