@@ -50,10 +50,10 @@ export class MdcDialogService {
       dialog.setAttribute('scrim-click-action', options.scrimClickAction);
     }
     document.body.appendChild(dialog);
-    let closingResolver: (action?: string) => void;
+    let closingResolver: (action?: string | PromiseLike<string> | undefined) => void;
     const closingPromise = new Promise<string>(r => closingResolver = r);
-    let openedResolver: () => void;
-    const openedPromise = new Promise<void>(r => openedResolver = r);
+    let openedResolver: (value?: unknown) => void;
+    const openedPromise = new Promise(r => openedResolver = r);
     const bindingContext: IMdcDialogBindingContext = {
       handleClosing: (evt: MDCDialogCloseEvent) => {
         closingResolver(evt.detail.action);
@@ -90,7 +90,7 @@ export class MdcDialogService {
     bindingContext.currentViewModel = (controller as Controller).viewModel;
     // instantiate focus trap manually after the content has been added because it need at least one focusable element
     dialogVm.createFocusTrap();
-    dialogVm.focusTrap_?.trapFocus();
+    dialogVm.focusTrap?.trapFocus();
 
     return closingPromise;
   }
