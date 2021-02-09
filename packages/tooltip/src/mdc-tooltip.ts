@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes } from '@material/tooltip';
+import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses } from '@material/tooltip';
 import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
@@ -132,8 +132,17 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       removeClass: (className) => {
         this.root.classList.remove(className);
       },
+      getComputedStyleProperty: (propertyName) => {
+        return window.getComputedStyle(this.root).getPropertyValue(
+            propertyName);
+      },
       setStyleProperty: (propertyName, value) => {
         this.root.style.setProperty(propertyName, value);
+      },
+      setSurfaceStyleProperty: (propertyName, value) => {
+        const surface =
+            this.root.querySelector<HTMLElement>(`.${CssClasses.SURFACE}`);
+        surface?.style.setProperty(propertyName, value);
       },
       getViewportWidth: () => window.innerWidth,
       getViewportHeight: () => window.innerHeight,
@@ -145,6 +154,9 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       },
       getAnchorBoundingRect: () => {
         return this.anchorElem ? this.anchorElem.getBoundingClientRect() : null;
+      },
+      getParentBoundingRect: () => {
+        return this.root.parentElement?.getBoundingClientRect() ?? null;
       },
       getAnchorAttribute: (attr) => {
         return this.anchorElem ? this.anchorElem.getAttribute(attr) : null;
