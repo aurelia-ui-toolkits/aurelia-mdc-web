@@ -7,7 +7,7 @@ export class MdcTopAppBarFixedAdjust {
 
   value: 'prominent' | 'dense' | 'dense-prominent' | 'short';
 
-  afterAttach() {
+  attached() {
     this.root.classList.add(this.value ? `mdc-top-app-bar--${this.value}-fixed-adjust` : 'mdc-top-app-bar--fixed-adjust');
   }
 }

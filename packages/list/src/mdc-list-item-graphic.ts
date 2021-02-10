@@ -8,7 +8,7 @@ import { customAttribute } from 'aurelia';
 export class MdcListItemGraphic {
   constructor(private root: HTMLElement) { }
 
-  afterAttach() {
+  attached() {
     this.root.classList.add('mdc-list-item__graphic');
   }
 }

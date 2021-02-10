@@ -25,7 +25,7 @@ export class ComponentViewer {
   tabs: ITab[];
 
   load(parameters: Record<string, unknown>, nextInstruction: Navigation) {
-    const component = (nextInstruction.instruction as string).replace('/', '').replace('-page', '');
+    const component = (nextInstruction.instructions.toString() as string).replace('/', '').replace('-page', '');
     this.template = templates[component];
     this.tabs = [{ title: 'Examples', link: `${component}-examples` }, { title: 'Api', link: 'api-viewer' }];
   }

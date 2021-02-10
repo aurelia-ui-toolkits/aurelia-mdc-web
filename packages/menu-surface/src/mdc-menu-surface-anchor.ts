@@ -6,7 +6,7 @@ import { cssClasses } from '@material/menu-surface';
 export class MdcMenuSurfaceAnchor {
   constructor(private root: HTMLElement) { }
 
-  afterAttach() {
+  attached() {
     this.root.classList.add(cssClasses.ANCHOR);
   }
 }

@@ -24,8 +24,8 @@ export class TreeNode {
     this.viewSlot.bind(bindingContext, this.rootBindingContext);
   }
 
-  afterAttach() {
-    this.viewSlot.afterAttach();
+  attached() {
+    this.viewSlot.attached();
   }
 
   detached() {

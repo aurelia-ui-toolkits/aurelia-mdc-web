@@ -142,7 +142,7 @@ export class MdcLookup implements EventListenerObject {
     this.optionsChanged();
   }
 
-  async afterAttach() {
+  async attached() {
     if (this.input) {
       inputEvents.forEach(x => this.input!.addEventListener(x, this));
     }

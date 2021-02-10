@@ -2,8 +2,8 @@
 @use '@material/theme';
 
 .demo-landing {
-  @include theme.prop(color, #fff);
-  @include theme.prop(background-color, #363640);
+  @include theme.property(color, #fff);
+  @include theme.property(background-color, #363640);
 
   height: 40vh;
 
@@ -32,7 +32,7 @@
 
   &__subtitle {
     @include typography.typography(body1);
-    @include theme.prop(color, text-secondary-on-background);
+    @include theme.property(color, text-secondary-on-background);
 
     padding-left: 25px;
     padding-right: 25px;

@@ -13,7 +13,7 @@ export class Hljs {
   @bindable
   language: string;
 
-  afterAttach() {
+  attached() {
     this.observer = new MutationObserver(() => this.highlight());
     this.observer.observe(this.source, {
       characterData: true,

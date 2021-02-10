@@ -14,11 +14,11 @@ export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   align: 'start' | 'end' | 'center';
 
   // TODO: this does not work yet
-  // @children({ filter: el => (el as HTMLElement).tagName === 'MDC-TAB' })
-  // tabs: MdcTab[];
-  get tabs(): MdcTab[] {
-    return Array.from(this.root.querySelectorAll('.mdc-tab')).map(x => CustomElement.for<Element, MdcTab>(x).viewModel);
-  }
+  @children({ filter: el => (el as HTMLElement).tagName === 'MDC-TAB' })
+  tabs: MdcTab[];
+  // get tabs(): MdcTab[] {
+  //   return Array.from(this.root.querySelectorAll('.mdc-tab')).map(x => CustomElement.for<Element, MdcTab>(x).viewModel);
+  // }
 
   getDefaultFoundation() {
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.

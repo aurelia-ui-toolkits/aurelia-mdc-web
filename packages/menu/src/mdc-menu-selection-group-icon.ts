@@ -5,7 +5,7 @@ import { customAttribute, inject } from 'aurelia-framework';
 export class MdcMenuSelectionGroupIcon {
   constructor(private root: HTMLElement) { }
 
-  afterAttach() {
+  attached() {
     this.root.classList.add('mdc-menu__selection-group-icon');
   }
 }

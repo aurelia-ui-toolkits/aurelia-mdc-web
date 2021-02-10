@@ -9,7 +9,7 @@ import { customAttribute, inject } from 'aurelia';
 export class MdcButtonLabel {
   constructor(private root: HTMLElement) { }
 
-  afterAttach() {
+  attached() {
     this.root.classList.add('mdc-button__label');
   }
 }

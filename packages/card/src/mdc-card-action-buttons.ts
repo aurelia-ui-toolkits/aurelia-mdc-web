@@ -10,7 +10,7 @@ import { customElement, inlineView, inject } from 'aurelia-framework';
 export class MdcCardActionButtons {
   constructor(private root: HTMLElement) { }
 
-  afterAttach() {
+  attached() {
     const children = this.root.querySelectorAll('.mdc-button');
     for (let i = 0; i < children.length; ++i) {
       const child = children[i];

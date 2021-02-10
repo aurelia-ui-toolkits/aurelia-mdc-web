@@ -21,7 +21,7 @@ export class MdcListGroup {
   //   this.headers.forEach(x => x.classList.add('mdc-list-group__subheader'));
   // }
 
-  afterAttach() {
+  attached() {
     this.root.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(x => x.classList.add('mdc-list-group__subheader'));
   }
 }
@@ -30,7 +30,7 @@ export class MdcListGroup {
 export class MdcListGroupSubheader {
   constructor(private root: HTMLElement) { }
 
-  afterAttach() {
+  attached() {
     this.root.classList.add('mdc-list-group__subheader');
   }
 }

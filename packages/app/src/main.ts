@@ -1,4 +1,3 @@
-import { DebugConfiguration } from '@aurelia/debug';
 import Aurelia, { RouterConfiguration } from 'aurelia';
 import * as SvgConfiguration from '@aurelia/plugin-svg';
 import { Root } from './views/root/root';
@@ -26,7 +25,7 @@ Aurelia
   //   // optionally add the shared styles for all components
   //   sharedStyles: [shared]
   // }))
-  .register(DebugConfiguration, RouterConfiguration, MaterialConfiguration, SvgConfiguration,
+  .register(RouterConfiguration, MaterialConfiguration, SvgConfiguration,
     Home, GettingStarted, Hljs, ApiViewer, ExampleViewer,
     Button, ButtonExamples,
     CircularProgress, CircularProgressExamples,

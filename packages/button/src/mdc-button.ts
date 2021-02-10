@@ -62,7 +62,7 @@ export class MdcButton {
   //   host.appendChild(t);
   // }
 
-  afterAttach() {
+  attached() {
     const icons = this.root.querySelectorAll('mdc-icon');
     Array.from(icons).forEach(x => x.classList.add('mdc-button__icon'));
   }

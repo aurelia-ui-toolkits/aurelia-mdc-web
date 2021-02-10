@@ -6,7 +6,7 @@ class MdcTypography {
   type: 'headline1' | 'headline2' | 'headline3' | 'headline4' | 'headline5' | 'headline6'
     | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline';
 
-  afterAttach() {
+  attached() {
     this.root.classList.add(this.type ? `mdc-typography--${this.type}` : 'mdc-typography');
   }
 }

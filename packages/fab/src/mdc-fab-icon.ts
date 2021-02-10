@@ -9,7 +9,7 @@ import { inject, customAttribute } from 'aurelia-framework';
 export class MdcFabIcon {
   constructor(private root: HTMLElement) { }
 
-  afterAttach() {
+  attached() {
     this.root.classList.add('mdc-fab__icon');
   }
 }

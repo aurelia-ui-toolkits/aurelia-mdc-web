@@ -74,7 +74,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   video: boolean;
 
   @children({
-    filter: el => (el as HTMLElement).tagName === 'MDC-LIST-ITEM'
+    filter: (el: HTMLElement) => el.tagName === 'MDC-LIST-ITEM'
   })
   items: MdcListItem[];
   itemsChanged() {
@@ -165,7 +165,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
       notifyAction: (index) => {
         const listItem = this.listElements[index];
         if (!listItem.hasAttribute('no-list-action')) {
-          const data = CustomElement.for<Element, MdcListItem>(listItem).viewModel.value;
+          const data = CustomElement.for<MdcListItem>(listItem).viewModel.value;
           this.emit<IMdcListActionEventDetail>(strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
         }
       },

@@ -1,6 +1,6 @@
 import { MdcComponent, number } from '@aurelia-mdc-web/base';
-import { MDCCircularProgressFoundation, MDCCircularProgressAdapter } from '@material/circular-progress';
 import { inject, customElement, bindable } from 'aurelia';
+import { MDCCircularProgressFoundation, MDCCircularProgressAdapter, strings } from '@material/circular-progress';
 
 /**
  * @selector mdc-circular-progress
@@ -46,11 +46,11 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
 
   updateSizeAndStroke() {
     this.radius = (this.size - 4) / 2 - this.strokeWidth;
+    // foundation gets the radius from the element itself
+    // set the attribute explicitly to avoid issues related to async binding
+    this.determinateCircle_?.setAttribute('r', this.radius.toString());
     this.strokeDasharray = 2 * this.radius * Math.PI;
     this.strokeDashoffset = this.strokeDasharray / 2;
-    this.root.style.setProperty('--mdc-circular-progress-size', `${this.size}px`);
-    this.root.style.setProperty('--mdc-circular-progress-stroke-width', `${this.strokeWidth}px`);
-    this.root.style.setProperty('--mdc-circular-progress-gap-patch-stroke-width', `${this.strokeWidth * 0.8}px`);
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
@@ -69,9 +69,24 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
       removeClass: (className: string) => this.root.classList.remove(className),
       removeAttribute: (attributeName: string) => this.root.removeAttribute(attributeName),
       setAttribute: (attributeName: string, value: string) => this.root.setAttribute(attributeName, value),
-      setDeterminateCircleAttribute: (attributeName: string, value: string) => this.determinateCircle_?.setAttribute(attributeName, value),
+      setDeterminateCircleAttribute: (attributeName: string, value: string) => {
+        if (attributeName === strings.STROKE_DASHOFFSET) {
+          // set offset via binding, otherwise it gets overwritten
+          this.strokeDashoffset = parseInt(value);
+        } else {
+          this.determinateCircle_?.setAttribute(attributeName, value);
+        }
+      },
     };
     return new MDCCircularProgressFoundation(adapter);
   }
 }
 
+/** @hidden */
+export interface IMdcCircularProgressElement extends HTMLElement {
+  au: {
+    controller: {
+      viewModel: MdcCircularProgress;
+    };
+  };
+}
