@@ -1,11 +1,12 @@
-import { highlight, highlightBlock } from 'highlightjs';
-import { customElement, bindable, inject } from 'aurelia';
+import { highlight } from 'highlightjs';
+import { customElement, bindable, inject, } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
+import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 
 @inject(Element)
 @customElement('hljs')
+@processContent(defaultSlotProcessContent)
 export class Hljs {
-  constructor(private root: HTMLElement) { }
-
   source: HTMLDivElement;
   codeEl: HTMLElement;
   observer?: MutationObserver;

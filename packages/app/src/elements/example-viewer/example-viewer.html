@@ -5,7 +5,7 @@
 <mdc-tab-bar fixed if.bind="open">
   <template au-slot>
     <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" min-width click.delegate="select(tab)"
-      active.bind="tab === selectedTab" icon.bind="undefined"></mdc-tab>
+      active.bind="tab === selectedTab"></mdc-tab>
   </template>
 </mdc-tab-bar>
 <div class="example-code-container" if.bind="open && selectedTab">

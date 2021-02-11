@@ -1,4 +1,5 @@
-import Aurelia, { RouterConfiguration } from 'aurelia';
+import Aurelia, { RouterConfiguration, } from 'aurelia';
+import { StandardConfiguration } from '@aurelia/runtime-html';
 import * as SvgConfiguration from '@aurelia/plugin-svg';
 import { Root } from './views/root/root';
 import { AllConfiguration as MaterialConfiguration } from '@aurelia-mdc-web/all';
@@ -25,7 +26,7 @@ Aurelia
   //   // optionally add the shared styles for all components
   //   sharedStyles: [shared]
   // }))
-  .register(RouterConfiguration, MaterialConfiguration, SvgConfiguration,
+  .register(StandardConfiguration, RouterConfiguration, MaterialConfiguration, SvgConfiguration,
     Home, GettingStarted, Hljs, ApiViewer, ExampleViewer,
     Button, ButtonExamples,
     CircularProgress, CircularProgressExamples,

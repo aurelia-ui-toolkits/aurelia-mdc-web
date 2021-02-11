@@ -21,7 +21,7 @@ export class ExampleViewer {
   @bindable
   code: string;
 
-  afterBind() {
+  bound() {
     const tabs: ITab[] = [];
     if (this.html) {
       tabs.push({ label: 'HTML', language: 'html', code: this.html });

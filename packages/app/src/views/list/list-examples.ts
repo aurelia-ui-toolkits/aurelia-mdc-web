@@ -17,7 +17,7 @@ import groupHtml from '!!raw-loader!./group.html';
 import expandableHtml from '!!raw-loader!./expandable.html';
 
 import * as avatar from './avatar.html';
-import * as custom from './custom.html';
+import { Custom } from './custom';
 import * as disableRipple from './disable-ripple.html';
 import * as expandable from './expandable.html';
 import * as group from './group.html';
@@ -51,7 +51,7 @@ export class ListExamples {
   expandableHtml = expandableHtml;
 
   avatar = avatar;
-  custom = custom;
+  custom = Custom;
   disableRipple = disableRipple;
   expandable = expandable;
   group = group;

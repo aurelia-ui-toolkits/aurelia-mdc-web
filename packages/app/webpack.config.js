@@ -85,16 +85,18 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           return map;
         }, {}))
       },
-
+    },
+    devServer: {
+      historyApiFallback: true
     },
     module: {
       rules: [
         { test: /\.(png|gif|jpg|cur)$/i, loader: 'url-loader', options: { limit: 8192 } },
         { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
         { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
-        { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000 } } },
-        { test: /\.css$/i, use: [ 'style-loader', cssLoader/*, postcssLoader*/ ] },
-        { test: /\.scss$/i, use: [ 'style-loader', cssLoader/*, postcssLoader*/, sassLoader ] },
+        { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' },
+        { test: /\.css$/i, use: ['style-loader', cssLoader/*, postcssLoader*/] },
+        { test: /\.scss$/i, use: ['style-loader', cssLoader/*, postcssLoader*/, sassLoader] },
         { test: /\.ts$/i, use: ['ts-loader', '@aurelia/webpack-loader'], exclude: /node_modules/ },
         { test: /\.html$/i, use: '@aurelia/webpack-loader', exclude: /node_modules/ }
 

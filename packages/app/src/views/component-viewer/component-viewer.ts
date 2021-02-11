@@ -1,5 +1,5 @@
 import { templates } from './templates';
-import { Navigation, IRouter } from '@aurelia/router';
+import { Navigation, IRouter, RouteNode } from '@aurelia/router';
 
 interface IReference {
   name: string;
@@ -24,8 +24,8 @@ export class ComponentViewer {
 
   tabs: ITab[];
 
-  load(parameters: Record<string, unknown>, nextInstruction: Navigation) {
-    const component = (nextInstruction.instructions.toString() as string).replace('/', '').replace('-page', '');
+  load(parameters: Record<string, unknown>, routeNode: RouteNode) {
+    const component = routeNode.path.replace('-page', '');
     this.template = templates[component];
     this.tabs = [{ title: 'Examples', link: `${component}-examples` }, { title: 'Api', link: 'api-viewer' }];
   }

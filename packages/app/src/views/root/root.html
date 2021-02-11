@@ -1,4 +1,5 @@
 <import from="../../styles/shared.scss"></import>
+<au-nav></au-nav>
 <mdc-top-app-bar fixed class=" demo-top-app-bar mdc-typography">
   <mdc-top-app-bar-row au-slot1>
     <mdc-top-app-bar-section au-slot1>
@@ -22,14 +23,12 @@
   <mdc-drawer view-model.ref="drawer" type="dismissible" mdc-top-app-bar-fixed-adjust>
     <mdc-drawer-header title="Aurelia" subtitle="Material Components Web"></mdc-drawer-header>
     <mdc-drawer-content>
-      <mdc-list activated wrap-focus mdclist:action.trigger="navigateTo($event.detail)" tabindex="0">
+      <mdc-list activated wrap-focus mdclist:action.trigger="navigateTo($event.detail.data)" tabindex="0">
         <template repeat.for="m of navRoutes">
           <mdc-list-item activated1.bind="m.active" value.bind="m">
-            <mdc-list-item-text>
-              ${m.title}
-            </mdc-list-item-text>
+            <mdc-list-item-text>${m.config.title}</mdc-list-item-text>
           </mdc-list-item>
-          <mdc-list-divider if.bind="m.meta.divider"></mdc-list-divider>
+          <mdc-list-divider if.bind="m.data.divider"></mdc-list-divider>
         </template>
       </mdc-list>
     </mdc-drawer-content>

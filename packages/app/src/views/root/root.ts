@@ -2,7 +2,7 @@ import { MdcDrawer } from '@aurelia-mdc-web/drawer';
 import { IMdcListActionEventDetail } from '@aurelia-mdc-web/list';
 // import { INavRoute } from 'aurelia';
 import { observable } from '@aurelia/runtime';
-import { IRouter, route } from '@aurelia/router';
+import { IRouter, route, RouteDefinition } from '@aurelia/router';
 import { Home } from '../home/home';
 import { GettingStarted } from '../getting-started/getting-started';
 import { Button } from '../button/button';
@@ -12,8 +12,8 @@ import { List } from '../list/list';
 
 @route({
   routes: [
-    { id: 'home', path: '', title: 'Home', component: Home, },
-    { id: 'getting-started', title: 'Getting Started', component: GettingStarted },
+    { id: 'home', path: '', title: 'Home', component: Home, data: { divider: 'true' } },
+    { id: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
     { id: 'button', title: 'Button', component: Button },
     { id: 'circular-progress', title: 'Circular progress', component: CircularProgress },
     { id: 'drawer', title: 'Drawer', component: Drawer },
@@ -41,16 +41,15 @@ export class Root {
     this.drawer.open = true;
   }
 
-  // get navRoutes(): INavRoute[] {
-  //   return this.router.getRouteContext().('main-nav').routes;
-  // }
+  get navRoutes(): (RouteDefinition | Promise<RouteDefinition>)[] {
+    return this.router.routeTree.root.context.childRoutes;
+  }
 
-  // navigateTo(detail: IMdcListActionEventDetail) {
-  //   if (detail.data) {
-  //     this.router.load((detail.data as INavRoute).link!);
-  //     if (this.drawer.type === 'modal') {
-  //       this.drawer.toggle();
-  //     }
-  //   }
-  // }
+  navigateTo(routeDef: RouteDefinition) {
+    this.router.load(`/${routeDef.path}`);
+    if (this.drawer.type === 'modal') {
+      this.drawer.toggle();
+    }
+  }
+
 }

@@ -40,7 +40,7 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
     }
   }
 
-  afterBind() {
+  binding() {
     this.updateSizeAndStroke();
   }
 
