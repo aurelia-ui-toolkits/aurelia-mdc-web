@@ -1,5 +1,5 @@
 import { templates } from './templates';
-import { Navigation, IRouter, RouteNode } from '@aurelia/router';
+import { RouteNode, IRouteContext } from '@aurelia/router';
 
 interface IReference {
   name: string;
@@ -15,18 +15,13 @@ export interface IComponentTemplate {
   mdcUrls?: IReference[];
 }
 
-interface ITab { title: string; link: string }
-
 export class ComponentViewer {
-  constructor(@IRouter private router: IRouter) { }
+  constructor(@IRouteContext public routeContext: IRouteContext) { }
 
   template: IComponentTemplate;
 
-  tabs: ITab[];
-
   load(parameters: Record<string, unknown>, routeNode: RouteNode) {
-    const component = routeNode.path.replace('-page', '');
-    this.template = templates[component];
-    this.tabs = [{ title: 'Examples', link: `${component}-examples` }, { title: 'Api', link: 'api-viewer' }];
+    const componentName = routeNode.path;
+    this.template = templates[componentName];
   }
 }

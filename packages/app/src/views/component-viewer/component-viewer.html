@@ -20,7 +20,7 @@
 
     <div if.bind="template.sass">
       <h2 class="demo-panel-heading">Styles</h2>
-      <hljs language="scss"><span au-slot>${template.sass}</span></hljs>
+      <hljs language="scss">${template.sass}</hljs>
     </div>
 
     <div repeat.for="mdcUrl of template.mdcUrls" class="viewer-mdc-urls">
@@ -30,7 +30,7 @@
     </div>
     <mdc-tab-bar>
       <template au-slot>
-        <mdc-tab repeat.for="tab of tabs" label.bind="tab.title" load="${tab.link}" class="viewer-tab" active.bind="">
+        <mdc-tab repeat.for="r of routeContext.childRoutes" label.bind="r.config.title" load.bind="r" class="viewer-tab" active.bind="">
         </mdc-tab>
       </template>
     </mdc-tab-bar>

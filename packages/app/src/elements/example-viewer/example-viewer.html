@@ -14,5 +14,5 @@
       class="material-icons">file_copy</button>
     <button mdc-icon-button click.delegate="toggle()" title="Close" class="material-icons">close</button>
   </div>
-  <hljs language.bind="selectedTab.language"><template au-slot>${selectedTab.code}</template></hljs>
+  <hljs language.bind="selectedTab.language">${selectedTab.code}</hljs>
 </div>

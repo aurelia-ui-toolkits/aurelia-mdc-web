@@ -28,7 +28,9 @@ import * as  theme from './theme.html';
 import * as  trailing from './trailing.html';
 import * as  svgExample from './svg-example.html';
 import * as  shaped from './shaped.html';
+import { route } from 'aurelia';
 
+@route({ path: 'examples' })
 export class ButtonExamples {
   accessibility = accessibility;
   default = Default;
