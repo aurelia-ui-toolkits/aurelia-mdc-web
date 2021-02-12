@@ -1,0 +1,54 @@
+<require from="./top-app-bar-examples.scss"></require>
+<div class="demo-content">
+  <h3 class="demo-content__headline">Standard</h3>
+  <div class="demo-top-app-bar-container">
+    <au-compose subject.bind="standard"></au-compose>
+  </div>
+  <example-viewer html.bind="standardHtml"></example-viewer>
+</div>
+
+<div class="demo-content">
+  <h3 class="demo-content__headline">Fixed</h3>
+  <au-compose subject.bind="fixed"></au-compose>
+  <example-viewer html.bind="fixedHtml"></example-viewer>
+</div>
+
+<div class="demo-content">
+  <h3 class="demo-content__headline">Prominent</h3>
+  <div class="demo-top-app-bar-container">
+    <au-compose subject.bind="prominent"></au-compose>
+  </div>
+  <example-viewer html.bind="prominentHtml"></example-viewer>
+</div>
+
+<div class="demo-content">
+  <h3 class="demo-content__headline">Dense</h3>
+  <div class="demo-top-app-bar-container">
+    <au-compose subject.bind="dense"></au-compose>
+  </div>
+  <example-viewer html.bind="denseHtml"></example-viewer>
+</div>
+
+<div class="demo-content">
+  <h3 class="demo-content__headline">Short</h3>
+  <au-compose subject.bind="short"></au-compose>
+  <example-viewer html.bind="shortHtml"></example-viewer>
+</div>
+
+<div class="demo-content">
+  <h3 class="demo-content__headline">Short Collapsed</h3>
+  <au-compose subject.bind="collapsed"></au-compose>
+  <example-viewer html.bind="collapsedHtml"></example-viewer>
+</div>
+
+<div class="demo-content">
+  <h3 class="demo-content__headline">Theme</h3>
+  <au-compose subject.bind="theme"></au-compose>
+  <example-viewer html.bind="themeHtml" sass.bind="themeScss"></example-viewer>
+</div>
+
+<div class="demo-content">
+  <h3 class="demo-content__headline">With Tab Bar and Drawer</h3>
+  <au-compose subject.bind="tabs"></au-compose>
+  <example-viewer html.bind="tabsHtml" sass.bind="tabsScss"></example-viewer>
+</div>

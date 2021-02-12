@@ -8,6 +8,7 @@ import { CircularProgress } from '../circular-progress/circular-progress';
 import { Drawer } from '../drawer/drawer';
 import { List } from '../list/list';
 import { Checkbox } from '../checkbox/checkbox';
+import { TopAppBar } from '../top-app-bar/top-app-bar';
 
 @route({
   routes: [
@@ -18,6 +19,7 @@ import { Checkbox } from '../checkbox/checkbox';
     { id: 'circular-progress', title: 'Circular progress', component: CircularProgress },
     { id: 'drawer', title: 'Drawer', component: Drawer },
     { id: 'list', title: 'List', component: List },
+    { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
     // { title: 'Top app bar', component: TopAppBar },
   ]
 })
