@@ -1,10 +1,12 @@
-import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { MDCTopAppBarFoundation, MDCTopAppBarAdapter, MDCTopAppBarBaseFoundation, cssClasses, strings, MDCShortTopAppBarFoundation, MDCFixedTopAppBarFoundation } from '@material/top-app-bar';
 import { SpecificEventListener } from '@material/base';
 import { inject, customElement, bindable } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
 
 @inject(Element)
 @customElement('mdc-top-app-bar')
+@processContent(defaultSlotProcessContent)
 export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
 
   private handleNavigationClick_!: SpecificEventListener<'click'>; // assigned in initialSyncWithDOM()
@@ -13,19 +15,19 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
   private navIcon_!: Element | null;
   hasActionItems: boolean;
 
-  @bindable({set: booleanAttr})
+  @bindable({ set: booleanAttr })
   short: boolean;
 
-  @bindable({set: booleanAttr})
+  @bindable({ set: booleanAttr })
   collapsed: boolean;
 
-  @bindable({set: booleanAttr})
+  @bindable({ set: booleanAttr })
   fixed: boolean;
 
-  @bindable({set: booleanAttr})
+  @bindable({ set: booleanAttr })
   prominent: boolean;
 
-  @bindable({set: booleanAttr})
+  @bindable({ set: booleanAttr })
   dense: boolean;
 
   @bindable
