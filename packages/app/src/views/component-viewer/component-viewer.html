@@ -29,10 +29,10 @@
       </a>
     </div>
     <mdc-tab-bar>
-      <mdc-tab repeat.for="r of routeContext.childRoutes" label.bind="r.config.title" load.bind="r" class="viewer-tab"
+      <mdc-tab repeat.for="r of routeContext.childRoutes" label.bind="r.config.title" load.bind="r.id" class="viewer-tab"
         active.bind="">
       </mdc-tab>
     </mdc-tab-bar>
-    <au-viewport></au-viewport>
+    <au-viewport default="examples"></au-viewport>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { customElement, children, customAttribute, inject } from 'aurelia';
+import { customElement, customAttribute, inject } from 'aurelia';
 
 /**
  * Optional. Wrapper around two or more mdc-list elements to be grouped together.

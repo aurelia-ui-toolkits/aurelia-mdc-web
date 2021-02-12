@@ -48,7 +48,7 @@ export class Root {
   }
 
   navigateTo(routeDef: RouteDefinition) {
-    this.router.load(`/${routeDef.path}`);
+    this.router.load(`/${routeDef.id}`);
     if (this.drawer.type === 'modal') {
       this.drawer.toggle();
     }

@@ -1,4 +1,4 @@
-import { lifecycleHooks, ILifecycleHooks } from 'aurelia';
+import { lifecycleHooks } from 'aurelia';
 
 @lifecycleHooks()
 export class EnhanceMdcButton {

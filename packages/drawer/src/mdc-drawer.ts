@@ -1,7 +1,6 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCDismissibleDrawerFoundation, cssClasses, strings, MDCModalDrawerFoundation, util, MDCDrawerAdapter } from '@material/drawer';
 import { MDCDrawerFocusTrapFactory } from '@material/drawer/util';
-import { SpecificEventListener } from '@material/base';
 import { MDCListFoundation } from '@material/list';
 import { FocusTrap } from '@material/dom/focus-trap';
 import { customElement, bindable, inject } from 'aurelia';
