@@ -1,11 +1,13 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { MDCTabScrollerFoundation, MDCTabScrollerAdapter, util } from '@material/tab-scroller';
 import { matches } from '@material/dom/ponyfill';
 import { MdcTab } from '../tab/mdc-tab';
 import { inject, customElement, bindable, children, CustomElement } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
 
 @inject(Element)
 @customElement('mdc-tab-scroller')
+@processContent(defaultSlotProcessContent)
 export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   private content_: HTMLElement; // assigned in html
   private area_: HTMLElement; // assigned in html
