@@ -1,35 +1,35 @@
-import customHtml from '!!raw-loader!./custom.html';
-import customSass from '!!raw-loader!./custom.scss';
-import customCode from '!!raw-loader!./custom';
-import disableRippleHtml from '!!raw-loader!./disable-ripple.html';
-import shapedHtml from '!!raw-loader!./shaped.html';
-import shapedSass from '!!raw-loader!./shaped.scss';
-import singleLineHtml from '!!raw-loader!./single-line.html';
-import twoLineHtml from '!!raw-loader!./two-line.html';
-import leadingIconHtml from '!!raw-loader!./leading-icon.html';
-import trailingIconHtml from '!!raw-loader!./trailing-icon.html';
-import leadingTrailingIconHtml from '!!raw-loader!./leading-trailing-icon.html';
-import twoLineLeadingTrailingIconHtml from '!!raw-loader!./two-line-leading-trailing-icon.html';
-import leadingCheckboxHtml from '!!raw-loader!./leading-checkbox.html';
-import trailingCheckboxHtml from '!!raw-loader!./trailing-checkbox.html';
-import avatarHtml from '!!raw-loader!./avatar.html';
-import groupHtml from '!!raw-loader!./group.html';
-import expandableHtml from '!!raw-loader!./expandable.html';
+import customHtml from '!!raw-loader!./custom/custom.html';
+import customSass from '!!raw-loader!./custom/custom.scss';
+import customCode from '!!raw-loader!./custom/custom';
+import disableRippleHtml from '!!raw-loader!./disable-ripple/disable-ripple.html';
+import shapedHtml from '!!raw-loader!./shaped/shaped.html';
+import shapedSass from '!!raw-loader!./shaped/shaped.scss';
+import singleLineHtml from '!!raw-loader!./single-line/single-line.html';
+import twoLineHtml from '!!raw-loader!./two-line/two-line.html';
+import leadingIconHtml from '!!raw-loader!./leading-icon/leading-icon.html';
+import trailingIconHtml from '!!raw-loader!./trailing-icon/trailing-icon.html';
+import leadingTrailingIconHtml from '!!raw-loader!./leading-trailing-icon/leading-trailing-icon.html';
+import twoLineLeadingTrailingIconHtml from '!!raw-loader!./two-line-leading-trailing-icon/two-line-leading-trailing-icon.html';
+import leadingCheckboxHtml from '!!raw-loader!./leading-checkbox/leading-checkbox.html';
+import trailingCheckboxHtml from '!!raw-loader!./trailing-checkbox/trailing-checkbox.html';
+import avatarHtml from '!!raw-loader!./avatar/avatar.html';
+import groupHtml from '!!raw-loader!./group/group.html';
+import expandableHtml from '!!raw-loader!./expandable/expandable.html';
 
-import * as avatar from './avatar.html';
-import { Custom } from './custom';
-import * as disableRipple from './disable-ripple.html';
-import * as expandable from './expandable.html';
-import * as group from './group.html';
-import * as leadingCheckbox from './leading-checkbox.html';
-import * as leadingIcon from './leading-icon.html';
-import * as leadingTrailingIcon from './leading-trailing-icon.html';
-import * as shaped from './shaped.html';
-import * as singleLine from './single-line.html';
-import * as trailingCeckbox from './trailing-checkbox.html';
-import * as trailingIcon from './trailing-icon.html';
-import * as twoLine from './two-line.html';
-import * as twoLineLeadingTrailingIcon from './two-line-leading-trailing-icon.html';
+import { Avatar } from './avatar/avatar';
+import { Custom } from './custom/custom';
+import { DisableRipple } from './disable-ripple/disable-ripple';
+import { Expandable } from './expandable/expandable';
+import { Shaped } from './shaped/shaped';
+import { Group } from './group/group';
+import { LeadingCheckbox } from './leading-checkbox/leading-checkbox';
+import { LeadingIcon } from './leading-icon/leading-icon';
+import { LeadingTrailingIcon } from './leading-trailing-icon/leading-trailing-icon';
+import { SingleLine } from './single-line/single-line';
+import { TrailingCheckbox } from './trailing-checkbox/trailing-checkbox';
+import { TrailingIcon } from './trailing-icon/trailing-icon';
+import { TwoLine } from './two-line/two-line';
+import { TwoLineLeadingTrailingIcon } from './two-line-leading-trailing-icon/two-line-leading-trailing-icon';
 
 export class ListExamples {
   customHtml = customHtml;
@@ -50,36 +50,18 @@ export class ListExamples {
   groupHtml = groupHtml;
   expandableHtml = expandableHtml;
 
-  avatar = avatar;
+  avatar = Avatar;
   custom = Custom;
-  disableRipple = disableRipple;
-  expandable = expandable;
-  group = group;
-  leadingCheckbox = leadingCheckbox;
-  leadingIcon = leadingIcon;
-  leadingTrailingIcon = leadingTrailingIcon;
-  shaped = shaped;
-  singleLine = singleLine;
-  trailingCeckbox = trailingCeckbox;
-  trailingIcon = trailingIcon;
-  twoLine = twoLine;
-  twoLineLeadingTrailingIcon = twoLineLeadingTrailingIcon;
-
-  items = [
-    { label: 'Wi-Fi', icon: 'network_wifi' },
-    { label: 'Bluetooth', icon: 'bluetooth' },
-    { label: 'Data Usage', icon: 'data_usage' }
-  ];
-
-  folders = [
-    { name: 'Photos', icon: 'folder', addDate: 'Jan 9, 2015' },
-    { name: 'Recipes', icon: 'folder', addDate: 'Jan 17, 2015' },
-    { name: 'Work', icon: 'folder', addDate: 'Jan 28, 2015' }
-  ];
-
-  files = [
-    { name: 'Vacation Itinerary', icon: 'insert_drive_file', addDate: 'Jan 10, 2015' },
-    { name: 'Kitchen Remodel', icon: 'insert_drive_file', addDate: 'Jan 20, 2015' }
-  ];
-
+  disableRipple = DisableRipple;
+  expandable = Expandable;
+  group = Group;
+  leadingCheckbox = LeadingCheckbox;
+  leadingIcon = LeadingIcon;
+  leadingTrailingIcon = LeadingTrailingIcon;
+  shaped = Shaped;
+  singleLine = SingleLine;
+  trailingCheckbox = TrailingCheckbox;
+  trailingIcon = TrailingIcon;
+  twoLine = TwoLine;
+  twoLineLeadingTrailingIcon = TwoLineLeadingTrailingIcon;
 }

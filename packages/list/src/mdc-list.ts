@@ -28,16 +28,14 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   /** When enabled, the space and enter keys (or click event) will trigger an single list item to become selected and any other previous selected element to become deselected */
   @bindable({ set: booleanAttr })
   singleSelection: boolean;
-  async singleSelectionChanged() {
-    await this.initialised;
+  singleSelectionChanged() {
     this.foundation?.setSingleSelection(this.singleSelection);
   }
 
   /** Sets the selection logic to apply/remove the mdc-list-item--activated class */
   @bindable({ set: booleanAttr })
   activated: boolean;
-  async activatedChanged() {
-    await this.initialised;
+  activatedChanged() {
     this.foundation?.setUseActivatedClass(this.activated);
   }
 
@@ -83,8 +81,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
 
   @bindable({ set: booleanAttr })
   typeahead: boolean;
-  async typeaheadChanged(hasTypeahead: boolean) {
-    await this.initialised;
+  typeaheadChanged(hasTypeahead: boolean) {
     this.foundation?.setHasTypeahead(hasTypeahead);
   }
 
@@ -95,12 +92,15 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   /** Sets the list to allow the up arrow on the first element to focus the last element of the list and vice versa */
   @bindable({ set: booleanAttr })
   wrapFocus: boolean;
-  async wrapFocusChanged() {
-    await this.initialised;
+  wrapFocusChanged() {
     this.foundation?.setWrapFocus(this.wrapFocus);
   }
 
   initialSyncWithDOM() {
+    this.singleSelectionChanged();
+    this.activatedChanged();
+    this.typeaheadChanged(this.typeahead);
+    this.wrapFocusChanged();
     this.layout();
     this.initializeListType();
   }

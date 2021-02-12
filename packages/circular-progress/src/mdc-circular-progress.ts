@@ -31,8 +31,7 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
   /** The current progress value, which must be between 0 and 1 or undefined for an indeterminate spinner */
   @bindable({ set: number })
   progress?: number;
-  async progressChanged() {
-    await this.initialised;
+  progressChanged() {
     const determinate = this.progress !== undefined && !isNaN(this.progress);
     this.foundation?.setDeterminate(determinate);
     if (determinate) {
@@ -53,8 +52,7 @@ export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundat
     this.strokeDashoffset = this.strokeDasharray / 2;
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  initialSyncWithDOM() {
     this.progressChanged();
   }
 

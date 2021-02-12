@@ -18,7 +18,7 @@ Aurelia
   //   // optionally add the shared styles for all components
   //   sharedStyles: [shared]
   // }))
-  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: true }), MaterialConfiguration, SvgConfiguration,
+  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: false }), MaterialConfiguration, SvgConfiguration,
     Home, GettingStarted, Hljs, ApiViewer, ExampleViewer
   )
   // To use HTML5 pushState routes, replace previous line with the following

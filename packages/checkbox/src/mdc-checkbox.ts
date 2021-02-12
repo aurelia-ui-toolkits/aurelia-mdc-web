@@ -1,8 +1,7 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCCheckboxFoundation, MDCCheckboxAdapter } from '@material/checkbox';
-import { bindable } from 'aurelia-typed-observable-plugin';
 import { getCorrectEventName } from '@material/animation/util';
-import { inject, useView, PLATFORM, customElement, bindingMode } from 'aurelia-framework';
+import { customElement, inject, bindable, BindingMode } from 'aurelia';
 
 let checkboxId = 0;
 
@@ -11,7 +10,6 @@ let checkboxId = 0;
  * @emits change | Event dispatched on checked change.
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-checkbox.html'))
 @customElement('mdc-checkbox')
 export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   constructor(root: IMdcCheckboxElement) {
@@ -28,10 +26,7 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
    */
   @bindable({ set: booleanAttr })
   disabled: boolean;
-  async disabledChanged() {
-    await this.initialised;
-    // still need to check because a component might already be destroyed
-    // by the time the binding is applied
+  disabledChanged() {
     if (this.nativeControl_) {
       this.nativeControl_.disabled = this.disabled;
     }
@@ -79,10 +74,9 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   /**
    * Represent a checkbox with three states (e.g. a nested list of checkable items).
    */
-  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ set: booleanAttr, mode: BindingMode.twoWay })
   indeterminate: boolean;
-  async indeterminateChanged() {
-    await this.initialised;
+  indeterminateChanged() {
     this.nativeControl_.indeterminate = this.indeterminate;
     this.foundation?.handleChange();
   }
@@ -95,8 +89,7 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
     this.nativeControl_.value = value;
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  attaching() {
     this.listen(getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
 
     if (this.root.hasAttribute('checked')) {
@@ -117,6 +110,7 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   }
 
   initialSyncWithDOM() {
+    this.disabledChanged();
     if (this.initialChecked !== undefined) {
       this.checked = this.initialChecked;
     }
@@ -183,8 +177,8 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
 export interface IMdcCheckboxElement extends HTMLElement {
   checked: boolean;
   indeterminate: boolean;
-  au: {
-    controller: {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcCheckbox;
     };
   };
@@ -197,22 +191,22 @@ function defineMdcCheckboxElementApis(element: HTMLElement) {
     },
     checked: {
       get(this: IMdcCheckboxElement) {
-        return this.au.controller.viewModel.checked;
+        return this.$au['au:resource:custom-element'].viewModel.checked;
       },
       set(this: IMdcCheckboxElement, value: boolean) {
-        this.au.controller.viewModel.checked = value;
+        this.$au['au:resource:custom-element'].viewModel.checked = value;
       },
       configurable: true
     },
     focus: {
       value(this: IMdcCheckboxElement) {
-        this.au.controller.viewModel.focus();
+        this.$au['au:resource:custom-element'].viewModel.focus();
       },
       configurable: true
     },
     blur: {
       value(this: IMdcCheckboxElement) {
-        this.au.controller.viewModel.blur();
+        this.$au['au:resource:custom-element'].viewModel.blur();
       },
       configurable: true
     }

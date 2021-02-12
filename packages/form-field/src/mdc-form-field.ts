@@ -1,15 +1,15 @@
-import { inject, useView, customElement, PLATFORM } from 'aurelia-framework';
 import { cssClasses, MDCFormFieldFoundation, MDCFormFieldAdapter } from '@material/form-field';
-import { bindable } from 'aurelia-typed-observable-plugin';
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { MdcRipple, IMdcRippleElement } from '@aurelia-mdc-web/ripple';
+import { customElement, inject, bindable } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
 
 /**
  * @selector mdc-form-field
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-form-field.html'))
 @customElement('mdc-form-field')
+@processContent(defaultSlotProcessContent)
 export class MdcFormField extends MdcComponent<MDCFormFieldFoundation> {
   cssClasses = cssClasses;
 
@@ -29,13 +29,12 @@ export class MdcFormField extends MdcComponent<MDCFormFieldFoundation> {
   @bindable({ set: booleanAttr })
   spaceBetween: boolean;
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  initialSyncWithDOM() {
     let rippleUpgraded = this.root.querySelector<IMdcRippleElement>('mdc-checkbox');
     if (!rippleUpgraded) {
       rippleUpgraded = this.root.querySelector<IMdcRippleElement>('mdc-radio');
     }
-    this.ripple = rippleUpgraded?.au['mdc-ripple'].viewModel;
+    this.ripple = rippleUpgraded?.$au['au:resource:custom-attribute:mdc-ripple'].viewModel;
 
     const input = this.root.querySelector('input');
     if (input?.hasAttribute('id')) {

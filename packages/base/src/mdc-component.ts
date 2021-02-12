@@ -5,26 +5,13 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
 
   foundation?: FoundationType;
 
-  initialised = this.createInitiliasedPromise();
-  protected initialisedResolve: (value?: unknown) => void;
-
-  private async createInitiliasedPromise() {
-    return new Promise(r => this.initialisedResolve = r);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  async initialise() { }
-
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   initialSyncWithDOM() { }
 
   attached() {
-    this.initialise().then(() => {
-      this.foundation = this.getDefaultFoundation();
-      this.foundation.init();
-      this.initialisedResolve();
-      this.initialSyncWithDOM();
-    });
+    this.foundation = this.getDefaultFoundation();
+    this.foundation.init();
+    this.initialSyncWithDOM();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -34,7 +21,6 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
     this.destroy();
     this.foundation?.destroy();
     this.foundation = undefined;
-    this.initialised = this.createInitiliasedPromise();
   }
 
   abstract getDefaultFoundation(): FoundationType;

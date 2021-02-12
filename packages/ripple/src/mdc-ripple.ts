@@ -23,8 +23,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
 
   @bindable({ set: booleanAttr })
   unbounded: boolean;
-  async unboundedChanged() {
-    await this.initialised;
+  unboundedChanged() {
     this.foundation?.setUnbounded(Boolean(this.unbounded));
   }
 
@@ -40,8 +39,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   @bindable({ set: booleanAttr })
   accent: boolean;
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  attaching() {
     if (!this.noClass) {
       (this.surface ?? this.root).classList.add('mdc-ripple-surface');
       if (this.primary) {
@@ -56,6 +54,10 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
     // if (inputBinding) {
     // await this.inputBindingPromise;
     // }
+  }
+
+  initialSyncWithDOM() {
+    this.unboundedChanged();
   }
 
   activate() {
@@ -98,8 +100,8 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
 
 /** @hidden */
 export interface IMdcRippleElement extends HTMLElement {
-  au: {
-    'mdc-ripple': {
+  $au: {
+    'au:resource:custom-attribute:mdc-ripple': {
       viewModel: MdcRipple;
       // boundProperties: { binding: Binding & { targetProperty: string }; observer: BehaviorPropertyObserver }[];
     };

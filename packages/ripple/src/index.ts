@@ -1,8 +1,8 @@
 
 import { IContainer } from '@aurelia/kernel';
-import { MdcRipple } from './mdc-ripple';
+import { MdcRipple, IMdcRippleElement } from './mdc-ripple';
 
-export { MdcRipple };
+export { MdcRipple, IMdcRippleElement };
 
 export const RippleConfiguration = {
   register(container: IContainer): IContainer {

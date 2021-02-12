@@ -47,10 +47,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
   private focusTrap_?: FocusTrap; // assigned in initialSyncWithDOM()
   private focusTrapFactory_!: MDCDrawerFocusTrapFactory; // assigned in initialize()
 
-  private handleScrimClick_?: SpecificEventListener<'click'>; // initialized in initialSyncWithDOM()
-
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  attaching() {
     this.focusTrapFactory_ = el => new FocusTrap(el);
     if (this.root.parentElement!.clientWidth < 900) {
       this.type = 'modal';
@@ -64,15 +61,16 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
       this.root.insertAdjacentElement('afterend', this.scrim_);
 
       if (this.scrim_) {
-        this.handleScrimClick_ = () => {
-          this.open = false;
-          return (this.foundation as MDCModalDrawerFoundation).handleScrimClick();
-        };
         this.scrim_.addEventListener('click', this.handleScrimClick_);
         this.focusTrap_ = util.createFocusTrapInstance(this.root, this.focusTrapFactory_);
       }
     }
   }
+
+  handleScrimClick_ = () => {
+    this.open = false;
+    return (this.foundation as MDCModalDrawerFoundation).handleScrimClick();
+  };
 
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);

@@ -1,6 +1,4 @@
 import { MdcDrawer } from '@aurelia-mdc-web/drawer';
-import { IMdcListActionEventDetail } from '@aurelia-mdc-web/list';
-// import { INavRoute } from 'aurelia';
 import { observable } from '@aurelia/runtime';
 import { IRouter, route, RouteDefinition } from '@aurelia/router';
 import { Home } from '../home/home';
@@ -9,12 +7,14 @@ import { Button } from '../button/button';
 import { CircularProgress } from '../circular-progress/circular-progress';
 import { Drawer } from '../drawer/drawer';
 import { List } from '../list/list';
+import { Checkbox } from '../checkbox/checkbox';
 
 @route({
   routes: [
     { id: 'home', path: '', title: 'Home', component: Home, data: { divider: 'true' } },
     { id: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
     { id: 'button', title: 'Button', component: Button },
+    { id: 'checkbox', title: 'Checkbox', component: Checkbox },
     { id: 'circular-progress', title: 'Circular progress', component: CircularProgress },
     { id: 'drawer', title: 'Drawer', component: Drawer },
     { id: 'list', title: 'List', component: List },
@@ -36,8 +36,8 @@ export class Root {
 
   @observable
   drawer: MdcDrawer;
-  async drawerChanged() {
-    await this.drawer.initialised;
+
+  attached() {
     this.drawer.open = true;
   }
 

@@ -1,9 +1,10 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from 'aurelia';
+import { MdcFormField } from './mdc-form-field';
 
 export { MdcFormField } from './mdc-form-field';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-form-field')
-  ]);
-}
+export const FormFieldConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcFormField);
+  }
+};

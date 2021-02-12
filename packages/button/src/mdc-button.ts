@@ -1,4 +1,4 @@
-import { customElement, bindable, inject, Controller } from 'aurelia';
+import { customElement, bindable, inject } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 
 /**

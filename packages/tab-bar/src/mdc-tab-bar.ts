@@ -16,27 +16,22 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
 
   @bindable({ set: booleanAttr })
   focusOnActivate: boolean;
-  async focusOnActivateChanged() {
-    await this.initialised;
+  focusOnActivateChanged() {
     this.tabScroller_?.tabs.forEach((tab) => tab.focusOnActivate = this.focusOnActivate);
   }
 
   @bindable({ set: booleanAttr })
   useAutomaticActivation: boolean;
-  async useAutomaticActivationChanged() {
-    await this.initialised;
+  useAutomaticActivationChanged() {
     this.foundation?.setUseAutomaticActivation(this.useAutomaticActivation);
   }
 
   @bindable
   align: MdcTabScroller['align'];
 
-  async initialise() {
-    await this.tabScroller_!.initialised;
-    await Promise.all(this.tabScroller_!.tabs.map(async x => x.initialised));
-  }
-
   initialSyncWithDOM() {
+    this.focusOnActivateChanged();
+    this.useAutomaticActivationChanged();
     for (let i = 0; i < this.tabScroller_!.tabs.length; i++) {
       if (this.tabScroller_!.tabs[i].active) {
         this.scrollIntoView(i);

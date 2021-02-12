@@ -8,7 +8,7 @@
 // @use "@material/textfield/mdc-text-field";
 // @use "@aurelia-mdc-web/text-field"as AuTextField;
 // @use "@material/floating-label/mdc-floating-label";
-// @use "@material/form-field/mdc-form-field";
+@use "@material/form-field/mdc-form-field";
 // @use "@material/line-ripple/mdc-line-ripple";
 // @use "@material/notched-outline/mdc-notched-outline";
 @use "@material/ripple/mdc-ripple";
@@ -22,7 +22,7 @@
 // @use "@material/card/mdc-card";
 @use "@material/typography/mdc-typography";
 // @use "@material/dialog/mdc-dialog";
-// @use "@material/checkbox/mdc-checkbox";
+@use "@material/checkbox/mdc-checkbox";
 // @use "@material/radio/mdc-radio";
 @use "@material/circular-progress/mdc-circular-progress";
 @use "@aurelia-mdc-web/circular-progress";

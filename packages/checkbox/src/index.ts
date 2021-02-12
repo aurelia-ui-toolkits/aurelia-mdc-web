@@ -1,26 +1,17 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, ObserverLocator, CheckedObserver } from 'aurelia-framework';
-import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
+import { IContainer, AppTask, IAttrSyntaxTransformer, NodeObserverLocator } from 'aurelia';
+import { MdcCheckbox } from './mdc-checkbox';
+import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 
 export { MdcCheckbox, IMdcCheckboxElement } from './mdc-checkbox';
 
-export function configure(config: FrameworkConfiguration) {
-  config.container.get(MdcComponentAdapters).registerMdcElementConfig(checkboxConfig);
-
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-checkbox')
-  ]);
-
-  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
-}
-
-const checkboxConfig = {
-  tagName: 'mdc-checkbox',
-  properties: {
-    checked: {
-      defaultBindingMode: bindingMode.twoWay,
-      getObserver(element: Element, _: string, observerLocator: ObserverLocator) {
-        return new CheckedObserver(element, new EventSubscriber(['change']), observerLocator);
-      }
-    }
+export const CheckboxConfiguration = {
+  register(container: IContainer): IContainer {
+    AppTask.with(IContainer).beforeCreate().call(c => {
+      const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
+      const nodeObserverLocator = c.get(NodeObserverLocator);
+      attrSyntaxTransformer.useTwoWay((el, property) => el.tagName === 'MDC-CHECKBOX' ? property === 'checked' : false);
+      nodeObserverLocator.useConfig({ 'MDC-CHECKBOX': { checked: { events: ['change'] } } });
+    }).register(container);
+    return container.register(MdcCheckbox, RippleConfiguration);
   }
 };

@@ -1,7 +1,9 @@
 import { IContainer, DI } from '@aurelia/kernel';
 import { ButtonConfiguration } from '@aurelia-mdc-web/button';
-import { DrawerConfiguration } from '@aurelia-mdc-web/drawer';
+import { CheckboxConfiguration } from '@aurelia-mdc-web/checkbox';
 import { CircularProgressConfiguration } from '@aurelia-mdc-web/circular-progress';
+import { DrawerConfiguration } from '@aurelia-mdc-web/drawer';
+import { FormFieldConfiguration } from '@aurelia-mdc-web/form-field';
 import { IconConfiguration } from '@aurelia-mdc-web/icon';
 import { ListConfiguration } from '@aurelia-mdc-web/list';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
@@ -15,7 +17,8 @@ export const AllConfiguration = {
    */
   register(container: IContainer): IContainer {
     return container.register(
-      ButtonConfiguration, DrawerConfiguration, CircularProgressConfiguration, ListConfiguration, IconConfiguration, RippleConfiguration,
+      ButtonConfiguration, CheckboxConfiguration, CircularProgressConfiguration, DrawerConfiguration, FormFieldConfiguration,
+      ListConfiguration, IconConfiguration, RippleConfiguration,
       TopAppBarConfiguration, TypographyConfiguration, TabBarConfiguration
     );
   },
