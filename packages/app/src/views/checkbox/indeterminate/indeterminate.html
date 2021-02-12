@@ -1,19 +1,19 @@
 <template>
   <div class="demo-layout__row">
-    <button mdc-button click.delegate="indeterminate = true"></button>Indeterminate</button>
-    <button mdc-button click.delegate="checked = !checked">Toggle</button>
+    <button as-element="mdc-button" click.delegate="indeterminate = true">Indeterminate</button>
+    <button as-element="mdc-button" click.delegate="checked = !checked">Toggle</button>
   </div>
   <div class="demo-layout__row">
-    <button mdc-button click.delegate="indeterminateToChecked = !indeterminateToChecked">
+    <button as-element="mdc-button" click.delegate="indeterminateToChecked = !indeterminateToChecked">
       Indeterminate To Checked: ${indeterminateToChecked ? 'On' : 'Off'}
     </button>
-    <button mdc-button click.delegate="alignEnd = !alignEnd">
+    <button as-element="mdc-button" click.delegate="alignEnd = !alignEnd">
       RTL: ${alignEnd ? 'On' : 'Off'}
     </button>
-    <button mdc-button click.delegate="disabled = !disabled">
+    <button as-element="mdc-button" click.delegate="disabled = !disabled">
       Disabled: ${disabled ? 'On' : 'Off'}
     </button>
-    <button mdc-button click.delegate="disableRipple = !disableRipple">
+    <button as-element="mdc-button" click.delegate="disableRipple = !disableRipple">
       Ripple: ${!disableRipple ? 'On' : 'Off'}
     </button>
   </div>

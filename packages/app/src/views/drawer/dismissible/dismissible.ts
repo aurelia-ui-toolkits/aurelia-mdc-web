@@ -1,4 +1,4 @@
-export class Examples {
+export class Dismissible {
   destinations = [
     { label: 'Inbox', icon: 'inbox', activated: true },
     { label: 'Star', icon: 'star', activated: false },
