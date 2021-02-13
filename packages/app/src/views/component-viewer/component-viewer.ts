@@ -21,7 +21,6 @@ export class ComponentViewer {
   template: IComponentTemplate;
 
   load(parameters: Record<string, unknown>, routeNode: RouteNode) {
-    const componentName = routeNode.path;
-    this.template = templates[componentName];
+    this.template = templates[routeNode.component.name];
   }
 }

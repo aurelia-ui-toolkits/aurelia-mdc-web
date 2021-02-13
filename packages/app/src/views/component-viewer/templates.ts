@@ -13,7 +13,7 @@ export interface IComponentTemplate {
 }
 
 export const templates: { [x: string]: IComponentTemplate } = {
-  'button': {
+  'button-page': {
     title: 'Button',
     description: 'Buttons allow users to take actions, and make choices, with a single tap.',
     references: [{
