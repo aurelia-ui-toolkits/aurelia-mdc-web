@@ -1,9 +1,9 @@
-import { Navigation, IRouter } from '@aurelia/router';
+import { IRouter } from '@aurelia/router';
 import { NavigationItem } from 'typedoc';
 import buttonApi from '../../../../button/doc/api.json';
-// import cardApi from '../../../../card/doc/api.json';
-// import checkboxApi from '../../../../checkbox/doc/api.json';
 // import chipsApi from '../../../../chips/doc/api.json';
+import cardApi from '../../../../card/doc/api.json';
+import checkboxApi from '../../../../checkbox/doc/api.json';
 import circularProgressApi from '../../../../circular-progress/doc/api.json';
 // import dataTableApi from '../../../../data-table/doc/api.json';
 // import dialogApi from '../../../../dialog/doc/api.json';
@@ -17,13 +17,14 @@ import drawerApi from '../../../../drawer/doc/api.json';
 // import layoutGridApi from '../../../../layout-grid/doc/api.json';
 // import linearProgressApi from '../../../../linear-progress/doc/api.json';
 import listApi from '../../../../list/doc/api.json';
+import { RouteNode } from 'aurelia';
 // import lookupApi from '../../../../lookup/doc/api.json';
 
 const apis: Record<string, unknown> = {
   'button': buttonApi,
-  // 'card': cardApi,
-  // 'checkbox': checkboxApi,
   // 'chips': chipsApi,
+  'card': cardApi,
+  'checkbox': checkboxApi,
   'circular-progress': circularProgressApi,
   // 'data-table': dataTableApi,
   // 'dialog': dialogApi,
@@ -59,6 +60,7 @@ interface IType {
   elementType: { name: string };
   declaration: { signatures: ISignature[] };
   typeArguments: IType[];
+  target: { queryType: { name: string } };
 }
 
 interface IParameter {
@@ -91,55 +93,58 @@ declare module 'typedoc' {
     getSignature: {
       type: IType;
     }[];
+    setSignature: {
+      type: IType;
+    }[];
   }
 }
 
-export class ApiViewer  {
+export class ApiViewer {
   constructor(@IRouter private router: IRouter) { }
 
   classesApi?: NavigationItem[];
 
-  load(parameters: Record<string, unknown>, nextInstruction: Navigation, instruction: Navigation) {
-    // const api = apis[this.router.activeComponents[0].componentName!.replace('-page', '')] as NavigationItem;
-    // this.classesApi = api.children?.reduce((p, c) => {
-    //   const elementsAndAttributes = c.children?.filter(x => {
-    //     if (!x.comment) {
-    //       return false;
-    //     }
-    //     x.comment.selectors = x.comment?.tags?.filter(y => y.tag === 'selector');
-    //     return !!x.comment;
-    //   });
-    //   p.push(...elementsAndAttributes ?? []);
-    //   return p;
-    // }, [] as NavigationItem[]);
-    // this.classesApi?.forEach(x => {
-    //   x.categories = [];
-    //   const attributes = x.children?.filter(y => ['Property', 'Accessor'].includes(y.kindString) && y.comment?.shortText)
-    //     .map(y => {
-    //       return {
-    //         name: y.name,
-    //         type: y.kindString === 'Accessor' ? this.getType(y.getSignature[0].type) : this.getType(y.type),
-    //         description: y.comment?.shortText
-    //       };
-    //     })
-    //     .sort((a, b) => a.name.localeCompare(b.name));
-    //   if (attributes?.length) {
-    //     x.categories.push({ name: 'Attributes', children: attributes, hasType: true });
-    //   }
-    //   const methods = x.children?.filter(y => y.kindString === 'Method' && y.signatures[0].comment?.shortText)
-    //     .map(y => ({
-    //       name: `${y.name}(${(y.signatures[0].parameters ?? []).reduce((p, c, i) => `${p}${i > 0 ? ', ' : ''}${c.name}: ${this.getType(c.type)}`, '')})`,
-    //       description: y.signatures[0].comment?.shortText
-    //     }))
-    //     .sort((a, b) => a.name.localeCompare(b.name));
-    //   if (methods?.length) {
-    //     x.categories.push({ name: 'Methods', children: methods });
-    //   }
-    //   const events = x.comment?.tags?.filter(t => t.tag === 'emits').map(y => ({ name: y.text.split('|')[0], description: y.text.split('|')[1] }));
-    //   if (events?.length) {
-    //     x.categories.push({ name: 'Events', children: events });
-    //   }
-    // });
+  load(parameters: Record<string, unknown>, routeNode: RouteNode) {
+    const api = apis[routeNode.context.parent?.component.name ?? ''] as NavigationItem;
+    this.classesApi = api.children?.reduce((p, c) => {
+      const elementsAndAttributes = c.children?.filter(x => {
+        if (!x.comment) {
+          return false;
+        }
+        x.comment.selectors = x.comment?.tags?.filter(y => y.tag === 'selector');
+        return !!x.comment;
+      });
+      p.push(...elementsAndAttributes ?? []);
+      return p;
+    }, [] as NavigationItem[]);
+    this.classesApi?.forEach(x => {
+      x.categories = [];
+      const attributes = x.children?.filter(y => ['Property', 'Accessor'].includes(y.kindString) && y.comment?.shortText)
+        .map(y => {
+          return {
+            name: y.name,
+            type: y.kindString === 'Accessor' ? this.getType((y.getSignature ?? y.setSignature)[0].type) : this.getType(y.type),
+            description: y.comment?.shortText
+          };
+        })
+        .sort((a, b) => a.name.localeCompare(b.name));
+      if (attributes?.length) {
+        x.categories.push({ name: 'Attributes', children: attributes, hasType: true });
+      }
+      const methods = x.children?.filter(y => y.kindString === 'Method' && y.signatures[0].comment?.shortText)
+        .map(y => ({
+          name: `${y.name}(${(y.signatures[0].parameters ?? []).reduce((p, c, i) => `${p}${i > 0 ? ', ' : ''}${c.name}: ${this.getType(c.type)}`, '')})`,
+          description: y.signatures[0].comment?.shortText
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));
+      if (methods?.length) {
+        x.categories.push({ name: 'Methods', children: methods });
+      }
+      const events = x.comment?.tags?.filter(t => t.tag === 'emits').map(y => ({ name: y.text.split('|')[0], description: y.text.split('|')[1] }));
+      if (events?.length) {
+        x.categories.push({ name: 'Events', children: events });
+      }
+    });
   }
 
   getType(t: IType): string {
@@ -158,6 +163,7 @@ export class ApiViewer  {
         } else {
           return t.name;
         }
+      case 'typeOperator': return t.target.queryType.name;
       default: return t.name;
     }
 
