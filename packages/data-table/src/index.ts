@@ -1,15 +1,23 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from 'aurelia';
+import { MdcDataTable } from './mdc-data-table';
+// import { CheckboxConfiguration } from '@aurelia-mdc-web/checkbox';
 
 export { MdcDataTable } from './mdc-data-table';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-data-table')
-  ]);
+export const DataTableConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcDataTable);
+  }
+};
 
-  config.aurelia.use
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'))
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon'))
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/linear-progress'))
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'));
-}
+// export function configure(config: FrameworkConfiguration) {
+//   config.globalResources([
+//     PLATFORM.moduleName('./mdc-data-table')
+//   ]);
+
+//   config.aurelia.use
+//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'))
+//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/icon'))
+//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/linear-progress'))
+//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'));
+// }

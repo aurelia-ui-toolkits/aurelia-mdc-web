@@ -1,19 +1,13 @@
 /* eslint-disable no-template-curly-in-string */
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import {
   MDCDataTableFoundation, selectors, MDCDataTableAdapter, events, cssClasses,
   dataAttributes, MDCDataTableRowSelectionChangedEventDetail, SortValue, messages
 } from '@material/data-table';
 import { MdcCheckbox, IMdcCheckboxElement } from '@aurelia-mdc-web/checkbox';
 import { closest } from '@material/dom/ponyfill';
-import { inject, customElement, useView, PLATFORM, ViewCompiler, ViewResources, bindingMode, computedFrom, processContent } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
-
-declare module '@material/data-table' {
-  interface MDCDataTableAdapter {
-    getTableContainerHeight(): number;
-  }
-}
+import { inject, customElement, INode, IPlatform, bindable, BindingMode } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
 
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();
 events.SELECTED_ALL = events.SELECTED_ALL.toLowerCase();
@@ -25,11 +19,11 @@ const NAVIGATION_EVENT = 'mdcdatatable:navigation';
  * @selector mdc-data-table
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-data-table.html'))
 @customElement('mdc-data-table')
 @processContent(MdcDataTable.processContent)
 export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implements EventListenerObject {
-  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
+  static processContent(node: INode, platform: IPlatform) {
+    const element = node as HTMLElement;
     const table = document.createElement('table');
     table.classList.add('mdc-data-table__table');
     table.setAttribute('aria-label', '${ariaLabel}');
@@ -37,7 +31,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     const thead = document.createElement('thead');
     table.appendChild(thead);
     const headerRow = document.createElement('tr');
-    headerRow.classList.add('mdc-data-table__header-row');
+    headerRow.classList.add(cssClasses.HEADER_ROW);
     headerRow.setAttribute('ref', 'headerRow');
     thead.appendChild(headerRow);
     const headerCells = element.querySelectorAll<HTMLElement>('mdc-data-table-header>mdc-data-table-header-cell') ?? [];
@@ -46,7 +40,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       for (let i = 0; i < c.attributes.length; ++i) {
         th.setAttribute(c.attributes[i].name, c.attributes[i].value);
       }
-      th.classList.add('mdc-data-table__header-cell', ...Array.from(c.classList));
+      th.classList.add(cssClasses.HEADER_CELL, ...Array.from(c.classList));
       th.classList.toggle('mdc-data-table__header-cell--numeric', c.hasAttribute('numeric'));
       th.setAttribute('role', 'columnheader');
       th.setAttribute('scope', 'col');
@@ -55,7 +49,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     }
 
     const tbody = document.createElement('tbody');
-    tbody.classList.add('mdc-data-table__content');
+    tbody.classList.add(cssClasses.CONTENT);
     tbody.setAttribute('ref', 'content');
     table.appendChild(tbody);
     const rows = element.querySelectorAll<HTMLElement>('mdc-data-table-content>mdc-data-table-row') ?? [];
@@ -64,7 +58,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       for (let i = 0; i < r.attributes.length; ++i) {
         tr.setAttribute(r.attributes[i].name, r.attributes[i].value);
       }
-      tr.classList.add('mdc-data-table__row');
+      tr.classList.add(cssClasses.ROW);
       tbody.appendChild(tr);
       const cells = r.querySelectorAll<HTMLElement>('mdc-data-table-cell');
       for (const c of Array.from(cells)) {
@@ -73,8 +67,8 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
         for (let i = 0; i < c.attributes.length; ++i) {
           cell.setAttribute(c.attributes[i].name, c.attributes[i].value);
         }
-        cell.classList.add('mdc-data-table__cell', ...Array.from(c.classList));
-        cell.classList.toggle('mdc-data-table__cell--numeric', c.hasAttribute('numeric'));
+        cell.classList.add(cssClasses.CELL, ...Array.from(c.classList));
+        cell.classList.toggle(cssClasses.CELL_NUMERIC, c.hasAttribute('numeric'));
         if (isHeader) {
           cell.setAttribute('scope', 'row');
         }
@@ -83,13 +77,12 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       }
     }
 
-    const paginationTotal = element.querySelector<HTMLElement>('[replace-part="pagination-total"]');
-    element.innerHTML = '';
-    element.appendChild(table);
-    if (paginationTotal) {
-      element.appendChild(paginationTotal);
-    }
-    return true;
+    const div = platform.document.createElement('div');
+    div.appendChild(table);
+    const template = platform.document.createElement('template');
+    template.setAttribute('au-slot', '');
+    template.innerHTML = div.innerHTML;
+    element.innerHTML = template.innerHTML;
   }
 
   header: HTMLElement;
@@ -108,10 +101,10 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   pageSizes: unknown[] = [10, 25, 100];
 
   /** Selected page size */
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ mode: BindingMode.twoWay })
   pageSize: unknown = 10;
 
-  @computedFrom('pageSize', 'recordsCount', 'activePage')
+  // @computed('pageSize', 'recordsCount', 'activePage')
   get paginationPosition(): 'first' | 'between' | 'last' | undefined {
     if (typeof this.pageSize !== 'number' || this.pageSize === undefined || isNaN(this.activePage) || isNaN(this.recordsCount)) {
       return undefined;
@@ -123,14 +116,14 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   }
 
   /** Sets total number of records. Used in navigation row. */
-  @bindable.number
+  @bindable({ set: number })
   recordsCount: number;
 
   /** Sets the active page number. Used in navigation row. */
-  @bindable.number
+  @bindable({ set: number })
   activePage: number;
 
-  @computedFrom('pageSize', 'recordsCount', 'activePage')
+  // @computedFrom('pageSize', 'recordsCount', 'activePage')
   get paginationTotal(): string | undefined {
     if (typeof this.pageSize !== 'number' || this.pageSize === undefined || isNaN(this.activePage) || isNaN(this.recordsCount)) {
       return undefined;
@@ -143,8 +136,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   /** Turns on a linear progress indicator at the top of the table */
   @bindable({ set: booleanAttr })
   busy: boolean;
-  async busyChanged() {
-    await this.initialised;
+  busyChanged() {
     if (this.busy) {
       this.foundation?.showProgress();
     } else {
@@ -156,12 +148,12 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   hoistPageSelectToBody: boolean;
 
   get rowCheckboxList(): MdcCheckbox[] {
-    return Array.from(this.root.querySelectorAll<IMdcCheckboxElement>('.mdc-data-table__row .mdc-checkbox'))
-      .map(x => x.au?.controller.viewModel);
+    return Array.from(this.root.querySelectorAll<IMdcCheckboxElement>(`.${cssClasses.ROW} .mdc-checkbox`))
+      .map(x => x.$au['au:resource:custom-element'].viewModel);
   }
 
   get headerRowCheckbox(): MdcCheckbox | undefined {
-    return this.root.querySelector<IMdcCheckboxElement>('.mdc-data-table__header-row .mdc-checkbox')?.au.controller.viewModel;
+    return this.root.querySelector<IMdcCheckboxElement>(`.${cssClasses.HEADER_ROW} .mdc-checkbox`)?.$au['au:resource:custom-element'].viewModel;
   }
 
   handleHeaderRowCheckboxChange() {
@@ -232,12 +224,12 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     }
   }
 
-  async initialise() {
-    this.header = this.root.querySelector<HTMLElement>('.mdc-data-table__header-row')!;
+  attaching() {
+    this.header = this.root.querySelector<HTMLElement>(`.${cssClasses.HEADER_ROW}`)!;
     this.header.addEventListener('change', this);
     this.header.addEventListener('click', this);
 
-    this.content = this.root.querySelector<HTMLElement>('.mdc-data-table__content')!;
+    this.content = this.root.querySelector<HTMLElement>(`.${cssClasses.CONTENT}`)!;
     this.content.addEventListener('change', this);
 
     const rowCheckboxList = this.rowCheckboxList;
@@ -246,10 +238,10 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       this.headerRowCheckbox.root.classList.add(cssClasses.HEADER_ROW_CHECKBOX);
       rowCheckboxList.push(this.headerRowCheckbox);
     }
-    await Promise.all(rowCheckboxList.map(async x => x.initialised));
   }
 
   initialSyncWithDOM() {
+    this.busyChanged();
     const rowCheckboxList = this.rowCheckboxList;
     for (let i = 0; i < rowCheckboxList.length; ++i) {
       if (rowCheckboxList[i].checked) {
@@ -283,19 +275,15 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       notifySortAction: (data) => {
         this.emit(events.SORTED, data, /** shouldBubble */ true);
       },
-      getTableBodyHeight: () => {
-        const body = this.root.querySelector('table>tbody');
-        return `${body?.getBoundingClientRect().height}px`;
-      },
       getTableContainerHeight: () => {
         const tableContainer =
-          this.root.querySelector<HTMLElement>('.mdc-data-table__container');
+          this.root.querySelector<HTMLElement>(`.${cssClasses.TABLE_CONTAINER}`);
 
         if (!tableContainer) {
           throw new Error('MDCDataTable: Table container element not found.');
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return tableContainer.getBoundingClientRect().height as any;
       },
       getTableHeaderHeight: () => {
@@ -306,7 +294,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
           throw new Error('MDCDataTable: Table header element not found.');
         }
 
-        return `${tableHeader.getBoundingClientRect().height}px`;
+        return tableHeader.getBoundingClientRect().height;
       },
       setProgressIndicatorStyles: (styles) => {
         const progressIndicator = this.root.querySelector<HTMLElement>(selectors.PROGRESS_INDICATOR);

@@ -1,0 +1,20 @@
+<mdc-data-table pagination page-sizes.bind="[10,20,30]" page-size.to-view="10" records-count="35"
+  active-page.bind="activePage" pagination-total="1-3 of 3"
+  mdcdatatable:navigation.trigger="handleNavigation($event.detail.type)" pagination-position="between">
+  <mdc-data-table-header>
+    <mdc-data-table-header-cell>Dessert</mdc-data-table-header-cell>
+    <mdc-data-table-header-cell numeric>Calories</mdc-data-table-header-cell>
+    <mdc-data-table-header-cell numeric>Carbs</mdc-data-table-header-cell>
+    <mdc-data-table-header-cell numeric>Protein (g)</mdc-data-table-header-cell>
+    <mdc-data-table-header-cell mdcDataTableHeaderCell>Comments</mdc-data-table-header-cell>
+  </mdc-data-table-header>
+  <mdc-data-table-content>
+    <mdc-data-table-row repeat.for="dessert of desserts">
+      <mdc-data-table-cell>${dessert.name}</mdc-data-table-cell>
+      <mdc-data-table-cell numeric>${dessert.calories}</mdc-data-table-cell>
+      <mdc-data-table-cell numeric>${dessert.carbs}</mdc-data-table-cell>
+      <mdc-data-table-cell numeric>${dessert.protein}</mdc-data-table-cell>
+      <mdc-data-table-cell>${dessert.comment}</mdc-data-table-cell>
+    </mdc-data-table-row>
+  </mdc-data-table-content>
+</mdc-data-table>

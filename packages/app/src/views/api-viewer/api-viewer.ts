@@ -21,7 +21,7 @@ import { RouteNode } from 'aurelia';
 // import lookupApi from '../../../../lookup/doc/api.json';
 
 const apis: Record<string, unknown> = {
-  'button': buttonApi,
+  'button-page': buttonApi,
   // 'chips': chipsApi,
   'card': cardApi,
   'checkbox': checkboxApi,
@@ -105,6 +105,9 @@ export class ApiViewer {
   classesApi?: NavigationItem[];
 
   load(parameters: Record<string, unknown>, routeNode: RouteNode) {
+    if (!routeNode.context.parent?.component.name) {
+      return;
+    }
     const api = apis[routeNode.context.parent?.component.name ?? ''] as NavigationItem;
     this.classesApi = api.children?.reduce((p, c) => {
       const elementsAndAttributes = c.children?.filter(x => {

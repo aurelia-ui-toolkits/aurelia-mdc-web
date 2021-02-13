@@ -9,14 +9,14 @@
 
         <mdc-select value.bind="pageSize" outlined class="mdc-data-table__pagination-rows-per-page-select"
           hoist-to-body.bind="hoistPageSelectToBody">
-          <mdc-list-item repeat.for="ps of pageSizes" value.bind="ps">${ps}</mdc-list-item>
+          <mdc-list>
+            <mdc-list-item repeat.for="ps of pageSizes" value.bind="ps">${ps}</mdc-list-item>
+          </mdc-list>
         </mdc-select>
       </div>
 
       <div class="mdc-data-table__pagination-navigation">
-        <div class="mdc-data-table__pagination-total">
-          <template replaceable part="pagination-total">${paginationTotal}</template>
-        </div>
+        <div class="mdc-data-table__pagination-total">${paginationTotal}</div>
         <button mdc-icon-button class="mdc-data-table__pagination-button" data-first-page="true"
           disabled.bind="!paginationPosition || paginationPosition === 'first'"
           click.trigger="handleNavigationClick('first')">
