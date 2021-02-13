@@ -113,7 +113,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-data-table/README.md#sass-mixins' },
     ],
-    code: 'import {MDCDataTableModule} from \'@angular-mdc/web/data-table\';',
+    code: 'import {MDCDataTableModule} from \'@angular-mdc-web/data-table\';',
     sass: `@use '@material/data-table/mdc-data-table';
 @use '@material/data-table';`
   },

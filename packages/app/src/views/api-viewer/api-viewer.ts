@@ -5,7 +5,7 @@ import buttonApi from '../../../../button/doc/api.json';
 import cardApi from '../../../../card/doc/api.json';
 import checkboxApi from '../../../../checkbox/doc/api.json';
 import circularProgressApi from '../../../../circular-progress/doc/api.json';
-// import dataTableApi from '../../../../data-table/doc/api.json';
+import dataTableApi from '../../../../data-table/doc/api.json';
 // import dialogApi from '../../../../dialog/doc/api.json';
 import drawerApi from '../../../../drawer/doc/api.json';
 // import elevationApi from '../../../../elevation/doc/api.json';
@@ -26,7 +26,7 @@ const apis: Record<string, unknown> = {
   'card': cardApi,
   'checkbox': checkboxApi,
   'circular-progress': circularProgressApi,
-  // 'data-table': dataTableApi,
+  'data-table': dataTableApi,
   // 'dialog': dialogApi,
   'drawer': drawerApi,
   // 'elevation': elevationApi,
