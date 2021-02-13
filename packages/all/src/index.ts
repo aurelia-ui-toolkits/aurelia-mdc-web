@@ -1,5 +1,6 @@
 import { IContainer, DI } from '@aurelia/kernel';
 import { ButtonConfiguration } from '@aurelia-mdc-web/button';
+import { CardConfiguration } from '@aurelia-mdc-web/card';
 import { CheckboxConfiguration } from '@aurelia-mdc-web/checkbox';
 import { CircularProgressConfiguration } from '@aurelia-mdc-web/circular-progress';
 import { DrawerConfiguration } from '@aurelia-mdc-web/drawer';
@@ -17,7 +18,7 @@ export const AllConfiguration = {
    */
   register(container: IContainer): IContainer {
     return container.register(
-      ButtonConfiguration, CheckboxConfiguration, CircularProgressConfiguration, DrawerConfiguration, FormFieldConfiguration,
+      ButtonConfiguration, CardConfiguration, CheckboxConfiguration, CircularProgressConfiguration, DrawerConfiguration, FormFieldConfiguration,
       ListConfiguration, IconConfiguration, RippleConfiguration,
       TopAppBarConfiguration, TypographyConfiguration, TabBarConfiguration
     );

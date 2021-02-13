@@ -1,0 +1,46 @@
+@use "@material/card";
+@use "@material/theme";
+@use "@material/rtl";
+
+.demo-card {
+  width: 350px;
+  margin: 28px;
+}
+
+.demo-card--music {
+  @include card.shape-radius(24px 4px);
+
+  @include rtl.rtl {
+    @include card.shape-radius(4px 24px);
+  }
+}
+
+.demo-card__music-row {
+  display: flex;
+  border-top-left-radius: inherit;
+
+  @include rtl.rtl {
+    border-top-left-radius: 0;
+    border-top-right-radius: inherit;
+  }
+}
+
+.demo-card__media--music {
+  width: 110px;
+  border-top-left-radius: inherit;
+
+  @include rtl.rtl {
+    border-top-left-radius: 0;
+    border-top-right-radius: inherit;
+  }
+}
+
+.demo-card__music-info {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+}
+
+.demo-card__action-buttons--text-only {
+  margin-left: 8px;
+}

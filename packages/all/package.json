@@ -46,6 +46,7 @@
   "dependencies": {
     "@aurelia-mdc-web/base": "^1.1.3",
     "@aurelia-mdc-web/button": "^1.1.3",
+    "@aurelia-mdc-web/card": "^1.1.3",
     "@aurelia-mdc-web/checkbox": "^1.1.3",
     "@aurelia-mdc-web/circular-progress": "^1.1.3",
     "@aurelia-mdc-web/drawer": "^1.1.3",

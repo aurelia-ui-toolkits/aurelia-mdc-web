@@ -9,32 +9,23 @@ import { Drawer } from '../drawer/drawer';
 import { List } from '../list/list';
 import { Checkbox } from '../checkbox/checkbox';
 import { TopAppBar } from '../top-app-bar/top-app-bar';
+import { Card } from '../card/card';
 
 @route({
   routes: [
     { id: 'home', path: '', title: 'Home', component: Home, data: { divider: 'true' } },
     { id: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
     { id: 'button', title: 'Button', component: Button },
+    { id: 'card', title: 'Card', component: Card },
     { id: 'checkbox', title: 'Checkbox', component: Checkbox },
     { id: 'circular-progress', title: 'Circular progress', component: CircularProgress },
     { id: 'drawer', title: 'Drawer', component: Drawer },
     { id: 'list', title: 'List', component: List },
     { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
-    // { title: 'Top app bar', component: TopAppBar },
   ]
 })
 export class Root {
   constructor(@IRouter private router: IRouter) { }
-
-  // static routes = [
-  //   { title: 'Home', route: Home, meta: { divider: true } },
-  //   { title: 'Getting Started', route: GettingStarted, meta: { divider: true } },
-  //   { title: 'Button', route: Button },
-  //   // { title: 'Circular progress', route: CircularProgress },
-  //   // { title: 'Drawer', route: Drawer },
-  //   // { title: 'List', route: List },
-  //   // { title: 'Top app bar', route: TopAppBar },
-  // ];
 
   @observable
   drawer: MdcDrawer;

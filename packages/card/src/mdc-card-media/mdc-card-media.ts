@@ -1,11 +1,12 @@
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, bindable } from 'aurelia';
+import { booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { processContent } from '@aurelia/runtime-html';
 
 /**
  * @selector mdc-card-media
  */
-@useView(PLATFORM.moduleName('./mdc-card-media.html'))
 @customElement('mdc-card-media')
+@processContent(defaultSlotProcessContent)
 export class MdcCardMedia {
   /**
    * Automatically scales the media area's height to equal its width.

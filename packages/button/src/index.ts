@@ -8,8 +8,6 @@ export { MdcButton, MdcButtonLabel };
 
 export const ButtonConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcButton, MdcButtonLabel, EnhanceMdcButton
-      // AppTask.with(MdcButton).beforeCompileChildren().call(b => {console.log(b);})
-    );
+    return container.register(MdcButton, MdcButtonLabel, EnhanceMdcButton);
   }
 };

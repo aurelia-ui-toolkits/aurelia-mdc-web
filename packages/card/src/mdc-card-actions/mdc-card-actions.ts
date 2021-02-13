@@ -1,10 +1,9 @@
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, bindable } from 'aurelia';
+import { booleanAttr } from '@aurelia-mdc-web/base';
 
 /**
  * @selector mdc-card-actions
  */
-@useView(PLATFORM.moduleName('./mdc-card-actions.html'))
 @customElement('mdc-card-actions')
 export class MdcCardActions {
   /**

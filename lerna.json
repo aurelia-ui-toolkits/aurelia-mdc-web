@@ -4,6 +4,7 @@
     "packages/app",
     "packages/base",
     "packages/button",
+    "packages/card",
     "packages/checkbox",
     "packages/drawer",
     "packages/circular-progress",
