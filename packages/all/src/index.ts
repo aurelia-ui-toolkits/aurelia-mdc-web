@@ -9,6 +9,7 @@ import { FloatingLabelConfiguration } from '@aurelia-mdc-web/floating-label';
 import { FormFieldConfiguration } from '@aurelia-mdc-web/form-field';
 import { IconConfiguration } from '@aurelia-mdc-web/icon';
 import { IconButtonConfiguration } from '@aurelia-mdc-web/icon-button';
+import { LineRippleConfiguration } from '@aurelia-mdc-web/line-ripple';
 import { ListConfiguration } from '@aurelia-mdc-web/list';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { TabBarConfiguration } from '@aurelia-mdc-web/tab-bar';
@@ -22,8 +23,8 @@ export const AllConfiguration = {
   register(container: IContainer): IContainer {
     return container.register(
       ButtonConfiguration, CardConfiguration, CheckboxConfiguration, CircularProgressConfiguration, DataTableConfiguration,
-      DrawerConfiguration, FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration,
-      ListConfiguration, IconConfiguration, RippleConfiguration,
+      DrawerConfiguration, FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration, IconConfiguration,
+      LineRippleConfiguration, ListConfiguration, RippleConfiguration,
       TopAppBarConfiguration, TypographyConfiguration, TabBarConfiguration
     );
   },

@@ -1,9 +1,10 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from 'aurelia';
+import { MdcLineRipple } from './mdc-line-ripple';
 
 export { MdcLineRipple } from './mdc-line-ripple';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-line-ripple')
-  ]);
-}
+export const LineRippleConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcLineRipple);
+  }
+};

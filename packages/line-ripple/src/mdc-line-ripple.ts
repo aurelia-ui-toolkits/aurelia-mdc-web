@@ -1,10 +1,9 @@
-import { inject, customElement, inlineView } from 'aurelia-framework';
+import { inject, customElement } from 'aurelia';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCLineRippleFoundation, MDCLineRippleAdapter } from '@material/line-ripple';
 
 @inject(Element)
-@customElement('mdc-line-ripple')
-@inlineView('<template class="mdc-line-ripple"></template>')
+@customElement({ name: 'mdc-line-ripple', template: '<template class="mdc-line-ripple"></template>' })
 export class MdcLineRipple extends MdcComponent<MDCLineRippleFoundation> {
   /**
    * Activates the line ripple
