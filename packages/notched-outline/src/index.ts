@@ -1,9 +1,10 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from 'aurelia';
+import { MdcNotchedOutline } from './mdc-notched-outline';
 
 export { MdcNotchedOutline } from './mdc-notched-outline';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-notched-outline')
-  ]);
-}
+export const NotchedOutlineConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcNotchedOutline);
+  }
+};

@@ -14,6 +14,7 @@
     "packages/icon-button",
     "packages/line-ripple",
     "packages/list",
+    "packages/notched-outline",
     "packages/ripple",
     "packages/tab-bar",
     "packages/top-app-bar",

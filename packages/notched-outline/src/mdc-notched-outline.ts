@@ -1,29 +1,30 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { MDCNotchedOutlineFoundation, MDCNotchedOutlineAdapter, cssClasses } from '@material/notched-outline';
 import { MDCFloatingLabelFoundation } from '@material/floating-label';
-import { inject, customElement, useView, PLATFORM, child } from 'aurelia-framework';
+import { inject, customElement, children } from 'aurelia';
 import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
+import { processContent } from '@aurelia/runtime-html';
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-notched-outline.html'))
 @customElement('mdc-notched-outline')
+@processContent(defaultSlotProcessContent)
 export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation> {
   private notchElement_!: HTMLElement; // assigned in html
 
-  @child(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`)
+  @children({ filter: el => (el as HTMLElement).classList.contains(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`) })
   label: MdcFloatingLabel;
-
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  labelChanged() {
     if (this.label) {
       this.label.root.style.transitionDuration = '0s';
       this.root.classList.add(cssClasses.OUTLINE_UPGRADED);
       requestAnimationFrame(() => {
         this.label.root.style.transitionDuration = '';
       });
-    } else {
-      this.root.classList.add(cssClasses.NO_LABEL);
     }
+  }
+
+  initialSyncWithDOM() {
+    this.labelChanged();
   }
 
   /**
