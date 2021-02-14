@@ -1,9 +1,10 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { MdcFloatingLabel } from './mdc-floating-label';
+import { IContainer } from 'aurelia';
 
 export { MdcFloatingLabel } from './mdc-floating-label';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-floating-label')
-  ]);
-}
+export const FloatingLabelConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcFloatingLabel);
+  }
+};
