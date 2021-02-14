@@ -1,8 +1,7 @@
-import { children, customElement, useView, inject, bindingMode, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, inject, BindingMode, bindable } from 'aurelia';
 import { MDCIconButtonToggleFoundation, MDCIconButtonToggleAdapter, MDCIconButtonToggleEventDetail, strings } from '@material/icon-button';
-import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MdcIconButtonIcon } from './mdc-icon-button-icon/mdc-icon-button-icon';
+import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { processContent } from '@aurelia/runtime-html';
 
 /**
  * @selector button[mdc-icon-button]
@@ -10,19 +9,16 @@ import { MdcIconButtonIcon } from './mdc-icon-button-icon/mdc-icon-button-icon';
  * @selector mdc-icon-button
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-icon-button.html'))
 @customElement('mdc-icon-button')
+@processContent(defaultSlotProcessContent)
 export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   /** Sets the toggle state to the provided value */
-  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ set: booleanAttr, mode: BindingMode.twoWay })
   on: boolean;
 
   /** Optional. Set a Material icon as a non-toggle icon. */
   @bindable
   icon: string;
-
-  @children('mdc-icon-button-icon')
-  icons?: MdcIconButtonIcon[];
 
   // this is necessary for the route-href to work
   @bindable
@@ -35,14 +31,12 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
     }
   }
 
-  async attached() {
-    await this.initialise();
-    if (this.icons?.length) {
+  attached() {
+    this.hrefChanged();
+    if (this.root.querySelector('mdc-icon-button-icon')) {
       this.foundation = this.getDefaultFoundation();
       this.foundation.init();
     }
-    this.initialisedResolve();
-    this.initialSyncWithDOM();
   }
 
   handleClick() {

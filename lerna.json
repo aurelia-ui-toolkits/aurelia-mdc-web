@@ -10,6 +10,7 @@
     "packages/drawer",
     "packages/circular-progress",
     "packages/icon",
+    "packages/icon-button",
     "packages/list",
     "packages/ripple",
     "packages/tab-bar",

@@ -7,6 +7,7 @@ import { DataTableConfiguration } from '@aurelia-mdc-web/data-table';
 import { DrawerConfiguration } from '@aurelia-mdc-web/drawer';
 import { FormFieldConfiguration } from '@aurelia-mdc-web/form-field';
 import { IconConfiguration } from '@aurelia-mdc-web/icon';
+import { IconButtonConfiguration } from '@aurelia-mdc-web/icon-button';
 import { ListConfiguration } from '@aurelia-mdc-web/list';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { TabBarConfiguration } from '@aurelia-mdc-web/tab-bar';
@@ -20,7 +21,7 @@ export const AllConfiguration = {
   register(container: IContainer): IContainer {
     return container.register(
       ButtonConfiguration, CardConfiguration, CheckboxConfiguration, CircularProgressConfiguration, DataTableConfiguration,
-      DrawerConfiguration, FormFieldConfiguration,
+      DrawerConfiguration, FormFieldConfiguration, IconButtonConfiguration,
       ListConfiguration, IconConfiguration, RippleConfiguration,
       TopAppBarConfiguration, TypographyConfiguration, TabBarConfiguration
     );

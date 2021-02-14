@@ -1,11 +1,11 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { MdcIconButtonIcon } from './mdc-icon-button-icon/mdc-icon-button-icon';
+import { MdcIconButton } from './mdc-icon-button';
+import { IContainer } from 'aurelia';
 
-export { MdcIconButton } from './mdc-icon-button';
+export { MdcIconButton, MdcIconButtonIcon };
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-icon-button'),
-    PLATFORM.moduleName('./mdc-icon-button-icon/mdc-icon-button-icon'),
-    PLATFORM.moduleName('./enhance-mdc-icon-button')
-  ]);
-}
+export const IconButtonConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcIconButton, MdcIconButtonIcon);
+  }
+};

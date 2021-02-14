@@ -11,6 +11,7 @@ import { Checkbox } from '../checkbox/checkbox';
 import { TopAppBar } from '../top-app-bar/top-app-bar';
 import { Card } from '../card/card';
 import { DataTable } from '../data-table/data-table';
+import { IconButton } from '../icon-button/icon-button';
 
 @route({
   routes: [
@@ -22,6 +23,7 @@ import { DataTable } from '../data-table/data-table';
     { id: 'circular-progress', title: 'Circular progress', component: CircularProgress },
     { id: 'data-table', title: 'Data table', component: DataTable },
     { id: 'drawer', title: 'Drawer', component: Drawer },
+    { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'list', title: 'List', component: List },
     { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
   ]
