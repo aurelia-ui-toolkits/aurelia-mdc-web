@@ -1,6 +1,6 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTextFieldIconFoundation, MDCTextFieldIconAdapter, iconCssClasses } from '@material/textfield';
-import { inject, customAttribute } from 'aurelia-framework';
+import { inject, customAttribute } from 'aurelia';
 
 export const mdcIconStrings = {
   ATTRIBUTE: 'mdc-text-field-icon',
@@ -11,8 +11,7 @@ export const mdcIconStrings = {
 @inject(Element)
 @customAttribute(mdcIconStrings.ATTRIBUTE)
 export class MdcTextFieldIcon extends MdcComponent<MDCTextFieldIconFoundation> {
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  attaching() {
     this.root.classList.add(iconCssClasses.ROOT);
     if (this.root.hasAttribute(mdcIconStrings.LEADING)) {
       this.root.classList.add(`${iconCssClasses.ROOT}--${mdcIconStrings.LEADING}`);
@@ -49,8 +48,8 @@ export class MdcTextFieldIcon extends MdcComponent<MDCTextFieldIconFoundation> {
 
 /** @hidden */
 export interface IMdcTextFieldIconElement extends HTMLElement {
-  au: {
-    'mdc-text-field-icon': {
+  $au: {
+    'au:resource:custom-attribute:mdc-text-field-icon': {
       viewModel: MdcTextFieldIcon;
     };
   };

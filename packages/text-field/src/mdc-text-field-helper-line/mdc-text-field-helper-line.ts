@@ -1,9 +1,10 @@
-import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { inject, customElement, bindable } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
+import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-text-field-helper-line.html'))
 @customElement('mdc-text-field-helper-line')
+@processContent(defaultSlotProcessContent)
 export class MdcTextFieldHelperLine {
   @bindable
   errors: string[];
@@ -11,8 +12,8 @@ export class MdcTextFieldHelperLine {
 
 /** @hidden */
 export interface IMdcTextFieldHelperLineElement extends HTMLElement {
-  au: {
-    controller: {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcTextFieldHelperLine;
     };
   };

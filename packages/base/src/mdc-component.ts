@@ -8,7 +8,11 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   initialSyncWithDOM() { }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  beforeFoundationCreated() { }
+
   attached() {
+    this.beforeFoundationCreated();
     this.foundation = this.getDefaultFoundation();
     this.foundation.init();
     this.initialSyncWithDOM();

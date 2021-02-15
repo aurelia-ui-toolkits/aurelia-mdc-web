@@ -1,51 +1,59 @@
-import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, PLATFORM, child } from 'aurelia-framework';
+import { inject, customElement, INode, bindable } from 'aurelia';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
-  MDCTextFieldLineRippleAdapter, cssClasses, MDCTextFieldOutlineAdapter, helperTextStrings, characterCountStrings
+  MDCTextFieldLineRippleAdapter, MDCTextFieldOutlineAdapter
 } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
-import { MdcComponent, IValidatedElement } from '@aurelia-mdc-web/base';
+import { MdcComponent, IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
-import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
 import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './mdc-text-field-icon';
-import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
-import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
-import { MDCFoundation } from '@material/base';
+import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
+import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';
+import { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
+import { processContent, IPlatform } from '@aurelia/runtime-html';
 
 let textFieldId = 0;
 
-@inject(Element)
-@useView(PLATFORM.moduleName('./mdc-text-field.html'))
+@inject(Element, IPlatform)
 @customElement('mdc-text-field')
-@processContent(MdcTextField.processContent)
+// @processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
-  constructor(root: HTMLElement) {
+  constructor(root: HTMLElement, private platform: IPlatform) {
     super(root);
     defineMdcTextFieldElementApis(this.root);
   }
 
-  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
+  static processContent(node: INode) {
+    const element = node as HTMLElement;
     // move icons to slots - this allows omitting slot specification
     const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`);
-    leadingIcon?.setAttribute('slot', 'leading-icon');
+    leadingIcon?.setAttribute('au-slot', 'leading-icon');
     const trailingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`);
-    trailingIcon?.setAttribute('slot', 'trailing-icon');
-    return true;
+    trailingIcon?.setAttribute('au-slot', 'trailing-icon');
   }
 
   id: string = `mdc-text-field-${++textFieldId}`;
+  id1: string = `mdc-text-field-${textFieldId}`;
   input_: HTMLInputElement;
-  label_: MdcFloatingLabel;
+  label_?: MdcFloatingLabel = undefined;
   lineRipple_: MdcLineRipple;
   outline_!: MdcNotchedOutline | null; // assigned in html
   helperText_: MdcTextFieldHelperText | undefined;
   characterCounter_: MdcTextFieldCharacterCounter | undefined;
-  errors = new Map<unknown, boolean>();
+  errors = new Map<IError, boolean>();
+  leadingIcon_: MdcTextFieldIcon | undefined;
+  trailingIcon_: MdcTextFieldIcon | undefined;
 
   @bindable
   label: string;
+  labelChanged() {
+    this.platform.domWriteQueue.queueTask(() => {
+      const openNotch = this.foundation!.shouldFloat;
+      this.foundation!.notchOutline(openNotch);
+    });
+  }
 
   @bindable({ set: booleanAttr })
   textarea: boolean;
@@ -55,9 +63,6 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   @bindable({ set: booleanAttr })
   ltrText: boolean;
-
-  @bindable({ set: booleanAttr })
-  fullwidth: boolean;
 
   @bindable({ set: booleanAttr })
   outlined: boolean;
@@ -70,17 +75,15 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   @bindable({ set: booleanAttr })
   required: boolean;
-  async requiredChanged() {
-    await this.initialised;
+  requiredChanged() {
     this.input_.required = this.required;
     this.foundation!.setUseNativeValidation(true);
   }
 
   @bindable({ set: booleanAttr })
   disabled: boolean;
-  async disabledChanged() {
+  disabledChanged() {
     this.input_.disabled = this.disabled;
-    await this.initialised;
     this.foundation?.setDisabled(this.disabled);
   }
 
@@ -164,7 +167,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable.number
+  @bindable({ set: number })
   tabindex: number;
   tabindexChanged() {
     if (isNaN(this.tabindex)) {
@@ -217,12 +220,12 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  addError(error: unknown) {
+  addError(error: IError) {
     this.errors.set(error, true);
     this.valid = false;
   }
 
-  removeError(error: unknown) {
+  removeError(error: IError) {
     this.errors.delete(error);
     this.valid = this.errors.size === 0;
   }
@@ -236,42 +239,22 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.foundation?.setValid(value);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  bind() { }
+  renderErrors() {
+    const helperLine = this.root.nextElementSibling as IMdcTextFieldHelperLineElement;
+    if (helperLine?.tagName === 'MDC-TEXT-FIELD-HELPER-LINE') {
+      helperLine.$au['au:resource:custom-element'].viewModel.errors = Array.from(this.errors.keys())
+        .filter(x => x.message !== null).map(x => x.message!);
+    }
+  }
+
+  beforeFoundationCreated() {
+    const leadingIconEl = this.root.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`) as IMdcTextFieldIconElement;
+    this.leadingIcon_ = leadingIconEl?.$au['au:resource:custom-attribute:mdc-text-field-icon'].viewModel;
+    const trailingIconEl = this.root.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`) as IMdcTextFieldIconElement;
+    this.trailingIcon_ = trailingIconEl?.$au['au:resource:custom-attribute:mdc-text-field-icon'].viewModel;
+  }
 
   initialSyncWithDOM() {
-    this.value = this.initialValue;
-    this.errors = new Map<unknown, boolean>();
-    this.valid = true;
-  }
-
-  @child(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`)
-  leadingIconEl: IMdcTextFieldIconElement | MdcComponent<MDCFoundation>;
-  leadingIconElChanged() {
-    if (this.leadingIconEl) {
-      const el = ((this.leadingIconEl as MdcComponent<MDCFoundation>).root ?? this.leadingIconEl) as IMdcTextFieldIconElement;
-      this.leadingIcon_ = el.au['mdc-text-field-icon'].viewModel;
-    } else {
-      this.leadingIcon_ = undefined;
-    }
-  }
-
-  leadingIcon_: MdcTextFieldIcon | undefined;
-
-  @child(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`)
-  trailingIconEl: IMdcTextFieldIconElement | MdcComponent<MDCFoundation>;
-  trailingIconElChanged() {
-    if (this.trailingIconEl) {
-      const el = ((this.trailingIconEl as MdcComponent<MDCFoundation>).root ?? this.trailingIconEl) as IMdcTextFieldIconElement;
-      this.trailingIcon_ = el.au['mdc-text-field-icon'].viewModel;
-    } else {
-      this.trailingIcon_ = undefined;
-    }
-  }
-
-  trailingIcon_: MdcTextFieldIcon | undefined;
-
-  async initialise() {
     this.requiredChanged();
     this.disabledChanged();
     this.readonlyChanged();
@@ -290,22 +273,9 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
       this.value = this.root.getAttribute('value') ?? '';
     }
 
-    const nextSibling = this.root.nextElementSibling;
-    const initialisedChildren: Promise<unknown>[] = [];
-    if (this.label_) {
-      initialisedChildren.push(this.label_.initialised);
-    }
-    if (nextSibling?.tagName === cssClasses.HELPER_LINE.toUpperCase()) {
-      this.helperText_ = nextSibling.querySelector<IMdcTextFieldHelperTextElement>(helperTextStrings.ROOT_SELECTOR)?.au.controller.viewModel;
-      this.characterCounter_ = nextSibling.querySelector<IMdcTextFieldCharacterCounterElement>(characterCountStrings.ROOT_SELECTOR)?.au.controller.viewModel;
-      if (this.helperText_) {
-        initialisedChildren.push(this.helperText_.initialised);
-      }
-      if (this.characterCounter_) {
-        initialisedChildren.push(this.characterCounter_.initialised);
-      }
-    }
-    await Promise.all(initialisedChildren);
+    this.value = this.initialValue;
+    this.errors = new Map<IError, boolean>();
+    this.valid = true;
   }
 
   getDefaultFoundation() {
@@ -344,6 +314,12 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   private getInputAdapterMethods_(): MDCTextFieldInputAdapter {
     return {
       getNativeInput: () => this.input_,
+      setInputAttr: (attr, value) => {
+        this.input_.setAttribute(attr, value);
+      },
+      removeInputAttr: (attr) => {
+        this.input_.removeAttribute(attr);
+      },
       isFocused: () => document.activeElement === this.input_,
       registerInputInteractionHandler: (evtType, handler) => this.input_.addEventListener(evtType, handler, applyPassive()),
       deregisterInputInteractionHandler: (evtType, handler) => this.input_?.removeEventListener(evtType, handler, applyPassive()),
@@ -426,8 +402,8 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
 /** @hidden */
 export interface IMdcTextFieldElement extends IValidatedElement {
-  au: {
-    controller: {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcTextField;
     };
   };
@@ -437,67 +413,67 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
   Object.defineProperties(element, {
     value: {
       get(this: IMdcTextFieldElement) {
-        return this.au.controller.viewModel.value;
+        return this.$au['au:resource:custom-element'].viewModel.value;
       },
       set(this: IMdcTextFieldElement, value: string) {
-        this.au.controller.viewModel.value = value;
+        this.$au['au:resource:custom-element'].viewModel.value = value;
       },
       configurable: true
     },
     disabled: {
       get(this: IMdcTextFieldElement) {
-        return this.au.controller.viewModel.disabled;
+        return this.$au['au:resource:custom-element'].viewModel.disabled;
       },
       set(this: IMdcTextFieldElement, value: boolean) {
-        this.au.controller.viewModel.disabled = value;
+        this.$au['au:resource:custom-element'].viewModel.disabled = value;
       },
       configurable: true
     },
     readOnly: {
       get(this: IMdcTextFieldElement) {
-        return this.au.controller.viewModel.readonly;
+        return this.$au['au:resource:custom-element'].viewModel.readonly;
       },
       set(this: IMdcTextFieldElement, value: boolean) {
-        this.au.controller.viewModel.readonly = value;
+        this.$au['au:resource:custom-element'].viewModel.readonly = value;
       },
       configurable: true
     },
     valid: {
       get(this: IMdcTextFieldElement) {
-        return this.au.controller.viewModel.valid;
+        return this.$au['au:resource:custom-element'].viewModel.valid;
       },
       set(this: IMdcTextFieldElement, value: boolean) {
-        this.au.controller.viewModel.valid = value;
+        this.$au['au:resource:custom-element'].viewModel.valid = value;
       },
       configurable: true
     },
     addError: {
-      value(this: IMdcTextFieldElement, error: unknown) {
-        this.au.controller.viewModel.addError(error);
+      value(this: IMdcTextFieldElement, error: IError) {
+        this.$au['au:resource:custom-element'].viewModel.addError(error);
       },
       configurable: true
     },
     removeError: {
-      value(this: IMdcTextFieldElement, error: unknown) {
-        this.au.controller.viewModel.removeError(error);
+      value(this: IMdcTextFieldElement, error: IError) {
+        this.$au['au:resource:custom-element'].viewModel.removeError(error);
       },
       configurable: true
     },
-    getErrors: {
-      value(this: IMdcTextFieldElement): unknown[] {
-        return Array.from(this.au.controller.viewModel.errors.keys());
+    renderErrors: {
+      value(this: IMdcTextFieldElement): void {
+        this.$au['au:resource:custom-element'].viewModel.renderErrors();
       },
       configurable: true
     },
     focus: {
       value(this: IMdcTextFieldElement) {
-        this.au.controller.viewModel.focus();
+        this.$au['au:resource:custom-element'].viewModel.focus();
       },
       configurable: true
     },
     blur: {
       value(this: IMdcTextFieldElement) {
-        this.au.controller.viewModel.blur();
+        this.$au['au:resource:custom-element'].viewModel.blur();
       },
       configurable: true
     }

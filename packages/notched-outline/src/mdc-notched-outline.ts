@@ -11,20 +11,30 @@ import { processContent } from '@aurelia/runtime-html';
 export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation> {
   private notchElement_!: HTMLElement; // assigned in html
 
-  @children({ filter: el => (el as HTMLElement).classList.contains(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`) })
-  label: MdcFloatingLabel;
-  labelChanged() {
-    if (this.label) {
+  label?: MdcFloatingLabel;
+
+  @children({
+    query: controller => {
+      const label = controller.host.querySelector(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`);
+      return label ? [label] : [];
+    }
+  })
+  labels: MdcFloatingLabel[];
+  labelsChanged() {
+    if (this.labels.length) {
+      this.label = this.labels[0];
       this.label.root.style.transitionDuration = '0s';
       this.root.classList.add(cssClasses.OUTLINE_UPGRADED);
       requestAnimationFrame(() => {
-        this.label.root.style.transitionDuration = '';
+        this.label!.root.style.transitionDuration = '';
       });
+    } else {
+      this.label = undefined;
     }
   }
 
   initialSyncWithDOM() {
-    this.labelChanged();
+    this.labelsChanged();
   }
 
   /**

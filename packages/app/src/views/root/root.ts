@@ -12,6 +12,7 @@ import { TopAppBar } from '../top-app-bar/top-app-bar';
 import { Card } from '../card/card';
 import { DataTable } from '../data-table/data-table';
 import { IconButton } from '../icon-button/icon-button';
+import { TextField } from '../text-field/text-field';
 
 @route({
   routes: [
@@ -25,6 +26,7 @@ import { IconButton } from '../icon-button/icon-button';
     { id: 'drawer', title: 'Drawer', component: Drawer },
     { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'list', title: 'List', component: List },
+    { id: 'text-field', title: 'Text field', component: TextField },
     { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
   ]
 })

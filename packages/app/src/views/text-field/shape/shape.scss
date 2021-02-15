@@ -1,0 +1,33 @@
+@use '@material/textfield';
+@use '@material/textfield/helper-text';
+@use '@material/textfield/icon';
+
+.demo-text-field-custom-colors:not(.mdc-text-field--invalid) {
+  $idle-border: rgba(blue, .38);
+  $hover-border: rgba(blue, .6);
+  $focused-border: rgba(blue, 1);
+
+  @include textfield.bottom-line-color($idle-border);
+  @include textfield.hover-bottom-line-color($hover-border);
+  @include textfield.line-ripple-color($focused-border);
+  @include textfield.ink-color(black);
+  @include textfield.label-color(rgba(blue, .5));
+  @include textfield.outline-color($idle-border);
+  @include textfield.hover-outline-color($hover-border);
+  @include textfield.focused-outline-color($focused-border);
+  @include helper-text.helper-text-color($idle-border);
+  @include icon.leading-icon-color($hover-border);
+
+  &.mdc-text-field--focused {
+    @include textfield.label-color(rgba(blue, .87));
+    @include icon.leading-icon-color($focused-border);
+  }
+}
+
+.demo-shaped-text-field {
+  @include textfield.shape-radius(50%);
+}
+
+.demo-shaped-text-field--outline {
+  @include textfield.outline-shape-radius(50%);
+}

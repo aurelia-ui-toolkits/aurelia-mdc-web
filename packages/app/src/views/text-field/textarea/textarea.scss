@@ -1,0 +1,29 @@
+@use '@material/textfield';
+@use '@material/textfield/helper-text';
+@use '@material/textfield/icon';
+
+.demo-textarea:not(.mdc-text-field--invalid) {
+  $idle-border: rgba(blue, .38);
+  $hover-border: rgba(blue, .6);
+  $focused-border: rgba(blue, 1);
+
+  @include textfield.ink-color(black);
+  @include textfield.label-color(rgba(blue, .5));
+  @include textfield.outline-color($idle-border);
+
+  &.mdc-text-field--focused {
+    @include textfield.label-color(rgba(blue, .87));
+    @include textfield.outline-color($focused-border);
+  }
+}
+
+.demo-textarea.mdc-text-field--invalid {
+  @include textfield.ink-color(orange);
+  @include textfield.label-color(rgba(orange, .5));
+  @include textfield.outline-color(rgba(orange, .38));
+
+  &.mdc-text-field--focused {
+    @include textfield.label-color(rgba(orange, .87));
+    @include textfield.outline-color(orange);
+  }
+}

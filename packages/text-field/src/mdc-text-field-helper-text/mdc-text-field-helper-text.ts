@@ -1,11 +1,11 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { MDCTextFieldHelperTextFoundation, MDCTextFieldHelperTextAdapter, helperTextCssClasses } from '@material/textfield';
-import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { inject, customElement, bindable } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-text-field-helper-text.html'))
 @customElement(helperTextCssClasses.ROOT)
+@processContent(defaultSlotProcessContent)
 export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextFoundation> {
   helperTextCssClasses = helperTextCssClasses;
 
@@ -27,6 +27,7 @@ export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextF
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
       hasClass: (className) => this.root.classList.contains(className),
+      getAttr: (attr) => this.root.getAttribute(attr),
       setAttr: (attr, value) => this.root.setAttribute(attr, value),
       removeAttr: (attr) => this.root.removeAttribute(attr),
       setContent: (content) => {
@@ -39,8 +40,8 @@ export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextF
 
 /** @hidden */
 export interface IMdcTextFieldHelperTextElement extends HTMLElement {
-  au: {
-    controller: {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcTextFieldHelperText;
     };
   };

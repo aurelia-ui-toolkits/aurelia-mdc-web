@@ -1,10 +1,9 @@
-import { inject, inlineView, customElement } from 'aurelia-framework';
+import { inject, customElement } from 'aurelia';
 import { MDCTextFieldCharacterCounterFoundation, MDCTextFieldCharacterCounterAdapter, characterCountCssClasses } from '@material/textfield';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 
 @inject(Element)
-@inlineView(`<template class="${characterCountCssClasses.ROOT}"></template>`)
-@customElement(characterCountCssClasses.ROOT)
+@customElement({ name: characterCountCssClasses.ROOT, template: `<template class="${characterCountCssClasses.ROOT}"></template>` })
 export class MdcTextFieldCharacterCounter extends MdcComponent<MDCTextFieldCharacterCounterFoundation> {
   // Provided for access by MDCTextField component
   get foundationForTextField(): MDCTextFieldCharacterCounterFoundation {
@@ -25,8 +24,8 @@ export class MdcTextFieldCharacterCounter extends MdcComponent<MDCTextFieldChara
 
 /** @hidden */
 export interface IMdcTextFieldCharacterCounterElement extends HTMLElement {
-  au: {
-    controller: {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcTextFieldCharacterCounter;
     };
   };

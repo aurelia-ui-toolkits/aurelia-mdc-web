@@ -1,0 +1,13 @@
+<template>
+  <div class="demo-layout__row">
+    <button as-element="mdc-button" click.delegate="outlined = !outlined">
+      Outlined: ${outlined ? 'On' : 'Off'}</button>
+  </div>
+  <div class="au-text-field">
+    <label as-element="mdc-text-field" type="number" label="Weight" required value.bind="value" outlined.bind="outlined"></label>
+    <mdc-text-field-helper-line>
+      <mdc-text-field-helper-text validation>Field is required</mdc-text-field-helper-text>
+    </mdc-text-field-helper-line>
+  </div>
+  <p>Value: ${value}</p>
+</template>

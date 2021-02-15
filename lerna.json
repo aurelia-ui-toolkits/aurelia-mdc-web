@@ -17,6 +17,7 @@
     "packages/notched-outline",
     "packages/ripple",
     "packages/tab-bar",
+    "packages/text-field",
     "packages/top-app-bar",
     "packages/typography"
   ],

@@ -19,5 +19,5 @@ export class GettingStarted {
     <div aurelia-app='src/main'></div>
   </body>
 </html>`;
-  design = '<button mdc-button raised>Example</button>';
+  design = '<button as-element="mdc-button" raised>Example</button>';
 }
