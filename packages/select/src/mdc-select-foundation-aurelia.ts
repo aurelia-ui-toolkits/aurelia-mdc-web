@@ -1,15 +1,34 @@
-import { IMdcListItemElement } from '@aurelia-mdc-web/list';
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+import { MDCFoundation } from '@material/base/foundation';
+import { KEY, normalizeKey } from '@material/dom/keyboard';
+import { Corner } from '@material/menu-surface/constants';
+
 import { MDCSelectAdapterAurelia } from './mdc-select-adapter-aurelia';
 import { cssClasses, numbers, strings, MDCSelectIconFoundation, MDCSelectHelperTextFoundation, MDCSelectFoundationMap } from '@material/select';
-import { Corner } from '@material/menu';
-import { MDCFoundation } from '@material/base';
-import { KEY, normalizeKey } from '@material/dom/keyboard';
 
-/**
- * @hidden
- * This is an almost complete copy of the default foundation with exception to handling values.
- * It supports values of unknown types which must be bound to mdc-list-item.value.
- */
+// !!! MODIFIED FOR AURELIA !!!
 export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAurelia> {
   static get cssClasses() {
     return cssClasses;
@@ -34,7 +53,6 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
       hasClass: () => false,
       activateBottomLine: () => undefined,
       deactivateBottomLine: () => undefined,
-      getSelectedMenuItem: () => null,
       getSelectedIndex: () => -1,
       setSelectedIndex: () => undefined,
       hasLabel: () => false,
@@ -59,14 +77,10 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
       setMenuAnchorElement: () => undefined,
       setMenuAnchorCorner: () => undefined,
       setMenuWrapFocus: () => undefined,
-      setAttributeAtIndex: () => undefined,
       focusMenuItemAtIndex: () => undefined,
       getMenuItemCount: () => 0,
       getMenuItemValues: () => [],
       getMenuItemTextAtIndex: () => '',
-      getMenuItemAttr: () => '',
-      addClassAtIndex: () => undefined,
-      removeClassAtIndex: () => undefined,
       isTypeaheadInProgress: () => false,
       typeaheadMatchItem: () => -1,
     };
@@ -76,8 +90,6 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
   private readonly leadingIcon: MDCSelectIconFoundation | undefined;
   private readonly helperText: MDCSelectHelperTextFoundation | undefined;
 
-  // bound values of the menu items.
-  private menuItemValues: unknown[] = [];
   // Disabled state
   private disabled = false;
   // isMenuOpen is used to track the state of the menu by listening to the
@@ -88,6 +100,7 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
   // By default, select is invalid if it is required but no value is selected.
   private useDefaultValidation = true;
   private customValidity = true;
+  private lastSelectedIndex = numbers.UNSET_INDEX;
 
   /* istanbul ignore next: optional argument is not a branch statement */
   /**
@@ -112,7 +125,8 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
     }
 
     // !!! MODIFIED FOR AURELIA TO SUPPORT TEXT IN "EMPTY" ITEMS !!!
-    if (index === numbers.UNSET_INDEX || this.menuItemValues[index] === undefined || this.menuItemValues[index] === null) {
+    const menuItemValues = this.adapter.getMenuItemValues();
+    if (index === numbers.UNSET_INDEX || menuItemValues[index] === undefined || menuItemValues[index] === null) {
       this.adapter.setSelectedText('');
     } else {
       this.adapter.setSelectedText(
@@ -125,21 +139,23 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
       this.adapter.closeMenu();
     }
 
-    if (!skipNotify) {
+    if (!skipNotify && this.lastSelectedIndex !== index) {
       this.handleChange();
     }
+    this.lastSelectedIndex = index;
   }
 
   // !!! MODIFIED FOR AURELIA !!!
-  setValue(value: unknown, skipNotify?: boolean) {
+  setValue(value: unknown, skipNotify = false) {
     const index = this.adapter.getMenuItemValues().indexOf(value);
-    this.setSelectedIndex(index, undefined, skipNotify);
+    this.setSelectedIndex(index, /** closeMenu */ false, skipNotify);
   }
 
   // !!! MODIFIED FOR AURELIA !!!
   getValue() {
-    const listItem = this.adapter.getSelectedMenuItem() as IMdcListItemElement;
-    return listItem?.au?.controller.viewModel.value;
+    const index = this.adapter.getSelectedIndex();
+    const menuItemValues = this.adapter.getMenuItemValues();
+    return index !== numbers.UNSET_INDEX ? menuItemValues[index] : undefined;
   }
 
   getDisabled() {
@@ -209,8 +225,8 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
    * this whenever menu options are dynamically updated.
    */
   layoutOptions() {
-    this.menuItemValues = this.adapter.getMenuItemValues();
-    const selectedIndex = this.menuItemValues.indexOf(this.getValue());
+    const menuItemValues = this.adapter.getMenuItemValues();
+    const selectedIndex = menuItemValues.indexOf(this.getValue());
     this.setSelectedIndex(
       selectedIndex, /** closeMenu */ false, /** skipNotify */ true);
   }
@@ -247,9 +263,6 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
     const isRequired = this.adapter.hasClass(cssClasses.REQUIRED);
     if (isRequired && this.useDefaultValidation) {
       this.setValid(this.isValid());
-      if (this.helperText) {
-        this.helperText.setValidity(this.isValid());
-      }
     }
   }
 
@@ -389,6 +402,8 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
       this.adapter.addClass(cssClasses.INVALID);
       this.adapter.addMenuClass(cssClasses.MENU_INVALID);
     }
+
+    this.syncHelperTextValidity(isValid);
   }
 
   isValid() {
@@ -426,6 +441,7 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
     this.adapter.setMenuWrapFocus(false);
 
     this.setDisabled(this.adapter.hasClass(cssClasses.DISABLED));
+    this.syncHelperTextValidity(!this.adapter.hasClass(cssClasses.INVALID));
     this.layout();
     this.layoutOptions();
   }
@@ -441,9 +457,28 @@ export class MDCSelectFoundationAurelia extends MDCFoundation<MDCSelectAdapterAu
     const isRequired = this.adapter.hasClass(cssClasses.REQUIRED);
     if (isRequired && this.useDefaultValidation) {
       this.setValid(this.isValid());
-      if (this.helperText) {
-        this.helperText.setValidity(this.isValid());
-      }
+    }
+  }
+
+  private syncHelperTextValidity(isValid: boolean) {
+    if (!this.helperText) {
+      return;
+    }
+
+    this.helperText.setValidity(isValid);
+
+    const helperTextVisible = this.helperText.isVisible();
+    const helperTextId = this.helperText.getId();
+
+    if (helperTextVisible && helperTextId) {
+      this.adapter.setSelectAnchorAttr(strings.ARIA_DESCRIBEDBY, helperTextId);
+    } else {
+      // Needed because screenreaders will read labels pointed to by
+      // `aria-describedby` even if they are `aria-hidden`.
+      this.adapter.removeSelectAnchorAttr(strings.ARIA_DESCRIBEDBY);
     }
   }
 }
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+export default MDCSelectFoundationAurelia;

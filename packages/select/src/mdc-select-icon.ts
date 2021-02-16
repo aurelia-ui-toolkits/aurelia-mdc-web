@@ -1,6 +1,6 @@
-import { customAttribute, inject } from 'aurelia-framework';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCSelectIconFoundation, MDCSelectIconAdapter } from '@material/select';
+import { inject, customAttribute } from 'aurelia';
 
 export const mdcIconStrings = {
   ATTRIBUTE: 'mdc-select-icon'
@@ -9,8 +9,7 @@ export const mdcIconStrings = {
 @inject(Element)
 @customAttribute(mdcIconStrings.ATTRIBUTE)
 export class MdcSelectIcon extends MdcComponent<MDCSelectIconFoundation> {
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  attaching() {
     this.root.classList.add('mdc-select__icon');
   }
 
@@ -34,8 +33,8 @@ export class MdcSelectIcon extends MdcComponent<MDCSelectIconFoundation> {
 
 /** @hidden */
 export interface IMdcSelectIconElement extends HTMLElement {
-  au: {
-    'mdc-select-icon': {
+  $au: {
+    'au:resource:custom-attribute:mdc-select-icon': {
       viewModel: MdcSelectIcon;
     };
   };

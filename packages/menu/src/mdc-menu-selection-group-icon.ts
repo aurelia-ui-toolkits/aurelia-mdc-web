@@ -1,4 +1,4 @@
-import { customAttribute, inject } from 'aurelia-framework';
+import { customAttribute, inject } from 'aurelia';
 
 @inject(Element)
 @customAttribute('mdc-menu-selection-group-icon')

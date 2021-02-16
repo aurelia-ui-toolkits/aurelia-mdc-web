@@ -4,10 +4,10 @@ import {
   MDCDataTableFoundation, selectors, MDCDataTableAdapter, events, cssClasses,
   dataAttributes, MDCDataTableRowSelectionChangedEventDetail, SortValue, messages
 } from '@material/data-table';
-import { MdcCheckbox, IMdcCheckboxElement } from '@aurelia-mdc-web/checkbox';
+import { MdcCheckbox } from '@aurelia-mdc-web/checkbox';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, INode, IPlatform, bindable, BindingMode } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
+import { processContent, CustomElement } from '@aurelia/runtime-html';
 
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();
 events.SELECTED_ALL = events.SELECTED_ALL.toLowerCase();
@@ -148,12 +148,13 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   hoistPageSelectToBody: boolean;
 
   get rowCheckboxList(): MdcCheckbox[] {
-    return Array.from(this.root.querySelectorAll<IMdcCheckboxElement>(`.${cssClasses.ROW} .mdc-checkbox`))
-      .map(x => x.$au['au:resource:custom-element'].viewModel);
+    return Array.from(this.root.querySelectorAll(`.${cssClasses.ROW} .mdc-checkbox`))
+      .map(x => CustomElement.for<MdcCheckbox>(x).viewModel);
   }
 
   get headerRowCheckbox(): MdcCheckbox | undefined {
-    return this.root.querySelector<IMdcCheckboxElement>(`.${cssClasses.HEADER_ROW} .mdc-checkbox`)?.$au['au:resource:custom-element'].viewModel;
+    const el = this.root.querySelector(`.${cssClasses.HEADER_ROW} .mdc-checkbox`);
+    return el ? CustomElement.for<MdcCheckbox>(el).viewModel : undefined;
   }
 
   handleHeaderRowCheckboxChange() {

@@ -1,6 +1,36 @@
-import { Corner } from '@material/menu-surface/constants';
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
-/** @hidden */
+import {Corner} from '@material/menu-surface/constants';
+
+/**
+ * Defines the shape of the adapter expected by the foundation.
+ * Implement this adapter for your framework of choice to delegate updates to
+ * the component in your framework of choice. See architecture documentation
+ * for more details.
+ * https://github.com/material-components/material-components-web/blob/master/docs/code/architecture.md
+ * @hidden
+ */
 export interface MDCSelectAdapterAurelia {
   /**
    * Adds class to select anchor element.
@@ -26,11 +56,6 @@ export interface MDCSelectAdapterAurelia {
    * Deactivates the bottom line.
    */
   deactivateBottomLine(): void;
-
-  /**
-   * Returns the selected menu item element.
-   */
-  getSelectedMenuItem(): Element | null;
 
   /**
    * Returns true if label exists, false if it doesn't.
@@ -145,11 +170,6 @@ export interface MDCSelectAdapterAurelia {
   setMenuWrapFocus(wrapFocus: boolean): void;
 
   /**
-   * Sets the attribute on the menu item at the given index.
-   */
-  setAttributeAtIndex(index: number, attributeName: string, attributeValue: string): void;
-
-  /**
    * Focuses the menu item element at the given index.
    */
   focusMenuItemAtIndex(index: number): void;
@@ -171,11 +191,6 @@ export interface MDCSelectAdapterAurelia {
   getMenuItemTextAtIndex(index: number): string;
 
   /**
-   * Returns the given attribute on the the menu item element.
-   */
-  getMenuItemAttr(menuItem: Element, attr: string): string | null;
-
-  /**
    * Returns the selected index.
    */
   getSelectedIndex(): number;
@@ -184,16 +199,6 @@ export interface MDCSelectAdapterAurelia {
    * Sets the selected index in the menu.
    */
   setSelectedIndex(index: number): void;
-
-  /**
-   * Adds the class name on the menu item at the given index.
-   */
-  addClassAtIndex(index: number, className: string): void;
-
-  /**
-   * Removes the class name on the menu item at the given index.
-   */
-  removeClassAtIndex(index: number, className: string): void;
 
   /**
    * Returns whether typeahead is in progress in the menu.

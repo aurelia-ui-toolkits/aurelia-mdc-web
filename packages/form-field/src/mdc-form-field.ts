@@ -2,7 +2,7 @@ import { cssClasses, MDCFormFieldFoundation, MDCFormFieldAdapter } from '@materi
 import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { MdcRipple, IMdcRippleElement } from '@aurelia-mdc-web/ripple';
 import { customElement, inject, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
+import { processContent, CustomAttribute } from '@aurelia/runtime-html';
 
 /**
  * @selector mdc-form-field
@@ -34,7 +34,7 @@ export class MdcFormField extends MdcComponent<MDCFormFieldFoundation> {
     if (!rippleUpgraded) {
       rippleUpgraded = this.root.querySelector<IMdcRippleElement>('mdc-radio');
     }
-    this.ripple = rippleUpgraded?.$au['au:resource:custom-attribute:mdc-ripple'].viewModel;
+    this.ripple = rippleUpgraded ? CustomAttribute.for<MdcRipple>(rippleUpgraded, 'mdc-ripple')?.viewModel : undefined;
 
     const input = this.root.querySelector('input');
     if (input?.hasAttribute('id')) {

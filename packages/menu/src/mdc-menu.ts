@@ -1,64 +1,74 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuItemComponentEventDetail, strings, cssClasses } from '@material/menu';
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
-import { MdcList, IMdcListActionEvent, IMdcListItemElement, IMdcListElement } from '@aurelia-mdc-web/list';
+import { MdcList, IMdcListActionEvent, MdcListItem } from '@aurelia-mdc-web/list';
 import { MDCListIndex } from '@material/list';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
-import { inject, customElement, bindingMode, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { inject, customElement, bindable, BindingMode } from 'aurelia';
+import { processContent, CustomElement } from '@aurelia/runtime-html';
 
 strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
 
+/**
+ * @selector mdc-menu
+ * @emits mdcmenu:selected | Indicates that a menu item has been selected
+ */
 @inject(Element)
 @customElement('mdc-menu')
-@useView(PLATFORM.moduleName('./mdc-menu.html'))
+@processContent(defaultSlotProcessContent)
 export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   private menuSurface_: MdcMenuSurface; // assigned in html
 
   // @child('mdc-list')
   get list_(): MdcList | undefined {
     const el = this.root.querySelector('mdc-list');
-    return (el as IMdcListElement)?.au.controller.viewModel;
+    return el ? CustomElement.for<MdcList>(el).viewModel : undefined;
   }
 
+  /** Used to indicate that the menu is using fixed positioning */
   @bindable({ set: booleanAttr })
   fixed: boolean;
 
   @bindable({ set: booleanAttr })
-  typeahead: boolean;
-  async typeaheadChanged() {
-    await this.initialised;
-    if (this.list_) {
-      this.list_.typeahead = this.typeahead;
+  typeahead?: boolean;
+  typeaheadChanged() {
+    if (this.list_ && this.typeahead !== undefined) {
+      setTimeout(() => { this.list_!.typeahead = this.typeahead!; }, 0);
     }
   }
 
-  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.oneTime })
+  /** Makes the menu element direct child of the body */
+  @bindable({ set: booleanAttr, mode: BindingMode.oneTime })
   hoistToBody: boolean;
 
+  /** Set to indicate an element the menu should be anchored to */
   @bindable
   anchor?: Element | null;
 
+  /** Sets default focus state where the menu should focus every time when menu is opened. Focuses the list root ('list') element by default. */
   @bindable
   defaultFocusState: keyof typeof DefaultFocusState = 'LIST_ROOT';
-  async defaultFocusStateChanged() {
-    await this.initialised;
+  defaultFocusStateChanged() {
     this.foundation?.setDefaultFocusState(DefaultFocusState[this.defaultFocusState]);
   }
 
+  /** Override the opening point of the menu. (Default: TOP_START) */
   @bindable
   anchorCorner: keyof typeof Corner;
 
+  /** Sets the distance from the anchor point that the menu surface should be shown */
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
 
+  /** Sets whether the menu should open and close without animation when the open/close methods are called */
   @bindable({ set: booleanAttr })
   quickOpen: boolean;
 
+  /** Sets whether the menu surface should stay open after item selection */
   @bindable({ set: booleanAttr })
-  closeSurfaceOnSelection: boolean = true;
+  stayOpenOnSelection: boolean;
 
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
@@ -83,6 +93,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     this.menuSurface_.open = value;
   }
 
+  /** Toggles the menu to open or close */
   toggle() {
     this.open = !this.open;
   }
@@ -114,18 +125,6 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   }
 
   /**
-   * Turns on/off the underlying list's single selection mode. Used mainly
-   * by select menu.
-   *
-   * @param singleSelection Whether to enable single selection mode.
-   */
-  set singleSelection(singleSelection: boolean) {
-    if (this.list_) {
-      this.list_.singleSelection = singleSelection;
-    }
-  }
-
-  /**
    * Retrieves the selected index. Only applicable to select menus.
    * @return The selected index, which is a number for single selection and
    *     radio lists, and an array of numbers for checkbox lists.
@@ -145,14 +144,17 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     }
   }
 
-  async initialise() {
-    await this.menuSurface_.initialised;
+  attaching() {
     if (this.hoistToBody) {
       // when menu is a direct body child there may be a vertical scrollbar briefly shown
       // when MDCMenuSurfaceFoundation.cssClasses.OPEN added to the menu surface
       // which breaks alignment
       this.root.style.position = 'fixed';
     }
+  }
+
+  initialSyncWithDOM() {
+    this.typeaheadChanged();
   }
 
   /**
@@ -260,15 +262,15 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
       },
       elementContainsClass: (element, className) => element.classList.contains(className),
       closeSurface: (skipRestoreFocus: boolean) => {
-        if (this.closeSurfaceOnSelection) {
-          this.menuSurface_.close(skipRestoreFocus);
+        if (!this.stayOpenOnSelection) {
+          this.menuSurface_?.close(skipRestoreFocus);
         }
       },
       getElementIndex: (element) => this.items.indexOf(element),
       notifySelected: (evtData) => {
         const item = this.items[evtData.index];
         this.emit<IMdcMenuItemComponentEventDetail>(strings.SELECTED_EVENT,
-          { index: evtData.index, item, data: (item as IMdcListItemElement).au?.controller.viewModel.value });
+          { index: evtData.index, item, data: CustomElement.for<MdcListItem>(item).viewModel.value });
       },
       getMenuItemCount: () => this.items.length,
       focusItemAtIndex: (index) => (this.items[index] as HTMLElement).focus(),

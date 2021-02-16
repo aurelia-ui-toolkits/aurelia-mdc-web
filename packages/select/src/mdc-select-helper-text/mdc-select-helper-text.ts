@@ -1,15 +1,15 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { helperTextCssClasses, MDCSelectHelperTextFoundation, MDCSelectHelperTextAdapter } from '@material/select';
-import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, inject, bindable } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
 
 export const mdcHelperTextCssClasses = {
   ROOT: 'mdc-select-helper-text'
 };
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-select-helper-text.html'))
-@customElement(mdcHelperTextCssClasses.ROOT)
+@customElement('mdc-select-helper-text')
+@processContent(defaultSlotProcessContent)
 export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundation> {
   helperTextCssClasses = helperTextCssClasses;
   ROOT = mdcHelperTextCssClasses.ROOT;
@@ -23,6 +23,21 @@ export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundat
   @bindable
   errors: string[];
 
+  attachedPromise = this.createAttachedPromise();
+  protected attachedPromiseResolve: (value?: unknown) => void;
+
+  private async createAttachedPromise() {
+    return new Promise(r => this.attachedPromiseResolve = r);
+  }
+
+  attached() {
+    this.attachedPromiseResolve();
+  }
+
+  detached() {
+    this.attachedPromise = this.createAttachedPromise();
+  }
+
   // Provided for access by MDCTextField component
   get foundationForTextField(): MDCSelectHelperTextFoundation {
     return this.foundation!;
@@ -35,6 +50,7 @@ export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundat
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
       hasClass: (className) => this.root.classList.contains(className),
+      getAttr: (attr) => this.root.getAttribute(attr),
       setAttr: (attr, value) => this.root.setAttribute(attr, value),
       removeAttr: (attr) => this.root.removeAttribute(attr),
       setContent: (content) => {
@@ -47,8 +63,8 @@ export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundat
 
 /** @hidden */
 export interface IMdcSelectHelperTextElement extends HTMLElement {
-  au: {
-    controller: {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcSelectHelperText;
     };
   };

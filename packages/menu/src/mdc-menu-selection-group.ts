@@ -1,5 +1,7 @@
-import { inlineView, customElement } from 'aurelia-framework';
+import { customElement } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
+import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 
-@inlineView('<template class="mdc-menu__selection-group"><au-slot></au-slot></template>')
-@customElement('mdc-menu-selection-group')
+@customElement({ name: 'mdc-menu-selection-group', template: '<template class="mdc-menu__selection-group"><au-slot></au-slot></template>' })
+@processContent(defaultSlotProcessContent)
 export class MdcMenuSelectionGroup { }

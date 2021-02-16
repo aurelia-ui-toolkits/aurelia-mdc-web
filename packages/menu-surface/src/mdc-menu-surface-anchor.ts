@@ -1,4 +1,4 @@
-import { inject, customAttribute } from 'aurelia-framework';
+import { inject, customAttribute } from 'aurelia';
 import { cssClasses } from '@material/menu-surface';
 
 @inject(Element)

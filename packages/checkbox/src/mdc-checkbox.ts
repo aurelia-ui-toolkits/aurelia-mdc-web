@@ -1,7 +1,7 @@
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCCheckboxFoundation, MDCCheckboxAdapter } from '@material/checkbox';
 import { getCorrectEventName } from '@material/animation/util';
-import { customElement, inject, bindable, BindingMode } from 'aurelia';
+import { customElement, inject, bindable, BindingMode, CustomElement } from 'aurelia';
 
 let checkboxId = 0;
 
@@ -191,22 +191,22 @@ function defineMdcCheckboxElementApis(element: HTMLElement) {
     },
     checked: {
       get(this: IMdcCheckboxElement) {
-        return this.$au['au:resource:custom-element'].viewModel.checked;
+        return CustomElement.for<MdcCheckbox>(this).viewModel.checked;
       },
       set(this: IMdcCheckboxElement, value: boolean) {
-        this.$au['au:resource:custom-element'].viewModel.checked = value;
+        CustomElement.for<MdcCheckbox>(this).viewModel.checked = value;
       },
       configurable: true
     },
     focus: {
       value(this: IMdcCheckboxElement) {
-        this.$au['au:resource:custom-element'].viewModel.focus();
+        CustomElement.for<MdcCheckbox>(this).viewModel.focus();
       },
       configurable: true
     },
     blur: {
       value(this: IMdcCheckboxElement) {
-        this.$au['au:resource:custom-element'].viewModel.blur();
+        CustomElement.for<MdcCheckbox>(this).viewModel.blur();
       },
       configurable: true
     }

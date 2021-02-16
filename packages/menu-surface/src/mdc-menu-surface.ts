@@ -1,7 +1,7 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCMenuSurfaceFoundation, MDCMenuSurfaceAdapter, cssClasses, Corner, MDCMenuDistance, util, strings } from '@material/menu-surface';
-import { inject, customAttribute, bindingMode } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MDCMenuSurfaceFoundation, MDCMenuSurfaceAdapter, cssClasses, Corner, MDCMenuDistance, strings } from '@material/menu-surface';
+import { inject, customAttribute, bindable, BindingMode } from 'aurelia';
+import { getCorrectPropertyName } from '@material/animation/util';
 
 strings.OPENED_EVENT = strings.OPENED_EVENT.toLowerCase();
 strings.CLOSED_EVENT = strings.CLOSED_EVENT.toLowerCase();
@@ -16,41 +16,54 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   anchor?: Element | null;
 
   /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
-  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.oneTime })
+  @bindable({ set: booleanAttr, mode: BindingMode.oneTime })
   hoistToBody: boolean;
 
   @bindable({ set: booleanAttr })
   fixed: boolean;
-  async fixedChanged() {
+  fixedChanged() {
     if (this.fixed) {
       this.root.classList.add(cssClasses.FIXED);
     } else {
       this.root.classList.remove(cssClasses.FIXED);
     }
-    await this.initialised;
     this.foundation?.setFixedPosition(this.fixed);
   }
 
   @bindable
-  anchorCorner: keyof typeof Corner;
-  async anchorCornerChanged() {
-    await this.initialised;
-    this.foundation?.setAnchorCorner(Corner[this.anchorCorner]);
+  anchorCorner?: keyof typeof Corner;
+  anchorCornerChanged() {
+    if (this.anchorCorner !== undefined) {
+      this.foundation?.setAnchorCorner(Corner[this.anchorCorner]);
+    }
   }
 
   @bindable
-  anchorMargin: Partial<MDCMenuDistance>;
-  async anchorMarginChanged(margin: Partial<MDCMenuDistance>) {
-    await this.initialised;
-    this.foundation?.setAnchorMargin(margin);
+  anchorMargin?: Partial<MDCMenuDistance>;
+  anchorMarginChanged() {
+    if (this.anchorMargin !== undefined) {
+      this.foundation?.setAnchorMargin(this.anchorMargin);
+    }
   }
 
   @bindable({ set: booleanAttr })
   quickOpen: boolean;
-  async quickOpenChanged(quickOpen: boolean) {
-    await this.initialised;
-    this.foundation?.setQuickOpen(quickOpen);
+  quickOpenChanged() {
+    this.foundation?.setQuickOpen(this.quickOpen);
   }
+
+  @bindable({ set: booleanAttr })
+  fullWidth: boolean;
+  fullWidthChanged() {
+    if (this.fullWidth) {
+      this.root.classList.add('mdc-menu-surface--fullwidth');
+    } else {
+      this.root.classList.remove('mdc-menu-surface--fullwidth');
+    }
+  }
+
+  @bindable({ set: booleanAttr })
+  stayOpen: boolean;
 
   get open(): boolean {
     return this.foundation!.isOpen();
@@ -69,11 +82,12 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   }
 
   handleBodyClick(evt: MouseEvent) {
-    this.foundation?.handleBodyClick(evt);
+    if (!this.stayOpen) {
+      this.foundation?.handleBodyClick(evt);
+    }
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  attaching() {
     this.root.classList.add(cssClasses.ROOT);
   }
 
@@ -105,6 +119,12 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   }
 
   initialSyncWithDOM() {
+    this.fixedChanged();
+    this.fullWidthChanged();
+    this.quickOpenChanged();
+    this.anchorCornerChanged();
+    this.anchorMarginChanged();
+
     const parentEl = this.root.parentElement;
     if (!this.anchor) {
       this.anchor = parentEl?.classList.contains(cssClasses.ANCHOR) ? parentEl : null;
@@ -163,6 +183,9 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
         this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
         this.deregisterBodyClickListener();
       },
+      notifyClosing: () => {
+        this.emit(MDCMenuSurfaceFoundation.strings.CLOSING_EVENT, {});
+      },
       notifyOpen: () => {
         this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
         this.registerBodyClickListener();
@@ -170,7 +193,8 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
       isElementInContainer: (el) => this.root.contains(el),
       isRtl: () => getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
-        const propertyName = `${util.getTransformPropertyName(window)}-origin`;
+        const propertyName =
+          `${getCorrectPropertyName(window, 'transform')}-origin`;
         this.root.style.setProperty(propertyName, origin);
       },
       isFocused: () => document.activeElement === this.root,

@@ -1,40 +1,57 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, IValidatedElement, IError, booleanAttr } from '@aurelia-mdc-web/base';
 import { cssClasses, MDCSelectFoundationMap, MDCSelectEventDetail, strings } from '@material/select';
-import { inject, useView, customElement, processContent, ViewCompiler, ViewResources, children, bindingMode, TaskQueue } from 'aurelia-framework';
-import { PLATFORM } from 'aurelia-pal';
+import { inject, customElement, children, INode, IPlatform, bindable } from 'aurelia';
 import { MdcSelectIcon, IMdcSelectIconElement, mdcIconStrings } from './mdc-select-icon';
-import { MdcSelectHelperText, mdcHelperTextCssClasses, IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
+import { MdcSelectHelperText, mdcHelperTextCssClasses } from './mdc-select-helper-text/mdc-select-helper-text';
 import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
 import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 import { MDCNotchedOutline } from '@material/notched-outline';
 import { MdcMenu } from '@aurelia-mdc-web/menu';
 import { MDCMenuItemEvent, Corner } from '@material/menu';
-import { bindable } from 'aurelia-typed-observable-plugin';
-import { MdcListItem, IMdcListItemElement } from '@aurelia-mdc-web/list';
+import { MdcListItem } from '@aurelia-mdc-web/list';
 import { MDCSelectFoundationAurelia } from './mdc-select-foundation-aurelia';
 import { MDCSelectAdapterAurelia } from './mdc-select-adapter-aurelia';
 import { MDCMenuDistance } from '@material/menu-surface';
+import { processContent, BindingMode, CustomElement, CustomAttribute } from '@aurelia/runtime-html';
 
 strings.CHANGE_EVENT = strings.CHANGE_EVENT.toLowerCase();
 
 let selectId = 0;
 
-@inject(Element, TaskQueue)
-@useView(PLATFORM.moduleName('./mdc-select.html'))
+/**
+ * @selector mdc-select
+ * @emits mdcselect:change | Emitted if user changed the value
+ */
+@inject(Element, IPlatform)
 @customElement('mdc-select')
 @processContent(MdcSelect.processContent)
 export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
-  static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
+  static processContent(node: INode, platform: IPlatform) {
+    const el = node as Element;
+
+    const template = platform.document.createElement('template');
+    template.setAttribute('au-slot', '');
+    template.innerHTML = el.innerHTML;
+    el.innerHTML = '';
+    el.appendChild(template);
+
     // move icon to the slot - this allows omitting slot specification
-    const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}]`);
-    leadingIcon?.setAttribute('slot', 'leading-icon');
-    return true;
+    const leadingIcon = el.querySelector(`[${mdcIconStrings.ATTRIBUTE}]`);
+    if (leadingIcon) {
+      const div = platform.document.createElement('div');
+      div.appendChild(leadingIcon);
+      const iconTemplate = platform.document.createElement('template');
+      iconTemplate.setAttribute('au-slot', 'leading-icon');
+      iconTemplate.innerHTML = div.innerHTML;
+      el.appendChild(iconTemplate);
+    }
   }
 
-  constructor(root: HTMLElement, private taskQueue: TaskQueue) {
+  constructor(root: HTMLElement, private platform: IPlatform) {
     super(root);
     defineMdcSelectElementApis(this.root);
+    this.root.id = this.id;
   }
 
   id: string = `mdc-select-${++selectId}`;
@@ -42,10 +59,14 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private selectAnchor: HTMLElement;
   private selectedText: HTMLElement;
 
-  private menuElement: Element;
+  private menuElement?: Element;
 
-  @children('mdc-list-items')
-  items: MdcListItem;
+  @children({ query: controller => controller.host.querySelectorAll('.mdc-list-item') })
+  items: MdcListItem[];
+
+  // get items(): MdcListItem[] {
+  //   return Array.from(this.root.querySelectorAll('.mdc-list-items')).map(x => CustomElement.for<MdcListItem>(x).viewModel);
+  // }
 
   private leadingIcon?: MdcSelectIcon;
 
@@ -54,42 +75,59 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private mdcLabel: MdcFloatingLabel;
   private outline?: MDCNotchedOutline;
   // private mutationObserver: MutationObserver;
-  errors = new Map<unknown, boolean>();
+  errors = new Map<IError, boolean>();
 
+  /** Sets the select label */
   @bindable
   label: string;
+  labelChanged() {
+    this.platform.domWriteQueue.queueTask(() => this.foundation?.layout());
+  }
 
+  /** Styles the select as an outlined select */
   @bindable({ set: booleanAttr })
   outlined: boolean;
   outlinedChanged() {
-    this.taskQueue.queueTask(() => this.foundation?.layout());
+    this.platform.domWriteQueue.queueTask(() => this.foundation?.layout());
   }
 
+  /** Makes the value required */
   @bindable({ set: booleanAttr })
   required: boolean;
-  async requiredChanged() {
-    await this.initialised;
+  requiredChanged() {
     if (this.required) {
       this.selectAnchor.setAttribute('aria-required', 'true');
     } else {
       this.selectAnchor.removeAttribute('aria-required');
     }
     this.foundation?.setRequired(this.required);
-    this.taskQueue.queueTask(() => this.foundation?.layout());
+    this.platform.domWriteQueue.queueTask(() => this.foundation?.layout());
   }
 
+  /** Enables/disables the select */
   @bindable({ set: booleanAttr })
-  disabled: boolean;
-  async disabledChanged() {
-    await this.initialised;
-    this.foundation?.setDisabled(this.disabled);
+  disabled?: boolean;
+  disabledChanged() {
+    if (this.disabled !== undefined) {
+      this.foundation?.setDisabled(this.disabled);
+    }
   }
 
-  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.oneTime })
+  /** Hoists the select DOM to document.body */
+  @bindable({ set: booleanAttr, mode: BindingMode.oneTime })
   hoistToBody: boolean;
 
+  /** Sets the select DOM position to fixed */
+  @bindable({ set: booleanAttr, mode: BindingMode.oneTime })
+  fixed: boolean;
+
+  /** Sets the margin between the select input and the dropdown */
   @bindable
   anchorMargin: Partial<MDCMenuDistance>;
+
+  /** Sets the select dropdown width to match content */
+  @bindable({ set: booleanAttr })
+  naturalWidth: boolean;
 
   private initialValue: unknown;
   get value(): unknown {
@@ -101,8 +139,12 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   set value(value: unknown) {
+    this.setValue(value);
+  }
+
+  setValue(value: unknown, skipNotify: boolean = false) {
     if (this.foundation) {
-      this.foundation.setValue(value);
+      this.foundation.setValue(value, skipNotify);
       this.foundation.layout();
     } else {
       this.initialValue = value;
@@ -125,45 +167,48 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     this.foundation?.setSelectedIndex(selectedIndex, /** closeMenu */ true);
   }
 
-  addError(error: unknown) {
+  addError(error: IError) {
     this.errors.set(error, true);
     this.valid = false;
   }
 
-  removeError(error: unknown) {
+  removeError(error: IError) {
     this.errors.delete(error);
     this.valid = this.errors.size === 0;
   }
 
-  async initialise() {
-    const leadingIconEl = this.root.querySelector<IMdcSelectIconElement>(`[${mdcIconStrings.ATTRIBUTE}]`);
-    this.leadingIcon = leadingIconEl?.au['mdc-select-icon'].viewModel;
-    const nextSibling = this.root.nextElementSibling;
-    if (nextSibling?.tagName === mdcHelperTextCssClasses.ROOT.toUpperCase()) {
-      this.helperText = (nextSibling as IMdcSelectHelperTextElement).au.controller.viewModel;
+  renderErrors() {
+    if (this.helperText) {
+      this.helperText.errors = Array.from(this.errors.keys()).filter(x => x.message !== null).map(x => x.message!);
     }
-    await Promise.all([this.helperText?.initialised, this.menu.initialised].filter(x => x));
-    // TODO: leave it here for now
-    // this.mutationObserver = DOM.createMutationObserver((mutations: MutationRecord[]) => {
-    //   console.log(mutations);
-    //   this.foundation?.setValue(this.value, true);
-    // });
-    // this.mutationObserver.observe(this.menuElement, {attributes: true, childList: true, characterData: true, subtree: true });
   }
 
-  destroy() {
-    // if (this.mutationObserver) {
-    //   this.mutationObserver.disconnect();
-    //   this.mutationObserver.takeRecords();
-    // }
+  async attaching() {
+    const nextSibling = this.root.nextElementSibling;
+    if (nextSibling?.tagName === mdcHelperTextCssClasses.ROOT.toUpperCase()) {
+      this.helperText = CustomElement.for<MdcSelectHelperText>(nextSibling).viewModel;
+      await this.helperText.attachedPromise;
+    }
+  }
+
+  beforeFoundationCreated() {
+    const leadingIconEl = this.root.querySelector<IMdcSelectIconElement>(`[${mdcIconStrings.ATTRIBUTE}]`);
+    if (leadingIconEl) {
+      this.leadingIcon = CustomAttribute.for<MdcSelectIcon>(leadingIconEl, 'mdc-select-icon')?.viewModel;
+    }
   }
 
   initialSyncWithDOM() {
     // set initial value without emitting change events
     this.foundation?.setValue(this.initialValue, true);
     this.foundation?.layout();
-    this.errors = new Map<unknown, boolean>();
+    this.errors = new Map<IError, boolean>();
     this.valid = true;
+
+    this.labelChanged();
+    this.disabledChanged();
+    this.outlinedChanged();
+    this.requiredChanged();
   }
 
   getDefaultFoundation() {
@@ -180,8 +225,6 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   private getSelectAdapterMethods() {
     return {
-      getSelectedMenuItem: () => this.menuElement.querySelector(strings.SELECTED_ITEM_SELECTOR),
-      getMenuItemAttr: (menuItem: Element, attr: string) => menuItem.getAttribute(attr),
       setSelectedText: (text: string) => {
         this.selectedText.textContent = text;
       },
@@ -194,10 +237,10 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
         this.selectAnchor.removeAttribute(attr);
       },
       addMenuClass: (className: string) => {
-        this.menuElement.classList.add(className);
+        this.menuElement?.classList.add(className);
       },
       removeMenuClass: (className: string) => {
-        this.menuElement.classList.remove(className);
+        this.menuElement?.classList.remove(className);
       },
       openMenu: () => { this.menu.open = true; },
       closeMenu: () => { this.menu.open = false; },
@@ -218,9 +261,6 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
       setSelectedIndex: (index: number) => {
         this.menu.selectedIndex = index;
       },
-      setAttributeAtIndex: (index: number, attributeName: string, attributeValue: string) => {
-        this.menu.items[index].setAttribute(attributeName, attributeValue);
-      },
       removeAttributeAtIndex: (index: number, attributeName: string) => {
         this.menu.items[index].removeAttribute(attributeName);
       },
@@ -228,14 +268,8 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
         (this.menu.items[index] as HTMLElement).focus();
       },
       getMenuItemCount: () => this.menu.items.length,
-      getMenuItemValues: () => this.menu.items.map(x => (x as IMdcListItemElement).au.controller.viewModel.value),
+      getMenuItemValues: () => this.menu.items.map(x => CustomElement.for<MdcListItem>(x).viewModel.value),
       getMenuItemTextAtIndex: (index: number) => this.menu.getPrimaryTextAtIndex(index),
-      addClassAtIndex: (index: number, className: string) => {
-        this.menu.items[index].classList.add(className);
-      },
-      removeClassAtIndex: (index: number, className: string) => {
-        this.menu.items[index].classList.remove(className);
-      },
       isTypeaheadInProgress: () => this.menu.typeaheadInProgress,
       typeaheadMatchItem: (nextChar: string, startingIndex: number) => this.menu.typeaheadMatchItem(nextChar, startingIndex),
     };
@@ -289,7 +323,11 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   handleBlur() {
     this.foundation?.handleBlur();
-    this.emit('blur', {}, true);
+    // if class is set it means the menu is open,
+    // do not emit blur since "conceptually" the element is still active
+    if (!this.root.classList.contains(cssClasses.FOCUSED)) {
+      this.emit('blur', {}, true);
+    }
   }
 
   handleClick(evt: MouseEvent) {
@@ -312,6 +350,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   handleMenuClosed() {
     this.foundation?.handleMenuClosed();
+    if (!this.root.classList.contains(cssClasses.FOCUSED)) {
+      this.emit('blur', {}, true);
+    }
   }
 
   handleItemsChanged() {
@@ -328,6 +369,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   /**
+   * @hidden
    * Calculates where the line ripple should start based on the x coordinate within the component.
    */
   private getNormalizedXCoordinate(evt: MouseEvent | TouchEvent): number {
@@ -342,6 +384,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   /**
+   * @hidden
    * Returns a map of all subcomponents to subfoundations.
    */
   private getFoundationMap(): Partial<MDCSelectFoundationMap> {
@@ -353,73 +396,79 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 }
 
 /** @hidden */
-export interface IMdcSelectElement extends HTMLElement {
-  au: {
-    controller: {
+export interface IMdcSelectElement extends IValidatedElement {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcSelect;
     };
   };
-  getErrors(): unknown[];
+  value: unknown;
 }
 
 function defineMdcSelectElementApis(element: HTMLElement) {
   Object.defineProperties(element, {
     value: {
       get(this: IMdcSelectElement) {
-        return this.au.controller.viewModel.value;
+        return CustomElement.for<MdcSelect>(this).viewModel.value;
       },
       set(this: IMdcSelectElement, value: unknown) {
         // aurelia binding converts "undefined" and "null" into empty string
         // this does not translate well into "empty" menu items when several selects are bound to the same field
-        this.au.controller.viewModel.value = value === '' ? undefined : value;
+        CustomElement.for<MdcSelect>(this).viewModel.value = value === '' ? undefined : value;
+      },
+      configurable: true
+    },
+    options: {
+      get(this: IMdcSelectElement) {
+        return CustomElement.for<MdcSelect>(this).viewModel.root.querySelectorAll('.mdc-list-item');
       },
       configurable: true
     },
     selectedIndex: {
       get(this: IMdcSelectElement) {
-        return this.au.controller.viewModel.selectedIndex;
+        return CustomElement.for<MdcSelect>(this).viewModel.selectedIndex;
       },
       set(this: IMdcSelectElement, value: number) {
-        this.au.controller.viewModel.selectedIndex = value;
+        CustomElement.for<MdcSelect>(this).viewModel.selectedIndex = value;
       },
       configurable: true
     },
     valid: {
       get(this: IMdcSelectElement) {
-        return this.au.controller.viewModel.valid;
+        return CustomElement.for<MdcSelect>(this).viewModel.valid;
       },
       set(this: IMdcSelectElement, value: boolean) {
-        this.au.controller.viewModel.valid = value;
+        CustomElement.for<MdcSelect>(this).viewModel.valid = value;
       },
       configurable: true
     },
     addError: {
-      value(this: IMdcSelectElement, error: unknown) {
-        this.au.controller.viewModel.addError(error);
+      value(this: IMdcSelectElement, error: IError) {
+        CustomElement.for<MdcSelect>(this).viewModel.addError(error);
       },
       configurable: true
     },
     removeError: {
-      value(this: IMdcSelectElement, error: unknown) {
-        this.au.controller.viewModel.removeError(error);
+      value(this: IMdcSelectElement, error: IError) {
+        CustomElement.for<MdcSelect>(this).viewModel.removeError(error);
       },
       configurable: true
     },
-    getErrors: {
-      value(this: IMdcSelectElement) {
-        return Array.from(this.au.controller.viewModel.errors.keys());
+    renderErrors: {
+      value(this: IMdcSelectElement): void {
+        CustomElement.for<MdcSelect>(this).viewModel.renderErrors();
       },
       configurable: true
     },
     focus: {
       value(this: IMdcSelectElement) {
-        this.au.controller.viewModel.focus();
+        CustomElement.for<MdcSelect>(this).viewModel.focus();
       },
       configurable: true
     },
     blur: {
       value(this: IMdcSelectElement) {
-        this.au.controller.viewModel.blur();
+        CustomElement.for<MdcSelect>(this).viewModel.blur();
       },
       configurable: true
     }
