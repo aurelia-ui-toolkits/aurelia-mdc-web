@@ -1,0 +1,17 @@
+// @use '@material/theme' with (
+//   $primary: #6200ee,
+//   $secondary: #faab1a,
+//   $background: #fff,
+// );
+
+@use "@aurelia-mdc-web/all";
+
+@use "./landing";
+@use "./layout";
+@use "./text-field";
+@use "./drawer";
+
+body {
+  margin: 0;
+  font-family: var(--mdc-typography-font-family, Roboto, sans-serif);
+}
