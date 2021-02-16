@@ -82,7 +82,8 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     const template = platform.document.createElement('template');
     template.setAttribute('au-slot', '');
     template.innerHTML = div.innerHTML;
-    element.innerHTML = template.innerHTML;
+    element.innerHTML = '';
+    element.appendChild(template);
   }
 
   header: HTMLElement;
@@ -225,7 +226,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     }
   }
 
-  attaching() {
+  beforeFoundationCreated(){
     this.header = this.root.querySelector<HTMLElement>(`.${cssClasses.HEADER_ROW}`)!;
     this.header.addEventListener('change', this);
     this.header.addEventListener('click', this);
