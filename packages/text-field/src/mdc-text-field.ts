@@ -1,7 +1,7 @@
 import { inject, customElement, INode, bindable } from 'aurelia';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
-  MDCTextFieldLineRippleAdapter, MDCTextFieldOutlineAdapter
+  MDCTextFieldLineRippleAdapter, MDCTextFieldOutlineAdapter, cssClasses, helperTextStrings, characterCountStrings
 } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
 import { MdcComponent, IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
@@ -9,8 +9,8 @@ import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
 import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
 import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './mdc-text-field-icon';
-import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
-import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';
+import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
+import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
 import { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 import { processContent, IPlatform } from '@aurelia/runtime-html';
 
@@ -18,7 +18,7 @@ let textFieldId = 0;
 
 @inject(Element, IPlatform)
 @customElement('mdc-text-field')
-// @processContent(MdcTextField.processContent)
+@processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   constructor(root: HTMLElement, private platform: IPlatform) {
     super(root);
@@ -41,7 +41,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   lineRipple_: MdcLineRipple;
   outline_!: MdcNotchedOutline | null; // assigned in html
   helperText_: MdcTextFieldHelperText | undefined;
-  characterCounter_: MdcTextFieldCharacterCounter | undefined;
+  characterCounter_?: MdcTextFieldCharacterCounter;
   errors = new Map<IError, boolean>();
   leadingIcon_: MdcTextFieldIcon | undefined;
   trailingIcon_: MdcTextFieldIcon | undefined;
@@ -74,10 +74,12 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   suffix: string;
 
   @bindable({ set: booleanAttr })
-  required: boolean;
+  required?: boolean;
   requiredChanged() {
-    this.input_.required = this.required;
-    this.foundation!.setUseNativeValidation(true);
+    if (this.required !== undefined) {
+      this.input_.required = this.required;
+      this.foundation?.setUseNativeValidation(true);
+    }
   }
 
   @bindable({ set: booleanAttr })
@@ -247,7 +249,18 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
+  async attaching() {
+    const nextSibling = this.root.nextElementSibling as IMdcTextFieldHelperLineElement;
+    if (nextSibling?.tagName === cssClasses.HELPER_LINE.toUpperCase()) {
+      await nextSibling.$au['au:resource:custom-element'].viewModel.attachedPromise;
+      this.helperText_ = nextSibling.querySelector<IMdcTextFieldHelperTextElement>(helperTextStrings.ROOT_SELECTOR)?.$au['au:resource:custom-element'].viewModel;
+      this.characterCounter_ = nextSibling.querySelector<IMdcTextFieldCharacterCounterElement>(characterCountStrings.ROOT_SELECTOR)?.$au['au:resource:custom-element'].viewModel;
+    }
+  }
+
   beforeFoundationCreated() {
+    this.maxlengthChanged();
+    this.typeChanged();
     const leadingIconEl = this.root.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`) as IMdcTextFieldIconElement;
     this.leadingIcon_ = leadingIconEl?.$au['au:resource:custom-attribute:mdc-text-field-icon'].viewModel;
     const trailingIconEl = this.root.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`) as IMdcTextFieldIconElement;
@@ -255,27 +268,25 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 
   initialSyncWithDOM() {
+    this.value = this.initialValue;
+    this.errors = new Map<IError, boolean>();
+    this.valid = true;
+
     this.requiredChanged();
     this.disabledChanged();
     this.readonlyChanged();
     this.tabindexChanged();
-    this.maxlengthChanged();
     this.rowsChanged();
     this.colsChanged();
     this.minChanged();
     this.maxChanged();
     this.stepChanged();
-    this.typeChanged();
     this.autocompleteChanged();
     this.nameChanged();
     // handle the case when attribute value was set, not bound, in html
     if (this.root.hasAttribute('value')) {
       this.value = this.root.getAttribute('value') ?? '';
     }
-
-    this.value = this.initialValue;
-    this.errors = new Map<IError, boolean>();
-    this.valid = true;
   }
 
   getDefaultFoundation() {
@@ -357,7 +368,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
    */
   private getFoundationMap_(): Partial<MDCTextFieldFoundationMap> {
     return {
-      characterCounter: this.characterCounter_ ? this.characterCounter_.foundationForTextField : undefined,
+      characterCounter: this.characterCounter_ ? this.characterCounter_?.foundationForTextField : undefined,
       helperText: this.helperText_ ? this.helperText_.foundationForTextField : undefined,
       leadingIcon: this.leadingIcon_ ? this.leadingIcon_.foundationForTextField : undefined,
       trailingIcon: this.trailingIcon_ ? this.trailingIcon_.foundationForTextField : undefined,

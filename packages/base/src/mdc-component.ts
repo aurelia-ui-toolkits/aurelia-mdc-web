@@ -5,6 +5,13 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
 
   foundation?: FoundationType;
 
+  // initialised = this.createInitiliasedPromise();
+  // protected initialisedResolve: (value?: unknown) => void;
+
+  // private async createInitiliasedPromise() {
+  //   return new Promise(r => this.initialisedResolve = r);
+  // }
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   initialSyncWithDOM() { }
 
@@ -15,6 +22,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
     this.beforeFoundationCreated();
     this.foundation = this.getDefaultFoundation();
     this.foundation.init();
+    // this.initialisedResolve();
     this.initialSyncWithDOM();
   }
 
@@ -25,6 +33,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
     this.destroy();
     this.foundation?.destroy();
     this.foundation = undefined;
+    // this.initialised = this.createInitiliasedPromise();
   }
 
   abstract getDefaultFoundation(): FoundationType;

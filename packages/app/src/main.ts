@@ -1,6 +1,5 @@
 import Aurelia, { RouterConfiguration, } from 'aurelia';
-import { StandardConfiguration } from '@aurelia/runtime-html';
-import * as SvgConfiguration from '@aurelia/plugin-svg';
+import { StandardConfiguration, SVGAnalyzer } from '@aurelia/runtime-html';
 import { Root } from './views/root/root';
 import { AllConfiguration as MaterialConfiguration } from '@aurelia-mdc-web/all';
 // Css files imported in this main file are NOT processed by style-loader
@@ -19,7 +18,7 @@ Aurelia
   //   // optionally add the shared styles for all components
   //   sharedStyles: [shared]
   // }))
-  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: false }), MaterialConfiguration, SvgConfiguration,
+  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: false }), MaterialConfiguration, SVGAnalyzer,
     Home, GettingStarted, Hljs, ApiViewer, ExampleViewer, JsonValueConverter
   )
   // To use HTML5 pushState routes, replace previous line with the following

@@ -8,6 +8,21 @@ import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 export class MdcTextFieldHelperLine {
   @bindable
   errors: string[];
+
+  attachedPromise = this.createAttachedPromise();
+  protected attachedPromiseResolve: (value?: unknown) => void;
+
+  private async createAttachedPromise() {
+    return new Promise(r => this.attachedPromiseResolve = r);
+  }
+
+  attached() {
+    this.attachedPromiseResolve();
+  }
+
+  detached() {
+    this.attachedPromise = this.createAttachedPromise();
+  }
 }
 
 /** @hidden */

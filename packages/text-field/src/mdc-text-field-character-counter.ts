@@ -3,7 +3,7 @@ import { MDCTextFieldCharacterCounterFoundation, MDCTextFieldCharacterCounterAda
 import { MdcComponent } from '@aurelia-mdc-web/base';
 
 @inject(Element)
-@customElement({ name: characterCountCssClasses.ROOT, template: `<template class="${characterCountCssClasses.ROOT}"></template>` })
+@customElement({ name: 'mdc-text-field-character-counter', template: `<template class="${characterCountCssClasses.ROOT}"></template>` })
 export class MdcTextFieldCharacterCounter extends MdcComponent<MDCTextFieldCharacterCounterFoundation> {
   // Provided for access by MDCTextField component
   get foundationForTextField(): MDCTextFieldCharacterCounterFoundation {

@@ -9,7 +9,7 @@ export const mdcIconStrings = {
 };
 
 @inject(Element)
-@customAttribute(mdcIconStrings.ATTRIBUTE)
+@customAttribute('mdc-text-field-icon')
 export class MdcTextFieldIcon extends MdcComponent<MDCTextFieldIconFoundation> {
   attaching() {
     this.root.classList.add(iconCssClasses.ROOT);

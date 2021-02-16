@@ -13,12 +13,7 @@ export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation>
 
   label?: MdcFloatingLabel;
 
-  @children({
-    query: controller => {
-      const label = controller.host.querySelector(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`);
-      return label ? [label] : [];
-    }
-  })
+  @children({ query: controller => controller.host.querySelectorAll(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`) })
   labels: MdcFloatingLabel[];
   labelsChanged() {
     if (this.labels.length) {

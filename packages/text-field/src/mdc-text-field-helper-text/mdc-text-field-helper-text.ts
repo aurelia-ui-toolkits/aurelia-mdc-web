@@ -4,7 +4,7 @@ import { inject, customElement, bindable } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
 
 @inject(Element)
-@customElement(helperTextCssClasses.ROOT)
+@customElement('mdc-text-field-helper-text')
 @processContent(defaultSlotProcessContent)
 export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextFoundation> {
   helperTextCssClasses = helperTextCssClasses;

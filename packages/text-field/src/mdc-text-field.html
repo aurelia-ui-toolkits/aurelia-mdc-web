@@ -24,6 +24,6 @@
   </span>
   <span class="mdc-text-field__affix mdc-text-field__affix--suffix" if.bind="suffix && !textarea">${suffix}</span>
   <au-slot name="trailing-icon"></au-slot>
-  <mdc-floating-label if.bind="label && !outlined" id.bind="id" view-model.ref="alabel_">${label}</mdc-floating-label>
+  <mdc-floating-label if.bind="label && !outlined" id.bind="id" view-model.ref="label_">${label}</mdc-floating-label>
   <mdc-line-ripple if.bind="!outlined" view-model.ref="lineRipple_"></mdc-line-ripple>
 </template>
