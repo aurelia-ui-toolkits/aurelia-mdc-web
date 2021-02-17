@@ -1,0 +1,59 @@
+<require from="./basic.scss"></require>
+<div class="demo-layout--center">
+
+  <div mdc-menu-surface-anchor ref="demoAnchor">
+    <button as-element="mdc-button" raised click.trigger="demoSurface.open = !demoSurface.open">
+      Show Menu Surface
+    </button>
+    <div class="demo-menu-surface--one"
+      mdc-menu-surface="fixed.bind: fixed; anchor-corner.bind: anchorCorner; anchor-margin.bind: anchorMargin; anchor.bind: demoAnchor; quick-open.bind: quickOpen"
+      mdc-menu-surface.ref="demoSurface">
+
+      <mdc-image-list class="menu-surface-image-list">
+        <mdc-image-list-item repeat.for="i of images"
+          src="https://material-components-web.appspot.com/images/photos/3x2/${i+1}.jpg" label="Text label">
+        </mdc-image-list-item>
+      </mdc-image-list>
+    </div>
+  </div>
+</div>
+<div class="demo-layout__row">
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Anchor Corner</h3>
+    <div class="demo-layout__column">
+      <mdc-form-field repeat.for="corner of corners">
+        <mdc-radio model.bind="corner" checked.bind="anchorCorner"></mdc-radio>
+        <label>${corner}</label>
+      </mdc-form-field>
+    </div>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Anchor Margin</h3>
+    <div class="demo-layout__column">
+      <label as-element="mdc-text-field" value.bind="marginTop" label="Top margin" type="number">
+      </label>
+      <label as-element="mdc-text-field" value.bind="marginBottom" label="Bottom margin" type="number">
+      </label>
+      <label as-element="mdc-text-field" value.bind="marginLeft" label="Left margin" type="number">
+      </label>
+      <label as-element="mdc-text-field" value.bind="marginRight" label="Right margin" type="number">
+      </label>
+    </div>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-layout__column">
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="quickOpen"></mdc-checkbox>
+        <label>Disable open animation</label>
+      </mdc-form-field>
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="fixed"></mdc-checkbox>
+        <label>Fixed position</label>
+      </mdc-form-field>
+    </div>
+  </div>
+</div>
+
+<p>Anchor corner: ${menuSurfaceAnchorCorner}</p>
