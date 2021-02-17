@@ -12,6 +12,7 @@ import { IconButtonConfiguration } from '@aurelia-mdc-web/icon-button';
 import { LineRippleConfiguration } from '@aurelia-mdc-web/line-ripple';
 import { ListConfiguration } from '@aurelia-mdc-web/list';
 import { NotchedOutlineConfiguration } from '@aurelia-mdc-web/notched-outline';
+import { RadioConfiguration } from '@aurelia-mdc-web/radio';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { SelectConfiguration } from '@aurelia-mdc-web/select';
 import { TabBarConfiguration } from '@aurelia-mdc-web/tab-bar';
@@ -29,8 +30,9 @@ export const AllConfiguration = {
     return container.register(
       ButtonConfiguration, CardConfiguration, CheckboxConfiguration, CircularProgressConfiguration, DataTableConfiguration,
       DrawerConfiguration, FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration, IconConfiguration,
-      LineRippleConfiguration, ListConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration, RippleConfiguration,
-      SelectConfiguration, TabBarConfiguration, TextFieldConfiguration, TopAppBarConfiguration, TypographyConfiguration,
+      LineRippleConfiguration, ListConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration,
+      RadioConfiguration, RippleConfiguration, SelectConfiguration, TabBarConfiguration, TextFieldConfiguration, TopAppBarConfiguration,
+      TypographyConfiguration,
     );
   },
   /**

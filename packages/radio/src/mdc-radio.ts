@@ -1,12 +1,11 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCRadioFoundation, MDCRadioAdapter } from '@material/radio';
 import { bindable } from 'aurelia-typed-observable-plugin';
-import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
+import { inject, customElement, CustomElement } from 'aurelia';
 
 let radioId = 0;
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-radio.html'))
 @customElement('mdc-radio')
 export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
   constructor(root: IMdcRadioElement) {
@@ -20,41 +19,46 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
 
   @bindable({ set: booleanAttr })
   disabled: boolean;
-  async disabledChanged() {
-    await this.initialised;
+  disabledChanged() {
     this.nativeControl_.disabled = this.disabled;
   }
 
   @bindable({ set: booleanAttr })
   touch: boolean;
 
-  initialChecked?: boolean;
+  _checked?: boolean;
   get checked(): boolean {
     if (this.nativeControl_) {
       return this.nativeControl_.checked;
     } else {
-      return this.initialChecked ?? false;
+      return this._checked ?? false;
     }
   }
 
   set checked(checked: boolean) {
+    this._checked = checked;
     if (this.nativeControl_) {
       this.nativeControl_.checked = checked;
-    } else {
-      this.initialChecked = checked;
     }
   }
 
+  _value?: string;
   get value(): string {
-    return this.nativeControl_.value;
+    if (this.nativeControl_) {
+      return this.nativeControl_.value;
+    } else {
+      return this._value ?? '';
+    }
   }
 
   set value(value: string) {
-    this.nativeControl_.value = value;
+    this._value = value;
+    if (this.nativeControl_) {
+      this.nativeControl_.value = value;
+    }
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  attaching() {
     if (this.root.hasAttribute('checked')) {
       const attributeValue = this.root.getAttribute('checked');
 
@@ -65,9 +69,17 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
   }
 
   initialSyncWithDOM() {
-    if (this.initialChecked !== undefined) {
-      this.checked = this.initialChecked;
+    this.disabledChanged();
+    if (this._checked !== undefined) {
+      this.checked = this._checked;
     }
+    if (this._value !== undefined) {
+      this.value = this._value;
+    }
+  }
+
+  destroy() {
+    this._checked = undefined;
   }
 
   getDefaultFoundation() {
@@ -77,7 +89,7 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
       addClass: (className) => this.root.classList.add(className),
       removeClass: (className) => this.root.classList.remove(className),
       setNativeControlDisabled: (disabled) => this.nativeControl_.disabled =
-          disabled,
+        disabled,
     };
     return new MDCRadioFoundation(adapter);
   }
@@ -94,9 +106,8 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
 /** @hidden */
 export interface IMdcRadioElement extends HTMLElement {
   checked: boolean;
-  indeterminate: boolean;
-  au: {
-    controller: {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcRadio;
     };
   };
@@ -109,30 +120,30 @@ function defineMdcRadioElementApis(element: HTMLElement) {
     },
     checked: {
       get(this: IMdcRadioElement) {
-        return this.au.controller.viewModel.checked;
+        return CustomElement.for<MdcRadio>(this).viewModel.checked;
       },
       set(this: IMdcRadioElement, value: boolean) {
-        this.au.controller.viewModel.checked = value;
+        CustomElement.for<MdcRadio>(this).viewModel.checked = value;
       },
       configurable: true
     },
     value: {
       get(this: IMdcRadioElement) {
-        return this.au.controller.viewModel.value;
+        return CustomElement.for<MdcRadio>(this).viewModel.value;
       },
       set(this: IMdcRadioElement, value: string) {
-        this.au.controller.viewModel.value = value;
+        CustomElement.for<MdcRadio>(this).viewModel.value = value;
       }
     },
     focus: {
       value(this: IMdcRadioElement) {
-        this.au.controller.viewModel.focus();
+        CustomElement.for<MdcRadio>(this).viewModel.focus();
       },
       configurable: true
     },
     blur: {
       value(this: IMdcRadioElement) {
-        this.au.controller.viewModel.blur();
+        CustomElement.for<MdcRadio>(this).viewModel.blur();
       },
       configurable: true
     }

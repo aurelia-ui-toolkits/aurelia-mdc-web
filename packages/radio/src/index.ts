@@ -1,26 +1,23 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, CheckedObserver, ObserverLocator } from 'aurelia-framework';
-import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
+import { IContainer, AppTask, IAttrSyntaxTransformer, NodeObserverLocator } from 'aurelia';
+import { MdcRadio } from './mdc-radio';
+import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { CheckedObserver } from '@aurelia/runtime-html';
 
 export { MdcRadio, IMdcRadioElement } from './mdc-radio';
 
-export function configure(config: FrameworkConfiguration) {
-  config.container.get(MdcComponentAdapters).registerMdcElementConfig(radioConfig);
+let configured = false;
 
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-radio')
-  ]);
-
-  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
-}
-
-const radioConfig = {
-  tagName: 'mdc-radio',
-  properties: {
-    checked: {
-      defaultBindingMode: bindingMode.twoWay,
-      getObserver(element: Element, _: string, observerLocator: ObserverLocator) {
-        return new CheckedObserver(element, new EventSubscriber(['change']), observerLocator);
-      }
+export const RadioConfiguration = {
+  register(container: IContainer): IContainer {
+    if (!configured) {
+      AppTask.with(IContainer).beforeCreate().call(c => {
+        const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
+        const nodeObserverLocator = c.get(NodeObserverLocator);
+        attrSyntaxTransformer.useTwoWay((el, property) => el.tagName === 'MDC-RADIO' ? property === 'checked' : false);
+        nodeObserverLocator.useConfig({ 'MDC-RADIO': { checked: { events: ['change'], type: CheckedObserver } } });
+      }).register(container);
+      configured = true;
     }
+    return container.register(MdcRadio, RippleConfiguration);
   }
 };
