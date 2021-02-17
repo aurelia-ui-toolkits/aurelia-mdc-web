@@ -17,6 +17,7 @@
     "packages/menu",
     "packages/menu-surface",
     "packages/notched-outline",
+    "packages/radio",
     "packages/ripple",
     "packages/select",
     "packages/tab-bar",
