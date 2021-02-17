@@ -20,6 +20,7 @@
     "packages/radio",
     "packages/ripple",
     "packages/select",
+    "packages/snackbar",
     "packages/tab-bar",
     "packages/text-field",
     "packages/top-app-bar",

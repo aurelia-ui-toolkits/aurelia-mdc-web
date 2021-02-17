@@ -1,0 +1,21 @@
+@use '@material/snackbar';
+
+.custom-snackbar--shape-radius {
+  @include snackbar.shape-radius(10px);
+}
+
+.custom-snackbar--viewport-margin {
+  @include snackbar.viewport-margin(50px);
+}
+
+.custom-snackbar--elevation {
+  @include snackbar.elevation(16);
+}
+
+.custom-snackbar--max-width {
+  @include snackbar.max-width(200px);
+}
+
+.custom-snackbar--min-width {
+  @include snackbar.min-width(800px);
+}

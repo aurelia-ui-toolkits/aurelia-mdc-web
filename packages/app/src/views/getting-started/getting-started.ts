@@ -1,10 +1,4 @@
-import { IRouteContext } from 'aurelia';
-
 export class GettingStarted {
-  constructor(@IRouteContext private ctx: IRouteContext) {
-    console.log(ctx);
-  }
-
   materialIconsLink = '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
   robotoLink = '<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">';
   indexHtml = `<html>

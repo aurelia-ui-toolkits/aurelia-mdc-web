@@ -1,7 +1,7 @@
-// import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
+import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
 
 export class Pagination {
-  // constructor(private snackbarService: MdcSnackbarService) { }
+  constructor(private snackbarService: MdcSnackbarService) { }
 
   activePage = 1;
 
@@ -12,7 +12,7 @@ export class Pagination {
   ];
 
   handleNavigation(type: string) {
-    // this.snackbarService.open(`navigation type: ${type}`);
+    this.snackbarService.open(`navigation type: ${type}`);
     switch (type) {
       case 'first': this.activePage = 1; break;
       case 'prev': this.activePage--; break;

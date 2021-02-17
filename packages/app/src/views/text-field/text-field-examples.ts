@@ -1,5 +1,4 @@
 // import { ValidationController, ValidationRules, ValidationControllerFactory, Rule } from 'aurelia-validation';
-// import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
 
 import standardHtml from '!!raw-loader!./standard/standard.html';
 import standardScss from '!!raw-loader!./standard/standard.scss';

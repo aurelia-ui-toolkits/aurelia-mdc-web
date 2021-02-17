@@ -14,10 +14,11 @@ import { DataTable } from '../data-table/data-table';
 import { IconButton } from '../icon-button/icon-button';
 import { TextField } from '../text-field/text-field';
 import { MenuSurface } from '../menu-surface/menu-surface';
+import { Snackbar } from '../snackbar/snackbar';
 
 @route({
   routes: [
-    { id: 'home', path: '', title: 'Home', component: Home, data: { divider: 'true' } },
+    { id: 'home', path: 'home', title: 'Home', component: Home, data: { divider: 'true' } },
     { id: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
     { id: 'button', title: 'Button', component: Button },
     { id: 'card', title: 'Card', component: Card },
@@ -28,6 +29,7 @@ import { MenuSurface } from '../menu-surface/menu-surface';
     { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'list', title: 'List', component: List },
     { id: 'menu-surface', title: 'Menu surface', component: MenuSurface },
+    { id: 'snackbar', title: 'Snackbar', component: Snackbar },
     { id: 'text-field', title: 'Text field', component: TextField },
     { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
   ]

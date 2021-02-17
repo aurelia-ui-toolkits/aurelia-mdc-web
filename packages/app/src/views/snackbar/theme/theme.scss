@@ -1,0 +1,20 @@
+@use '@material/snackbar/_index' as snackbar;
+@use '@material/theme/color-palette' as material-color;
+@use '@material/icon-button';
+@use '@material/ripple/_index' as ripple;
+
+.custom-snackbar--fill-color {
+  @include snackbar.fill-color(material-color.$red-500);
+}
+
+.custom-snackbar--label-ink-color {
+  @include snackbar.label-ink-color(material-color.$yellow-500);
+}
+
+.demo-icon-button-custom {
+  @include icon-button.ink-color(#de442c);
+  @include ripple.states-base-color(#de442c);
+  @include ripple.states-hover-opacity(.09);
+  @include ripple.states-focus-opacity(.26);
+  @include ripple.states-press-opacity(.35);
+}

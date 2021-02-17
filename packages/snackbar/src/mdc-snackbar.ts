@@ -1,7 +1,6 @@
-import { customElement, inject, useView, PLATFORM, View } from 'aurelia-framework';
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { customElement, inject, bindable } from 'aurelia';
+import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MDCSnackbarFoundation, MDCSnackbarAdapter, util, MDCSnackbarCloseEventDetail, strings } from '@material/snackbar';
-import { bindable } from 'aurelia-typed-observable-plugin';
 
 strings.OPENING_EVENT = strings.OPENING_EVENT.toLowerCase();
 strings.OPENED_EVENT = strings.OPENED_EVENT.toLowerCase();
@@ -9,7 +8,6 @@ strings.CLOSING_EVENT = strings.CLOSING_EVENT.toLowerCase();
 strings.CLOSED_EVENT = strings.CLOSED_EVENT.toLowerCase();
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-snackbar.html'))
 @customElement('mdc-snackbar')
 export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
 
@@ -27,17 +25,17 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
   @bindable({ set: booleanAttr })
   stacked: boolean;
 
-  @bindable.number
-  timeout: number;
-  async timeoutChanged() {
-    await this.initialised;
-    this.foundation?.setTimeoutMs(this.timeout);
+  @bindable({ set: number })
+  timeout?: number;
+  timeoutChanged() {
+    if (this.timeout !== undefined) {
+      this.foundation?.setTimeoutMs(this.timeout);
+    }
   }
 
   @bindable({ set: booleanAttr })
   closeOnEscape: boolean = true;
-  async closeOnEscapeChanged() {
-    await this.initialised;
+  closeOnEscapeChanged() {
     this.foundation?.setCloseOnEscape(this.closeOnEscape);
   }
 
@@ -52,6 +50,11 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
 
   @bindable({ set: booleanAttr })
   leading: boolean;
+
+  initialSyncWithDOM() {
+    this.timeoutChanged();
+    this.closeOnEscapeChanged();
+  }
 
   getDefaultFoundation() {
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
@@ -93,14 +96,12 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
     this.foundation?.handleKeyDown(evt);
     return true;
   }
-
 }
 
 /** @hidden */
 export interface IMdcSnackbarElement extends HTMLElement {
-  au: {
-    controller: {
-      view: View;
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcSnackbar;
     };
   };

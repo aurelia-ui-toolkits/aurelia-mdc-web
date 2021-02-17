@@ -1,6 +1,7 @@
-import { TemplatingEngine, inject } from 'aurelia-framework';
-import { IMdcSnackbarElement } from './mdc-snackbar';
-import { strings, MDCSnackbarCloseEvent } from '@material/snackbar';
+import { inject, createElement, IPlatform, IContainer, IAppRoot, LifecycleFlags } from 'aurelia';
+import { MdcSnackbar } from './mdc-snackbar';
+import { MDCSnackbarCloseEvent } from '@material/snackbar';
+import { Scope } from '@aurelia/runtime';
 
 interface IMdcSnackbarBindingContext {
   handleClosed(evt: MDCSnackbarCloseEvent): void;
@@ -17,25 +18,30 @@ export interface ISnackbarOptions {
   dismissClasses: string;
 }
 
-@inject(TemplatingEngine)
+@inject(IPlatform, IContainer, IAppRoot)
 export class MdcSnackbarService {
-  constructor(private templatingEngine: TemplatingEngine) { }
+  constructor(private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot) { }
 
   async open(label: string, actions?: string | string[], options?: Partial<ISnackbarOptions>) {
-    const snackbar = document.createElement('mdc-snackbar') as IMdcSnackbarElement;
-    snackbar.setAttribute(`${strings.CLOSED_EVENT}.trigger`, 'handleClosed($event)');
-    document.body.appendChild(snackbar);
-    let closedResolver: (reason?: string) => void;
+    // const props = { 'mdcsnackbar:closed.trigger': 'handleClosed($event)' };
+    let closedResolver: (reason?: string | PromiseLike<string> | undefined) => void;
     const closedPromise = new Promise<string>(r => closedResolver = r);
     const bindingContext: IMdcSnackbarBindingContext = {
       handleClosed: (evt: MDCSnackbarCloseEvent) => {
         closedResolver(evt.detail.reason);
-        childView.detached();
-        snackbar.remove();
+        sv.deactivate(sv, this.appRoot.controller, LifecycleFlags.none);
+        snackbarEl.removeEventListener('mdcsnackbar:closed', bindingContext.handleClosed);
+        snackbarEl.remove();
       }
     };
-    const childView = this.templatingEngine.enhance({ element: snackbar, bindingContext });
-    const vm = snackbar.au.controller.viewModel;
+
+    const renderPlan = createElement(this.platform, MdcSnackbar/* TODO does not work yet , props */);
+    const sv = renderPlan.createView(this.container);
+    sv.activate(sv, this.appRoot.controller, LifecycleFlags.none, Scope.create(bindingContext));
+    const snackbarEl = sv.children![0].host!;
+    document.body.appendChild(snackbarEl);
+    snackbarEl.addEventListener('mdcsnackbar:closed', bindingContext.handleClosed);
+    const vm = sv.children![0].viewModel as MdcSnackbar;
     vm.label = label;
     if (actions !== undefined) {
       if (typeof actions === 'string') {
@@ -47,29 +53,7 @@ export class MdcSnackbarService {
     if (options) {
       Object.assign(vm, options);
     }
-    // if (options?.timeout !== undefined) {
-    //   vm.timeout = options.timeout;
-    // }
-    // if (options?.closeOnEscape !== undefined) {
-    //   vm.closeOnEscape = options.closeOnEscape;
-    // }
-    // if (options?.dismissible !== undefined) {
-    //   vm.dismissible = options.dismissible;
-    // }
-    // if (options?.stacked !== undefined) {
-    //   vm.stacked = options.stacked;
-    // }
-    // if (options?.classes !== undefined) {
-    //   vm.classes = options.classes;
-    // }
-    // if (options?.actionClasses !== undefined) {
-    //   vm.actionClasses = options.actionClasses;
-    // }
-    // if (options?.stacked !== undefined) {
-    //   vm.stacked = options.stacked;
-    // }
-    await vm.initialised;
-    snackbar.au.controller.viewModel.open();
+    vm.open();
     return closedPromise;
   }
 }

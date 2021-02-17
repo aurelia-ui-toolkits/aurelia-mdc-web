@@ -15,6 +15,7 @@ import { NotchedOutlineConfiguration } from '@aurelia-mdc-web/notched-outline';
 import { RadioConfiguration } from '@aurelia-mdc-web/radio';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { SelectConfiguration } from '@aurelia-mdc-web/select';
+import { SnackbarConfiguration } from '@aurelia-mdc-web/snackbar';
 import { TabBarConfiguration } from '@aurelia-mdc-web/tab-bar';
 import { TextFieldConfiguration } from '@aurelia-mdc-web/text-field';
 import { TopAppBarConfiguration } from '@aurelia-mdc-web/top-app-bar';
@@ -31,8 +32,8 @@ export const AllConfiguration = {
       ButtonConfiguration, CardConfiguration, CheckboxConfiguration, CircularProgressConfiguration, DataTableConfiguration,
       DrawerConfiguration, FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration, IconConfiguration,
       LineRippleConfiguration, ListConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration,
-      RadioConfiguration, RippleConfiguration, SelectConfiguration, TabBarConfiguration, TextFieldConfiguration, TopAppBarConfiguration,
-      TypographyConfiguration,
+      RadioConfiguration, RippleConfiguration, SelectConfiguration, SnackbarConfiguration, TabBarConfiguration, TextFieldConfiguration,
+      TopAppBarConfiguration, TypographyConfiguration,
     );
   },
   /**
