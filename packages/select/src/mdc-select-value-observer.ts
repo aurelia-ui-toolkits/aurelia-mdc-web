@@ -85,7 +85,7 @@ export class MdcSelectValueObserver implements IObserver {
     this.currentValue = newValue;
     this.hasChanges = newValue !== this.oldValue;
     // this.observeArray(newValue instanceof Array ? newValue : null);
-    if ((flags & LF.noFlush) === 0) {
+    if ((flags & LF.noFlush) === 0 && this.optionsWereSet) {
       this.flushChanges(flags);
     }
   }
@@ -125,31 +125,28 @@ export class MdcSelectValueObserver implements IObserver {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public synchronizeOptions(_indexMap?: IndexMap): void {
-    if (!this.optionsWereSet) {
-      this.optionsWereSet = true;
-      this.setElementValue(true);
-    }
-  // const { currentValue, obj } = this;
-  //   // const isArray = Array.isArray(currentValue);
-  //   // const matcher = obj.matcher !== void 0 ? obj.matcher : defaultMatcher;
-  //   // const matcher = defaultMatcher;
-  //   const options = CustomElement.for<MdcSelect>(obj).viewModel.items;
-  //   let i = options.length;
+    this.setElementValue(true);
+    // const { currentValue, obj } = this;
+    //   // const isArray = Array.isArray(currentValue);
+    //   // const matcher = obj.matcher !== void 0 ? obj.matcher : defaultMatcher;
+    //   // const matcher = defaultMatcher;
+    //   const options = CustomElement.for<MdcSelect>(obj).viewModel.items;
+    //   let i = options.length;
 
-  //   while (i-- > 0) {
-  //     // const option = options[i];
-  //     // const optionValue = hasOwn.call(option, 'model') ? option.model : option.value;
-  //     // const optionValue = option.value;
-  //     // if (isArray) {
-  //     //   option.selected = (currentValue as unknown[]).findIndex(item => !!matcher(optionValue, item)) !== -1;
-  //     //   continue;
-  //     // }
-  //     if (!this.optionsWereSet) {
-  //       this.optionsWereSet = true;
-  //       this.setElementValue(true);
-  //     }
-  //     // option.selected = !!matcher(optionValue, currentValue);
-  //   }
+    //   while (i-- > 0) {
+    //     // const option = options[i];
+    //     // const optionValue = hasOwn.call(option, 'model') ? option.model : option.value;
+    //     // const optionValue = option.value;
+    //     // if (isArray) {
+    //     //   option.selected = (currentValue as unknown[]).findIndex(item => !!matcher(optionValue, item)) !== -1;
+    //     //   continue;
+    //     // }
+    //     if (!this.optionsWereSet) {
+    //       this.optionsWereSet = true;
+    //       this.setElementValue(true);
+    //     }
+    //     // option.selected = !!matcher(optionValue, currentValue);
+    //   }
   }
 
   public synchronizeValue(): boolean {
@@ -270,11 +267,17 @@ export class MdcSelectValueObserver implements IObserver {
   //   }
   // }
 
-  public handleNodeChange(): void {
-    this.synchronizeOptions();
-    const shouldNotify = this.synchronizeValue();
-    if (shouldNotify) {
-      this.notify(LF.none);
+  public handleNodeChange(records: MutationRecord[]): void {
+    if (records.find(x => x.type === 'childList'
+      && (Array.from(x.addedNodes).find(y => (y as HTMLElement).tagName === 'MDC-LIST-ITEM')
+        || Array.from(x.removedNodes).find(y => (y as HTMLElement).tagName === 'MDC-LIST-ITEM'))
+    )) {
+      this.optionsWereSet = true;
+      this.synchronizeOptions();
+      const shouldNotify = this.synchronizeValue();
+      if (shouldNotify) {
+        this.notify(LF.none);
+      }
     }
   }
 
