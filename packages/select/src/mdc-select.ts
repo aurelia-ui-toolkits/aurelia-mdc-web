@@ -30,6 +30,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   static processContent(node: INode, platform: IPlatform) {
     const el = node as Element;
 
+    const leadingIcon = el.querySelector(`[${mdcIconStrings.ATTRIBUTE}]`);
+    leadingIcon?.remove();
+
     const template = platform.document.createElement('template');
     template.setAttribute('au-slot', '');
     template.innerHTML = el.innerHTML;
@@ -37,7 +40,6 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     el.appendChild(template);
 
     // move icon to the slot - this allows omitting slot specification
-    const leadingIcon = el.querySelector(`[${mdcIconStrings.ATTRIBUTE}]`);
     if (leadingIcon) {
       const div = platform.document.createElement('div');
       div.appendChild(leadingIcon);
