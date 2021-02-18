@@ -3,8 +3,7 @@
     ${active ? 'mdc-tab--active' : ''}
     ${minWidth ? 'mdc-tab--min-width' : ''}
     ${stacked ? 'mdc-tab--stacked' : ''}
-  " role="tab" aria-selected="false" tabindex="-1" mdc-ripple="surface.bind: rippleSurface"
-  click.trigger="handleClick_()">
+  " role="tab" aria-selected="false" tabindex="-1" mdc-ripple click.trigger="handleClick_()">
   <span class="mdc-tab__content" ref="content_">
     <span class="mdc-tab__icon material-icons" aria-hidden="true" if.bind="icon">${icon}</span>
     <span class="mdc-tab__text-label" if.bind="label">${label}</span>
