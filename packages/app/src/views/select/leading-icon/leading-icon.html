@@ -1,0 +1,23 @@
+<div class="demo-layout__row">
+  <button as-element="mdc-button" click.delegate="outlined = !outlined">
+    Outlined: ${outlined ? 'On' : 'Off'}</button>
+  <button as-element="mdc-button" click.delegate="required = !required">
+    Required: ${required ? 'On' : 'Off'}</button>
+  <button as-element="mdc-button" click.delegate="disabled = !disabled">
+    Disabled: ${disabled ? 'On' : 'Off'}</button>
+  <button as-element="mdc-button" click.delegate="meal.selectedIndex = 2">Set Index (2)</button>
+</div>
+<div class="demo-layout__row">
+  <div class="au-select">
+    <mdc-select ref="meal" required.bind="required" outlined.bind="outlined" disabled.bind="disabled"
+      label="Pick a Meal">
+      <mdc-icon mdc-select-icon>fastfood</mdc-icon>
+      <mdc-list>
+        <mdc-list-item repeat.for="food of foods" value.bind="food.value" disabled.bind="food.disabled">
+          ${food.viewValue}
+        </mdc-list-item>
+      </mdc-list>
+      <mdc-select-helper-text validation>Meal selection is required</mdc-select-helper-text>
+    </mdc-select>
+  </div>
+</div>

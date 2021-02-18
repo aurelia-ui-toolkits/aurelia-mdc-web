@@ -1,0 +1,36 @@
+<div class="demo-layout__row">
+  <button as-element="mdc-button" click.delegate="outlined = !outlined">
+    Outlined: ${outlined ? 'On' : 'Off'}
+  </button>
+  <button as-element="mdc-button" click.delegate="required = !required">
+    Required: ${required ? 'On' : 'Off'}
+  </button>
+  <button as-element="mdc-button" click.delegate="disabled = !disabled">
+    Disabled: ${disabled ? 'On' : 'Off'}
+  </button>
+  <button as-element="mdc-button" click.delegate="select.value = 'banana'">
+    Select Banana
+  </button>
+  <button as-element="mdc-button" click.delegate="select.selectedIndex = 2">
+    Set Index (2)
+  </button>
+  <button as-element="mdc-button" click.delegate="select.selectedIndex = 0">
+    Set Index (0)
+  </button>
+  <button as-element="mdc-button" click.delegate="select.focus()">Focus</button>
+</div>
+<div class="au-select">
+  <mdc-select ref="select" label="Fruit" required.bind="required" change.delegate="onSelectionChange($event)"
+    anchor-margin.bind="{top: 10}" outlined.bind="outlined" disabled.bind="disabled">
+    <mdc-list>
+      <mdc-list-item></mdc-list-item>
+      <mdc-list-item value="apple">Apple</mdc-list-item>
+      <mdc-list-item value="orange">Orange</mdc-list-item>
+      <mdc-list-item value="banana">Banana</mdc-list-item>
+      <mdc-list-item disabled value="mango">Mango</mdc-list-item>
+    </mdc-list>
+  </mdc-select>
+  <mdc-select-helper-text if.bind="select.valid">Helper text</mdc-select-helper-text>
+  <mdc-select-helper-text validation>Field is required</mdc-select-helper-text>
+</div>
+<p>Value: ${select.value}</p>

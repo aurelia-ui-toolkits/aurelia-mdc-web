@@ -17,6 +17,7 @@ import { MenuSurface } from '../menu-surface/menu-surface';
 import { Snackbar } from '../snackbar/snackbar';
 import { Dialog } from '../dialog/dialog';
 import { Menu } from '../menu/menu';
+import { Select } from '../select/select';
 
 @route({
   routes: [
@@ -33,6 +34,7 @@ import { Menu } from '../menu/menu';
     { id: 'list', title: 'List', component: List },
     { id: 'menu', title: 'Menu', component: Menu },
     { id: 'menu-surface', title: 'Menu surface', component: MenuSurface },
+    { id: 'select', title: 'Select', component: Select },
     { id: 'snackbar', title: 'Snackbar', component: Snackbar },
     { id: 'text-field', title: 'Text field', component: TextField },
     { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
