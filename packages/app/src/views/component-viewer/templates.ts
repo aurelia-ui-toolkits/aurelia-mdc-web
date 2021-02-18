@@ -311,7 +311,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
 @use '@material/list/mdc-list';
 @use '@material/menu-surface/mdc-menu-surface';`
   },
-  'menu': {
+  'menu-page': {
     title: 'Menus',
     description: 'A menu displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.',
     references: [{

@@ -1,0 +1,77 @@
+<div class="demo-layout--center">
+  <div mdc-menu-surface-anchor ref="demoAnchor">
+    <button as-element="mdc-button" raised click.trigger="demo.open = !demo.open">Show Menu</button>
+    <mdc-menu view-model.ref="demo" mdcmenu:selected.trigger="onMenuSelect($event.detail)" anchor.bind="demoAnchor"
+      anchor-corner.bind="menuSurfaceAnchorCorner" quick-open.bind="quickOpen"
+      default-focus-state.bind="defaultFocusState" fixed.bind="fixed" stay-open-on-selection.bind="stayOpenOnSelection"
+      anchor-margin.bind="anchorMargin">
+      <mdc-list wrap-focus.bind="wrapFocus" tabindex="-1">
+        <template repeat.for="fruit of fruits">
+          <mdc-list-item if.bind="fruit.label" value.bind="fruit.label">${fruit.label}</mdc-list-item>
+          <mdc-list-divider else></mdc-list-divider>
+        </template>
+      </mdc-list>
+    </mdc-menu>
+  </div>
+</div>
+<div class="demo-layout__row">
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Anchor Corner</h3>
+    <div class="demo-layout__column">
+      <mdc-form-field repeat.for="corner of corners">
+        <mdc-radio model.bind="corner" checked.bind="menuSurfaceAnchorCorner"></mdc-radio>
+        <label>${corner}</label>
+      </mdc-form-field>
+    </div>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Anchor Margin</h3>
+    <div class="demo-layout__column">
+      <mdc-text-field value.bind="marginTop" label="Top margin" type="number">
+      </mdc-text-field>
+      <mdc-text-field value.bind="marginBottom" label="Bottom margin" type="number">
+      </mdc-text-field>
+      <mdc-text-field value.bind="marginLeft" label="Left margin" type="number">
+      </mdc-text-field>
+      <mdc-text-field value.bind="marginRight" label="Right margin" type="number">
+      </mdc-text-field>
+    </div>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-layout__column">
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="quickOpen"></mdc-checkbox>
+        <label>Disable open animation</label>
+      </mdc-form-field>
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="fixed"></mdc-checkbox>
+        <label>Fixed position</label>
+      </mdc-form-field>
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="wrapFocus"></mdc-checkbox>
+        <label>Wrap keyboard focus</label>
+      </mdc-form-field>
+      <mdc-form-field>
+        <mdc-checkbox checked.bind="stayOpenOnSelection"></mdc-checkbox>
+        <label>Stay Open on Selection</label>
+      </mdc-form-field>
+      <mdc-select value.bind="defaultFocusState" label="Default Focus State">
+        <mdc-list>
+          <mdc-list-item repeat.for="dfs of defaultFocusStates" value.bind="dfs">${dfs}</mdc-list-item>
+        </mdc-list>
+      </mdc-select>
+    </div>
+  </div>
+</div>
+
+<div class="demo-layout__row">
+  <button as-element="mdc-button" click.delegate="addFruit()">Add Fruit</button>
+</div>
+<div class="demo-layout__row">
+  <p>Selected index: ${lastSelection}</p>
+</div>
+<div class="demo-layout__row">
+  <p>Anchor corner: ${menuSurfaceAnchorCorner}</p>
+</div>

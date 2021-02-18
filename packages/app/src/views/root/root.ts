@@ -16,6 +16,7 @@ import { TextField } from '../text-field/text-field';
 import { MenuSurface } from '../menu-surface/menu-surface';
 import { Snackbar } from '../snackbar/snackbar';
 import { Dialog } from '../dialog/dialog';
+import { Menu } from '../menu/menu';
 
 @route({
   routes: [
@@ -30,6 +31,7 @@ import { Dialog } from '../dialog/dialog';
     { id: 'drawer', title: 'Drawer', component: Drawer },
     { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'list', title: 'List', component: List },
+    { id: 'menu', title: 'Menu', component: Menu },
     { id: 'menu-surface', title: 'Menu surface', component: MenuSurface },
     { id: 'snackbar', title: 'Snackbar', component: Snackbar },
     { id: 'text-field', title: 'Text field', component: TextField },
