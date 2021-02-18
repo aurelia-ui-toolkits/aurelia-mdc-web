@@ -8,6 +8,7 @@
     "packages/checkbox",
     "packages/circular-progress",
     "packages/data-table",
+    "packages/dialog",
     "packages/drawer",
     "packages/floating-label",
     "packages/icon",

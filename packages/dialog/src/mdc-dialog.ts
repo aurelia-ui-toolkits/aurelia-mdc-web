@@ -1,10 +1,9 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCDialogFoundation, strings, MDCDialogAdapter, util, MDCDialogCloseEventDetail } from '@material/dialog';
-import { MdcDialogContent } from './mdc-dialog-content';
 import { FocusTrap } from '@material/dom/focus-trap';
-import { child, customElement, useView, inject, View, PLATFORM } from 'aurelia-framework';
+import { customElement, inject, bindable } from 'aurelia';
 import { closest, matches } from '@material/dom/ponyfill';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { processContent } from '@aurelia/runtime-html';
 
 const LAYOUT_EVENTS = ['resize', 'orientationchange'];
 let dialogId = 0;
@@ -17,49 +16,47 @@ strings.OPENED_EVENT = strings.OPENED_EVENT.toLowerCase();
  * @selector mdc-dialog
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-dialog.html'))
 @customElement('mdc-dialog')
+@processContent(defaultSlotProcessContent)
 export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements EventListenerObject {
 
   id = ++dialogId;
   contentId = `mdc-dialog-content-${this.id}`;
   titleId = `mdc-dialog-title-${this.id}`;
-  private buttons_!: HTMLElement[]; // assigned in initialize()
-  focusTrap_!: FocusTrap | undefined; // assigned in initialSyncWithDOM()
-
-  @child('mdc-dialog-content')
-  content_?: MdcDialogContent; // assigned in initialize()
+  private buttons!: HTMLElement[]; // assigned in initialize()
+  focusTrap!: FocusTrap | undefined; // assigned in initialSyncWithDOM()
 
   /** Action returned when the dialog is closed via the scrim click */
   @bindable
   scrimClickAction: string;
-  async scrimClickActionChanged() {
-    await this.initialised;
+  scrimClickActionChanged() {
     this.foundation?.setScrimClickAction(this.scrimClickAction);
   }
 
   /** Action returned when the dialog is closed via the ESC key */
   @bindable
   escapeKeyAction: string;
-  async escapeKeyActionChanged() {
-    await this.initialised;
+  escapeKeyActionChanged() {
     this.foundation?.setEscapeKeyAction(this.escapeKeyAction);
   }
 
   @bindable({ set: booleanAttr })
   delayFocusTrap: boolean;
 
-  get defaultButton_(): HTMLElement | null {
+  get defaultButton(): HTMLElement | null {
     return this.root.querySelector<HTMLElement>(`[${strings.BUTTON_DEFAULT_ATTRIBUTE}]`);
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  get content(): HTMLElement | null {
+    return this.root.querySelector<HTMLElement>(`${strings.CONTENT_SELECTOR}`);
+  }
+
+  beforeFoundationCreated() {
     if (!this.delayFocusTrap) {
-      this.focusTrap_ = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions));
+      this.createFocusTrap();
     }
 
-    this.buttons_ = [].slice.call(this.root.querySelectorAll<HTMLElement>(strings.BUTTON_SELECTOR));
+    this.buttons = [].slice.call(this.root.querySelectorAll<HTMLElement>(strings.BUTTON_SELECTOR));
     const content = this.root.querySelector('mdc-dialog-content');
     content?.setAttribute('id', this.contentId);
     const title = this.root.querySelector('mdc-dialog-title');
@@ -67,7 +64,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   }
 
   createFocusTrap() {
-    this.focusTrap_ = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions));
+    this.focusTrap = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions), this.getInitialFocusEl() ?? undefined);
   }
 
   destroy() {
@@ -130,9 +127,14 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
     const adapter: MDCDialogAdapter = {
       addBodyClass: (className) => document.body.classList.add(className),
       addClass: (className) => this.root.classList.add(className),
-      areButtonsStacked: () => util.areTopsMisaligned(this.buttons_),
-      clickDefaultButton: () => this.defaultButton_?.click(),
-      eventTargetMatches: (target, selector) => target ? matches(target as Element, selector) : false,
+      areButtonsStacked: () => util.areTopsMisaligned(this.buttons),
+      clickDefaultButton: () => {
+        if (this.defaultButton) {
+          this.defaultButton.click();
+        }
+      },
+      eventTargetMatches: (target, selector) =>
+        target ? matches(target as Element, selector) : false,
       getActionFromEvent: (evt: Event) => {
         if (!evt.target) {
           return '';
@@ -140,37 +142,56 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
         const element = closest(evt.target as Element, `[${strings.ACTION_ATTRIBUTE}]`);
         return element?.getAttribute(strings.ACTION_ATTRIBUTE) ?? null;
       },
-      getInitialFocusEl: () => this.getInitialFocusEl_(),
+      getInitialFocusEl: () => this.getInitialFocusEl(),
       hasClass: (className) => this.root.classList.contains(className),
-      isContentScrollable: () => util.isScrollable(this.content_?.root ?? null),
+      isContentScrollable: () => util.isScrollable(this.content),
       notifyClosed: (action) => this.emit<MDCDialogCloseEventDetail>(strings.CLOSED_EVENT, action ? { action } : {}),
       notifyClosing: (action) => this.emit<MDCDialogCloseEventDetail>(strings.CLOSING_EVENT, action ? { action } : {}),
       notifyOpened: () => this.emit(strings.OPENED_EVENT, {}),
       notifyOpening: () => this.emit(strings.OPENING_EVENT, {}),
-      releaseFocus: () => this.focusTrap_?.releaseFocus(),
+      releaseFocus: () => {
+        this.focusTrap?.releaseFocus();
+      },
       removeBodyClass: (className) => document.body.classList.remove(className),
       removeClass: (className) => this.root.classList.remove(className),
       reverseButtons: () => {
-        this.buttons_.reverse();
-        this.buttons_.forEach((button) => {
+        this.buttons.reverse();
+        this.buttons.forEach((button) => {
           button.parentElement!.appendChild(button);
         });
       },
-      trapFocus: () => this.focusTrap_?.trapFocus(),
+      trapFocus: () => {
+        this.focusTrap?.trapFocus();
+      },
+      registerContentEventHandler: (evt, handler) => {
+        if (this.content instanceof HTMLElement) {
+          this.content.addEventListener(evt, handler);
+        }
+      },
+      deregisterContentEventHandler: (evt, handler) => {
+        if (this.content instanceof HTMLElement) {
+          this.content.removeEventListener(evt, handler);
+        }
+      },
+      isScrollableContentAtTop: () => {
+        return util.isScrollAtTop(this.content);
+      },
+      isScrollableContentAtBottom: () => {
+        return util.isScrollAtBottom(this.content);
+      },
     };
     return new MDCDialogFoundation(adapter);
   }
 
-  private getInitialFocusEl_(): HTMLElement | null {
+  private getInitialFocusEl(): HTMLElement | null {
     return this.root.querySelector(`[${strings.INITIAL_FOCUS_ATTRIBUTE}]`);
   }
 }
 
 /** @hidden */
 export interface IMdcDialogElement extends HTMLElement {
-  au: {
-    controller: {
-      view: View;
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcDialog;
     };
   };

@@ -15,6 +15,7 @@ import { IconButton } from '../icon-button/icon-button';
 import { TextField } from '../text-field/text-field';
 import { MenuSurface } from '../menu-surface/menu-surface';
 import { Snackbar } from '../snackbar/snackbar';
+import { Dialog } from '../dialog/dialog';
 
 @route({
   routes: [
@@ -25,6 +26,7 @@ import { Snackbar } from '../snackbar/snackbar';
     { id: 'checkbox', title: 'Checkbox', component: Checkbox },
     { id: 'circular-progress', title: 'Circular progress', component: CircularProgress },
     { id: 'data-table', title: 'Data table', component: DataTable },
+    { id: 'dialog', title: 'Dialog', component: Dialog },
     { id: 'drawer', title: 'Drawer', component: Drawer },
     { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'list', title: 'List', component: List },

@@ -4,6 +4,7 @@ import { CardConfiguration } from '@aurelia-mdc-web/card';
 import { CheckboxConfiguration } from '@aurelia-mdc-web/checkbox';
 import { CircularProgressConfiguration } from '@aurelia-mdc-web/circular-progress';
 import { DataTableConfiguration } from '@aurelia-mdc-web/data-table';
+import { DialogConfiguration } from '@aurelia-mdc-web/dialog';
 import { DrawerConfiguration } from '@aurelia-mdc-web/drawer';
 import { FloatingLabelConfiguration } from '@aurelia-mdc-web/floating-label';
 import { FormFieldConfiguration } from '@aurelia-mdc-web/form-field';
@@ -30,8 +31,8 @@ export const AllConfiguration = {
   register(container: IContainer): IContainer {
     return container.register(
       ButtonConfiguration, CardConfiguration, CheckboxConfiguration, CircularProgressConfiguration, DataTableConfiguration,
-      DrawerConfiguration, FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration, IconConfiguration,
-      LineRippleConfiguration, ListConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration,
+      DialogConfiguration, DrawerConfiguration, FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration,
+      IconConfiguration, LineRippleConfiguration, ListConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration,
       RadioConfiguration, RippleConfiguration, SelectConfiguration, SnackbarConfiguration, TabBarConfiguration, TextFieldConfiguration,
       TopAppBarConfiguration, TypographyConfiguration,
     );

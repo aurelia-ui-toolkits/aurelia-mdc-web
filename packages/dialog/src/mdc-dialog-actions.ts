@@ -1,12 +1,14 @@
-import { customElement, inject, inlineView } from 'aurelia-framework';
+import { customElement, inject } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
+import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 
 /**
  * Optional. Footer area containing the dialog's action buttons.
  * @selector mdc-dialog-actions
  */
 @inject(Element)
-@inlineView('<template class="mdc-dialog__actions"><au-slot></au-slot></template>')
-@customElement('mdc-dialog-actions')
+@customElement({ name: 'mdc-dialog-actions', template: '<template class="mdc-dialog__actions"><au-slot></au-slot></template>' })
+@processContent(defaultSlotProcessContent)
 export class MdcDialogActions {
   constructor(private root: HTMLElement) { }
 

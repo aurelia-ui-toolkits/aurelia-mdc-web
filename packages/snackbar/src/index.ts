@@ -1,13 +1,15 @@
 import { IContainer } from 'aurelia';
 import { MdcSnackbar } from './mdc-snackbar';
 import { MdcSnackbarService } from './mdc-snackbar-service';
+import { ButtonConfiguration } from '@aurelia-mdc-web/button';
+import { IconButtonConfiguration } from '@aurelia-mdc-web/icon-button';
 
 export { MdcSnackbar } from './mdc-snackbar';
 export { MdcSnackbarService, ISnackbarOptions } from './mdc-snackbar-service';
 
 export const SnackbarConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcSnackbar, MdcSnackbarService);
+    return container.register(MdcSnackbar, MdcSnackbarService, ButtonConfiguration, IconButtonConfiguration);
   }
 };
 
