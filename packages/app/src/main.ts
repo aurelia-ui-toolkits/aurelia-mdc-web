@@ -12,6 +12,8 @@ import { Hljs } from './elements/hljs/hljs';
 import { ApiViewer } from './views/api-viewer/api-viewer';
 import { ExampleViewer } from './elements/example-viewer/example-viewer';
 import { JsonValueConverter } from './converters/json';
+import { ValidationHtmlConfiguration } from '@aurelia/validation-html';
+import { ValidationConfiguration } from '@aurelia/validation';
 
 Aurelia
   // .register(StyleConfiguration.shadowDOM({
@@ -19,7 +21,7 @@ Aurelia
   //   sharedStyles: [shared]
   // }))
   .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: false }), MaterialConfiguration, SVGAnalyzer,
-    Home, GettingStarted, Hljs, ApiViewer, ExampleViewer, JsonValueConverter
+    Home, GettingStarted, Hljs, ApiViewer, ExampleViewer, JsonValueConverter, ValidationHtmlConfiguration, ValidationConfiguration
   )
   // To use HTML5 pushState routes, replace previous line with the following
   // customized router config.

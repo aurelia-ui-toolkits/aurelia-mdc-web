@@ -1,7 +1,6 @@
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCRadioFoundation, MDCRadioAdapter } from '@material/radio';
-import { bindable } from 'aurelia-typed-observable-plugin';
-import { inject, customElement, CustomElement } from 'aurelia';
+import { inject, customElement, CustomElement, bindable } from 'aurelia';
 
 let radioId = 0;
 

@@ -25,7 +25,8 @@
     "packages/tab-bar",
     "packages/text-field",
     "packages/top-app-bar",
-    "packages/typography"
+    "packages/typography",
+    "packages/validation"
   ],
   "version": "1.1.3"
 }

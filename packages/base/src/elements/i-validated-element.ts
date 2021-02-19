@@ -1,6 +1,6 @@
 /** @hidden */
 export interface IError {
-  message: string | null;
+  message: string | undefined;
 }
 
 /** @hidden */

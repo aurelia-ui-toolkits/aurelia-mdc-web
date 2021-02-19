@@ -20,6 +20,8 @@
   },
   "devDependencies": {
     "@aurelia/plugin-gulp": "dev",
+    "@aurelia/validation": "^0.10.0-dev.202102161145",
+    "@aurelia/validation-html": "^0.10.0-dev.202102161145",
     "@aurelia/webpack-loader": "dev",
     "@material/button": "^10.0.0",
     "@material/card": "^10.0.0",

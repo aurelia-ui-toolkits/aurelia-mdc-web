@@ -1,5 +1,4 @@
 import { Corner } from '@material/menu';
-import { computedFrom } from 'aurelia-binding';
 import { MDCMenuDistance } from '@material/menu-surface';
 
 export class Basic {
@@ -11,7 +10,6 @@ export class Basic {
   marginLeft: string = '0';
   marginRight: string = '0';
 
-  @computedFrom('marginTop', 'marginBottom', 'marginLeft', 'marginRight')
   get anchorMargin(): Partial<MDCMenuDistance> {
     return {
       top: this.marginTop ? parseInt(this.marginTop) : undefined,

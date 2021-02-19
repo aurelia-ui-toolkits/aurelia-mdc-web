@@ -1,6 +1,6 @@
 <template class="mdc-text-field-helper-line ${errors.length ? 'mdc-text-field-helper-line--with-errors' : ''}">
   <au-slot></au-slot>
-  <label as-element="mdc-text-field"-helper-text if.bind="errors.length" validation class="mdc-text-field-helper-text--errors">
+  <mdc-text-field-helper-text if.bind="errors.length" validation class="mdc-text-field-helper-text--errors">
     <span class="mdc-text-field-helper-text__error" repeat.for="e of errors">${e}<br/></span>
   </mdc-text-field-helper-text>
 </template>

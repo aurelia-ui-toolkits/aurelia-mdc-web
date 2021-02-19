@@ -1,10 +1,13 @@
-import { ValidationControllerFactory } from 'aurelia-validation';
-import { MdcValidationControllerFactory } from './mdc-validation-controller-factory';
 
-export { MdcValidationRenderer } from './mdc-validation-renderer';
-export { MdcValidationControllerFactory } from './mdc-validation-controller-factory';
+export { MdcValidationResultPresenter } from './mdc-validation-result-presenter';
 
-export function configure() {
-  // replace default static get with ours
-  ValidationControllerFactory.get = MdcValidationControllerFactory.get;
-}
+// export const ValidationConfiguration = {
+//   register(container: IContainer): IContainer {
+//     return container.register(MdcRipple);
+//   }
+// };
+
+// export function configure() {
+//   // replace default static get with ours
+//   ValidationControllerFactory.get = MdcValidationControllerFactory.get;
+// }
