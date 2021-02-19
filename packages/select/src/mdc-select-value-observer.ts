@@ -17,16 +17,16 @@ import type {
 import { INode, EventSubscriber, CustomElement } from '@aurelia/runtime-html';
 import { IMdcSelectElement, MdcSelect } from './mdc-select';
 
-const hasOwn = Object.prototype.hasOwnProperty;
+// const hasOwn = Object.prototype.hasOwnProperty;
 const childObserverOptions = {
   childList: true,
   subtree: true,
   characterData: true
 };
 
-function defaultMatcher(a: unknown, b: unknown): boolean {
-  return a === b;
-}
+// function defaultMatcher(a: unknown, b: unknown): boolean {
+//   return a === b;
+// }
 
 export interface IOptionElement extends HTMLOptionElement {
   model?: unknown;
@@ -166,9 +166,9 @@ export class MdcSelectValueObserver implements IObserver {
     //    3. assign `value` to `this.currentValue`
     //    4. return `true` to signal value has changed
     const obj = this.obj;
-    const options = CustomElement.for<MdcSelect>(obj).viewModel.items;
+    const options = CustomElement.for<MdcSelect>(obj).viewModel.items ?? [];
     const len = options.length;
-    const currentValue = this.currentValue;
+    // const currentValue = this.currentValue;
     let i = 0;
 
     /*
@@ -240,10 +240,13 @@ export class MdcSelectValueObserver implements IObserver {
   }
 
   private start(): void {
-    (this.nodeObserver = new this.obj.ownerDocument.defaultView!.MutationObserver(this.handleNodeChange.bind(this)))
-      .observe(this.obj, childObserverOptions);
-    // this.observeArray(this.currentValue instanceof Array ? this.currentValue : null);
-    this.observing = true;
+    const vm = CustomElement.for<MdcSelect>(this.obj).viewModel;
+    vm.initialised.then(() => {
+      (this.nodeObserver = new this.obj.ownerDocument.defaultView!.MutationObserver(this.handleNodeChange.bind(this)))
+        .observe(vm.menu.root, childObserverOptions);
+      // this.observeArray(this.currentValue instanceof Array ? this.currentValue : null);
+      this.observing = true;
+    });
   }
 
   private stop(): void {

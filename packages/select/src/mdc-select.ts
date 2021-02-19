@@ -57,18 +57,15 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   id: string = `mdc-select-${++selectId}`;
-  private menu: MdcMenu;
+  public menu: MdcMenu;
   private selectAnchor: HTMLElement;
   private selectedText: HTMLElement;
 
   private menuElement?: Element;
 
-  @children({ query: controller => controller.host.querySelectorAll('.mdc-list-item') })
-  items: MdcListItem[];
-
-  // get items(): MdcListItem[] {
-  //   return Array.from(this.root.querySelectorAll('.mdc-list-items')).map(x => CustomElement.for<MdcListItem>(x).viewModel);
-  // }
+  get items(): MdcListItem[] | undefined {
+    return this.menu.list_?.items;
+  }
 
   private leadingIcon?: MdcSelectIcon;
 
