@@ -1,0 +1,16 @@
+<div class="demo-layout__row">
+  <div mdc-menu-surface-anchor>
+    <label as-element="mdc-text-field" label="Lookup" ref="input"></label>
+    <mdc-text-field-helper-line></mdc-text-field-helper-line>
+    <mdc-lookup options.bind="options" display-field="name" value-field="id" value.bind="value" input.bind="input"
+      two-line preload-options>
+      <template au-slot="option">
+        <mdc-list-item-primary-text>${option.name}</mdc-list-item-primary-text>
+        <mdc-list-item-secondary-text>with id=${option.id}</mdc-list-item-secondary-text>
+      </template>
+    </mdc-lookup>
+  </div>
+</div>
+<div class="demo-layout__row">
+  You've picked ${value | json}
+</div>

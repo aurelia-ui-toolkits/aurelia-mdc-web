@@ -18,6 +18,7 @@ import { Snackbar } from '../snackbar/snackbar';
 import { Dialog } from '../dialog/dialog';
 import { Menu } from '../menu/menu';
 import { Select } from '../select/select';
+import { Lookup } from '../lookup/lookup';
 
 @route({
   routes: [
@@ -32,6 +33,7 @@ import { Select } from '../select/select';
     { id: 'drawer', title: 'Drawer', component: Drawer },
     { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'list', title: 'List', component: List },
+    { id: 'lookup', title: 'Lookup', component: Lookup },
     { id: 'menu', title: 'Menu', component: Menu },
     { id: 'menu-surface', title: 'Menu surface', component: MenuSurface },
     { id: 'select', title: 'Select', component: Select },

@@ -1,30 +1,30 @@
 <template class="mdc-lookup">
   <mdc-menu view-model.ref="menu" mdcmenu:selected.trigger="handleMenuItemAction($event)" anchor-corner="BOTTOM_LEFT"
-    anchor.bind="input" hoist-to-body.bind="hoistToBody">
+    anchor.bind="input" hoist-to-body.bind="hoistToBody" class="${menuClass}">
     <mdc-list role="menu" two-line.bind="twoLine" wrap-focus>
 
       <mdc-list-item if.bind="searching">
-        <template replaceable part="searching">
+        <au-slot name="searching">
           ${defaultConfiguration.searchingMessage}
-        </template>
+        </au-slot>
       </mdc-list-item>
 
       <mdc-list-item if.bind="errorMessage">
-        <template replaceable part="error">
+        <au-slot name="error">
           ${errorMessage}
-        </template>
+        </au-slot>
       </mdc-list-item>
 
       <mdc-list-item if.bind="optionsArray && !optionsArray.length">
-        <template replaceable part="not-found">
+        <au-slot name="not-found">
           ${defaultConfiguration.notFoundMessage}
-        </template>
+        </au-slot>
       </mdc-list-item>
 
-      <mdc-list-item role="menuitem" repeat.for="option of optionsArray" value.bind="option">
-        <template replaceable part="option">
+      <mdc-list-item role="menuitem" repeat.for="option of optionsArray" value.bind="option" tabindex="-1">
+        <au-slot name="option">
           ${getDisplay(option)}
-        </template>
+        </au-slot>
       </mdc-list-item>
     </mdc-list>
   </mdc-menu>

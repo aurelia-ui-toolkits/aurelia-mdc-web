@@ -15,6 +15,7 @@
     "packages/icon-button",
     "packages/line-ripple",
     "packages/list",
+    "packages/lookup",
     "packages/menu",
     "packages/menu-surface",
     "packages/notched-outline",

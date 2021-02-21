@@ -57,6 +57,7 @@
     "@aurelia-mdc-web/icon": "^1.1.3",
     "@aurelia-mdc-web/line-ripple": "^1.1.3",
     "@aurelia-mdc-web/list": "^1.1.3",
+    "@aurelia-mdc-web/lookup": "^1.1.3",
     "@aurelia-mdc-web/menu": "^1.1.3",
     "@aurelia-mdc-web/menu-surface": "^1.1.3",
     "@aurelia-mdc-web/notched-outline": "^1.1.3",

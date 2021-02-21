@@ -1,9 +1,8 @@
-import { customElement, useView, inject, PLATFORM, bindingMode } from 'aurelia-framework';
+import { customElement, inject, bindable, BindingMode, CustomElement } from 'aurelia';
 import { DiscardablePromise } from './discardable-promise';
 import { MdcDefaultLookupConfiguration } from './mdc-lookup-configuration';
-import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
-import { IValidatedElement } from '@aurelia-mdc-web/base';
+import { IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { closest } from '@material/dom/ponyfill';
 
 const UP = 38;
@@ -16,13 +15,11 @@ const bodyEvents = ['touchstart', 'mousedown'];
  */
 @inject(Element, MdcDefaultLookupConfiguration)
 @customElement('mdc-lookup')
-@useView(PLATFORM.moduleName('./mdc-lookup.html'))
 export class MdcLookup implements EventListenerObject {
   constructor(private root: HTMLElement, private defaultConfiguration: MdcDefaultLookupConfiguration) {
     defineMdcLookupElementApis(this.root);
   }
 
-  public anchor: { left: number; top: string | undefined; bottom: string | undefined; maxHeight: number; width: number } | null;
   public isWrapperOpen: boolean = false;
   public optionsArray?: unknown[];
   public focusedOption: unknown = undefined;
@@ -86,16 +83,32 @@ export class MdcLookup implements EventListenerObject {
   @bindable
   options: unknown[] | undefined | ((filter: string, value: unknown) => Promise<unknown[]>);
   optionsChanged() {
+    const shouldRefresh = this.getOptions !== undefined;
     if (this.options instanceof Function) {
       this.getOptions = this.options;
     } else {
       this.getOptions = this.getOptionsDefault;
     }
+    if (shouldRefresh) {
+      this.optionsArray = undefined;
+      this.value = undefined;
+      if (this.preloadOptions) {
+        this.loadOptions(false);
+      }
+    }
   }
 
   /** Hoists the menu to document body */
-  @bindable({ set: booleanAttr })({ defaultBindingMode: bindingMode.oneTime })
+  @bindable({ set: booleanAttr, mode: BindingMode.oneTime })
   hoistToBody: boolean;
+
+  /** Sets the menu width to fit content */
+  @bindable({ set: booleanAttr })
+  naturalWidth: boolean;
+
+  /** The CSS class to set on the menu. Helps styling body hoisted menus */
+  @bindable
+  menuClass: string;
 
   getOptions: (filter: string | undefined, value: unknown) => Promise<unknown[]>;
 
@@ -109,7 +122,7 @@ export class MdcLookup implements EventListenerObject {
   }
 
   /** The selected value */
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ mode: BindingMode.twoWay })
   value: unknown;
   suppressValueChanged: boolean;
   async valueChanged() {
@@ -118,7 +131,7 @@ export class MdcLookup implements EventListenerObject {
       return;
     }
     await this.updateFilterBasedOnValue();
-    this.root.dispatchEvent(new CustomEvent('change', { detail: { value: this.value } }));
+    this.root.dispatchEvent(new CustomEvent('change', { bubbles: true, detail: { value: this.value } }));
   }
   setValue(value: unknown) {
     if (this.value === value) {
@@ -129,14 +142,14 @@ export class MdcLookup implements EventListenerObject {
   }
 
   /** Sets debounce in milliseconds */
-  @bindable.number
+  @bindable({ set: number })
   debounce: number = this.defaultConfiguration.debounce;
 
   /** Loads the options to the menu when attached */
   @bindable({ set: booleanAttr })
   preloadOptions: boolean;
 
-  bind() {
+  bound() {
     this.valueFieldChanged();
     this.displayFieldChanged();
     this.optionsChanged();
@@ -164,6 +177,9 @@ export class MdcLookup implements EventListenerObject {
   open() {
     if (this.input?.disabled || this.input?.readOnly || this.menu.open || this.optionsArray === undefined && !this.searching && !this.errorMessage) {
       return;
+    }
+    if (!this.naturalWidth) {
+      this.menu.root.style.width = `${this.input?.clientWidth}px`;
     }
     this.menu.open = true;
   }
@@ -213,7 +229,7 @@ export class MdcLookup implements EventListenerObject {
     if (open) {
       this.open();
     }
-    this.optionsArray = [];
+    this.optionsArray = undefined;
     try {
       this.searchPromise = new DiscardablePromise(this.getOptions(this.input?.value, undefined));
       this.optionsArray = await this.searchPromise;
@@ -257,6 +273,7 @@ export class MdcLookup implements EventListenerObject {
   select(option: unknown) {
     this.value = this.getValue(option);
     this.close();
+    this.input?.focus();
   }
 
   suppressBlur: boolean;
@@ -265,6 +282,9 @@ export class MdcLookup implements EventListenerObject {
       this.suppressBlur = false;
       return;
     }
+    // re-emit on root
+    this.root.dispatchEvent(new CustomEvent('blur'));
+    this.root.dispatchEvent(new CustomEvent('focusout'));
     this.close();
   }
 
@@ -294,56 +314,53 @@ export class MdcLookup implements EventListenerObject {
     return true;
   }
 
-  addError(error: unknown) {
+  addError(error: IError) {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
       (this.input as HTMLElement as IValidatedElement).addError(error);
     }
   }
 
-  removeError(error: unknown) {
+  removeError(error: IError) {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
       (this.input as HTMLElement as IValidatedElement).removeError(error);
     }
   }
 
-  getErrors(): unknown[] {
-    if (this.input && Object.getOwnPropertyDescriptor(this.input, 'getErrors')) {
-      return (this.input as HTMLElement as IValidatedElement).getErrors();
-    } else {
-      return [];
+  renderErrors() {
+    if (this.input && Object.getOwnPropertyDescriptor(this.input, 'renderErrors')) {
+      (this.input as HTMLElement as IValidatedElement).renderErrors();
     }
   }
 }
 
 /** @hidden */
-export interface IMdcLookupElement extends HTMLElement {
-  au: {
-    controller: {
+export interface IMdcLookupElement extends IValidatedElement {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcLookup;
     };
   };
-  getErrors(): unknown[];
 }
 
 function defineMdcLookupElementApis(element: HTMLElement) {
   Object.defineProperties(element, {
     addError: {
-      value(this: IMdcLookupElement, error: unknown) {
-        this.au.controller.viewModel.addError(error);
+      value(this: IMdcLookupElement, error: IError) {
+        CustomElement.for<MdcLookup>(this).viewModel.addError(error);
       },
       configurable: true
     },
     removeError: {
-      value(this: IMdcLookupElement, error: unknown) {
-        this.au.controller.viewModel.removeError(error);
+      value(this: IMdcLookupElement, error: IError) {
+        CustomElement.for<MdcLookup>(this).viewModel.removeError(error);
       },
       configurable: true
     },
-    getErrors: {
-      value(this: IMdcLookupElement): unknown[] {
-        return this.au.controller.viewModel.getErrors();
+    renderErrors: {
+      value(this: IMdcLookupElement): void {
+        CustomElement.for<MdcLookup>(this).viewModel.renderErrors();
       },
       configurable: true
-    }
+    },
   });
 }
