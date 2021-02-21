@@ -8,10 +8,10 @@ import { MdcComponent, IValidatedElement, IError, booleanAttr, number } from '@a
 import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
 import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
-import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './mdc-text-field-icon';
-import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
-import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
-import { IMdcTextFieldHelperLineElement, MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
+import { MdcTextFieldIcon, mdcIconStrings } from './mdc-text-field-icon';
+import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
+import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';
+import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 import { processContent, IPlatform, CustomAttribute, CustomElement } from '@aurelia/runtime-html';
 
 let textFieldId = 0;

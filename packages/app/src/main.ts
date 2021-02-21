@@ -14,6 +14,7 @@ import { ExampleViewer } from './elements/example-viewer/example-viewer';
 import { JsonValueConverter } from './converters/json';
 import { ValidationHtmlConfiguration } from '@aurelia/validation-html';
 import { ValidationConfiguration } from '@aurelia/validation';
+import { MdcValidationControllerFactory } from '@aurelia-mdc-web/validation';
 
 Aurelia
   // .register(StyleConfiguration.shadowDOM({
@@ -21,7 +22,8 @@ Aurelia
   //   sharedStyles: [shared]
   // }))
   .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: false }), MaterialConfiguration, SVGAnalyzer,
-    Home, GettingStarted, Hljs, ApiViewer, ExampleViewer, JsonValueConverter, ValidationHtmlConfiguration, ValidationConfiguration
+    Home, GettingStarted, Hljs, ApiViewer, ExampleViewer, JsonValueConverter,
+    ValidationHtmlConfiguration.customize(o => o.ValidationControllerFactoryType = MdcValidationControllerFactory), ValidationConfiguration
   )
   // To use HTML5 pushState routes, replace previous line with the following
   // customized router config.

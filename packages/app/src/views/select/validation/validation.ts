@@ -1,5 +1,4 @@
 import { IValidationController } from '@aurelia/validation-html';
-import { MdcValidationResultPresenter } from '@aurelia-mdc-web/validation';
 import { IValidationRules } from '@aurelia/validation';
 import { newInstanceForScope } from '@aurelia/kernel';
 import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
@@ -7,7 +6,6 @@ import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
 export class Validation {
   constructor(@newInstanceForScope(IValidationController) private validationController: IValidationController,
     @IValidationRules private rules: IValidationRules, private snackbarService: MdcSnackbarService) {
-    this.validationController.addSubscriber(new MdcValidationResultPresenter());
     this.rules.on(Validation).ensure(x => x.validatedValue).required().then()
       .satisfies(x => x.id !== 1).withMessage('No cats')
       .satisfies(x => x.id !== 1).withMessage('please');
