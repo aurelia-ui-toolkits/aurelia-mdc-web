@@ -25,6 +25,7 @@ import { Expandable } from '../expandable/expandable';
 import { Fab } from '../fab/fab';
 import { ImageList } from '../image-list/image-list';
 import { LayoutGrid } from '../layout-grid/layout-grid';
+import { LinearProgress } from '../linear-progress/linear-progress';
 
 @route({
   routes: [
@@ -45,6 +46,7 @@ import { LayoutGrid } from '../layout-grid/layout-grid';
     { id: 'image-list', title: 'Image list', component: ImageList },
     { id: 'layout-grid', title: 'Layout grid', component: LayoutGrid },
     { id: 'list', title: 'List', component: List },
+    { id: 'linear-progress', title: 'Linear progress', component: LinearProgress },
     { id: 'lookup', title: 'Lookup', component: Lookup },
     { id: 'menu', title: 'Menu', component: Menu },
     { id: 'menu-surface', title: 'Menu surface', component: MenuSurface },

@@ -30,6 +30,7 @@ import { ElevationConfiguration } from '@aurelia-mdc-web/elevation';
 import { FabConfiguration } from '@aurelia-mdc-web/fab';
 import { ImageListConfiguration } from '@aurelia-mdc-web/image-list';
 import { LayoutGridConfiguration } from '@aurelia-mdc-web/layout-grid';
+import { LinearProgressConfiguration } from '@aurelia-mdc-web/linear-progress';
 
 export const AllConfiguration = {
   /**
@@ -40,7 +41,7 @@ export const AllConfiguration = {
       ButtonConfiguration, CardConfiguration, CheckboxConfiguration, ChipsConfiguration, CircularProgressConfiguration, DataTableConfiguration,
       DialogConfiguration, DrawerConfiguration, ElevationConfiguration, ExpandableConfiguration, FabConfiguration, FloatingLabelConfiguration,
       FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, ImageListConfiguration, LayoutGridConfiguration,
-      LineRippleConfiguration, ListConfiguration,
+      LineRippleConfiguration, LinearProgressConfiguration, ListConfiguration,
       LookupConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration,
       SelectConfiguration, SnackbarConfiguration, TabBarConfiguration, TextFieldConfiguration, TopAppBarConfiguration, TypographyConfiguration,
     );

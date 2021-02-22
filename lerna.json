@@ -20,6 +20,7 @@
     "packages/image-list",
     "packages/layout-grid",
     "packages/line-ripple",
+    "packages/linear-progress",
     "packages/list",
     "packages/lookup",
     "packages/menu",

@@ -1,21 +1,18 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCLinearProgressFoundation, MDCLinearProgressAdapter } from '@material/linear-progress';
-import { bindable } from 'aurelia-typed-observable-plugin';
-import { useView, inject, PLATFORM, customElement } from 'aurelia-framework';
+import { MdcComponent, number, booleanAttr } from '@aurelia-mdc-web/base';
+import { MDCLinearProgressFoundation, MDCLinearProgressAdapter, WithMDCResizeObserver } from '@material/linear-progress';
+import { inject, customElement, bindable } from 'aurelia';
 
 /**
  * @selector mdc-linear-progress
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-linear-progress.html'))
 @customElement('mdc-linear-progress')
 export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation> {
 
   /** Sets the progress bar to this value. Value should be between [0, 1] or undefined for indeterminate progress indicator. */
-  @bindable.number
+  @bindable({ set: number })
   progress?: number;
-  async progressChanged() {
-    await this.initialised;
+  progressChanged() {
     const determinate = this.progress !== undefined && !isNaN(this.progress);
     this.foundation?.setDeterminate(determinate);
     if (determinate) {
@@ -23,19 +20,10 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
     }
   }
 
-  /** Reverses the direction of the linear progress indicator */
-  @bindable({ set: booleanAttr })
-  reverse: boolean;
-  async reverseChanged() {
-    await this.initialised;
-    this.foundation?.setReverse(this.reverse);
-  }
-
   /** Sets the buffer bar to this value. Value should be between [0, 1] or undefined. */
-  @bindable.number
+  @bindable({ set: number })
   buffer?: number;
-  async bufferChanged() {
-    await this.initialised;
+  bufferChanged() {
     if (this.buffer !== undefined && !isNaN(this.buffer)) {
       this.foundation?.setBuffer(this.buffer);
     }
@@ -44,8 +32,7 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
   /** Sets the component open state */
   @bindable({ set: booleanAttr })
   open: boolean;
-  async openChanged() {
-    await this.initialised;
+  openChanged() {
     if (this.open) {
       this.foundation?.open();
     } else {
@@ -53,9 +40,10 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
+  initialSyncWithDOM() {
     this.progressChanged();
+    this.openChanged();
+    this.bufferChanged();
   }
 
   getDefaultFoundation() {
@@ -92,6 +80,20 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
       setAttribute: (attributeName: string, value: string) => {
         this.root.setAttribute(attributeName, value);
       },
+      setStyle: (name: string, value: string) => {
+        this.root.style.setProperty(name, value);
+      },
+      attachResizeObserver: (callback) => {
+        const RO = (window as unknown as WithMDCResizeObserver).ResizeObserver;
+        if (RO) {
+          const ro = new RO(callback);
+          ro.observe(this.root);
+          return ro;
+        }
+
+        return null;
+      },
+      getWidth: () => this.root.offsetWidth
     };
     return new MDCLinearProgressFoundation(adapter);
   }
