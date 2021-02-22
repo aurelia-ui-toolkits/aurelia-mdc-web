@@ -1,4 +1,4 @@
-import { inject, customAttribute } from 'aurelia-framework';
+import { inject, customAttribute } from 'aurelia';
 
 /**
  * Optional. Can be used with SVG icons, for example.

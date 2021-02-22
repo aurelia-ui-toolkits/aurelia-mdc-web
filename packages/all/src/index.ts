@@ -27,6 +27,7 @@ import { MenuConfiguration } from '@aurelia-mdc-web/menu';
 import { MenuSurfaceConfiguration } from '@aurelia-mdc-web/menu-surface';
 import { ExpandableConfiguration } from '@aurelia-mdc-web/expandable';
 import { ElevationConfiguration } from '@aurelia-mdc-web/elevation';
+import { FabConfiguration } from '@aurelia-mdc-web/fab';
 
 export const AllConfiguration = {
   /**
@@ -35,10 +36,10 @@ export const AllConfiguration = {
   register(container: IContainer): IContainer {
     return container.register(
       ButtonConfiguration, CardConfiguration, CheckboxConfiguration, ChipsConfiguration, CircularProgressConfiguration, DataTableConfiguration,
-      DialogConfiguration, DrawerConfiguration, ElevationConfiguration, ExpandableConfiguration, FloatingLabelConfiguration, FormFieldConfiguration,
-      IconButtonConfiguration, IconConfiguration, LineRippleConfiguration, ListConfiguration, LookupConfiguration, MenuConfiguration,
-      MenuSurfaceConfiguration, NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration, SelectConfiguration, SnackbarConfiguration,
-      TabBarConfiguration, TextFieldConfiguration, TopAppBarConfiguration, TypographyConfiguration,
+      DialogConfiguration, DrawerConfiguration, ElevationConfiguration, ExpandableConfiguration, FabConfiguration, FloatingLabelConfiguration,
+      FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, LineRippleConfiguration, ListConfiguration, LookupConfiguration,
+      MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration, SelectConfiguration,
+      SnackbarConfiguration, TabBarConfiguration, TextFieldConfiguration, TopAppBarConfiguration, TypographyConfiguration,
     );
   },
   /**

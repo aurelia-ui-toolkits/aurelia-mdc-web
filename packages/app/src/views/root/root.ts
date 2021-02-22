@@ -22,6 +22,7 @@ import { Lookup } from '../lookup/lookup';
 import { Chips } from '../chips/chips';
 import { Elevation } from '../elevation/elevation';
 import { Expandable } from '../expandable/expandable';
+import { Fab } from '../fab/fab';
 
 @route({
   routes: [
@@ -37,6 +38,7 @@ import { Expandable } from '../expandable/expandable';
     { id: 'drawer', title: 'Drawer', component: Drawer },
     { id: 'elevation', title: 'Elevation', component: Elevation },
     { id: 'expandable', title: 'Expandable', component: Expandable },
+    { id: 'fab', title: 'Fab', component: Fab },
     { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'list', title: 'List', component: List },
     { id: 'lookup', title: 'Lookup', component: Lookup },

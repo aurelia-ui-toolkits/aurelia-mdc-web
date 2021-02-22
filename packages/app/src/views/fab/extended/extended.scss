@@ -1,0 +1,14 @@
+@use '@material/fab';
+@use '@material/theme/color-palette' as material-color;
+
+.mdc-fab.blackFab {
+  @include fab.accessible(black);
+}
+
+.mdc-fab.purple500Fab {
+  @include fab.accessible(material-color.$purple-500);
+}
+
+.demo-fab-extended-shape-radius {
+  @include fab.extended-shape-radius(25%);
+}

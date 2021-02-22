@@ -1,0 +1,71 @@
+<template>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">FAB</h3>
+      <au-compose subject.bind="default"></au-compose>
+    <example-viewer html.bind="defaultHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Mini</h3>
+    <div class="demo-layout__row">
+      <au-compose subject.bind="mini"></au-compose>
+    </div>
+    <example-viewer html.bind="miniHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Extended FAB</h3>
+    <au-compose subject.bind="extended"></au-compose>
+    <example-viewer html.bind="extendedHtml" sass.bind="extendedSass"></example-viewer>
+  </div>
+
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Exit/Entry Animation</h3>
+      <au-compose subject.bind="animation"></au-compose>
+    <example-viewer html.bind="animationHtml"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Shaped</h3>
+    <div class="demo-layout__row">
+      <au-compose subject.bind="shaped"></au-compose>
+    </div>
+    <example-viewer html.bind="shapedHtml" sass.bind="shapedSass"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Theme</h3>
+    <div class="demo-layout__row">
+      <au-compose subject.bind="theme"></au-compose>
+    </div>
+    <example-viewer html.bind="themeHtml" sass.bind="themeSass"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Custom icon size</h3>
+    <div class="demo-layout__row">
+      <div class="demo-container">
+        <au-compose subject.bind="custom"></au-compose>
+      </div>
+    </div>
+    <example-viewer html.bind="customHtml" sass.bind="customSass"></example-viewer>
+  </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Accessibility</h3>
+    <p>
+      Material Design spec advises that touch targets should be at least 48x48px.
+      While the FAB is 48x48px by default, the mini FAB is 40x40px. To meet this
+      requirement, add the `touch` property.
+    </p>
+    <p>
+      Note that the outer mdc-touch-target-wrapper element is only necessary if
+      you want to avoid potentially overlapping touch targets on adjacent elements
+      (due to collapsing margins). </p>
+    <div class="demo-layout__row">
+      <au-compose subject.bind="accessibility"></au-compose>
+    </div>
+    <example-viewer html.bind="accessibilityHtml"></example-viewer>
+  </div>
+</template>

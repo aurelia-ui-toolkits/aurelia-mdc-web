@@ -1,0 +1,8 @@
+<div class="demo-layout__row">
+  <button as-element="mdc-button" click.delegate="exited = !exited">Toggle Exited</button>
+  <button as-element="mdc-button" click.delegate="mini = !mini">
+    Mini:${animationMini ? 'On' : 'Off'}</button>
+</div>
+<div class="demo-layout__row">
+  <button as-element="mdc-fab" mini.bind="mini" exited.bind="exited" click.delegate="exited = !exited" icon="save"></button>
+</div>

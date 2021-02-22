@@ -1,13 +1,14 @@
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, bindable } from 'aurelia';
+import { booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { processContent } from '@aurelia/runtime-html';
 
 /**
  * @selector mdc-fab
  * @selector a[mdc-fab]
  * @selector button[mdc-fab]
  */
-@useView(PLATFORM.moduleName('./mdc-fab.html'))
 @customElement('mdc-fab')
+@processContent(defaultSlotProcessContent)
 export class MdcFab {
   /** Make the fab smaller (40 x 40 pixels) */
   @bindable({ set: booleanAttr })
