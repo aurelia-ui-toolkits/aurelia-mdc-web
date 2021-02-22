@@ -11,6 +11,7 @@
     "packages/data-table",
     "packages/dialog",
     "packages/drawer",
+    "packages/elevation",
     "packages/floating-label",
     "packages/icon",
     "packages/icon-button",

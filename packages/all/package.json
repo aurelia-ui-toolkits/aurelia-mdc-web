@@ -53,6 +53,7 @@
     "@aurelia-mdc-web/data-table": "^1.1.3",
     "@aurelia-mdc-web/dialog": "^1.1.3",
     "@aurelia-mdc-web/drawer": "^1.1.3",
+    "@aurelia-mdc-web/elevation": "^1.1.3",
     "@aurelia-mdc-web/floating-label": "^1.1.3",
     "@aurelia-mdc-web/form-field": "^1.1.3",
     "@aurelia-mdc-web/icon": "^1.1.3",

@@ -25,6 +25,7 @@ import { TopAppBarConfiguration } from '@aurelia-mdc-web/top-app-bar';
 import { TypographyConfiguration } from '@aurelia-mdc-web/typography';
 import { MenuConfiguration } from '@aurelia-mdc-web/menu';
 import { MenuSurfaceConfiguration } from '@aurelia-mdc-web/menu-surface';
+import { ElevationConfiguration } from '@aurelia-mdc-web/elevation';
 
 export const AllConfiguration = {
   /**
