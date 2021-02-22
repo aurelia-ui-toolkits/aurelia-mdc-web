@@ -1,9 +1,10 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from 'aurelia';
+import { MdcElevation } from './mdc-elevation';
 
 export { MdcElevation } from './mdc-elevation';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-elevation')
-  ]);
-}
+export const ElevationConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcElevation);
+  }
+};
