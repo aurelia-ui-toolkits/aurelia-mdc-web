@@ -1,5 +1,6 @@
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, bindable, inject } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
+import { defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
 
 export interface IColumnsOptions {
   media: string;
@@ -12,9 +13,14 @@ let id = 0;
 /**
  * @selector mdc-image-list
  */
-@useView(PLATFORM.moduleName('./mdc-image-list.html'))
+@inject(Element)
 @customElement('mdc-image-list')
+@processContent(defaultSlotProcessContent)
 export class MdcImageList {
+  constructor(private root: HTMLElement) {
+    this.root.setAttribute('id', this.id);
+  }
+
   style: HTMLStyleElement;
 
   id = `mdc-image-list-${++id}`;
@@ -36,7 +42,7 @@ export class MdcImageList {
     }
     const columns = typeof this.columns === 'string' ? [{ count: parseInt(this.columns) }] : this.columns;
     if (this.masonry) {
-      this.style.innerHTML  = columns.filter(x => x.count).reduce((p, c) => {
+      this.style.innerHTML = columns.filter(x => x.count).reduce((p, c) => {
         p += `${c.media ? `@media (${c.media}) {` : ''}
   #${this.id} {
     column-count: ${c.count};
@@ -50,7 +56,7 @@ ${c.media ? '}' : ''}`;
         return p;
       }, '');
     } else {
-      this.style.innerHTML  = columns.filter(x => x.count).reduce((p, c) => {
+      this.style.innerHTML = columns.filter(x => x.count).reduce((p, c) => {
         p += `${c.media ? `@media (${c.media}) {` : ''}
   #${this.id} .mdc-image-list__item {
     width: calc(100% / ${c.count} - ${(c.gutterSize ?? 4) + 1 / c.count!}px);
@@ -62,7 +68,7 @@ ${c.media ? '}' : ''}`;
     }
   }
 
-  bind() {
+  bound() {
     this.columnsChanged();
   }
 }

@@ -1,10 +1,11 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from 'aurelia';
+import { MdcImageList } from './mdc-image-list';
+import { MdcImageListItem } from './mdc-image-list-item/mdc-image-list-item';
 
 export { MdcImageList } from './mdc-image-list';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-image-list'),
-    PLATFORM.moduleName('./mdc-image-list-item/mdc-image-list-item')
-  ]);
-}
+export const ImageListConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcImageList, MdcImageListItem);
+  }
+};
