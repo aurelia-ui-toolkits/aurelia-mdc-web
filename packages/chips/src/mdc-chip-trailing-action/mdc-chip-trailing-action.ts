@@ -1,7 +1,8 @@
-import { useView, customElement, PLATFORM, inject, View } from 'aurelia-framework';
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { customElement, inject } from 'aurelia';
+import { MdcComponent, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { MDCChipTrailingActionFoundation, MDCChipTrailingActionAdapter, MDCChipTrailingActionInteractionEventDetail, MDCChipTrailingActionNavigationEventDetail } from '@material/chips';
 import { strings } from '@material/chips/trailingaction/constants';
+import { processContent } from '@aurelia/runtime-html';
 
 MDCChipTrailingActionFoundation.strings.NAVIGATION_EVENT = MDCChipTrailingActionFoundation.strings.NAVIGATION_EVENT.toLowerCase();
 MDCChipTrailingActionFoundation.strings.INTERACTION_EVENT = MDCChipTrailingActionFoundation.strings.INTERACTION_EVENT.toLowerCase();
@@ -14,9 +15,14 @@ let chipTrailingAction = 0;
  * @selector mdc-chip-trailing-action
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-chip-trailing-action.html'))
 @customElement('mdc-chip-trailing-action')
+@processContent(defaultSlotProcessContent)
 export class MdcChipTrailingAction extends MdcComponent<MDCChipTrailingActionFoundation> {
+  constructor(root: HTMLElement) {
+    super(root);
+    this.root.setAttribute('id', this.id);
+  }
+
   id: string = `mdc-chip-trailing-action-${++chipTrailingAction}`;
 
   /** Set focus to the action */
@@ -62,9 +68,8 @@ export class MdcChipTrailingAction extends MdcComponent<MDCChipTrailingActionFou
 
 /** @hidden */
 export interface IMdcChipTrailingActionElement extends HTMLElement {
-  au: {
-    controller: {
-      view: View;
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcChipTrailingAction;
     };
   };

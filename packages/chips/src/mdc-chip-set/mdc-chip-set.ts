@@ -1,17 +1,17 @@
-import { useView, inject, PLATFORM, customElement, children, View } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { inject, customElement, children, bindable } from 'aurelia';
 import {
   MDCChipSetFoundation, MDCChipSetAdapter, MDCChip,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail
 } from '@material/chips';
 import { announce } from '@material/dom/announce';
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { processContent } from '@aurelia/runtime-html';
 
 let chipSetId = 0;
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-chip-set.html'))
 @customElement('mdc-chip-set')
+// @processContent(defaultSlotProcessContent)
 export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
 
   id: string = `mdc-chip-set-${++chipSetId}`;
@@ -35,7 +35,7 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
   input: boolean;
 
   // a list of MDC chips
-  @children('mdc-chip')
+  @children({ query: controller => controller.host.querySelectorAll('mdc-chip') })
   chips: MDCChip[];
 
   handleChipInteraction_(eventDetail: MDCChipInteractionEventDetail) {
@@ -88,9 +88,8 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
 
 /** @hidden */
 export interface IMdcChipSetElement extends HTMLElement {
-  au: {
-    controller: {
-      view: View;
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcChipSet;
     };
   };

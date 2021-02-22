@@ -19,6 +19,7 @@
     "@aurelia-mdc-web/button": "^1.1.3",
     "@aurelia-mdc-web/card": "^1.1.3",
     "@aurelia-mdc-web/checkbox": "^1.1.3",
+    "@aurelia-mdc-web/chips": "^1.1.3",
     "@aurelia-mdc-web/circular-progress": "^1.1.3",
     "@aurelia-mdc-web/data-table": "^1.1.3",
     "@aurelia-mdc-web/dialog": "^1.1.3",

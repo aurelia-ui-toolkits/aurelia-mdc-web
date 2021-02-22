@@ -1,5 +1,6 @@
-import { useView, customElement, PLATFORM, inject, View } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, inject, bindable } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
+import { defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
 
 let chipSetIcon = 0;
 
@@ -9,10 +10,12 @@ let chipSetIcon = 0;
  * @selector mdc-chip-icon
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-chip-icon.html'))
 @customElement('mdc-chip-icon')
+@processContent(defaultSlotProcessContent)
 export class MdcChipIcon {
-  constructor(public root: HTMLElement) { }
+  constructor(public root: HTMLElement) {
+    this.root.setAttribute('id', this.id);
+  }
 
   id: string = `mdc-chip-icon-${++chipSetIcon}`;
 
@@ -27,9 +30,8 @@ export class MdcChipIcon {
 
 /** @hidden */
 export interface IMdcChipIconElement extends HTMLElement {
-  au: {
-    controller: {
-      view: View;
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcChipIcon;
     };
   };

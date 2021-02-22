@@ -1,21 +1,23 @@
-import { customElement, inject, useView, PLATFORM, View } from 'aurelia-framework';
+import { customElement, inject } from 'aurelia';
 import { closest } from '@material/dom/ponyfill';
-import { IMdcChipSetElement } from '../mdc-chip-set/mdc-chip-set';
+import { MdcChipSet } from '../mdc-chip-set/mdc-chip-set';
+import { processContent, CustomElement } from '@aurelia/runtime-html';
+import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 
 /**
  * @hidden
  * @selector mdc-chip-primary-action
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-chip-primary-action.html'))
 @customElement('mdc-chip-primary-action')
+@processContent(defaultSlotProcessContent)
 export class MdcChipPrimaryAction {
   constructor(public root: HTMLElement) { }
 
   role: string;
 
   attached() {
-    const chipSet = (closest(this.root, '.mdc-chip-set') as IMdcChipSetElement)?.au.controller.viewModel;
+    const chipSet = CustomElement.for<MdcChipSet>(closest(this.root, '.mdc-chip-set')!).viewModel;
     this.root.setAttribute('role', chipSet.filter ? 'checkbox' : (chipSet.choice ? 'radio' : 'button'));
   }
 
@@ -26,9 +28,8 @@ export class MdcChipPrimaryAction {
 
 /** @hidden */
 export interface IMdcChipPrimaryActionElement extends HTMLElement {
-  au: {
-    controller: {
-      view: View;
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcChipPrimaryAction;
     };
   };

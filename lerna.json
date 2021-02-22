@@ -6,6 +6,7 @@
     "packages/button",
     "packages/card",
     "packages/checkbox",
+    "packages/chips",
     "packages/circular-progress",
     "packages/data-table",
     "packages/dialog",

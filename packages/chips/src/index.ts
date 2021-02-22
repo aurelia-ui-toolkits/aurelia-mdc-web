@@ -1,6 +1,14 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, ObserverLocator, CheckedObserver, EventSubscriber } from 'aurelia-framework';
-import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 import { strings } from '@material/chips/chip/constants';
+import { IContainer, AppTask, IAttrSyntaxTransformer, NodeObserverLocator } from 'aurelia';
+import { MdcChip } from './mdc-chip/mdc-chip';
+import { CheckedObserver } from '@aurelia/runtime-html';
+import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { MdcChipIcon } from './mdc-chip-icon/mdc-chip-icon';
+import { MdcChipPrimaryAction } from './mdc-chip-primary-action/mdc-chip-primary-action';
+import { MdcChipSet } from './mdc-chip-set/mdc-chip-set';
+import { MdcChipTrailingAction } from './mdc-chip-trailing-action/mdc-chip-trailing-action';
+import { MdcChipCheckmark } from './mdc-chip-checkmark';
+import { MdcChipText } from './mdc-chip-text';
 
 export { MdcChip } from './mdc-chip/mdc-chip';
 export { MdcChipSet } from './mdc-chip-set/mdc-chip-set';
@@ -10,31 +18,20 @@ export { MdcChipCheckmark } from './mdc-chip-checkmark';
 export { MdcChipText } from './mdc-chip-text';
 export { MdcChipTrailingAction } from './mdc-chip-trailing-action/mdc-chip-trailing-action';
 
-export function configure(config: FrameworkConfiguration) {
-  config.container.get(MdcComponentAdapters).registerMdcElementConfig(chipConfig);
+let configured = false;
 
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-chip/mdc-chip'),
-    PLATFORM.moduleName('./mdc-chip-set/mdc-chip-set'),
-    PLATFORM.moduleName('./mdc-chip-icon/mdc-chip-icon'),
-    PLATFORM.moduleName('./mdc-chip-primary-action/mdc-chip-primary-action'),
-    PLATFORM.moduleName('./mdc-chip-checkmark'),
-    PLATFORM.moduleName('./mdc-chip-text'),
-    PLATFORM.moduleName('./mdc-chip-trailing-action/mdc-chip-trailing-action'),
-    PLATFORM.moduleName('./mdc-chip-trailing-action/enhance-mdc-chip-trailing-action')
-  ]);
-
-  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
-}
-
-const chipConfig = {
-  tagName: 'mdc-chip',
-  properties: {
-    checked: {
-      defaultBindingMode: bindingMode.twoWay,
-      getObserver(element: Element, _: string, observerLocator: ObserverLocator) {
-        return new CheckedObserver(element, new EventSubscriber([strings.SELECTION_EVENT]), observerLocator);
-      }
+export const ChipsConfiguration = {
+  register(container: IContainer): IContainer {
+    if (!configured) {
+      AppTask.with(IContainer).beforeCreate().call(c => {
+        const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
+        const nodeObserverLocator = c.get(NodeObserverLocator);
+        attrSyntaxTransformer.useTwoWay((el, property) => el.tagName === 'MDC-CHIP' ? property === 'checked' : false);
+        nodeObserverLocator.useConfig({ 'MDC-CHIP': { checked: { events: [strings.SELECTION_EVENT], type: CheckedObserver } } });
+      }).register(container);
+      configured = true;
     }
+    return container.register(MdcChip, MdcChipIcon, MdcChipPrimaryAction, MdcChipSet, MdcChipTrailingAction, MdcChipCheckmark, MdcChipText,
+      RippleConfiguration);
   }
 };

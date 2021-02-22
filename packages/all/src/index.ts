@@ -2,6 +2,7 @@ import { IContainer, DI } from '@aurelia/kernel';
 import { ButtonConfiguration } from '@aurelia-mdc-web/button';
 import { CardConfiguration } from '@aurelia-mdc-web/card';
 import { CheckboxConfiguration } from '@aurelia-mdc-web/checkbox';
+import { ChipsConfiguration } from '@aurelia-mdc-web/chips';
 import { CircularProgressConfiguration } from '@aurelia-mdc-web/circular-progress';
 import { DataTableConfiguration } from '@aurelia-mdc-web/data-table';
 import { DialogConfiguration } from '@aurelia-mdc-web/dialog';
@@ -31,7 +32,7 @@ export const AllConfiguration = {
    */
   register(container: IContainer): IContainer {
     return container.register(
-      ButtonConfiguration, CardConfiguration, CheckboxConfiguration, CircularProgressConfiguration, DataTableConfiguration,
+      ButtonConfiguration, CardConfiguration, CheckboxConfiguration, ChipsConfiguration, CircularProgressConfiguration, DataTableConfiguration,
       DialogConfiguration, DrawerConfiguration, FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration,
       IconConfiguration, LineRippleConfiguration, ListConfiguration, LookupConfiguration, MenuConfiguration, MenuSurfaceConfiguration,
       NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration, SelectConfiguration, SnackbarConfiguration, TabBarConfiguration,

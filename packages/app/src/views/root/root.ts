@@ -19,6 +19,7 @@ import { Dialog } from '../dialog/dialog';
 import { Menu } from '../menu/menu';
 import { Select } from '../select/select';
 import { Lookup } from '../lookup/lookup';
+import { Chips } from '../chips/chips';
 
 @route({
   routes: [
@@ -27,6 +28,7 @@ import { Lookup } from '../lookup/lookup';
     { id: 'button', title: 'Button', component: Button },
     { id: 'card', title: 'Card', component: Card },
     { id: 'checkbox', title: 'Checkbox', component: Checkbox },
+    { id: 'chips', title: 'Chips', component: Chips },
     { id: 'circular-progress', title: 'Circular progress', component: CircularProgress },
     { id: 'data-table', title: 'Data table', component: DataTable },
     { id: 'dialog', title: 'Dialog', component: Dialog },
