@@ -18,6 +18,7 @@
     "packages/icon",
     "packages/icon-button",
     "packages/image-list",
+    "packages/layout-grid",
     "packages/line-ripple",
     "packages/list",
     "packages/lookup",

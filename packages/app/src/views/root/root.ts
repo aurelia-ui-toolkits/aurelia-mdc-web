@@ -24,6 +24,7 @@ import { Elevation } from '../elevation/elevation';
 import { Expandable } from '../expandable/expandable';
 import { Fab } from '../fab/fab';
 import { ImageList } from '../image-list/image-list';
+import { LayoutGrid } from '../layout-grid/layout-grid';
 
 @route({
   routes: [
@@ -42,6 +43,7 @@ import { ImageList } from '../image-list/image-list';
     { id: 'fab', title: 'Fab', component: Fab },
     { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'image-list', title: 'Image list', component: ImageList },
+    { id: 'layout-grid', title: 'Layout grid', component: LayoutGrid },
     { id: 'list', title: 'List', component: List },
     { id: 'lookup', title: 'Lookup', component: Lookup },
     { id: 'menu', title: 'Menu', component: Menu },

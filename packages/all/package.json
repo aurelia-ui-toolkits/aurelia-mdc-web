@@ -60,6 +60,7 @@
     "@aurelia-mdc-web/form-field": "^1.1.3",
     "@aurelia-mdc-web/icon": "^1.1.3",
     "@aurelia-mdc-web/image-list": "^1.1.3",
+    "@aurelia-mdc-web/layout-grid": "^1.1.3",
     "@aurelia-mdc-web/line-ripple": "^1.1.3",
     "@aurelia-mdc-web/list": "^1.1.3",
     "@aurelia-mdc-web/lookup": "^1.1.3",

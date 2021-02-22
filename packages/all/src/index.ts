@@ -29,6 +29,8 @@ import { ExpandableConfiguration } from '@aurelia-mdc-web/expandable';
 import { ElevationConfiguration } from '@aurelia-mdc-web/elevation';
 import { FabConfiguration } from '@aurelia-mdc-web/fab';
 import { ImageListConfiguration } from '@aurelia-mdc-web/image-list';
+import { LayoutGridConfiguration } from '@aurelia-mdc-web/layout-grid';
+
 export const AllConfiguration = {
   /**
    * Apply this configuration to the provided container.
@@ -37,7 +39,8 @@ export const AllConfiguration = {
     return container.register(
       ButtonConfiguration, CardConfiguration, CheckboxConfiguration, ChipsConfiguration, CircularProgressConfiguration, DataTableConfiguration,
       DialogConfiguration, DrawerConfiguration, ElevationConfiguration, ExpandableConfiguration, FabConfiguration, FloatingLabelConfiguration,
-      FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, ImageListConfiguration, LineRippleConfiguration, ListConfiguration,
+      FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, ImageListConfiguration, LayoutGridConfiguration,
+      LineRippleConfiguration, ListConfiguration,
       LookupConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration,
       SelectConfiguration, SnackbarConfiguration, TabBarConfiguration, TextFieldConfiguration, TopAppBarConfiguration, TypographyConfiguration,
     );

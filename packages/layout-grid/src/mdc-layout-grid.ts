@@ -1,11 +1,10 @@
-import { customElement, useView, PLATFORM, inject } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, inject, bindable } from 'aurelia';
+import { booleanAttr, number } from '@aurelia-mdc-web/base';
 
 /**
  * @selector mdc-layout-grid
  */
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-layout-grid.html'))
 @customElement('mdc-layout-grid')
 export class MdcLayoutGrid {
   constructor(private root: HTMLElement) { }
@@ -18,24 +17,50 @@ export class MdcLayoutGrid {
   @bindable({ set: booleanAttr })
   fixedColumnWidth: boolean;
 
+  /** Specifies the grid should have no padding */
+  @bindable({ set: booleanAttr })
+  noPadding: boolean;
+
   /** Set desktop column width */
-  @bindable.number
+  @bindable({ set: number })
   desktopColumnWidth: string;
-  desktopColumnWidthChanged(){
+  desktopColumnWidthChanged() {
     this.root.style.setProperty('--mdc-layout-grid-column-width-desktop', `${this.desktopColumnWidth}px`);
   }
 
   /** Set tablet column width */
-  @bindable.number
+  @bindable({ set: number })
   tabletColumnWidth: string;
-  tabletColumnWidthChanged(){
+  tabletColumnWidthChanged() {
     this.root.style.setProperty('--mdc-layout-grid-column-width-tablet', `${this.tabletColumnWidth}px`);
   }
 
   /** Set phone column width */
-  @bindable.number
+  @bindable({ set: number })
   phoneColumnWidth: string;
-  phoneColumnWidthChanged(){
+  phoneColumnWidthChanged() {
     this.root.style.setProperty('--mdc-layout-grid-column-width-phone', `${this.phoneColumnWidth}px`);
+  }
+
+  /** Set all column widths at once */
+  @bindable({ set: number })
+  columnWidths: string;
+  columnWidthsChanged() {
+    [this.phoneColumnWidth, this.tabletColumnWidth, this.desktopColumnWidth] = this.columnWidths.split(' ');
+  }
+
+  bound() {
+    if (this.columnWidths !== undefined) {
+      this.columnWidthsChanged();
+    }
+    if (this.phoneColumnWidth !== undefined) {
+      this.phoneColumnWidthChanged();
+    }
+    if (this.tabletColumnWidth !== undefined) {
+      this.tabletColumnWidthChanged();
+    }
+    if (this.desktopColumnWidth !== undefined) {
+      this.desktopColumnWidthChanged();
+    }
   }
 }

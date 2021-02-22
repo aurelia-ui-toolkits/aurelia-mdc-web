@@ -1,11 +1,12 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from 'aurelia';
+import { MdcLayoutGridInner } from './mdc-layout-grid-inner';
+import { MdcLayoutGridCell } from './mdc-layout-grid-cell/mdc-layout-grid-cell';
+import { MdcLayoutGrid } from './mdc-layout-grid';
 
 export { MdcLayoutGrid } from './mdc-layout-grid';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-layout-grid'),
-    PLATFORM.moduleName('./mdc-layout-grid-inner'),
-    PLATFORM.moduleName('./mdc-layout-grid-cell/mdc-layout-grid-cell')
-  ]);
-}
+export const LayoutGridConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcLayoutGrid, MdcLayoutGridInner, MdcLayoutGridCell);
+  }
+};
