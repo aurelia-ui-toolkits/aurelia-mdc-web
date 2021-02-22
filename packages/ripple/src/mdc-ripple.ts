@@ -7,13 +7,8 @@ import { customAttribute, bindable, inject } from 'aurelia';
 @inject(Element)
 @customAttribute('mdc-ripple')
 export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
-  inputBindingPromiseResolver: (value?: unknown) => void;
-  inputBindingPromise = new Promise(r => this.inputBindingPromiseResolver = r);
   @bindable
   input?: HTMLInputElement;
-  inputChanged() {
-    this.inputBindingPromiseResolver();
-  }
 
   @bindable
   surface?: HTMLElement;
@@ -49,11 +44,6 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
         (this.surface ?? this.root).classList.add('mdc-ripple-surface--accent');
       }
     }
-    // TODO check if this is still needed
-    // const inputBinding = (this.root as IMdcRippleElement).au['mdc-ripple'].boundProperties.find(x => x.binding.targetProperty === 'input');
-    // if (inputBinding) {
-    // await this.inputBindingPromise;
-    // }
   }
 
   initialSyncWithDOM() {
@@ -83,14 +73,26 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
       computeBoundingRect: () => (this.surface ?? this.root).getBoundingClientRect(),
       containsEventTarget: (target) => this.root.contains(target as Node),
       deregisterDocumentInteractionHandler: (evtType, handler) => document.documentElement.removeEventListener(evtType, handler, applyPassive()),
-      deregisterInteractionHandler: (evtType, handler) => (this.input ?? this.root).removeEventListener(evtType, handler, applyPassive()),
+      deregisterInteractionHandler: (evtType, handler) => {
+        if (this.input) {
+          this.input.removeEventListener(evtType, handler, applyPassive());
+        } else {
+          this.root.removeEventListener(evtType, handler, applyPassive());
+        }
+      },
       deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
       getWindowPageOffset: () => ({ x: window.pageXOffset, y: window.pageYOffset }),
       isSurfaceActive: () => this.activeSurface && matches(this.input ?? this.root, ':active'),
       isSurfaceDisabled: () => this.disabled,
       isUnbounded: () => this.unbounded,
       registerDocumentInteractionHandler: (evtType, handler) => document.documentElement.addEventListener(evtType, handler, applyPassive()),
-      registerInteractionHandler: (evtType, handler) => (this.input ?? this.root).addEventListener(evtType, handler, applyPassive()),
+      registerInteractionHandler: (evtType, handler) => {
+        if (this.input) {
+          this.input.addEventListener(evtType, handler, applyPassive());
+        } else {
+          this.root.addEventListener(evtType, handler, applyPassive());
+        }
+      },
       registerResizeHandler: (handler) => window.addEventListener('resize', handler),
       removeClass: (className) => (this.surface ?? this.root).classList.remove(className),
       updateCssVariable: (varName, value) => (this.surface ?? this.root).style.setProperty(varName, value),
