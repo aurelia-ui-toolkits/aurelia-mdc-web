@@ -272,6 +272,10 @@
     @include shape-mixins.radius(0 0 $radius $radius, $rtl-reflexive, $query);
   }
 
+  &:first-of-type:last-of-type {
+    @include shape-mixins.radius($radius, $rtl-reflexive, $query);
+  }
+
   &.mdc-expandable--open {
     @include shape-mixins.radius($radius, $rtl-reflexive, $query);
 

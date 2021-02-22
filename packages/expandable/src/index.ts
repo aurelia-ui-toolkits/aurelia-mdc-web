@@ -1,11 +1,11 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { IContainer } from 'aurelia';
+import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { MdcExpandable } from './mdc-expandable';
 
 export { MdcExpandable } from './mdc-expandable';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-expandable'),
-  ]);
-
-  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
-}
+export const ExpandableConfiguration = {
+  register(container: IContainer): IContainer {
+    return container.register(MdcExpandable, RippleConfiguration);
+  }
+};

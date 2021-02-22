@@ -20,6 +20,8 @@ import { Menu } from '../menu/menu';
 import { Select } from '../select/select';
 import { Lookup } from '../lookup/lookup';
 import { Chips } from '../chips/chips';
+import { Elevation } from '../elevation/elevation';
+import { Expandable } from '../expandable/expandable';
 
 @route({
   routes: [
@@ -33,6 +35,8 @@ import { Chips } from '../chips/chips';
     { id: 'data-table', title: 'Data table', component: DataTable },
     { id: 'dialog', title: 'Dialog', component: Dialog },
     { id: 'drawer', title: 'Drawer', component: Drawer },
+    { id: 'elevation', title: 'Elevation', component: Elevation },
+    { id: 'expandable', title: 'Expandable', component: Expandable },
     { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'list', title: 'List', component: List },
     { id: 'lookup', title: 'Lookup', component: Lookup },

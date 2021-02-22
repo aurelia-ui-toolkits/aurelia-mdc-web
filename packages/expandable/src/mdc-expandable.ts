@@ -1,16 +1,16 @@
-import { customElement, useView, PLATFORM, TaskQueue, inject, DOM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { customElement, inject, bindable, IPlatform, INode } from 'aurelia';
+import { booleanAttr } from '@aurelia-mdc-web/base';
+import { CustomElement } from '@aurelia/runtime-html';
 
 const OPEN_CHANGED_EVENT = 'mdcexpandable:open-changed';
 const ENTER = 13;
 const SPACE = 32;
 
 /** @selector mdc-expandable */
-@inject(Element, TaskQueue)
+@inject(Element, IPlatform)
 @customElement('mdc-expandable')
-@useView(PLATFORM.moduleName('./mdc-expandable.html'))
 export class MdcExpandable {
-  constructor(public element: HTMLElement, private taskQueue: TaskQueue) { }
+  constructor(public element: HTMLElement, private platform: IPlatform) { }
 
   header: HTMLElement;
   content: HTMLElement;
@@ -46,9 +46,6 @@ export class MdcExpandable {
     this.contentContainer.removeEventListener('transitionend', this);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  bind() { }
-
   attached() {
     this.openChanged();
   }
@@ -61,7 +58,7 @@ export class MdcExpandable {
     } else {
       // the following line is needed because height has been restored to auto'
       this.contentContainer.style.height = `${this.content.clientHeight}px`;
-      this.taskQueue.queueTask(() => {
+      this.platform.taskQueue.queueTask(() => {
         this.contentContainer.style.overflow = 'hidden';
         this.contentContainer.style.height = '0';
       });
@@ -73,9 +70,9 @@ export class MdcExpandable {
     if (!this.open && this.accordion !== undefined) {
       const otherAccordions = this.accordion === ''
         ? Array.from(this.element.parentElement!.querySelectorAll('.mdc-expandable[accordion].mdc-expandable--open'))
-        : Array.from(DOM.querySelectorAll(`.mdc-expandable[accordion='${this.accordion}'].mdc-expandable--open`));
+        : Array.from(this.platform.document.querySelectorAll(`.mdc-expandable[accordion='${this.accordion}'].mdc-expandable--open`));
       otherAccordions.filter(x => x !== this.element)
-        .map(x => (x as IMdcExpandableElement).au.controller.viewModel)
+        .map(x => CustomElement.for<MdcExpandable>(x).  viewModel)
         .forEach(x => x.toggle());
     }
     this.open = !this.open;
@@ -99,8 +96,8 @@ export class MdcExpandable {
 
 /** @hidden */
 export interface IMdcExpandableElement extends HTMLElement {
-  au: {
-    controller: {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcExpandable;
     };
   };
