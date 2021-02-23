@@ -26,7 +26,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-button/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/button\'));',
+    code: `import { ButtonConfiguration } from '@aurelia-web-mdc/button';
+Aurelia.register(ButtonConfiguration).app(component).start();`,
     sass: '@use \'@material/button/mdc-button\';'
   },
   'card': {
@@ -42,7 +43,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-card/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/card\'));',
+    code: `import { CardConfiguration } from '@aurelia-web-mdc/card';
+Aurelia.register(CardConfiguration).app(component).start();`,
     sass: `@use '@material/card/mdc-card';
 @use '@material/card';`
   },
@@ -59,7 +61,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-checkbox/README.md#style-customization' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/checkbox\'));',
+    code: `import { CheckboxConfiguration } from '@aurelia-web-mdc/checkbox';
+Aurelia.register(CheckboxConfiguration).app(component).start();`,
     sass: `@use '@material/checkbox/mdc-checkbox';
 @use '@material/checkbox';`
   },
@@ -76,7 +79,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-chips/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/chips\'));',
+    code: `import { ChipsConfiguration } from '@aurelia-web-mdc/chips';
+Aurelia.register(ChipsConfiguration).app(component).start();`,
     sass: `@use '@material/chips/mdc-chips';
 @use '@aurelia-mdc-web/chips';
 `
@@ -94,7 +98,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-circular-progress/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/circular-progress\'));',
+    code: `import { CircularProgressConfiguration } from '@aurelia-web-mdc/circular-progress';
+Aurelia.register(CircularProgressConfiguration).app(component).start();`,
     sass: `@use '@material/circular-progress/mdc-circular-progress';
 @use '@material/circular-progress';
 @use "@aurelia-mdc-web/circular-progress";`
@@ -113,7 +118,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-data-table/README.md#sass-mixins' },
     ],
-    code: 'import {MDCDataTableModule} from \'@angular-mdc-web/data-table\';',
+    code: `import { DataTableConfiguration } from '@aurelia-web-mdc/data-table';
+Aurelia.register(DataTableConfiguration).app(component).start();`,
     sass: `@use '@material/data-table/mdc-data-table';
 @use '@material/data-table';`
   },
@@ -130,7 +136,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-dialog/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/dialog\'));',
+    code: `import { DialogConfiguration } from '@aurelia-web-mdc/dialog';
+Aurelia.register(DialogConfiguration).app(component).start();`,
     sass: `@use '@material/dialog/mdc-dialog';
 @use '@material/dialog';`
   },
@@ -147,7 +154,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-drawer/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/drawer\'));',
+    code: `import { DrawerConfiguration } from '@aurelia-web-mdc/drawer';
+Aurelia.register(DrawerConfiguration).app(component).start();`,
     sass: '@use "@material/drawer/mdc-drawer";'
   },
   'expandable': {
@@ -155,7 +163,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     description: 'Expandable provides an expandable details-summary view.',
     references: [],
     mdcUrls: [],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/expandable\'));',
+    code: `import { ExpandableConfiguration } from '@aurelia-web-mdc/expandable';
+Aurelia.register(ExpandableConfiguration).app(component).start();`,
     sass: '@use "@aurelia-mdc-web/expandable";'
   },
   'elevation': {
@@ -173,7 +182,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-elevation/README.md#style-customization' },
     ],
-    code: 'import {MdcElevationModule} from \'@angular-mdc/web/elevation\';',
+    code: `import { ElevationConfiguration } from '@aurelia-web-mdc/elevation';
+    Aurelia.register(ElevationConfiguration).app(component).start();`,
     sass: '@use \'@material/elevation/mdc-elevation\';'
   },
   'fab': {
@@ -189,7 +199,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-fab/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/fab\'));',
+    code: `import { FabConfiguration } from '@aurelia-web-mdc/fab';
+Aurelia.register(FabConfiguration).app(component).start();`,
     sass: `@use '@material/fab/mdc-fab';
 @use '@material/fab';`
   },
@@ -202,7 +213,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
       name: 'Material Components Web',
       url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-form-field/README.md'
     }],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/form-field\'));',
+    code: `import { FormFieldConfiguration } from '@aurelia-web-mdc/form-field';
+Aurelia.register(FormFieldConfiguration).app(component).start();`,
     sass: `@use '@material/form-field/mdc-form-field';
 @use '@material/form-field/_index' as form-field;`
   },
@@ -219,7 +231,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-icon-button/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/icon-button\'));',
+    code: `import { IconButtonConfiguration } from '@aurelia-web-mdc/icon-button';
+Aurelia.register(IconButtonConfiguration).app(component).start();`,
     sass: `@use '@material/icon-button/mdc-icon-button';
 @use '@material/icon-button/_index' as icon-button;`
   },
@@ -236,7 +249,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-image-list/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/image-list\'))',
+    code: `import { ImageListConfiguration } from '@aurelia-web-mdc/image-list';
+Aurelia.register(ImageListConfiguration).app(component).start();`,
     sass: `@use '@material/image-list/mdc-image-list';
 @use '@material/image-list';
 @use '@aurelia-mdc-web/image-list';`
@@ -254,7 +268,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-layout-grid/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/layout-grid\'));',
+    code: `import { LayoutGridConfiguration } from '@aurelia-web-mdc/layout-grid';
+Aurelia.register(LayoutGridConfiguration).app(component).start();`,
     sass: `@use "@material/layout-grid/mdc-layout-grid";
 @use "@aurelia-mdc-web/layout-grid";`
   },
@@ -271,7 +286,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-list/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/list\'));',
+    code: `import { ListConfiguration } from '@aurelia-web-mdc/list';
+Aurelia.register(ListConfiguration).app(component).start();`,
     sass: `@use '@material/list/mdc-list';
 @use '@material/list';`
   },
@@ -288,7 +304,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-linear-progress/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/linear-progress\'));',
+    code: `import { LinearProgressConfiguration } from '@aurelia-web-mdc/linear-progress';
+Aurelia.register(LinearProgressConfiguration).app(component).start();`,
     sass: `@use '@material/linear-progress/mdc-linear-progress';
 @use '@material/linear-progress';`
   },
@@ -305,7 +322,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/lookup\'));',
+    code: `import { LookupConfiguration } from '@aurelia-web-mdc/lookup';
+Aurelia.register(LookupConfiguration).app(component).start();`,
     sass: `@use '@material/menu/mdc-menu';
 @use '@material/menu';
 @use '@material/list/mdc-list';
@@ -324,7 +342,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/menu\'));',
+    code: `import { MenuConfiguration } from '@aurelia-web-mdc/menu';
+Aurelia.register(MenuConfiguration).app(component).start();`,
     sass: `@use '@material/menu/mdc-menu';
 @use '@material/menu';
 @use '@material/list/mdc-list';
@@ -340,7 +359,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu-surface/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/menu-surface\'));',
+    code: `import { MenuSurfaceConfiguration } from '@aurelia-web-mdc/menu-surface';
+Aurelia.register(MenuSurfaceConfiguration).app(component).start();`,
     sass: `@use '@material/menu-surface/mdc-menu-surface';
 @use '@material/menu-surface';`
   },
@@ -357,7 +377,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-radio/README.md#style-customization' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/radio\'));',
+    code: `import { RadioConfiguration } from '@aurelia-web-mdc/radio';
+Aurelia.register(RadioConfiguration).app(component).start();`,
     sass: `@use '@material/radio/mdc-radio';
 @use '@material/radio';
 @use '@material/form-field/mdc-form-field';`
@@ -375,7 +396,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-ripple/README.md#sass-apis' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/ripple\'));',
+    code: `import { RippleConfiguration } from '@aurelia-web-mdc/ripple';
+Aurelia.register(RippleConfiguration).app(component).start();`,
     sass: `@use '@material/ripple/mdc-ripple';
 @use '@material/ripple';`
   },
@@ -394,7 +416,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/helper-text/README.md#sass-mixins' },
       { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/icon/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/select\'));',
+    code: `import { SelectConfiguration } from '@aurelia-web-mdc/select';
+Aurelia.register(SelectConfiguration).app(component).start();`,
     sass: `@use '@material/select/mdc-select';
 @use '@material/select/_index' as select;
 @use '@material/list/mdc-list';
@@ -414,7 +437,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-slider/README.md#theming' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/slider\'));',
+    code: `import { SliderConfiguration } from '@aurelia-web-mdc/slider';
+Aurelia.register(SliderConfiguration).app(component).start();`,
     sass: `@use '@material/slider/mdc-slider';
 @use '@material/slider';`
   },
@@ -431,7 +455,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-snackbar/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/snackbar\'))',
+    code: `import { SnackbarConfiguration } from '@aurelia-web-mdc/snackbar';
+    Aurelia.register(SnackbarConfiguration).app(component).start();`,
     sass: `@use '@material/snackbar/mdc-snackbar';
 @use '@material/snackbar';`
   },
@@ -448,7 +473,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-switch/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/switch\'));',
+    code: `import { SwitchConfiguration } from '@aurelia-web-mdc/switch';
+Aurelia.register(SwitchConfiguration).app(component).start();`,
     sass: `@use '@material/switch/mdc-switch';
 @use '@material/switch';`
   },
@@ -477,7 +503,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Tab Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab/README.md#sass-mixins' },
       { name: 'Indicator Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab-indicator/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/tab-bar\'));',
+    code: `import { TabBarConfiguration } from '@aurelia-web-mdc/tab-bar';
+Aurelia.register(TabBarConfiguration).app(component).start();`,
     sass: `@use '@material/tab-bar/mdc-tab-bar';
 @use '@material/tab-bar';
 @use '@material/tab-scroller/mdc-tab-scroller';
@@ -503,7 +530,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/helper-text/README.md#sass-mixins' },
       { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/icon/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/text-field\'));',
+    code: `import { TextFieldConfiguration } from '@aurelia-web-mdc/text-field';
+Aurelia.register(TextFieldConfiguration).app(component).start();`,
     sass: `@use "@material/textfield/mdc-text-field";
 @use "@material/textfield/_index" as textfield;
 @use "@material/form-field/_index" as form-field;
@@ -522,7 +550,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-top-app-bar/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/top-app-bar\'));',
+    code: `import { TopAppBarConfiguration } from '@aurelia-web-mdc/top-app-bar';
+Aurelia.register(TopAppBarConfiguration).app(component).start();`,
     sass: `@use '@material/top-app-bar/mdc-top-app-bar';
 @use '@material/top-app-bar';
 @use '@material/icon-button/mdc-icon-button';`
@@ -532,7 +561,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     description: 'The tree view provides a Material Design styled tree that can be used to display hierarchy data.',
     references: [],
     mdcUrls: [],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/tree-view\'));',
+    code: `import { TreeViewConfiguration } from '@aurelia-web-mdc/tree-view';
+Aurelia.register(TreeViewConfiguration).app(component).start();`,
     sass: '@use "@aurelia-mdc-web/tree-view";'
   },
   'typography': {
@@ -548,7 +578,8 @@ export const templates: { [x: string]: IComponentTemplate } = {
     mdcUrls: [
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-typography/README.md#style-customization' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/typography\'));',
+    code: `import { TypographyConfiguration } from '@aurelia-web-mdc/typography';
+Aurelia.register(TypographyConfiguration).app(component).start();`,
     sass: `@use '@material/typography/mdc-typography';
 @use '@material/typography';`
   }
