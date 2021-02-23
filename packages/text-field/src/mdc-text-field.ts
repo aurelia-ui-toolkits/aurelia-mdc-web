@@ -428,6 +428,11 @@ export interface IMdcTextFieldElement extends IValidatedElement {
 
 function defineMdcTextFieldElementApis(element: HTMLElement) {
   Object.defineProperties(element, {
+    tagName: {
+      get() {
+        return 'MDC-TEXT-FIELD';
+      }
+    },
     value: {
       get(this: IMdcTextFieldElement) {
         return CustomElement.for<MdcTextField>(this).viewModel.value;
