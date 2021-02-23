@@ -2,338 +2,338 @@
 # yarn lockfile v1
 
 
-"@aurelia-mdc-web/all@4.0.1-au2", "@aurelia-mdc-web/all@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\all":
+"@aurelia-mdc-web/all@4.0.1-au2.1", "@aurelia-mdc-web/all@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\all":
   "resolved" "file:packages/all"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/button" "4.0.1-au2"
-    "@aurelia-mdc-web/card" "4.0.1-au2"
-    "@aurelia-mdc-web/checkbox" "4.0.1-au2"
-    "@aurelia-mdc-web/chips" "4.0.1-au2"
-    "@aurelia-mdc-web/circular-progress" "4.0.1-au2"
-    "@aurelia-mdc-web/data-table" "4.0.1-au2"
-    "@aurelia-mdc-web/dialog" "4.0.1-au2"
-    "@aurelia-mdc-web/drawer" "4.0.1-au2"
-    "@aurelia-mdc-web/elevation" "4.0.1-au2"
-    "@aurelia-mdc-web/expandable" "4.0.1-au2"
-    "@aurelia-mdc-web/fab" "4.0.1-au2"
-    "@aurelia-mdc-web/floating-label" "4.0.1-au2"
-    "@aurelia-mdc-web/form-field" "4.0.1-au2"
-    "@aurelia-mdc-web/icon" "4.0.1-au2"
-    "@aurelia-mdc-web/image-list" "4.0.1-au2"
-    "@aurelia-mdc-web/layout-grid" "4.0.1-au2"
-    "@aurelia-mdc-web/line-ripple" "4.0.1-au2"
-    "@aurelia-mdc-web/linear-progress" "4.0.1-au2"
-    "@aurelia-mdc-web/list" "4.0.1-au2"
-    "@aurelia-mdc-web/lookup" "4.0.1-au2"
-    "@aurelia-mdc-web/menu" "4.0.1-au2"
-    "@aurelia-mdc-web/menu-surface" "4.0.1-au2"
-    "@aurelia-mdc-web/notched-outline" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
-    "@aurelia-mdc-web/select" "4.0.1-au2"
-    "@aurelia-mdc-web/slider" "4.0.1-au2"
-    "@aurelia-mdc-web/snackbar" "4.0.1-au2"
-    "@aurelia-mdc-web/switch" "4.0.1-au2"
-    "@aurelia-mdc-web/tab-bar" "4.0.1-au2"
-    "@aurelia-mdc-web/text-field" "4.0.1-au2"
-    "@aurelia-mdc-web/tooltip" "4.0.1-au2"
-    "@aurelia-mdc-web/top-app-bar" "4.0.1-au2"
-    "@aurelia-mdc-web/typography" "4.0.1-au2"
-    "@aurelia-mdc-web/validation" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/button" "4.0.1-au2.1"
+    "@aurelia-mdc-web/card" "4.0.1-au2.1"
+    "@aurelia-mdc-web/checkbox" "4.0.1-au2.1"
+    "@aurelia-mdc-web/chips" "4.0.1-au2.1"
+    "@aurelia-mdc-web/circular-progress" "4.0.1-au2.1"
+    "@aurelia-mdc-web/data-table" "4.0.1-au2.1"
+    "@aurelia-mdc-web/dialog" "4.0.1-au2.1"
+    "@aurelia-mdc-web/drawer" "4.0.1-au2.1"
+    "@aurelia-mdc-web/elevation" "4.0.1-au2.1"
+    "@aurelia-mdc-web/expandable" "4.0.1-au2.1"
+    "@aurelia-mdc-web/fab" "4.0.1-au2.1"
+    "@aurelia-mdc-web/floating-label" "4.0.1-au2.1"
+    "@aurelia-mdc-web/form-field" "4.0.1-au2.1"
+    "@aurelia-mdc-web/icon" "4.0.1-au2.1"
+    "@aurelia-mdc-web/image-list" "4.0.1-au2.1"
+    "@aurelia-mdc-web/layout-grid" "4.0.1-au2.1"
+    "@aurelia-mdc-web/line-ripple" "4.0.1-au2.1"
+    "@aurelia-mdc-web/linear-progress" "4.0.1-au2.1"
+    "@aurelia-mdc-web/list" "4.0.1-au2.1"
+    "@aurelia-mdc-web/lookup" "4.0.1-au2.1"
+    "@aurelia-mdc-web/menu" "4.0.1-au2.1"
+    "@aurelia-mdc-web/menu-surface" "4.0.1-au2.1"
+    "@aurelia-mdc-web/notched-outline" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
+    "@aurelia-mdc-web/select" "4.0.1-au2.1"
+    "@aurelia-mdc-web/slider" "4.0.1-au2.1"
+    "@aurelia-mdc-web/snackbar" "4.0.1-au2.1"
+    "@aurelia-mdc-web/switch" "4.0.1-au2.1"
+    "@aurelia-mdc-web/tab-bar" "4.0.1-au2.1"
+    "@aurelia-mdc-web/text-field" "4.0.1-au2.1"
+    "@aurelia-mdc-web/tooltip" "4.0.1-au2.1"
+    "@aurelia-mdc-web/top-app-bar" "4.0.1-au2.1"
+    "@aurelia-mdc-web/typography" "4.0.1-au2.1"
+    "@aurelia-mdc-web/validation" "4.0.1-au2.1"
 
-"@aurelia-mdc-web/base@4.0.1-au2", "@aurelia-mdc-web/base@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\base":
+"@aurelia-mdc-web/base@4.0.1-au2.1", "@aurelia-mdc-web/base@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\base":
   "resolved" "file:packages/base"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
     "@material/base" "^10.0.0"
 
-"@aurelia-mdc-web/button@4.0.1-au2", "@aurelia-mdc-web/button@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\button":
+"@aurelia-mdc-web/button@4.0.1-au2.1", "@aurelia-mdc-web/button@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\button":
   "resolved" "file:packages/button"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/button" "^10.0.0"
     "@material/feature-targeting" "^10.0.0"
 
-"@aurelia-mdc-web/card@4.0.1-au2", "@aurelia-mdc-web/card@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\card":
+"@aurelia-mdc-web/card@4.0.1-au2.1", "@aurelia-mdc-web/card@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\card":
   "resolved" "file:packages/card"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/card" "^10.0.0"
 
-"@aurelia-mdc-web/checkbox@4.0.1-au2", "@aurelia-mdc-web/checkbox@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\checkbox":
+"@aurelia-mdc-web/checkbox@4.0.1-au2.1", "@aurelia-mdc-web/checkbox@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\checkbox":
   "resolved" "file:packages/checkbox"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/checkbox" "^10.0.0"
 
-"@aurelia-mdc-web/chips@4.0.1-au2", "@aurelia-mdc-web/chips@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\chips":
+"@aurelia-mdc-web/chips@4.0.1-au2.1", "@aurelia-mdc-web/chips@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\chips":
   "resolved" "file:packages/chips"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/chips" "^10.0.0"
     "@material/ripple" "^10.0.0"
 
-"@aurelia-mdc-web/circular-progress@4.0.1-au2", "@aurelia-mdc-web/circular-progress@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\circular-progress":
+"@aurelia-mdc-web/circular-progress@4.0.1-au2.1", "@aurelia-mdc-web/circular-progress@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\circular-progress":
   "resolved" "file:packages/circular-progress"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/circular-progress" "^10.0.0"
 
-"@aurelia-mdc-web/data-table@4.0.1-au2", "@aurelia-mdc-web/data-table@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\data-table":
+"@aurelia-mdc-web/data-table@4.0.1-au2.1", "@aurelia-mdc-web/data-table@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\data-table":
   "resolved" "file:packages/data-table"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/checkbox" "4.0.1-au2"
-    "@aurelia-mdc-web/icon" "4.0.1-au2"
-    "@aurelia-mdc-web/linear-progress" "4.0.1-au2"
-    "@aurelia-mdc-web/select" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/checkbox" "4.0.1-au2.1"
+    "@aurelia-mdc-web/icon" "4.0.1-au2.1"
+    "@aurelia-mdc-web/linear-progress" "4.0.1-au2.1"
+    "@aurelia-mdc-web/select" "4.0.1-au2.1"
     "@material/data-table" "^10.0.0"
 
-"@aurelia-mdc-web/dialog@4.0.1-au2", "@aurelia-mdc-web/dialog@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\dialog":
+"@aurelia-mdc-web/dialog@4.0.1-au2.1", "@aurelia-mdc-web/dialog@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\dialog":
   "resolved" "file:packages/dialog"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/dialog" "^10.0.0"
 
-"@aurelia-mdc-web/drawer@4.0.1-au2", "@aurelia-mdc-web/drawer@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\drawer":
+"@aurelia-mdc-web/drawer@4.0.1-au2.1", "@aurelia-mdc-web/drawer@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\drawer":
   "resolved" "file:packages/drawer"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/drawer" "^10.0.0"
     "@material/list" "^10.0.0"
 
-"@aurelia-mdc-web/elevation@4.0.1-au2", "@aurelia-mdc-web/elevation@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\elevation":
+"@aurelia-mdc-web/elevation@4.0.1-au2.1", "@aurelia-mdc-web/elevation@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\elevation":
   "resolved" "file:packages/elevation"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
     "@material/elevation" "^10.0.0"
 
-"@aurelia-mdc-web/expandable@4.0.1-au2", "@aurelia-mdc-web/expandable@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\expandable":
+"@aurelia-mdc-web/expandable@4.0.1-au2.1", "@aurelia-mdc-web/expandable@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\expandable":
   "resolved" "file:packages/expandable"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/feature-targeting" "^10.0.0"
     "@material/theme" "^10.0.0"
 
-"@aurelia-mdc-web/fab@4.0.1-au2", "@aurelia-mdc-web/fab@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\fab":
+"@aurelia-mdc-web/fab@4.0.1-au2.1", "@aurelia-mdc-web/fab@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\fab":
   "resolved" "file:packages/fab"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/fab" "^10.0.0"
 
-"@aurelia-mdc-web/floating-label@4.0.1-au2", "@aurelia-mdc-web/floating-label@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\floating-label":
+"@aurelia-mdc-web/floating-label@4.0.1-au2.1", "@aurelia-mdc-web/floating-label@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\floating-label":
   "resolved" "file:packages/floating-label"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/floating-label" "^10.0.0"
 
-"@aurelia-mdc-web/form-field@4.0.1-au2", "@aurelia-mdc-web/form-field@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\form-field":
+"@aurelia-mdc-web/form-field@4.0.1-au2.1", "@aurelia-mdc-web/form-field@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\form-field":
   "resolved" "file:packages/form-field"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/form-field" "^10.0.0"
 
-"@aurelia-mdc-web/icon-button@4.0.1-au2", "@aurelia-mdc-web/icon-button@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\icon-button":
+"@aurelia-mdc-web/icon-button@4.0.1-au2.1", "@aurelia-mdc-web/icon-button@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\icon-button":
   "resolved" "file:packages/icon-button"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/icon-button" "^10.0.0"
 
-"@aurelia-mdc-web/icon@4.0.1-au2", "@aurelia-mdc-web/icon@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\icon":
+"@aurelia-mdc-web/icon@4.0.1-au2.1", "@aurelia-mdc-web/icon@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\icon":
   "resolved" "file:packages/icon"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
 
-"@aurelia-mdc-web/image-list@4.0.1-au2", "@aurelia-mdc-web/image-list@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\image-list":
+"@aurelia-mdc-web/image-list@4.0.1-au2.1", "@aurelia-mdc-web/image-list@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\image-list":
   "resolved" "file:packages/image-list"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/image-list" "^10.0.0"
 
-"@aurelia-mdc-web/layout-grid@4.0.1-au2", "@aurelia-mdc-web/layout-grid@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\layout-grid":
+"@aurelia-mdc-web/layout-grid@4.0.1-au2.1", "@aurelia-mdc-web/layout-grid@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\layout-grid":
   "resolved" "file:packages/layout-grid"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
     "@material/layout-grid" "^10.0.0"
 
-"@aurelia-mdc-web/line-ripple@4.0.1-au2", "@aurelia-mdc-web/line-ripple@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\line-ripple":
+"@aurelia-mdc-web/line-ripple@4.0.1-au2.1", "@aurelia-mdc-web/line-ripple@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\line-ripple":
   "resolved" "file:packages/line-ripple"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/line-ripple" "^10.0.0"
 
-"@aurelia-mdc-web/linear-progress@4.0.1-au2", "@aurelia-mdc-web/linear-progress@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\linear-progress":
+"@aurelia-mdc-web/linear-progress@4.0.1-au2.1", "@aurelia-mdc-web/linear-progress@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\linear-progress":
   "resolved" "file:packages/linear-progress"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/linear-progress" "^10.0.0"
 
-"@aurelia-mdc-web/list@4.0.1-au2", "@aurelia-mdc-web/list@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\list":
+"@aurelia-mdc-web/list@4.0.1-au2.1", "@aurelia-mdc-web/list@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\list":
   "resolved" "file:packages/list"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/list" "^10.0.0"
 
-"@aurelia-mdc-web/lookup@4.0.1-au2", "@aurelia-mdc-web/lookup@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\lookup":
+"@aurelia-mdc-web/lookup@4.0.1-au2.1", "@aurelia-mdc-web/lookup@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\lookup":
   "resolved" "file:packages/lookup"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/menu" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/menu" "4.0.1-au2.1"
 
-"@aurelia-mdc-web/menu-surface@4.0.1-au2", "@aurelia-mdc-web/menu-surface@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\menu-surface":
+"@aurelia-mdc-web/menu-surface@4.0.1-au2.1", "@aurelia-mdc-web/menu-surface@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\menu-surface":
   "resolved" "file:packages/menu-surface"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/menu-surface" "^10.0.0"
 
-"@aurelia-mdc-web/menu@4.0.1-au2", "@aurelia-mdc-web/menu@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\menu":
+"@aurelia-mdc-web/menu@4.0.1-au2.1", "@aurelia-mdc-web/menu@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\menu":
   "resolved" "file:packages/menu"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/list" "4.0.1-au2"
-    "@aurelia-mdc-web/menu-surface" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/list" "4.0.1-au2.1"
+    "@aurelia-mdc-web/menu-surface" "4.0.1-au2.1"
     "@material/menu" "^10.0.0"
 
-"@aurelia-mdc-web/notched-outline@4.0.1-au2", "@aurelia-mdc-web/notched-outline@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\notched-outline":
+"@aurelia-mdc-web/notched-outline@4.0.1-au2.1", "@aurelia-mdc-web/notched-outline@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\notched-outline":
   "resolved" "file:packages/notched-outline"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/floating-label" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/floating-label" "4.0.1-au2.1"
     "@material/floating-label" "^10.0.0"
     "@material/notched-outline" "^10.0.0"
 
 "@aurelia-mdc-web/radio@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\radio":
   "resolved" "file:packages/radio"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/radio" "^10.0.0"
 
-"@aurelia-mdc-web/ripple@4.0.1-au2", "@aurelia-mdc-web/ripple@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\ripple":
+"@aurelia-mdc-web/ripple@4.0.1-au2.1", "@aurelia-mdc-web/ripple@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\ripple":
   "resolved" "file:packages/ripple"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/ripple" "^10.0.0"
 
-"@aurelia-mdc-web/select@4.0.1-au2", "@aurelia-mdc-web/select@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\select":
+"@aurelia-mdc-web/select@4.0.1-au2.1", "@aurelia-mdc-web/select@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\select":
   "resolved" "file:packages/select"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/floating-label" "4.0.1-au2"
-    "@aurelia-mdc-web/line-ripple" "4.0.1-au2"
-    "@aurelia-mdc-web/list" "4.0.1-au2"
-    "@aurelia-mdc-web/menu" "4.0.1-au2"
-    "@aurelia-mdc-web/notched-outline" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/floating-label" "4.0.1-au2.1"
+    "@aurelia-mdc-web/line-ripple" "4.0.1-au2.1"
+    "@aurelia-mdc-web/list" "4.0.1-au2.1"
+    "@aurelia-mdc-web/menu" "4.0.1-au2.1"
+    "@aurelia-mdc-web/notched-outline" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/select" "^10.0.0"
 
-"@aurelia-mdc-web/slider@4.0.1-au2", "@aurelia-mdc-web/slider@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\slider":
+"@aurelia-mdc-web/slider@4.0.1-au2.1", "@aurelia-mdc-web/slider@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\slider":
   "resolved" "file:packages/slider"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/slider" "^10.0.0"
 
-"@aurelia-mdc-web/snackbar@4.0.1-au2", "@aurelia-mdc-web/snackbar@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\snackbar":
+"@aurelia-mdc-web/snackbar@4.0.1-au2.1", "@aurelia-mdc-web/snackbar@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\snackbar":
   "resolved" "file:packages/snackbar"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/button" "4.0.1-au2"
-    "@aurelia-mdc-web/icon-button" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/button" "4.0.1-au2.1"
+    "@aurelia-mdc-web/icon-button" "4.0.1-au2.1"
     "@material/snackbar" "^10.0.0"
 
-"@aurelia-mdc-web/switch@4.0.1-au2", "@aurelia-mdc-web/switch@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\switch":
+"@aurelia-mdc-web/switch@4.0.1-au2.1", "@aurelia-mdc-web/switch@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\switch":
   "resolved" "file:packages/switch"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/switch" "^10.0.0"
 
-"@aurelia-mdc-web/tab-bar@4.0.1-au2", "@aurelia-mdc-web/tab-bar@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\tab-bar":
+"@aurelia-mdc-web/tab-bar@4.0.1-au2.1", "@aurelia-mdc-web/tab-bar@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\tab-bar":
   "resolved" "file:packages/tab-bar"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/tab" "^10.0.0"
     "@material/tab-bar" "^10.0.0"
     "@material/tab-indicator" "^10.0.0"
     "@material/tab-scroller" "^10.0.0"
 
-"@aurelia-mdc-web/text-field@4.0.1-au2", "@aurelia-mdc-web/text-field@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\text-field":
+"@aurelia-mdc-web/text-field@4.0.1-au2.1", "@aurelia-mdc-web/text-field@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\text-field":
   "resolved" "file:packages/text-field"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/floating-label" "4.0.1-au2"
-    "@aurelia-mdc-web/line-ripple" "4.0.1-au2"
-    "@aurelia-mdc-web/notched-outline" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/floating-label" "4.0.1-au2.1"
+    "@aurelia-mdc-web/line-ripple" "4.0.1-au2.1"
+    "@aurelia-mdc-web/notched-outline" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/ripple" "^10.0.0"
     "@material/textfield" "^10.0.0"
 
-"@aurelia-mdc-web/tooltip@4.0.1-au2", "@aurelia-mdc-web/tooltip@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\tooltip":
+"@aurelia-mdc-web/tooltip@4.0.1-au2.1", "@aurelia-mdc-web/tooltip@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\tooltip":
   "resolved" "file:packages/tooltip"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/tooltip" "^10.0.0"
 
-"@aurelia-mdc-web/top-app-bar@4.0.1-au2", "@aurelia-mdc-web/top-app-bar@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\top-app-bar":
+"@aurelia-mdc-web/top-app-bar@4.0.1-au2.1", "@aurelia-mdc-web/top-app-bar@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\top-app-bar":
   "resolved" "file:packages/top-app-bar"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
     "@material/ripple" "^10.0.0"
     "@material/top-app-bar" "^10.0.0"
 
-"@aurelia-mdc-web/typography@4.0.1-au2", "@aurelia-mdc-web/typography@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\typography":
+"@aurelia-mdc-web/typography@4.0.1-au2.1", "@aurelia-mdc-web/typography@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\typography":
   "resolved" "file:packages/typography"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@material/typography" "^10.0.0"
 
-"@aurelia-mdc-web/validation@4.0.1-au2", "@aurelia-mdc-web/validation@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\validation":
+"@aurelia-mdc-web/validation@4.0.1-au2.1", "@aurelia-mdc-web/validation@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\validation":
   "resolved" "file:packages/validation"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/base" "4.0.1-au2"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
     "@aurelia/validation" "dev"
     "@aurelia/validation-html" "dev"
 
@@ -3172,44 +3172,44 @@
 
 "aurelia-mdc-web-dev-app@file:C:\\Dev\\au\\aurelia-mdc-web-v2\\packages\\app":
   "resolved" "file:packages/app"
-  "version" "4.0.1-au2"
+  "version" "4.0.1-au2.1"
   dependencies:
-    "@aurelia-mdc-web/all" "4.0.1-au2"
-    "@aurelia-mdc-web/base" "4.0.1-au2"
-    "@aurelia-mdc-web/button" "4.0.1-au2"
-    "@aurelia-mdc-web/card" "4.0.1-au2"
-    "@aurelia-mdc-web/checkbox" "4.0.1-au2"
-    "@aurelia-mdc-web/chips" "4.0.1-au2"
-    "@aurelia-mdc-web/circular-progress" "4.0.1-au2"
-    "@aurelia-mdc-web/data-table" "4.0.1-au2"
-    "@aurelia-mdc-web/dialog" "4.0.1-au2"
-    "@aurelia-mdc-web/drawer" "4.0.1-au2"
-    "@aurelia-mdc-web/elevation" "4.0.1-au2"
-    "@aurelia-mdc-web/expandable" "4.0.1-au2"
-    "@aurelia-mdc-web/fab" "4.0.1-au2"
-    "@aurelia-mdc-web/floating-label" "4.0.1-au2"
-    "@aurelia-mdc-web/form-field" "4.0.1-au2"
-    "@aurelia-mdc-web/icon" "4.0.1-au2"
-    "@aurelia-mdc-web/image-list" "4.0.1-au2"
-    "@aurelia-mdc-web/layout-grid" "4.0.1-au2"
-    "@aurelia-mdc-web/line-ripple" "4.0.1-au2"
-    "@aurelia-mdc-web/linear-progress" "4.0.1-au2"
-    "@aurelia-mdc-web/list" "4.0.1-au2"
-    "@aurelia-mdc-web/lookup" "4.0.1-au2"
-    "@aurelia-mdc-web/menu" "4.0.1-au2"
-    "@aurelia-mdc-web/menu-surface" "4.0.1-au2"
-    "@aurelia-mdc-web/notched-outline" "4.0.1-au2"
-    "@aurelia-mdc-web/ripple" "4.0.1-au2"
-    "@aurelia-mdc-web/select" "4.0.1-au2"
-    "@aurelia-mdc-web/slider" "4.0.1-au2"
-    "@aurelia-mdc-web/snackbar" "4.0.1-au2"
-    "@aurelia-mdc-web/switch" "4.0.1-au2"
-    "@aurelia-mdc-web/tab-bar" "4.0.1-au2"
-    "@aurelia-mdc-web/text-field" "4.0.1-au2"
-    "@aurelia-mdc-web/tooltip" "4.0.1-au2"
-    "@aurelia-mdc-web/top-app-bar" "4.0.1-au2"
-    "@aurelia-mdc-web/typography" "4.0.1-au2"
-    "@aurelia-mdc-web/validation" "4.0.1-au2"
+    "@aurelia-mdc-web/all" "4.0.1-au2.1"
+    "@aurelia-mdc-web/base" "4.0.1-au2.1"
+    "@aurelia-mdc-web/button" "4.0.1-au2.1"
+    "@aurelia-mdc-web/card" "4.0.1-au2.1"
+    "@aurelia-mdc-web/checkbox" "4.0.1-au2.1"
+    "@aurelia-mdc-web/chips" "4.0.1-au2.1"
+    "@aurelia-mdc-web/circular-progress" "4.0.1-au2.1"
+    "@aurelia-mdc-web/data-table" "4.0.1-au2.1"
+    "@aurelia-mdc-web/dialog" "4.0.1-au2.1"
+    "@aurelia-mdc-web/drawer" "4.0.1-au2.1"
+    "@aurelia-mdc-web/elevation" "4.0.1-au2.1"
+    "@aurelia-mdc-web/expandable" "4.0.1-au2.1"
+    "@aurelia-mdc-web/fab" "4.0.1-au2.1"
+    "@aurelia-mdc-web/floating-label" "4.0.1-au2.1"
+    "@aurelia-mdc-web/form-field" "4.0.1-au2.1"
+    "@aurelia-mdc-web/icon" "4.0.1-au2.1"
+    "@aurelia-mdc-web/image-list" "4.0.1-au2.1"
+    "@aurelia-mdc-web/layout-grid" "4.0.1-au2.1"
+    "@aurelia-mdc-web/line-ripple" "4.0.1-au2.1"
+    "@aurelia-mdc-web/linear-progress" "4.0.1-au2.1"
+    "@aurelia-mdc-web/list" "4.0.1-au2.1"
+    "@aurelia-mdc-web/lookup" "4.0.1-au2.1"
+    "@aurelia-mdc-web/menu" "4.0.1-au2.1"
+    "@aurelia-mdc-web/menu-surface" "4.0.1-au2.1"
+    "@aurelia-mdc-web/notched-outline" "4.0.1-au2.1"
+    "@aurelia-mdc-web/ripple" "4.0.1-au2.1"
+    "@aurelia-mdc-web/select" "4.0.1-au2.1"
+    "@aurelia-mdc-web/slider" "4.0.1-au2.1"
+    "@aurelia-mdc-web/snackbar" "4.0.1-au2.1"
+    "@aurelia-mdc-web/switch" "4.0.1-au2.1"
+    "@aurelia-mdc-web/tab-bar" "4.0.1-au2.1"
+    "@aurelia-mdc-web/text-field" "4.0.1-au2.1"
+    "@aurelia-mdc-web/tooltip" "4.0.1-au2.1"
+    "@aurelia-mdc-web/top-app-bar" "4.0.1-au2.1"
+    "@aurelia-mdc-web/typography" "4.0.1-au2.1"
+    "@aurelia-mdc-web/validation" "4.0.1-au2.1"
     "aurelia" "dev"
 
 "aurelia@dev":
