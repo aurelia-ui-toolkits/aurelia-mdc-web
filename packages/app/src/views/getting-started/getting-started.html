@@ -1,23 +1,24 @@
 <div class="demo-panel-content">
   <div class="demo-panel-transition">
     <h1 class="demo-panel-title">Getting started</h1>
-    <p>For help getting started with a new Aurelia app, check out the <a href="http://aurelia.io/docs/cli"
-        target="_blank" rel="noopener">Aurelia CLI</a>.</p>
+    <p>For help getting started with a new Aurelia app, check out the <a
+        href="https://docs.aurelia.io/getting-started/quick-install-guide" target="_blank" rel="noopener">
+        Aurelia CLI</a>.</p>
     <p>For existing apps, follow this guide to use Aurelia MDC.</p>
     <h2 class="demo-panel-heading">Install Aurelia MDC</h2>
     Install all packages at once
     <h4 mdc-subtitle2>npm</h4>
-    <hljs language="shell">npm i @aurelia-mdc/all</hljs>
+    <hljs language="shell">npm i @aurelia-mdc/all@dev</hljs>
 
     <h4 mdc-subtitle2>yarn</h4>
-    <hljs language="shell">yarn add @aurelia-mdc/all</hljs>
+    <hljs language="shell">yarn add @aurelia-mdc/all@dev</hljs>
 
     or individual packages you wish to use, e.g.
     <h4 mdc-subtitle2>npm</h4>
-    <hljs language="shell">npm i @aurelia-mdc/button</hljs>
+    <hljs language="shell">npm i @aurelia-mdc/button@dev</hljs>
 
     <h4 mdc-subtitle2>yarn</h4>
-    <hljs language="shell">yarn add @aurelia-mdc/button</hljs>
+    <hljs language="shell">yarn add @aurelia-mdc/button@dev</hljs>
 
     <h2 class="demo-panel-heading">Roboto font</h2>
     To get started, first include the Roboto font with the 300, 400 and 500 weights. You can host it yourself or
@@ -137,14 +138,16 @@ body {
     Configure each plugin you want to use.
     <hljs language="typescript">
 // main.ts
+import { AllConfiguration } from '@aurelia-mdc-web/all';
+import { ButtonConfiguration } from '@aurelia-mdc-web/button';
 
-aurelia
-  .use
+Aurelia
   // all packages
-  .plugin(PLATFORM.moduleName('@aurelia-mdc-web/all'))
+  .register(AllConfiguration)
   // or individual
-  .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))
-  .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'));
+  .register(ButtonConfiguration)
+  .app(Root)
+  .start();
     </hljs>
 
     <h2 class="demo-panel-heading">Start designing</h2>
