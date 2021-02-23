@@ -33,6 +33,7 @@ import { LayoutGridConfiguration } from '@aurelia-mdc-web/layout-grid';
 import { LinearProgressConfiguration } from '@aurelia-mdc-web/linear-progress';
 import { SliderConfiguration } from '@aurelia-mdc-web/slider';
 import { SwitchConfiguration } from '@aurelia-mdc-web/switch';
+import { TooltipConfiguration } from '@aurelia-mdc-web/tooltip';
 
 export const AllConfiguration = {
   /**
@@ -42,11 +43,10 @@ export const AllConfiguration = {
     return container.register(
       ButtonConfiguration, CardConfiguration, CheckboxConfiguration, ChipsConfiguration, CircularProgressConfiguration, DataTableConfiguration,
       DialogConfiguration, DrawerConfiguration, ElevationConfiguration, ExpandableConfiguration, FabConfiguration, FloatingLabelConfiguration,
-      FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, ImageListConfiguration, LayoutGridConfiguration,
-      LineRippleConfiguration, LinearProgressConfiguration, ListConfiguration,
-      LookupConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration,
-      SelectConfiguration, SliderConfiguration, SnackbarConfiguration, SwitchConfiguration, TabBarConfiguration, TextFieldConfiguration,
-      TopAppBarConfiguration, TypographyConfiguration,
+      FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, ImageListConfiguration, LayoutGridConfiguration, LineRippleConfiguration,
+      LinearProgressConfiguration, ListConfiguration, LookupConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration,
+      RadioConfiguration, RippleConfiguration, SelectConfiguration, SliderConfiguration, SnackbarConfiguration, SwitchConfiguration, TabBarConfiguration,
+      TextFieldConfiguration, TooltipConfiguration, TopAppBarConfiguration, TypographyConfiguration,
     );
   },
   /**

@@ -34,6 +34,7 @@
     "packages/switch",
     "packages/tab-bar",
     "packages/text-field",
+    "packages/tooltip",
     "packages/top-app-bar",
     "packages/typography",
     "packages/validation"

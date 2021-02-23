@@ -1,0 +1,42 @@
+<div class="demo-layout--center">
+  <button as-element="mdc-button" raised
+    mdc-tooltip="value: Tooltip!; x-position.bind: xPosition; y-position.bind: yPosition; boundary-type.bind: boundaryType">
+    Hover over me
+  </button>
+</div>
+
+<div class="demo-layout__row">
+  <div class="demo-content">
+    <h3 class="demo-content__headline">X position</h3>
+    <div class="demo-layout__column">
+      <mdc-radio-group class="demo-layout__column">
+        <mdc-form-field repeat.for="p of xPositions">
+          <mdc-radio model.bind="p" checked.bind="xPosition"></mdc-radio>
+          <label>${p}</label>
+        </mdc-form-field>
+      </mdc-radio-group>
+    </div>
+  </div>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Y position</h3>
+    <div class="demo-layout__column">
+      <mdc-radio-group class="demo-layout__column">
+        <mdc-form-field repeat.for="p of yPositions">
+          <mdc-radio model.bind="p" checked.bind="yPosition"></mdc-radio>
+          <label>${p}</label>
+        </mdc-form-field>
+      </mdc-radio-group>
+    </div>
+  </div>
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Boundary type</h3>
+    <div class="demo-layout__column">
+      <mdc-radio-group class="demo-layout__column">
+        <mdc-form-field repeat.for="bt of boundaryTypes">
+          <mdc-radio model.bind="bt" checked.bind="boundaryType"></mdc-radio>
+          <label>${bt}</label>
+        </mdc-form-field>
+      </mdc-radio-group>
+    </div>
+  </div>
+</div>
