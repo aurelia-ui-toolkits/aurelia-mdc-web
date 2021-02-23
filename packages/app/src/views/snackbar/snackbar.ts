@@ -9,6 +9,6 @@ import { ApiViewer } from '../api-viewer/api-viewer';
   routes: [
     // { path: '', redirectTo: 'examples' },
     { id: 'examples', path: 'examples', title: 'Examples', component: SnackbarExamples },
-    { id: 'api', title: 'Api', component: ApiViewer }
-  ]
-})export class Snackbar extends ComponentViewer { }
+    { id: 'api', title: 'Api', component: ApiViewer }]
+})
+export class Snackbar extends ComponentViewer { }

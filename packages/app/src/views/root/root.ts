@@ -26,6 +26,10 @@ import { Fab } from '../fab/fab';
 import { ImageList } from '../image-list/image-list';
 import { LayoutGrid } from '../layout-grid/layout-grid';
 import { LinearProgress } from '../linear-progress/linear-progress';
+import { FormField } from '../form-field/form-field';
+import { Radio } from '../radio/radio';
+import { Ripple } from '../ripple/ripple';
+import { Slider } from '../slider/slider';
 
 @route({
   routes: [
@@ -42,6 +46,7 @@ import { LinearProgress } from '../linear-progress/linear-progress';
     { id: 'elevation', title: 'Elevation', component: Elevation },
     { id: 'expandable', title: 'Expandable', component: Expandable },
     { id: 'fab', title: 'Fab', component: Fab },
+    { id: 'form-field', title: 'Form field', component: FormField },
     { id: 'icon-button', title: 'Icon button', component: IconButton },
     { id: 'image-list', title: 'Image list', component: ImageList },
     { id: 'layout-grid', title: 'Layout grid', component: LayoutGrid },
@@ -50,7 +55,10 @@ import { LinearProgress } from '../linear-progress/linear-progress';
     { id: 'lookup', title: 'Lookup', component: Lookup },
     { id: 'menu', title: 'Menu', component: Menu },
     { id: 'menu-surface', title: 'Menu surface', component: MenuSurface },
+    { id: 'radio', title: 'Radio', component: Radio },
+    { id: 'ripple', title: 'Ripple', component: Ripple },
     { id: 'select', title: 'Select', component: Select },
+    { id: 'slider', title: 'Slider', component: Slider },
     { id: 'snackbar', title: 'Snackbar', component: Snackbar },
     { id: 'text-field', title: 'Text field', component: TextField },
     { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
