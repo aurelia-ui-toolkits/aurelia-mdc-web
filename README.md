@@ -3,7 +3,7 @@
 ## Here be :dragon_face:!
 
 Keep in mind that Aurelia2 itself is still in alpha stage.
-Many thing work slightly differently to Aurelia1 MDC bridge or don't work at all yet.
+Some things work slightly differently to Aurelia1 MDC bridge or don't work at all yet.
 
 In particular:
 * buttons must be used as follows `<button as-element="mdc-mdc-button">...</button>` or `<a as-element="mdc-mdc-button">...</a>`
