@@ -33,6 +33,7 @@ import { Slider } from '../slider/slider';
 import { Switch } from '../switch/switch';
 import { Tooltip } from '../tooltip/tooltip';
 import { Tabs } from '../tabs/tabs';
+import { Typography } from '../typography/typography';
 
 @route({
   routes: [
@@ -68,6 +69,7 @@ import { Tabs } from '../tabs/tabs';
     { id: 'text-field', title: 'Text field', component: TextField },
     { id: 'tooltip', title: 'Tooltip', component: Tooltip },
     { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
+    { id: 'typography', title: 'Typography', component: Typography },
   ]
 })
 export class Root {
