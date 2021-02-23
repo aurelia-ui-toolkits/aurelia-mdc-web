@@ -17,6 +17,7 @@
     "packages/expandable",
     "packages/fab",
     "packages/floating-label",
+    "packages/form-field",
     "packages/icon",
     "packages/icon-button",
     "packages/image-list",
