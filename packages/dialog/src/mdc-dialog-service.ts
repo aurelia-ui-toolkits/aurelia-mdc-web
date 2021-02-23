@@ -45,7 +45,7 @@ export class MdcDialogService {
   //   private compositionEngine: CompositionEngine) { }
 
   /** Opens the dialog specified in the options */
-  async open() {
+  async open(options: IMdcDialogOptions) {
     const props = {
       'delay-focus-trap': new PropertyBindingInstruction('delayFocusTrap', 'delayFocusTrap', BindingMode.toView),
       // 'mdcdialog:closing': new ListenerBindingInstruction(new CallScopeExpression('handleClosing', []), 'mdcdialog:closing', false, DelegationStrategy.bubbling),

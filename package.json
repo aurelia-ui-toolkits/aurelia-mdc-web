@@ -59,8 +59,7 @@
     "_preprepare-release": "cross-env npm run test",
     "_prepare-release": "cross-env npm run changelog && npm run build",
     "refresh": "lerna clean -y && npm run bootstrap",
-    "deploy1": "cross-env GIT_DEPLOY_REPO=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web-au2-demo.git\" && cd packages/app && npm run build && cd ../.. && deploy.sh",
-    "deploy": "deploy.sh"
+    "deploy": "cross-env GIT_DEPLOY_REPO=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web-au2-demo.git\" && cd packages/app && npm run build && cd ../.. && deploy.sh"
   },
   "devDependencies": {
     "@aurelia/plugin-gulp": "dev",
