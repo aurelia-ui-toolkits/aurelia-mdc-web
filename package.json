@@ -46,20 +46,11 @@
   ],
   "scripts": {
     "lint": "eslint -c .eslintrc.js packages/**/src/*.ts",
-    "_test": "lerna run test",
-    "_develop": "cross-env TS_NODE_PROJECT=\"tsconfig-tsnode.json\" karma start --package=core",
-    "bootstrap": "lerna bootstrap --hoist",
-    "build": "lerna run build",
+    "build": "lage build --scope @aurelia-mdc-web/* --no-cache",
     "start": "cd packages/app && npm start",
     "doc": "lage doc --scope @aurelia-mdc-web/*",
-    "_postdoc": "cross-env node doc/shape-doc && rimraf dist/doc-temp",
     "changelog": "cross-env conventional-changelog -p angular -i docs/CHANGELOG.md -s",
-    "_bump-version": "npm --no-git-tag-version version",
-    "_preprepare-release": "cross-env npm run test",
-    "_prepare-release": "cross-env npm run changelog && npm run build",
-    "refresh": "lerna clean -y && npm run bootstrap",
-    "deploy": "cd packages/app && npm run build && cd ../.. && deploy.sh",
-    "ncu-upgrade": "lerna run ncu-upgrade"
+    "deploy": "cd packages/app && npm run build && cd ../.. && deploy.sh"
   },
   "devDependencies": {
     "@material/button": "^10.0.0",
