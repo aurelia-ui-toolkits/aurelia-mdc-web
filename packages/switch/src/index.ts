@@ -1,26 +1,23 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, ObserverLocator, CheckedObserver } from 'aurelia-framework';
-import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
+import { IContainer, AppTask, IAttrSyntaxTransformer, NodeObserverLocator } from 'aurelia';
+import { MdcSwitch } from './mdc-switch';
+import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { CheckedObserver } from '@aurelia/runtime-html';
 
 export { MdcSwitch, IMdcSwitchElement } from './mdc-switch';
 
-export function configure(config: FrameworkConfiguration) {
-  config.container.get(MdcComponentAdapters).registerMdcElementConfig(switchConfig);
+let configured = false;
 
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-switch')
-  ]);
-
-  config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
-}
-
-const switchConfig = {
-  tagName: 'mdc-switch',
-  properties: {
-    checked: {
-      defaultBindingMode: bindingMode.twoWay,
-      getObserver(element: Element, _: string, observerLocator: ObserverLocator) {
-        return new CheckedObserver(element, new EventSubscriber(['change']), observerLocator);
-      }
+export const SwitchConfiguration = {
+  register(container: IContainer): IContainer {
+    if (!configured) {
+      AppTask.with(IContainer).beforeCreate().call(c => {
+        const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
+        const nodeObserverLocator = c.get(NodeObserverLocator);
+        attrSyntaxTransformer.useTwoWay((el, property) => el.tagName === 'MDC-SWITCH' ? property === 'checked' : false);
+        nodeObserverLocator.useConfig({ 'MDC-SWITCH': { checked: { events: ['change'], type: CheckedObserver } } });
+      }).register(container);
+      configured = true;
     }
+    return container.register(MdcSwitch, RippleConfiguration);
   }
 };

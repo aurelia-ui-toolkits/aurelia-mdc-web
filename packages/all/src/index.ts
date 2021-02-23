@@ -32,6 +32,7 @@ import { ImageListConfiguration } from '@aurelia-mdc-web/image-list';
 import { LayoutGridConfiguration } from '@aurelia-mdc-web/layout-grid';
 import { LinearProgressConfiguration } from '@aurelia-mdc-web/linear-progress';
 import { SliderConfiguration } from '@aurelia-mdc-web/slider';
+import { SwitchConfiguration } from '@aurelia-mdc-web/switch';
 
 export const AllConfiguration = {
   /**
@@ -44,7 +45,8 @@ export const AllConfiguration = {
       FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, ImageListConfiguration, LayoutGridConfiguration,
       LineRippleConfiguration, LinearProgressConfiguration, ListConfiguration,
       LookupConfiguration, MenuConfiguration, MenuSurfaceConfiguration, NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration,
-      SelectConfiguration, SliderConfiguration, SnackbarConfiguration, TabBarConfiguration, TextFieldConfiguration, TopAppBarConfiguration, TypographyConfiguration,
+      SelectConfiguration, SliderConfiguration, SnackbarConfiguration, SwitchConfiguration, TabBarConfiguration, TextFieldConfiguration,
+      TopAppBarConfiguration, TypographyConfiguration,
     );
   },
   /**

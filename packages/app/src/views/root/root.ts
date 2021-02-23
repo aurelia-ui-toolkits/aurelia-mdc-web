@@ -30,6 +30,7 @@ import { FormField } from '../form-field/form-field';
 import { Radio } from '../radio/radio';
 import { Ripple } from '../ripple/ripple';
 import { Slider } from '../slider/slider';
+import { Switch } from '../switch/switch';
 
 @route({
   routes: [
@@ -60,6 +61,7 @@ import { Slider } from '../slider/slider';
     { id: 'select', title: 'Select', component: Select },
     { id: 'slider', title: 'Slider', component: Slider },
     { id: 'snackbar', title: 'Snackbar', component: Snackbar },
+    { id: 'switch', title: 'Switch', component: Switch },
     { id: 'text-field', title: 'Text field', component: TextField },
     { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
   ]

@@ -31,6 +31,7 @@
     "packages/select",
     "packages/slider",
     "packages/snackbar",
+    "packages/switch",
     "packages/tab-bar",
     "packages/text-field",
     "packages/top-app-bar",
