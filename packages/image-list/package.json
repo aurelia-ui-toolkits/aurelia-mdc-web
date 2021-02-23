@@ -35,6 +35,7 @@
     "_develop": "cross-env TS_NODE_PROJECT=\"../../tsconfig-tsnode.json\" karma start",
     "prebuild": "rimraf dist",
     "build": "gulp --gulpfile ../../gulpfile.js --cwd ./ build",
+    "publish:dev": "npm publish --tag dev",
     "_predoc": "cross-env rimraf doc/api.json && rimraf dist/doc-temp && tsc --project tsconfig.json --outFile dist/doc-temp/aurelia-ux.js && node doc/shape-defs && copyfiles tsconfig.json dist/doc-temp",
     "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
     "_postdoc": "cross-env node doc/shape-doc && rimraf dist/doc-temp",

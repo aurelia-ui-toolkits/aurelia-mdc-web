@@ -49,6 +49,7 @@
     "_develop": "cross-env TS_NODE_PROJECT=\"tsconfig-tsnode.json\" karma start --package=core",
     "bootstrap": "lerna bootstrap --hoist",
     "build": "lage build --scope @aurelia-mdc-web/* --no-cache --verbose --no-deps",
+    "publish:dev": "lage publish:dev --scope @aurelia-mdc-web/*",
     "start": "cd packages/app && npm start",
     "_predoc": "cross-env rimraf doc/api.json && rimraf dist/doc-temp && tsc --project tsconfig.json --outFile dist/doc-temp/aurelia-ux.js && node doc/shape-defs && copyfiles tsconfig.json dist/doc-temp",
     "doc": "lage doc --scope @aurelia-mdc-web/* --no-cache --verbose --no-deps",
