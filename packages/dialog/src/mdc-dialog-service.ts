@@ -1,8 +1,8 @@
-import { IMdcDialogElement, MdcDialog } from './mdc-dialog';
-import { inject, Controller, IPlatform, IContainer, IAppRoot, LifecycleFlags, createElement } from 'aurelia';
-import { strings, MDCDialogCloseEvent } from '@material/dialog';
-import { Scope, BindingMode, DelegationStrategy, CallScopeExpression, AccessScopeExpression } from '@aurelia/runtime';
-import { PropertyBindingInstruction, ListenerBindingInstruction } from '@aurelia/runtime-html';
+import { MdcDialog } from './mdc-dialog';
+import { inject, IPlatform, IContainer, IAppRoot, LifecycleFlags, createElement } from 'aurelia';
+import { MDCDialogCloseEvent } from '@material/dialog';
+import { Scope, BindingMode } from '@aurelia/runtime';
+import { PropertyBindingInstruction } from '@aurelia/runtime-html';
 
 /** Dialog service open method options */
 export interface IMdcDialogOptions {
@@ -45,7 +45,7 @@ export class MdcDialogService {
   //   private compositionEngine: CompositionEngine) { }
 
   /** Opens the dialog specified in the options */
-  async open(options: IMdcDialogOptions) {
+  async open() {
     const props = {
       'delay-focus-trap': new PropertyBindingInstruction('delayFocusTrap', 'delayFocusTrap', BindingMode.toView),
       // 'mdcdialog:closing': new ListenerBindingInstruction(new CallScopeExpression('handleClosing', []), 'mdcdialog:closing', false, DelegationStrategy.bubbling),

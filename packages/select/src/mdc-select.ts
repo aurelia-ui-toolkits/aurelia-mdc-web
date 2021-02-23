@@ -1,6 +1,6 @@
 import { MdcComponent, IValidatedElement, IError, booleanAttr } from '@aurelia-mdc-web/base';
 import { cssClasses, MDCSelectFoundationMap, MDCSelectEventDetail, strings } from '@material/select';
-import { inject, customElement, children, INode, IPlatform, bindable } from 'aurelia';
+import { inject, customElement, INode, IPlatform, bindable } from 'aurelia';
 import { MdcSelectIcon, IMdcSelectIconElement, mdcIconStrings } from './mdc-select-icon';
 import { MdcSelectHelperText, mdcHelperTextCssClasses } from './mdc-select-helper-text/mdc-select-helper-text';
 import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';

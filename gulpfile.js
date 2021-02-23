@@ -22,7 +22,7 @@ function buildHtml(src) {
     // If you turn on "closed" mode, there will be difficulty to perform e2e
     // tests (such as Cypress). Because shadowRoot is not accessible through
     // standard DOM APIs in "closed" mode.
-    .pipe(au2({ defaultShadowOptions: { mode: 'open' } }));
+    .pipe(au2());
 }
 
 function build() {

@@ -29,7 +29,7 @@ let chipId = 0;
  */
 @inject(Element)
 @customElement('mdc-chip')
-// @processContent(MdcChip.processContent)
+@processContent(MdcChip.processContent)
 export class MdcChip extends MdcComponent<MDCChipFoundation> {
   constructor(root: IMdcChipElement) {
     super(root);

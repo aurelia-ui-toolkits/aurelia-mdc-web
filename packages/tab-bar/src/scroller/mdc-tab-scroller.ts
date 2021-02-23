@@ -2,7 +2,7 @@ import { MdcComponent, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { MDCTabScrollerFoundation, MDCTabScrollerAdapter, util } from '@material/tab-scroller';
 import { matches } from '@material/dom/ponyfill';
 import { MdcTab } from '../tab/mdc-tab';
-import { inject, customElement, bindable, children, CustomElement } from 'aurelia';
+import { inject, customElement, bindable, CustomElement } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
 
 @inject(Element)

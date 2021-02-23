@@ -11,7 +11,7 @@ let chipSetId = 0;
 
 @inject(Element)
 @customElement('mdc-chip-set')
-// @processContent(defaultSlotProcessContent)
+@processContent(defaultSlotProcessContent)
 export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
 
   id: string = `mdc-chip-set-${++chipSetId}`;

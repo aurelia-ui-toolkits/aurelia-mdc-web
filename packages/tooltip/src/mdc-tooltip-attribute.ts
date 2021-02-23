@@ -11,8 +11,7 @@ import { PropertyBindingInstruction, ISyntheticView, ITemplateCompiler } from '@
 @inject(Element, IPlatform, IContainer, IAppRoot, ITemplateCompiler)
 @customAttribute('mdc-tooltip')
 export class MdcTooltipAttribute {
-  constructor(root: HTMLElement, private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot,
-    private templateCompiler: ITemplateCompiler) {
+  constructor(root: HTMLElement, private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot) {
     this.root = root;
   }
 
@@ -45,7 +44,7 @@ export class MdcTooltipAttribute {
   view: ISyntheticView;
 
   attached() {
-    const def = this.templateCompiler.compile({ name: 'test', template: `<mdc-tooltip>${this.value}</mdc-tooltip>` }, this.container, null);
+    // const def = this.templateCompiler.compile({ name: 'test', template: `<mdc-tooltip>${this.value}</mdc-tooltip>` }, this.container, null);
 
     const props = {
       'anchor-elem': new PropertyBindingInstruction('root', 'anchorElem', BindingMode.toView),

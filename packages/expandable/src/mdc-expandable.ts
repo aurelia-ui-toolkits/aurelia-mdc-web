@@ -1,4 +1,4 @@
-import { customElement, inject, bindable, IPlatform, INode } from 'aurelia';
+import { customElement, inject, bindable, IPlatform } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { CustomElement } from '@aurelia/runtime-html';
 
