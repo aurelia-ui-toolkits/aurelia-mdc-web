@@ -1,0 +1,11 @@
+<div class="demo-layout__row">
+  <button as-element="mdc-button" click.delegate="alignEnd = !alignEnd">
+    Align End: ${alignEnd ? 'On' : 'Off'}
+  </button>
+</div>
+<div class="demo-layout__row">
+  <mdc-form-field align-end.bind="alignEnd">
+    <mdc-switch></mdc-switch>
+    <label>off/on</label>
+  </mdc-form-field>
+</div>
