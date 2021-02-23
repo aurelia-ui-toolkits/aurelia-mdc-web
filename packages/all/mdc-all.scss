@@ -11,6 +11,7 @@
 @use "@material/line-ripple/mdc-line-ripple";
 @use "@material/notched-outline/mdc-notched-outline";
 @use "@material/ripple/mdc-ripple";
+@use "@aurelia-mdc-web/ripple" as auRipple;
 @use "@material/tab-bar/mdc-tab-bar";
 @use "@material/tab-scroller/mdc-tab-scroller";
 @use "@material/tab-indicator/mdc-tab-indicator";
@@ -25,7 +26,7 @@
 @use "@material/radio/mdc-radio";
 @use "@material/circular-progress/mdc-circular-progress";
 @use "@material/slider/slider";
-// @use "@aurelia-mdc-web/slider" as auSlider;
+@use "@aurelia-mdc-web/slider" as auSlider;
 @use "@material/switch/mdc-switch";
 @use "@material/fab/mdc-fab";
 @use "@aurelia-mdc-web/expandable";

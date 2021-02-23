@@ -1,15 +1,20 @@
-import { MdcComponent, Size } from '@aurelia-mdc-web/base';
-import { MDCSliderAdapter, strings } from '@material/slider';
-import { bindable } from 'aurelia-typed-observable-plugin';
-import { inject, useView, PLATFORM, customElement, observable } from 'aurelia-framework';
-import { applyPassive } from '@material/dom/events';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MDCSliderAdapter, Thumb, cssClasses, TickMark, MDCSliderChangeEventDetail, events, attributes } from '@material/slider';
+import { inject, customElement, bindable, CustomElement } from 'aurelia';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
+import { MdcRipple } from '@aurelia-mdc-web/ripple';
+import { EventType, SpecificEventListener } from '@material/base';
 
-strings.INPUT_EVENT = strings.INPUT_EVENT.toLowerCase();
-strings.CHANGE_EVENT = strings.CHANGE_EVENT.toLowerCase();
+events.INPUT = events.INPUT.toLowerCase();
+events.CHANGE = events.CHANGE.toLowerCase();
+
+interface IEventHandler {
+  element: HTMLElement | Window;
+  evtType: EventType;
+  handler: SpecificEventListener<EventType>;
+}
 
 @inject(Element)
-@useView(PLATFORM.moduleName('./mdc-slider.html'))
 @customElement('mdc-slider')
 export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   constructor(root: HTMLElement) {
@@ -17,76 +22,110 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     defineMdcSliderElementApis(this.root);
   }
 
-  private thumbContainer_: HTMLElement;
-  private track_: HTMLElement;
-  private pinValueMarker_: HTMLElement;
-  private trackMarkerContainer_: HTMLElement;
-
-  @observable
-  size: Size;
-  async sizeChanged() {
-    await this.initialised;
-    this.foundation?.layout();
-  }
+  private startInput?: HTMLInputElement;
+  private endInput: HTMLInputElement;
+  private startThumb?: HTMLElement;
+  private endThumb: HTMLElement;
+  private startRipple?: MdcRipple;
+  private endRipple: MdcRipple;
+  private trackActive: HTMLElement;
+  tickMarkStatuses: TickMark[];
+  TickMark = TickMark;
+  eventHandlers: IEventHandler[] = [];
 
   @bindable({ set: booleanAttr })
   discrete: boolean;
 
   @bindable({ set: booleanAttr })
-  markers: boolean;
+  tickMarks: boolean;
+
+  @bindable({ set: booleanAttr })
+  range: boolean;
 
   @bindable({ set: booleanAttr })
   disabled: boolean;
-  async disabledChanged() {
-    await this.initialised;
+  disabledChanged() {
     this.foundation?.setDisabled(this.disabled);
   }
 
-  @bindable.number
-  min: number = 0;
-  async minChanged() {
-    await this.initialised;
-    if (this.min > this.max) {
-      this.max = this.min;
-    }
-    this.foundation?.setMax(this.max);
-    this.foundation?.setMin(this.min);
+  @bindable
+  min: string = '0';
+  minChanged() {
+    (this.startInput ?? this.endInput).setAttribute(attributes.INPUT_MIN, this.min);
+    this.foundation?.destroy();
+    this.cleanupEventHandlers();
+    this.foundation?.init();
+    this.foundation?.layout();
   }
 
-  @bindable.number
-  max: number = 100;
-  async maxChanged() {
-    await this.initialised;
-    this.foundation?.setMax(this.max);
+  @bindable
+  max: string = '100';
+  maxChanged() {
+    this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
+    this.foundation?.destroy();
+    this.cleanupEventHandlers();
+    this.foundation?.init();
+    this.foundation?.layout();
   }
 
-  @bindable.number
-  step: number = 1;
-  async stepChanged() {
-    await this.initialised;
-    this.foundation?.setStep(this.step);
+  @bindable
+  step: string = '1';
+  stepChanged() {
+    this.startInput?.setAttribute(attributes.INPUT_STEP, this.step);
+    this.endInput.setAttribute(attributes.INPUT_STEP, this.step);
+    this.foundation?.destroy();
+    this.cleanupEventHandlers();
+    this.foundation?.init();
   }
 
-  initialValue: number;
+  @bindable
+  valueToAriaValueTextFn: ((value: number) => string) | null = null;
+
+  _value: number = 0;
   get value(): number {
     if (this.foundation) {
       return this.foundation.getValue();
     } else {
-      return this.initialValue;
+      return this._value;
     }
   }
 
   set value(value: number) {
+    this._value = value;
+    this.foundation?.setValue(value);
+  }
+
+  _valueStart: number = 0;
+  get valueStart(): number {
     if (this.foundation) {
-      this.foundation.setValue(value);
+      return this.foundation.getValueStart();
     } else {
-      this.initialValue = value;
+      return this._valueStart;
     }
   }
 
+  set valueStart(value: number) {
+    this._valueStart = value;
+    this.foundation?.setValueStart(value);
+  }
+
+  beforeFoundationCreated() {
+    // assign initial values explicitly
+    this.endInput.setAttribute(attributes.INPUT_MIN, this.min);
+    this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
+    this.endInput.setAttribute(attributes.INPUT_VALUE, this.value.toString());
+    this.endInput.setAttribute(attributes.INPUT_STEP, this.step);
+    this.startInput?.setAttribute(attributes.INPUT_VALUE, this.valueStart.toString());
+    this.startInput?.setAttribute(attributes.INPUT_STEP, this.step);
+  }
+
   initialSyncWithDOM() {
-    this.value = this.initialValue;
-    this.foundation?.setupTrackMarker();
+    this.disabledChanged();
+    this.value = this._value;
+    if (this.range) {
+      this.valueStart = this._valueStart;
+    }
+    this.foundation?.layout();
   }
 
   getDefaultFoundation() {
@@ -95,51 +134,169 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     // methods, we need a separate, strongly typed adapter variable.
     const adapter: MDCSliderAdapter = {
       hasClass: (className) => this.root.classList.contains(className),
-      addClass: (className) => this.root.classList.add(className),
-      removeClass: (className) => this.root.classList.remove(className),
-      getAttribute: (name) => this.root.getAttribute(name),
-      setAttribute: (name, value) => this.root.setAttribute(name, value),
-      removeAttribute: (name) => this.root.removeAttribute(name),
-      computeBoundingRect: () => this.root.getBoundingClientRect(),
-      getTabIndex: () => (this.root).tabIndex,
-      registerInteractionHandler: (evtType, handler) => this.listen(evtType, handler, applyPassive()),
-      deregisterInteractionHandler: (evtType, handler) => this.unlisten(evtType, handler, applyPassive()),
-      registerThumbContainerInteractionHandler: (evtType, handler) => {
-        this.thumbContainer_.addEventListener(evtType, handler, applyPassive());
+      addClass: (className) => {
+        this.root.classList.add(className);
       },
-      deregisterThumbContainerInteractionHandler: (evtType, handler) => {
-        this.thumbContainer_.removeEventListener(
-          evtType, handler, applyPassive());
+      removeClass: (className) => {
+        this.root.classList.remove(className);
       },
-      registerBodyInteractionHandler: (evtType, handler) => document.body.addEventListener(evtType, handler),
-      deregisterBodyInteractionHandler: (evtType, handler) => document.body.removeEventListener(evtType, handler),
-      registerResizeHandler: (handler) => window.addEventListener('resize', handler),
-      deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
-      notifyInput: () => this.emit(strings.INPUT_EVENT, this),  // TODO(acdvorak): Create detail interface
-      notifyChange: () => this.emit(strings.CHANGE_EVENT, this),  // TODO(acdvorak): Create detail interface
-      setThumbContainerStyleProperty: (propertyName, value) => {
-        this.thumbContainer_.style.setProperty(propertyName, value);
+      addThumbClass: (className, thumb: Thumb) => {
+        this.getThumbEl(thumb)?.classList.add(className);
       },
-      setTrackStyleProperty: (propertyName, value) => this.track_.style.setProperty(propertyName, value),
-      setMarkerValue: (value) => this.pinValueMarker_.innerText = value.toLocaleString(),
-      setTrackMarkers: (step, max, min) => {
-        const stepStr = step.toLocaleString();
-        const maxStr = max.toLocaleString();
-        const minStr = min.toLocaleString();
-        // keep calculation in css for better rounding/subpixel behavior
-        const markerAmount = `((${maxStr} - ${minStr}) / ${stepStr})`;
-        const markerWidth = '2px';
-        const markerBkgdImage = `linear-gradient(to right, currentColor ${
-          markerWidth}, transparent 0)`;
-        const markerBkgdLayout = `0 center / calc((100% - ${markerWidth}) / ${
-          markerAmount}) 100% repeat-x`;
-        const markerBkgdShorthand = `${markerBkgdImage} ${markerBkgdLayout}`;
-        this.trackMarkerContainer_.style.setProperty(
-          'background', markerBkgdShorthand);
+      removeThumbClass: (className, thumb: Thumb) => {
+        this.getThumbEl(thumb)?.classList.remove(className);
       },
+      getAttribute: (attribute) => this.root.getAttribute(attribute),
+      getInputValue: (thumb: Thumb) => this.getInput(thumb)!.value,
+      setInputValue: (value: string, thumb: Thumb) => {
+        this.getInput(thumb)!.value = value;
+      },
+      getInputAttribute: (attribute, thumb: Thumb) =>
+        this.getInput(thumb)!.getAttribute(attribute),
+      setInputAttribute: (attribute, value, thumb: Thumb) => {
+        this.getInput(thumb)!.setAttribute(attribute, value);
+      },
+      removeInputAttribute: (attribute, thumb: Thumb) => {
+        this.getInput(thumb)?.removeAttribute(attribute);
+      },
+      focusInput: (thumb: Thumb) => { this.getInput(thumb)?.focus(); },
+      isInputFocused: (thumb: Thumb) => this.getInput(thumb) === document.activeElement,
+      getThumbKnobWidth: (thumb: Thumb) => {
+        return this.getThumbEl(thumb)?.querySelector<HTMLElement>(`.${cssClasses.THUMB_KNOB}`)!
+          .getBoundingClientRect()
+          .width ?? 0;
+      },
+      getThumbBoundingClientRect: (thumb: Thumb) => this.getThumbEl(thumb)!.getBoundingClientRect(),
+      getBoundingClientRect: () => this.root.getBoundingClientRect(),
       isRTL: () => getComputedStyle(this.root).direction === 'rtl',
+      setThumbStyleProperty: (propertyName, value, thumb: Thumb) => {
+        this.getThumbEl(thumb)?.style.setProperty(propertyName, value);
+      },
+      removeThumbStyleProperty: (propertyName, thumb: Thumb) => {
+        this.getThumbEl(thumb)?.style.removeProperty(propertyName);
+      },
+      setTrackActiveStyleProperty: (propertyName, value) => {
+        this.trackActive.style.setProperty(propertyName, value);
+      },
+      removeTrackActiveStyleProperty: (propertyName) => {
+        this.trackActive.style.removeProperty(propertyName);
+      },
+      setValueIndicatorText: (value: number, thumb: Thumb) => {
+        const valueIndicatorEl =
+          this.getThumbEl(thumb)?.querySelector<HTMLElement>(
+            `.${cssClasses.VALUE_INDICATOR_TEXT}`);
+        valueIndicatorEl!.textContent = String(value);
+      },
+      getValueToAriaValueTextFn: () => this.valueToAriaValueTextFn,
+      updateTickMarks: (tickMarks: TickMark[]) => {
+        this.tickMarkStatuses = tickMarks;
+      },
+      setPointerCapture: (pointerId) => {
+        this.root.setPointerCapture(pointerId);
+      },
+      emitChangeEvent: (value, thumb: Thumb) => {
+        this.emit<MDCSliderChangeEventDetail>(events.CHANGE, { value, thumb });
+      },
+      emitInputEvent: (value, thumb: Thumb) => {
+        this.emit<MDCSliderChangeEventDetail>(events.INPUT, { value, thumb });
+      },
+      emitDragStartEvent: (_, thumb: Thumb) => {
+        // Emitting event is not yet implemented. See issue:
+        // https://github.com/material-components/material-components-web/issues/6448
+
+        this.getRipple(thumb)?.activate();
+      },
+      emitDragEndEvent: (_, thumb: Thumb) => {
+        // Emitting event is not yet implemented. See issue:
+        // https://github.com/material-components/material-components-web/issues/6448
+
+        this.getRipple(thumb)?.deactivate();
+      },
+      registerEventHandler: (evtType, handler) => {
+        this.listen(evtType, handler);
+        this.addEventHandler(this.root, evtType, handler);
+      },
+      deregisterEventHandler: (evtType, handler) => {
+        this.unlisten(evtType, handler);
+        this.removeEventHandler(this.root, evtType, handler);
+      },
+      registerThumbEventHandler: (thumb, evtType, handler) => {
+        const thumbEl = this.getThumbEl(thumb);
+        if (thumbEl) {
+          thumbEl.addEventListener(evtType, handler);
+          this.addEventHandler(thumbEl, evtType, handler);
+        }
+      },
+      deregisterThumbEventHandler: (thumb, evtType, handler) => {
+        const thumbEl = this.getThumbEl(thumb);
+        if (thumbEl) {
+          thumbEl.removeEventListener(evtType, handler);
+          this.removeEventHandler(thumbEl, evtType, handler);
+        }
+      },
+      registerInputEventHandler: (thumb, evtType, handler) => {
+        const thumbInput = this.getInput(thumb);
+        if (thumbInput) {
+          thumbInput.addEventListener(evtType, handler);
+          this.addEventHandler(thumbInput, evtType, handler);
+        }
+      },
+      deregisterInputEventHandler: (thumb, evtType, handler) => {
+        const thumbInput = this.getInput(thumb);
+        if (thumbInput) {
+          thumbInput.removeEventListener(evtType, handler);
+          this.removeEventHandler(thumbInput, evtType, handler);
+        }
+      },
+      registerBodyEventHandler: (evtType, handler) => {
+        document.body.addEventListener(evtType, handler);
+        this.addEventHandler(document.body, evtType, handler);
+      },
+      deregisterBodyEventHandler: (evtType, handler) => {
+        document.body.removeEventListener(evtType, handler);
+        this.removeEventHandler(document.body, evtType, handler);
+      },
+      registerWindowEventHandler: (evtType, handler) => {
+        window.addEventListener(evtType, handler);
+        this.addEventHandler(window, evtType, handler);
+      },
+      deregisterWindowEventHandler: (evtType, handler) => {
+        window.removeEventListener(evtType, handler);
+        this.removeEventHandler(window, evtType, handler);
+      },
+      // tslint:enable:object-literal-sort-keys
     };
     return new MdcSliderFoundationAurelia(adapter);
+  }
+
+  addEventHandler(element: HTMLElement | Window, evtType: EventType, handler: SpecificEventListener<EventType>) {
+    this.eventHandlers.push({ element, evtType, handler });
+  }
+
+  removeEventHandler(element: HTMLElement | Window, evtType: EventType, handler: SpecificEventListener<EventType>) {
+    const i = this.eventHandlers.findIndex(x => x.element === element && x.evtType === evtType && x.handler === handler);
+    if (i !== -1) {
+      this.eventHandlers.splice(i, 1);
+    }
+  }
+
+  cleanupEventHandlers() {
+    this.eventHandlers.forEach(x => {
+      x.element.removeEventListener(x.evtType, x.handler);
+    });
+    this.eventHandlers = [];
+  }
+
+  getThumbEl(thumb: Thumb) {
+    return thumb === Thumb.END ? this.endThumb : this.startThumb;
+  }
+
+  private getInput(thumb: Thumb) {
+    return thumb === Thumb.END ? this.endInput : this.startInput;
+  }
+
+  private getRipple(thumb: Thumb) {
+    return thumb === Thumb.END ? this.endRipple : this.startRipple;
   }
 
   focus() {
@@ -156,8 +313,8 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
 export interface IMdcSliderElement extends HTMLElement {
   checked: boolean;
   indeterminate: boolean;
-  au: {
-    controller: {
+  $au: {
+    'au:resource:custom-element': {
       viewModel: MdcSlider;
     };
   };
@@ -167,22 +324,31 @@ function defineMdcSliderElementApis(element: HTMLElement) {
   Object.defineProperties(element, {
     value: {
       get(this: IMdcSliderElement) {
-        return this.au.controller.viewModel.value;
+        return CustomElement.for<MdcSlider>(this).viewModel.value;
       },
       set(this: IMdcSliderElement, value: number) {
-        this.au.controller.viewModel.value = value;
+        CustomElement.for<MdcSlider>(this).viewModel.value = value;
+      },
+      configurable: true
+    },
+    valuestart: {
+      get(this: IMdcSliderElement) {
+        return CustomElement.for<MdcSlider>(this).viewModel.valueStart;
+      },
+      set(this: IMdcSliderElement, value: number) {
+        CustomElement.for<MdcSlider>(this).viewModel.valueStart = value;
       },
       configurable: true
     },
     focus: {
       value(this: IMdcSliderElement) {
-        this.au.controller.viewModel.focus();
+        CustomElement.for<MdcSlider>(this).viewModel.focus();
       },
       configurable: true
     },
     blur: {
       value(this: IMdcSliderElement) {
-        this.au.controller.viewModel.blur();
+        CustomElement.for<MdcSlider>(this).viewModel.blur();
       },
       configurable: true
     }

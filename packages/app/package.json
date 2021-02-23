@@ -41,6 +41,7 @@
     "@aurelia-mdc-web/notched-outline": "^1.1.3",
     "@aurelia-mdc-web/ripple": "^1.1.3",
     "@aurelia-mdc-web/select": "^1.1.3",
+    "@aurelia-mdc-web/slider": "^1.1.3",
     "@aurelia-mdc-web/snackbar": "^1.1.3",
     "@aurelia-mdc-web/tab-bar": "^1.1.3",
     "@aurelia-mdc-web/text-field": "^1.1.3",

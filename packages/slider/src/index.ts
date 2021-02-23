@@ -1,25 +1,28 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, EventSubscriber } from 'aurelia-framework';
-import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
-import { strings } from '@material/slider';
+import { events } from '@material/slider';
+import { IContainer, AppTask, IAttrSyntaxTransformer, NodeObserverLocator } from 'aurelia';
+import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { MdcSlider } from './mdc-slider';
 
 export { MdcSlider, IMdcSliderElement } from './mdc-slider';
 
-export function configure(config: FrameworkConfiguration) {
-  config.container.get(MdcComponentAdapters).registerMdcElementConfig(checkboxConfig);
+let configured = false;
 
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-slider')
-  ]);
-}
-
-const checkboxConfig = {
-  tagName: 'mdc-slider',
-  properties: {
-    value: {
-      defaultBindingMode: bindingMode.twoWay,
-      getObserver(element: Element) {
-        return new ValueAttributeObserver(element, 'value', new EventSubscriber([strings.CHANGE_EVENT, strings.INPUT_EVENT]));
-      }
+export const SliderConfiguration = {
+  register(container: IContainer): IContainer {
+    if (!configured) {
+      AppTask.with(IContainer).beforeCreate().call(c => {
+        const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
+        const nodeObserverLocator = c.get(NodeObserverLocator);
+        attrSyntaxTransformer.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SLIDER' ? property === 'value' || property === 'valuestart' : false);
+        nodeObserverLocator.useConfig({
+          'MDC-SLIDER': {
+            value: { events: [events.CHANGE, events.INPUT] },
+            valuestart: { events: [events.CHANGE, events.INPUT] }
+          }
+        });
+      }).register(container);
+      configured = true;
     }
+    return container.register(MdcSlider, RippleConfiguration);
   }
 };

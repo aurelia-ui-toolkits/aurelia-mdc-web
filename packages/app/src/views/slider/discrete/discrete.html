@@ -1,0 +1,10 @@
+<mdc-slider discrete min.bind="min" max.bind="max" value.bind="value" disabled.bind="disabled"></mdc-slider>
+<label as-element="mdc-text-field" label="Min" type="number" size="1" min="0" max="200" value.bind="min"></label>
+<label as-element="mdc-text-field" label="Max" type="number" size="1" min="0" max="200" value.bind="max"></label>
+<div class="demo-layout__row">
+  <mdc-form-field>
+    <mdc-checkbox checked.bind="disabled"></mdc-checkbox>
+    <label>Disabled</label>
+  </mdc-form-field>
+</div>
+<p>Value: ${value}</p>

@@ -29,6 +29,7 @@
     "packages/radio",
     "packages/ripple",
     "packages/select",
+    "packages/slider",
     "packages/snackbar",
     "packages/tab-bar",
     "packages/text-field",

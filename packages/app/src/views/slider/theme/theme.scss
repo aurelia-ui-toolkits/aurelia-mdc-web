@@ -1,0 +1,9 @@
+@use '@material/slider';
+@use '@material/theme/color-palette';
+
+.demo-slider-custom {
+  @include slider.track-active-color(color-palette.$red-700);
+  @include slider.thumb-color(color-palette.$orange-500);
+  @include slider.thumb-ripple-color(color-palette.$orange-500);
+  @include slider.tick-mark-active-color(blue);
+}
