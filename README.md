@@ -1,4 +1,18 @@
-# Aurelia MDC
+# Aurelia2 MDC
+
+## Here be :dragon_face:!
+
+Keep in mind that Aurelia2 itself is still in alpha stage.
+Many thing work slightly differently to Aurelia1 MDC bridge or don't work at all yet.
+
+In particular:
+* buttons must be used as follows `<button as-element="mdc-mdc-button">...</button>` or `<a as-element="mdc-mdc-button">...</a>`
+* text fields must be used as follows `<label as-element="mdc-text-field">...</label>`
+* rendering of certain elements in `repeat.for` loops is broken due to a bug in Aurelia
+* dialog service does not work at the moment (need Aurelia team guidance)
+* tree view does not work at the moment (need Aurelia team guidance)
+
+The issue with buttons and text fields will hopefully be resolved with post-alpha Aurelia2.
 
 [![npm version](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase.svg)](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
@@ -49,9 +63,9 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | switch | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/switch) |
 | tabs | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tabs) |
 | text-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/text-field) |
-| tooltip | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tooltip) |
+| tooltip | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tooltip) |
 | top-app-bar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/top-app-bar) |
-| tree-view | Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tree-view) |
+| tree-view | Not Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tree-view) |
 | typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |
 
 #### WARNING
