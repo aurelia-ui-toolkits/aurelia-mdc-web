@@ -1,4 +1,4 @@
-import Aurelia, { RouterConfiguration, } from 'aurelia';
+import Aurelia, { RouterConfiguration, IRegistry } from 'aurelia';
 import { StandardConfiguration, SVGAnalyzer } from '@aurelia/runtime-html';
 import { Root } from './views/root/root';
 import { AllConfiguration as MaterialConfiguration } from '@aurelia-mdc-web/all';
@@ -15,13 +15,17 @@ import { JsonValueConverter } from './converters/json';
 import { ValidationHtmlConfiguration } from '@aurelia/validation-html';
 import { ValidationConfiguration } from '@aurelia/validation';
 import { MdcValidationControllerFactory } from '@aurelia-mdc-web/validation';
+import { DefaultResources, HrefCustomAttribute } from '@aurelia/router';
+
+// href is buggy
+DefaultResources.splice(DefaultResources.findIndex(x => x === HrefCustomAttribute as unknown as IRegistry));
 
 Aurelia
   // .register(StyleConfiguration.shadowDOM({
   //   // optionally add the shared styles for all components
   //   sharedStyles: [shared]
   // }))
-  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: false }), MaterialConfiguration, SVGAnalyzer,
+  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: false, useHref: false }), MaterialConfiguration, SVGAnalyzer,
     Home, GettingStarted, Hljs, ApiViewer, ExampleViewer, JsonValueConverter,
     ValidationHtmlConfiguration.customize(o => o.ValidationControllerFactoryType = MdcValidationControllerFactory), ValidationConfiguration
   )
