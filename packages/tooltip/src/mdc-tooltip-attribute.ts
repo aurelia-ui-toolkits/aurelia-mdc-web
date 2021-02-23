@@ -3,15 +3,16 @@ import { XPosition, YPosition, AnchorBoundaryType } from '@material/tooltip';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { MdcTooltip } from './mdc-tooltip';
 import { Scope } from '@aurelia/runtime';
-import { PropertyBindingInstruction, ISyntheticView } from '@aurelia/runtime-html';
+import { PropertyBindingInstruction, ISyntheticView, ITemplateCompiler } from '@aurelia/runtime-html';
 
 /**
  * @selector [mdc-tooltip]
  */
-@inject(Element, IPlatform, IContainer, IAppRoot)
+@inject(Element, IPlatform, IContainer, IAppRoot, ITemplateCompiler)
 @customAttribute('mdc-tooltip')
 export class MdcTooltipAttribute {
-  constructor(root: HTMLElement, private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot) {
+  constructor(root: HTMLElement, private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot,
+    private templateCompiler: ITemplateCompiler) {
     this.root = root;
   }
 
@@ -44,8 +45,11 @@ export class MdcTooltipAttribute {
   view: ISyntheticView;
 
   attached() {
+    const def = this.templateCompiler.compile({name: 'test', template: `<mdc-tooltip>${this.value}</mdc-tooltip>`}, this.container, null);
+
+
     const props = {
-      'anchor-elem': new PropertyBindingInstruction('anchorElem', 'anchorElem', BindingMode.default),
+      'anchor-elem': new PropertyBindingInstruction('root', 'anchorElem', BindingMode.toView),
       'x-position': new PropertyBindingInstruction('xPosition', 'xPosition', BindingMode.default),
       'y-position': new PropertyBindingInstruction('yPosition', 'yPosition', BindingMode.default),
       'boundary-type': new PropertyBindingInstruction('boundaryType', 'boundaryType', BindingMode.default),
@@ -57,7 +61,7 @@ export class MdcTooltipAttribute {
     const sv = renderPlan.createView(this.container);
     sv.activate(sv, this.appRoot.controller, LifecycleFlags.none, Scope.create(this));
     this.tooltip = sv.children![0].host!;
-    this.tooltip.innerText = this.value;
+    this.tooltip.querySelector('.mdc-tooltip__surface')!.innerHTML = this.value;
     document.body.appendChild(this.tooltip);
 
     // this.tooltip = document.createElement('mdc-tooltip');

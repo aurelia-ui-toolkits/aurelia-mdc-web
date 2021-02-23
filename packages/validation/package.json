@@ -55,7 +55,8 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "4.0.1-au2",
-    "aurelia-validation": "^2.0.0-rc2"
+    "@aurelia/validation": "dev",
+    "@aurelia/validation-html": "dev"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

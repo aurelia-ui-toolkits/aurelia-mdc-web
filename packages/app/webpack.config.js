@@ -74,6 +74,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'snackbar',
           'switch',
           'tab-bar',
+          'tooltip',
           'top-app-bar',
           'text-field',
           'tree-view',

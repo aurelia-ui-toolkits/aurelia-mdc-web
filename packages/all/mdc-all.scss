@@ -41,6 +41,7 @@
 @use "@material/snackbar/mdc-snackbar";
 @use "@material/image-list/mdc-image-list";
 @use "@aurelia-mdc-web/image-list";
+@use "@material/tooltip/styles";
 // @use "@material/tooltip/styles";
 
 @include slider.core-styles;
