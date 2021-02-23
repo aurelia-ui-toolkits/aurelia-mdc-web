@@ -1,0 +1,10 @@
+<div class="demo-layout__row">
+  <button as-element="mdc-button" primary click.delegate="addTab()">Add Tab</button>
+  <button as-element="mdc-button" click.delegate="useAutomaticActivation = !useAutomaticActivation">
+    Automatic Activation: ${useAutomaticActivation ? 'On' : 'Off'}</button>
+  <button as-element="mdc-button" click.delegate="tabBar.activateTab(2)">Activate Tab(3)</button>
+</div>
+<mdc-tab-bar view-model.ref="tabBar" mdctabbar:activated.delegate="logTab($event)"
+  use-automatic-activation.bind="useAutomaticActivation" focus-on-activate.bind="false">
+  <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" icon.bind="tab.icon" active.bind="$index === 0"></mdc-tab>
+</mdc-tab-bar>

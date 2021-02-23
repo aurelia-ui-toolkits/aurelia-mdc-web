@@ -1,0 +1,11 @@
+<div class="demo-layout__row">
+  <button as-element="mdc-button" click.delegate="fade = !fade">Fade: ${fade ? 'On' : 'Off'}</button>
+</div>
+<mdc-tab-bar focus-on-activate.bind="false">
+  <mdc-tab fade.bind="fade">
+    <mdc-icon class="mdc-tab__icon">favorite</mdc-icon>
+    <span class="mdc-tab__text-label">Favorites</span>
+  </mdc-tab>
+  <mdc-tab label="Flights" icon="airplanemode_active" fade.bind="fade"></mdc-tab>
+  <mdc-tab label="Hotel" icon="hotel" fade.bind="fade"></mdc-tab>
+</mdc-tab-bar>

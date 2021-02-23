@@ -45,8 +45,7 @@ export class MdcTooltipAttribute {
   view: ISyntheticView;
 
   attached() {
-    const def = this.templateCompiler.compile({name: 'test', template: `<mdc-tooltip>${this.value}</mdc-tooltip>`}, this.container, null);
-
+    const def = this.templateCompiler.compile({ name: 'test', template: `<mdc-tooltip>${this.value}</mdc-tooltip>` }, this.container, null);
 
     const props = {
       'anchor-elem': new PropertyBindingInstruction('root', 'anchorElem', BindingMode.toView),

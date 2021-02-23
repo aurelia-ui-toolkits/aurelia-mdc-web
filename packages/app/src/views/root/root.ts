@@ -32,6 +32,7 @@ import { Ripple } from '../ripple/ripple';
 import { Slider } from '../slider/slider';
 import { Switch } from '../switch/switch';
 import { Tooltip } from '../tooltip/tooltip';
+import { Tabs } from '../tabs/tabs';
 
 @route({
   routes: [
@@ -63,6 +64,7 @@ import { Tooltip } from '../tooltip/tooltip';
     { id: 'slider', title: 'Slider', component: Slider },
     { id: 'snackbar', title: 'Snackbar', component: Snackbar },
     { id: 'switch', title: 'Switch', component: Switch },
+    { id: 'tabs', title: 'Tabs', component: Tabs },
     { id: 'text-field', title: 'Text field', component: TextField },
     { id: 'tooltip', title: 'Tooltip', component: Tooltip },
     { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
