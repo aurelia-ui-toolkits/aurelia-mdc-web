@@ -1,0 +1,18 @@
+<require from="./custom.scss"></require>
+<div class="demo-layout__row">
+  <button as-element="mdc-button" click.delegate="alignEnd = !alignEnd">
+    RTL: ${alignEnd ? 'On' : 'Off'}
+  </button>
+  <button as-element="mdc-button" click.delegate="disabled = !disabled">
+    Disabled: ${disabled ? 'On' : 'Off'}
+  </button>
+  <button as-element="mdc-button" click.delegate="alternateColors(radio)">
+    Alternate Colors
+  </button>
+</div>
+<div class="demo-layout__row">
+  <mdc-form-field align-end.bind="alignEnd">
+    <mdc-radio ref="radio" disabled.bind="disabled"></mdc-radio>
+    <label>Radio Button</label>
+  </mdc-form-field>
+</div>

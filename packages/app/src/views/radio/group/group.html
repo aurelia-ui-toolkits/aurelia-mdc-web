@@ -1,0 +1,12 @@
+<div class="demo-layout__row">
+  <button as-element="mdc-button" click.delegate="disabled = !disabled">
+    Disabled: ${disabled ? 'On' : 'Off'}
+  </button>
+</div>
+<div class="demo-layout__row">
+  <mdc-form-field repeat.for="season of seasons">
+    <mdc-radio model.bind="season" checked.bind="favoriteSeason" disabled.bind="disabled"></mdc-radio>
+    <label>${season}</label>
+  </mdc-form-field>
+</div>
+<p>Your favorite season is: ${favoriteSeason}</p>
