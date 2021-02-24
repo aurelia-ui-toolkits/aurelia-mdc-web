@@ -34,7 +34,7 @@
     "prebuild": "rimraf dist",
     "build": "gulp --gulpfile ../../gulpfile.js --cwd ./ build",
     "publish:dev": "npm publish --tag dev",
-    "doc": "typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
+    "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/"
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "4.0.1-au2.1",

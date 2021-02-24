@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress",
+    "start": "webpack serve",
     "prebuild": "rimraf dist",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
