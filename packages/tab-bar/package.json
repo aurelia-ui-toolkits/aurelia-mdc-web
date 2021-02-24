@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/tab-bar",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "publishConfig": {
     "access": "public"
   },
@@ -46,7 +46,7 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^4.0.1",
+    "@aurelia-mdc-web/base": "^4.0.2",
     "@material/tab": "^10.0.0",
     "@material/tab-bar": "^10.0.0",
     "@material/tab-indicator": "^10.0.0",

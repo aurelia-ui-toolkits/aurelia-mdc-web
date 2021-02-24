@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/linear-progress",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "publishConfig": {
     "access": "public"
   },
@@ -46,7 +46,7 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^4.0.1",
+    "@aurelia-mdc-web/base": "^4.0.2",
     "@material/linear-progress": "^10.0.0"
   }
 }
