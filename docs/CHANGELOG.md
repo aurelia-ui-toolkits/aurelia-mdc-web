@@ -1,4 +1,4 @@
-## [4.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.1...v4.0.2) (2021-02-24)
+## [4.0.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.1...v4.0.6) (2021-02-24)
 
 
 ### Bug Fixes

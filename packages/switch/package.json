@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/switch",
-  "version": "4.0.2",
+  "version": "4.0.6",
   "publishConfig": {
     "access": "public"
   },
@@ -44,11 +44,11 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\"",
     "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts",
-    "publish": "npm publish"
+    "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "^4.0.2",
-    "@aurelia-mdc-web/ripple": "^4.0.2",
+    "@aurelia-mdc-web/base": "4.0.6",
+    "@aurelia-mdc-web/ripple": "4.0.6",
     "@material/switch": "^10.0.0"
   }
 }
