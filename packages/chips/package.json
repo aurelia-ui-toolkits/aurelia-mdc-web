@@ -31,33 +31,15 @@
     "*.scss"
   ],
   "scripts": {
-    "_test": "karma start --single-run",
-    "_develop": "cross-env TS_NODE_PROJECT=\"../../tsconfig-tsnode.json\" karma start",
     "prebuild": "rimraf dist",
     "build": "gulp --gulpfile ../../gulpfile.js --cwd ./ build",
     "publish:dev": "npm publish --tag dev",
-    "_predoc": "cross-env rimraf doc/api.json && rimraf dist/doc-temp && tsc --project tsconfig.json --outFile dist/doc-temp/aurelia-ux.js && node doc/shape-defs && copyfiles tsconfig.json dist/doc-temp",
-    "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
-    "_postdoc": "cross-env node doc/shape-doc && rimraf dist/doc-temp",
-    "_changelog": "cross-env conventional-changelog -p aurelia-material-components-web -i doc/CHANGELOG.md -s",
-    "_bump-version": "npm --no-git-tag-version version",
-    "_preprepare-release": "cross-env npm run test",
-    "_prepare-release": "cross-env npm run changelog && npm run build && npm run doc",
-    "_version": "node ../update-peers.js"
+    "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/"
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "4.0.1-au2.1",
     "@aurelia-mdc-web/ripple": "4.0.1-au2.1",
     "@material/chips": "^10.0.0",
     "@material/ripple": "^10.0.0"
-  },
-  "devDependencies": {
-    "concurrently": "^5.3.0",
-    "conventional-changelog-cli": "^2.1.1",
-    "copyfiles": "^2.4.1",
-    "cross-env": "^7.0.3",
-    "rimraf": "^3.0.2",
-    "typedoc": "^0.20.23",
-    "typescript": "^4.1.4"
   }
 }
