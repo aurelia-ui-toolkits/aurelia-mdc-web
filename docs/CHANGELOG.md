@@ -1,3 +1,12 @@
+## [4.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.1...v4.0.2) (2021-02-24)
+
+
+### Bug Fixes
+
+* **tab-bar:** set correct ripple target ([b70a26f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b70a26f030518c0cf6d3517d194d669bf6bdec4a))
+
+
+
 # [v4.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.0...v4.0.1) (2021-02-09)
 
 
