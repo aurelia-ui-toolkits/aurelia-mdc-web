@@ -53,7 +53,12 @@ export class MdcDialogService {
     const dialogVm = CustomElement.for<MdcDialog>(dialogEl.querySelector('mdc-dialog')!).viewModel;
     dialogVm.root.addEventListener('mdcdialog:closing', bindingContext.handleClosing);
     dialogVm.root.addEventListener('mdcdialog:opened', bindingContext.handleOpened);
-    vm.activate(options.model);
+    if (vm.activate) {
+      const activateResult = vm.activate(options.model);
+      if (activateResult instanceof Promise) {
+        await activateResult;
+      }
+    }
     await dialogVm.initialised;
     dialogVm.open();
 
