@@ -8,6 +8,7 @@
     "start": "webpack serve --progress",
     "prebuild": "rimraf dist",
     "build": "webpack",
+    "analyze": "rimraf dist && webpack --env production --analyze",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
