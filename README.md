@@ -9,7 +9,6 @@ In particular:
 * buttons must be used as follows `<button as-element="mdc-mdc-button">...</button>` or `<a as-element="mdc-mdc-button">...</a>`
 * text fields must be used as follows `<label as-element="mdc-text-field">...</label>`
 * rendering of certain elements in `repeat.for` loops is broken due to a bug in Aurelia
-* dialog service does not work at the moment (need Aurelia team guidance)
 * tree view does not work at the moment (need Aurelia team guidance)
 
 The issue with buttons and text fields will hopefully be resolved with post-alpha Aurelia2.
