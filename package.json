@@ -52,7 +52,7 @@
     "changelog": "cross-env conventional-changelog -p angular -i docs/CHANGELOG.md -s",
     "deploy": "cd packages/app && npm run build && cd ../.. && deploy.sh",
     "update-versions:root": "ts-node -P tsconfig.scripts.json scripts/update-versions.ts",
-    "update-versions": "lage update-versions --scope @aurelia-mdc-web/*",
+    "update-versions": "lage update-versions --scope @aurelia-mdc-web/* --scope aurelia-mdc-web-dev-app",
     "publish:latest": "lage publish:latest --scope @aurelia-mdc-web/*"
   },
   "devDependencies": {

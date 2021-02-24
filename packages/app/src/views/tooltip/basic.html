@@ -1,3 +1,4 @@
 <template>
   <button mdc-button raised mdc-tooltip="Tooltip!">Hover over me</button>
+  <button mdc-button repeat.for="i of [1,2,3]" raised mdc-tooltip="value.bind: 'Tooltip ' + i">Hover over me ${i}</button>
 </template>
