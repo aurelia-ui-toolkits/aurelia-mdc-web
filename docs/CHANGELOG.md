@@ -1,5 +1,7 @@
 # [5.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.6...v5.0.0) (2021-02-26)
 
+### BREAKING CHANGES
+* **data-table:** the data table markup has been refactored to allow for more flexibility with table rows. In a nutshell, the element template should now be a valid HTML table. Table rows **MUST** be annotated with the `mdc-data-table-row` attribute.
 
 ### Features
 
