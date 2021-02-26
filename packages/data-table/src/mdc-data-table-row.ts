@@ -1,6 +1,10 @@
 import { customAttribute, inject } from 'aurelia-framework';
 import { cssClasses } from '@material/data-table';
 
+/**
+ * Required. Marks the table row.
+ * @selector [mdc-data-table-row]
+ */
 @customAttribute('mdc-data-table-row')
 @inject(Element)
 export class MdcDataTableRow {
