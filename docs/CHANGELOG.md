@@ -1,3 +1,12 @@
+# [5.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.6...v5.0.0) (2021-02-26)
+
+
+### Features
+
+* **data-table:** rework markup ([92d7b43](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/92d7b43a9b5612b3ae154b7fe1bfa593d58f57cf))
+
+
+
 ## [4.0.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.1...v4.0.6) (2021-02-24)
 
 

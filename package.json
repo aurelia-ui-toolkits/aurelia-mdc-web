@@ -1,7 +1,7 @@
 {
   "name": "@aurelia-mdc-web/monorepo",
   "private": true,
-  "version": "4.0.6",
+  "version": "5.0.0",
   "workspaces": [
     "packages/all",
     "packages/app",
@@ -42,18 +42,19 @@
     "packages/top-app-bar",
     "packages/tree-view",
     "packages/typography",
-    "packages/validation"
+    "packages/validation",
+    "aurelia-mdc-web-dev-app"
   ],
   "scripts": {
     "lint": "eslint -c .eslintrc.js packages/**/src/*.ts",
-    "build": "lage build --scope @aurelia-mdc-web/* --no-cache --no-deps",
+    "build": "lage run build --scope @aurelia-mdc-web/* --no-cache --no-deps",
     "start": "cd packages/app && npm start",
-    "doc": "lage doc --scope @aurelia-mdc-web/* --no-deps",
+    "doc": "lage run doc --scope @aurelia-mdc-web/* --no-deps",
     "changelog": "cross-env conventional-changelog -p angular -i docs/CHANGELOG.md -s",
     "deploy": "cd packages/app && npm run build && cd ../.. && deploy.sh",
     "update-versions:root": "ts-node -P tsconfig.scripts.json scripts/update-versions.ts",
-    "update-versions": "lage update-versions --scope @aurelia-mdc-web/* --scope aurelia-mdc-web-dev-app",
-    "publish:latest": "lage publish:latest --scope @aurelia-mdc-web/*"
+    "update-versions": "lage run update-versions --scope @aurelia-mdc-web/* --scope aurelia-mdc-web-dev-app",
+    "publish:latest": "lage run publish:latest --scope @aurelia-mdc-web/*"
   },
   "devDependencies": {
     "@material/button": "^10.0.0",
