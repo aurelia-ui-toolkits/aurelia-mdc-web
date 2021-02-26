@@ -4,7 +4,8 @@ export { MdcDataTable } from './mdc-data-table';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([
-    PLATFORM.moduleName('./mdc-data-table')
+    PLATFORM.moduleName('./mdc-data-table'),
+    PLATFORM.moduleName('./mdc-data-table-row')
   ]);
 
   config.aurelia.use

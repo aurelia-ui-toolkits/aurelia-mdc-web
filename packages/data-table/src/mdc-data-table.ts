@@ -24,65 +24,33 @@ const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 @processContent(MdcDataTable.processContent)
 export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implements EventListenerObject {
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
-    const table = document.createElement('table');
+    const table = element.querySelector('table');
+    if (!table) {
+      throw new Error('Have you forgotten the <table> tag in you data table markup?');
+    }
     table.classList.add('mdc-data-table__table');
     table.setAttribute('aria-label', '${ariaLabel}');
 
-    const thead = document.createElement('thead');
-    table.appendChild(thead);
-    const headerRow = document.createElement('tr');
+    const headerRow = element.querySelector('thead>tr');
+    if (!headerRow) {
+      throw new Error('Have you forgotten the <thead><tr> tags in you data table markup?');
+    }
     headerRow.classList.add(cssClasses.HEADER_ROW);
     headerRow.setAttribute('ref', 'headerRow');
-    thead.appendChild(headerRow);
-    const headerCells = element.querySelectorAll<HTMLElement>('mdc-data-table-header>mdc-data-table-header-cell') ?? [];
-    for (const c of Array.from(headerCells)) {
-      const th = document.createElement('th');
-      for (let i = 0; i < c.attributes.length; ++i) {
-        th.setAttribute(c.attributes[i].name, c.attributes[i].value);
-      }
-      th.classList.add(cssClasses.HEADER_CELL, ...Array.from(c.classList));
-      th.classList.toggle('mdc-data-table__header-cell--numeric', c.hasAttribute('numeric'));
+    const headerCells = headerRow.querySelectorAll<HTMLElement>('th');
+    for (const th of Array.from(headerCells)) {
+      th.classList.add(cssClasses.HEADER_CELL);
+      th.classList.toggle('mdc-data-table__header-cell--numeric', th.hasAttribute('numeric'));
       th.setAttribute('role', 'columnheader');
       th.setAttribute('scope', 'col');
-      th.innerHTML = c.innerHTML;
-      headerRow.appendChild(th);
     }
 
-    const tbody = document.createElement('tbody');
+    const tbody = element.querySelector('tbody');
+    if (!tbody) {
+      throw new Error('Have you forgotten the <tbody> tag in you data table markup?');
+    }
     tbody.classList.add(cssClasses.CONTENT);
     tbody.setAttribute('ref', 'content');
-    table.appendChild(tbody);
-    const rows = element.querySelectorAll<HTMLElement>('mdc-data-table-content>mdc-data-table-row') ?? [];
-    for (const r of Array.from(rows)) {
-      const tr = document.createElement('tr');
-      for (let i = 0; i < r.attributes.length; ++i) {
-        tr.setAttribute(r.attributes[i].name, r.attributes[i].value);
-      }
-      tr.classList.add(cssClasses.ROW);
-      tbody.appendChild(tr);
-      const cells = r.querySelectorAll<HTMLElement>('mdc-data-table-cell');
-      for (const c of Array.from(cells)) {
-        const isHeader = c.hasAttribute('header');
-        const cell = document.createElement(isHeader ? 'th' : 'td');
-        for (let i = 0; i < c.attributes.length; ++i) {
-          cell.setAttribute(c.attributes[i].name, c.attributes[i].value);
-        }
-        cell.classList.add(cssClasses.CELL, ...Array.from(c.classList));
-        cell.classList.toggle(cssClasses.CELL_NUMERIC, c.hasAttribute('numeric'));
-        if (isHeader) {
-          cell.setAttribute('scope', 'row');
-        }
-        cell.innerHTML = c.innerHTML;
-        tr.appendChild(cell);
-      }
-    }
-
-    const paginationTotal = element.querySelector<HTMLElement>('[replace-part="pagination-total"]');
-    element.innerHTML = '';
-    element.appendChild(table);
-    if (paginationTotal) {
-      element.appendChild(paginationTotal);
-    }
     return true;
   }
 
@@ -150,12 +118,12 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   hoistPageSelectToBody: boolean;
 
   get rowCheckboxList(): MdcCheckbox[] {
-    return Array.from(this.root.querySelectorAll<IMdcCheckboxElement>(`.${cssClasses.ROW} .mdc-checkbox`))
+    return Array.from(this.root.querySelectorAll<IMdcCheckboxElement>('tbody>tr .mdc-checkbox'))
       .map(x => x.au?.controller.viewModel);
   }
 
   get headerRowCheckbox(): MdcCheckbox | undefined {
-    return this.root.querySelector<IMdcCheckboxElement>(`.${cssClasses.HEADER_ROW} .mdc-checkbox`)?.au.controller.viewModel;
+    return this.root.querySelector<IMdcCheckboxElement>('thead>tr .mdc-checkbox')?.au.controller.viewModel;
   }
 
   handleHeaderRowCheckboxChange() {

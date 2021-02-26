@@ -5,8 +5,8 @@ import { autoinject } from 'aurelia-framework';
 import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
 
 export interface MDCDataTableRowSelectionChangedEvent {
-  index: number;
-  id: string | null;
+  rowIndex: number;
+  rowId: string | null;
   selected: boolean;
 }
 
@@ -28,7 +28,7 @@ export class Examples {
 
   selectionChangedEvent: MDCDataTableRowSelectionChangedEvent;
   onSelectionChanged(event: MDCDataTableRowSelectionChangedEvent): void {
-    this.selectionChangedEvent = event;
+    this.selectionChangedEvent = { rowId: event.rowId, rowIndex: event.rowIndex, selected: event.selected };
   }
 
   handleNavigation(type: string) {
