@@ -246,6 +246,10 @@ export class MdcSelectValueObserver implements IObserver {
         .observe(vm.menu.root, childObserverOptions);
       // this.observeArray(this.currentValue instanceof Array ? this.currentValue : null);
       this.observing = true;
+      if (vm.items?.length) {
+        this.optionsWereSet = true;
+        this.synchronizeOptions();
+      }
     });
   }
 
