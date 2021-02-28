@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/drawer",
-  "version": "4.0.1-au2.1",
+  "version": "5.0.0-au2.1",
   "publishConfig": {
     "access": "public"
   },
@@ -35,6 +35,7 @@
     "build": "gulp --gulpfile ../../gulpfile.js --cwd ./ build",
     "publish:dev": "npm publish --tag dev",
     "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
+    "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts",
     "_postdoc": "cross-env node doc/shape-doc && rimraf dist/doc-temp",
     "_changelog": "cross-env conventional-changelog -p aurelia-mdc-web -i doc/CHANGELOG.md -s",
     "_bump-version": "npm --no-git-tag-version version",
@@ -43,7 +44,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "4.0.1-au2.1",
+    "@aurelia-mdc-web/base": "5.0.0-au2.1",
     "@material/drawer": "^10.0.0",
     "@material/list": "^10.0.0"
   }
