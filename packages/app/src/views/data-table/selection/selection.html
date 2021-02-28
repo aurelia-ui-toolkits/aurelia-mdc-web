@@ -1,35 +1,36 @@
 <mdc-data-table mdcdatatable:rowselectionchanged.delegate="onSelectionChanged($event.detail)">
-  <mdc-data-table-header>
-    <mdc-data-table-header-cell>
-      <mdc-checkbox></mdc-checkbox>
-    </mdc-data-table-header-cell>
-    <mdc-data-table-header-cell>
-      <div class="mdc-data-table__header-cell-wrapper">
-        <div class="mdc-data-table__header-cell-label">
-          Dessert
-        </div>
-        <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button" aria-label="Sort by dessert"
-          aria-describedby="dessert-status-label">arrow_upward</button>
-        <div class="mdc-data-table__sort-status-label" aria-hidden="true" id="dessert-status-label">
-        </div>
-      </div>
-    </mdc-data-table-header-cell>
-    <mdc-data-table-header-cell numeric>Calories</mdc-data-table-header-cell>
-    <mdc-data-table-header-cell numeric>Carbs</mdc-data-table-header-cell>
-    <mdc-data-table-header-cell numeric>Protein (g)</mdc-data-table-header-cell>
-    <mdc-data-table-header-cell>Comments</mdc-data-table-header-cell>
-  </mdc-data-table-header>
-  <mdc-data-table-content>
-    <mdc-data-table-row repeat.for="dessert of desserts">
-      <mdc-data-table-cell>
-        <mdc-checkbox checked.bind="dessert.checked"></mdc-checkbox>
-      </mdc-data-table-cell>
-      <mdc-data-table-cell>${dessert.name}</mdc-data-table-cell>
-      <mdc-data-table-cell numeric>${dessert.calories}</mdc-data-table-cell>
-      <mdc-data-table-cell numeric>${dessert.carbs}</mdc-data-table-cell>
-      <mdc-data-table-cell numeric>${dessert.protein}</mdc-data-table-cell>
-      <mdc-data-table-cell>${dessert.comment}</mdc-data-table-cell>
-    </mdc-data-table-row>
-  </mdc-data-table-content>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <mdc-checkbox></mdc-checkbox>
+        </th>
+        <th>
+          <div class="mdc-data-table__header-cell-wrapper">
+            <div class="mdc-data-table__header-cell-label">Dessert</div>
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button" aria-label="Sort by dessert"
+              aria-describedby="dessert-status-label">arrow_upward</button>
+            <div class="mdc-data-table__sort-status-label" aria-hidden="true" id="dessert-status-label"></div>
+          </div>
+        </th>
+        <th numeric>Calories</th>
+        <th numeric>Carbs</th>
+        <th numeric>Protein (g)</th>
+        <th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdc-data-table-row repeat.for="dessert of desserts">
+        <td>
+          <mdc-checkbox checked.bind="dessert.checked"></mdc-checkbox>
+        </td>
+        <td>${dessert.name}</td>
+        <td numeric>${dessert.calories}</td>
+        <td numeric>${dessert.carbs}</td>
+        <td numeric>${dessert.protein}</td>
+        <td>${dessert.comment}</td>
+      </tr>
+    </tbody>
+  </table>
 </mdc-data-table>
 <p>Selection event: ${selectionChangedEvent | json }</p>

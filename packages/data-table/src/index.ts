@@ -1,12 +1,13 @@
 import { IContainer } from 'aurelia';
 import { MdcDataTable } from './mdc-data-table';
 import { CheckboxConfiguration } from '@aurelia-mdc-web/checkbox';
+import { MdcDataTableRow } from './mdc-data-table-row';
 
 export { MdcDataTable } from './mdc-data-table';
 
 export const DataTableConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcDataTable, CheckboxConfiguration);
+    return container.register(MdcDataTable, MdcDataTableRow, CheckboxConfiguration);
   }
 };
 

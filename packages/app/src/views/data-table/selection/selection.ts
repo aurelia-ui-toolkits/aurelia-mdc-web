@@ -1,6 +1,6 @@
 export interface MDCDataTableRowSelectionChangedEvent {
-  index: number;
-  id: string | null;
+  rowIndex: number;
+  rowId: string | null;
   selected: boolean;
 }
 
@@ -13,6 +13,6 @@ export class Selection {
 
   selectionChangedEvent: MDCDataTableRowSelectionChangedEvent;
   onSelectionChanged(event: MDCDataTableRowSelectionChangedEvent): void {
-    this.selectionChangedEvent = event;
+    this.selectionChangedEvent = { rowId: event.rowId, rowIndex: event.rowIndex, selected: event.selected };
   }
 }

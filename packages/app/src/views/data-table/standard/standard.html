@@ -2,20 +2,22 @@
   <button as-element="mdc-button" click.delegate="busy = !busy">Toggle Busy</button>
 </div>
 <mdc-data-table busy.bind="busy">
-  <mdc-data-table-header>
-    <mdc-data-table-header-cell>Dessert</mdc-data-table-header-cell>
-    <mdc-data-table-header-cell numeric>Calories</mdc-data-table-header-cell>
-    <mdc-data-table-header-cell numeric>Carbs</mdc-data-table-header-cell>
-    <mdc-data-table-header-cell numeric>Protein (g)</mdc-data-table-header-cell>
-    <mdc-data-table-header-cell mdcDataTableHeaderCell>Comments</mdc-data-table-header-cell>
-  </mdc-data-table-header>
-  <mdc-data-table-content>
-    <mdc-data-table-row repeat.for="dessert of desserts">
-      <mdc-data-table-cell>${dessert.name}</mdc-data-table-cell>
-      <mdc-data-table-cell numeric>${dessert.calories}</mdc-data-table-cell>
-      <mdc-data-table-cell numeric>${dessert.carbs}</mdc-data-table-cell>
-      <mdc-data-table-cell numeric>${dessert.protein}</mdc-data-table-cell>
-      <mdc-data-table-cell>${dessert.comment}</mdc-data-table-cell>
-    </mdc-data-table-row>
-  </mdc-data-table-content>
+  <table>
+    <thead>
+      <th>Dessert</th>
+      <th numeric>Calories</th>
+      <th numeric>Carbs</th>
+      <th numeric>Protein (g)</th>
+      <th>Comments</th>
+    </thead>
+    <tbody>
+      <tr mdc-data-table-row repeat.for="dessert of desserts">
+        <td>${dessert.name}</td>
+        <td numeric>${dessert.calories}</td>
+        <td numeric>${dessert.carbs}</td>
+        <td numeric>${dessert.protein}</td>
+        <td>${dessert.comment}</td>
+      </tr>
+    </tbody>
+  </table>
 </mdc-data-table>

@@ -30,7 +30,7 @@
     </div>
     <mdc-tab-bar>
       <mdc-tab repeat.for="r of routeContext.childRoutes" label.bind="r.config.title" load.bind="r.id"
-        class="viewer-tab" active.bind="">
+        class="viewer-tab" active.one-time="$index === 0">
       </mdc-tab>
     </mdc-tab-bar>
     <au-viewport default="examples"></au-viewport>

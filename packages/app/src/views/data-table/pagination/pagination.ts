@@ -3,6 +3,8 @@ import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
 export class Pagination {
   constructor(private snackbarService: MdcSnackbarService) { }
 
+  pageSize = 10;
+  pageSizes = [10, 20, 30];
   activePage = 1;
 
   desserts = [

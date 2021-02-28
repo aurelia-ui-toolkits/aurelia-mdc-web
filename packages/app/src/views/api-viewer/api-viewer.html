@@ -9,18 +9,22 @@
   <div repeat.for="category of a.categories" class="section-category">
     <h4 mdc-subtitle2>${category.name}</h4>
     <mdc-data-table>
-      <mdc-data-table-header>
-        <mdc-data-table-header-cell>Name</mdc-data-table-header-cell>
-        <mdc-data-table-header-cell if.bind="category.hasType">Type</mdc-data-table-header-cell>
-        <mdc-data-table-header-cell>Description</mdc-data-table-header-cell>
-      </mdc-data-table-header>
-      <mdc-data-table-content>
-        <mdc-data-table-row repeat.for="ch of category.children">
-          <mdc-data-table-cell>${c.name}</mdc-data-table-cell>
-          <mdc-data-table-cell if.bind="category.hasType">${c.type}</mdc-data-table-cell>
-          <mdc-data-table-cell>${c.description}</mdc-data-table-cell>
-        </mdc-data-table-row>
-      </mdc-data-table-content>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th if.bind="category.hasType">Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdc-data-table-row repeat.for="c of category.children">
+            <td>${c.name}</td>
+            <td if.bind="category.hasType">${c.type}</td>
+            <td>${c.description}</td>
+          </tr>
+        </tbody>
+      </table>
     </mdc-data-table>
   </div>
 </div>

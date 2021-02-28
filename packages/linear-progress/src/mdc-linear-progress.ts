@@ -42,7 +42,9 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
 
   initialSyncWithDOM() {
     this.progressChanged();
-    this.openChanged();
+    if (this.open !== undefined) {
+      this.openChanged();
+    }
     this.bufferChanged();
   }
 
