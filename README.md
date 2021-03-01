@@ -14,7 +14,6 @@ In particular:
 The issue with buttons and text fields will hopefully be resolved with post-alpha Aurelia2.
 
 [![npm version](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase.svg)](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 [Demos, documentation and guides](https://aurelia-mdc-web-au2.balaganskiy.pro/)
 
