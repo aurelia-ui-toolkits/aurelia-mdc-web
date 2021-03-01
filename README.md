@@ -16,7 +16,7 @@ The issue with buttons and text fields will hopefully be resolved with post-alph
 [![npm version](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase.svg)](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-[Demos, documentation and guides](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/)
+[Demos, documentation and guides](https://aurelia-mdc-web-au2.balaganskiy.pro/)
 
 Third-party integration incorporating [Google Material Components](https://github.com/material-components/material-components-web) for building beautiful, usable products using Material Design.
 
