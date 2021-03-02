@@ -1,1 +1,3 @@
-export class Determinate { }
+export class Determinate {
+  progress = 70;
+}
