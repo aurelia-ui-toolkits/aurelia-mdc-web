@@ -1,8 +1,6 @@
-<template>
-  <div class="demo-layout__row">
-    <div class="demo-container">
-      <mdc-slider value.bind="progress" min="0" max="100" style="width: 200px;"></mdc-slider>
-    </div>
+<div class="demo-layout__row">
+  <div class="demo-container">
+    <mdc-slider value.bind="progress" min="0" max="100" style="width: 200px;"></mdc-slider>
   </div>
-  <mdc-circular-progress size="100" stroke-width="10" progress.to-view="progress/100"></mdc-circular-progress>
-</template>
+</div>
+<mdc-circular-progress size="100" stroke-width="10" progress.to-view="progress/100"></mdc-circular-progress>
