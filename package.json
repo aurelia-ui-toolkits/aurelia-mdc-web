@@ -1,7 +1,7 @@
 {
   "name": "@aurelia-mdc-web/monorepo",
   "private": true,
-  "version": "5.0.0",
+  "version": "5.0.1",
   "workspaces": [
     "packages/all",
     "packages/app",
@@ -49,12 +49,12 @@
     "lint": "eslint -c .eslintrc.js packages/**/src/*.ts",
     "build": "lage run build --scope @aurelia-mdc-web/* --no-cache --no-deps",
     "start": "cd packages/app && npm start",
-    "doc": "lage run doc --scope @aurelia-mdc-web/* --no-deps",
+    "doc": "lage run doc",
     "changelog": "cross-env conventional-changelog -p angular -i docs/CHANGELOG.md -s",
     "deploy": "cd packages/app && npm run build && cd ../.. && deploy.sh",
     "update-versions:root": "ts-node -P tsconfig.scripts.json scripts/update-versions.ts",
-    "update-versions": "lage run update-versions --scope @aurelia-mdc-web/* --scope aurelia-mdc-web-dev-app",
-    "publish:latest": "lage run publish:latest --scope @aurelia-mdc-web/*"
+    "update-versions": "lage run update-versions",
+    "publish:latest": "lage run publish:latest"
   },
   "devDependencies": {
     "@material/button": "^10.0.0",
