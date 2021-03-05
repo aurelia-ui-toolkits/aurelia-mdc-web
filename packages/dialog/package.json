@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "5.0.0",
+    "@aurelia-mdc-web/button": "5.0.0",
     "@material/dialog": "^10.0.0"
   }
 }

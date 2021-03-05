@@ -1,4 +1,5 @@
-import { customElement, inject, inlineView } from 'aurelia-framework';
+import { customElement, inject, inlineView, children } from 'aurelia-framework';
+import { MdcButton } from '@aurelia-mdc-web/button';
 
 /**
  * Optional. Footer area containing the dialog's action buttons.
@@ -8,15 +9,11 @@ import { customElement, inject, inlineView } from 'aurelia-framework';
 @inlineView('<template class="mdc-dialog__actions"><slot></slot></template>')
 @customElement('mdc-dialog-actions')
 export class MdcDialogActions {
-  constructor(private root: HTMLElement) { }
-
-  attached() {
-    const children = this.root.children;
-    for (let i = 0; i < children.length; ++i) {
-      const child = children[i];
-      if (child.classList.contains('mdc-button')) {
-        child.classList.add('mdc-dialog__button');
-      }
+  @children('.mdc-button')
+  buttons: MdcButton[];
+  buttonsChanged() {
+    for (let i = 0; i < this.buttons.length; ++i) {
+      this.buttons[i].root.classList.add('mdc-dialog__button');
     }
   }
 }
