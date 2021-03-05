@@ -57,6 +57,7 @@ export class MdcDialogService {
     const bindingContext: IMdcDialogBindingContext = {
       handleClosing: (evt: MDCDialogCloseEvent) => {
         closingResolver(evt.detail.action);
+        slot.detached();
         childView.detached();
         dialog.remove();
       },
