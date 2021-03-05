@@ -10,7 +10,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @useView(PLATFORM.moduleName('./mdc-button.html'))
 @customElement('mdc-button')
 export class MdcButton {
-  constructor(private root: HTMLElement) { }
+  constructor(public root: HTMLElement) { }
 
   /**
    * Set the component touch target to 48 x 48 px
