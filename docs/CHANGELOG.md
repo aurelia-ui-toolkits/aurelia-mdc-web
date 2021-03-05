@@ -1,3 +1,17 @@
+## [5.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.0...v5.0.1) (2021-03-05)
+
+
+### Bug Fixes
+
+* **button:** make root public ([d9d50de](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d9d50de3de5832b994815768457adf2b7431545c))
+* **dialog:** call slot detached on dialog close ([8e9dad3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8e9dad34dc49f64664e39a953f71f13e0b0bddca))
+* **dialog:** patch focus trap ([9666d75](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9666d7559f37a427baad1358d7355420acc8f349))
+* **dialog:** properly monitor for child buttons ([860a9d5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/860a9d5731f42a0b8abb2d4d245ed97887f34940))
+* **dialog:** queue focus trap ([0211ccf](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0211ccf1c251c180db7f521a838f50b49d64b7ae))
+* **dialog:** use correct element to focus ([768f771](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/768f771e27b8b0e01bec92e20a16c9f590dcd94f))
+
+
+
 # [5.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.6...v5.0.0) (2021-02-26)
 
 ### BREAKING CHANGES
