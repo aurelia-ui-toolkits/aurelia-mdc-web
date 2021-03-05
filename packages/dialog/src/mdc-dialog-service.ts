@@ -1,5 +1,5 @@
 import { IMdcDialogElement, MdcDialog } from './mdc-dialog';
-import { TemplatingEngine, inject, ViewSlot, ShadowDOM, CompositionContext, ViewResources, Controller, CompositionEngine, Container } from 'aurelia-framework';
+import { TemplatingEngine, inject, ViewSlot, ShadowDOM, CompositionContext, ViewResources, Controller, CompositionEngine, Container, TaskQueue } from 'aurelia-framework';
 import { strings, MDCDialogCloseEvent } from '@material/dialog';
 
 /** Dialog service open method options */
@@ -35,10 +35,10 @@ interface IMdcDialogBindingContext {
 }
 
 /** Service to open MDC dialogs */
-@inject(TemplatingEngine, ViewResources, CompositionEngine)
+@inject(TemplatingEngine, ViewResources, CompositionEngine, TaskQueue)
 export class MdcDialogService {
   constructor(private templatingEngine: TemplatingEngine, private viewResources: ViewResources,
-    private compositionEngine: CompositionEngine) { }
+    private compositionEngine: CompositionEngine, private taskQueue: TaskQueue) { }
 
   /** Opens the dialog specified in the options */
   async open(options: IMdcDialogOptions) {
@@ -91,7 +91,7 @@ export class MdcDialogService {
     bindingContext.currentViewModel = (controller as Controller).viewModel;
     // instantiate focus trap manually after the content has been added because it need at least one focusable element
     dialogVm.createFocusTrap();
-    dialogVm.focusTrap?.trapFocus();
+    this.taskQueue.queueTask(() => dialogVm.focusTrap?.trapFocus());
 
     return closingPromise;
   }
