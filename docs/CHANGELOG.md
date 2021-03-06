@@ -1,3 +1,17 @@
+## [5.0.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.0-au2.1...v5.0.1-au2) (2021-03-06)
+
+
+### Bug Fixes
+
+* **app:** circular-progress examples ([f957d87](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f957d8713eb404e3346fde458ddc434a399bd9ff))
+* **button:** make root public ([6e59110](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6e591105e0b98ed4929fdc54a688f81451e2526b))
+* **dialog:** patch focus trap ([4145a14](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4145a145ed418e090798d1bf215255a2f9720653))
+* **dialog:** properly monitor for child buttons ([3927961](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/392796116118f5334b4bcf0bfd65c19325e655a3))
+* **dialog:** queue focus trap ([1763bc4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1763bc494de0494eec99700c7ac5b583a7734b47))
+* **dialog:** use correct element to focus ([b79ef44](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b79ef44de86b6c5696d288f0c4d5473efeae3927))
+
+
+
 # [5.0.0-au2.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v4.0.1-au2.1...v5.0.0-au2.1) (2021-02-28)
 
 ### BREAKING CHANGES
