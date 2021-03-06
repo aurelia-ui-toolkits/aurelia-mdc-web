@@ -45,13 +45,13 @@
   ],
   "scripts": {
     "lint": "eslint -c .eslintrc.js packages/**/src/*.ts",
-    "build": "lage build --scope @aurelia-mdc-web/* --no-cache --verbose --no-deps",
-    "publish:dev": "lage publish:dev --scope @aurelia-mdc-web/*",
+    "build": "lage build --no-cache --verbose --no-deps",
+    "publish:dev": "lage publish:dev",
     "start": "cd packages/app && npm start",
-    "doc": "lage doc --scope @aurelia-mdc-web/* --no-cache --verbose --no-deps",
+    "doc": "lage doc --no-cache --verbose --no-deps",
     "changelog": "cross-env conventional-changelog -p angular -i docs/CHANGELOG.md -s",
-    "deploy": "cross-env GIT_DEPLOY_REPO=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web-au2-demo.git\" && cd packages/app && npm run build && cd ../.. && deploy.sh",
-    "update-versions": "lage update-versions --scope @aurelia-mdc-web/*"
+    "deploy": "cross-env GIT_DEPLOY_REPO=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web-au2-demo.git\" && cd packages/app && npm run build:app && cd ../.. && deploy.sh",
+    "update-versions": "lage update-versions"
   },
   "devDependencies": {
     "@aurelia/plugin-gulp": "dev",

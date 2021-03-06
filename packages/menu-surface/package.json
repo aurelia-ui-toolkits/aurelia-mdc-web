@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/menu-surface",
-  "version": "5.0.0-au2.1",
+  "version": "5.0.1-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -38,7 +38,7 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "5.0.0-au2.1",
+    "@aurelia-mdc-web/base": "5.0.1-au2",
     "@material/menu-surface": "^10.0.0"
   }
 }
