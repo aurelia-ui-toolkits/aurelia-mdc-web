@@ -65,7 +65,7 @@ export class MdcDialogService {
     await openedPromise;
 
     dialogVm.createFocusTrap();
-    dialogVm.focusTrap?.trapFocus();
+    this.platform.taskQueue.queueTask(() => dialogVm.focusTrap?.trapFocus());
     return closingPromise;
   }
 }
