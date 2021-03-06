@@ -9,7 +9,7 @@ import { booleanAttr } from '@aurelia-mdc-web/base';
 @inject(Element)
 @customElement('mdc-button')
 export class MdcButton {
-  constructor(private root: HTMLElement) { }
+  constructor(public root: HTMLElement) { }
 
   /**
    * Set the component label
