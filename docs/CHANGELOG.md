@@ -1,3 +1,12 @@
+## [5.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.1...v5.0.2) (2021-03-07)
+
+
+### Bug Fixes
+
+* **select:** observe mutations on menu ([ac8345d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ac8345d1bd93d2d3420e0d2f87ba76aeabaa4333))
+
+
+
 ## [5.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.0...v5.0.1) (2021-03-05)
 
 
