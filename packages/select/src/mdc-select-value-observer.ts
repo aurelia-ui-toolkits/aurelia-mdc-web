@@ -99,7 +99,7 @@ export class MdcSelectValueObserver {
         this.synchronizeValue();
       }
     });
-    this.domObserver.observe(this.element, { childList: true, subtree: true, characterData: true });
+    this.domObserver.observe(this.element.querySelector('.mdc-menu')!, { childList: true, subtree: true, characterData: true });
   }
 
   unbind() {
