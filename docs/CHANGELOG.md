@@ -1,3 +1,17 @@
+## [5.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.2...v5.0.3) (2021-03-15)
+
+
+### Bug Fixes
+
+* **text-field:** emit icon event in lower case ([d2d2bca](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d2d2bca2c71b9eb3c5d60e8fa09e6394c3573b8b))
+
+
+### Features
+
+* **lookup:** add a single option autoselect on blur ([4c3ba68](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4c3ba68f85cca335fd359f0e6d35cba0db808442))
+
+
+
 ## [5.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.1...v5.0.2) (2021-03-07)
 
 

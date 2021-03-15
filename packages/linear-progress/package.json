@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/linear-progress",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "5.0.2",
+    "@aurelia-mdc-web/base": "5.0.3",
     "@material/linear-progress": "^10.0.0"
   }
 }
