@@ -151,6 +151,10 @@ export class MdcLookup implements EventListenerObject {
   @bindable.booleanAttr
   preloadOptions: boolean;
 
+  /** Loads the options to the menu when attached */
+  @bindable.booleanAttr
+  autoselectSingleOnBlur: boolean;
+
   bind() {
     this.valueFieldChanged();
     this.displayFieldChanged();
@@ -283,6 +287,9 @@ export class MdcLookup implements EventListenerObject {
     if (this.suppressBlur) {
       this.suppressBlur = false;
       return;
+    }
+    if (this.autoselectSingleOnBlur && this.optionsArray?.length === 1 && this.value === undefined) {
+      this.value = this.getValue(this.optionsArray[0]);
     }
     // re-emit on root
     this.root.dispatchEvent(new CustomEvent('blur'));
