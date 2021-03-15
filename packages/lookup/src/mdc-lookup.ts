@@ -151,7 +151,7 @@ export class MdcLookup implements EventListenerObject {
   @bindable.booleanAttr
   preloadOptions: boolean;
 
-  /** Loads the options to the menu when attached */
+  /** Enables a single option autoselect on blur */
   @bindable.booleanAttr
   autoselectSingleOnBlur: boolean;
 
