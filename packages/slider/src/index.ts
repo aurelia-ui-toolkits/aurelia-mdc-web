@@ -10,6 +10,10 @@ export function configure(config: FrameworkConfiguration) {
   config.globalResources([
     PLATFORM.moduleName('./mdc-slider')
   ]);
+
+  config.aurelia
+    .use
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
 }
 
 const checkboxConfig = {
