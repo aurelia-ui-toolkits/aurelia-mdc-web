@@ -1,3 +1,13 @@
+## [5.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.3...v5.0.4) (2021-03-28)
+
+
+### Bug Fixes
+
+* **linear-progress:** call change handler explicitly ([221c606](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/221c6060e2c68f38f6e3b296e5a61106cd66d53f)), closes [#44](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/44)
+* **slider:** use ripple plugin explicitly ([3c3613e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3c3613eb28745868506df10d03207e6ae6d7f99c)), closes [#43](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/43)
+
+
+
 ## [5.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.2...v5.0.3) (2021-03-15)
 
 
