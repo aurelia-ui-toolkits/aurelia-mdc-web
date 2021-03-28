@@ -98,15 +98,6 @@ export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation>
 
         return null;
       },
-      // attachResizeObserver: (callback: ResizeObserverCallback) => {
-      //   if (window.ResizeObserver) {
-      //     const ro = new ResizeObserver(callback);
-      //     ro.observe(this.root);
-      //     return ro;
-      //   }
-
-      //   return null;
-      // },
       getWidth: () => this.root.offsetWidth,
     };
     return new MDCLinearProgressFoundation(adapter);

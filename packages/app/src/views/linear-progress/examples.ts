@@ -9,6 +9,8 @@ export class Examples {
   indeterminateSass = indeterminateSass;
   determinateSass = determinateSass;
 
+  ipOpen = true;
+
   alternateColors(input: HTMLElement) {
     const demoInput = 'demo-linear-progress--custom';
     input.classList.toggle(demoInput);
