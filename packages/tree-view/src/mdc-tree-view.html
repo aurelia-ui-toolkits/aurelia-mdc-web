@@ -7,11 +7,11 @@
       <div class="mdc-tree-view__node ${$node.selected ? 'mdc-tree-view__node--selected' : ''}"
         click.trigger="nodeClicked($node)" mdc-ripple="no-class.bind: true;">
         <div class="mdc-tree-view__node__ripple"></div>
-        <mdc-icon-button if.bind="$node.children" type="fab" size="small" class="mdc-tree-view__expander"
+        <button mdc-icon-button if.bind="$node.children" type="fab" size="small" class="mdc-tree-view__expander"
           on.bind="$node.expanded">
           <mdc-icon-button-icon class="material-icons">chevron_right</mdc-icon-button-icon>
           <mdc-icon-button-icon class="material-icons" on>expand_more</mdc-icon-button-icon>
-        </mdc-icon-button>
+        </button>
         <div else class="mdc-tree-view__leaf-padding"></div>
         <mdc-tree-node class="mdc-tree-node" factory.bind="nodeViewFactory"
           root-binding-context.bind="rootBindingContext"></mdc-tree-node>
