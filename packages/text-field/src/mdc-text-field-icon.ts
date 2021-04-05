@@ -1,12 +1,15 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTextFieldIconFoundation, MDCTextFieldIconAdapter, iconCssClasses } from '@material/textfield';
 import { inject, customAttribute } from 'aurelia';
+import { strings } from '@material/textfield/icon/constants';
 
 export const mdcIconStrings = {
   ATTRIBUTE: 'mdc-text-field-icon',
   LEADING: 'leading',
   TRAILING: 'trailing'
 };
+
+strings.ICON_EVENT = strings.ICON_EVENT.toLowerCase();
 
 @inject(Element)
 @customAttribute('mdc-text-field-icon')
