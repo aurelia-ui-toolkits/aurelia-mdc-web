@@ -34,6 +34,7 @@ import { Switch } from '../switch/switch';
 import { Tooltip } from '../tooltip/tooltip';
 import { Tabs } from '../tabs/tabs';
 import { Typography } from '../typography/typography';
+import githubSvg from '../../assets/github-circle-white-transparent.svg';
 
 @route({
   routes: [
@@ -74,6 +75,8 @@ import { Typography } from '../typography/typography';
 })
 export class Root {
   constructor(@IRouter private router: IRouter) { }
+
+  githubSvg = githubSvg;
 
   @observable
   drawer: MdcDrawer;
