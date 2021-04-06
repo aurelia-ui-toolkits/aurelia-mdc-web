@@ -2,7 +2,7 @@
   <div mdc-menu-surface-anchor ref="demoAnchor">
     <button as-element="mdc-button" raised click.trigger="demo.open = !demo.open">Show Menu</button>
     <mdc-menu view-model.ref="demo" mdcmenu:selected.trigger="onMenuSelect($event.detail)" anchor.bind="demoAnchor"
-      anchor-corner.bind="menuSurfaceAnchorCorner" quick-open.bind="quickOpen"
+      anchor-corner.bind="anchorCorner" quick-open.bind="quickOpen"
       default-focus-state.bind="defaultFocusState" fixed.bind="fixed" stay-open-on-selection.bind="stayOpenOnSelection"
       anchor-margin.bind="anchorMargin">
       <mdc-list wrap-focus.bind="wrapFocus" tabindex="-1">
@@ -19,7 +19,7 @@
     <h3 class="demo-content__headline">Anchor Corner</h3>
     <div class="demo-layout__column">
       <mdc-form-field repeat.for="corner of corners">
-        <mdc-radio model.bind="corner" checked.bind="menuSurfaceAnchorCorner"></mdc-radio>
+        <mdc-radio model.bind="corner" checked.bind="anchorCorner"></mdc-radio>
         <label>${corner}</label>
       </mdc-form-field>
     </div>
@@ -73,5 +73,5 @@
   <p>Selected index: ${lastSelection}</p>
 </div>
 <div class="demo-layout__row">
-  <p>Anchor corner: ${menuSurfaceAnchorCorner}</p>
+  <p>Anchor corner: ${anchorCorner}</p>
 </div>

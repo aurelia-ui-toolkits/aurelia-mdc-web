@@ -1,7 +1,10 @@
-import { DefaultFocusState } from '@material/menu';
+import { DefaultFocusState, Corner } from '@material/menu';
 import { MDCMenuDistance } from '@material/menu-surface';
 
 export class Basic {
+  corners = Object.values(Corner).filter(x => typeof x === 'string');
+  anchorCorner = 'BOTTOM_LEFT';
+
   defaultFocusStates = Object.values(DefaultFocusState).filter(x => typeof x === 'string');
   defaultFocusState = this.defaultFocusStates[1];
 
