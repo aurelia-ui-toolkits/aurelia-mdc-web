@@ -1,3 +1,19 @@
+## [5.0.4-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.1-au2...v5.0.4-au2) (2021-04-06)
+
+
+### Bug Fixes
+
+* **app:** menu example ([c9335cb](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c9335cb7803f1c9f051036e96c4e8cd4091273a8))
+* **lookup:** check for undefined option ([a1d05a4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a1d05a4f54f2846b291d0690a05aff3d243f51d1))
+* **text-field:** emit icon event in lower case ([c063006](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c063006c936dd179d208f8d49c73c757f57b68a6))
+
+
+### Features
+
+* **lookup:** add a single option autoselect on blur ([e0ed19e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e0ed19ee22291e0a839c820630fd81cd9147ddc8))
+
+
+
 ## [5.0.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.0-au2.1...v5.0.1-au2) (2021-03-06)
 
 
