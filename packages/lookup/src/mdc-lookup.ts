@@ -68,7 +68,7 @@ export class MdcLookup implements EventListenerObject {
     if (this.valueField instanceof Function) {
       this.getValue = this.valueField;
     } else if (typeof this.valueField === 'string') {
-      this.getValue = option => (option as Record<string, unknown>)[this.valueField as string];
+      this.getValue = option => option !== undefined ? (option as Record<string, unknown>)[this.valueField as string] : undefined;
     } else {
       this.getValue = option => option;
     }
