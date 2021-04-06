@@ -52,6 +52,6 @@
     "@aurelia-mdc-web/top-app-bar": "5.0.1-au2",
     "@aurelia-mdc-web/typography": "5.0.1-au2",
     "@aurelia-mdc-web/validation": "5.0.1-au2",
-    "aurelia": "^2.0.1-dev.202103031040"
+    "aurelia": "^2.1.0-dev.202104031300"
   }
 }

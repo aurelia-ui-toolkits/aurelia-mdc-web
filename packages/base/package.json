@@ -41,7 +41,7 @@
     "@material/base": "^10.0.0"
   },
   "peerDependencies": {
-    "aurelia": "^2.0.1-dev.202103031040",
+    "aurelia": "^2.1.0-dev.202104031300",
     "tslib": "^1.9.3"
   }
 }
