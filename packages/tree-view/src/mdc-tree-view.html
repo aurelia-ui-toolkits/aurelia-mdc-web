@@ -1,7 +1,8 @@
 <template class="mdc-tree-view">
   <require from="./mdc-tree-node"></require>
+  <require from="./node-filter"></require>
   <ul class="mdc-tree-view__list">
-    <li repeat.for="$node of nodes" class="mdc-tree-view__list-item">
+    <li repeat.for="$node of nodes | nodeFilter:filter" class="mdc-tree-view__list-item">
       <let $tree.bind="element"></let>
       <let $tree-vm.bind="$parent"></let>
       <div class="mdc-tree-view__node ${$node.selected ? 'mdc-tree-view__node--selected' : ''}"
@@ -16,7 +17,7 @@
         <mdc-tree-node class="mdc-tree-node" factory.bind="nodeViewFactory"
           root-binding-context.bind="rootBindingContext"></mdc-tree-node>
       </div>
-      <mdc-tree-view if.bind="$node.children && $node.expanded" nodes.bind="$node.children"
+      <mdc-tree-view if.bind="$node.children && $node.expanded" nodes.bind="$node.children | nodeFilter:filter"
         root-binding-context.bind="rootBindingContext"
         mdctree:node-selected.trigger="childNodeSelected($event.detail.node)" view-model.ref="treeViews[$index]">
       </mdc-tree-view>

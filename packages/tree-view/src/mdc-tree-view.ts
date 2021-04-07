@@ -63,6 +63,12 @@ export class MdcTreeView {
   @bindable
   nodes: INode[];
 
+  /**
+   * Allows for filtering tree nodes
+   */
+  @bindable
+  filter: (n: INode) => boolean = () => true;
+
   // this is populated by the HTML template
   treeViews: MdcTreeView[] = [];
 
