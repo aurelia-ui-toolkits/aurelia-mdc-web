@@ -1,3 +1,20 @@
+# [5.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.4...v5.1.0) (2021-04-07)
+
+
+### Bug Fixes
+
+* **lookup:** check for undefined option ([d48827c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d48827c1c0043c08d496038fa0e18b31468d1ef3))
+* **menu:** set initial default focus state ([08bfc96](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/08bfc969c05543d523bd7c153410608cf599a7e9))
+* **tab-bar:** use div instead of custom scroller element ([09071db](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/09071db6c76030fbbb2315f78aea0fde44f5a742)), closes [#45](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/45)
+* **tree-view:** use correct button tag ([5d561ef](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5d561efbe3d8087f7f5f707b03615c4656083fbc))
+
+
+### Features
+
+* **tree-view:** allow nodes filtering ([efda893](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/efda8937112bdc66d84850a33579d10211b8ee77))
+
+
+
 ## [5.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.3...v5.0.4) (2021-03-28)
 
 

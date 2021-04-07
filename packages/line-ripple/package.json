@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/line-ripple",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "5.0.4",
+    "@aurelia-mdc-web/base": "5.1.0",
     "@material/line-ripple": "^10.0.0"
   }
 }
