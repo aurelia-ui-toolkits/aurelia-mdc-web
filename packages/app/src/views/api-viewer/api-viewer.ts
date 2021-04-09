@@ -21,6 +21,7 @@ import lookupApi from '../../../../lookup/doc/api.json';
 import menuApi from '../../../../menu/doc/api.json';
 import tooltipApi from '../../../../tooltip/doc/api.json';
 import selectApi from '../../../../select/doc/api.json';
+import radioApi from '../../../../radio/doc/api.json';
 
 const apis: Record<string, unknown> = {
   'button': buttonApi,
@@ -43,7 +44,8 @@ const apis: Record<string, unknown> = {
   'lookup': lookupApi,
   'menu': menuApi,
   'tooltip': tooltipApi,
-  'select': selectApi
+  'select': selectApi,
+  'radio': radioApi
 };
 
 interface ICategoryItem {
