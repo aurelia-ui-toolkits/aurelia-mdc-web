@@ -6,6 +6,9 @@ import groupHtml from '!!raw-loader!./group.html';
 import groupSvgHtml from '!!raw-loader!./group-svg.html';
 import cardHtml from '!!raw-loader!./card.html';
 import cardSass from '!!raw-loader!./card.scss';
+import hierarchicalHtml from '!!raw-loader!./hierarchical.html';
+
+import { MdcMenu } from '@aurelia-mdc-web/menu';
 
 export class Examples {
   basicHtml = basicHtml;
@@ -13,9 +16,11 @@ export class Examples {
   groupSvgHtml = groupSvgHtml;
   cardHtml = cardHtml;
   cardSass = cardSass;
+  hierarchicalHtml = hierarchicalHtml;
 
   corners = Object.values(Corner).filter(x => typeof x === 'string');
   menuSurfaceAnchorCorner = 'BOTTOM_LEFT';
+  subMenu: MdcMenu;
 
   defaultFocusStates = Object.values(DefaultFocusState).filter(x => typeof x === 'string');
   defaultFocusState = this.defaultFocusStates[1];

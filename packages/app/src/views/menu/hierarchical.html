@@ -1,0 +1,21 @@
+<template>
+  <div mdc-menu-surface-anchor ref="hierarchicalAnchor">
+    <button mdc-button raised click.trigger="hierarchical.open = !hierarchical.open">Show Menu</button>
+    <mdc-menu view-model.ref="hierarchical" anchor.bind="hierarchicalAnchor" stay-open-on-selection>
+      <mdc-list wrap-focus.bind="wrapFocus" tabindex="-1">
+        <mdc-list-item mdclistitem:action.trigger="hierarchical.open = false">Item 1</mdc-list-item>
+        <mdc-list-item mdclistitem:action.trigger="hierarchical.open = false">Item 2</mdc-list-item>
+        <mdc-list-item mdclistitem:action.trigger="(subMenu.open = true) && $event.stopPropagation()" ref="item3">
+          Item 3<mdc-icon mdc-list-item-meta>arrow_right</mdc-icon>
+        </mdc-list-item>
+        <mdc-list-item mdclistitem:action.trigger="hierarchical.open = false">Item 4</mdc-list-item>
+      </mdc-list>
+    </mdc-menu>
+  </div>
+  <mdc-menu anchor.bind="item3" view-model.ref="subMenu" hoist-to-body anchor-corner="TOP_RIGHT">
+    <mdc-list tabindex="-1">
+      <mdc-list-item>Item 1</mdc-list-item>
+      <mdc-list-item>Item 2</mdc-list-item>
+    </mdc-list>
+  </mdc-menu>
+</template>
