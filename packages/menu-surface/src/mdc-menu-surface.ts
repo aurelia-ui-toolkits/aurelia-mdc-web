@@ -66,6 +66,13 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   @bindable.booleanAttr
   stayOpen: boolean;
 
+  @bindable
+  maxHeight: number;
+  async maxHeightChanged() {
+    await this.initialised;
+    this.foundation?.setMaxHeight(this.maxHeight);
+  }
+
   get open(): boolean {
     return this.foundation!.isOpen();
   }
@@ -138,6 +145,9 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     }
     if (this.anchorMargin) {
       this.foundation?.setAnchorMargin(this.anchorMargin);
+    }
+    if (this.maxHeight) {
+      this.foundation?.setMaxHeight(this.maxHeight);
     }
     this.listen('keydown', this);
   }
