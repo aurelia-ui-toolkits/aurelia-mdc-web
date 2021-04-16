@@ -1,7 +1,7 @@
 import { useView, customElement, PLATFORM, inject, View } from 'aurelia-framework';
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCChipTrailingActionFoundation, MDCChipTrailingActionAdapter, MDCChipTrailingActionInteractionEventDetail, MDCChipTrailingActionNavigationEventDetail } from '@material/chips';
-import { strings } from '@material/chips/trailingaction/constants';
+import { MDCChipTrailingActionFoundation, MDCChipTrailingActionAdapter, MDCChipTrailingActionInteractionEventDetail, MDCChipTrailingActionNavigationEventDetail } from '@material/chips/deprecated';
+import { strings } from '@material/chips/deprecated/trailingaction/constants';
 
 MDCChipTrailingActionFoundation.strings.NAVIGATION_EVENT = MDCChipTrailingActionFoundation.strings.NAVIGATION_EVENT.toLowerCase();
 MDCChipTrailingActionFoundation.strings.INTERACTION_EVENT = MDCChipTrailingActionFoundation.strings.INTERACTION_EVENT.toLowerCase();

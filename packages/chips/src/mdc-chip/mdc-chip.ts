@@ -3,8 +3,8 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import {
   MDCChipFoundation, MDCChipAdapter, chipCssClasses,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail, MDCChipTrailingActionNavigationEvent
-} from '@material/chips';
-import { EventSource } from '@material/chips/chip/constants';
+} from '@material/chips/deprecated';
+import { EventSource } from '@material/chips/deprecated/chip/constants';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MdcChipPrimaryAction, IMdcChipPrimaryActionElement } from '../mdc-chip-primary-action/mdc-chip-primary-action';
 import { MdcChipCheckmark, IMdcChipCheckmarkElement } from '../mdc-chip-checkmark';

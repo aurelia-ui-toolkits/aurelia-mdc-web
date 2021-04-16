@@ -3,7 +3,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import {
   MDCChipSetFoundation, MDCChipSetAdapter, MDCChip,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail
-} from '@material/chips';
+} from '@material/chips/deprecated';
 import { announce } from '@material/dom/announce';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 

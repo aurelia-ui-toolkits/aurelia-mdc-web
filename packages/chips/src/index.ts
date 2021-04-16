@@ -1,6 +1,6 @@
 import { FrameworkConfiguration, PLATFORM, bindingMode, ObserverLocator, CheckedObserver, EventSubscriber } from 'aurelia-framework';
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
-import { strings } from '@material/chips/chip/constants';
+import { strings } from '@material/chips/deprecated/chip/constants';
 
 export { MdcChip } from './mdc-chip/mdc-chip';
 export { MdcChipSet } from './mdc-chip-set/mdc-chip-set';
