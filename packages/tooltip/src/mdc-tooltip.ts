@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses } from '@material/tooltip';
+import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses, PositionWithCaret } from '@material/tooltip';
 import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
@@ -41,6 +41,16 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
     }
   }
 
+  /** Sets the caret position relative to the tooltip */
+  @bindable
+  withCaretPos?: keyof typeof PositionWithCaret;
+  async withCaretPosChanged() {
+    if (this.withCaretPos !== undefined) {
+      await this.initialised;
+      this.foundation?.setTooltipPosition({ withCaretPos: PositionWithCaret[this.withCaretPos] });
+    }
+  }
+
   /** Specifies whether the anchor element is bounded (element has an identifiable boundary such as a button) or unbounded (element does not have a visually declared boundary such as a text link).
    * Tooltips are placed closer to bounded anchor elements compared to unbounded anchor elements. If no type is specified, defaults to BOUNDED.
    **/
@@ -61,7 +71,6 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
   }
 
   initialSyncWithDOM() {
-    this.anchorElem?.addEventListener('blur', this);
     if (this.rich && this.persistent) {
       this.anchorElem?.addEventListener('click', this);
     } else {
@@ -69,25 +78,27 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       // TODO(b/157075286): Listening for a 'focus' event is too broad.
       this.anchorElem?.addEventListener('focus', this);
       this.anchorElem?.addEventListener('mouseleave', this);
+      this.anchorElem?.addEventListener('touchstart', this);
+      this.anchorElem?.addEventListener('touchend', this);
     }
   }
 
   destroy() {
     if (this.anchorElem) {
-      this.anchorElem.removeEventListener('blur', this);
       if (this.rich && this.persistent) {
         this.anchorElem.removeEventListener('click', this);
       } else {
         this.anchorElem.removeEventListener('mouseenter', this);
         this.anchorElem.removeEventListener('focus', this);
         this.anchorElem.removeEventListener('mouseleave', this);
+        this.anchorElem.removeEventListener('touchstart', this);
+        this.anchorElem.removeEventListener('touchend', this);
       }
     }
   }
 
   handleEvent(evt: Event): void {
     switch (evt.type) {
-      case 'blur': this.handleBlur(evt as FocusEvent); break;
       case 'click': this.handleClick(); break;
       case 'mouseenter': this.handleMouseEnter(); break;
       case 'focus': this.handleFocus(evt as FocusEvent); break;
@@ -107,8 +118,12 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
     this.foundation?.handleAnchorMouseLeave();
   }
 
-  handleBlur(evt: FocusEvent) {
-    this.foundation?.handleAnchorBlur(evt);
+  handleTouchstart() {
+    this.foundation?.handleAnchorTouchstart();
+  }
+
+  handleTouchend() {
+    this.foundation?.handleAnchorTouchend();
   }
 
   handleClick() {
@@ -134,14 +149,14 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       },
       getComputedStyleProperty: (propertyName) => {
         return window.getComputedStyle(this.root).getPropertyValue(
-            propertyName);
+          propertyName);
       },
       setStyleProperty: (propertyName, value) => {
         this.root.style.setProperty(propertyName, value);
       },
       setSurfaceStyleProperty: (propertyName, value) => {
         const surface =
-            this.root.querySelector<HTMLElement>(`.${CssClasses.SURFACE}`);
+          this.root.querySelector<HTMLElement>(`.${CssClasses.SURFACE}`);
         surface?.style.setProperty(propertyName, value);
       },
       getViewportWidth: () => window.innerWidth,
@@ -184,6 +199,12 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
           this.root.removeEventListener(evt, handler);
         }
       },
+      registerAnchorEventHandler: (evt, handler) => {
+        this.anchorElem?.addEventListener(evt, handler);
+      },
+      deregisterAnchorEventHandler: (evt, handler) => {
+        this.anchorElem?.addEventListener(evt, handler);
+      },
       registerDocumentEventHandler: (evt, handler) => {
         document.body.addEventListener(evt, handler);
       },
@@ -198,6 +219,38 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       },
       notifyHidden: () => {
         this.emit(events.HIDDEN, {});
+      },
+      getTooltipCaretSize: () => {
+        const caret = this.root.querySelector<HTMLElement>(
+          `.${CssClasses.TOOLTIP_CARET_TOP}`);
+        if (!caret) {
+          return null;
+        }
+
+        return { width: caret.offsetWidth, height: caret.offsetHeight };
+      },
+      setTooltipCaretStyle: (propertyName, value) => {
+        const topCaret = this.root.querySelector<HTMLElement>(
+          `.${CssClasses.TOOLTIP_CARET_TOP}`);
+        const bottomCaret = this.root.querySelector<HTMLElement>(
+          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`);
+
+        if (!topCaret || !bottomCaret) {
+          return;
+        }
+
+        topCaret.style.setProperty(propertyName, value);
+        bottomCaret.style.setProperty(propertyName, value);
+      },
+      clearTooltipCaretStyles: () => {
+        const topCaret = this.root.querySelector<HTMLElement>(`.${CssClasses.TOOLTIP_CARET_TOP}`);
+        const bottomCaret = this.root.querySelector<HTMLElement>(`.${CssClasses.TOOLTIP_CARET_BOTTOM}`);
+
+        if (!topCaret || !bottomCaret) {
+          return;
+        }
+        topCaret.removeAttribute('style');
+        bottomCaret.removeAttribute('style');
       },
     };
 
