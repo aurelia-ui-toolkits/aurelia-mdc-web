@@ -11,6 +11,8 @@ export interface IMdcDialogOptions {
   model?: unknown;
 
   scrimClickAction?: string;
+
+  fullscreen?: boolean;
 }
 
 declare module 'aurelia-templating' {
@@ -48,6 +50,9 @@ export class MdcDialogService {
     dialog.setAttribute('delay-focus-trap', 'delay-focus-trap');
     if (options.scrimClickAction !== undefined) {
       dialog.setAttribute('scrim-click-action', options.scrimClickAction);
+    }
+    if (options.fullscreen === true) {
+      dialog.setAttribute('fullscreen', '');
     }
     document.body.appendChild(dialog);
     let closingResolver: (action?: string | PromiseLike<string> | undefined) => void;

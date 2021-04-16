@@ -49,6 +49,9 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   @bindable.booleanAttr
   delayFocusTrap: boolean;
 
+  @bindable.booleanAttr
+  fullscreen: boolean;
+
   get defaultButton(): HTMLElement | null {
     return this.root.querySelector<HTMLElement>(`[${strings.BUTTON_DEFAULT_ATTRIBUTE}]`);
   }
