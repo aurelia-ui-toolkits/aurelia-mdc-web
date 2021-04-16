@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "5.1.0",
-    "@material/drawer": "^10.0.0",
-    "@material/list": "^10.0.0"
+    "@material/drawer": "^11.0.0",
+    "@material/list": "^11.0.0"
   }
 }

@@ -54,6 +54,6 @@
     "@aurelia-mdc-web/menu": "5.1.0",
     "@aurelia-mdc-web/notched-outline": "5.1.0",
     "@aurelia-mdc-web/ripple": "5.1.0",
-    "@material/select": "^10.0.0"
+    "@material/select": "^11.0.0"
   }
 }

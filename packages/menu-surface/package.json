@@ -48,6 +48,6 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "5.1.0",
-    "@material/menu-surface": "^10.0.0"
+    "@material/menu-surface": "^11.0.0"
   }
 }

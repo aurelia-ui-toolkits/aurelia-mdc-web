@@ -52,7 +52,7 @@
     "@aurelia-mdc-web/line-ripple": "5.1.0",
     "@aurelia-mdc-web/notched-outline": "5.1.0",
     "@aurelia-mdc-web/ripple": "5.1.0",
-    "@material/ripple": "^10.0.0",
-    "@material/textfield": "^10.0.0"
+    "@material/ripple": "^11.0.0",
+    "@material/textfield": "^11.0.0"
   }
 }

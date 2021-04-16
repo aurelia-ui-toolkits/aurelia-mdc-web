@@ -52,6 +52,6 @@
     "@aurelia-mdc-web/icon": "5.1.0",
     "@aurelia-mdc-web/linear-progress": "5.1.0",
     "@aurelia-mdc-web/select": "5.1.0",
-    "@material/data-table": "^10.0.0"
+    "@material/data-table": "^11.0.0"
   }
 }

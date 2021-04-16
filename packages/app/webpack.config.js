@@ -10,6 +10,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
     // this is super important as only 'sass' package supports new '@use' syntax
     loader: 'sass-loader', options: {
       implementation: require('sass'),
+      webpackImporter: false,
       sassOptions: {
         // this tells sass to consider following folders when looking for modules in scoped packages
         includePaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')]

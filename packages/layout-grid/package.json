@@ -47,6 +47,6 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@material/layout-grid": "^10.0.0"
+    "@material/layout-grid": "^11.0.0"
   }
 }

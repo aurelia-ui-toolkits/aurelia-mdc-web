@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@material/base": "^10.0.0",
+    "@material/base": "^11.0.0",
     "aurelia-typed-observable-plugin": "^0.4.2"
   },
   "peerDependencies": {

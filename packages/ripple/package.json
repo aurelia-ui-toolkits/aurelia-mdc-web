@@ -48,6 +48,6 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "5.1.0",
-    "@material/ripple": "^10.0.0"
+    "@material/ripple": "^11.0.0"
   }
 }

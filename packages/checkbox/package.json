@@ -49,6 +49,6 @@
   "dependencies": {
     "@aurelia-mdc-web/base": "5.1.0",
     "@aurelia-mdc-web/ripple": "5.1.0",
-    "@material/checkbox": "^10.0.0"
+    "@material/checkbox": "^11.0.0"
   }
 }
