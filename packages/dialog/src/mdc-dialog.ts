@@ -186,6 +186,12 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
       isScrollableContentAtBottom: () => {
         return util.isScrollAtBottom(this.content);
       },
+      registerWindowEventHandler: (evt, handler) => {
+        window.addEventListener(evt, handler);
+      },
+      deregisterWindowEventHandler: (evt, handler) => {
+        window.removeEventListener(evt, handler);
+      },
     };
     return new MDCDialogFoundation(adapter);
   }
