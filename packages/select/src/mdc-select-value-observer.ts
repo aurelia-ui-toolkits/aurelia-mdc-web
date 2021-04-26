@@ -103,6 +103,7 @@ export class MdcSelectValueObserver {
   }
 
   unbind() {
+    this.optionsWereSet = false;
     this.domObserver?.disconnect();
     this.domObserver = null;
   }
