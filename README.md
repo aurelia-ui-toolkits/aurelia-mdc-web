@@ -10,7 +10,7 @@ Third-party integration incorporating [Google Material Components](https://githu
 *  [Getting Started](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/getting-started)
 *  [Changelog](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/CHANGELOG.md)
 *  [Documentation and demos](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/)
-*  [Skeleton application](https://github.com/mreiche/aurelia-material-skeleton/)
+*  [Skeleton application](https://github.com/aurelia-mdc-web/new/) run `npx makes aurelia-mdc-web`
 *  [Dumber Gist Template](https://gist.dumber.app/?gist=ca0cfc47e375e4b37363eeb407eb2859)
 *  [Contributing](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/CONTRIBUTING.md)
 *  [Developer guide](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/developer.md)
