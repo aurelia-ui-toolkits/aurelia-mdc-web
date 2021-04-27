@@ -1,3 +1,30 @@
+# [6.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.1.0...v6.0.0) (2021-04-27)
+
+### BREAKING CHANGES
+* **all:** upgrade to MDC@11
+* **list:** the DOM structure has changed, see examples
+
+### Bug Fixes
+
+* **chips:** upgrade to MDC@11 ([f48639a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f48639a66efe451bce075e4d742f0fe2f5fa1a91))
+* **dialog:** upgrade to MDC@11 ([f06fc40](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f06fc402f79b5a85706db924be2315244190bc1f))
+* **dialogs:** add fullscreen attribute ([c987853](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c987853ebafd72ff6293b5412c5be3f15dba925a))
+* **list:** new DOM structure ([ef33c56](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ef33c5693963f90ba37bc5ac0a89a20041c5539f))
+* **lookup:** do not reset the value when bind() is called ([5f890ca](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5f890ca80136e6716886ac4f9a3fbbba0ee43b6e)), closes [#50](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/50)
+* **select:** reset observer internal flag ([cd399e6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/cd399e6b583f10b844bb91fd201ebc295c3b9ce4))
+* **select:** set hoisted or fixed select width explicitly ([c1c8282](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c1c82823ab49e8d4636280f12aa5beb91e6137ef))
+* **snackbar:** DOM structure ([50aafa1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/50aafa1ac7cd53e243a37cf00b381195194e18a6))
+
+
+### Features
+
+* **app:** hierarchical menu examples ([2db3ef5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2db3ef58f1c5f71eb96b1620a7dd4988d59a357a)), closes [#47](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/47)
+* **menu:** add maxHeight ([1e8477b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1e8477baf9b8ccf94ef7e1c10dd5d7bbe9499192))
+* **menu-surface:** add horizontallyCenteredOnViewport attribute ([8a9a2c5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8a9a2c54ac8ad6a2c0cc8897450a88df152a53c6))
+* **tooltip:** add caret position ([825a482](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/825a482a76d6f92a404bab4457c49d3bc7fcf3cf))
+
+
+
 # [5.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.4...v5.1.0) (2021-04-07)
 
 
