@@ -1,6 +1,6 @@
 @use "@material/button/mdc-button";
-@use "@material/list/mdc-list";
-@use "@aurelia-mdc-web/list";
+@use "@material/list/evolution-mixins" as list-evolution-mixins;
+@use "@aurelia-mdc-web/list" as auList;
 @use "@material/top-app-bar/mdc-top-app-bar";
 @use "@material/icon-button/mdc-icon-button";
 @use "@material/drawer/mdc-drawer";
@@ -43,3 +43,5 @@
 @use "@material/tooltip/styles";
 
 @include slider.core-styles;
+@include list-evolution-mixins.without-ripple();
+@include list-evolution-mixins.with-ripple();

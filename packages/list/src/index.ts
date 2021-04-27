@@ -7,11 +7,12 @@ export function configure(config: FrameworkConfiguration) {
   config.globalResources([
     PLATFORM.moduleName('./mdc-list'),
     PLATFORM.moduleName('./mdc-list-item/mdc-list-item'),
+    PLATFORM.moduleName('./mdc-list-item/mdc-list-item-leading'),
+    PLATFORM.moduleName('./mdc-list-item/mdc-list-item-trailing'),
     PLATFORM.moduleName('./mdc-list-item/enhance-mdc-list-item'),
+    PLATFORM.moduleName('./mdc-list-item-overline-text'),
     PLATFORM.moduleName('./mdc-list-item-primary-text'),
     PLATFORM.moduleName('./mdc-list-item-secondary-text'),
-    PLATFORM.moduleName('./mdc-list-item-graphic'),
-    PLATFORM.moduleName('./mdc-list-item-meta'),
     PLATFORM.moduleName('./mdc-list-divider/mdc-list-divider'),
     PLATFORM.moduleName('./mdc-list-group'),
   ]);
