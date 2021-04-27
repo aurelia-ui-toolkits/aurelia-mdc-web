@@ -2,8 +2,6 @@ import customHtml from '!!raw-loader!./custom.html';
 import customSass from '!!raw-loader!./custom.scss';
 import customCode from '!!raw-loader!./custom';
 import disableRippleHtml from '!!raw-loader!./disable-ripple.html';
-import shapedHtml from '!!raw-loader!./shaped.html';
-import shapedSass from '!!raw-loader!./shaped.scss';
 import singleLineHtml from '!!raw-loader!./single-line.html';
 import twoLineHtml from '!!raw-loader!./two-line.html';
 import leadingIconHtml from '!!raw-loader!./leading-icon.html';
@@ -21,8 +19,6 @@ export class Examples {
   customSass = customSass;
   customCode = customCode;
   disableRippleHtml = disableRippleHtml;
-  shapedHtml = shapedHtml;
-  shapedSass = shapedSass;
   singleLineHtml = singleLineHtml;
   twoLineHtml = twoLineHtml;
   leadingIconHtml = leadingIconHtml;

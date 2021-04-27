@@ -2,8 +2,6 @@ import standardHtml from '!!raw-loader!./standard.html';
 import dismissibleHtml from '!!raw-loader!./dismissible.html';
 import modalHtml from '!!raw-loader!./modal.html';
 import rtlHtml from '!!raw-loader!./rtl.html';
-import shapedHtml from '!!raw-loader!./shaped.html';
-import shapedSass from '!!raw-loader!./shaped.scss';
 import examplesCode from '!!raw-loader!./examples-code';
 
 export class Examples {
@@ -11,8 +9,6 @@ export class Examples {
   dismissibleHtml = dismissibleHtml;
   modalHtml = modalHtml;
   rtlHtml = rtlHtml;
-  shapedHtml = shapedHtml;
-  shapedSass = shapedSass;
   examplesCode = examplesCode;
 
   destinations = [

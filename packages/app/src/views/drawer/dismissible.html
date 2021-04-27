@@ -5,7 +5,7 @@
       <mdc-drawer-content>
         <mdc-list>
           <mdc-list-item repeat.for="item of destinations" activated.bind="item.activated">
-            <mdc-icon mdc-list-item-graphic if.bind="item.icon">${item.icon}</mdc-icon>
+            <mdc-icon mdc-list-item-leading if.bind="item.icon">${item.icon}</mdc-icon>
             <span>${item.label}</span>
           </mdc-list-item>
         </mdc-list>

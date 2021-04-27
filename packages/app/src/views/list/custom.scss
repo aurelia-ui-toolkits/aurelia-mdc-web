@@ -1,15 +1,20 @@
-@use '@material/list';
-@use '@material/theme/color-palette' as material-color;
+@use '@material/list/evolution-mixins'as list;
+@use '@material/theme/color-palette'as material-color;
 
 .demo-list--custom {
-  @include list.item-graphic-ink-color(white);
-  @include list.item-graphic-fill-color(text-icon-on-background);
-
+  @include list.list-icon-ink-color(material-color.$orange-500);
   @include list.divider-color(material-color.$pink-50);
+  @include list.list-primary-text-ink-color(material-color.$blue-600);
+  @include list.list-secondary-text-ink-color(material-color.$purple-600);
+  @include list.list-meta-text-ink-color(material-color.$orange-500);
+}
 
-  @include list.item-primary-text-ink-color(material-color.$blue-600);
-  @include list.item-secondary-text-ink-color(material-color.$purple-600);
-  @include list.item-graphic-fill-color(material-color.$pink-400);
-  @include list.item-graphic-ink-color(material-color.$pink-50);
-  @include list.item-meta-ink-color(material-color.$orange-500);
+.mdc-list--dense {
+  font-size: 0.812rem;
+
+  .mdc-list-item {
+    @include list.one-line-item-density(-3);
+    @include list.two-line-item-density(-3);
+    @include list.three-line-item-density(-3);
+  }
 }
