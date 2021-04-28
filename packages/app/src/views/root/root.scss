@@ -3,6 +3,8 @@
 //   $secondary: #faab1a,
 //   $background: #fff,
 // );
+@use '@material/theme/mdc-theme';
+@use '@material/theme/theme-color';
 
 @use "@aurelia-mdc-web/all";
 
