@@ -1,6 +1,6 @@
 @use "@material/button/mdc-button";
-@use "@material/list/evolution-mixins" as list-evolution-mixins;
-@use "@aurelia-mdc-web/list" as auList;
+@use "@material/list/evolution-mixins"as list-evolution-mixins;
+@use "@aurelia-mdc-web/list"as auList;
 @use "@material/top-app-bar/mdc-top-app-bar";
 @use "@material/icon-button/mdc-icon-button";
 @use "@material/drawer/mdc-drawer";
@@ -11,6 +11,7 @@
 @use "@material/line-ripple/mdc-line-ripple";
 @use "@material/notched-outline/mdc-notched-outline";
 @use "@material/ripple/mdc-ripple";
+@use "@material/ripple/ripple-theme";
 @use "@material/tab-bar/mdc-tab-bar";
 @use "@material/tab-scroller/mdc-tab-scroller";
 @use "@material/tab-indicator/mdc-tab-indicator";
@@ -25,9 +26,10 @@
 @use "@material/radio/mdc-radio";
 @use "@material/circular-progress/mdc-circular-progress";
 @use "@material/slider/slider";
-@use "@aurelia-mdc-web/slider" as auSlider;
+@use "@aurelia-mdc-web/slider"as auSlider;
 @use "@material/switch/mdc-switch";
 @use "@material/fab/mdc-fab";
+@use "@material/fab/fab-theme";
 @use "@aurelia-mdc-web/expandable";
 @use "@material/elevation/mdc-elevation";
 @use "@material/data-table/mdc-data-table";
@@ -45,3 +47,8 @@
 @include slider.core-styles;
 @include list-evolution-mixins.without-ripple();
 @include list-evolution-mixins.with-ripple();
+
+// remove when https://github.com/material-components/material-components-web/issues/7053 is fixed
+.mdc-fab {
+  @include ripple-theme.states(on-secondary, $ripple-target: fab-theme.$ripple-target);
+}
