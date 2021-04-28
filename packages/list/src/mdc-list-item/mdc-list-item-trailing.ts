@@ -24,8 +24,6 @@ export class MdcListItemTrailing {
         value = 'switch';
       } else if (this.root.classList.contains('material-icons')) {
         value = 'icon';
-      } else {
-        value = 'meta';
       }
     }
     this.root.parentElement?.parentElement?.classList.add(`mdc-list-item--with-trailing-${value}`);

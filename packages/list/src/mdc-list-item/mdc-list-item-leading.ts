@@ -26,8 +26,6 @@ export class MdcListItemLeading {
         value = 'icon';
       } else if (this.root.tagName === 'IMG') {
         value = 'image';
-      } else {
-        value = 'icon';
       }
     }
     this.root.parentElement?.parentElement?.classList.add(`mdc-list-item--with-leading-${value}`);
