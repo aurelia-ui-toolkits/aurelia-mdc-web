@@ -4,7 +4,7 @@ import { customAttribute } from 'aurelia-framework';
  * Optional, marks the leading control or media element
  * @selector [mdc-list-item-leading]
  */
- @customAttribute('mdc-list-item-leading')
+@customAttribute('mdc-list-item-leading')
 export class MdcListItemLeading {
   constructor(private root: Element) { }
 
@@ -22,7 +22,7 @@ export class MdcListItemLeading {
         value = 'radio';
       } else if (this.root.classList.contains('mdc-switch')) {
         value = 'switch';
-      } else if (this.root.classList.contains('mdc-icon')) {
+      } else if (this.root.classList.contains('material-icons')) {
         value = 'icon';
       } else if (this.root.tagName === 'IMG') {
         value = 'image';

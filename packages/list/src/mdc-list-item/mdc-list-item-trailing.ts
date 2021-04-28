@@ -22,7 +22,7 @@ export class MdcListItemTrailing {
         value = 'radio';
       } else if (this.root.classList.contains('mdc-switch')) {
         value = 'switch';
-      } else if (this.root.classList.contains('mdc-icon')) {
+      } else if (this.root.classList.contains('material-icons')) {
         value = 'icon';
       } else {
         value = 'meta';
