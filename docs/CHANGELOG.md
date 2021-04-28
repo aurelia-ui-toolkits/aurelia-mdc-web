@@ -1,3 +1,20 @@
+## [6.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.0.0...v6.0.1) (2021-04-28)
+
+### BREAKING CHANGES
+* **top-app-bar:** rename align attribute ([7607944](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7607944d38a39d2eb5247342fe5389d684a22735))
+
+### Bug Fixes
+
+* **app:** api page generation ([082b18f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/082b18f833487bbcedd19db2b289d1e2412b550f))
+* **app:** group menu example ([8ea3a5e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8ea3a5ef4f5ba293015b8b895ca34bac7193f80b))
+* **list:** default to empty control/media type if cannot be implied ([75fcd74](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/75fcd7459c00a1d73c5815ca8a9169004758ba9c))
+* **list:** do not manipulate content if 'template' is present ([7e076ef](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7e076ef8f3ff47a84fd14aafb8fd9f57aa8ec297))
+* **list:** use proper icons class ([e5eda5a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e5eda5a2cd4cfaf4874a296564de541fc1477c2b))
+* **lookup:** move two-line to items ([9283072](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/928307264cfe9b206014dafe00c8d07b2ae72b84))
+* **top-app-bar:** rename align attribute ([7607944](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7607944d38a39d2eb5247342fe5389d684a22735))
+
+
+
 # [6.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.1.0...v6.0.0) (2021-04-27)
 
 ### BREAKING CHANGES
