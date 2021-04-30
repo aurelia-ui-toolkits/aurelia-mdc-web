@@ -86,6 +86,8 @@ export class MdcSelectValueObserver {
   }
 
   bind() {
+    const menu = this.element.querySelector('.mdc-menu')!;
+    this.optionsWereSet = !!menu.querySelector('mdc-list-item');
     this.domObserver = DOM.createMutationObserver((records: MutationRecord[]) => {
       if (records.find(x => x.type === 'childList'
         && (Array.from(x.addedNodes).find(y => (y as HTMLElement).tagName === 'MDC-LIST-ITEM')
@@ -99,7 +101,7 @@ export class MdcSelectValueObserver {
         this.synchronizeValue();
       }
     });
-    this.domObserver.observe(this.element.querySelector('.mdc-menu')!, { childList: true, subtree: true, characterData: true });
+    this.domObserver.observe(menu, { childList: true, subtree: true, characterData: true });
   }
 
   unbind() {
