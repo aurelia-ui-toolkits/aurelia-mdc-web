@@ -18,7 +18,7 @@ let configured = false;
 export const SelectConfiguration = {
   register(container: IContainer): IContainer {
     if (!configured) {
-      AppTask.with(IContainer).beforeCreate().call(c => {
+      AppTask.beforeCreate(IContainer, c => {
         const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrSyntaxTransformer.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SELECT' ? property === 'value' : false);
@@ -31,33 +31,3 @@ export const SelectConfiguration = {
   }
 };
 
-// export function configure(config: FrameworkConfiguration) {
-//   config.container.get(MdcComponentAdapters).registerMdcElementConfig(selectConfig);
-
-//   config.globalResources([
-//     PLATFORM.moduleName('./mdc-select'),
-//     PLATFORM.moduleName('./mdc-select-icon'),
-//     PLATFORM.moduleName('./mdc-select-helper-text/mdc-select-helper-text')
-//   ]);
-
-//   config.aurelia
-//     .use
-//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
-//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/line-ripple'))
-//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/list'))
-//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'))
-//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/notched-outline'))
-//     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
-// }
-
-// const selectConfig = {
-//   tagName: 'mdc-select',
-//   properties: {
-//     value: {
-//       defaultBindingMode: bindingMode.twoWay,
-//       getObserver(element: Element) {
-//         return new ValueAttributeObserver(element, 'value', new EventSubscriber([strings.CHANGE_EVENT]));
-//       }
-//     }
-//   }
-// };

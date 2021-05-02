@@ -17,7 +17,7 @@ let configured = false;
 export const TextFieldConfiguration = {
   register(container: IContainer): IContainer {
     if (!configured) {
-      AppTask.with(IContainer).beforeCreate().call(c => {
+      AppTask.beforeCreate(IContainer, c => {
         const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrSyntaxTransformer.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-TEXT-FIELD' ? property === 'value' : false);

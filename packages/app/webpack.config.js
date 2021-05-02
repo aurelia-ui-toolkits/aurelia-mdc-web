@@ -31,6 +31,7 @@ module.exports = function (env, { analyze }) {
     entry: './src/main.ts',
     output: {
       path: outDir,
+      publicPath: '.',
       filename: production ? '[name].[chunkhash].bundle.js' : '[name].[fullhash].bundle.js',
       sourceMapFilename: production ? '[name].[chunkhash].bundle.map' : '[name].[fullhash].bundle.map',
       chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[fullhash].chunk.js'
