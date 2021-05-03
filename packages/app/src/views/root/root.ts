@@ -1,6 +1,6 @@
 import { MdcDrawer } from '@aurelia-mdc-web/drawer';
 import { observable } from '@aurelia/runtime';
-import { IRouter, route, RouteDefinition } from '@aurelia/router';
+// import { IRouter, route, RouteDefinition } from '@aurelia/router';
 import { Home } from '../home/home';
 import { GettingStarted } from '../getting-started/getting-started';
 import { Button } from '../button/button';
@@ -35,45 +35,44 @@ import { Tooltip } from '../tooltip/tooltip';
 import { Tabs } from '../tabs/tabs';
 import { Typography } from '../typography/typography';
 import githubSvg from '../../assets/github-circle-white-transparent.svg';
+import { IRouter, routes, IRouteableComponent } from 'aurelia-direct-router';
 
-@route({
-  routes: [
-    { id: 'home', path: 'home', title: 'Home', component: Home, data: { divider: 'true' } },
-    { id: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
-    { id: 'button', title: 'Button', component: Button },
-    { id: 'card', title: 'Card', component: Card },
-    { id: 'checkbox', title: 'Checkbox', component: Checkbox },
-    { id: 'chips', title: 'Chips', component: Chips },
-    { id: 'circular-progress', title: 'Circular progress', component: CircularProgress },
-    { id: 'data-table', title: 'Data table', component: DataTable },
-    { id: 'dialog', title: 'Dialog', component: Dialog },
-    { id: 'drawer', title: 'Drawer', component: Drawer },
-    { id: 'elevation', title: 'Elevation', component: Elevation },
-    { id: 'expandable', title: 'Expandable', component: Expandable },
-    { id: 'fab', title: 'Fab', component: Fab },
-    { id: 'form-field', title: 'Form field', component: FormField },
-    { id: 'icon-button', title: 'Icon button', component: IconButton },
-    { id: 'image-list', title: 'Image list', component: ImageList },
-    { id: 'layout-grid', title: 'Layout grid', component: LayoutGrid },
-    { id: 'list', title: 'List', component: List },
-    { id: 'linear-progress', title: 'Linear progress', component: LinearProgress },
-    { id: 'lookup', title: 'Lookup', component: Lookup },
-    { id: 'menu', title: 'Menu', component: Menu },
-    { id: 'menu-surface', title: 'Menu surface', component: MenuSurface },
-    { id: 'radio', title: 'Radio', component: Radio },
-    { id: 'ripple', title: 'Ripple', component: Ripple },
-    { id: 'select', title: 'Select', component: Select },
-    { id: 'slider', title: 'Slider', component: Slider },
-    { id: 'snackbar', title: 'Snackbar', component: Snackbar },
-    { id: 'switch', title: 'Switch', component: Switch },
-    { id: 'tabs', title: 'Tabs', component: Tabs },
-    { id: 'text-field', title: 'Text field', component: TextField },
-    { id: 'tooltip', title: 'Tooltip', component: Tooltip },
-    { id: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
-    { id: 'typography', title: 'Typography', component: Typography },
-  ]
-})
-export class Root {
+@routes([
+  { id: 'home', path: '', title: 'Home', component: Home, data: { divider: 'true' } },
+  { path: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
+  { path: 'button', title: 'Button', component: Button },
+  { path: 'card', title: 'Card', component: Card },
+  { path: 'checkbox', title: 'Checkbox', component: Checkbox },
+  { path: 'chips', title: 'Chips', component: Chips },
+  { path: 'circular-progress', title: 'Circular progress', component: CircularProgress },
+  { path: 'data-table', title: 'Data table', component: DataTable },
+  { path: 'dialog', title: 'Dialog', component: Dialog },
+  { path: 'drawer', title: 'Drawer', component: Drawer },
+  { path: 'elevation', title: 'Elevation', component: Elevation },
+  { path: 'expandable', title: 'Expandable', component: Expandable },
+  { path: 'fab', title: 'Fab', component: Fab },
+  { path: 'form-field', title: 'Form field', component: FormField },
+  { path: 'icon-button', title: 'Icon button', component: IconButton },
+  { path: 'image-list', title: 'Image list', component: ImageList },
+  { path: 'layout-grid', title: 'Layout grid', component: LayoutGrid },
+  { path: 'list', title: 'List', component: List },
+  { path: 'linear-progress', title: 'Linear progress', component: LinearProgress },
+  { path: 'lookup', title: 'Lookup', component: Lookup },
+  { path: 'menu', title: 'Menu', component: Menu },
+  { path: 'menu-surface', title: 'Menu surface', component: MenuSurface },
+  { path: 'radio', title: 'Radio', component: Radio },
+  { path: 'ripple', title: 'Ripple', component: Ripple },
+  { path: 'select', title: 'Select', component: Select },
+  { path: 'slider', title: 'Slider', component: Slider },
+  { path: 'snackbar', title: 'Snackbar', component: Snackbar },
+  { path: 'switch', title: 'Switch', component: Switch },
+  { path: 'tabs', title: 'Tabs', component: Tabs },
+  { path: 'text-field', title: 'Text field', component: TextField },
+  { path: 'tooltip', title: 'Tooltip', component: Tooltip },
+  { path: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
+  { path: 'typography', title: 'Typography', component: Typography },
+])
+export class Root implements IRouteableComponent {
   constructor(@IRouter private router: IRouter) { }
 
   githubSvg = githubSvg;
@@ -81,16 +80,52 @@ export class Root {
   @observable
   drawer: MdcDrawer;
 
+  routes = [
+    { id: 'home', path: '', title: 'Home', component: Home, data: { divider: 'true' } },
+    { path: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
+    { path: 'button', title: 'Button', component: Button },
+    { path: 'card', title: 'Card', component: Card },
+    { path: 'checkbox', title: 'Checkbox', component: Checkbox },
+    { path: 'chips', title: 'Chips', component: Chips },
+    { path: 'circular-progress', title: 'Circular progress', component: CircularProgress },
+    { path: 'data-table', title: 'Data table', component: DataTable },
+    { path: 'dialog', title: 'Dialog', component: Dialog },
+    { path: 'drawer', title: 'Drawer', component: Drawer },
+    { path: 'elevation', title: 'Elevation', component: Elevation },
+    { path: 'expandable', title: 'Expandable', component: Expandable },
+    { path: 'fab', title: 'Fab', component: Fab },
+    { path: 'form-field', title: 'Form field', component: FormField },
+    { path: 'icon-button', title: 'Icon button', component: IconButton },
+    { path: 'image-list', title: 'Image list', component: ImageList },
+    { path: 'layout-grid', title: 'Layout grid', component: LayoutGrid },
+    { path: 'list', title: 'List', component: List },
+    { path: 'linear-progress', title: 'Linear progress', component: LinearProgress },
+    { path: 'lookup', title: 'Lookup', component: Lookup },
+    { path: 'menu', title: 'Menu', component: Menu },
+    { path: 'menu-surface', title: 'Menu surface', component: MenuSurface },
+    { path: 'radio', title: 'Radio', component: Radio },
+    { path: 'ripple', title: 'Ripple', component: Ripple },
+    { path: 'select', title: 'Select', component: Select },
+    { path: 'slider', title: 'Slider', component: Slider },
+    { path: 'snackbar', title: 'Snackbar', component: Snackbar },
+    { path: 'switch', title: 'Switch', component: Switch },
+    { path: 'tabs', title: 'Tabs', component: Tabs },
+    { path: 'text-field', title: 'Text field', component: TextField },
+    { path: 'tooltip', title: 'Tooltip', component: Tooltip },
+    { path: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
+    { path: 'typography', title: 'Typography', component: Typography },
+  ];
+
   attached() {
     this.drawer.open = true;
   }
 
-  get navRoutes(): (RouteDefinition | Promise<RouteDefinition>)[] {
-    return this.router.routeTree.root.context.childRoutes;
-  }
+  // get navRoutes(): (RouteDefinition | Promise<RouteDefinition>)[] {
+  //   return this.router.routeTree.root.context.childRoutes;
+  // }
 
-  navigateTo(routeDef: RouteDefinition) {
-    this.router.load(`/${routeDef.id}`);
+  navigateTo(routeDef: any) {
+    this.router.load(`${routeDef.path}/examples`);
     if (this.drawer.type === 'modal') {
       this.drawer.toggle();
     }

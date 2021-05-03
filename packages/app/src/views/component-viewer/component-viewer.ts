@@ -1,5 +1,5 @@
 import { templates } from './templates';
-import { RouteNode, IRouteContext } from '@aurelia/router';
+import { IRouter, RoutingInstruction } from 'aurelia-direct-router';
 
 interface IReference {
   name: string;
@@ -16,11 +16,11 @@ export interface IComponentTemplate {
 }
 
 export class ComponentViewer {
-  constructor(@IRouteContext public routeContext: IRouteContext) { }
+  constructor(@IRouter public router: IRouter) { }
 
   template: IComponentTemplate;
 
-  load(parameters: Record<string, unknown>, routeNode: RouteNode) {
-    this.template = templates[routeNode.component.name];
+  load(params: Record<string, unknown>, ri: RoutingInstruction) {
+    this.template = templates[ri.component.name!];
   }
 }

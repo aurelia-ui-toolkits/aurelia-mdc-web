@@ -1,15 +1,13 @@
 import template from '../component-viewer/component-viewer.html';
 import { ComponentViewer } from '../component-viewer/component-viewer';
-import { route, customElement } from 'aurelia';
+import { customElement } from 'aurelia';
+import { routes } from 'aurelia-direct-router';
 import { ApiViewer } from '../api-viewer/api-viewer';
 import { CheckboxExamples } from './checkbox-examples';
 
 @customElement({ name: 'checkbox', template })
-@route({
-  routes: [
-    // { path: '', redirectTo: 'examples' },
+@routes([    // { path: '', redirectTo: 'examples' },
     { id: 'examples', path: 'examples', title: 'Examples', component: CheckboxExamples },
-    { id: 'api', title: 'Api', component: ApiViewer }
-  ]
-})
+    { id: 'api', path: 'api', title: 'Api', component: ApiViewer }
+])
 export class Checkbox extends ComponentViewer { }

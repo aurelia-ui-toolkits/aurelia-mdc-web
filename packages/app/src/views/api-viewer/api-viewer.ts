@@ -1,4 +1,4 @@
-import { IRouter } from '@aurelia/router';
+// import { IRouter } from '@aurelia/router';
 import { NavigationItem } from 'typedoc';
 import buttonApi from '../../../../button/doc/api.json';
 import chipsApi from '../../../../chips/doc/api.json';
@@ -17,8 +17,8 @@ import imageListApi from '../../../../image-list/doc/api.json';
 import layoutGridApi from '../../../../layout-grid/doc/api.json';
 import linearProgressApi from '../../../../linear-progress/doc/api.json';
 import listApi from '../../../../list/doc/api.json';
-import { RouteNode } from 'aurelia';
 import lookupApi from '../../../../lookup/doc/api.json';
+import { RoutingInstruction, IRouter } from 'aurelia-direct-router';
 
 const apis: Record<string, unknown> = {
   'button-page': buttonApi,
@@ -27,7 +27,7 @@ const apis: Record<string, unknown> = {
   'checkbox': checkboxApi,
   'circular-progress': circularProgressApi,
   'data-table': dataTableApi,
-  'dialog': dialogApi,
+  'dialog-page': dialogApi,
   'drawer': drawerApi,
   'elevation': elevationApi,
   'expandable': expandableApi,
@@ -104,11 +104,12 @@ export class ApiViewer {
 
   classesApi?: NavigationItem[];
 
-  load(parameters: Record<string, unknown>, routeNode: RouteNode) {
-    if (!routeNode.context.parent?.component.name) {
+  load(parameters: Record<string, unknown>, ri: RoutingInstruction) {
+    const componentName = ri.endpoint.scope?.routingInstruction?.component.name;
+    if (!componentName) {
       return;
     }
-    const api = apis[routeNode.context.parent?.component.name ?? ''] as NavigationItem;
+    const api = apis[componentName ?? ''] as NavigationItem;
     this.classesApi = api.children?.reduce((p, c) => {
       const elementsAndAttributes = c.children?.filter(x => {
         if (!x.comment) {

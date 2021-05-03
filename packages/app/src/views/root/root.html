@@ -23,16 +23,16 @@
     <mdc-drawer-header title="Aurelia" subtitle="Material Components Web"></mdc-drawer-header>
     <mdc-drawer-content>
       <mdc-list activated wrap-focus mdclist:action.trigger="navigateTo($event.detail.data)" tabindex="0">
-        <template repeat.for="m of navRoutes">
-          <mdc-list-item activated1.bind="m.active" value.bind="m">
-            <mdc-list-item-text>${m.config.title}</mdc-list-item-text>
-          </mdc-list-item>
+        <template repeat.for="m of routes">
+          <a as-element="mdc-list-item" activated1.bind="m.active" value.bind="m" load1="${m.path}">
+            <mdc-list-item-text>${m.title}</mdc-list-item-text>
+          </a>
           <mdc-list-divider if.bind="m.data.divider"></mdc-list-divider>
         </template>
       </mdc-list>
     </mdc-drawer-content>
   </mdc-drawer>
   <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class="demo-panel-section">
-    <au-viewport default="home"></au-viewport>
+    <au-viewport default1="home"></au-viewport>
   </mdc-drawer-app-content>
 </div>

@@ -1,15 +1,13 @@
 import template from '../component-viewer/component-viewer.html';
-import { customElement, route } from 'aurelia';
+import { customElement } from 'aurelia';
+import { routes } from 'aurelia-direct-router';
 import { ComponentViewer } from '../component-viewer/component-viewer';
 import { TypographyExamples } from './typography-examples';
 import { ApiViewer } from '../api-viewer/api-viewer';
 
 @customElement({ name: 'typography', template })
-@route({
-  routes: [
-    // { path: '', redirectTo: 'examples' },
+@routes([    // { path: '', redirectTo: 'examples' },
     { id: 'examples', path: 'examples', title: 'Examples', component: TypographyExamples },
-    { id: 'api', title: 'Api', component: ApiViewer }
-  ]
-})
+    { id: 'api', path: 'api', title: 'Api', component: ApiViewer }
+])
 export class Typography extends ComponentViewer { }

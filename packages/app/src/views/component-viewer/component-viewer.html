@@ -29,10 +29,9 @@
       </a>
     </div>
     <mdc-tab-bar>
-      <mdc-tab repeat.for="r of routeContext.childRoutes" label.bind="r.config.title" load.bind="r.id"
-        class="viewer-tab" active.one-time="$index === 0">
-      </mdc-tab>
+      <mdc-tab label="Examples" load="examples" class="viewer-tab" active="true"></mdc-tab>
+      <mdc-tab label="Api" load="api" class="viewer-tab"></mdc-tab>
     </mdc-tab-bar>
-    <au-viewport default="examples"></au-viewport>
+    <au-viewport default1="examples"></au-viewport>
   </div>
 </div>

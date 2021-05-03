@@ -1,4 +1,5 @@
-import Aurelia, { RouterConfiguration, IRegistry } from 'aurelia';
+import Aurelia, { IRegistry, LoggerConfiguration, LogLevel } from 'aurelia';
+import { RouterConfiguration } from 'aurelia-direct-router';
 import { StandardConfiguration, SVGAnalyzer } from '@aurelia/runtime-html';
 import { Root } from './views/root/root';
 import { AllConfiguration as MaterialConfiguration } from '@aurelia-mdc-web/all';
@@ -15,19 +16,23 @@ import { JsonValueConverter } from './converters/json';
 import { ValidationHtmlConfiguration } from '@aurelia/validation-html';
 import { ValidationConfiguration } from '@aurelia/validation';
 import { MdcValidationControllerFactory } from '@aurelia-mdc-web/validation';
-import { DefaultResources, HrefCustomAttribute } from '@aurelia/router';
+//  import { DefaultResources, HrefCustomAttribute } from '@aurelia/router';
+import { Button } from './views/button/button';
+import { Card } from './views/card/card';
+import { CircularProgress } from './views/circular-progress/circular-progress';
 
 // href is buggy
-DefaultResources.splice(DefaultResources.findIndex(x => x === HrefCustomAttribute as unknown as IRegistry));
+// DefaultResources.splice(DefaultResources.findIndex(x => x === HrefCustomAttribute as unknown as IRegistry));
 
 Aurelia
   // .register(StyleConfiguration.shadowDOM({
   //   // optionally add the shared styles for all components
   //   sharedStyles: [shared]
   // }))
-  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: false, useHref: false }), MaterialConfiguration, SVGAnalyzer,
-    Home, GettingStarted, Hljs, ApiViewer, ExampleViewer, JsonValueConverter,
-    ValidationHtmlConfiguration.customize(o => o.ValidationControllerFactoryType = MdcValidationControllerFactory), ValidationConfiguration
+  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: true, useHref: false }), MaterialConfiguration, SVGAnalyzer,
+    /* Home, GettingStarted, Button, Card, */ Hljs, ApiViewer, ExampleViewer, JsonValueConverter, LoggerConfiguration.create({ level: LogLevel.debug }),
+    ValidationHtmlConfiguration.customize(o => o.ValidationControllerFactoryType = MdcValidationControllerFactory), ValidationConfiguration,
+    CircularProgress
   )
   // To use HTML5 pushState routes, replace previous line with the following
   // customized router config.

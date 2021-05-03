@@ -123,7 +123,7 @@ Aurelia.register(DataTableConfiguration).app(component).start();`,
     sass: `@use '@material/data-table/mdc-data-table';
 @use '@material/data-table';`
   },
-  'dialog': {
+  'dialog-page': {
     title: 'Dialog',
     description: 'Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.',
     references: [{
