@@ -41,7 +41,8 @@ export class MdcTooltipAttribute {
   view: View;
 
   attached() {
-    this.tooltip = document.createElement('mdc-tooltip');
+    this.tooltip = document.createElement('div');
+    this.tooltip.setAttribute('as-element', 'mdc-tooltip');
     this.tooltip.setAttribute('anchor-elem.bind', 'root');
     this.tooltip.setAttribute('x-position.bind', 'xPosition');
     this.tooltip.setAttribute('y-position.bind', 'yPosition');
