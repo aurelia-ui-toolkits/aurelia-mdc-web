@@ -1,3 +1,14 @@
+## [6.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.0.1...v6.0.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* **fab:** workaround for missing ripple ([5c2ccef](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5c2ccefdc8aa2254c073fc30bc4a361142303544))
+* **select:** set the flag based on presence of option ([798410e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/798410e4bed820e7ae63bb8a5d39cef5ea8243a0))
+* **tooltip:** add missing class ([bbbd628](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/bbbd628852c3b449ba33da1a318513f4b31c5ec7))
+
+
+
 ## [6.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.0.0...v6.0.1) (2021-04-28)
 
 ### BREAKING CHANGES
