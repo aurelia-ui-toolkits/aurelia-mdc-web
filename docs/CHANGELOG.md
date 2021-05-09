@@ -1,3 +1,12 @@
+## [6.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.0.2...v6.0.3) (2021-05-09)
+
+
+### Bug Fixes
+
+* **tree-view:** take filter into account when searching for a node ([2e96609](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2e9660925103890f720ccb24173d7bf216ce31ad))
+
+
+
 ## [6.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.0.1...v6.0.2) (2021-05-04)
 
 
