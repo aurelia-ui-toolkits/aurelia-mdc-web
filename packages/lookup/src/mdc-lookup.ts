@@ -50,7 +50,7 @@ export class MdcLookup implements EventListenerObject {
     if (this.displayField instanceof Function) {
       this.getDisplay = this.displayField;
     } else if (typeof this.displayField === 'string') {
-      this.getDisplay = option => (option as Record<string, string>)[this.displayField as string];
+      this.getDisplay = option => option ? (option as Record<string, string>)[this.displayField as string] : '';
     } else {
       this.getDisplay = option => (option as Record<string, unknown>).toString();
     }
@@ -158,6 +158,10 @@ export class MdcLookup implements EventListenerObject {
   /** Enables a single option autoselect on blur */
   @bindable.booleanAttr
   autoselectSingleOnBlur: boolean;
+
+  /** Enables the options list virtualisation */
+  @bindable.booleanAttr
+  virtual: boolean;
 
   bind() {
     this.valueFieldChanged();

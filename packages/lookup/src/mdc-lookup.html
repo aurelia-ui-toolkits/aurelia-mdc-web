@@ -21,12 +21,23 @@
         </template>
       </mdc-list-item>
 
-      <mdc-list-item role="menuitem" repeat.for="option of optionsArray" value.bind="option" tabindex="-1"
-        two-line.bind="twoLine">
-        <template replaceable part="option">
-          ${getDisplay(option)}
-        </template>
-      </mdc-list-item>
+      <div if.bind="virtual && optionsArray.length">
+        <mdc-list-item role="menuitem" virtual-repeat.for="option of optionsArray" value.bind="option" tabindex="-1"
+          two-line.bind="twoLine">
+          <template replaceable part="option">
+            ${getDisplay(option)}
+          </template>
+        </mdc-list-item>
+      </div>
+
+      <div if.bind="!virtual && optionsArray.length">
+        <mdc-list-item role="menuitem" repeat.for="option of optionsArray" value.bind="option" tabindex="-1"
+          two-line.bind="twoLine">
+          <template replaceable part="option">
+            ${getDisplay(option)}
+          </template>
+        </mdc-list-item>
+      </div>
     </mdc-list>
   </mdc-menu>
 </template>
