@@ -52,11 +52,11 @@ export class MdcLookup implements EventListenerObject {
     } else if (typeof this.displayField === 'string') {
       this.getDisplay = option => option ? (option as Record<string, string>)[this.displayField as string] : '';
     } else {
-      this.getDisplay = option => (option as Record<string, unknown>).toString();
+      this.getDisplay = option => (option as Record<string, unknown>)?.toString() ?? '';
     }
   }
 
-  getDisplay: (option: unknown) => string = option => (option as Record<string, unknown>).toString();
+  getDisplay: (option: unknown) => string = option => (option as Record<string, unknown>)?.toString() ?? '';
 
   /**
    * Sets the way a value is set.
