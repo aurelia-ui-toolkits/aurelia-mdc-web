@@ -1,3 +1,12 @@
+# [6.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.0.3...v6.1.0) (2021-05-11)
+
+
+### Features
+
+* **lookup:** allow list virtualisation ([1210b05](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1210b05d99b8f4e960fbbeafcb61d799187bfe34))
+
+
+
 ## [6.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.0.2...v6.0.3) (2021-05-09)
 
 
