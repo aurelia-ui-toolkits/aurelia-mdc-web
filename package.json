@@ -1,7 +1,7 @@
 {
   "name": "@aurelia-mdc-web/monorepo",
   "private": true,
-  "version": "6.1.0",
+  "version": "6.1.1",
   "workspaces": [
     "packages/all",
     "packages/app",
@@ -53,7 +53,7 @@
     "changelog": "cross-env conventional-changelog -p angular -i docs/CHANGELOG.md -s",
     "deploy": "cd packages/app && npm run build:app && cd ../.. && deploy.sh",
     "update-versions:root": "ts-node -P tsconfig.scripts.json scripts/update-versions.ts",
-    "update-versions": "lage run update-versions",
+    "update-versions": "npm run update-versions:root && lage run update-versions",
     "publish:latest": "lage run publish:latest"
   },
   "devDependencies": {

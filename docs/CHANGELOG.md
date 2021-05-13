@@ -1,3 +1,13 @@
+## [6.1.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.0...v6.1.1) (2021-05-13)
+
+
+### Bug Fixes
+
+* **lookup:** check for undefined option ([ec724e1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ec724e1b92515e3488d997261cb539fd18cf3bb5))
+* **top-app-bar:** parameters order ([ad981a9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ad981a931f2fd7606b4f52f10ea905f305df8907))
+
+
+
 # [6.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.0.3...v6.1.0) (2021-05-11)
 
 
