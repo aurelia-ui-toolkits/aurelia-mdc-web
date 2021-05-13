@@ -32,7 +32,7 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
 
   @bindable
   scrollTarget: EventTarget = window;
-  scrollTargetChanged(oldValue: EventTarget, newValue: EventTarget) {
+  scrollTargetChanged(newValue: EventTarget, oldValue: EventTarget) {
     // Remove scroll handler from the previous scroll target
     oldValue?.removeEventListener('scroll', this.handleTargetScroll_ as EventListener);
 
