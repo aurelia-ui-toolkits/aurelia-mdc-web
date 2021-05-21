@@ -1,3 +1,12 @@
+## [6.1.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.1...v6.1.2) (2021-05-21)
+
+
+### Bug Fixes
+
+* **lookup:** protect against missing virtualize plugin ([f372d8b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f372d8bd36528e65abd82337c201cc203d303180))
+
+
+
 ## [6.1.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.0...v6.1.1) (2021-05-13)
 
 

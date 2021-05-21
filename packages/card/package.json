@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/card",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "6.1.1",
+    "@aurelia-mdc-web/base": "6.1.2",
     "@material/card": "^11.0.0"
   }
 }
