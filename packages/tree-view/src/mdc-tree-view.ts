@@ -70,7 +70,7 @@ export class MdcTreeView {
   filter: (n: INode) => boolean = () => true;
 
   // this is populated by the HTML template
-  treeViews: MdcTreeView[] = [];
+  childTreeViewPromises: Promise<MdcTreeView>[] = [];
 
   @bindable
   rootBindingContext: Record<string, unknown>;
@@ -123,30 +123,29 @@ export class MdcTreeView {
     return path;
   }
 
-  expandPath(path: number[]) {
+  async expandPath(path: number[]) {
     const filteredNodes = this.nodes.filter(x => this.filter(x));
     if (path.length === 1) {
       this.nodeClicked(filteredNodes[path[0]]);
       this.element.querySelectorAll('.mdc-tree-view__node')[path[0]].scrollIntoView();
     } else {
       filteredNodes[path[0]].expanded = true;
-      // let Aurelia populate treeViews by queueing the task
-      // todo: flatten the data source via a data normalization step first
-      // as this technique requires many round of queueTask if the node selected is deep
-      this.taskQueue.queueTask(() => {
-        this.treeViews[path[0]].expandPath(path.slice(1));
-      });
+      // child tree views are hidden with 'if.bind'
+      // promises are created by a helper element `mdc-promisify-reference`
+      // this lets dependent code to wait till a view model reference is assigned
+      const childTreeView = await this.childTreeViewPromises[path[0]];
+      await childTreeView.expandPath(path.slice(1));
     }
   }
 
-  find<T extends INode>(predicate: (node: T) => boolean) {
+  async find<T extends INode>(predicate: (node: T) => boolean) {
     // to avoid rendering the whole tree finding a node is a 2-step process
     // firstly, find the path - nodes which need to be expanded to display the target node
     const filteredNodes = this.nodes.filter(x => this.filter(x));
     const path = this.findPath(filteredNodes, predicate);
     if (path.length) {
       // secondly, expand the path
-      this.expandPath(path);
+      await this.expandPath(path);
     }
   }
 

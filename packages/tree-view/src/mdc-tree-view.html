@@ -17,9 +17,11 @@
         <mdc-tree-node class="mdc-tree-node" factory.bind="nodeViewFactory"
           root-binding-context.bind="rootBindingContext"></mdc-tree-node>
       </div>
+      <mdc-promisify-reference if.bind="$node.children" promise.bind="childTreeViewPromises[$index]" reference.bind="treeView">
+      </mdc-promisify-reference>
       <mdc-tree-view if.bind="$node.children && $node.expanded" nodes.bind="$node.children | nodeFilter:filter"
-        root-binding-context.bind="rootBindingContext"
-        mdctree:node-selected.trigger="childNodeSelected($event.detail.node)" view-model.ref="treeViews[$index]">
+        root-binding-context.bind="rootBindingContext" view-model.ref="treeView"
+        mdctree:node-selected.trigger="childNodeSelected($event.detail.node)">
       </mdc-tree-view>
     </li>
   </ul>

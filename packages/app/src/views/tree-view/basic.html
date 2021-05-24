@@ -1,9 +1,12 @@
 <template>
-  <mdc-tree-view nodes.bind="treeViewNodes">
+  <mdc-tree-view nodes.bind="treeViewNodes" view-model.ref="treeView">
     <mdc-tree-node>${$node.name}
       <button mdc-icon-button mdc-tree-node-meta>
         <mdc-icon>edit</mdc-icon>
       </button>
     </mdc-tree-node>
   </mdc-tree-view>
+  <div>
+    <button mdc-button click.delegate="findChild()">Find Child111</button>
+  </div>
 </template>
