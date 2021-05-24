@@ -8,6 +8,7 @@ export { MATERIAL_PALETTE } from './material-palette';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([
-    PLATFORM.moduleName('./attributes/mdc-size-attribute')
+    PLATFORM.moduleName('./attributes/mdc-size-attribute'),
+    PLATFORM.moduleName('./elements/mdc-promisify-reference')
   ]);
 }
