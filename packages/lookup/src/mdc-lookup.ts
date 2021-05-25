@@ -173,7 +173,7 @@ export class MdcLookup implements EventListenerObject {
     if (this.input) {
       inputEvents.forEach(x => this.input!.addEventListener(x, this));
     }
-    await this.valueChanged();
+    await this.updateFilterBasedOnValue();
     if (!this.value && this.preloadOptions) {
       await this.loadOptions(false);
     }
