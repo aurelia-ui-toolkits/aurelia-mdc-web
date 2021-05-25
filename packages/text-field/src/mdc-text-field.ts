@@ -519,6 +519,12 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
         this.au.controller.viewModel.blur();
       },
       configurable: true
+    },
+    isFocused: {
+      get(this: IMdcTextFieldElement) {
+        return document.activeElement === this.au.controller.viewModel.input_;
+      },
+      configurable: true
     }
   });
 }

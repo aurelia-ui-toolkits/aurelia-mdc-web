@@ -32,7 +32,7 @@ export class MdcLookup implements EventListenerObject {
 
   /** Reference to the input */
   @bindable
-  public input?: HTMLInputElement;
+  public input?: HTMLInputElement & { isFocused: boolean };
 
   /** Sets the menu list to have two lines */
   @bindable.booleanAttr
@@ -234,7 +234,7 @@ export class MdcLookup implements EventListenerObject {
     }
     this.setValue(undefined);
     this.searchPromise?.discard();
-    await this.loadOptions(true);
+    await this.loadOptions(this.input?.isFocused === true);
   }
 
   async loadOptions(open: boolean) {
