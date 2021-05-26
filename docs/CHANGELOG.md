@@ -1,3 +1,19 @@
+## [6.1.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.2...v6.1.3) (2021-05-26)
+
+
+### Bug Fixes
+
+* **lookup:** do not emit 'change' on attached ([1f15f57](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1f15f5797194b3a8faf4d3f8c9ce372675ea04c6))
+* **lookup:** open lookup on filter change only when still focused ([49d570c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/49d570c5d9c8f11a4194aa103efde51dc798b9c3))
+* **tree-view:** use promises instead of a task queue when getting child trees ([c359f14](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c359f14c118960c28d5a13ec3f3d2146bb8a2cdd))
+
+
+### Features
+
+* **base:** add reference promisifier ([c24b1cc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c24b1cce929208a22e4468d47b7db763335aca60))
+
+
+
 ## [6.1.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.1...v6.1.2) (2021-05-21)
 
 

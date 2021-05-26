@@ -1,6 +1,6 @@
 import {
   customElement, bindable, useView, PLATFORM, processContent, ViewCompiler, ViewResources, inject,
-  Optional, Container, ViewFactory, TaskQueue
+  Optional, Container, ViewFactory
 } from 'aurelia-framework';
 import { INode } from './i-node';
 
@@ -9,7 +9,7 @@ const templateLookup: Record<string, string> = {};
 const getNextNodeTemplateId = () => ++id;
 const NODE_SELECTED_EVENT = 'mdctree:node-selected';
 
-@inject(Element, TaskQueue, Container)
+@inject(Element, Container)
 @customElement('mdc-tree-view')
 @useView(PLATFORM.moduleName('./mdc-tree-view.html'))
 @processContent(MdcTreeView.processContent)
@@ -53,7 +53,7 @@ export class MdcTreeView {
     }
   }
 
-  constructor(private element: HTMLElement, private taskQueue: TaskQueue, container: Container) {
+  constructor(private element: HTMLElement, container: Container) {
     this.nodeViewFactory = MdcTreeView.getNodeFactory(element, container);
   }
 
