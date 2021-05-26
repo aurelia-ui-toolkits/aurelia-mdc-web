@@ -1,3 +1,5 @@
+import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MDCFoundation } from '@material/base';
 import {
   customElement, bindable, useView, PLATFORM, processContent, ViewCompiler, ViewResources, inject,
   Optional, Container, ViewFactory
@@ -9,11 +11,16 @@ const templateLookup: Record<string, string> = {};
 const getNextNodeTemplateId = () => ++id;
 const NODE_SELECTED_EVENT = 'mdctree:node-selected';
 
+export class MDCTreeViewFoundation extends MDCFoundation { }
+
 @inject(Element, Container)
 @customElement('mdc-tree-view')
 @useView(PLATFORM.moduleName('./mdc-tree-view.html'))
 @processContent(MdcTreeView.processContent)
-export class MdcTreeView {
+export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
+  getDefaultFoundation(): MDCTreeViewFoundation {
+    return new MDCTreeViewFoundation();
+  }
 
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
     const treeNode = element.querySelector('mdc-tree-node');
@@ -53,8 +60,9 @@ export class MdcTreeView {
     }
   }
 
-  constructor(private element: HTMLElement, container: Container) {
-    this.nodeViewFactory = MdcTreeView.getNodeFactory(element, container);
+  constructor(root: HTMLElement, container: Container) {
+    super(root);
+    this.nodeViewFactory = MdcTreeView.getNodeFactory(root, container);
   }
 
   nodeViewFactory: ViewFactory;
@@ -93,7 +101,7 @@ export class MdcTreeView {
       n.selected = true;
     }
     this.selectedNode = n;
-    this.element.dispatchEvent(new CustomEvent(NODE_SELECTED_EVENT,
+    this.root.dispatchEvent(new CustomEvent(NODE_SELECTED_EVENT,
       { detail: { node: n }, bubbles: true })
     );
     return true;
@@ -127,12 +135,13 @@ export class MdcTreeView {
     const filteredNodes = this.nodes.filter(x => this.filter(x));
     if (path.length === 1) {
       this.nodeClicked(filteredNodes[path[0]]);
-      this.element.querySelectorAll('.mdc-tree-view__node')[path[0]].scrollIntoView();
+      this.root.querySelectorAll('.mdc-tree-view__node')[path[0]].scrollIntoView();
     } else {
       filteredNodes[path[0]].expanded = true;
       // child tree views are hidden with 'if.bind'
       // promises are created by a helper element `mdc-promisify-reference`
       // this lets dependent code to wait till a view model reference is assigned
+      await this.initialised;
       const childTreeView = await this.childTreeViewPromises[path[0]];
       await childTreeView.expandPath(path.slice(1));
     }
@@ -150,7 +159,7 @@ export class MdcTreeView {
   }
 
   dispatchEvent(type: string, node: INode) {
-    this.element.dispatchEvent(new CustomEvent(type, { bubbles: true, detail: { node } }));
+    this.root.dispatchEvent(new CustomEvent(type, { bubbles: true, detail: { node } }));
   }
 }
 
