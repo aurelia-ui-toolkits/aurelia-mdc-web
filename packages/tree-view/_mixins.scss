@@ -84,6 +84,7 @@
   .mdc-tree-view__leaf-padding {
     width: $padding;
     height: $padding;
+    flex-shrink: 0;
   }
 }
 
