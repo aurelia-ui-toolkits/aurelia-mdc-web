@@ -42,7 +42,7 @@
       }
 
       .mdc-tree-node {
-        width: 100%;
+        width: calc(100% - #{variables.$leaf-padding});
         display: flex;
         align-items: center;
 
