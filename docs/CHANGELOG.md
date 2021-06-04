@@ -1,3 +1,15 @@
+## [6.1.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.3...v6.1.4) (2021-06-04)
+
+
+### Bug Fixes
+
+* **menu:** "reset" menu width ([ce6790a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ce6790a17535a82bebca70cb340e0cdb50d2e12f))
+* **tree-view:** account for adding width ([e803b98](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e803b988bcb615cb670512897b30192ed38a8181))
+* **tree-view:** do not let padding shrink ([43f80a7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/43f80a7e22f8538a49e62dc81d0107d6c04ca65f))
+* **tree-view:** wait till the tree view is fully attached before expanding children ([c6a9685](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c6a9685e7c03a16e438084e1a41669de43fb0a1c))
+
+
+
 ## [6.1.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.2...v6.1.3) (2021-05-26)
 
 
