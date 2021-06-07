@@ -1,3 +1,17 @@
+# [6.2.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.4...v6.2.0) (2021-06-07)
+
+
+### Bug Fixes
+
+* **app:** menu example ([63579ef](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/63579ef93a94ebeb07c872f0c9d3cf518265c3e2))
+
+
+### Features
+
+* **dialog:** refactor service ([51f68c5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/51f68c5cfe23533761397b4c601cd182f308a16c))
+
+
+
 ## [6.1.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.3...v6.1.4) (2021-06-04)
 
 
