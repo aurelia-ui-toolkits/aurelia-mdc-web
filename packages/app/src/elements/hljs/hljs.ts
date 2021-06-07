@@ -1,6 +1,6 @@
 import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
-import { highlight } from 'highlight.js';
+import hljs from 'highlight.js';
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./hljs.html'))
@@ -34,6 +34,6 @@ export class Hljs {
   }
 
   highlight() {
-    this.codeEl.innerHTML = highlight(this.language, this.source.innerText).value;
+    this.codeEl.innerHTML = hljs.highlight(this.language, this.source.innerText).value;
   }
 }
