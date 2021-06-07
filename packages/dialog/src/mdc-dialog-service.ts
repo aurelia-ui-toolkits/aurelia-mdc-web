@@ -1,5 +1,5 @@
 import { IMdcDialogElement, MdcDialog } from './mdc-dialog';
-import { TemplatingEngine, inject, ViewSlot, ShadowDOM, CompositionContext, ViewResources, Controller, CompositionEngine, Container, TaskQueue, deprecated } from 'aurelia-framework';
+import { TemplatingEngine, inject, ViewSlot, ShadowDOM, CompositionContext, ViewResources, Controller, CompositionEngine, Container, TaskQueue } from 'aurelia-framework';
 import { strings, MDCDialogCloseEvent } from '@material/dialog';
 
 /** Dialog service open method options */
@@ -43,7 +43,6 @@ export class MdcDialogService {
     private compositionEngine: CompositionEngine, private taskQueue: TaskQueue) { }
 
   /** Opens the dialog specified in the options */
-  @deprecated({ error: false, message: 'Will be removed in v7. Please consider using `MdcDialogServiceNew`.' })
   async open(options: IMdcDialogOptions) {
     const dialog = document.createElement('mdc-dialog') as IMdcDialogElement;
     dialog.setAttribute(`${strings.CLOSING_EVENT}.trigger`, 'handleClosing($event)');

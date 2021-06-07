@@ -1,6 +1,7 @@
 import { IMdcDialogElement } from './mdc-dialog';
 import { inject, ViewSlot, ViewResources, CompositionEngine, Container } from 'aurelia-framework';
 import { strings, MDCDialogCloseEvent } from '@material/dialog';
+import { IMdcRippleElement } from '@aurelia-mdc-web/ripple';
 
 /** Dialog service open method options */
 export interface IMdcDialogOptionsNew {
@@ -38,8 +39,19 @@ export class MdcDialogServiceNew {
     let closedResolver: (action?: string | PromiseLike<string> | undefined) => void;
     const closedPromise = new Promise<string>(r => closedResolver = r);
     dialogVm.root.addEventListener(strings.CLOSED_EVENT, (evt: MDCDialogCloseEvent) => closedResolver(evt.detail.action));
+    let openedResolver: () => void;
+    const openedPromise = new Promise<void>(r => openedResolver = r);
+    dialogVm.root.addEventListener(strings.CLOSED_EVENT, (evt: MDCDialogCloseEvent) => closedResolver(evt.detail.action));
+    dialogVm.root.addEventListener(strings.OPENED_EVENT, () => openedResolver());
     await dialogVm.initialised;
     dialogVm.open();
+    await openedPromise;
+    // re-layout ripple elements because dialogs use `transform: scale(.8)` and initial layout is incorrect
+    const ripples = Array.from(dialogVm.root.querySelectorAll<IMdcRippleElement>('.mdc-ripple-upgraded'));
+    await Promise.all(ripples.map(async x => {
+      await x.au['mdc-ripple'].viewModel.initialised;
+      x.au['mdc-ripple'].viewModel.foundation?.layout();
+    }));
     const action = await closedPromise;
     controller.detached();
     host.remove();
