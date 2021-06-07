@@ -1,19 +1,21 @@
 <template>
-  <mdc-dialog-title>${params.caption}</mdc-dialog-title>
-  <mdc-dialog-content>
-    <mdc-list avatar class="demo-list--custom">
-      <mdc-list-item data-mdc-dialog-action="user1@example.com" tabindex="0">
-        <i class="material-icons" mdc-list-item-leading>person</i>
-        user1@example.com
-      </mdc-list-item>
-      <mdc-list-item data-mdc-dialog-action="user2@example.com">
-        <i class="material-icons" mdc-list-item-leading>person</i>
-        user2@example.com
-      </mdc-list-item>
-      <mdc-list-item data-mdc-dialog-action="user3@example.com">
-        <i class="material-icons" mdc-list-item-leading>person</i>
-        user3@example.com
-      </mdc-list-item>
-    </mdc-list>
-  </mdc-dialog-content>
+  <mdc-dialog>
+    <mdc-dialog-title>${params.caption}</mdc-dialog-title>
+    <mdc-dialog-content>
+      <mdc-list avatar class="demo-list--custom">
+        <mdc-list-item data-mdc-dialog-action="user1@example.com" tabindex="0">
+          <i class="material-icons" mdc-list-item-leading>person</i>
+          user1@example.com
+        </mdc-list-item>
+        <mdc-list-item data-mdc-dialog-action="user2@example.com">
+          <i class="material-icons" mdc-list-item-leading>person</i>
+          user2@example.com
+        </mdc-list-item>
+        <mdc-list-item data-mdc-dialog-action="user3@example.com">
+          <i class="material-icons" mdc-list-item-leading>person</i>
+          user3@example.com
+        </mdc-list-item>
+      </mdc-list>
+    </mdc-dialog-content>
+  </mdc-dialog>
 </template>
