@@ -1,3 +1,19 @@
+## [6.2.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.0...v6.2.1) (2021-06-10)
+
+
+### Bug Fixes
+
+* **app:** dialog example ([e32d338](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e32d3381b01ec5fd3575898846a45adfa81c2bb3))
+* **card:** add primary action tabindex ([3809138](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3809138b9d1adef23022cf85e124bc141c6e5796))
+* **dialog:** re-layout ripple in new dialog service ([b8a4d4f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b8a4d4f75ecbe6fe5dd3596e96848e6647d4392d))
+
+
+### Features
+
+* **lookup:** open/close lookup on Ctrl+Space ([cdb1795](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/cdb179568290ff12354dfee21cb7c74704db8282))
+
+
+
 # [6.2.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.1.4...v6.2.0) (2021-06-07)
 
 
