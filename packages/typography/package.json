@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/typography",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "6.2.0",
+    "@aurelia-mdc-web/base": "6.2.1",
     "@material/typography": "^11.0.0"
   }
 }
