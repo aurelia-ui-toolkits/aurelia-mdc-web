@@ -6,8 +6,6 @@ import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
 import { IValidatedElement, IError } from '@aurelia-mdc-web/base';
 import { closest } from '@material/dom/ponyfill';
 
-const UP = 38;
-const DOWN = 40;
 const inputEvents = ['click', 'input', 'keydown', 'blur'];
 const bodyEvents = ['touchstart', 'mousedown'];
 
@@ -305,20 +303,29 @@ export class MdcLookup implements EventListenerObject {
   }
 
   onInputKeydown(evt: KeyboardEvent) {
-    switch (evt.which) {
-      case DOWN:
+    switch (evt.code) {
+      case 'ArrowDown':
         if (!this.menu.open) {
           this.open();
         }
         this.suppressBlur = true;
         this.menu.list_?.foundation?.focusFirstElement();
         break;
-      case UP:
+      case 'ArrowUp':
         if (!this.menu.open) {
           this.open();
         }
         this.suppressBlur = true;
         this.menu.list_?.foundation?.focusLastElement();
+        break;
+      case 'Space':
+        if (evt.ctrlKey) {
+          if (this.menu.open) {
+            this.close();
+          } else {
+            this.loadOptions(true);
+          }
+        }
         break;
     }
   }
