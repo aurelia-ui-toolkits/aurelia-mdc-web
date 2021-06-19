@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress",
+    "start": "webpack serve --progress",
     "prebuild": "rimraf dist",
     "build:app": "webpack",
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts",

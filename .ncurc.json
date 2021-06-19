@@ -1,5 +1,3 @@
 {
-  "reject": ["tslib", "webpack", "webpack-cli", "webpack-dev-middleware", "postcss-loader", "sass-loader", "html-loader", "html-webpack-plugin",
-    "typescript", "ts-loader"
-  ]
+  "reject": []
 }
