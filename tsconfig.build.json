@@ -22,7 +22,8 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "newLine": "lf",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "inlineSources": true
   },
   "exclude": [
     ".vscode",
