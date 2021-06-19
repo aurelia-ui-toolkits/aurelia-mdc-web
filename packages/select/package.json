@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/select",
-  "version": "6.2.1",
+  "version": "6.2.2",
   "publishConfig": {
     "access": "public"
   },
@@ -47,13 +47,13 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "6.2.1",
-    "@aurelia-mdc-web/floating-label": "6.2.1",
-    "@aurelia-mdc-web/line-ripple": "6.2.1",
-    "@aurelia-mdc-web/list": "6.2.1",
-    "@aurelia-mdc-web/menu": "6.2.1",
-    "@aurelia-mdc-web/notched-outline": "6.2.1",
-    "@aurelia-mdc-web/ripple": "6.2.1",
+    "@aurelia-mdc-web/base": "6.2.2",
+    "@aurelia-mdc-web/floating-label": "6.2.2",
+    "@aurelia-mdc-web/line-ripple": "6.2.2",
+    "@aurelia-mdc-web/list": "6.2.2",
+    "@aurelia-mdc-web/menu": "6.2.2",
+    "@aurelia-mdc-web/notched-outline": "6.2.2",
+    "@aurelia-mdc-web/ripple": "6.2.2",
     "@material/select": "^11.0.0"
   }
 }

@@ -1,3 +1,11 @@
+## [6.2.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.1...v6.2.2) (2021-06-19)
+
+
+### Features
+
+* **all:** generate inline sources
+
+
 ## [6.2.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.0...v6.2.1) (2021-06-10)
 
 
