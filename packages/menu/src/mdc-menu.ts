@@ -96,13 +96,13 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
 
   set open(value: boolean) {
     this.menuSurface_.open = value;
+    this.root.style.width = '0';
+    setTimeout(() => this.root.style.width = '', 1);
   }
 
   /** Toggles the menu to open or close */
   toggle() {
     this.open = !this.open;
-    this.root.style.width = '0';
-    setTimeout(() => this.root.style.width = '', 1);
   }
 
   get wrapFocus(): boolean {
