@@ -82,16 +82,18 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
   }
 
   destroy() {
-    if (this.anchorElem) {
-      if (this.rich && this.persistent) {
-        this.anchorElem.removeEventListener('click', this);
-      } else {
-        this.anchorElem.removeEventListener('mouseenter', this);
-        this.anchorElem.removeEventListener('focus', this);
-        this.anchorElem.removeEventListener('mouseleave', this);
-        this.anchorElem.removeEventListener('touchstart', this);
-        this.anchorElem.removeEventListener('touchend', this);
-      }
+    if (!this.anchorElem) {
+      return;
+    }
+
+    if (this.rich && this.persistent) {
+      this.anchorElem.removeEventListener('click', this);
+    } else {
+      this.anchorElem.removeEventListener('mouseenter', this);
+      this.anchorElem.removeEventListener('focus', this);
+      this.anchorElem.removeEventListener('mouseleave', this);
+      this.anchorElem.removeEventListener('touchstart', this);
+      this.anchorElem.removeEventListener('touchend', this);
     }
   }
 
