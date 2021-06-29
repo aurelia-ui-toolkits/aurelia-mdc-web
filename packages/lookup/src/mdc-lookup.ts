@@ -5,8 +5,6 @@ import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
 import { IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { closest } from '@material/dom/ponyfill';
 
-const UP = 38;
-const DOWN = 40;
 const inputEvents = ['click', 'input', 'keydown', 'blur'];
 const bodyEvents = ['touchstart', 'mousedown'];
 
