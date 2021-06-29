@@ -2,8 +2,8 @@ import { inject, customElement, INode, IPlatform, bindable } from 'aurelia';
 import {
   MDCChipFoundation, MDCChipAdapter, chipCssClasses,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail, MDCChipTrailingActionNavigationEvent
-} from '@material/chips';
-import { EventSource } from '@material/chips/chip/constants';
+} from '@material/chips/deprecated';
+import { EventSource } from '@material/chips/deprecated/chip/constants';
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MdcChipPrimaryAction } from '../mdc-chip-primary-action/mdc-chip-primary-action';
 import { MdcChipCheckmark } from '../mdc-chip-checkmark';

@@ -1,7 +1,7 @@
 import { customElement, inject } from 'aurelia';
 import { MdcComponent, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
-import { MDCChipTrailingActionFoundation, MDCChipTrailingActionAdapter, MDCChipTrailingActionInteractionEventDetail, MDCChipTrailingActionNavigationEventDetail } from '@material/chips';
-import { strings } from '@material/chips/trailingaction/constants';
+import { MDCChipTrailingActionFoundation, MDCChipTrailingActionAdapter, MDCChipTrailingActionInteractionEventDetail, MDCChipTrailingActionNavigationEventDetail } from '@material/chips/deprecated';
+import { strings } from '@material/chips/deprecated/trailingaction/constants';
 import { processContent } from '@aurelia/runtime-html';
 
 MDCChipTrailingActionFoundation.strings.NAVIGATION_EVENT = MDCChipTrailingActionFoundation.strings.NAVIGATION_EVENT.toLowerCase();

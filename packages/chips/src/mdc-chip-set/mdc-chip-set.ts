@@ -2,7 +2,7 @@ import { inject, customElement, children, bindable } from 'aurelia';
 import {
   MDCChipSetFoundation, MDCChipSetAdapter, MDCChip,
   MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail
-} from '@material/chips';
+} from '@material/chips/deprecated';
 import { announce } from '@material/dom/announce';
 import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { processContent } from '@aurelia/runtime-html';

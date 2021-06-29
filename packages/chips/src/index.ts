@@ -1,4 +1,4 @@
-import { strings } from '@material/chips/chip/constants';
+import { strings } from '@material/chips/deprecated/chip/constants';
 import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { MdcChip } from './mdc-chip/mdc-chip';
 import { CheckedObserver } from '@aurelia/runtime-html';
