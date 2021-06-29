@@ -50,11 +50,11 @@ export class MdcLookup implements EventListenerObject {
     } else if (typeof this.displayField === 'string') {
       this.getDisplay = option => (option as Record<string, string>)[this.displayField as string];
     } else {
-      this.getDisplay = option => (option as Record<string, unknown>).toString();
+      this.getDisplay = option => (option as Record<string, unknown>)?.toString() ?? '';
     }
   }
 
-  getDisplay: (option: unknown) => string = option => (option as Record<string, unknown>).toString();
+  getDisplay: (option: unknown) => string = option => (option as Record<string, unknown>)?.toString() ?? '';
 
   /**
    * Sets the way a value is set.
@@ -156,6 +156,10 @@ export class MdcLookup implements EventListenerObject {
   /** Loads the options to the menu when attached */
   @bindable({ set: booleanAttr })
   autoselectSingleOnBlur: boolean;
+
+  /** TODO: Enables the options list virtualisation */
+  @bindable({ set: booleanAttr })
+  virtual: boolean;
 
   bound() {
     this.valueFieldChanged();
