@@ -1,4 +1,4 @@
-import { highlight } from 'highlightjs';
+import { highlight } from 'highlight.js';
 import { customElement, bindable, inject, } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
 import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';

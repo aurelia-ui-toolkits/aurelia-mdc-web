@@ -1,4 +1,4 @@
-import { IContainer, AppTask, IAttrSyntaxTransformer, NodeObserverLocator } from 'aurelia';
+import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { MdcRadio } from './mdc-radio';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { CheckedObserver } from '@aurelia/runtime-html';
@@ -11,9 +11,9 @@ export const RadioConfiguration = {
   register(container: IContainer): IContainer {
     if (!configured) {
       AppTask.beforeCreate(IContainer, c => {
-        const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
+        const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
-        attrSyntaxTransformer.useTwoWay((el, property) => el.tagName === 'MDC-RADIO' ? property === 'checked' : false);
+        attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-RADIO' ? property === 'checked' : false);
         nodeObserverLocator.useConfig({ 'MDC-RADIO': { checked: { events: ['change'], type: CheckedObserver } } });
       }).register(container);
       configured = true;

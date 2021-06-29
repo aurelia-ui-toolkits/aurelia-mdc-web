@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCSelectIconFoundation, MDCSelectIconAdapter } from '@material/select';
+import { MDCSelectIconFoundation, MDCSelectIconAdapter, strings } from '@material/select';
 import { inject, customAttribute } from 'aurelia';
 
 export const mdcIconStrings = {
@@ -10,7 +10,7 @@ export const mdcIconStrings = {
 @customAttribute(mdcIconStrings.ATTRIBUTE)
 export class MdcSelectIcon extends MdcComponent<MDCSelectIconFoundation> {
   attaching() {
-    this.root.classList.add('mdc-select__icon');
+    this.root.classList.add(strings.LEADING_ICON_SELECTOR.replace('.', ''));
   }
 
   getDefaultFoundation() {

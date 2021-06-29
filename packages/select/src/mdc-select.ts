@@ -191,9 +191,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   beforeFoundationCreated() {
-    const leadingIconEl = this.root.querySelector<IMdcSelectIconElement>(`[${mdcIconStrings.ATTRIBUTE}]`);
+    const leadingIconEl = this.root.querySelector<IMdcSelectIconElement>(`${strings.LEADING_ICON_SELECTOR}`);
     if (leadingIconEl) {
-      this.leadingIcon = CustomAttribute.for<MdcSelectIcon>(leadingIconEl, 'mdc-select-icon')?.viewModel;
+      this.leadingIcon = CustomAttribute.for<MdcSelectIcon>(leadingIconEl, mdcIconStrings.ATTRIBUTE)?.viewModel;
     }
   }
 

@@ -1,4 +1,4 @@
-import { IContainer, AppTask, IAttrSyntaxTransformer, NodeObserverLocator } from 'aurelia';
+import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { MdcTextField } from './mdc-text-field';
 import { MdcTextFieldIcon } from './mdc-text-field-icon';
 import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
@@ -18,9 +18,9 @@ export const TextFieldConfiguration = {
   register(container: IContainer): IContainer {
     if (!configured) {
       AppTask.beforeCreate(IContainer, c => {
-        const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
+        const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
-        attrSyntaxTransformer.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-TEXT-FIELD' ? property === 'value' : false);
+        attrMapper.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-TEXT-FIELD' ? property === 'value' : false);
         nodeObserverLocator.useConfig({ 'MDC-TEXT-FIELD': { value: { events: ['input', 'change'] } } });
       }).register(container);
       configured = true;

@@ -1,5 +1,5 @@
 import { events } from '@material/slider';
-import { IContainer, AppTask, IAttrSyntaxTransformer, NodeObserverLocator } from 'aurelia';
+import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { MdcSlider } from './mdc-slider';
 
@@ -11,9 +11,9 @@ export const SliderConfiguration = {
   register(container: IContainer): IContainer {
     if (!configured) {
       AppTask.beforeCreate(IContainer, c => {
-        const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
+        const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
-        attrSyntaxTransformer.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SLIDER' ? property === 'value' || property === 'valuestart' : false);
+        attrMapper.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SLIDER' ? property === 'value' || property === 'valuestart' : false);
         nodeObserverLocator.useConfig({
           'MDC-SLIDER': {
             value: { events: [events.CHANGE, events.INPUT] },

@@ -1,24 +1,24 @@
 <div class="demo-content">
-  <au-compose subject.bind="default" class="demo-layout__row"></au-compose>
+  <au-compose view-model.bind="default" class="demo-layout__row"></au-compose>
   <example-viewer html.bind="defaultHtml"></example-viewer>
 </div>
 
 <div class="demo-content">
   <div class="demo-layout__column">
-    <au-compose subject.bind="label" class="demo-layout__row"></au-compose>
+    <au-compose view-model.bind="label" class="demo-layout__row"></au-compose>
   </div>
   <example-viewer html.bind="labelHtml"></example-viewer>
 </div>
 
 <div class="demo-content">
-  <au-compose subject.bind="indeterminate" class="demo-layout__row"></au-compose>
+  <au-compose view-model.bind="indeterminate" class="demo-layout__row"></au-compose>
   <example-viewer html.bind="indeterminateHtml"></example-viewer>
 </div>
 
 <div class="demo-content">
   <h3 class="demo-content__headline">Theme</h3>
   <div class="demo-layout__column">
-    <au-compose subject.bind="theme" class="demo-layout__row"></au-compose>
+    <au-compose view-model.bind="theme" class="demo-layout__row"></au-compose>
   </div>
   <example-viewer html.bind="themeHtml" sass.bind="themeSass"></example-viewer>
 </div>

@@ -1,5 +1,5 @@
 import { strings } from '@material/select';
-import { IContainer, AppTask, IAttrSyntaxTransformer, NodeObserverLocator } from 'aurelia';
+import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { FloatingLabelConfiguration } from '@aurelia-mdc-web/floating-label';
 import { LineRippleConfiguration } from '@aurelia-mdc-web/line-ripple';
 import { MdcSelect } from './mdc-select';
@@ -19,9 +19,9 @@ export const SelectConfiguration = {
   register(container: IContainer): IContainer {
     if (!configured) {
       AppTask.beforeCreate(IContainer, c => {
-        const attrSyntaxTransformer = c.get(IAttrSyntaxTransformer);
+        const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
-        attrSyntaxTransformer.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SELECT' ? property === 'value' : false);
+        attrMapper.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SELECT' ? property === 'value' : false);
         nodeObserverLocator.useConfig({ 'MDC-SELECT': { value: { events: [strings.CHANGE_EVENT], type:  MdcSelectValueObserver} } });
       }).register(container);
       configured = true;

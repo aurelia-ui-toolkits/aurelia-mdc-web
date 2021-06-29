@@ -1,7 +1,7 @@
 import { inject, customElement, INode, bindable } from 'aurelia';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
-  MDCTextFieldLineRippleAdapter, MDCTextFieldOutlineAdapter, cssClasses, helperTextStrings, characterCountStrings
+  MDCTextFieldLineRippleAdapter, MDCTextFieldOutlineAdapter, cssClasses, helperTextStrings, characterCountStrings, iconCssClasses
 } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
 import { MdcComponent, IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
@@ -263,11 +263,11 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   beforeFoundationCreated() {
     this.maxlengthChanged();
     this.typeChanged();
-    const leadingIconEl = this.root.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`);
+    const leadingIconEl = this.root.querySelector(`.${iconCssClasses.ROOT}--${mdcIconStrings.LEADING}`);
     if (leadingIconEl) {
       this.leadingIcon_ = CustomAttribute.for<MdcTextFieldIcon>(leadingIconEl, mdcIconStrings.ATTRIBUTE)?.viewModel;
     }
-    const trailingIconEl = this.root.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`);
+    const trailingIconEl = this.root.querySelector(`.${iconCssClasses.ROOT}--${mdcIconStrings.TRAILING}`);
     if (trailingIconEl) {
       this.trailingIcon_ = CustomAttribute.for<MdcTextFieldIcon>(trailingIconEl, mdcIconStrings.ATTRIBUTE)?.viewModel;
     }

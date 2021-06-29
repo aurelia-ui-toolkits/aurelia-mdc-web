@@ -1,4 +1,4 @@
-import { INode, IPlatform, } from 'aurelia';
+import { INode, IPlatform } from 'aurelia';
 
 export function defaultSlotProcessContent(node: INode, platform: IPlatform) {
   const el = node as Element;

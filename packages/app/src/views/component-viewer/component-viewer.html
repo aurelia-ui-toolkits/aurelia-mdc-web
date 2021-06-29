@@ -29,9 +29,9 @@
       </a>
     </div>
     <mdc-tab-bar>
-      <mdc-tab label="Examples" load="examples" class="viewer-tab" active="true"></mdc-tab>
-      <mdc-tab label="Api" load="api" class="viewer-tab"></mdc-tab>
+      <mdc-tab label="Examples" class="viewer-tab" active.bind="!apiActive" load.bind="examples"></mdc-tab>
+      <mdc-tab label="Api" class="viewer-tab" active.bind="apiActive" load.bind="api"></mdc-tab>
     </mdc-tab-bar>
-    <au-viewport default1="examples"></au-viewport>
+    <au-viewport default.bind="examples"></au-viewport>
   </div>
 </div>

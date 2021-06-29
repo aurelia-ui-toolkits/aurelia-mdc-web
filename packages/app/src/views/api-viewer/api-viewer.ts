@@ -1,4 +1,3 @@
-// import { IRouter } from '@aurelia/router';
 import { NavigationItem } from 'typedoc';
 import buttonApi from '../../../../button/doc/api.json';
 import chipsApi from '../../../../chips/doc/api.json';
@@ -18,7 +17,7 @@ import layoutGridApi from '../../../../layout-grid/doc/api.json';
 import linearProgressApi from '../../../../linear-progress/doc/api.json';
 import listApi from '../../../../list/doc/api.json';
 import lookupApi from '../../../../lookup/doc/api.json';
-import { RoutingInstruction, IRouter } from 'aurelia-direct-router';
+import { RoutingInstruction, IRouter, route } from 'aurelia-direct-router';
 
 const apis: Record<string, unknown> = {
   'button-page': buttonApi,
@@ -99,6 +98,7 @@ declare module 'typedoc' {
   }
 }
 
+@route({ path: 'api' })
 export class ApiViewer {
   constructor(@IRouter private router: IRouter) { }
 

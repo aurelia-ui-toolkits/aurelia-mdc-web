@@ -1,5 +1,8 @@
 import { templates } from './templates';
-import { IRouter, RoutingInstruction } from 'aurelia-direct-router';
+import { IRouter, Navigation, RoutingInstruction } from 'aurelia-direct-router';
+import { Constructable } from 'aurelia';
+import { ApiViewer } from '../api-viewer/api-viewer';
+import { isThisTypeNode } from 'typescript';
 
 interface IReference {
   name: string;
@@ -18,9 +21,14 @@ export interface IComponentTemplate {
 export class ComponentViewer {
   constructor(@IRouter public router: IRouter) { }
 
+  examples: string;
+  api = 'api-viewer';
   template: IComponentTemplate;
+  apiActive: boolean;
 
-  load(params: Record<string, unknown>, ri: RoutingInstruction) {
+  load(params: Record<string, unknown>, ri: RoutingInstruction, nav: Navigation) {
+    this.apiActive = nav.path?.endsWith(this.api) ?? false;
+    this.examples = `${ri.component.name?.replace('-page', '')}-examples`;
     this.template = templates[ri.component.name!];
   }
 }
