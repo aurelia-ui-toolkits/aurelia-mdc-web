@@ -31,7 +31,7 @@ export class MdcListItem {
     }
     const content = document.createElement('span');
     content.classList.add('mdc-list-item__content');
-    const texts = element.querySelectorAll('mdc-list-item-overline-text, mdc-list-item-primary-text, mdc-list-item-secondary-text');
+    const texts = element.querySelectorAll('mdc-list-item-overline-text, mdc-list-item-primary-text, mdc-list-item-secondary-text, template');
     const children = Array.from(element.childNodes);
     if (!texts.length) {
       const primary = document.createElement('span');
