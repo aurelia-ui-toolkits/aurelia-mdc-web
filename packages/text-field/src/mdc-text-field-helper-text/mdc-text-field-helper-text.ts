@@ -1,11 +1,9 @@
-import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTextFieldHelperTextFoundation, MDCTextFieldHelperTextAdapter, helperTextCssClasses } from '@material/textfield';
 import { inject, customElement, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
 
 @inject(Element)
 @customElement('mdc-text-field-helper-text')
-@processContent(defaultSlotProcessContent)
 export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextFoundation> {
   helperTextCssClasses = helperTextCssClasses;
 
