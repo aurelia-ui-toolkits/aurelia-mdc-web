@@ -11,7 +11,7 @@
     "noImplicitReturns": true,
     "strictNullChecks": true,
     "declaration": true,
-		"declarationDir": "dist/types",
+    "declarationDir": "dist/types",
     "forceConsistentCasingInFileNames": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -19,6 +19,7 @@
     "importHelpers": true,
     "skipLibCheck": true,
     "sourceMap": true,
+    "inlineSources": true,
     "newLine": "lf",
     "downlevelIteration": true
   },

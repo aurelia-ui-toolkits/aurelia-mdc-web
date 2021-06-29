@@ -244,7 +244,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
       openMenu: () => {
         this.menu.open = true;
         if ((this.hoistToBody || this.fixed) && !this.naturalWidth) {
-          this.menu.root.style.width = `${this.root.clientWidth}px`;
+          this.menu.root.style.minWidth = this.menu.root.style.maxWidth = `${this.root.clientWidth}px`;
         }
       },
       closeMenu: () => { this.menu.open = false; },
