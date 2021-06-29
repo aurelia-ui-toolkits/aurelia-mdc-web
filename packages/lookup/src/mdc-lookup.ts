@@ -84,17 +84,21 @@ export class MdcLookup implements EventListenerObject {
   options: unknown[] | undefined | ((filter: string, value: unknown) => Promise<unknown[]>);
   optionsChanged() {
     const shouldRefresh = this.getOptions !== undefined;
-    if (this.options instanceof Function) {
-      this.getOptions = this.options;
-    } else {
-      this.getOptions = this.getOptionsDefault;
-    }
+    this.setGetOptions();
     if (shouldRefresh) {
       this.optionsArray = undefined;
       this.value = undefined;
       if (this.preloadOptions) {
         this.loadOptions(false);
       }
+    }
+  }
+
+  setGetOptions() {
+    if (this.options instanceof Function) {
+      this.getOptions = this.options;
+    } else {
+      this.getOptions = this.getOptionsDefault;
     }
   }
 
@@ -156,7 +160,7 @@ export class MdcLookup implements EventListenerObject {
   bound() {
     this.valueFieldChanged();
     this.displayFieldChanged();
-    this.optionsChanged();
+    this.setGetOptions();
   }
 
   async attached() {
