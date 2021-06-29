@@ -1,3 +1,52 @@
+## [6.2.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.1-au2...v6.2.2-au2) (2021-06-29)
+
+
+### Bug Fixes
+
+* **app:** api page generation ([69fe0e2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/69fe0e27e8087a76c0ec048df9de193f719dee07))
+* **app:** group menu example ([a7dc8fc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a7dc8fc0b1a35408f2cf45a3ad70680fc49bbe57))
+* **app:** menu example ([e6bd6e2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e6bd6e22ceaa8a45f45e06d42579b753fc9f8b99))
+* **app:** menu example ([c9335cb](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c9335cb7803f1c9f051036e96c4e8cd4091273a8))
+* **card:** add primary action tabindex ([5a21787](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5a21787566217d3af20a7d1d16a4e157e2d96036))
+* **chips:** upgrade to MDC@11 ([7d9a251](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7d9a251b08d4c11ca77abe6967ac849e329915a7))
+* **dialog:** re-layout ripple in new dialog service ([9f08b4c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9f08b4c1ac5a471c63231002fed684dda01c7283))
+* **dialog:** upgrade to MDC@11 ([d8997d8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d8997d8f6bcb4a185b1fb0ba9f9e47b59eccc552))
+* **dialogs:** add fullscreen attribute ([f52bbba](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f52bbbaa1bae8f38490ceeaa25abfe224c9de979))
+* **fab:** workaround for missing ripple ([eb5f1e1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/eb5f1e16f701b7ebd0fedd43437c381e8d0757cf))
+* **list:** do not manipulate content if 'template' is present ([f0de190](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f0de1900353c2f07942292cf40f33e2485b50d73))
+* **list:** new DOM structure ([8d5103b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8d5103b06d000863db6941b1c522f6c7a11051b1))
+* **lookup:** check for undefined option ([2b585b3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2b585b304c4d58f3e5b55ec3054e32b71569a5ac))
+* **lookup:** check for undefined option ([a1d05a4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a1d05a4f54f2846b291d0690a05aff3d243f51d1))
+* **lookup:** do not emit 'change' on attached ([c10e81d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c10e81d39339ba179d09429f65b52e8149dde3f6))
+* **lookup:** do not reset the value when bind() is called ([04b695e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/04b695e29973ab3cb4b4fa0ed2197d5b2da5fe7c))
+* **lookup:** move two-line to items ([a0ab780](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a0ab7807668af8185468439ebefe619609bc60f6))
+* **lookup:** open lookup on filter change only when still focused ([5c874a2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5c874a2d0d34a8770e6bc43060dc01ca260d081a))
+* **menu:** set initial default focus state ([335b568](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/335b5684aacaa15200c51a6890dcacdc4fb310ea))
+* **menu:** trigger width recalculation on open ([52b3def](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/52b3def2e7cbba883906c4e49d896923a254ec69))
+* **select:** reset observer internal flag ([14efb2a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/14efb2af654f823b339175f589bd8a84bd26e66e))
+* **select:** set hoisted or fixed select width explicitly ([1ada1de](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1ada1de063aaf7a40261207bc24008968bb26fa8))
+* **select:** set width via min/max ([94af041](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/94af0416a10be18c0f8e8e29d75ab5109004a5f5))
+* **tab-bar:** use div instead of custom scroller element ([77abb13](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/77abb13af1aec17e1cc1af2c7be1be194a8a90f8))
+* **text-field:** emit icon event in lower case ([c063006](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c063006c936dd179d208f8d49c73c757f57b68a6))
+* **tooltip:** add missing class ([5e29f9b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5e29f9b98decf6a31fb1de21e04c2880ad49e2de))
+* **top-app-bar:** parameters order ([6215d6e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6215d6e78d6b24d7852f79acd3df0beba61cd70b))
+* **top-app-bar:** parameters order ([1d6e6f7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1d6e6f7ffb79e2307c901f23c28c4a70913ba63e))
+* **top-app-bar:** rename align attribute ([46590b2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/46590b22e52054b6591904e2221b912f93acb049))
+* **top-app-bar:** rename align attribute ([ad021df](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ad021df1d16df0faf1de2347760b053ef4dd9a5a))
+
+
+### Features
+
+* **app:** hierarchical menu examples ([21efc78](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/21efc78a954d1d0cca287fd681b630a63aad8807))
+* **base:** add reference promisifier ([98744d8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/98744d857e14924e90237fc8f7f7b7d2f0625f01))
+* **lookup:** add a single option autoselect on blur ([e0ed19e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e0ed19ee22291e0a839c820630fd81cd9147ddc8))
+* **lookup:** open/close lookup on Ctrl+Space ([086be1a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/086be1a609e75074b70055101e15dafdbd74dd48))
+* **menu:** add maxHeight ([1c20c41](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1c20c41a1d4fbedf48b4787b9d58bdce71cfc77f))
+* **menu-surface:** add horizontallyCenteredOnViewport attribute ([903d1c5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/903d1c53a970d4f5aa173c14dffd9e4e76e1d561))
+* **tooltip:** add caret position ([a4fec73](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a4fec737334c965cf2c32e1508c88b520f3ef292))
+
+
+
 ## [5.0.4-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v5.0.1-au2...v5.0.4-au2) (2021-04-06)
 
 
