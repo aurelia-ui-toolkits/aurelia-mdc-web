@@ -17,6 +17,7 @@ import layoutGridApi from '../../../../layout-grid/doc/api.json';
 import linearProgressApi from '../../../../linear-progress/doc/api.json';
 import listApi from '../../../../list/doc/api.json';
 import lookupApi from '../../../../lookup/doc/api.json';
+import radioApi from '../../../../radio/doc/api.json';
 import { RoutingInstruction, IRouter, route } from 'aurelia-direct-router';
 
 const apis: Record<string, unknown> = {
@@ -37,7 +38,8 @@ const apis: Record<string, unknown> = {
   'layout-grid': layoutGridApi,
   'linear-progress': linearProgressApi,
   'list': listApi,
-  'lookup': lookupApi
+  'lookup': lookupApi,
+  'radio': radioApi
 };
 
 interface ICategoryItem {

@@ -4,6 +4,9 @@ import { inject, customElement, CustomElement, bindable } from 'aurelia';
 
 let radioId = 0;
 
+/**
+ * @selector mdc-radio
+ */
 @inject(Element)
 @customElement('mdc-radio')
 export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
@@ -16,16 +19,19 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
 
   id = `mdc-radio-${++radioId}-input`;
 
+  /** Disables the component */
   @bindable({ set: booleanAttr })
   disabled: boolean;
   disabledChanged() {
     this.nativeControl_.disabled = this.disabled;
   }
 
+  /** Set the component touch target to 48 x 48 px */
   @bindable({ set: booleanAttr })
   touch: boolean;
 
   _checked?: boolean;
+  /** Use to verify the checked value */
   get checked(): boolean {
     if (this.nativeControl_) {
       return this.nativeControl_.checked;
@@ -42,6 +48,7 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
   }
 
   _value?: string;
+  /** Value of the radio button */
   get value(): string {
     if (this.nativeControl_) {
       return this.nativeControl_.value;
@@ -93,10 +100,12 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
     return new MDCRadioFoundation(adapter);
   }
 
+  /** Set focus to the radio button */
   focus() {
     this.nativeControl_.focus();
   }
 
+  /** Set focus away from the radio button */
   blur() {
     this.nativeControl_.blur();
   }
