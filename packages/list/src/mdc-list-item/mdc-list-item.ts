@@ -1,5 +1,5 @@
 import { cssClasses } from '@material/list';
-import { customElement, bindable, inject, INode, IPlatform } from 'aurelia';
+import { customElement, bindable, inject, INode } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { nextId } from '@aurelia/kernel';
 import { processContent } from '@aurelia/runtime-html';
@@ -19,7 +19,7 @@ const LIST_ITEM_ACTION = 'mdclistitem:action';
 export class MdcListItem {
   constructor(public root: HTMLElement) { }
 
-  static processContent(node: INode, platform: IPlatform) {
+  static processContent(node: INode) {
     const element = node as HTMLElement;
     const leading = element.querySelector('[mdc-list-item-leading]');
     if (leading) {
