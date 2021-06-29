@@ -44,5 +44,9 @@
       ]
     }
   },
-  "html.format.unformatted": "pre,textarea,hljs"
+  "html.format.unformatted": "pre,textarea,hljs",
+  "files.exclude": {
+    "dist": true,
+    "node_modules": true
+  }
 }
