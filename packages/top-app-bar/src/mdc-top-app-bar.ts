@@ -47,7 +47,7 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
 
     this.hasActionItems = !!this.root.querySelector(strings.ACTION_ITEM_SELECTOR);
 
-    this.scrollTargetChanged(window, this.scrollTarget);
+    this.scrollTargetChanged(this.scrollTarget, window);
 
     this.navIcon_ = this.root.querySelector(strings.NAVIGATION_ICON_SELECTOR);
     if (this.navIcon_) {
