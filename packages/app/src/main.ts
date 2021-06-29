@@ -48,7 +48,6 @@ import { Select } from './views/select/select';
 import { Slider } from './views/slider/slider';
 import { Snackbar } from './views/snackbar/snackbar';
 import { Switch } from './views/switch/switch';
-import { Tabs } from './views/top-app-bar/tabs/tabs';
 import { TextField } from './views/text-field/text-field';
 import { Tooltip } from './views/tooltip/tooltip';
 import { TopAppBar } from './views/top-app-bar/top-app-bar';
@@ -79,6 +78,7 @@ import { TooltipExamples } from './views/tooltip/tooltip-examples';
 import { TopAppBarExamples } from './views/top-app-bar/top-app-bar-examples';
 import { TypographyExamples } from './views/typography/typography-examples';
 import { ButtonPage } from './views/button/button';
+import { Tabs } from './views/tabs/tabs';
 
 // href is buggy
 // DefaultResources.splice(DefaultResources.findIndex(x => x === HrefCustomAttribute as unknown as IRegistry));

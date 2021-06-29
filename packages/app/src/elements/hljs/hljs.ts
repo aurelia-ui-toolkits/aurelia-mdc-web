@@ -34,7 +34,7 @@ export class Hljs {
 
   highlight() {
     if (this.source) {
-      this.codeEl.innerHTML = highlight(this.language, this.source.innerText).value;
+      this.codeEl.innerHTML = highlight(this.source.innerText, { language: this.language }).value;
     }
   }
 }
