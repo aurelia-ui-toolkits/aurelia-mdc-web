@@ -498,6 +498,12 @@ function defineMdcTextFieldElementApis(element: HTMLElement) {
         CustomElement.for<MdcTextField>(this).viewModel.blur();
       },
       configurable: true
+    },
+    isFocused: {
+      get(this: IMdcTextFieldElement) {
+        return document.activeElement === CustomElement.for<MdcTextField>(this).viewModel.input_;
+      },
+      configurable: true
     }
   });
 }
