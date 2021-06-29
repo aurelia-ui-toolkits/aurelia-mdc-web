@@ -70,6 +70,9 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   @bindable({ set: booleanAttr })
   stayOpenOnSelection: boolean;
 
+  @bindable
+  maxHeight: number;
+
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
     return true;
