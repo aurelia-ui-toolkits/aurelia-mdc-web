@@ -108,7 +108,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   }
 
   get listElements(): Element[] {
-    return [].slice.call(this.root.querySelectorAll(`.${cssClasses.LIST_ITEM_CLASS}`)) as Element[];
+    return Array.from(this.root.querySelectorAll(`.${cssClasses.LIST_ITEM_CLASS}`));
   }
 
   /**
