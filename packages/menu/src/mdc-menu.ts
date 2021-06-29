@@ -145,6 +145,9 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   }
 
   attaching() {
+    if (this.defaultFocusState !== undefined) {
+      this.defaultFocusStateChanged();
+    }
     if (this.hoistToBody) {
       // when menu is a direct body child there may be a vertical scrollbar briefly shown
       // when MDCMenuSurfaceFoundation.cssClasses.OPEN added to the menu surface
