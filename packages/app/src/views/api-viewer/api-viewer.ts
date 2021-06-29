@@ -158,6 +158,7 @@ export class ApiViewer {
       case 'union': return t.types.reduce((p, c, i) => `${p}${i > 0 ? ' | ' : ''}${this.getType(c)}`, '');
       case 'array': return `${t.elementType.name}[]`;
       case 'intrinsic': return t.name;
+      case 'literal': return `'${t.value}'`;
       case 'stringLiteral': return `'${t.value}'`;
       case 'reflection': {
         const signature = t['declaration'].signatures[0];
