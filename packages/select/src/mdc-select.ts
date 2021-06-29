@@ -241,7 +241,12 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
       removeMenuClass: (className: string) => {
         this.menuElement?.classList.remove(className);
       },
-      openMenu: () => { this.menu.open = true; },
+      openMenu: () => {
+        this.menu.open = true;
+        if ((this.hoistToBody || this.fixed) && !this.naturalWidth) {
+          this.menu.root.style.width = `${this.root.clientWidth}px`;
+        }
+      },
       closeMenu: () => { this.menu.open = false; },
       getAnchorElement: () => this.root.querySelector(strings.SELECT_ANCHOR_SELECTOR)!,
       setMenuAnchorElement: (anchorEl: HTMLElement) => {
