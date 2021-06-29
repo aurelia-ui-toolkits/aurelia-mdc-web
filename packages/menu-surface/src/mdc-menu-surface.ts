@@ -72,6 +72,13 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     this.foundation?.setMaxHeight(this.maxHeight);
   }
 
+  @bindable({ set: booleanAttr })
+  horizontallyCenteredOnViewport: boolean;
+  async horizontallyCenteredOnViewportChanged() {
+    await this.initialised;
+    this.foundation?.setIsHorizontallyCenteredOnViewport(this.horizontallyCenteredOnViewport);
+  }
+
   get open(): boolean {
     return this.foundation!.isOpen();
   }
@@ -152,6 +159,9 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     }
     if (this.maxHeight) {
       this.foundation?.setMaxHeight(this.maxHeight);
+    }
+    if (this.horizontallyCenteredOnViewport !== undefined) {
+      this.foundation?.setIsHorizontallyCenteredOnViewport(this.horizontallyCenteredOnViewport);
     }
     this.listen('keydown', this);
   }
