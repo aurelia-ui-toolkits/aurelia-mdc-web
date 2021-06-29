@@ -23,10 +23,6 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
 
   cssClasses = cssClasses;
 
-  /** Increases the height of the row to give it greater visual separation from adjacent rows */
-  @bindable({ set: booleanAttr })
-  twoLine: boolean;
-
   /** When enabled, the space and enter keys (or click event) will trigger an single list item to become selected and any other previous selected element to become deselected */
   @bindable({ set: booleanAttr })
   singleSelection: boolean;
@@ -40,38 +36,6 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   activatedChanged() {
     this.foundation?.setUseActivatedClass(this.activated);
   }
-
-  /** Sets the list to an orientation causing the keys used for navigation to change. true results in the Up/Down arrow keys being used. If false, the Left/Right arrow keys are used. */
-  @bindable({ set: booleanAttr })
-  vertical: boolean = true;
-
-  /** Increases the density of the list, making it appear more compact */
-  @bindable({ set: booleanAttr })
-  dense: boolean;
-
-  /** Optional, configures lists that start with text */
-  @bindable({ set: booleanAttr })
-  textual: boolean;
-
-  /** Configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. */
-  @bindable({ set: booleanAttr })
-  avatar: boolean;
-
-  /** Optional, configures the leading tile of each row to display icons */
-  @bindable({ set: booleanAttr })
-  icon: boolean;
-
-  /** Optional, configures the leading tile of each row to display images */
-  @bindable({ set: booleanAttr })
-  image: boolean;
-
-  /** Optional, configures the leading tile of each row to display smaller images (this is analogous to an avatar list but the image will	not be rounded) */
-  @bindable({ set: booleanAttr })
-  thumbnail: boolean;
-
-  /** Optional, configures the leading tile of each row to display videos */
-  @bindable({ set: booleanAttr })
-  video: boolean;
 
   @children({
     filter: (el: HTMLElement) => el.tagName === 'MDC-LIST-ITEM'
@@ -291,9 +255,6 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   }
 
   layout() {
-    const direction = this.root.getAttribute(strings.ARIA_ORIENTATION);
-    this.vertical = direction !== strings.ARIA_ORIENTATION_HORIZONTAL;
-
     // List items need to have at least tabindex=-1 to be focusable.
     [].slice.call(this.root.querySelectorAll('.mdc-list-item:not([tabindex])'))
       .forEach((el: Element) => {

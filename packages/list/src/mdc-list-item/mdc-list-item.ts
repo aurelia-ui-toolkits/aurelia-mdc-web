@@ -21,26 +21,42 @@ export class MdcListItem {
 
   static processContent(node: INode, platform: IPlatform) {
     const element = node as HTMLElement;
-    const graphic = element.querySelector('mdc-checkbox:not([mdc-list-item-meta]),[mdc-list-item-graphic]');
-    if (graphic) {
-      element.removeChild(graphic);
+    const leading = element.querySelector('[mdc-list-item-leading]');
+    if (leading) {
+      element.removeChild(leading);
     }
-    const meta = element.querySelector('[mdc-list-item-meta]');
-    if (meta) {
-      element.removeChild(meta);
+    const trailing = element.querySelector('[mdc-list-item-trailing]');
+    if (trailing) {
+      element.removeChild(trailing);
     }
-    const itemText = platform.document.createElement('span');
-    itemText.classList.add(cssClasses.LIST_ITEM_TEXT_CLASS);
-    const children = [].slice.call(element.childNodes) as ChildNode[];
-    for (let i = 0; i < children.length; ++i) {
-      itemText.appendChild(children[i]);
+    const content = document.createElement('span');
+    content.classList.add('mdc-list-item__content');
+    const texts = element.querySelectorAll('mdc-list-item-overline-text, mdc-list-item-primary-text, mdc-list-item-secondary-text');
+    const children = Array.from(element.childNodes);
+    if (!texts.length) {
+      const primary = document.createElement('span');
+      primary.classList.add('mdc-list-item__primary-text');
+      for (let i = 0; i < children.length; ++i) {
+        primary.appendChild(children[i]);
+      }
+      content.appendChild(primary);
+    } else {
+      for (let i = 0; i < children.length; ++i) {
+        content.appendChild(children[i]);
+      }
     }
-    if (graphic) {
-      element.appendChild(graphic);
+    if (leading) {
+      const start = document.createElement('span');
+      start.classList.add('mdc-list-item__start');
+      start.appendChild(leading);
+      element.appendChild(start);
     }
-    element.appendChild(itemText);
-    if (meta) {
-      element.appendChild(meta);
+    element.appendChild(content);
+    if (trailing) {
+      const end = document.createElement('span');
+      end.classList.add('mdc-list-item__end');
+      end.appendChild(trailing);
+      element.appendChild(end);
     }
   }
 
@@ -55,6 +71,22 @@ export class MdcListItem {
   /** Styles the row in an activated state */
   @bindable({ set: booleanAttr })
   activated: boolean;
+
+  /** Styles the row in an selected state */
+  @bindable({ set: booleanAttr })
+  selected: boolean;
+
+  /** Indicates a non-interactive item */
+  @bindable({ set: booleanAttr })
+  nonInteractive: boolean;
+
+  /** Indicates a two-line item */
+  @bindable({ set: booleanAttr })
+  twoLine: boolean;
+
+  /** Indicates a three-line item */
+  @bindable({ set: booleanAttr })
+  threeLine: boolean;
 
   /** Random data associated with the list item. Passed in events payload. */
   @bindable

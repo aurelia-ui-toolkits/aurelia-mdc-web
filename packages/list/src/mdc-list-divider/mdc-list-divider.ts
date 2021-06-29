@@ -1,5 +1,7 @@
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { customElement, bindable } from 'aurelia';
+import { MdcListItemLeading } from '../mdc-list-item/mdc-list-item-leading';
+import { MdcListItemTrailing } from '../mdc-list-item/mdc-list-item-trailing';
 
 /**
  * Optional, for list divider element
@@ -11,7 +13,11 @@ export class MdcListDivider {
   @bindable({ set: booleanAttr })
   padded: boolean;
 
-  /** Increases the leading margin of the divider so that it does not intersect the avatar column */
-  @bindable({ set: booleanAttr })
-  inset: boolean;
- }
+  /** Aligns the divider’s leading edge with the item’s content block */
+  @bindable
+  leadingType: MdcListItemLeading['value'];
+
+  /** Aligns the divider’s leading edge with the item’s trailing padding */
+  @bindable
+  trailingType: MdcListItemTrailing['value'];
+}
