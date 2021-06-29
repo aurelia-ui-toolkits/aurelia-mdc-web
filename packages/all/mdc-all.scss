@@ -11,6 +11,7 @@
 @use "@material/line-ripple/mdc-line-ripple";
 @use "@material/notched-outline/mdc-notched-outline";
 @use "@material/ripple/mdc-ripple";
+@use "@material/ripple/ripple-theme";
 @use "@aurelia-mdc-web/ripple"as auRipple;
 @use "@material/tab-bar/mdc-tab-bar";
 @use "@material/tab-scroller/mdc-tab-scroller";
@@ -29,6 +30,7 @@
 @use "@aurelia-mdc-web/slider"as auSlider;
 @use "@material/switch/mdc-switch";
 @use "@material/fab/mdc-fab";
+@use "@material/fab/fab-theme";
 @use "@aurelia-mdc-web/expandable";
 @use "@material/elevation/mdc-elevation";
 @use "@material/data-table/mdc-data-table";
@@ -47,3 +49,8 @@
 @include slider.core-styles;
 @include list-evolution-mixins.without-ripple();
 @include list-evolution-mixins.with-ripple();
+
+// remove when https://github.com/material-components/material-components-web/issues/7053 is fixed
+.mdc-fab {
+  @include ripple-theme.states(on-secondary, $ripple-target: fab-theme.$ripple-target);
+}
