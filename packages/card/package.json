@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/card",
-  "version": "11.0.0",
+  "version": "6.2.2-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -38,7 +38,7 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "11.0.0",
-    "@material/card": "^10.0.0"
+    "@aurelia-mdc-web/base": "6.2.2-au2",
+    "@material/card": "^11.0.0"
   }
 }

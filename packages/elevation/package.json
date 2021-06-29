@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/elevation",
-  "version": "11.0.0",
+  "version": "6.2.2-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -38,6 +38,6 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@material/elevation": "^10.0.0"
+    "@material/elevation": "^11.0.0"
   }
 }

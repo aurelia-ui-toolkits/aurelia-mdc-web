@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/base",
-  "version": "11.0.0",
+  "version": "6.2.2-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -38,10 +38,10 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@material/base": "^10.0.0"
+    "@material/base": "^11.0.0"
   },
   "peerDependencies": {
     "aurelia": "^2.1.0-dev.202106282211",
-    "tslib": "^1.9.3"
+    "tslib": "^2.1.0"
   }
 }
