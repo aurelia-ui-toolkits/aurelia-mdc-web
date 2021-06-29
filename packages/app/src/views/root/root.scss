@@ -17,3 +17,13 @@ body {
   margin: 0;
   font-family: var(--mdc-typography-font-family, Roboto, sans-serif);
 }
+
+.mdc-button__ripple,
+.mdc-checkbox__ripple,
+.mdc-chip__ripple,
+.mdc-fab__ripple,
+.mdc-radio__ripple,
+.mdc-list-item__ripple,
+.mdc-tab__ripple {
+  z-index: 0;
+}
