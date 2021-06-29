@@ -161,11 +161,14 @@ export class ApiViewer {
       case 'literal': return `'${t.value}'`;
       case 'stringLiteral': return `'${t.value}'`;
       case 'reflection': {
+        if (!t['declaration'].signatures) {
+          return '';
+        }
         const signature = t['declaration'].signatures[0];
         return `(${(signature.parameters ?? []).reduce((p, c, i) => `${p}${i > 0 ? ', ' : ''}${c.name}: ${this.getType(c.type)}`, '')}) => ${this.getType(signature.type)}`;
       }
       case 'reference':
-        if (t.typeArguments) {
+        if (t.typeArguments && t.name !== 'Constructable') {
           return `${t.name}<${t.typeArguments.reduce((p, c, i) => `${p}${i > 0 ? ', ' : ''}${this.getType(c)}`, '')}>`;
         } else {
           return t.name;

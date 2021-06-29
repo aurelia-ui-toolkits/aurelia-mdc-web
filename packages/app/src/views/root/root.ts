@@ -34,10 +34,10 @@ import { Tooltip } from '../tooltip/tooltip';
 import { Tabs } from '../tabs/tabs';
 import { Typography } from '../typography/typography';
 import githubSvg from '../../assets/github-circle-white-transparent.svg';
-import { IRouter, routes, IRouteableComponent, IRoute } from 'aurelia-direct-router';
+import { IRouter, IRouteableComponent, IRoute } from 'aurelia-direct-router';
 
 const routeDefs: IRoute[] = [
-  { id: 'home', path: '', title: 'Home', component: Home, data: { divider: 'true' } },
+  { id: 'home', path: 'home', title: 'Home', component: Home, data: { divider: 'true' } },
   { id: 'getting-started', path: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
   { id: 'button-page', path: 'button', title: 'Button', component: ButtonPage },
   { id: 'card', path: 'card', title: 'Card', component: Card },
@@ -45,7 +45,7 @@ const routeDefs: IRoute[] = [
   { id: 'chips', path: 'chips', title: 'Chips', component: Chips },
   { id: 'circular-progress', path: 'circular-progress', title: 'Circular progress', component: CircularProgress },
   { id: 'data-table', path: 'data-table', title: 'Data table', component: DataTable },
-  { id: 'dialog', path: 'dialog', title: 'Dialog', component: Dialog },
+  { id: 'dialog', path: 'dialog-page', title: 'Dialog', component: Dialog },
   { id: 'drawer', path: 'drawer', title: 'Drawer', component: Drawer },
   { id: 'elevation', path: 'elevation', title: 'Elevation', component: Elevation },
   { id: 'expandable', path: 'expandable', title: 'Expandable', component: Expandable },
@@ -57,11 +57,11 @@ const routeDefs: IRoute[] = [
   { id: 'list', path: 'list', title: 'List', component: List },
   { id: 'linear-progress', path: 'linear-progress', title: 'Linear progress', component: LinearProgress },
   { id: 'lookup', path: 'lookup', title: 'Lookup', component: Lookup },
-  { id: 'menu', path: 'menu', title: 'Menu', component: Menu },
+  { id: 'menu', path: 'menu-page', title: 'Menu', component: Menu },
   { id: 'menu-surface', path: 'menu-surface', title: 'Menu surface', component: MenuSurface },
   { id: 'radio', path: 'radio', title: 'Radio', component: Radio },
   { id: 'ripple', path: 'ripple', title: 'Ripple', component: Ripple },
-  { id: 'select', path: 'select', title: 'Select', component: Select },
+  { id: 'select', path: 'select-page', title: 'Select', component: Select },
   { id: 'slider', path: 'slider', title: 'Slider', component: Slider },
   { id: 'snackbar', path: 'snackbar', title: 'Snackbar', component: Snackbar },
   { id: 'switch', path: 'switch', title: 'Switch', component: Switch },
@@ -72,7 +72,6 @@ const routeDefs: IRoute[] = [
   { id: 'typography', path: 'typography', title: 'Typography', component: Typography },
 ];
 
-// @routes(routeDefs)
 export class Root implements IRouteableComponent {
   constructor(@IRouter private router: IRouter) { }
 
@@ -82,17 +81,16 @@ export class Root implements IRouteableComponent {
   drawer: MdcDrawer;
 
   routes = routeDefs;
+  currentPath?: string = '';
 
   attached() {
     this.drawer.open = true;
+    // this.currentPath = this.router.activeNavigation.path;
   }
 
-  // get navRoutes(): (RouteDefinition | Promise<RouteDefinition>)[] {
-  //   return this.router.routeTree.root.context.childRoutes;
-  // }
-
-  navigateTo(routeDef: IRoute) {
-    this.router.load({ component: routeDef.component });
+  async navigateTo(routeDef: IRoute) {
+    await this.router.load({ component: routeDef.component });
+    this.currentPath = this.router.activeNavigation.path;
     if (this.drawer.type === 'modal') {
       this.drawer.toggle();
     }
