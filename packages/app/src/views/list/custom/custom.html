@@ -21,28 +21,24 @@
   </div>
 
   <mdc-list-group>
-    <h3>Folders</h3>
-    <mdc-list wrap-focus.bind="wrapFocus" dense.bind="dense" activated.bind="activated"
-      single-selection.bind="singleSelection" two-line avatar class="demo-list--custom">
-      <mdc-list-item repeat.for="folder of folders" disable-ripple.bind="disableRipple">
-        <mdc-icon mdc-list-item-graphic>${folder.icon}</mdc-icon>
-        <mdc-list-item-text>
-          <mdc-list-item-primary-text>${folder.name}</mdc-list-item-primary-text>
-          <mdc-list-item-secondary-text>${folder.addDate}</mdc-list-item-secondary-text>
-        </mdc-list-item-text>
-        <a href="#/list/examples" mdc-list-item-meta aria-label="View more" title="More info">
+    <mdc-list wrap-focus.bind="wrapFocus" activated.bind="activated" single-selection.bind="singleSelection"
+      class="demo-list--custom ${dense ? 'mdc-list--dense' : ''}">
+      <h3 mdc-list-group-subheader>Folders</h3>
+      <mdc-list-item repeat.for="folder of folders" two-line disable-ripple.bind="disableRipple">
+        <mdc-icon mdc-list-item-leading>${folder.icon}</mdc-icon>
+        <mdc-list-item-primary-text>${folder.name}</mdc-list-item-primary-text>
+        <mdc-list-item-secondary-text>${folder.addDate}</mdc-list-item-secondary-text>
+        <a href="#/list/examples" mdc-list-item-trailing="icon" aria-label="View more" title="More info">
           <mdc-icon>info</mdc-icon>
         </a>
       </mdc-list-item>
-      <mdc-list-divider inset></mdc-list-divider>
+      <mdc-list-divider leading-type="icon" trailing-type="icon"></mdc-list-divider>
       <h3 mdc-list-group-subheader>Files</h3>
-      <mdc-list-item repeat.for="file of files" disable-ripple.bind="disableRipple">
-        <mdc-icon mdc-list-item-graphic>${file.icon}</mdc-icon>
-        <mdc-list-item-text>
-          <mdc-list-item-primary-text>${file.name}</mdc-list-item-primary-text>
-          <mdc-list-item-secondary-text>${file.addDate}</mdc-list-item-secondary-text>
-        </mdc-list-item-text>
-        <a href="#/list/examples" mdc-list-item-meta aria-label="View more" title="More info">
+      <mdc-list-item repeat.for="file of files" two-line disable-ripple.bind="disableRipple">
+        <mdc-icon mdc-list-item-leading>${file.icon}</mdc-icon>
+        <mdc-list-item-primary-text>${file.name}</mdc-list-item-primary-text>
+        <mdc-list-item-secondary-text>${file.addDate}</mdc-list-item-secondary-text>
+        <a href="#/list/examples" mdc-list-item-trailing="icon" aria-label="View more" title="More info">
           <mdc-icon>info</mdc-icon>
         </a>
       </mdc-list-item>

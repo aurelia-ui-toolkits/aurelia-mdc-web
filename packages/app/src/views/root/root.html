@@ -25,7 +25,7 @@
       <mdc-list activated wrap-focus mdclist:action1.trigger="navigateTo($event.detail.data)" tabindex="0">
         <template repeat.for="m of routes">
           <a as-element="mdc-list-item" activated1.bind="m.active" value.bind="m" load1="${m.path}" click.delegate="navigateTo(m)">
-            <mdc-list-item-text>${m.title}</mdc-list-item-text>
+            <span>${m.title}</span>
           </a>
           <mdc-list-divider if.bind="m.data.divider"></mdc-list-divider>
         </template>

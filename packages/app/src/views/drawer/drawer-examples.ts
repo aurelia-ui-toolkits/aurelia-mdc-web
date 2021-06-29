@@ -6,31 +6,24 @@ import modalHtml from '!!raw-loader!./modal/modal.html';
 import modalCode from '!!raw-loader!./modal/modal';
 import rtlHtml from '!!raw-loader!./rtl/rtl.html';
 import rtlCode from '!!raw-loader!./rtl/rtl';
-import shapedHtml from '!!raw-loader!./shaped/shaped.html';
-import shapedCode from '!!raw-loader!./shaped/shaped';
-import shapedSass from '!!raw-loader!./shaped/shaped.scss';
 
 import { Dismissible } from './dismissible/dismissible';
 import { Modal } from './modal/modal';
 import { Rtl } from './rtl/rtl';
-import { Shaped } from './shaped/shaped';
 import { Standard } from './standard/standard';
 
 export class DrawerExamples {
   standardHtml = standardHtml;
+  standardCode = standardCode;
   dismissibleHtml = dismissibleHtml;
-  dismissibleCode = dismissibleHtml;
+  dismissibleCode = dismissibleCode;
   modalHtml = modalHtml;
-  modalCode = modalHtml;
+  modalCode = modalCode;
   rtlHtml = rtlHtml;
-  rtlCode = rtlHtml;
-  shapedHtml = shapedHtml;
-  shapedCode = shapedHtml;
-  shapedSass = shapedSass;
+  rtlCode = rtlCode;
   dismissible = Dismissible;
   modal = Modal;
   rtl = Rtl;
-  shaped = Shaped;
   standard = Standard;
 
   destinations = [
