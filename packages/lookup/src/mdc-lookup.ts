@@ -304,20 +304,28 @@ export class MdcLookup implements EventListenerObject {
   }
 
   onInputKeydown(evt: KeyboardEvent) {
-    switch (evt.which) {
-      case DOWN:
-        if (!this.menu.open) {
-          this.open();
-        }
+    switch (evt.code) {
+      case 'ArrowDown': if (!this.menu.open) {
+        this.open();
+      }
         this.suppressBlur = true;
         this.menu.list_?.foundation?.focusFirstElement();
         break;
-      case UP:
+      case 'ArrowUp':
         if (!this.menu.open) {
           this.open();
         }
         this.suppressBlur = true;
         this.menu.list_?.foundation?.focusLastElement();
+        break;
+      case 'Space':
+        if (evt.ctrlKey) {
+          if (this.menu.open) {
+            this.close();
+          } else {
+            this.loadOptions(true);
+          }
+        }
         break;
     }
   }
