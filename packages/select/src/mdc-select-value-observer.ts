@@ -254,6 +254,7 @@ export class MdcSelectValueObserver implements IObserver {
   }
 
   private stop(): void {
+    this.optionsWereSet = false;
     this.nodeObserver!.disconnect();
     this.arrayObserver?.unsubscribe(this);
     this.nodeObserver
