@@ -73,5 +73,6 @@
     "@aurelia-mdc-web/tree-view": "6.2.3-au2",
     "@aurelia-mdc-web/typography": "6.2.3-au2",
     "@aurelia-mdc-web/validation": "6.2.3-au2"
+    "@aurelia-mdc-web/radio": "6.2.4-au2",
   }
 }

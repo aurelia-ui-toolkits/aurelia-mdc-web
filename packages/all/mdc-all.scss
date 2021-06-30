@@ -44,7 +44,6 @@
 @use "@material/image-list/mdc-image-list";
 @use "@aurelia-mdc-web/image-list";
 @use "@material/tooltip/styles";
-// @use "@material/tooltip/styles";
 
 @include slider.core-styles;
 @include list-evolution-mixins.without-ripple();
