@@ -40,6 +40,7 @@
     "packages/text-field",
     "packages/tooltip",
     "packages/top-app-bar",
+    "packages/tree-view",
     "packages/typography",
     "packages/validation"
   ],

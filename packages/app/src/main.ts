@@ -79,6 +79,8 @@ import { TopAppBarExamples } from './views/top-app-bar/top-app-bar-examples';
 import { TypographyExamples } from './views/typography/typography-examples';
 import { ButtonPage } from './views/button/button';
 import { Tabs } from './views/tabs/tabs';
+import { TreeView } from './views/tree-view/tree-view';
+import { TreeViewExamples } from './views/tree-view/tree-view-examples';
 
 // href is buggy
 // DefaultResources.splice(DefaultResources.findIndex(x => x === HrefCustomAttribute as unknown as IRegistry));
@@ -94,11 +96,11 @@ Aurelia
   )
   .register(Home, GettingStarted, ButtonPage, Card, Checkbox, Chips, CircularProgress, DataTable, Dialog, Drawer, Elevation, Expandable, Fab, FormField,
     IconButton, ImageList, LayoutGrid, LinearProgress, List, Lookup, Menu, MenuSurface, Radio, Ripple, Select, Slider, Snackbar, Switch, Tabs, TextField,
-    Tooltip, TopAppBar, Typography)
+    Tooltip, TopAppBar, TreeView, Typography)
   .register(ButtonExamples, CardExamples, CheckboxExamples, ChipsExamples, CircularProgressExamples, DataTableExamples, DialogExamples, DrawerExamples,
     ElevationExamples, ExpandableExamples, FabExamples, FormFieldExamples, IconButtonExamples, ImageListExamples, LayoutGridExamples, LinearProgressExamples,
     ListExamples, LookupExamples, MenuExamples, MenuSurfaceExamples, RadioExamples, RippleExamples, SelectExamples, SliderExamples, SnackbarExamples,
-    SwitchExamples, TabsExamples, TextFieldExamples, TooltipExamples, TopAppBarExamples, TypographyExamples)
+    SwitchExamples, TabsExamples, TextFieldExamples, TooltipExamples, TopAppBarExamples, TreeViewExamples, TypographyExamples)
   // To use HTML5 pushState routes, replace previous line with the following
   // customized router config.
   // .register(RouterConfiguration.customize({ useUrlFragmentHash: false }))

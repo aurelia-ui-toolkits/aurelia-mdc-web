@@ -1,8 +1,5 @@
 import { templates } from './templates';
 import { IRouter, Navigation, RoutingInstruction } from 'aurelia-direct-router';
-import { Constructable } from 'aurelia';
-import { ApiViewer } from '../api-viewer/api-viewer';
-import { isThisTypeNode } from 'typescript';
 
 interface IReference {
   name: string;

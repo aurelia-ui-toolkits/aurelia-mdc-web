@@ -1,0 +1,31 @@
+<template class="mdc-tree-view">
+  <require from="./mdc-tree-node"></require>
+  <require from="./node-filter"></require>
+  <ul class="mdc-tree-view__list">
+    <li repeat.for="$node of nodes | nodeFilter:filter" class="mdc-tree-view__list-item">
+      <let $tree.bind="element"></let>
+      <let $tree-vm.bind="$parent"></let>
+      <div class="mdc-tree-view__node ${$node.selected ? 'mdc-tree-view__node--selected' : ''}"
+        click.trigger="nodeClicked($node)" mdc-ripple="no-class.bind: true;">
+        <div class="mdc-tree-view__node__ripple"></div>
+        <button as-element="mdc-icon-button" if.bind="$node.children" type="fab" size="small"
+          class="mdc-tree-view__expander" on.bind="$node.expanded">
+          <mdc-icon-button-icon class="material-icons">chevron_right</mdc-icon-button-icon>
+          <mdc-icon-button-icon class="material-icons" on>expand_more</mdc-icon-button-icon>
+        </button>
+        <div else class="mdc-tree-view__leaf-padding"></div>
+        <div class="mdc-tree-node">
+          <au-compose view.bind="nodeTemplate" model.bind="$node" containerless></au-compose>
+        </div>
+      </div>
+      <mdc-promisify-reference if.bind="$node.children" reference.bind="treeView"
+        promise-ref.bind="childTreeViewPromises[$index]">
+      </mdc-promisify-reference>
+      <mdc-tree-view if.bind="$node.children && $node.expanded" nodes.bind="$node.children | nodeFilter:filter"
+        root-binding-context.bind="rootBindingContext" view-model.ref="treeView"
+        mdctree:node-selected.trigger="childNodeSelected($event.detail.node)" node-template.bind="nodeTemplate">
+      </mdc-tree-view>
+    </li>
+  </ul>
+  <span repeat.for="o of onTest">${o}</span>
+</template>

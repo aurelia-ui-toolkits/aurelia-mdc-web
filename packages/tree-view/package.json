@@ -1,0 +1,44 @@
+{
+  "name": "@aurelia-mdc-web/tree-view",
+  "version": "6.2.2-au2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Wrapper for Material Components Web Tree View",
+  "keywords": [
+    "aurelia",
+    "material",
+    "components",
+    "web",
+    "tree-view"
+  ],
+  "homepage": "http://aurelia.io",
+  "bugs": {
+    "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues"
+  },
+  "license": "MIT",
+  "author": "Maxim Balaganskiy <m.balaganskiy@gmail.com>",
+  "contributors": [],
+  "main": "dist/esnext/index.js",
+  "module": "dist/esnext/index.js",
+  "typings": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web"
+  },
+  "files": [
+    "dist",
+    "*.scss"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "gulp --gulpfile ../../gulpfile.js --cwd ./ build",
+    "publish:dev": "npm publish --tag dev",
+    "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
+    "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
+  },
+  "dependencies": {
+    "@aurelia-mdc-web/base": "6.2.2-au2",
+    "@aurelia-mdc-web/icon-button": "6.2.2-au2"
+  }
+}

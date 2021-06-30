@@ -1,0 +1,8 @@
+@use "@material/theme/variables";
+
+$text-selected-color: primary !default;
+$selected-color: rgba(variables.prop-value(on-surface), 0.54) !default;
+$ripple-target: '.mdc-tree-view__node__ripple';
+$single-line-height: 48px !default;
+$leaf-padding: 36px;
+$child-tree-view-margin: 15px;

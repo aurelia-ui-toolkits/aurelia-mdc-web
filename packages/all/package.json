@@ -70,6 +70,7 @@
     "@aurelia-mdc-web/text-field": "6.2.2-au2",
     "@aurelia-mdc-web/tooltip": "6.2.2-au2",
     "@aurelia-mdc-web/top-app-bar": "6.2.2-au2",
+    "@aurelia-mdc-web/tree-view": "6.2.2-au2",
     "@aurelia-mdc-web/typography": "6.2.2-au2",
     "@aurelia-mdc-web/validation": "6.2.2-au2"
   }
