@@ -57,11 +57,13 @@ export class MdcExpandable {
       this.contentContainer.style.height = `${this.content.clientHeight}px`;
     } else {
       // the following line is needed because height has been restored to auto'
-      this.contentContainer.style.height = `${this.content.clientHeight}px`;
-      this.platform.taskQueue.queueTask(() => {
-        this.contentContainer.style.overflow = 'hidden';
-        this.contentContainer.style.height = '0';
-      });
+      if (this.contentContainer) {
+        this.contentContainer.style.height = `${this.content.clientHeight}px`;
+        this.platform.taskQueue.queueTask(() => {
+          this.contentContainer.style.overflow = 'hidden';
+          this.contentContainer.style.height = '0';
+        });
+      }
     }
   }
 
@@ -72,7 +74,7 @@ export class MdcExpandable {
         ? Array.from(this.element.parentElement!.querySelectorAll('.mdc-expandable[accordion].mdc-expandable--open'))
         : Array.from(this.platform.document.querySelectorAll(`.mdc-expandable[accordion='${this.accordion}'].mdc-expandable--open`));
       otherAccordions.filter(x => x !== this.element)
-        .map(x => CustomElement.for<MdcExpandable>(x).  viewModel)
+        .map(x => CustomElement.for<MdcExpandable>(x).viewModel)
         .forEach(x => x.toggle());
     }
     this.open = !this.open;
