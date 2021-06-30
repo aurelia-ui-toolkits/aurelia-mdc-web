@@ -3,15 +3,13 @@
 ## Here be :dragon_face:!
 
 Keep in mind that Aurelia2 itself is still in alpha stage.
-Some things work slightly differently to Aurelia1 MDC bridge or don't work at all yet.
+Some things work slightly differently to Aurelia1 MDC bridge.
 
 In particular:
 * buttons must be used as follows `<button as-element="mdc-mdc-button">...</button>` or `<a as-element="mdc-mdc-button">...</a>`
 * text fields must be used as follows `<label as-element="mdc-text-field">...</label>`
-* rendering of certain elements in `repeat.for` loops is broken due to a bug in Aurelia
-* tree view does not work at the moment (need Aurelia team guidance)
 
-The issue with buttons and text fields will hopefully be resolved with post-alpha Aurelia2.
+The inconvenience with buttons and text fields will hopefully be resolved with post-alpha Aurelia2.
 
 [![npm version](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase.svg)](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase)
 
@@ -20,9 +18,10 @@ The issue with buttons and text fields will hopefully be resolved with post-alph
 Third-party integration incorporating [Google Material Components](https://github.com/material-components/material-components-web) for building beautiful, usable products using Material Design.
 
 #### Quick Links
-*  [Getting Started](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/getting-started)
-*  [Changelog](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/CHANGELOG.md)
-*  [Documentation and demos](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/)
+*  [Getting Started](https://aurelia-mdc-web-au2.balaganskiy.pro/#/getting-started)
+*  [Changelog](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/v2/docs/CHANGELOG.md)
+*  [Documentation and demos](https://aurelia-mdc-web-au2.balaganskiy.pro/)
+*  [Skeleton application](https://github.com/aurelia-mdc-web/au2/) (run `npx makes aurelia-mdc-web/au2` to create a copy)
 *  [Dumber Gist Template](https://gist.dumber.app/?gist=ca0cfc47e375e4b37363eeb407eb2859)
 *  [Contributing](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/CONTRIBUTING.md)
 *  [Developer guide](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/developer.md)
@@ -32,39 +31,39 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 
 | Component  | Status  | Demo |
 | ---------- | ------- | :------: |
-| banner | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/banner) |
-| button | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/button) |
-| card | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/card) |
-| checkbox | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/checkbox) |
-| chips | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/chips) |
-| data-table | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/data-table) |
-| dialog | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/dialog) |
-| drawer | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/drawer) |
-| elevation | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/elevation) |
-| expandable | Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/expandable) |
-| fab | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/fab) |
-| form-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/form-field) |
-| icon | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/icon) |
-| icon-button | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/icon-button) |
-| image-list | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/image-list) |
-| layout-grid | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/layout-grid) |
-| linear-progress | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/linear-progress) |
-| list | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/list) |
-| lookup | Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/lookup) |
-| menu-surface | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/menu-surface) |
-| menu | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/menu) |
-| radio | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/radio) |
-| ripple | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/ripple) |
-| select | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/select) |
-| slider | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/slider) |
-| snackbar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/snackbar) |
-| switch | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/switch) |
-| tabs | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tabs) |
-| text-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/text-field) |
-| tooltip | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tooltip) |
-| top-app-bar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/top-app-bar) |
-| tree-view | Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tree-view) |
-| typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |
+| banner | Not Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/banner) |
+| button | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/button) |
+| card | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/card) |
+| checkbox | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/checkbox) |
+| chips | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/chips) |
+| data-table | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/data-table) |
+| dialog | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/dialog) |
+| drawer | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/drawer) |
+| elevation | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/elevation) |
+| expandable | Available :boom: | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/expandable) |
+| fab | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/fab) |
+| form-field | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/form-field) |
+| icon | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/icon) |
+| icon-button | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/icon-button) |
+| image-list | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/image-list) |
+| layout-grid | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/layout-grid) |
+| linear-progress | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/linear-progress) |
+| list | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/list) |
+| lookup | Available :boom: | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/lookup) |
+| menu-surface | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/menu-surface) |
+| menu | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/menu) |
+| radio | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/radio) |
+| ripple | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/ripple) |
+| select | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/select) |
+| slider | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/slider) |
+| snackbar | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/snackbar) |
+| switch | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/switch) |
+| tabs | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/tabs) |
+| text-field | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/text-field) |
+| tooltip | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/tooltip) |
+| top-app-bar | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/top-app-bar) |
+| tree-view | Available :boom: | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/tree-view) |
+| typography | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/typography) |
 
 #### WARNING
 :boom: - Non-native, opinionated controls which will not be implemented in the original MDC but are required in most projects.
