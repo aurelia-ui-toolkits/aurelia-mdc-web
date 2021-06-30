@@ -63,7 +63,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | text-field | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/text-field) |
 | tooltip | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tooltip) |
 | top-app-bar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/top-app-bar) |
-| tree-view | Not Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tree-view) |
+| tree-view | Available :boom: | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/tree-view) |
 | typography | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/typography) |
 
 #### WARNING
