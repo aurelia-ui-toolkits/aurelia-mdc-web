@@ -1,3 +1,12 @@
+## [6.2.4-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.3-au2...v6.2.4-au2) (2021-06-30)
+
+
+### Bug Fixes
+
+* **all:** add missing dependency ([f179719](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f17971947fa8442fcb60d58ef7e17297daebc142))
+
+
+
 ## [6.2.3-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.2-au2...v6.2.3-au2) (2021-06-30)
 
 

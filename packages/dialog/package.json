@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/dialog",
-  "version": "6.2.3-au2",
+  "version": "6.2.4-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -38,9 +38,9 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "6.2.3-au2",
-    "@aurelia-mdc-web/button": "6.2.3-au2",
-    "@aurelia-mdc-web/ripple": "6.2.3-au2",
+    "@aurelia-mdc-web/base": "6.2.4-au2",
+    "@aurelia-mdc-web/button": "6.2.4-au2",
+    "@aurelia-mdc-web/ripple": "6.2.4-au2",
     "@material/dialog": "^11.0.0"
   }
 }
