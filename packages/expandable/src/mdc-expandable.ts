@@ -12,9 +12,9 @@ const SPACE = 32;
 export class MdcExpandable {
   constructor(public element: HTMLElement, private platform: IPlatform) { }
 
-  header: HTMLElement;
-  content: HTMLElement;
-  contentContainer: HTMLElement;
+  header?: HTMLElement = undefined;
+  content?: HTMLElement = undefined;
+  contentContainer?: HTMLElement = undefined;
   focused: boolean;
 
   /** Toggles the expandable open and closed */
@@ -41,9 +41,9 @@ export class MdcExpandable {
   }
 
   setContentContainerHeightToAuto() {
-    this.contentContainer.style.overflow = 'visible';
-    this.contentContainer.style.height = 'auto';
-    this.contentContainer.removeEventListener('transitionend', this);
+    this.contentContainer!.style.overflow = 'visible';
+    this.contentContainer!.style.height = 'auto';
+    this.contentContainer!.removeEventListener('transitionend', this);
   }
 
   attached() {
@@ -53,17 +53,15 @@ export class MdcExpandable {
   updateContainerHeight() {
     if (this.open) {
       // after transition set body height to auto so that expandable children are visible
-      this.contentContainer.addEventListener('transitionend', this);
-      this.contentContainer.style.height = `${this.content.clientHeight}px`;
+      this.contentContainer!.addEventListener('transitionend', this);
+      this.contentContainer!.style.height = `${this.content!.clientHeight}px`;
     } else {
       // the following line is needed because height has been restored to auto'
-      if (this.contentContainer) {
-        this.contentContainer.style.height = `${this.content.clientHeight}px`;
-        this.platform.taskQueue.queueTask(() => {
-          this.contentContainer.style.overflow = 'hidden';
-          this.contentContainer.style.height = '0';
-        });
-      }
+      this.contentContainer!.style.height = `${this.content!.clientHeight}px`;
+      this.platform.taskQueue.queueTask(() => {
+        this.contentContainer!.style.overflow = 'hidden';
+        this.contentContainer!.style.height = '0';
+      });
     }
   }
 
