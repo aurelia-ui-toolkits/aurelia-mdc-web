@@ -11,6 +11,7 @@ let dialogId = 0;
 strings.OPENING_EVENT = strings.OPENING_EVENT.toLowerCase();
 strings.CLOSING_EVENT = strings.CLOSING_EVENT.toLowerCase();
 strings.OPENED_EVENT = strings.OPENED_EVENT.toLowerCase();
+strings.CLOSED_EVENT = strings.CLOSED_EVENT.toLowerCase();
 
 /**
  * @selector mdc-dialog

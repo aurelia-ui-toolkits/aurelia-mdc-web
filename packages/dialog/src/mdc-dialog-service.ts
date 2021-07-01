@@ -1,6 +1,6 @@
 import { MdcDialog } from './mdc-dialog';
 import { inject, IPlatform, IContainer, IAppRoot, LifecycleFlags, createElement, CustomAttribute } from 'aurelia';
-import { MDCDialogCloseEvent } from '@material/dialog';
+import { MDCDialogCloseEvent, strings } from '@material/dialog';
 import { Scope } from '@aurelia/runtime';
 import { CustomElement } from '@aurelia/runtime-html';
 import { Constructable } from '@aurelia/kernel';
@@ -35,8 +35,8 @@ export class MdcDialogService {
       handleClosed: (evt: MDCDialogCloseEvent) => {
         closedResolver(evt.detail.action);
         sv.deactivate(sv, this.appRoot.controller, LifecycleFlags.none);
-        dialogVm.root.removeEventListener('mdcdialog:closed', bindingContext.handleClosed);
-        dialogVm.root.removeEventListener('mdcdialog:opened', bindingContext.handleOpened);
+        dialogVm.root.removeEventListener(strings.CLOSED_EVENT, bindingContext.handleClosed);
+        dialogVm.root.removeEventListener(strings.OPENED_EVENT, bindingContext.handleOpened);
         dialogEl.remove();
       },
       handleOpened: () => {
@@ -52,8 +52,8 @@ export class MdcDialogService {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const vm = sv.children![0].viewModel as any;
     const dialogVm = CustomElement.for<MdcDialog>(dialogEl.querySelector('mdc-dialog')!).viewModel;
-    dialogVm.root.addEventListener('mdcdialog:closed', bindingContext.handleClosed);
-    dialogVm.root.addEventListener('mdcdialog:opened', bindingContext.handleOpened);
+    dialogVm.root.addEventListener(strings.CLOSED_EVENT, bindingContext.handleClosed);
+    dialogVm.root.addEventListener(strings.OPENED_EVENT, bindingContext.handleOpened);
     if (vm.activate) {
       const activateResult = vm.activate(options.model);
       if (activateResult instanceof Promise) {
