@@ -1,4 +1,4 @@
-import { highlight } from 'highlight.js';
+import hljs from 'highlight.js';
 import { customElement, bindable, inject, } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
 import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
@@ -34,7 +34,7 @@ export class Hljs {
 
   highlight() {
     if (this.source) {
-      this.codeEl.innerHTML = highlight(this.source.innerText, { language: this.language }).value;
+      this.codeEl.innerHTML = hljs.highlight(this.source.innerText, { language: this.language }).value;
     }
   }
 }
