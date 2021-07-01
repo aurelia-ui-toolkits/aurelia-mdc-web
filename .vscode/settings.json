@@ -46,7 +46,7 @@
   },
   "html.format.unformatted": "pre,textarea,hljs",
   "files.exclude": {
-    "dist": true,
-    "node_modules": true
+    "**/dist": true,
+    "**/node_modules": true
   }
 }
