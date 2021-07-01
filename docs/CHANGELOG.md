@@ -1,3 +1,13 @@
+## [6.2.5-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.4-au2...v6.2.5-au2) (2021-07-01)
+
+
+### Bug Fixes
+
+* **expandable:** workaround https://github.com/aurelia/aurelia/issues/1210 ([05a6b21](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/05a6b218bd59b1a141c9c00e2c88f812571cef10))
+* **tree-view:** move class to au-compose ([151f008](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/151f008b7ec7268102fb0633955141e727397932))
+
+
+
 ## [6.2.4-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.3-au2...v6.2.4-au2) (2021-06-30)
 
 
