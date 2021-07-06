@@ -56,9 +56,6 @@ export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
   @bindable
   filter: (n: ITreeNode) => boolean = () => true;
 
-  // this is populated by the HTML template
-  childTreeViewPromises: Promise<MdcTreeView>[] = [];
-
   @bindable
   rootBindingContext: Record<string, unknown>;
 
@@ -121,8 +118,8 @@ export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
       // promises are created by a helper element `mdc-promisify-reference`
       // this lets dependent code to wait till a view model reference is assigned
       await this.initialised;
-      const childTreeView = await this.childTreeViewPromises[path[0]];
-      await childTreeView.expandPath(path.slice(1));
+      const childTreeView = await (this.nodes[path[0]].childTreeViewPromise);
+      await childTreeView?.expandPath(path.slice(1));
     }
   }
 
