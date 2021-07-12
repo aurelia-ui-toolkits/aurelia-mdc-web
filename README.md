@@ -3,13 +3,6 @@
 ## Here be :dragon_face:!
 
 Keep in mind that Aurelia2 itself is still in alpha stage.
-Some things work slightly differently to Aurelia1 MDC bridge.
-
-In particular:
-* buttons must be used as follows `<button as-element="mdc-mdc-button">...</button>` or `<a as-element="mdc-mdc-button">...</a>`
-* text fields must be used as follows `<label as-element="mdc-text-field">...</label>`
-
-The inconvenience with buttons and text fields will hopefully be resolved with post-alpha Aurelia2.
 
 [![npm version](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase.svg)](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase)
 
