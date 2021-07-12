@@ -1,3 +1,25 @@
+## [6.2.6-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.5-au2...v6.2.6-au2) (2021-07-12)
+
+
+### Bug Fixes
+
+* **dialog:** normalise dialog closed event ([2a92590](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2a92590822c6f99c7dee3073ea1733748c95ccba))
+* **text-field:** use correct counter element reference ([96d7350](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/96d7350838ffca82d8d249a591125ae5ff191708))
+* **tree-view:** refactor child tree view promise assignment ([ac53680](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ac53680aa075690015bb7f98cc383a606ec32a8d))
+
+
+### Features
+
+* **app:** use attributed features ([4ed7ac9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4ed7ac9adce6595906566290914a1275428e06b1))
+* **button:** enable attributed usage ([be4b077](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/be4b077fc52f4042c57c3daf764bf1952a3e7a24))
+* **fab:** enable attributed usage ([5f02741](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5f027410972d13616df454aa6790de5f9f5911de))
+* **icon-button:** enable attributed usage ([9f1a1ac](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9f1a1ac10f5b9bc89baa49afbc7ef9441c00a31e))
+* **list:** enable attributed usage ([0365c15](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0365c15b716d77215ff13f0c1ca626f11d1884e3))
+* **text-field:** enable attributed usage ([9e4578c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9e4578c7a598433465f3001bc9af4f4dfd2b122b))
+* **top-app-bar:** automatically add ripple to bar items ([c41dc99](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c41dc991bcdeb43ce7bdcd9d943d6c97b182b789))
+
+
+
 ## [6.2.5-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.4-au2...v6.2.5-au2) (2021-07-01)
 
 
