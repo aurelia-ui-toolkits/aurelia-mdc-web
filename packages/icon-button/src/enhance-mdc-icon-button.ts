@@ -1,11 +1,8 @@
-// import { viewEngineHooks } from 'aurelia-framework';
+import { templateCompilerHooks } from 'aurelia';
 
-// @viewEngineHooks
+@templateCompilerHooks
 export class EnhanceMdcIconButton {
-	beforeCompile(template: DocumentFragment) {
-		const actions = template.querySelectorAll('[mdc-icon-button]');
-		for (const i of Array.from(actions)) {
-			i.setAttribute('as-element', 'mdc-icon-button');
-		}
-	}
+  compiling(template: HTMLElement | HTMLTemplateElement) {
+    template.innerHTML = template.innerHTML.replaceAll('mdc-icon-button=""','as-element="mdc-icon-button"');
+  }
 }
