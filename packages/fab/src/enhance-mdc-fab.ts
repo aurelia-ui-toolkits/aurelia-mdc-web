@@ -1,11 +1,8 @@
-// import { viewEngineHooks } from 'aurelia-framework';
+import { templateCompilerHooks } from 'aurelia';
 
-// @viewEngineHooks
+@templateCompilerHooks
 export class EnhanceMdcFab {
-	// beforeCompile(template: DocumentFragment) {
-	// 	const actions = template.querySelectorAll('[mdc-fab]');
-	// 	for (const i of Array.from(actions)) {
-	// 		i.setAttribute('as-element', 'mdc-fab');
-	// 	}
-	// }
+  compiling(template: HTMLElement | HTMLTemplateElement) {
+    template.innerHTML = template.innerHTML.replaceAll('mdc-fab=""','as-element="mdc-fab"');
+  }
 }
