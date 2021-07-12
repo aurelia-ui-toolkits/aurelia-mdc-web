@@ -7,6 +7,7 @@ import { MdcListItemLeading } from './mdc-list-item/mdc-list-item-leading';
 import { MdcListItemTrailing } from './mdc-list-item/mdc-list-item-trailing';
 import { MdcListItemPrimaryText } from './mdc-list-item-primary-text';
 import { MdcListItemSecondaryText } from './mdc-list-item-secondary-text';
+import { EnhanceMdcListItem } from './mdc-list-item/enhance-mdc-list-item';
 
 export {
   MdcList, MdcListDivider, MdcListGroup, MdcListGroupSubheader, MdcListItem, MdcListItemLeading, MdcListItemTrailing, IMdcListItemElement,
@@ -24,7 +25,8 @@ export const ListConfiguration = {
       MdcListItemLeading,
       MdcListItemTrailing,
       MdcListItemPrimaryText,
-      MdcListItemSecondaryText
+      MdcListItemSecondaryText,
+      EnhanceMdcListItem
     );
   }
 };
