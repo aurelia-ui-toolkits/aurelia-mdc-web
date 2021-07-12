@@ -256,7 +256,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
       const helperTextEl = nextSibling.querySelector(helperTextStrings.ROOT_SELECTOR);
       this.helperText_ = helperTextEl ? CustomElement.for<MdcTextFieldHelperText>(nextSibling).viewModel : undefined;
       const characterCounterEl = nextSibling.querySelector(characterCountStrings.ROOT_SELECTOR);
-      this.characterCounter_ = characterCounterEl ? CustomElement.for<MdcTextFieldCharacterCounter>(nextSibling).viewModel : undefined;
+      this.characterCounter_ = characterCounterEl ? CustomElement.for<MdcTextFieldCharacterCounter>(characterCounterEl).viewModel : undefined;
     }
   }
 
