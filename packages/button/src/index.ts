@@ -1,5 +1,4 @@
 import { IContainer } from '@aurelia/kernel';
-// import { AppTask } from '@aurelia/runtime';
 import { MdcButton } from './mdc-button';
 import { MdcButtonLabel } from './mdc-button-label';
 import { EnhanceMdcButton } from './enhance-mdc-button';
