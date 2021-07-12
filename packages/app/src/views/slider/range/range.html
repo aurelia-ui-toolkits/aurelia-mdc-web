@@ -1,8 +1,8 @@
 <mdc-slider range min.bind="min" max.bind="max" value.bind="value" valuestart.bind="valueStart">
 </mdc-slider>
-<label as-element="mdc-text-field" label="Min" type="number" size="1" min="0" max="200" value.bind="min & updateTrigger: 'blur'">
-</label>
-<label as-element="mdc-text-field" label="Max" type="number" size="1" min="0" max="200" value.bind="max & updateTrigger: 'blur'">
-</label>
+<mdc-text-field label="Min" type="number" size="1" min="0" max="200" value.bind="min & updateTrigger: 'blur'">
+</mdc-text-field>
+<mdc-text-field label="Max" type="number" size="1" min="0" max="200" value.bind="max & updateTrigger: 'blur'">
+</mdc-text-field>
 <p>Value Start: ${valueStart}</p>
 <p>Value End: ${value}</p>

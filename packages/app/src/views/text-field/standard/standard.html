@@ -1,22 +1,22 @@
 <template>
   <require from="./standard.scss"></require>
   <div class="demo-layout__row">
-    <button as-element="mdc-button" click.delegate="outlined = !outlined">
+    <button mdc-button click.delegate="outlined = !outlined">
       Outlined: ${outlined ? 'On' : 'Off'}</button>
-    <button as-element="mdc-button" click.delegate="required = !required">
+    <button mdc-button click.delegate="required = !required">
       Required: ${required ? 'On' : 'Off'}</button>
-    <button as-element="mdc-button" click.delegate="disabled = !disabled">
+    <button mdc-button click.delegate="disabled = !disabled">
       Disabled: ${disabled ? 'On' : 'Off'}</button>
-    <button as-element="mdc-button" click.delegate="readonly = !readonly">
+    <button mdc-button click.delegate="readonly = !readonly">
       Read Only: ${readonly ? 'On' : 'Off'}</button>
-    <button as-element="mdc-button" click.delegate="alternateColors(standard)">
+    <button mdc-button click.delegate="alternateColors(standard)">
       Alternate Colors</button>
   </div>
   <div class="demo-layout__row">
     <div class="au-text-field">
-      <label as-element="mdc-text-field" ref="standard" label="Standard" outlined.bind="outlined" required.bind="required"
+      <mdc-text-field ref="standard" label="Standard" outlined.bind="outlined" required.bind="required"
         disabled.bind="disabled" readonly.bind="readonly">
-      </label>
+      </mdc-text-field>
       <mdc-text-field-helper-line>
         <mdc-text-field-helper-text persistent>Helper text</mdc-text-field-helper-text>
         <mdc-text-field-helper-text validation>Required</mdc-text-field-helper-text>

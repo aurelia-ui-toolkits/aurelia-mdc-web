@@ -1,23 +1,23 @@
 <div class="demo-layout__row">
-  <button as-element="mdc-button" click.delegate="outlined = !outlined">
+  <button mdc-button click.delegate="outlined = !outlined">
     Outlined: ${outlined ? 'On' : 'Off'}
   </button>
-  <button as-element="mdc-button" click.delegate="required = !required">
+  <button mdc-button click.delegate="required = !required">
     Required: ${required ? 'On' : 'Off'}
   </button>
-  <button as-element="mdc-button" click.delegate="disabled = !disabled">
+  <button mdc-button click.delegate="disabled = !disabled">
     Disabled: ${disabled ? 'On' : 'Off'}
   </button>
-  <button as-element="mdc-button" click.delegate="select.value = 'banana'">
+  <button mdc-button click.delegate="select.value = 'banana'">
     Select Banana
   </button>
-  <button as-element="mdc-button" click.delegate="select.selectedIndex = 2">
+  <button mdc-button click.delegate="select.selectedIndex = 2">
     Set Index (2)
   </button>
-  <button as-element="mdc-button" click.delegate="select.selectedIndex = 0">
+  <button mdc-button click.delegate="select.selectedIndex = 0">
     Set Index (0)
   </button>
-  <button as-element="mdc-button" click.delegate="select.focus()">Focus</button>
+  <button mdc-button click.delegate="select.focus()">Focus</button>
 </div>
 <div class="au-select">
   <mdc-select ref="select" label="Fruit" required.bind="required" change.delegate="onSelectionChange($event)"

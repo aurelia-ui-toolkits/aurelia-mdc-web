@@ -7,7 +7,7 @@
     <div if.bind="template.references.length">
       <h2 class="demo-panel-heading">References</h2>
       <div repeat.for="ref of template.references">
-        <a as-element="mdc-button" href.bind="ref.url" target="_blank" rel="noopener">
+        <a mdc-button href.bind="ref.url" target="_blank" rel="noopener">
           <i class="material-icons mdc-button__icon">link</i> ${ref.name}
         </a>
       </div>
@@ -24,7 +24,7 @@
     </div>
 
     <div repeat.for="mdcUrl of template.mdcUrls" class="viewer-mdc-urls">
-      <a as-element="mdc-button" href.bind="mdcUrl.url" target="_blank" rel="noopener">
+      <a mdc-button href.bind="mdcUrl.url" target="_blank" rel="noopener">
         <i class="material-icons mdc-button__icon">link</i> ${mdcUrl.name}
       </a>
     </div>

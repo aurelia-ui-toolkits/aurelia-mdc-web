@@ -2,7 +2,7 @@
 <mdc-top-app-bar fixed class=" demo-top-app-bar mdc-typography">
   <mdc-top-app-bar-row>
     <mdc-top-app-bar-section>
-      <button mdc-top-app-bar-nav-icon click.trigger="drawer.toggle()" mdc-ripple="unbounded.bind: true">
+      <button mdc-top-app-bar-nav-icon click.trigger="drawer.toggle()">
         <mdc-icon>menu</mdc-icon>
       </button>
       <mdc-top-app-bar-title>Aurelia MDC</mdc-top-app-bar-title>
@@ -10,7 +10,7 @@
     <mdc-top-app-bar-section end>
       <span>6.2.5-au2</span>
       <a mdc-top-app-bar-action-item href="https://github.com/aurelia-ui-toolkits/aurelia-mdc-web" alt="GitHub"
-        target="_blank" rel="noopener" mdc-ripple="unbounded.bind: true">
+        target="_blank" rel="noopener">
         <i class="material-icons" aria-hidden="true" role="img">
           <img src.bind="githubSvg" height="24">
         </i>
@@ -24,7 +24,7 @@
     <mdc-drawer-content>
       <mdc-list activated wrap-focus mdclist:action.trigger="navigateTo($event.detail.data)" tabindex="0">
         <template repeat.for="m of routes">
-          <a as-element="mdc-list-item" activated.bind="m.path === currentPath" value.bind="m">
+          <a mdc-list-item activated.bind="m.path === currentPath" value.bind="m">
             <span>${m.title}</span>
           </a>
           <mdc-list-divider if.bind="m.data.divider"></mdc-list-divider>

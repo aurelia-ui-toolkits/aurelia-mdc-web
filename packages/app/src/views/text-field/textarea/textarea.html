@@ -1,21 +1,21 @@
 <require from="./textarea.scss"></require>
 <div class="demo-layout__row">
-  <button as-element="mdc-button" click.delegate="toggleTextareaDisabled()">
+  <button mdc-button click.delegate="toggleTextareaDisabled()">
     Disabled: ${textareaDisabled ? 'On' : 'Off'}
   </button>
-  <button as-element="mdc-button" click.delegate="toggleTextareaRequired()">
+  <button mdc-button click.delegate="toggleTextareaRequired()">
     Required: ${textareaRequired ? 'On' : 'Off'}
   </button>
-  <button as-element="mdc-button" click.delegate="alternateColors(comments)">
+  <button mdc-button click.delegate="alternateColors(comments)">
     Alternate Colors
   </button>
-  <button as-element="mdc-button" click.delegate="textareaEndAligned = !textareaEndAligned">
+  <button mdc-button click.delegate="textareaEndAligned = !textareaEndAligned">
     End Aligned: ${textareaEndAligned ? 'On' : 'Off'}</button>
 </div>
 <div>
-  <label as-element="mdc-text-field" textarea ref="comments" label="Comments" rows="8" cols="40"
+  <mdc-text-field textarea ref="comments" label="Comments" rows="8" cols="40"
     required.bind="required" disabled.bind="disabled" maxlength="100" end-aligned.bind="endAligned"
-    style="width: 100%;"></label>
+    style="width: 100%;"></mdc-text-field>
   <mdc-text-field-helper-line>
     <mdc-text-field-helper-text validation>Comments are required</mdc-text-field-helper-text>
     <mdc-text-field-character-counter></mdc-text-field-character-counter>

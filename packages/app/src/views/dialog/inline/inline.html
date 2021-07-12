@@ -1,13 +1,13 @@
-<button as-element="mdc-button" click.delegate="dialog.open()">Open</button>
+<button mdc-button click.delegate="dialog.open()">Open</button>
 <mdc-dialog view-model.ref="dialog" mdcdialog:closing.trigger="handleClosing($event)">
   <mdc-dialog-title>
     Enter your value
   </mdc-dialog-title>
   <mdc-dialog-content>
-    <label as-element="mdc-text-field" data-mdc-dialog-initial-focus></label>
+    <mdc-text-field data-mdc-dialog-initial-focus></mdc-text-field>
   </mdc-dialog-content>
   <mdc-dialog-actions>
-    <button as-element="mdc-button" data-mdc-dialog-action="cancel">Cancel</button>
-    <button as-element="mdc-button" data-mdc-dialog-action="ok" data-mdc-dialog-button-default>Ok</button>
+    <button mdc-button data-mdc-dialog-action="cancel">Cancel</button>
+    <button mdc-button data-mdc-dialog-action="ok" data-mdc-dialog-button-default>Ok</button>
   </mdc-dialog-actions>
 </mdc-dialog>

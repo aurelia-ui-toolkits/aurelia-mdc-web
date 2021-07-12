@@ -1,5 +1,5 @@
 <import from="./example-viewer.scss"></import>
-<button as-element="mdc-button" raised class="example-opener" if.bind="!open" click.delegate="toggle()">
+<button mdc-button raised class="example-opener" if.bind="!open" click.delegate="toggle()">
   View source
 </button>
 <mdc-tab-bar fixed if.bind="open">
@@ -8,9 +8,9 @@
 </mdc-tab-bar>
 <div class="example-code-container" if.bind="open && selectedTab">
   <div class="example-code-container__buttons">
-    <mdc-icon-button as-element="mdc-icon-button" click.delegate="copyCode()" title="Copy to clipboard"
+    <mdc-icon-button mdc-icon-button click.delegate="copyCode()" title="Copy to clipboard"
       class="material-icons">file_copy</mdc-icon-button>
-    <mdc-icon-button as-element="mdc-icon-button" click.delegate="toggle()" title="Close" class="material-icons">close</mdc-icon-button>
+    <mdc-icon-button mdc-icon-button click.delegate="toggle()" title="Close" class="material-icons">close</mdc-icon-button>
   </div>
   <hljs language.bind="selectedTab.language">${selectedTab.code}</hljs>
 </div>

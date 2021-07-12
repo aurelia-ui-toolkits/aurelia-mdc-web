@@ -1,26 +1,26 @@
 <div class="demo-container">
-  <label as-element="mdc-text-field" label="Currency Value" type="number" prefix="$" suffix=".00">
-  </label>
+  <mdc-text-field label="Currency Value" type="number" prefix="$" suffix=".00">
+  </mdc-text-field>
 </div>
 <div class="demo-container">
-  <label as-element="mdc-text-field" outlined label="Currency Value" type="number" prefix="$" suffix=".00">
-  </label>
+  <mdc-text-field outlined label="Currency Value" type="number" prefix="$" suffix=".00">
+  </mdc-text-field>
 </div>
 <div class="demo-layout__row">
-  <button as-element="mdc-button" click.delegate="endAligned = !endAligned">
+  <button mdc-button click.delegate="endAligned = !endAligned">
     End Aligned: ${endAligned ? 'On' : 'Off'}</button>
 </div>
 <div class="demo-container">
-  <label as-element="mdc-text-field" outlined type="number" prefix="$" suffix=".00" end-aligned.bind="endAligned">
-  </label>
+  <mdc-text-field outlined type="number" prefix="$" suffix=".00" end-aligned.bind="endAligned">
+  </mdc-text-field>
 </div>
 <div class="demo-layout__row">
-  <button as-element="mdc-button" click.delegate="ltrText = !ltrText">
+  <button mdc-button click.delegate="ltrText = !ltrText">
     LTR Text: ${ltrText ? 'On' : 'Off'}</button>
 </div>
 <div class="demo-container">
   <div dir="rtl">
-    <label as-element="mdc-text-field" outlined label="Label" type="number" suffix="/100" ltr-text.bind="ltrText">
-    </label>
+    <mdc-text-field outlined label="Label" type="number" suffix="/100" ltr-text.bind="ltrText">
+    </mdc-text-field>
   </div>
 </div>

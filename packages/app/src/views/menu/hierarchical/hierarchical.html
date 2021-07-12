@@ -1,5 +1,5 @@
 <div mdc-menu-surface-anchor ref="hierarchicalAnchor">
-  <button as-element="mdc-button" raised click.trigger="hierarchical.open = !hierarchical.open">Show Menu</button>
+  <button mdc-button raised click.trigger="hierarchical.open = !hierarchical.open">Show Menu</button>
   <mdc-menu view-model.ref="hierarchical" anchor.bind="hierarchicalAnchor" stay-open-on-selection>
     <mdc-list wrap-focus.bind="wrapFocus" tabindex="-1">
       <mdc-list-item mdclistitem:action.trigger="hierarchical.open = false">Item 1</mdc-list-item>

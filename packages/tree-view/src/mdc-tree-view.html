@@ -9,7 +9,7 @@
         click.trigger="nodeClicked($node)" mdc-ripple="no-class.bind: true;">
         <div class="mdc-tree-view__node__ripple"></div>
         <let filtered-children.bind="$node.children | nodeFilter:filter"></let>
-        <button as-element="mdc-icon-button" if.bind="filteredChildren.length" type="fab" size="small"
+        <button mdc-icon-button if.bind="filteredChildren.length" type="fab" size="small"
           class="mdc-tree-view__expander" on.bind="$node.expanded">
           <mdc-icon-button-icon class="material-icons">chevron_right</mdc-icon-button-icon>
           <mdc-icon-button-icon class="material-icons" on>expand_more</mdc-icon-button-icon>

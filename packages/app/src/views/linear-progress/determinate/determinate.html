@@ -1,8 +1,8 @@
 <require from="./determinate.scss"></require>
 <div class="demo-layout__row">
-  <button as-element="mdc-button" click.delegate="open = true">Open</button>
-  <button as-element="mdc-button" click.delegate="open = false">Close</button>
-  <button as-element="mdc-button" click.delegate="alternateColors(dp)">Alternate Colors</button>
+  <button mdc-button click.delegate="open = true">Open</button>
+  <button mdc-button click.delegate="open = false">Close</button>
+  <button mdc-button click.delegate="alternateColors(dp)">Alternate Colors</button>
 </div>
 <mdc-linear-progress open.bind="open" ref="dp" progress="0.5" buffer="0.75">
 </mdc-linear-progress>

@@ -1,21 +1,21 @@
 <template>
   <require from="./custom.scss"></require>
   <div class="demo-layout__row">
-    <button as-element="mdc-button" click.delegate="wrapFocus = !wrapFocus">
+    <button mdc-button click.delegate="wrapFocus = !wrapFocus">
       Wrap Focus: ${wrapFocus ? 'On' : 'Off'}
     </button>
-    <button as-element="mdc-button" click.delegate="disableRipple = !disableRipple">
+    <button mdc-button click.delegate="disableRipple = !disableRipple">
       Disable Ripple: ${disableRipple ? 'On' : 'Off'}
     </button>
-    <button as-element="mdc-button" click.delegate="dense = !dense">
+    <button mdc-button click.delegate="dense = !dense">
       Dense: ${dense ? 'On' : 'Off'}
     </button>
   </div>
   <div class="demo-layout__row">
-    <button as-element="mdc-button" click.delegate="singleSelection = !singleSelection">
+    <button mdc-button click.delegate="singleSelection = !singleSelection">
       Single Selection: ${singleSelection ? 'On' : 'Off'}
     </button>
-    <button as-element="mdc-button" click.delegate="activated = !activated">
+    <button mdc-button click.delegate="activated = !activated">
       Activated: ${activated ? 'On' : 'Off'}
     </button>
   </div>

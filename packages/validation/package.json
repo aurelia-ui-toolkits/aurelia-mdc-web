@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "6.2.5-au2",
-    "@aurelia/validation": "^2.1.0-dev.202106282211",
-    "@aurelia/validation-html": "^2.1.0-dev.202106282211"
+    "@aurelia/validation": "^2.0.0-alpha.12",
+    "@aurelia/validation-html": "^2.0.0-alpha.12"
   }
 }

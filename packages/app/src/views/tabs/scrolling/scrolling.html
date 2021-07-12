@@ -1,9 +1,9 @@
 <div class="demo-layout__row">
-  <button as-element="mdc-button" click.delegate="tabBar.scrollIntoView(0)">Scroll Start</button>
-  <button as-element="mdc-button" click.delegate="tabBar.scrollIntoView(6)">Scroll End</button>
-  <button as-element="mdc-button" click.delegate="tabBar.activateTab(5)">Activate Hotel</button>
-  <button as-element="mdc-button" click.delegate="stacked = !stacked">Stacked: ${stacked ? 'On' : 'Off'}</button>
-  <button as-element="mdc-button" click.delegate="fade = !fade">Fade: ${fade ? 'On' : 'Off'}</button>
+  <button mdc-button click.delegate="tabBar.scrollIntoView(0)">Scroll Start</button>
+  <button mdc-button click.delegate="tabBar.scrollIntoView(6)">Scroll End</button>
+  <button mdc-button click.delegate="tabBar.activateTab(5)">Activate Hotel</button>
+  <button mdc-button click.delegate="stacked = !stacked">Stacked: ${stacked ? 'On' : 'Off'}</button>
+  <button mdc-button click.delegate="fade = !fade">Fade: ${fade ? 'On' : 'Off'}</button>
 </div>
 <mdc-tab-bar view-model.ref="tabBar" focus-on-activate.bind="false" style="width: 600px; display: block">
   <mdc-tab repeat.for="tab of scrollingTabs" label.bind="tab.label" icon.bind="tab.icon" stacked.bind="stacked"

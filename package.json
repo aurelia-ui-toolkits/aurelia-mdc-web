@@ -56,10 +56,10 @@
     "update-versions": "npm run update-versions:root && lage run update-versions"
   },
   "devDependencies": {
-    "@aurelia/plugin-gulp": "^2.1.0-dev.202106282211",
-    "@aurelia/validation": "^2.1.0-dev.202106282211",
-    "@aurelia/validation-html": "^2.1.0-dev.202106282211",
-    "@aurelia/webpack-loader": "^2.1.0-dev.202106282211",
+    "@aurelia/plugin-gulp": "^2.0.0-alpha.12",
+    "@aurelia/validation": "^2.0.0-alpha.12",
+    "@aurelia/validation-html": "^2.0.0-alpha.12",
+    "@aurelia/webpack-loader": "^2.0.0-alpha.12",
     "@material/button": "^11.0.0",
     "@material/card": "^11.0.0",
     "@material/checkbox": "^11.0.0",
@@ -99,7 +99,7 @@
     "@material/typography": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
-    "aurelia": "^2.1.0-dev.202106282211",
+    "aurelia": "^2.0.0-alpha.12",
     "autoprefixer": "^10.2.6",
     "concurrently": "^6.2.0",
     "conventional-changelog-cli": "^2.1.1",
