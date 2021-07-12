@@ -1,11 +1,9 @@
-// import { viewEngineHooks } from 'aurelia-framework';
+import { templateCompilerHooks } from 'aurelia';
 
-// @viewEngineHooks
+@templateCompilerHooks
 export class EnhanceTopAppBarActions {
-	beforeCompile(template: DocumentFragment) {
-		const actions = template.querySelectorAll('[mdc-top-app-bar-action-item],[mdc-top-app-bar-nav-icon]');
-		for (const i of Array.from(actions)) {
-			i.setAttribute('mdc-ripple', 'unbounded.bind: true');
-		}
-	}
+  compiling(template: HTMLElement | HTMLTemplateElement) {
+    template.innerHTML = template.innerHTML.replaceAll('mdc-top-app-bar-action-item=""','mdc-top-app-bar-action-item="" mdc-ripple="unbounded.bind: true"');
+    template.innerHTML = template.innerHTML.replaceAll('mdc-top-app-bar-nav-icon=""','mdc-top-app-bar-nav-icon="" mdc-ripple="unbounded.bind: true"');
+  }
 }

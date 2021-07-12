@@ -6,6 +6,7 @@ import { MdcTopAppBarSection } from './mdc-top-app-bar-section/mdc-top-app-bar-s
 import { MdcTopAppBarFixedAdjust } from './mdc-top-app-bar-fixed-adjust';
 import { MdcTopAppBarNavIcon } from './mdc-top-app-bar-nav-icon';
 import { MdcTopAppBarActionItem } from './mdc-top-app-bar-action-item';
+import { EnhanceTopAppBarActions } from './enhance-top-app-bar-actions';
 
 export { MdcTopAppBar, MdcTopAppBarRow, MdcTopAppBarTitle, MdcTopAppBarSection, MdcTopAppBarFixedAdjust, MdcTopAppBarNavIcon, MdcTopAppBarActionItem };
 
@@ -18,7 +19,8 @@ export const TopAppBarConfiguration = {
       MdcTopAppBarSection,
       MdcTopAppBarFixedAdjust,
       MdcTopAppBarNavIcon,
-      MdcTopAppBarActionItem
+      MdcTopAppBarActionItem,
+      EnhanceTopAppBarActions
     );
   }
 };
