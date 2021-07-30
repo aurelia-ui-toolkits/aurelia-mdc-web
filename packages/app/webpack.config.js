@@ -19,13 +19,14 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
   }];
 
   return {
+    target: 'web',
     mode: production === 'production' ? 'production' : 'development',
-    devtool: production ? false : 'source-map',
+    devtool: production ? 'source-map' : 'eval-source-map',
     output: {
       path: outDir,
-      filename: production ? '[name].[chunkhash].bundle.js' : '[name].[hash].bundle.js',
-      sourceMapFilename: production ? '[name].[chunkhash].bundle.map' : '[name].[hash].bundle.map',
-      chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js'
+      filename: production ? '[name].[chunkhash].bundle.js' : '[name].[fullhash].bundle.js',
+      sourceMapFilename: production ? '[name].[chunkhash].bundle.map' : '[name].[fullhash].bundle.map',
+      chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[fullhash].chunk.js'
     },
     stats: stats,
     resolve: {
@@ -87,18 +88,18 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
     },
     module: {
       rules: [
-        { test: /\.(woff|woff2)(\?|$)/, loader: 'url-loader?limit=1' },
+        { test: /\.(woff|woff2)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1, esModule: false } } },
         { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000, esModule: false } } },
         { test: /\.ts$/, loader: 'ts-loader' },
         { test: /\.html$/, loader: 'html-loader' },
         { test: /\.scss$/i, issuer: /(\.html|empty-entry\.js)$/i, use: scssLoaders },
         { test: /\.scss$/i, issuer: /\.ts$/i, use: ['style-loader', ...scssLoaders] },
-        { test: /\.css$/i, issuer: [{ not: [{ test: /\.html$/i }] }], use: ['style-loader', 'css-loader'] },
+        { test: /\.css$/i, issuer: [{ not: /\.html$/i }], use: ['style-loader', ...cssLoaders] },
         {
-          test: /\.css$/i, issuer: [{ test: /\.html$/i }],
+          test: /\.css$/i, issuer: /\.html$/i,
           // CSS required in templates cannot be extracted safely
           // because Aurelia would try to require it again in runtime
-          use: ['css-loader']
+          use: cssLoaders
         },
       ]
     },
