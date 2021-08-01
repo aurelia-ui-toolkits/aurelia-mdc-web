@@ -37,6 +37,12 @@ export class MdcTooltipAttribute {
   @bindable
   boundaryType: keyof typeof AnchorBoundaryType;
 
+  @bindable.number
+  showDelay: number;
+
+  @bindable.number
+  hideDelay: number;
+
   tooltip: HTMLElement;
   view: View;
 
@@ -49,6 +55,8 @@ export class MdcTooltipAttribute {
     this.tooltip.setAttribute('boundary-type.bind', 'boundaryType');
     this.tooltip.setAttribute('rich.bind', 'rich');
     this.tooltip.setAttribute('persistent.bind', 'persistent');
+    this.tooltip.setAttribute('show-delay.bind', 'showDelay');
+    this.tooltip.setAttribute('hide-delay.bind', 'hideDelay');
     this.tooltip.innerText = this.value;
     document.body.appendChild(this.tooltip);
     this.view = this.templatingEngine.enhance({

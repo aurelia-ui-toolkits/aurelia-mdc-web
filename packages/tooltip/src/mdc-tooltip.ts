@@ -63,6 +63,20 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
     }
   }
 
+  @bindable.number
+  showDelay: number;
+  async showDelayChanged() {
+    await this.initialised;
+    this.foundation?.setShowDelay(this.showDelay);
+  }
+
+  @bindable.number
+  hideDelay: number;
+  async hideDelayChanged() {
+    await this.initialised;
+    this.foundation?.setHideDelay(this.hideDelay);
+  }
+
   // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     if (this.persistent) {
