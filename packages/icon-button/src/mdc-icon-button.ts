@@ -35,6 +35,12 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
     }
   }
 
+  /**
+   * Set the component touch target to 48 x 48 px
+   */
+  @bindable.booleanAttr
+  touch: boolean;
+
   async attached() {
     await this.initialise();
     if (this.icons?.length) {
