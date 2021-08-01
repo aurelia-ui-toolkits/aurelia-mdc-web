@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/snackbar",
-  "version": "6.2.2",
+  "version": "6.2.3",
   "publishConfig": {
     "access": "public"
   },
@@ -47,9 +47,9 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "6.2.2",
-    "@aurelia-mdc-web/button": "6.2.2",
-    "@aurelia-mdc-web/icon-button": "6.2.2",
+    "@aurelia-mdc-web/base": "6.2.3",
+    "@aurelia-mdc-web/button": "6.2.3",
+    "@aurelia-mdc-web/icon-button": "6.2.3",
     "@material/snackbar": "^11.0.0"
   }
 }

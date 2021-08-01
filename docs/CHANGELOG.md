@@ -1,3 +1,19 @@
+## [6.2.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.2...v6.2.3) (2021-08-01)
+
+
+### Bug Fixes
+
+* **icon-button:** put material-icons on the right element ([564a64b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/564a64b3e2db71da3c063870a80139f54aa40a08))
+* **list:** expose href on item view model ([a0f698d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a0f698d6af720e58d9789ffd012c57f7391ac40a))
+* **mdc-data-table:** ignore non-checkbox changes ([e8a3ed1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e8a3ed1f7f440d4321296b315d3a098435acbc1d)), closes [#51](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/51)
+* **menu:** trigger width recalculation on open, not just toggle ([f448e56](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f448e561e4cdcaa774b125dec49552525b65e100))
+* **select:** set width via min/max ([a212080](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a212080b42c4f8d23d84ff0e6effbe336929bf80))
+* **top-app-bar:** parameters order ([34bf1cc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/34bf1cc2b17a5aca9abd0d4ac7d9d63297d0a9e1))
+* **tree-view:** refactor child tree view promise assignment ([ca59516](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ca5951647b652eda39049848e01f3078e2da3128))
+* **tree-view:** use already filtered children array ([f532c0e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f532c0ec17278f8602529735be92bd0b7d589f9e))
+
+
+
 ## [6.2.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.1...v6.2.2) (2021-06-19)
 
 
