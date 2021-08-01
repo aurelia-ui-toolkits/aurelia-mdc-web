@@ -170,9 +170,9 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       setStyleProperty: (propertyName, value) => {
         this.root.style.setProperty(propertyName, value);
       },
-      setSurfaceStyleProperty: (propertyName, value) => {
-        const surface =
-          this.root.querySelector<HTMLElement>(`.${CssClasses.SURFACE}`);
+      setSurfaceAnimationStyleProperty: (propertyName, value) => {
+        const surface = this.root.querySelector<HTMLElement>(
+          `.${CssClasses.SURFACE_ANIMATION}`);
         surface?.style.setProperty(propertyName, value);
       },
       getViewportWidth: () => window.innerWidth,
@@ -236,14 +236,13 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       notifyHidden: () => {
         this.emit(events.HIDDEN, {});
       },
-      getTooltipCaretSize: () => {
+      getTooltipCaretBoundingRect: () => {
         const caret = this.root.querySelector<HTMLElement>(
           `.${CssClasses.TOOLTIP_CARET_TOP}`);
         if (!caret) {
           return null;
         }
-
-        return { width: caret.offsetWidth, height: caret.offsetHeight };
+        return caret.getBoundingClientRect();
       },
       setTooltipCaretStyle: (propertyName, value) => {
         const topCaret = this.root.querySelector<HTMLElement>(
