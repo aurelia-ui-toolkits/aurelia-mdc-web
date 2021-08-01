@@ -93,7 +93,6 @@
     "@material/tooltip": "^11.0.0",
     "@material/top-app-bar": "^11.0.0",
     "@material/typography": "^11.0.0",
-    "@types/highlightjs": "^10.1.0",
     "@types/resize-observer-browser": "^0.1.5",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
