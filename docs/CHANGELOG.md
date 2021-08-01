@@ -1,3 +1,13 @@
+## [6.2.7-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.6-au2...v6.2.7-au2) (2021-08-01)
+
+
+### Bug Fixes
+
+* **icon-button:** put material-icons on the right element ([4c01a44](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4c01a444984f7754447e3063287b7de7764ffecd))
+* **mdc-data-table:** ignore non-checkbox changes ([acc7864](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/acc78641d25bf6ab389adf7d6aa63bdb91857f75)), closes [#51](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/51)
+
+
+
 ## [6.2.6-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.5-au2...v6.2.6-au2) (2021-07-12)
 
 
