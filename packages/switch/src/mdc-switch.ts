@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCSwitchFoundation, MDCSwitchAdapter } from '@material/switch';
+import { MDCSwitchFoundation, MDCSwitchAdapter } from '@material/switch/deprecated';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 
@@ -60,7 +60,7 @@ export class MdcSwitch extends MdcComponent<MDCSwitchFoundation> {
       this.checked = this._checked;
     }
   }
-  
+
   destroy() {
     this._checked = undefined;
   }
