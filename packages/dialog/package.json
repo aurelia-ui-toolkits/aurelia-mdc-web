@@ -50,6 +50,6 @@
     "@aurelia-mdc-web/base": "6.2.3",
     "@aurelia-mdc-web/button": "6.2.3",
     "@aurelia-mdc-web/ripple": "6.2.3",
-    "@material/dialog": "^11.0.0"
+    "@material/dialog": "^12.0.0"
   }
 }

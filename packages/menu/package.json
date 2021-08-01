@@ -50,6 +50,6 @@
     "@aurelia-mdc-web/base": "6.2.3",
     "@aurelia-mdc-web/list": "6.2.3",
     "@aurelia-mdc-web/menu-surface": "6.2.3",
-    "@material/menu": "^11.0.0"
+    "@material/menu": "^12.0.0"
   }
 }

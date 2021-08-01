@@ -50,6 +50,6 @@
     "@aurelia-mdc-web/base": "6.2.3",
     "@aurelia-mdc-web/button": "6.2.3",
     "@aurelia-mdc-web/icon-button": "6.2.3",
-    "@material/snackbar": "^11.0.0"
+    "@material/snackbar": "^12.0.0"
   }
 }
