@@ -139,7 +139,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   }
 
   handleRowCheckboxChange(event: Event) {
-    this.foundation?.handleRowCheckboxChange(event);
+    if ((event.target as HTMLInputElement).type === 'checkbox') {
+      this.foundation?.handleRowCheckboxChange(event);
+    }
   }
 
   headerRowClickListener(event: Event) {
