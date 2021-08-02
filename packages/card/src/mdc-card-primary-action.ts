@@ -1,4 +1,4 @@
-import { customElement, useView } from 'aurelia-framework';
+import { customElement, PLATFORM, useView } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 /**
@@ -6,7 +6,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
  * Only applicable to cards that have a primary action that the main surface should trigger.
  * @selector mdc-card-primary-action
  */
-@useView('./mdc-card-primary-action.html')
+@useView(PLATFORM.moduleName('./mdc-card-primary-action.html'))
 @customElement('mdc-card-primary-action')
 export class MdcCardPrimaryAction {
 
