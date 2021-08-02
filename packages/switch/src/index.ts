@@ -1,4 +1,4 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, ObserverLocator, ValueAttributeObserver } from 'aurelia-framework';
+import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, ValueAttributeObserver } from 'aurelia-framework';
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 
 export { MdcSwitch, IMdcSwitchElement } from './mdc-switch';
