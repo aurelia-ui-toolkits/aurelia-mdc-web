@@ -7,7 +7,7 @@ export class Examples {
   determinateHtml = determinateHtml;
   sizeStrokeHtml = sizeStrokeHtml;
 
-  progress = 0.75;
+  progress = 75;
 
   size = 50;
   stroke = 5;

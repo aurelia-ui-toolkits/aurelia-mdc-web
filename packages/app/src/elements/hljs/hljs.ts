@@ -34,6 +34,6 @@ export class Hljs {
   }
 
   highlight() {
-    this.codeEl.innerHTML = hljs.highlight(this.language, this.source.innerText).value;
+    this.codeEl.innerHTML = hljs.highlight(this.source.innerText, { language: this.language }).value;
   }
 }
