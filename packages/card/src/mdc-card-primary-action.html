@@ -1,4 +1,5 @@
-<template class="mdc-card__primary-action" tabindex=0>
-  <div class="mdc-card__ripple" mdc-ripple="disabled.bind: disableRipple"></div>
+<template class="mdc-card__primary-action" tabindex=0
+  mdc-ripple="disabled.bind: disableRipple; surface.bind: rippleElement">
+  <div class="mdc-card__ripple" ref="rippleElement"></div>
   <slot></slot>
 </template>
