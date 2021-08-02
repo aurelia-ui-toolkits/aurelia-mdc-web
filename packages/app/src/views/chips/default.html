@@ -1,20 +1,13 @@
 <template>
   <mdc-chip-set>
     <!-- Compact notation -->
+    <mdc-chip>Chip One</mdc-chip>
+    <!-- Notation with explicit primary action -->
     <mdc-chip>
-      Chip One
+      <button mdc-chip-action icon="person">Chip Two</button>
     </mdc-chip>
-    <!-- Notation with primary action -->
-    <mdc-chip>
-      <mdc-chip-primary-action>
-        Chip Two
-      </mdc-chip-primary-action>
-    </mdc-chip>
-    <!-- Full notation with primary action and chip text -->
-    <mdc-chip>
-      <mdc-chip-primary-action>
-        <mdc-chip-text>Chip Three</mdc-chip-text>
-      </mdc-chip-primary-action>
+    <mdc-chip disabled>
+      <button mdc-chip-action disabled>Disabled</button>
     </mdc-chip>
   </mdc-chip-set>
 </template>

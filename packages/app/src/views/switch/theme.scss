@@ -1,4 +1,4 @@
-@use '@material/switch';
+@use '@material/switch/deprecated'as switch;
 @use '@material/theme/color-palette';
 
 $custom-switch-color: color-palette.$red-500;

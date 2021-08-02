@@ -1,20 +1,18 @@
 <template>
   <mdc-chip-set input>
     <!-- Compact notation -->
-    <mdc-chip trailing-icon="cancel">
-      Arjen
-    </mdc-chip>
-    <!-- Compact notation with chip icon -->
     <mdc-chip>
-      Maxim
-      <mdc-chip-icon trailing>cancel</mdc-chip-icon>
+      Navigable trailing
+      <button mdc-chip-action trailing icon="close"></button>
+    </mdc-chip>
+    <mdc-chip>
+      <button mdc-chip-action data-mdc-deletable="true">Non-navigable trailing</button>
+      <button mdc-chip-action trailing non-navigable tabindex="-1" aria-hidden="true" icon="close"></button>
     </mdc-chip>
     <!-- Full notation -->
-    <mdc-chip>
-      <mdc-chip-primary-action>
-        <mdc-chip-text>John</mdc-chip-text>
-      </mdc-chip-primary-action>
-      <mdc-chip-icon trailing>cancel</mdc-chip-icon>
+    <mdc-chip disabled>
+      <button mdc-chip-action disabled>Disabled</button>
+      <button mdc-chip-action disabled trailing icon="close"></button>
     </mdc-chip>
   </mdc-chip-set>
 </template>

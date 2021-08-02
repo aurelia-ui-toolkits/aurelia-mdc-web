@@ -35,14 +35,14 @@
 @use "@material/data-table/mdc-data-table";
 @use "@aurelia-mdc-web/tree-view";
 @use "@material/linear-progress/mdc-linear-progress";
-@use "@material/chips/deprecated/mdc-chips";
-@use "@aurelia-mdc-web/chips";
+@use "@material/chips/styles"as chips-styles;
+// @use "@aurelia-mdc-web/chips";
 @use "@material/layout-grid/mdc-layout-grid";
 @use "@aurelia-mdc-web/layout-grid";
 @use "@material/snackbar/mdc-snackbar";
 @use "@material/image-list/mdc-image-list";
 @use "@aurelia-mdc-web/image-list";
-@use "@material/tooltip/styles";
+@use "@material/tooltip/styles"as toolip-styles;
 
 @include slider.core-styles;
 @include switch.core-styles;

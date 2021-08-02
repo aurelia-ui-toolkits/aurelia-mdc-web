@@ -1,20 +1,7 @@
 <template>
   <mdc-chip-set filter>
-    <!-- Compact notation -->
-    <mdc-chip checkmark>
-      One
-    </mdc-chip>
-    <!-- Compact notation with check-mark -->
-    <mdc-chip>
-      <mdc-chip-checkmark></mdc-chip-checkmark>
-      Two
-    </mdc-chip>
-    <!-- Full notation -->
-    <mdc-chip>
-      <mdc-chip-checkmark></mdc-chip-checkmark>
-      <mdc-chip-primary-action>
-        <mdc-chip-text>Three</mdc-chip-text>
-      </mdc-chip-primary-action>
-    </mdc-chip>
+    <mdc-chip filter>One</mdc-chip>
+    <mdc-chip filter icon="person">Two</mdc-chip>
+    <mdc-chip filter disabled>Disabled</mdc-chip>
   </mdc-chip-set>
 </template>

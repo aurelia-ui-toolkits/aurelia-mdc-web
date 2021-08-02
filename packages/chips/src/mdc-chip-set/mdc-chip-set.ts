@@ -1,11 +1,14 @@
 import { useView, inject, PLATFORM, customElement, children, View } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
-import {
-  MDCChipSetFoundation, MDCChipSetAdapter, MDCChip,
-  MDCChipInteractionEventDetail, MDCChipSelectionEventDetail, MDCChipRemovalEventDetail, MDCChipNavigationEventDetail
-} from '@material/chips/deprecated';
+import { MDCChipSetFoundation, MDCChipSetAdapter, Events } from '@material/chips';
 import { announce } from '@material/dom/announce';
 import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcChip } from '../mdc-chip/mdc-chip';
+import { ChipAnimationEvent, ChipInteractionEvent, ChipNavigationEvent } from '@material/chips/chip-set/types';
+
+(Events as Record<string, string>).INTERACTION = Events.INTERACTION.toLowerCase();
+(Events as Record<string, string>).REMOVAL = Events.REMOVAL.toLowerCase();
+(Events as Record<string, string>).SELECTION = Events.SELECTION.toLowerCase();
 
 let chipSetId = 0;
 
@@ -17,41 +20,25 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
   id: string = `mdc-chip-set-${++chipSetId}`;
 
   /**
-   * Indicates that the chips in the set are choice chips, which allow a single selection from a set of options.
+   * Causes the chips to overflow instead of wrap (their default behavior).
    */
   @bindable.booleanAttr
-  choice: boolean;
-
-  /**
-   * Indicates that the chips in the set are filter chips, which allow multiple selection from a set of options.
-   */
-  @bindable.booleanAttr
-  filter: boolean;
-
-  /**
-   * Indicates that the chips in the set are input chips, which enable user input by converting text into chips.
-   */
-  @bindable.booleanAttr
-  input: boolean;
+  overflow: boolean;
 
   // a list of MDC chips
   @children('mdc-chip')
-  chips: MDCChip[];
+  chips: MdcChip[];
 
-  handleChipInteraction_(eventDetail: MDCChipInteractionEventDetail) {
-    this.foundation?.handleChipInteraction(eventDetail);
+  handleChipInteraction(event: ChipInteractionEvent) {
+    this.foundation?.handleChipInteraction(event);
   }
 
-  handleChipSelection_(eventDetail: MDCChipSelectionEventDetail) {
-    this.foundation?.handleChipSelection(eventDetail);
+  handleChipAnimation(event: ChipAnimationEvent) {
+    this.foundation?.handleChipAnimation(event);
   }
 
-  handleChipRemoval_(eventDetail: MDCChipRemovalEventDetail) {
-    this.foundation?.handleChipRemoval(eventDetail);
-  }
-
-  handleChipNavigation_(eventDetail: MDCChipNavigationEventDetail) {
-    this.foundation?.handleChipNavigation(eventDetail);
+  handleChipNavigation(event: ChipNavigationEvent) {
+    this.foundation?.handleChipNavigation(event);
   }
 
   getDefaultFoundation() {
@@ -59,30 +46,62 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
     // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
     // methods, we need a separate, strongly typed adapter variable.
     const adapter: MDCChipSetAdapter = {
-      hasClass: (className: string) => this.root.classList.contains(className),
-      removeChipAtIndex: (index: number) => {
-        if (index >= 0 && index < this.chips.length) {
-          this.chips[index].destroy();
-          this.chips.splice(index, 1);
-        }
+      announceMessage: (message) => {
+        announce(message);
       },
-      selectChipAtIndex: (index: number, isSelected: boolean, shouldNotifyClients: boolean) => {
-        if (index >= 0 && index < this.chips.length) {
-          this.chips[index].setSelectedFromChipSet(isSelected, shouldNotifyClients);
-        }
+      emitEvent: (eventName, eventDetail) => {
+        this.emit(eventName, eventDetail, true /* shouldBubble */);
       },
-      getIndexOfChipById: (chipId: string): number => {
-        return this.chips.findIndex(_ => _.id === chipId);
+      getAttribute: (attrName) => this.root.getAttribute(attrName),
+      getChipActionsAtIndex: (index) => {
+        if (!this.isIndexValid(index)) return [];
+        return this.chips[index].getActions();
       },
-      focusChipPrimaryActionAtIndex: (index: number) => this.chips[index]?.focusPrimaryAction(),
-      focusChipTrailingActionAtIndex: (index: number) => this.chips[index]?.focusTrailingAction(),
-      removeFocusFromChipAtIndex: (index: number) => this.chips[index]?.removeFocus(),
-      isRTL: () => typeof window !== 'undefined' ? window.getComputedStyle(this.root).getPropertyValue('direction') === 'rtl' : false,
-      getChipListCount: (): number => this.chips.length,
-      announceMessage: (message: string) => announce(message)
+      getChipCount: () => this.chips.length,
+      getChipIdAtIndex: (index) => {
+        if (!this.isIndexValid(index)) return '';
+        return this.chips[index].getElementID();
+      },
+      getChipIndexById: (id) =>
+        this.chips.findIndex((chip) => chip.getElementID() === id),
+      isChipFocusableAtIndex: (index, action) => {
+        if (!this.isIndexValid(index)) return false;
+        return this.chips[index].isActionFocusable(action);
+      },
+      isChipSelectableAtIndex: (index, action) => {
+        if (!this.isIndexValid(index)) return false;
+        return this.chips[index].isActionSelectable(action);
+      },
+      isChipSelectedAtIndex: (index, action) => {
+        if (!this.isIndexValid(index)) return false;
+        return this.chips[index].isActionSelected(action);
+      },
+      removeChipAtIndex: (index) => {
+        if (!this.isIndexValid(index)) return;
+        this.chips[index].destroy();
+        this.chips[index].remove();
+        this.chips.splice(index, 1);
+      },
+      setChipFocusAtIndex: (index, action, focus) => {
+        if (!this.isIndexValid(index)) return;
+        this.chips[index].setActionFocus(action, focus);
+      },
+      setChipSelectedAtIndex: (index, action, selected) => {
+        if (!this.isIndexValid(index)) return;
+        this.chips[index].setActionSelected(action, selected);
+      },
+      startChipAnimationAtIndex: (index, animation) => {
+        if (!this.isIndexValid(index)) return;
+        this.chips[index].startAnimation(animation);
+      },
     };
-    const foundation = new MDCChipSetFoundation(adapter);
-    return foundation;
+
+    // Default to the primary foundation
+    return new MDCChipSetFoundation(adapter);
+  }
+
+  private isIndexValid(index: number): boolean {
+    return index > -1 && index < this.chips.length;
   }
 }
 
