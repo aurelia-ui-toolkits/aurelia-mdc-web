@@ -11,7 +11,7 @@ export class Examples {
   themeHtml = themeHtml;
   themeScss = themeScss;
 
-  checked: boolean = true;
+  selected: boolean = true;
 
   changeEvent: CustomEvent;
 

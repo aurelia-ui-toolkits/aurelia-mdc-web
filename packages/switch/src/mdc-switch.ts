@@ -1,98 +1,63 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCSwitchFoundation, MDCSwitchAdapter } from '@material/switch/deprecated';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { MDCSwitchState, MDCSwitchRenderAdapter, MDCSwitchRenderFoundation } from '@material/switch';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
+import { MDCRippleCapableSurface } from '@material/ripple';
 
 let switchId = 0;
 
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-switch.html'))
 @customElement('mdc-switch')
-export class MdcSwitch extends MdcComponent<MDCSwitchFoundation> {
-  constructor(root: IMdcSwitchElement) {
+export class MdcSwitch extends MdcComponent<MDCSwitchRenderFoundation> implements MDCSwitchState, MDCRippleCapableSurface {
+  constructor(public root: IMdcSwitchElement) {
     super(root);
     defineMdcSwitchElementApis(this.root);
+    this.root.id = `mdc-switch-${++switchId}`;
   }
 
-  nativeControl_: HTMLInputElement;
-
-  id = `mdc-switch-${++switchId}-input`;
-
-  @bindable.booleanAttr
   disabled: boolean;
-  async disabledChanged() {
-    await this.initialised;
-    this.nativeControl_.disabled = this.disabled;
-  }
+  selected: boolean;
+  processing: boolean;
 
-  @bindable.booleanAttr
-  touch: boolean;
-
-  _checked?: boolean;
-  get checked(): boolean {
-    if (this.nativeControl_) {
-      return this.nativeControl_.checked;
-    } else {
-      return this._checked ?? false;
+  override initialSyncWithDOM() {
+    if (this.selected) {
+      this.root.classList.add('mdc-switch--selected');
+      this.root.setAttribute('aria-checked', 'true');
     }
-  }
-
-  set checked(checked: boolean) {
-    this._checked = checked;
-    if (this.foundation) {
-      this.foundation?.setChecked(checked);
-    }
-  }
-
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async initialise() {
-    if (this.root.hasAttribute('checked')) {
-      const attributeValue = this.root.getAttribute('checked');
-
-      if (attributeValue || attributeValue === '') {
-        (this.root as IMdcSwitchElement).checked = true;
-      }
-    }
-  }
-
-  initialSyncWithDOM() {
-    if (this._checked !== undefined) {
-      this.checked = this._checked;
-    }
-  }
-
-  destroy() {
-    this._checked = undefined;
-  }
-
-  handleChange_(evt: Event) {
-    this.foundation?.handleChange(evt);
+    this.foundation?.initFromDOM();
   }
 
   getDefaultFoundation() {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-    const adapter: MDCSwitchAdapter = {
-      addClass: (className) => this.root.classList.add(className),
-      removeClass: (className) => this.root.classList.remove(className),
-      setNativeControlChecked: (checked) => this.nativeControl_.checked = checked,
-      setNativeControlDisabled: (disabled) => this.nativeControl_.disabled = disabled,
-      setNativeControlAttr: (attr, value) => this.nativeControl_.setAttribute(attr, value),
+    return new MDCSwitchRenderFoundation(this.createAdapter());
+  }
+
+  protected createAdapter(): MDCSwitchRenderAdapter {
+    return {
+      addClass: className => {
+        this.root.classList.add(className);
+      },
+      hasClass: className => this.root.classList.contains(className),
+      isDisabled: () => this.root.disabled,
+      removeClass: className => {
+        this.root.classList.remove(className);
+      },
+      setAriaChecked: ariaChecked =>
+        this.root.setAttribute('aria-checked', ariaChecked),
+      setDisabled: disabled => {
+        this.root.disabled = disabled;
+      },
+      state: this,
     };
-    return new MDCSwitchFoundation(adapter);
   }
 
-  focus() {
-    this.nativeControl_.focus();
-  }
-
-  blur() {
-    this.nativeControl_.blur();
+  handleClick() {
+    this.foundation?.handleClick();
+    this.emit('change', {}, true);
   }
 }
 
 /** @hidden */
-export interface IMdcSwitchElement extends HTMLElement {
+export interface IMdcSwitchElement extends HTMLButtonElement {
   checked: boolean;
   indeterminate: boolean;
   au: {
@@ -104,27 +69,12 @@ export interface IMdcSwitchElement extends HTMLElement {
 
 function defineMdcSwitchElementApis(element: HTMLElement) {
   Object.defineProperties(element, {
-    type: {
-      value: 'checkbox',
-    },
-    checked: {
+    selected: {
       get(this: IMdcSwitchElement) {
-        return this.au.controller.viewModel.checked;
+        return this.au.controller.viewModel.selected;
       },
       set(this: IMdcSwitchElement, value: boolean) {
-        this.au.controller.viewModel.checked = value;
-      },
-      configurable: true
-    },
-    focus: {
-      value(this: IMdcSwitchElement) {
-        this.au.controller.viewModel.focus();
-      },
-      configurable: true
-    },
-    blur: {
-      value(this: IMdcSwitchElement) {
-        this.au.controller.viewModel.blur();
+        this.au.controller.viewModel.selected = value;
       },
       configurable: true
     }

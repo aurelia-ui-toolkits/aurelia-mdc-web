@@ -1,23 +1,23 @@
 <template>
   <div class="demo-layout__row">
     <div class="demo-container" style="align-items: center; padding: 6px;">
-      <mdc-switch checked.bind="checked"></mdc-switch>
+      <button mdc-switch selected.bind="selected"></button>
     </div>
     <div class="demo-container">
       <mdc-form-field>
-        <mdc-switch checked.bind="checked"></mdc-switch>
+        <button mdc-switch selected.bind="selected"></button>
         <label>off/on</label>
       </mdc-form-field>
     </div>
     <div class="demo-container">
       <mdc-form-field>
-        <mdc-switch disabled></mdc-switch>
+        <button mdc-switch disabled></button>
         <label>Disabled</label>
       </mdc-form-field>
     </div>
     <div class="demo-container">
       <mdc-form-field align-end>
-        <mdc-switch></mdc-switch>
+        <button mdc-switch></button>
         <label>RTL</label>
       </mdc-form-field>
     </div>

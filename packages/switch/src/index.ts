@@ -1,4 +1,4 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, ObserverLocator, CheckedObserver } from 'aurelia-framework';
+import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, ObserverLocator, ValueAttributeObserver } from 'aurelia-framework';
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 
 export { MdcSwitch, IMdcSwitchElement } from './mdc-switch';
@@ -7,7 +7,8 @@ export function configure(config: FrameworkConfiguration) {
   config.container.get(MdcComponentAdapters).registerMdcElementConfig(switchConfig);
 
   config.globalResources([
-    PLATFORM.moduleName('./mdc-switch')
+    PLATFORM.moduleName('./mdc-switch'),
+    PLATFORM.moduleName('./enhance-mdc-switch')
   ]);
 
   config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
@@ -16,10 +17,10 @@ export function configure(config: FrameworkConfiguration) {
 const switchConfig = {
   tagName: 'mdc-switch',
   properties: {
-    checked: {
+    selected: {
       defaultBindingMode: bindingMode.twoWay,
-      getObserver(element: Element, _: string, observerLocator: ObserverLocator) {
-        return new CheckedObserver(element, new EventSubscriber(['change']), observerLocator);
+      getObserver(element: Element) {
+        return new ValueAttributeObserver(element, 'selected', new EventSubscriber(['change']));
       }
     }
   }
