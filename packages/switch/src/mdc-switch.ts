@@ -8,6 +8,7 @@ let switchId = 0;
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-switch.html'))
 @customElement('mdc-switch')
+// @ts-expect-error
 export class MdcSwitch extends MdcComponent<MDCSwitchRenderFoundation> implements MDCSwitchState, MDCRippleCapableSurface {
   constructor(public root: IMdcSwitchElement) {
     super(root);
