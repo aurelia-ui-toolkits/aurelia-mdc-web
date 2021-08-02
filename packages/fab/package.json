@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/fab",
-  "version": "6.2.3",
+  "version": "7.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -47,8 +47,8 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "6.2.3",
-    "@aurelia-mdc-web/ripple": "6.2.3",
+    "@aurelia-mdc-web/base": "7.0.0",
+    "@aurelia-mdc-web/ripple": "7.0.0",
     "@material/fab": "^12.0.0"
   }
 }
