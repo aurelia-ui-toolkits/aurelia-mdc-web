@@ -1,3 +1,19 @@
+## [7.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.0...v7.0.1) (2021-08-05)
+
+
+### Bug Fixes
+
+* **card:** ripple ([e9ab360](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e9ab3606e06161f8986f4a7bf863164e8a5e86b7))
+* **card:** use PLATFORM.moduleName ([85c0c63](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/85c0c63b82222f8feed777d294f43ee49ddf2916))
+* **list:** do not set trailing class for icon buttons ([ef3f849](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ef3f8490ada05b67f300919c99ab0745314acb4e))
+
+
+### Features
+
+* **data-table:** add sticky header attribute ([350d870](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/350d870465e1d57729f9131dea6bedc83d2833ca))
+
+
+
 # [7.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.3...v7.0.0) (2021-08-02)
 
 ### BREAKING CHANGES
