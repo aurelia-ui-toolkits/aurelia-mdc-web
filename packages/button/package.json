@@ -40,7 +40,7 @@
   "dependencies": {
     "@aurelia-mdc-web/base": "v6.2.7-au2",
     "@aurelia-mdc-web/ripple": "v6.2.7-au2",
-    "@material/button": "^11.0.0",
-    "@material/feature-targeting": "^11.0.0"
+    "@material/button": "^12.0.0",
+    "@material/feature-targeting": "^12.0.0"
   }
 }

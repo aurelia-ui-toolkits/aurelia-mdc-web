@@ -41,6 +41,6 @@
     "@aurelia-mdc-web/base": "v6.2.7-au2",
     "@aurelia-mdc-web/list": "v6.2.7-au2",
     "@aurelia-mdc-web/menu-surface": "v6.2.7-au2",
-    "@material/menu": "^11.0.0"
+    "@material/menu": "^12.0.0"
   }
 }

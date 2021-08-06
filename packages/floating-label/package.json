@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "v6.2.7-au2",
-    "@material/floating-label": "^11.0.0"
+    "@material/floating-label": "^12.0.0"
   }
 }

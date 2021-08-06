@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "v6.2.7-au2",
-    "@material/tooltip": "^11.0.0"
+    "@material/tooltip": "^12.0.0"
   }
 }

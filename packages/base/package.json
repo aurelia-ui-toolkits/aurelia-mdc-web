@@ -38,7 +38,7 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@material/base": "^11.0.0"
+    "@material/base": "^12.0.0"
   },
   "peerDependencies": {
     "aurelia": "^2.0.0-alpha.15",

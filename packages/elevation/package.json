@@ -38,6 +38,6 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@material/elevation": "^11.0.0"
+    "@material/elevation": "^12.0.0"
   }
 }
