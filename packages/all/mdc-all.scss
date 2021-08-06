@@ -28,7 +28,7 @@
 @use "@material/circular-progress/mdc-circular-progress";
 @use "@material/slider/slider";
 @use "@aurelia-mdc-web/slider"as auSlider;
-@use "@material/switch/styles";
+@use "@material/switch/styles"as switch-styles;
 @use "@material/fab/mdc-fab";
 @use "@material/fab/fab-theme";
 @use "@aurelia-mdc-web/expandable";
@@ -37,13 +37,13 @@
 @use "@aurelia-mdc-web/tree-view";
 @use "@material/linear-progress/mdc-linear-progress";
 @use "@material/chips/deprecated/mdc-chips";
-@use "@aurelia-mdc-web/chips";
+@use "@material/chips/styles"as chips-styles;
 @use "@material/layout-grid/mdc-layout-grid";
 @use "@aurelia-mdc-web/layout-grid";
 @use "@material/snackbar/mdc-snackbar";
 @use "@material/image-list/mdc-image-list";
 @use "@aurelia-mdc-web/image-list";
-@use "@material/tooltip/styles";
+@use "@material/tooltip/styles"as tooltip-styles;
 
 @include list-evolution-mixins.core-styles;
 

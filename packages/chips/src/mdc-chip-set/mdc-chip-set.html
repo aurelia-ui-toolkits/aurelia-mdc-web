@@ -1,13 +1,10 @@
 <template class="
-    mdc-chip-set
-    ${choice ? 'mdc-chip-set--choice' : ''}
-    ${filter ? 'mdc-chip-set--filter' : ''}
-    ${input ? 'mdc-chip-set--input' : ''}
-  "
-  role="grid"
-  mdcchip:interaction.delegate="handleChipInteraction_($event.detail)"
-  mdcchip:selection.delegate="handleChipSelection_($event.detail)"
-  mdcchip:removal.delegate="handleChipRemoval_($event.detail)"
-  mdcchip:navigation.delegate="handleChipNavigation_($event.detail)">
-  <au-slot></au-slot>
+    mdc-evolution-chip-set
+    ${overflow ? 'mdc-evolution-chip-set--overflow' : ''}
+  " role="grid" mdcchip:interaction.delegate="handleChipInteraction($event)"
+  mdcchip:animation.delegate="handleChipAnimation($event)"
+  mdcchip:navigation.delegate="handleChipNavigation($event)">
+  <span class="mdc-evolution-chip-set__chips" role="presentation">
+    <au-slot></au-slot>
+  </span>
 </template>

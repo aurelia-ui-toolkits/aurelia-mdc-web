@@ -1,10 +1,16 @@
 <div class="demo-layout__row">
-  <mdc-chip-set filter mdcchip:removal.trigger="removed($event.detail.data)">
-    <mdc-chip role="checkbox" checkmark repeat.for="c of chips" checked.bind="c.selected" trailing-icon="cancel"
-      data.bind="c">${c.label}</mdc-chip>
+  <mdc-chip-set mdcchipset:removal.trigger="removed($event.detail)" aria-multiselectable="true"
+    change.delegate="changed()" view-model.ref="chipsVm">
+    <mdc-chip filter repeat.for="c of chips" checked.bind="c.selected">
+      ${c.label}
+      <button mdc-chip-action trailing icon="close"></button>
+    </mdc-chip>
   </mdc-chip-set>
 </div>
+${chips | json & signal:'chips-updated'}
+${chips[0].selected}
+
 <div class="demo-layout__row">
-  <mdc-text-field value.bind="newChip"></label>
-  <button mdc-button raised click.delegate="add()">Add</button>
+  <mdc-text-field value.bind="newChip"></mdc-text-field>
+  <mdc-button raised click.delegate="add()">Add</mdc-button>
 </div>

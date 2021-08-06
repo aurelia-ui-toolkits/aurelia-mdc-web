@@ -1,33 +1,24 @@
-<template class="mdc-chip
-  ${selected_ ? 'mdc-chip--selected' : ''}
-  ${touch ? 'mdc-chip--touch' : ''}
-  " role="row" mdc-ripple click.trigger="handleClick_($event)" keydown.trigger="handleKeydown_($event)"
-  transitionend.trigger="handleTransitionEnd_($event)" focusin.trigger="handleFocusIn_($event)"
-  focusout.trigger="handleFocusOut_($event)"
-  mdcchiptrailingaction:interaction.trigger="handleTrailingActionInteraction_()"
-  mdcchiptrailingaction:navigation.trigger="handleTrailingActionNavigation_($event)">
-  <div class="mdc-chip__ripple"></div>
-  <au-slot name="leading-icon">
-    <mdc-chip-icon leading if.bind="leadingIcon">${leadingIcon}</mdc-chip-icon>
-  </au-slot>
-  <au-slot name="checkmark">
-    <mdc-chip-checkmark if.bind="checkmark"></mdc-chip-checkmark>
-  </au-slot>
-  <span role="gridcell">
+<template class="
+    mdc-evolution-chip
+    ${filter ? 'mdc-evolution-chip--selectable' : ''}
+    ${disabled ? 'mdc-evolution-chip--disabled' : ''}
+    ${icon ? 'mdc-evolution-chip--with-primary-icon' : ''}
+  " role="row" mdcchipaction:interaction.trigger="handleActionInteraction($event)"
+  mdcchipaction:navigation.trigger="handleActionNavigation($event)" animationend.delegate="handleAnimationEnd($event)"
+  transitionend.delegate="handleTransitionEnd()">
+
+  <span class="mdc-evolution-chip__cell mdc-evolution-chip__cell--primary" role="gridcell">
     <au-slot name="primary-action">
-      <mdc-chip-primary-action>
+      <button mdc-chip-action selectable.bind="filter" disabled.bind="disabled"
+        icon.bind="icon">
         <au-slot></au-slot>
-      </mdc-chip-primary-action>
+      </button>
     </au-slot>
   </span>
-  <span role="gridcell">
-    <au-slot name="trailing-icon">
-      <mdc-chip-icon trailing if.bind="trailingIcon" tabindex="-1" role="button">${trailingIcon}</mdc-chip-icon>
-    </au-slot>
+
+  <span class="mdc-evolution-chip__cell mdc-evolution-chip__cell--trailing" role="gridcell">
+    <au-slot name="trailing-action"></au-slot>
   </span>
-  <span role="gridcell">
-    <au-slot name="trailing-action">
-      <button as-element="mdc-chip-trailing-action" if.bind="trailingAction">${trailingAction}</mdc-chip-icon>
-    </au-slot>
-  </span>
+
+  <au-slot name="non-navigable-trailing-action"></au-slot>
 </template>
