@@ -11,7 +11,7 @@ export class MdcListItemTrailing {
   /** Optional leading element type. In most cases you don't need to supply it.
    * Only when the element is ambiguous, e.g. <img> or a generic <span>
   */
-  value: 'meta' | 'checkbox' | 'radio' | 'switch' | 'icon';
+  value: 'meta' | 'checkbox' | 'radio' | 'switch' | 'icon' | undefined;
 
   attached() {
     let value = this.value;
@@ -22,10 +22,14 @@ export class MdcListItemTrailing {
         value = 'radio';
       } else if (this.root.classList.contains('mdc-switch')) {
         value = 'switch';
+      } else if (this.root.classList.contains('mdc-icon-button')) {
+        value = undefined;
       } else if (this.root.classList.contains('material-icons')) {
         value = 'icon';
       }
     }
-    this.root.parentElement?.parentElement?.classList.add(`mdc-list-item--with-trailing-${value}`);
+    if (value !== undefined) {
+      this.root.parentElement?.parentElement?.classList.add(`mdc-list-item--with-trailing-${value}`);
+    }
   }
 }
