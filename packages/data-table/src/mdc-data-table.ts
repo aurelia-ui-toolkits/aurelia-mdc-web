@@ -81,6 +81,11 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   @bindable({ mode: BindingMode.twoWay })
   pageSize: unknown = 10;
 
+  /** Makes header row sticky (fixed) on vertical scroll.
+   * (Note: Sticky header feature is not compatible with IE11 browsers.) */
+  @bindable({ set: booleanAttr })
+  stickyHeader: boolean;
+
   // @computed('pageSize', 'recordsCount', 'activePage')
   get paginationPosition(): 'first' | 'between' | 'last' | undefined {
     if (typeof this.pageSize !== 'number' || this.pageSize === undefined || isNaN(this.activePage) || isNaN(this.recordsCount)) {
