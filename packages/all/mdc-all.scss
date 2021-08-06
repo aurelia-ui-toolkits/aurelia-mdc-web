@@ -46,8 +46,7 @@
 @use "@material/tooltip/styles";
 
 @include slider.core-styles;
-@include list-evolution-mixins.without-ripple();
-@include list-evolution-mixins.with-ripple();
+@include list-evolution-mixins.core-styles;
 
 // remove when https://github.com/material-components/material-components-web/issues/7053 is fixed
 .mdc-fab {
