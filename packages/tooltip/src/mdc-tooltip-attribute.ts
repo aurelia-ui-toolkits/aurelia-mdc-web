@@ -1,6 +1,6 @@
 import { inject, customAttribute, bindable, createElement, IPlatform, IContainer, IAppRoot, LifecycleFlags, BindingMode } from 'aurelia';
 import { XPosition, YPosition, AnchorBoundaryType } from '@material/tooltip';
-import { booleanAttr } from '@aurelia-mdc-web/base';
+import { booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MdcTooltip } from './mdc-tooltip';
 import { Scope } from '@aurelia/runtime';
 import { PropertyBindingInstruction, ISyntheticView, ITemplateCompiler } from '@aurelia/runtime-html';
@@ -40,6 +40,12 @@ export class MdcTooltipAttribute {
   @bindable
   boundaryType: keyof typeof AnchorBoundaryType;
 
+  @bindable({ set: number })
+  showDelay: number;
+
+  @bindable({ set: number })
+  hideDelay: number;
+
   tooltip: HTMLElement;
   view: ISyntheticView;
 
@@ -53,6 +59,8 @@ export class MdcTooltipAttribute {
       'boundary-type': new PropertyBindingInstruction('boundaryType', 'boundaryType', BindingMode.default),
       'rich': new PropertyBindingInstruction('rich', 'rich', BindingMode.default),
       'persistent': new PropertyBindingInstruction('persistent', 'persistent', BindingMode.default),
+      'show-delay': new PropertyBindingInstruction('showDelay', 'showDelay', BindingMode.default),
+      'hide-delay': new PropertyBindingInstruction('hideDelay', 'hideDelay', BindingMode.default),
     };
 
     const renderPlan = createElement(this.platform, MdcTooltip, props);

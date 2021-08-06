@@ -1,4 +1,4 @@
-import { MdcComponent, defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, defaultSlotProcessContent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses, PositionWithCaret } from '@material/tooltip';
 import { inject, customElement, bindable } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
@@ -57,6 +57,22 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
     if (this.boundaryType !== undefined) {
       this.foundation?.setAnchorBoundaryType(AnchorBoundaryType[this.boundaryType]);
     }
+  }
+
+  /** Sets show delay */
+  @bindable({ set: number })
+  showDelay: number;
+  async showDelayChanged() {
+    await this.initialised;
+    this.foundation?.setShowDelay(this.showDelay);
+  }
+
+  /** Sets hide delay */
+  @bindable({ set: number })
+  hideDelay: number;
+  async hideDelayChanged() {
+    await this.initialised;
+    this.foundation?.setHideDelay(this.hideDelay);
   }
 
   beforeFoundationCreated() {
