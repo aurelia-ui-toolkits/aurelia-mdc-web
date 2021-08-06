@@ -7,7 +7,7 @@ import { defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
  * Only applicable to cards that have a primary action that the main surface should trigger.
  * @selector mdc-card-primary-action
  */
-@customElement({ name: 'mdc-card-primary-action', template: '<template class="mdc-card__primary-action" mdc-ripple="disabled.bind: disableRipple" tabindex=0><au-slot></au-slot></template>' })
+@customElement('mdc-card-primary-action')
 @processContent(defaultSlotProcessContent)
 export class MdcCardPrimaryAction {
 
