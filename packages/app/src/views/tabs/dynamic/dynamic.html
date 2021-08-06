@@ -6,5 +6,5 @@
 </div>
 <mdc-tab-bar view-model.ref="tabBar" mdctabbar:activated.delegate="logTab($event)"
   use-automatic-activation.bind="useAutomaticActivation" focus-on-activate.bind="false">
-  <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" icon.bind="tab.icon" active.bind="$index === 0"></mdc-tab>
+  <mdc-tab repeat.for="tab of tabs" label.bind="tab.label" icon.bind="tab.icon" active.one-time="$index === 0"></mdc-tab>
 </mdc-tab-bar>
