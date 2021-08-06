@@ -1,7 +1,7 @@
 import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { MdcSwitch } from './mdc-switch';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
-import { CheckedObserver } from '@aurelia/runtime-html';
+import { EnhanceMdcSwitch } from './enhance-mdc-switch';
 
 export { MdcSwitch, IMdcSwitchElement } from './mdc-switch';
 
@@ -14,10 +14,10 @@ export const SwitchConfiguration = {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-SWITCH' ? property === 'checked' : false);
-        nodeObserverLocator.useConfig({ 'MDC-SWITCH': { checked: { events: ['change'], type: CheckedObserver } } });
+        nodeObserverLocator.useConfig({ 'MDC-SWITCH': { selected: { events: ['change'] } } });
       }).register(container);
       configured = true;
     }
-    return container.register(MdcSwitch, RippleConfiguration);
+    return container.register(MdcSwitch, RippleConfiguration, EnhanceMdcSwitch);
   }
 };

@@ -28,7 +28,7 @@
 @use "@material/circular-progress/mdc-circular-progress";
 @use "@material/slider/slider";
 @use "@aurelia-mdc-web/slider"as auSlider;
-@use "@material/switch/mdc-switch";
+@use "@material/switch/styles";
 @use "@material/fab/mdc-fab";
 @use "@material/fab/fab-theme";
 @use "@aurelia-mdc-web/expandable";
@@ -45,7 +45,6 @@
 @use "@aurelia-mdc-web/image-list";
 @use "@material/tooltip/styles";
 
-@include slider.core-styles;
 @include list-evolution-mixins.core-styles;
 
 // remove when https://github.com/material-components/material-components-web/issues/7053 is fixed
