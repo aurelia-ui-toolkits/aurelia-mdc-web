@@ -58,6 +58,11 @@ export class MdcChipAction extends MdcComponent<MDCChipActionFoundation> impleme
   async disabledChanged() {
     await this.initialised;
     this.foundation?.setDisabled(this.disabled);
+    if (this.disabled) {
+      this.root.setAttribute('disabled', 'true');
+    } else {
+      this.root.removeAttribute('disabled');
+    }
   }
 
   initialSyncWithDOM() {
