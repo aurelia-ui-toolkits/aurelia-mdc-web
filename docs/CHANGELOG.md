@@ -1,3 +1,13 @@
+## [7.0.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.0-au2...v7.0.1-au2) (2021-08-07)
+
+
+### Bug Fixes
+
+* **all:** include slider styles ([ef2f912](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ef2f9127f1b869d3370e6df6c68c965753f52fdb))
+* **chip:** set host disabled attribute ([9ee50f9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9ee50f9591606a3020ba61e12d201eab8a6a95a9))
+
+
+
 # [7.0.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.7-au2...v7.0.0-au2) (2021-08-07)
 
 ### BREAKING CHANGES
