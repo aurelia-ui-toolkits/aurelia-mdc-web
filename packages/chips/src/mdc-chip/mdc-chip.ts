@@ -190,7 +190,6 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
         if (action) {
           if (action.selected !== isSelected) {
             action.selected = isSelected;
-            this.emit('change', {}, true);
           }
         }
       },
@@ -205,6 +204,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
 
   handleActionInteraction(event: ActionInteractionEvent): void {
     this.foundation?.handleActionInteraction(event);
+    this.emit('change', {}, true);
   }
 
   handleActionNavigation(event: ActionNavigationEvent): void {
