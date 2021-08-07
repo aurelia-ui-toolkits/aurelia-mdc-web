@@ -8,8 +8,6 @@
   </mdc-chip-set>
 </div>
 ${chips | json & signal:'chips-updated'}
-${chips[0].selected}
-
 <div class="demo-layout__row">
   <mdc-text-field value.bind="newChip"></mdc-text-field>
   <mdc-button raised click.delegate="add()">Add</mdc-button>
