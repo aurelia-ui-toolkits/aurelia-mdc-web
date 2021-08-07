@@ -45,9 +45,5 @@
 @use "@aurelia-mdc-web/image-list";
 @use "@material/tooltip/styles"as tooltip-styles;
 
+@include slider.core-styles;
 @include list-evolution-mixins.core-styles;
-
-// remove when https://github.com/material-components/material-components-web/issues/7053 is fixed
-.mdc-fab {
-  @include ripple-theme.states(on-secondary, $ripple-target: fab-theme.$ripple-target);
-}
