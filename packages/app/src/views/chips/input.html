@@ -1,18 +1,20 @@
 <template>
-  <mdc-chip-set input>
-    <!-- Compact notation -->
-    <mdc-chip>
-      Navigable trailing
-      <button mdc-chip-action trailing icon="close"></button>
-    </mdc-chip>
-    <mdc-chip>
-      <button mdc-chip-action data-mdc-deletable="true">Non-navigable trailing</button>
-      <button mdc-chip-action trailing non-navigable tabindex="-1" aria-hidden="true" icon="close"></button>
-    </mdc-chip>
-    <!-- Full notation -->
-    <mdc-chip disabled>
-      <button mdc-chip-action disabled>Disabled</button>
-      <button mdc-chip-action disabled trailing icon="close"></button>
-    </mdc-chip>
-  </mdc-chip-set>
+  <div class="demo-layout__row">
+    <mdc-chip-set input>
+      <!-- Compact notation -->
+      <mdc-chip>
+        Navigable trailing
+        <button mdc-chip-action trailing icon="close" tabindex="-1"></button>
+      </mdc-chip>
+      <mdc-chip>
+        <button mdc-chip-action data-mdc-deletable="true" tabindex="-1">Non-navigable trailing</button>
+        <button mdc-chip-action trailing non-navigable tabindex="-1" aria-hidden="true" icon="close"></button>
+      </mdc-chip>
+      <!-- Full notation -->
+      <mdc-chip disabled>
+        <button mdc-chip-action disabled>Disabled</button>
+        <button mdc-chip-action disabled trailing icon="close"></button>
+      </mdc-chip>
+    </mdc-chip-set>
+  </div>
 </template>
