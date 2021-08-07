@@ -73,6 +73,7 @@ export class MdcChipAction extends MdcComponent<MDCChipActionFoundation> impleme
 
   handleKeydown(event: KeyboardEvent) {
     this.foundation?.handleKeydown(event);
+    return true;
   }
 
   getDefaultFoundation() {
