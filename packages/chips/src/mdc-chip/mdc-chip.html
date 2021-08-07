@@ -1,7 +1,6 @@
 <template class="
     mdc-evolution-chip
     ${filter ? 'mdc-evolution-chip--selectable' : ''}
-    ${selected ? 'mdc-evolution-chip--selected' : ''}
     ${disabled ? 'mdc-evolution-chip--disabled' : ''}
     ${icon ? 'mdc-evolution-chip--with-primary-icon' : ''}
   " role="row" mdcchipaction:interaction.trigger="handleActionInteraction($event)"
@@ -10,7 +9,7 @@
 
   <span class="mdc-evolution-chip__cell mdc-evolution-chip__cell--primary" role="gridcell">
     <slot name="primary-action">
-      <button mdc-chip-action selectable.bind="filter" selected.bind="selected" disabled.bind="disabled" icon.bind="icon">
+      <button mdc-chip-action selectable.bind="filter" disabled.bind="disabled" icon.bind="icon">
         <slot></slot>
       </button>
     </slot>
