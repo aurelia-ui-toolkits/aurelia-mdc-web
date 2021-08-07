@@ -1,3 +1,29 @@
+# [7.0.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.7-au2...v7.0.0-au2) (2021-08-07)
+
+### BREAKING CHANGES
+* **chips:** DOM structure has changed. Make sure you follow examples.
+
+### Bug Fixes
+
+* **card:** new DOM ([e8a96fc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e8a96fc95efd65e38b3611db5fb5ab52f63bf526))
+* **chip:** emit change on action interaction only ([14fdfb5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/14fdfb518ba6ce1d08d7f8ce352963ef621a5187))
+* **chip:** remove unnecessary tabindex ([dafa01a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/dafa01a5de7e6a680c0cb179f782027366b6eb3f))
+* **list:** changed foundation ([e12be0c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e12be0c3ba262b0a8f7f2a609cc9980fd36717fb))
+* **list:** do not set trailing class for icon buttons ([dea689f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/dea689fd81b3742c0a9ebd75c6ed5dac522f9f82))
+* **list:** use core mixin ([5f84441](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5f8444117f852359a4c5a9b2614c10e6f1cd96db))
+* **tooltip:** foundation changed ([b15ec64](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b15ec64e9c6a776b6ca07fe6506eb0bf82b5c21a))
+
+
+### Features
+
+* **chips:** use evolution implementation ([43e9a5c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/43e9a5c649b3c4c864fec7c98d00031c0153cb1e))
+* **data-table:** add sticky header attribute ([9bc991b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9bc991b34b893df04a50e1ab11ddcb16617d731f))
+* **icon-button:** add touch attribute ([07dbf22](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/07dbf22499ca2f5f741b294ab0cf5f0902edb268))
+* **switch:** use evolution implementation ([a7993f9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a7993f96e6f6e4096a38601c076d16c6d56260bd))
+* **tooltip:** add delay attributes ([8e25d63](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8e25d63afb72cc20d40bcea9da5468ed52f2c9eb))
+
+
+
 ## [6.2.7-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v6.2.6-au2...v6.2.7-au2) (2021-08-01)
 
 

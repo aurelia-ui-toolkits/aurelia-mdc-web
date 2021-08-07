@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/menu-surface",
-  "version": "v6.2.7-au2",
+  "version": "7.0.0-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -33,12 +33,12 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "gulp --gulpfile ../../gulpfile.js --cwd ./ build",
-    "publish:dev": "npm publish --tag dev",
+    "publish:au2": "npm publish --tag au2",
     "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "v6.2.7-au2",
+    "@aurelia-mdc-web/base": "7.0.0-au2",
     "@material/menu-surface": "^12.0.0"
   }
 }

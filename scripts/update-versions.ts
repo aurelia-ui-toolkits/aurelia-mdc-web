@@ -25,11 +25,11 @@ function updateVersions(pkg: Package, newMdcVersion: string | undefined, newBrid
   const pkg = await loadPackageJson();
   let newMdcVersion: string | undefined;
   let newBridgeVersion: string | undefined;
-  const mdcIndex = process.argv.indexOf('--mdc');
+  const mdcIndex = process.argv.indexOf('mdc');
   if (mdcIndex !== -1) {
     newMdcVersion = process.argv[mdcIndex + 1];
   }
-  const bridgeIndex = process.argv.indexOf('--bridge');
+  const bridgeIndex = process.argv.indexOf('bridge');
   if (bridgeIndex !== -1) {
     newBridgeVersion = process.argv[bridgeIndex + 1];
   }
