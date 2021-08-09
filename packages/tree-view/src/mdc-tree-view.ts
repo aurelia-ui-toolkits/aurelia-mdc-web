@@ -120,7 +120,8 @@ export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
       if (!nodes[i].children) {
         continue;
       }
-      const childPath = this.findPath(nodes[i].children!, predicate);
+      const filteredChildren = nodes[i].children!.filter(x => this.filter(x));
+      const childPath = this.findPath(filteredChildren, predicate);
       if (childPath.length) {
         return [i, ...childPath];
       }
