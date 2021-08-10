@@ -1,3 +1,19 @@
+## [7.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.1...v7.0.2) (2021-08-10)
+
+
+### Bug Fixes
+
+* **chip:** do not stop keydown propagation ([89e545e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/89e545ec78158b3b6ca582c62174b7999dd39f2a))
+* **chip:** emit change on action interaction only ([1e7d2be](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1e7d2be5023471187fbe3f3c8e0b2196b1be96b5))
+* **chip:** remove unnecessary class binding ([08747fa](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/08747fa4ba7a7541b06b2ab412708b798994f885))
+* **chip:** remove unnecessary tabindex ([7b1604c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7b1604c222b952992f9f7445ca28c617322125e6))
+* **chip:** set host disabled attribute ([c21e6e5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c21e6e55f0553820a939efece83403bb49f832b0))
+* **expandable:** use math.div ([5930a52](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5930a522e99a1632e0a9b5f162b5926f01702bcb)), closes [#52](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/52)
+* **tree-view:** apply the filter to child nodes before searching ([c8c1fd7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c8c1fd7dd9ec5850b91f3378c0a509b5741d9ff5))
+* **tree-view:** search filtered nodes for promises ([ae05cb6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ae05cb65e288d89e20f302e3fc8d154cffa179d6))
+
+
+
 ## [7.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.0...v7.0.1) (2021-08-05)
 
 
