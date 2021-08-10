@@ -5,6 +5,13 @@
 </div>
 <div class="demo-content">
   <h3 class="demo-content__headline">Input</h3>
+  <div class="demo-layout__row">
+    Input chip set acts like a singe input control - pressing Tab focuses through only one chip.
+  </div>
+  <div class="demo-layout__row">
+    Make sure you initially set <i>tabindex="0"</i> only on one chip, others must receive
+    <i>tabindex="-1"</i>.
+  </div>
   <au-compose view-model.bind="input" class="demo-layout__row"></au-compose>
   <example-viewer html.bind="inputHtml"></example-viewer>
 </div>
