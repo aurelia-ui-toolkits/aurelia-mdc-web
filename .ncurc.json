@@ -1,5 +1,5 @@
 {
-  "reject": ["@material/*", "tslib", "webpack", "webpack-cli", "webpack-dev-middleware", "postcss-loader", "sass-loader", "html-loader", "html-webpack-plugin",
-    "typescript", "ts-loader", "aurelia-webpack-plugin", "css-loader", "style-loader"
+  "reject": [
+    "@material/*"
   ]
 }
