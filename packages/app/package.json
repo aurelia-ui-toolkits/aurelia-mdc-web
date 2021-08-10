@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/app",
-  "version": "7.0.1-au2",
+  "version": "7.0.2-au2",
   "private": true,
   "description": "",
   "main": "index.js",
@@ -16,6 +16,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@aurelia-mdc-web/all": "7.0.1-au2"
+    "@aurelia-mdc-web/all": "7.0.2-au2"
   }
 }

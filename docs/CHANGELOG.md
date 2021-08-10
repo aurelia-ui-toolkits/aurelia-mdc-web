@@ -1,3 +1,13 @@
+## [7.0.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.1-au2...v7.0.2-au2) (2021-08-10)
+
+
+### Bug Fixes
+
+* **expandable:** use math.div ([1d14b96](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1d14b9603c6e11245b39975161ca9f42f204e556))
+* **tree-view:** apply the filter to child nodes before searching ([68d17d8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/68d17d8a75c9303774eebd075ad0a0eecea45f8d))
+
+
+
 ## [7.0.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.0-au2...v7.0.1-au2) (2021-08-07)
 
 
