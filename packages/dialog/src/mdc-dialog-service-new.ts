@@ -1,7 +1,7 @@
 import { IMdcDialogElement } from './mdc-dialog';
 import { inject, ViewSlot, ViewResources, CompositionEngine, Container } from 'aurelia-framework';
 import { strings, MDCDialogCloseEvent } from '@material/dialog';
-import { IMdcRippleElement } from '@aurelia-mdc-web/ripple';
+import { IMdcRippleElement, MdcRipple } from '@aurelia-mdc-web/ripple';
 
 /** Dialog service open method options */
 export interface IMdcDialogOptionsNew {
@@ -47,7 +47,7 @@ export class MdcDialogServiceNew {
     dialogVm.open();
     await openedPromise;
     // re-layout ripple elements because dialogs use `transform: scale(.8)` and initial layout is incorrect
-    const ripples = Array.from(dialogVm.root.querySelectorAll<IMdcRippleElement>('.mdc-ripple-upgraded'));
+    const ripples = Array.from(dialogVm.root.querySelectorAll<IMdcRippleElement>(`${MdcRipple.ATTRIBUTE_CLASS}`));
     await Promise.all(ripples.map(async x => {
       await x.au['mdc-ripple'].viewModel.initialised;
       x.au['mdc-ripple'].viewModel.foundation?.layout();

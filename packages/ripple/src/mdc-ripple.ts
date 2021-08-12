@@ -8,6 +8,8 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @inject(Element)
 @customAttribute('mdc-ripple')
 export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
+  static ATTRIBUTE_CLASS = 'mdc-ripple-enhanced';
+
   inputBindingPromiseResolver: (value?: unknown) => void;
   inputBindingPromise = new Promise(r => this.inputBindingPromiseResolver = r);
   @bindable
@@ -45,6 +47,7 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
   accent: boolean;
 
   async initialise() {
+    this.root.classList.add(MdcRipple.ATTRIBUTE_CLASS);
     if (!this.noClass) {
       (this.surface ?? this.root).classList.add('mdc-ripple-surface');
       if (this.primary) {

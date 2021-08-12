@@ -51,7 +51,7 @@
     "start": "cd packages/app && npm start",
     "doc": "lage run doc",
     "changelog": "cross-env conventional-changelog -p angular -i docs/CHANGELOG.md -s",
-    "deploy": "cd packages/app && npm run build:app && cd ../.. && deploy.sh",
+    "deploy": "cd packages/app && npm run build && cd ../.. && deploy.sh",
     "update-versions:root": "ts-node -P tsconfig.scripts.json scripts/update-versions.ts",
     "update-versions": "npm run update-versions:root && lage run update-versions",
     "publish:latest": "lage run publish:latest"
