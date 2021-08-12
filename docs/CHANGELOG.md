@@ -1,3 +1,12 @@
+## [7.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.2...v7.0.3) (2021-08-12)
+
+
+### Bug Fixes
+
+* **ripple:** mark elements with ripple with a sepatate class ([dff654a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/dff654af30060ac71a2bb2f31038e2afa702cc05))
+
+
+
 ## [7.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.1...v7.0.2) (2021-08-10)
 
 
