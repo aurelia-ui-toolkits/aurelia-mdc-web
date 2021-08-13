@@ -27,7 +27,7 @@ module.exports = function (env, { analyze }) {
   const production = env.production || process.env.NODE_ENV === 'production';
   return {
     mode: production === 'production' ? 'production' : 'development',
-    devtool: production ? 'source-map' : 'inline-source-map',
+    devtool: production ? 'source-map' : 'eval-source-map',
     entry: './src/main.ts',
     output: {
       path: outDir,
@@ -99,6 +99,7 @@ module.exports = function (env, { analyze }) {
         { test: /\.css$/i, use: ['style-loader', cssLoader/*, postcssLoader*/] },
         { test: /\.scss$/i, use: ['style-loader', cssLoader/*, postcssLoader*/, sassLoader] },
         { test: /\.ts$/i, use: ['ts-loader', '@aurelia/webpack-loader'], exclude: /node_modules/ },
+        { test: /\.js$/, enforce: 'pre', use: ['source-map-loader'], include: [/@aurelia\\kernel/] },
         { test: /\.html$/i, use: '@aurelia/webpack-loader', exclude: /node_modules/ }
       ]
     },

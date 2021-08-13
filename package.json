@@ -124,6 +124,7 @@
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
     "selfsigned": "^1.10.11",
+    "source-map-loader": "^3.0.0",
     "style-loader": "^3.2.1",
     "to-string-loader": "^1.1.6",
     "ts-loader": "^9.2.5",
