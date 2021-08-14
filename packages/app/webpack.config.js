@@ -91,7 +91,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         { test: /\.(woff|woff2)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1, esModule: false } } },
         { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000, esModule: false } } },
         { test: /\.ts$/, loader: 'ts-loader' },
-        { test: /\.html$/, loader: 'html-loader' },
+        { test: /\.html$/i, use: { loader: 'html-loader', options: { esModule: false, sources: { list: [{ tag: 'img', attribute: 'src', type: 'src' }, { tag: 'app-nav-bar', attribute: 'logo-url', type: 'src' }] } } } },
         { test: /\.scss$/i, issuer: /(\.html|empty-entry\.js)$/i, use: scssLoaders },
         { test: /\.scss$/i, issuer: /\.ts$/i, use: ['style-loader', ...scssLoaders] },
         { test: /\.css$/i, issuer: [{ not: /\.html$/i }], use: ['style-loader', ...cssLoaders] },
