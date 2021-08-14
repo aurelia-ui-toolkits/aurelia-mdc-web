@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-unassigned-import
 import 'aurelia-bootstrapper';
 import { Aurelia, PLATFORM } from 'aurelia-framework';
+import { MdcDefaultTooltipConfiguration } from '@aurelia-mdc-web/tooltip';
 
 export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia
@@ -13,6 +14,9 @@ export async function configure(aurelia: Aurelia): Promise<void> {
       PLATFORM.moduleName('elements/hljs/hljs')
     ])
     .plugin(PLATFORM.moduleName('aurelia-validation'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/tooltip'), (config: MdcDefaultTooltipConfiguration) => {
+      config.scrollHost = '.demo-panel-content';
+    })
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/all'));
 
   await aurelia.start();

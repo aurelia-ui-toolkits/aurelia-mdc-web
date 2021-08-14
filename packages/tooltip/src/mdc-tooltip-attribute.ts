@@ -1,14 +1,15 @@
 import { inject, customAttribute, TemplatingEngine, View } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { XPosition, YPosition, AnchorBoundaryType } from '@material/tooltip';
+import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
 
 /**
  * @selector [mdc-tooltip]
  */
-@inject(Element, TemplatingEngine)
+@inject(Element, TemplatingEngine, MdcDefaultTooltipConfiguration)
 @customAttribute('mdc-tooltip')
 export class MdcTooltipAttribute {
-  constructor(root: HTMLElement, private templatingEngine: TemplatingEngine) {
+  constructor(root: HTMLElement, private templatingEngine: TemplatingEngine, private defaultConfiguration: MdcDefaultTooltipConfiguration) {
     this.root = root;
   }
 
@@ -43,6 +44,9 @@ export class MdcTooltipAttribute {
   @bindable.number
   hideDelay: number;
 
+  @bindable
+  scrollHost?: HTMLElement | string = this.defaultConfiguration.scrollHost;
+
   tooltip: HTMLElement;
   view: View;
 
@@ -57,6 +61,7 @@ export class MdcTooltipAttribute {
     this.tooltip.setAttribute('persistent.bind', 'persistent');
     this.tooltip.setAttribute('show-delay.bind', 'showDelay');
     this.tooltip.setAttribute('hide-delay.bind', 'hideDelay');
+    this.tooltip.setAttribute('scroll-host.bind', 'scrollHost');
     this.tooltip.innerText = this.value;
     document.body.appendChild(this.tooltip);
     this.view = this.templatingEngine.enhance({
