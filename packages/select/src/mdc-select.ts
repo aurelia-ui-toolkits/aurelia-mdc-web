@@ -14,6 +14,7 @@ import { MdcListItem, IMdcListItemElement } from '@aurelia-mdc-web/list';
 import { MDCSelectFoundationAurelia } from './mdc-select-foundation-aurelia';
 import { MDCSelectAdapterAurelia } from './mdc-select-adapter-aurelia';
 import { MDCMenuDistance } from '@material/menu-surface';
+import { MdcDefaultSelectConfiguration } from './mdc-default-select-configuration';
 
 strings.CHANGE_EVENT = strings.CHANGE_EVENT.toLowerCase();
 
@@ -23,7 +24,7 @@ let selectId = 0;
  * @selector mdc-select
  * @emits mdcselect:change | Emitted if user changed the value
  */
-@inject(Element, TaskQueue)
+@inject(Element, TaskQueue, MdcDefaultSelectConfiguration)
 @useView(PLATFORM.moduleName('./mdc-select.html'))
 @customElement(cssClasses.ROOT)
 @processContent(MdcSelect.processContent)
@@ -36,7 +37,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     return true;
   }
 
-  constructor(root: HTMLElement, private taskQueue: TaskQueue) {
+  constructor(root: HTMLElement, private taskQueue: TaskQueue, private defaultConfiguration: MdcDefaultSelectConfiguration) {
     super(root);
     defineMdcSelectElementApis(this.root);
   }
@@ -69,7 +70,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   /** Styles the select as an outlined select */
   @bindable.booleanAttr
-  outlined: boolean;
+  outlined?: boolean = this.defaultConfiguration.outlined;
   outlinedChanged() {
     this.taskQueue.queueTask(() => this.foundation?.layout());
   }

@@ -2,20 +2,22 @@ import { FrameworkConfiguration, PLATFORM, bindingMode, EventSubscriber, Interna
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 import { strings } from '@material/select';
 import { MdcSelectValueObserver } from './mdc-select-value-observer';
+import { MdcDefaultSelectConfiguration } from './mdc-default-select-configuration';
 
 export { MdcSelect, IMdcSelectElement } from './mdc-select';
 export { IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
+export { MdcDefaultSelectConfiguration };
 
-export function configure(config: FrameworkConfiguration) {
-  config.container.get(MdcComponentAdapters).registerMdcElementConfig(selectConfig);
+export function configure(frameworkConfig: FrameworkConfiguration, callback?: (config: MdcDefaultSelectConfiguration) => void) {
+  frameworkConfig.container.get(MdcComponentAdapters).registerMdcElementConfig(selectConfig);
 
-  config.globalResources([
+  frameworkConfig.globalResources([
     PLATFORM.moduleName('./mdc-select'),
     PLATFORM.moduleName('./mdc-select-icon'),
     PLATFORM.moduleName('./mdc-select-helper-text/mdc-select-helper-text')
   ]);
 
-  config.aurelia
+  frameworkConfig.aurelia
     .use
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/line-ripple'))
@@ -23,6 +25,11 @@ export function configure(config: FrameworkConfiguration) {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/notched-outline'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
+
+    if (typeof callback === 'function') {
+      const config = frameworkConfig.container.get(MdcDefaultSelectConfiguration);
+      callback(config);
+    }
 }
 
 const selectConfig = {

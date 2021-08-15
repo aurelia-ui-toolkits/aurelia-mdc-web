@@ -3,6 +3,7 @@ import 'aurelia-bootstrapper';
 import { Aurelia, PLATFORM } from 'aurelia-framework';
 import { MdcDefaultTooltipConfiguration } from '@aurelia-mdc-web/tooltip';
 import { MdcDefaultTextFieldConfiguration } from '@aurelia-mdc-web/text-field';
+import { MdcDefaultSelectConfiguration } from '@aurelia-mdc-web/select';
 
 export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia
@@ -19,6 +20,9 @@ export async function configure(aurelia: Aurelia): Promise<void> {
       config.scrollHost = '.demo-panel-content';
     })
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'), (config: MdcDefaultTextFieldConfiguration) => {
+      config.outlined = false;
+    })
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'), (config: MdcDefaultSelectConfiguration) => {
       config.outlined = false;
     })
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/all'));
