@@ -1,3 +1,14 @@
+## [7.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.3...v7.0.4) (2021-08-15)
+
+
+### Features
+
+* **select:** add default configuration ([fbb0f4b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/fbb0f4b6f370ee6340edab498f8aca7ee36b798a))
+* **text-field:** add default configuration ([94f5485](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/94f5485f4a1b53c63e0aca8f99097834f2be8ccc))
+* **tooltip:** add scroll-host attribute and default configuration ([1339169](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/13391697d68507008a09fde166885c52d100886e))
+
+
+
 ## [7.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.2...v7.0.3) (2021-08-12)
 
 
