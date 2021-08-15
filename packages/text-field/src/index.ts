@@ -1,13 +1,15 @@
 import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, EventSubscriber } from 'aurelia-framework';
 import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
+import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 
 export { MdcTextField, IMdcTextFieldElement } from './mdc-text-field';
 export { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
+export { MdcDefaultTextFieldConfiguration };
 
-export function configure(config: FrameworkConfiguration) {
-  config.container.get(MdcComponentAdapters).registerMdcElementConfig(textFieldConfig);
+export function configure(frameworkConfig: FrameworkConfiguration, callback?: (config: MdcDefaultTextFieldConfiguration) => void) {
+  frameworkConfig.container.get(MdcComponentAdapters).registerMdcElementConfig(textFieldConfig);
 
-  config.globalResources([
+  frameworkConfig.globalResources([
     PLATFORM.moduleName('./mdc-text-field'),
     PLATFORM.moduleName('./enhance-mdc-text-field'),
     PLATFORM.moduleName('./mdc-text-field-icon'),
@@ -16,12 +18,17 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./mdc-text-field-character-counter')
   ]);
 
-  config.aurelia
+  frameworkConfig.aurelia
     .use
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/floating-label'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/line-ripple'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/notched-outline'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));
+
+  if (typeof callback === 'function') {
+    const config = frameworkConfig.container.get(MdcDefaultTextFieldConfiguration);
+    callback(config);
+  }
 }
 
 const textFieldConfig = {

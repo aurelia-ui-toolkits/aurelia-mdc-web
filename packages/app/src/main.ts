@@ -2,6 +2,7 @@
 import 'aurelia-bootstrapper';
 import { Aurelia, PLATFORM } from 'aurelia-framework';
 import { MdcDefaultTooltipConfiguration } from '@aurelia-mdc-web/tooltip';
+import { MdcDefaultTextFieldConfiguration } from '@aurelia-mdc-web/text-field';
 
 export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia
@@ -16,6 +17,9 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('aurelia-validation'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/tooltip'), (config: MdcDefaultTooltipConfiguration) => {
       config.scrollHost = '.demo-panel-content';
+    })
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'), (config: MdcDefaultTextFieldConfiguration) => {
+      config.outlined = false;
     })
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/all'));
 

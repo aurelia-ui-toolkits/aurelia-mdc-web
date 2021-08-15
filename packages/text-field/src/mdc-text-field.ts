@@ -14,15 +14,16 @@ import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-te
 import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
 import { MDCFoundation } from '@material/base';
 import { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
+import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 
 let textFieldId = 0;
 
-@inject(Element, TaskQueue)
+@inject(Element, TaskQueue, MdcDefaultTextFieldConfiguration)
 @useView(PLATFORM.moduleName('./mdc-text-field.html'))
 @customElement(cssClasses.ROOT)
 @processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
-  constructor(root: HTMLElement, private taskQueue: TaskQueue) {
+  constructor(root: HTMLElement, private taskQueue: TaskQueue, private defaultConfiguration: MdcDefaultTextFieldConfiguration) {
     super(root);
     defineMdcTextFieldElementApis(this.root);
   }
@@ -65,7 +66,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   ltrText: boolean;
 
   @bindable.booleanAttr
-  outlined: boolean;
+  outlined?: boolean = this.defaultConfiguration.outlined;
 
   @bindable
   prefix: string;
