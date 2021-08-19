@@ -1,4 +1,4 @@
-import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, PLATFORM, child, TaskQueue } from 'aurelia-framework';
+import { useView, inject, customElement, processContent, ViewCompiler, ViewResources, PLATFORM, TaskQueue } from 'aurelia-framework';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
   MDCTextFieldLineRippleAdapter, cssClasses, MDCTextFieldOutlineAdapter, helperTextStrings, characterCountStrings
@@ -12,11 +12,13 @@ import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
 import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './mdc-text-field-icon';
 import { MdcTextFieldHelperText, IMdcTextFieldHelperTextElement } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter, IMdcTextFieldCharacterCounterElement } from './mdc-text-field-character-counter';
-import { MDCFoundation } from '@material/base';
 import { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 
 let textFieldId = 0;
+
+const leadingIconSelector = `[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`;
+const trailingIconSelector = `[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`;
 
 @inject(Element, TaskQueue, MdcDefaultTextFieldConfiguration)
 @useView(PLATFORM.moduleName('./mdc-text-field.html'))
@@ -30,9 +32,9 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
 
   static processContent(_viewCompiler: ViewCompiler, _resources: ViewResources, element: Element) {
     // move icons to slots - this allows omitting slot specification
-    const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`);
+    const leadingIcon = element.querySelector(leadingIconSelector);
     leadingIcon?.setAttribute('slot', 'leading-icon');
-    const trailingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`);
+    const trailingIcon = element.querySelector(trailingIconSelector);
     trailingIcon?.setAttribute('slot', 'trailing-icon');
     return true;
   }
@@ -45,6 +47,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   helperText_: MdcTextFieldHelperText | undefined;
   characterCounter_: MdcTextFieldCharacterCounter | undefined;
   errors = new Map<IError, boolean>();
+  mutationObserver = new MutationObserver(mutations => this.mutated(mutations));
 
   @bindable
   label: string;
@@ -259,30 +262,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.valid = true;
   }
 
-  @child(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`)
-  leadingIconEl: IMdcTextFieldIconElement | MdcComponent<MDCFoundation>;
-  leadingIconElChanged() {
-    if (this.leadingIconEl) {
-      const el = ((this.leadingIconEl as MdcComponent<MDCFoundation>).root ?? this.leadingIconEl) as IMdcTextFieldIconElement;
-      this.leadingIcon_ = el.au['mdc-text-field-icon'].viewModel;
-    } else {
-      this.leadingIcon_ = undefined;
-    }
-  }
-
   leadingIcon_: MdcTextFieldIcon | undefined;
-
-  @child(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`)
-  trailingIconEl: IMdcTextFieldIconElement | MdcComponent<MDCFoundation>;
-  trailingIconElChanged() {
-    if (this.trailingIconEl) {
-      const el = ((this.trailingIconEl as MdcComponent<MDCFoundation>).root ?? this.trailingIconEl) as IMdcTextFieldIconElement;
-      this.trailingIcon_ = el.au['mdc-text-field-icon'].viewModel;
-    } else {
-      this.trailingIcon_ = undefined;
-    }
-  }
-
   trailingIcon_: MdcTextFieldIcon | undefined;
 
   async initialise() {
@@ -299,6 +279,11 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     this.typeChanged();
     this.autocompleteChanged();
     this.nameChanged();
+
+    this.mutationObserver.observe(this.root, { subtree: true, childList: true });
+    this.leadingIconChanged();
+    this.trailingIconChanged();
+
     // handle the case when attribute value was set, not bound, in html
     if (this.root.hasAttribute('value')) {
       this.value = this.root.getAttribute('value') ?? '';
@@ -320,6 +305,29 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
       }
     }
     await Promise.all(initialisedChildren);
+  }
+
+  mutated(mutations: MutationRecord[]) {
+    if (mutations.find(x => [...Array.from(x.addedNodes), ...Array.from(x.removedNodes)].find(y => y instanceof HTMLElement && y.matches(leadingIconSelector)))) {
+      this.leadingIconChanged();
+    }
+    if (mutations.find(x => [...Array.from(x.addedNodes), ...Array.from(x.removedNodes)].find(y => y instanceof HTMLElement && y.matches(trailingIconSelector)))) {
+      this.trailingIconChanged();
+    }
+  }
+
+  trailingIconChanged() {
+    const el = this.root.querySelector<IMdcTextFieldIconElement>(trailingIconSelector);
+    this.trailingIcon_ = el?.au['mdc-text-field-icon'].viewModel;
+  }
+
+  leadingIconChanged() {
+    const el = this.root.querySelector<IMdcTextFieldIconElement>(leadingIconSelector);
+    this.leadingIcon_ = el?.au['mdc-text-field-icon'].viewModel;
+  }
+
+  override destroy() {
+    this.mutationObserver.disconnect();
   }
 
   getDefaultFoundation() {
