@@ -136,6 +136,8 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       case 'mouseenter': this.handleMouseEnter(); break;
       case 'focus': this.handleFocus(evt as FocusEvent); break;
       case 'mouseleave': this.handleMouseLeave(); break;
+      case 'touchstart': this.handleTouchstart(); break;
+      case 'touchend': this.handleTouchend(); break;
     }
   }
 
