@@ -1,3 +1,13 @@
+## [7.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.4...v7.0.5) (2021-08-20)
+
+
+### Bug Fixes
+
+* **text-field:** replace child with simple mutation observer ([491f707](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/491f707d84c9407605cf2edc5a105fea55132e20))
+* **tooltip:** hook touch events ([8345941](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/834594149b79afe01d599c5465eaa48a70b8e816))
+
+
+
 ## [7.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.3...v7.0.4) (2021-08-15)
 
 
