@@ -9,9 +9,11 @@ import { LineRippleConfiguration } from '@aurelia-mdc-web/line-ripple';
 import { NotchedOutlineConfiguration } from '@aurelia-mdc-web/notched-outline';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { EnhanceMdcTextfield } from './enhance-mdc-text-field';
+import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 
 export { MdcTextField, IMdcTextFieldElement } from './mdc-text-field';
 export { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
+export { MdcDefaultTextFieldConfiguration };
 
 let configured = false;
 
@@ -28,6 +30,15 @@ export const TextFieldConfiguration = {
     }
     return container.register(MdcTextField, MdcTextFieldIcon, MdcTextFieldHelperLine, MdcTextFieldHelperText, MdcTextFieldCharacterCounter,
       FloatingLabelConfiguration, LineRippleConfiguration, NotchedOutlineConfiguration, RippleConfiguration, EnhanceMdcTextfield);
+  },
+  customize(optionsProvider: (config?: MdcDefaultTextFieldConfiguration) => void) {
+    return {
+      register(container: IContainer): IContainer {
+        const options = container.get(MdcDefaultTextFieldConfiguration);
+        optionsProvider(options);
+        return TextFieldConfiguration.register(container);
+      },
+    };
   }
 };
 

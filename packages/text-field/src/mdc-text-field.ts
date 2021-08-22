@@ -13,14 +13,15 @@ import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-fi
 import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';
 import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 import { processContent, IPlatform, CustomAttribute, CustomElement } from '@aurelia/runtime-html';
+import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 
 let textFieldId = 0;
 
-@inject(Element, IPlatform)
+@inject(Element, IPlatform, MdcDefaultTextFieldConfiguration)
 @customElement('mdc-text-field')
 @processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
-  constructor(root: HTMLElement, private platform: IPlatform) {
+  constructor(root: HTMLElement, private platform: IPlatform, private defaultConfiguration: MdcDefaultTextFieldConfiguration) {
     super(root);
     defineMdcTextFieldElementApis(this.root);
   }
@@ -65,7 +66,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   ltrText: boolean;
 
   @bindable({ set: booleanAttr })
-  outlined: boolean;
+  outlined?: boolean = this.defaultConfiguration.outlined;
 
   @bindable
   prefix: string;

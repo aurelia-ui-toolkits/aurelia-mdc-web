@@ -5,6 +5,7 @@ import { MdcTooltipAttribute } from './mdc-tooltip-attribute';
 
 export { MdcTooltip } from './mdc-tooltip';
 export { MdcTooltipAttribute } from './mdc-tooltip-attribute';
+export { MdcDefaultTooltipConfiguration };
 
 export const TooltipConfiguration = {
   register(container: IContainer): IContainer {
@@ -15,7 +16,7 @@ export const TooltipConfiguration = {
       register(container: IContainer): IContainer {
         const options = container.get(MdcDefaultTooltipConfiguration);
         optionsProvider(options);
-        return container.register(MdcTooltip, MdcTooltipAttribute);
+        return TooltipConfiguration.register(container);
       },
     };
   }
