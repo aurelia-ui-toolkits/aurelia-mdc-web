@@ -8,7 +8,7 @@ import { MdcComponent, IValidatedElement, IError, booleanAttr, number } from '@a
 import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
 import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
-import { MdcTextFieldIcon, mdcIconStrings } from './mdc-text-field-icon';
+import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './mdc-text-field-icon';
 import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';
 import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
@@ -16,6 +16,8 @@ import { processContent, IPlatform, CustomAttribute, CustomElement } from '@aure
 import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 
 let textFieldId = 0;
+const leadingIconSelector = `[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`;
+const trailingIconSelector = `[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`;
 
 @inject(Element, IPlatform, MdcDefaultTextFieldConfiguration)
 @customElement('mdc-text-field')
@@ -46,6 +48,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   errors = new Map<IError, boolean>();
   leadingIcon_: MdcTextFieldIcon | undefined;
   trailingIcon_: MdcTextFieldIcon | undefined;
+  mutationObserver = new MutationObserver(mutations => this.mutated(mutations));
 
   @bindable
   label: string;
@@ -264,14 +267,32 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   beforeFoundationCreated() {
     this.maxlengthChanged();
     this.typeChanged();
-    const leadingIconEl = this.root.querySelector(`.${iconCssClasses.ROOT}--${mdcIconStrings.LEADING}`);
-    if (leadingIconEl) {
-      this.leadingIcon_ = CustomAttribute.for<MdcTextFieldIcon>(leadingIconEl, mdcIconStrings.ATTRIBUTE)?.viewModel;
+    this.mutationObserver.observe(this.root, { subtree: true, childList: true });
+    this.leadingIconChanged();
+    this.trailingIconChanged();
+  }
+
+  mutated(mutations: MutationRecord[]) {
+    if (mutations.find(x => [...Array.from(x.addedNodes), ...Array.from(x.removedNodes)].find(y => y instanceof HTMLElement && y.matches(leadingIconSelector)))) {
+      this.leadingIconChanged();
     }
-    const trailingIconEl = this.root.querySelector(`.${iconCssClasses.ROOT}--${mdcIconStrings.TRAILING}`);
-    if (trailingIconEl) {
-      this.trailingIcon_ = CustomAttribute.for<MdcTextFieldIcon>(trailingIconEl, mdcIconStrings.ATTRIBUTE)?.viewModel;
+    if (mutations.find(x => [...Array.from(x.addedNodes), ...Array.from(x.removedNodes)].find(y => y instanceof HTMLElement && y.matches(trailingIconSelector)))) {
+      this.trailingIconChanged();
     }
+  }
+
+  trailingIconChanged() {
+    const el = this.root.querySelector<IMdcTextFieldIconElement>(trailingIconSelector);
+    this.trailingIcon_ = el ? CustomAttribute.for<MdcTextFieldIcon>(el, mdcIconStrings.ATTRIBUTE)?.viewModel : undefined;
+  }
+
+  leadingIconChanged() {
+    const el = this.root.querySelector<IMdcTextFieldIconElement>(leadingIconSelector);
+    this.leadingIcon_ = el ? CustomAttribute.for<MdcTextFieldIcon>(el, mdcIconStrings.ATTRIBUTE)?.viewModel : undefined;
+  }
+
+  override destroy() {
+    this.mutationObserver.disconnect();
   }
 
   initialSyncWithDOM() {
