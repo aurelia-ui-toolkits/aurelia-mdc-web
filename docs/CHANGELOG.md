@@ -1,3 +1,20 @@
+## [7.0.5-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.2-au2...v7.0.5-au2) (2021-08-22)
+
+
+### Bug Fixes
+
+* **text-field:** replace child with simple mutation observer ([f31bc93](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f31bc9376c2e88dcdd155e456af07ee348e336ac))
+* **tooltip:** hook touch events ([b7774f1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b7774f1c9efef4dca43bb17bfed0444836a6360a))
+
+
+### Features
+
+* **select:** add default configuration ([65a2929](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/65a292965709027b0ea429c10ff9f9411c8c4d33))
+* **text-field:** add default configuration ([3a4c6eb](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3a4c6ebcff76e1c12509db937a8cc3bd05e539d3))
+* **tooltip:** add scroll-host attribute and default configuration ([1713499](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1713499d350c9171f73977d9dcf842d5cc3ac65b))
+
+
+
 ## [7.0.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.1-au2...v7.0.2-au2) (2021-08-10)
 
 
