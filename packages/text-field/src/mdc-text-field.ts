@@ -1,7 +1,7 @@
 import { inject, customElement, INode, bindable } from 'aurelia';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
-  MDCTextFieldLineRippleAdapter, MDCTextFieldOutlineAdapter, cssClasses, helperTextStrings, characterCountStrings, iconCssClasses
+  MDCTextFieldLineRippleAdapter, MDCTextFieldOutlineAdapter, cssClasses, helperTextStrings, characterCountStrings
 } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
 import { MdcComponent, IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
