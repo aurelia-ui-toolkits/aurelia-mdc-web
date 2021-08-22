@@ -9,9 +9,11 @@ import { ListConfiguration } from '@aurelia-mdc-web/list';
 import { NotchedOutlineConfiguration } from '@aurelia-mdc-web/notched-outline';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { MdcSelectValueObserver } from './mdc-select-value-observer';
+import { MdcDefaultSelectConfiguration } from './mdc-default-select-configuration';
 
 export { MdcSelect, IMdcSelectElement } from './mdc-select';
 export { IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
+export { MdcDefaultSelectConfiguration };
 
 let configured = false;
 
@@ -22,12 +24,21 @@ export const SelectConfiguration = {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrMapper.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SELECT' ? property === 'value' : false);
-        nodeObserverLocator.useConfig({ 'MDC-SELECT': { value: { events: [strings.CHANGE_EVENT], type:  MdcSelectValueObserver} } });
+        nodeObserverLocator.useConfig({ 'MDC-SELECT': { value: { events: [strings.CHANGE_EVENT], type: MdcSelectValueObserver } } });
       }).register(container);
       configured = true;
     }
     return container.register(MdcSelect, MdcSelectIcon, MdcSelectHelperText, ListConfiguration,
       FloatingLabelConfiguration, LineRippleConfiguration, NotchedOutlineConfiguration, RippleConfiguration);
+  },
+  customize(optionsProvider: (config?: MdcDefaultSelectConfiguration) => void) {
+    return {
+      register(container: IContainer): IContainer {
+        const options = container.get(MdcDefaultSelectConfiguration);
+        optionsProvider(options);
+        return SelectConfiguration.register(container);
+      },
+    };
   }
 };
 
