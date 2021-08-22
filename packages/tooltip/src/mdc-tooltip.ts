@@ -2,13 +2,17 @@ import { MdcComponent, defaultSlotProcessContent, booleanAttr, number } from '@a
 import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses, PositionWithCaret } from '@material/tooltip';
 import { inject, customElement, bindable } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
+import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
 /**
  * @selector mdc-tooltip
  */
-@inject(Element)
+@inject(Element, MdcDefaultTooltipConfiguration)
 @customElement('mdc-tooltip')
 @processContent(defaultSlotProcessContent)
 export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements EventListenerObject {
+  constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration) {
+    super(root);
+  }
 
   /** Sets the anchor element */
   @bindable
@@ -75,6 +79,9 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
     this.foundation?.setHideDelay(this.hideDelay);
   }
 
+  @bindable
+  scrollHost?: HTMLElement | string = this.defaultConfiguration.scrollHost;
+
   beforeFoundationCreated() {
     if (this.persistent) {
       this.root.setAttribute(attributes.PERSISTENT, 'true');
@@ -94,6 +101,16 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       this.anchorElem?.addEventListener('mouseleave', this);
       this.anchorElem?.addEventListener('touchstart', this);
       this.anchorElem?.addEventListener('touchend', this);
+    }
+
+    if (typeof (this.scrollHost) === 'string') {
+      this.scrollHost = document.querySelector<HTMLElement>(this.scrollHost) ?? undefined;
+    }
+
+    if (this.scrollHost) {
+      const scrollHost = this.scrollHost;
+      this.foundation!.attachScrollHandler((event, listener) => scrollHost.addEventListener(event, listener));
+      this.foundation!.removeScrollHandler((event, listener) => scrollHost.removeEventListener(event, listener));
     }
   }
 

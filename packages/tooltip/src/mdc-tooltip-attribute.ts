@@ -4,14 +4,16 @@ import { booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MdcTooltip } from './mdc-tooltip';
 import { Scope } from '@aurelia/runtime';
 import { PropertyBindingInstruction, ISyntheticView, ITemplateCompiler } from '@aurelia/runtime-html';
+import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
 
 /**
  * @selector [mdc-tooltip]
  */
-@inject(Element, IPlatform, IContainer, IAppRoot, ITemplateCompiler)
+@inject(Element, IPlatform, IContainer, IAppRoot, ITemplateCompiler, MdcDefaultTooltipConfiguration)
 @customAttribute('mdc-tooltip')
 export class MdcTooltipAttribute {
-  constructor(root: HTMLElement, private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot) {
+  constructor(root: HTMLElement, private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot,
+    private defaultConfiguration: MdcDefaultTooltipConfiguration) {
     this.root = root;
   }
 
@@ -46,6 +48,9 @@ export class MdcTooltipAttribute {
   @bindable({ set: number })
   hideDelay: number;
 
+  @bindable
+  scrollHost?: HTMLElement | string = this.defaultConfiguration.scrollHost;
+
   tooltip: HTMLElement;
   view: ISyntheticView;
 
@@ -61,6 +66,7 @@ export class MdcTooltipAttribute {
       'persistent': new PropertyBindingInstruction('persistent', 'persistent', BindingMode.default),
       'show-delay': new PropertyBindingInstruction('showDelay', 'showDelay', BindingMode.default),
       'hide-delay': new PropertyBindingInstruction('hideDelay', 'hideDelay', BindingMode.default),
+      'scroll-host': new PropertyBindingInstruction('scrollHost', 'scrollHost', BindingMode.default),
     };
 
     const renderPlan = createElement(this.platform, MdcTooltip, props);
@@ -69,20 +75,6 @@ export class MdcTooltipAttribute {
     this.tooltip = sv.children![0].host!;
     this.tooltip.querySelector('.mdc-tooltip__surface')!.innerHTML = this.value;
     document.body.appendChild(this.tooltip);
-
-    // this.tooltip = document.createElement('mdc-tooltip');
-    // this.tooltip.setAttribute('anchor-elem.bind', 'root');
-    // this.tooltip.setAttribute('x-position.bind', 'xPosition');
-    // this.tooltip.setAttribute('y-position.bind', 'yPosition');
-    // this.tooltip.setAttribute('boundary-type.bind', 'boundaryType');
-    // this.tooltip.setAttribute('rich.bind', 'rich');
-    // this.tooltip.setAttribute('persistent.bind', 'persistent');
-    // this.tooltip.innerText = this.value;
-    // document.body.appendChild(this.tooltip);
-    // this.view = this.templatingEngine.enhance({
-    //   element: this.tooltip,
-    //   bindingContext: this
-    // });
   }
 
   detached() {
