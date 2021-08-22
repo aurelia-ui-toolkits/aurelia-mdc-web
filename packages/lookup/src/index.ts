@@ -8,12 +8,12 @@ export const LookupConfiguration = {
   register(container: IContainer): IContainer {
     return container.register(MdcLookup);
   },
-  customize(optionsProvider: (config?: MdcDefaultLookupConfiguration) => void) {
+  customize(optionsProvider: (config: MdcDefaultLookupConfiguration) => void) {
     return {
       register(container: IContainer): IContainer {
         const options = container.get(MdcDefaultLookupConfiguration);
         optionsProvider(options);
-        return container.register(MdcLookup);
+        return LookupConfiguration.register(container);
       },
     };
   }

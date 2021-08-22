@@ -31,7 +31,7 @@ export const SelectConfiguration = {
     return container.register(MdcSelect, MdcSelectIcon, MdcSelectHelperText, ListConfiguration,
       FloatingLabelConfiguration, LineRippleConfiguration, NotchedOutlineConfiguration, RippleConfiguration);
   },
-  customize(optionsProvider: (config?: MdcDefaultSelectConfiguration) => void) {
+  customize(optionsProvider: (config: MdcDefaultSelectConfiguration) => void) {
     return {
       register(container: IContainer): IContainer {
         const options = container.get(MdcDefaultSelectConfiguration);

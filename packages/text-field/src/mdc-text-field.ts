@@ -16,8 +16,8 @@ import { processContent, IPlatform, CustomAttribute, CustomElement } from '@aure
 import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 
 let textFieldId = 0;
-const leadingIconSelector = `[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`;
-const trailingIconSelector = `[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`;
+const leadingIconSelector = '.mdc-text-field__icon--leading';
+const trailingIconSelector = '.mdc-text-field__icon--trailing';
 
 @inject(Element, IPlatform, MdcDefaultTextFieldConfiguration)
 @customElement('mdc-text-field')

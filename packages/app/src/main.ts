@@ -81,6 +81,7 @@ import { ButtonPage } from './views/button/button';
 import { Tabs } from './views/tabs/tabs';
 import { TreeView } from './views/tree-view/tree-view';
 import { TreeViewExamples } from './views/tree-view/tree-view-examples';
+import { TooltipConfiguration } from '@aurelia-mdc-web/tooltip';
 
 // href is buggy
 // DefaultResources.splice(DefaultResources.findIndex(x => x === HrefCustomAttribute as unknown as IRegistry));
@@ -90,7 +91,9 @@ Aurelia
   //   // optionally add the shared styles for all components
   //   sharedStyles: [shared]
   // }))
-  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: true, useHref: false }), MaterialConfiguration, SVGAnalyzer,
+  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: true, useHref: false }),
+    TooltipConfiguration.customize(c => { c.scrollHost = '.demo-panel-content'; }),
+    MaterialConfiguration, SVGAnalyzer,
     Hljs, ApiViewer, ExampleViewer, JsonValueConverter, LoggerConfiguration.create({ level: LogLevel.debug }),
     ValidationHtmlConfiguration.customize(o => o.ValidationControllerFactoryType = MdcValidationControllerFactory), ValidationConfiguration
   )

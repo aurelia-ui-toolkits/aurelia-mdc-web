@@ -31,7 +31,7 @@ export const TextFieldConfiguration = {
     return container.register(MdcTextField, MdcTextFieldIcon, MdcTextFieldHelperLine, MdcTextFieldHelperText, MdcTextFieldCharacterCounter,
       FloatingLabelConfiguration, LineRippleConfiguration, NotchedOutlineConfiguration, RippleConfiguration, EnhanceMdcTextfield);
   },
-  customize(optionsProvider: (config?: MdcDefaultTextFieldConfiguration) => void) {
+  customize(optionsProvider: (config: MdcDefaultTextFieldConfiguration) => void) {
     return {
       register(container: IContainer): IContainer {
         const options = container.get(MdcDefaultTextFieldConfiguration);
