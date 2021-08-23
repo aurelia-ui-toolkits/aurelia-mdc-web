@@ -1,3 +1,13 @@
+## [7.0.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.5...v7.0.6) (2021-08-23)
+
+
+### Bug Fixes
+
+* **base:** add missing validation field ([5fa1767](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5fa1767a250924b6255777d4045e1fda253b414c))
+* **dialog:** use proper ripple selector ([c64830e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c64830e338fda1087edf7793917d188f7fa161da))
+
+
+
 ## [7.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.4...v7.0.5) (2021-08-20)
 
 

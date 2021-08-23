@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/drawer",
-  "version": "7.0.5",
+  "version": "7.0.6",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "7.0.5",
+    "@aurelia-mdc-web/base": "7.0.6",
     "@material/drawer": "^12.0.0",
     "@material/list": "^12.0.0"
   }
