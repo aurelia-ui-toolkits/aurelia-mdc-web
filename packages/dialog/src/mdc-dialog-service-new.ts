@@ -47,7 +47,7 @@ export class MdcDialogServiceNew {
     dialogVm.open();
     await openedPromise;
     // re-layout ripple elements because dialogs use `transform: scale(.8)` and initial layout is incorrect
-    const ripples = Array.from(dialogVm.root.querySelectorAll<IMdcRippleElement>(`${MdcRipple.ATTRIBUTE_CLASS}`));
+    const ripples = Array.from(dialogVm.root.querySelectorAll<IMdcRippleElement>(`.${MdcRipple.ATTRIBUTE_CLASS}`));
     await Promise.all(ripples.map(async x => {
       await x.au['mdc-ripple'].viewModel.initialised;
       x.au['mdc-ripple'].viewModel.foundation?.layout();
