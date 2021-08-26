@@ -96,7 +96,7 @@ export class MdcDialogService {
     bindingContext.currentViewModel = (controller as Controller).viewModel;
     // instantiate focus trap manually after the content has been added because it need at least one focusable element
     dialogVm.createFocusTrap();
-    this.taskQueue.queueTask(() => dialogVm.focusTrap?.trapFocus());
+    this.taskQueue.queueTask(() => dialogVm.mdcFocusTrap?.trapFocus());
 
     return closingPromise;
   }
