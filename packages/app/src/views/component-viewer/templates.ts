@@ -13,6 +13,22 @@ export interface IComponentTemplate {
 }
 
 export const templates: { [x: string]: IComponentTemplate } = {
+  'banner': {
+    title: 'Banner',
+    description: 'A banner displays a prominent message and related optional actions.',
+    references: [{
+      name: 'Material Design guidelines: Banner',
+      url: 'https://material.io/design/components/banners.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-banner/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-banner/README.md#sass-mixins' },
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/banner\'));',
+    sass: '@use "@material/banner/styles"'
+  },
   'button': {
     title: 'Button',
     description: 'Buttons allow users to take actions, and make choices, with a single tap.',

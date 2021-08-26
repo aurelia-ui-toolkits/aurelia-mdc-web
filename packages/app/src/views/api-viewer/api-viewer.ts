@@ -1,5 +1,6 @@
 import { NavigationInstruction, RouteConfig } from 'aurelia-router';
 import { NavigationItem } from 'typedoc';
+import bannerApi from '../../../../banner/doc/api.json';
 import buttonApi from '../../../../button/doc/api.json';
 import cardApi from '../../../../card/doc/api.json';
 import checkboxApi from '../../../../checkbox/doc/api.json';
@@ -25,6 +26,7 @@ import radioApi from '../../../../radio/doc/api.json';
 
 const apis: Record<string, unknown> = {
   'button': buttonApi,
+  'banner': bannerApi,
   'card': cardApi,
   'checkbox': checkboxApi,
   'chips': chipsApi,

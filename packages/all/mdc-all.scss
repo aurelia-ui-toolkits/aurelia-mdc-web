@@ -42,6 +42,7 @@
 @use "@material/image-list/mdc-image-list";
 @use "@aurelia-mdc-web/image-list";
 @use "@material/tooltip/styles"as toolip-styles;
+@use "@material/banner/styles"as banner-styles;
 
 @include slider.core-styles;
 @include list-evolution-mixins.core-styles;
