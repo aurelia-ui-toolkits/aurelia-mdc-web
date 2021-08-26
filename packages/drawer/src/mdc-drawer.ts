@@ -1,9 +1,7 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCDismissibleDrawerFoundation, cssClasses, strings, MDCModalDrawerFoundation, util, MDCDrawerAdapter } from '@material/drawer';
-import { MDCDrawerFocusTrapFactory } from '@material/drawer/util';
+import { MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
+import { MDCDismissibleDrawerFoundation, cssClasses, strings, MDCModalDrawerFoundation, MDCDrawerAdapter } from '@material/drawer';
 import { SpecificEventListener } from '@material/base';
 import { MDCListFoundation } from '@material/list';
-import { FocusTrap } from '@material/dom/focus-trap';
 import { inject, useView, customElement, bindable } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 
@@ -46,14 +44,12 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
   private previousFocus_?: Element | null;
   private scrim_?: HTMLElement | null; // assigned in initialSyncWithDOM()
 
-  private focusTrap_?: FocusTrap; // assigned in initialSyncWithDOM()
-  private focusTrapFactory_!: MDCDrawerFocusTrapFactory; // assigned in initialize()
+  mdcFocusTrap: MdcFocusTrap;
 
   private handleScrimClick_?: SpecificEventListener<'click'>; // initialized in initialSyncWithDOM()
 
   // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
-    this.focusTrapFactory_ = el => new FocusTrap(el);
     if (this.root.parentElement!.clientWidth < 900) {
       this.type = 'modal';
     }
@@ -71,7 +67,6 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
           return (this.foundation as MDCModalDrawerFoundation).handleScrimClick();
         };
         this.scrim_.addEventListener('click', this.handleScrimClick_);
-        this.focusTrap_ = util.createFocusTrapInstance(this.root, this.focusTrapFactory_);
       }
     }
   }
@@ -119,8 +114,8 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
       },
       notifyClose: () => this.emit(strings.CLOSE_EVENT, {}, true /* shouldBubble */),
       notifyOpen: () => this.emit(strings.OPEN_EVENT, {}, true /* shouldBubble */),
-      trapFocus: () => this.focusTrap_?.trapFocus(),
-      releaseFocus: () => this.focusTrap_?.releaseFocus(),
+      trapFocus: () => this.mdcFocusTrap.trapFocus(),
+      releaseFocus: () => this.mdcFocusTrap.releaseFocus(),
     };
 
     if (this.type === 'modal') {
