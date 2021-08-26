@@ -10,8 +10,11 @@ export class MdcFocusTrap {
 
   focusTrap: FocusTrap;
 
+  @bindable.booleanAttr
+  delay: boolean;
+
   @bindable
-  initialFocusEl?: HTMLElement;
+  initialFocusEl?: HTMLElement | (() => HTMLElement);
 
   @bindable.booleanAttr
   skipInitialFocus: boolean;
@@ -20,7 +23,14 @@ export class MdcFocusTrap {
   skipRestoreFocus: boolean;
 
   attached() {
-    this.focusTrap = new FocusTrap(this.root, { initialFocusEl: this.initialFocusEl, skipInitialFocus: this.skipInitialFocus, skipRestoreFocus: this.skipRestoreFocus });
+    if (!this.delay) {
+      this.create();
+    }
+  }
+
+  create() {
+    const el = this.initialFocusEl instanceof HTMLElement || this.initialFocusEl === undefined ? this.initialFocusEl : this.initialFocusEl();
+    this.focusTrap = new FocusTrap(this.root, { initialFocusEl: el, skipInitialFocus: this.skipInitialFocus, skipRestoreFocus: this.skipRestoreFocus });
   }
 
   trapFocus() {
