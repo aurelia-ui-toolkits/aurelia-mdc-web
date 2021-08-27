@@ -394,6 +394,22 @@ export const templates: { [x: string]: IComponentTemplate } = {
     sass: `@use '@material/ripple/mdc-ripple';
 @use '@material/ripple';`
   },
+  'segmented-button': {
+    title: 'Segmented Button',
+    description: 'Segmented buttons allow users to toggle the selected states of grouped buttons.',
+    references: [{
+      name: 'Material Design guidelines: Segmented Buttons',
+      url: 'https://material.io/design/interaction/buttons.html'
+    }, {
+      name: 'Material Components Web',
+      url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-segmented-button/README.md'
+    }],
+    mdcUrls: [
+      { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-segmented-button/README.md#sass-apis' },
+    ],
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/segmented-button\'));',
+    sass: '@use "@material/segmented-button/styles";'
+  },
   'select': {
     title: 'Select Menus',
     description: 'MDC Select provides Material Design single-option select menus, using the MDC menu.',

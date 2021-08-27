@@ -20,7 +20,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 
 | Component  | Status  | Demo |
 | ---------- | ------- | :------: |
-| banner | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/banner) |
+| banner | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/banner) |
 | button | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/button) |
 | card | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/card) |
 | checkbox | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/checkbox) |
@@ -43,7 +43,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 | menu | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/menu) |
 | radio | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/radio) |
 | ripple | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/ripple) |
-| segmented-button | Not Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/segmented-button) |
+| segmented-button | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/segmented-button) |
 | select | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/select) |
 | slider | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/slider) |
 | snackbar | Available | [View](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/snackbar) |

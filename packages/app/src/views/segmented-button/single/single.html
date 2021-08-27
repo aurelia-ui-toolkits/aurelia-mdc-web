@@ -1,0 +1,11 @@
+<template>
+  <div class="demo-layout__row">
+    <mdc-segmented-button single>
+      <button mdc-segmented-button-segment checked.bind="checked1">Segment 1</button>
+      <button mdc-segmented-button-segment checked.bind="checked2">Segment 2</button>
+    </mdc-segmented-button>
+  </div>
+  <div class="demo-layout__row">
+    Segment1 - ${checked1}, Segment2 - ${checked2}
+  </div>
+</template>

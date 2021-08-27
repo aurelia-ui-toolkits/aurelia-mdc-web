@@ -43,6 +43,7 @@
 @use "@aurelia-mdc-web/image-list";
 @use "@material/tooltip/styles"as toolip-styles;
 @use "@material/banner/styles"as banner-styles;
+@use '@material/segmented-button/styles'as segmented-button-styles;
 
 @include slider.core-styles;
 @include list-evolution-mixins.core-styles;

@@ -26,6 +26,7 @@ export function configure(config: FrameworkConfiguration) {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/menu-surface'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/radio'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/segmented-button'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/slider'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/snackbar'))

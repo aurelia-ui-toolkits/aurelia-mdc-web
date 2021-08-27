@@ -65,6 +65,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
           'notched-outline',
           'radio',
           'ripple',
+          'segmented-button',
           'select',
           'slider',
           'snackbar',
@@ -91,8 +92,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
       rules: [
         { test: /\.(woff|woff2)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1, esModule: false } } },
         { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000, esModule: false } } },
-        { test: /\.ts$/, exclude: /!!raw-loader!.\/inline\/inline.ts/, loader: 'ts-loader' },
-        { test: /\.ts$/, include: /!!raw-loader!.\/inline\/inline.ts/, loader: 'raw-loader' },
+        { test: /\.ts$/, loader: 'ts-loader' },
         { test: /\.html$/i, use: { loader: 'html-loader', options: { esModule: false, sources: { list: [{ tag: 'img', attribute: 'src', type: 'src' }, { tag: 'app-nav-bar', attribute: 'logo-url', type: 'src' }] } } } },
         { test: /\.scss$/i, issuer: /(\.html|empty-entry\.js)$/i, use: scssLoaders },
         { test: /\.scss$/i, issuer: /\.ts$/i, use: ['style-loader', ...scssLoaders] },

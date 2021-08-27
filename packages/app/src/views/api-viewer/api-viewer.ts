@@ -21,6 +21,7 @@ import listApi from '../../../../list/doc/api.json';
 import lookupApi from '../../../../lookup/doc/api.json';
 import menuApi from '../../../../menu/doc/api.json';
 import tooltipApi from '../../../../tooltip/doc/api.json';
+import segmentedButtonApi from '../../../../segmented-button/doc/api.json';
 import selectApi from '../../../../select/doc/api.json';
 import radioApi from '../../../../radio/doc/api.json';
 
@@ -46,6 +47,7 @@ const apis: Record<string, unknown> = {
   'lookup': lookupApi,
   'menu': menuApi,
   'tooltip': tooltipApi,
+  'segmented-button': segmentedButtonApi,
   'select': selectApi,
   'radio': radioApi
 };
