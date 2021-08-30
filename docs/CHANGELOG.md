@@ -1,3 +1,19 @@
+# [7.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.6...v7.1.0) (2021-08-30)
+
+
+### Bug Fixes
+
+* **app:** workaround https://github.com/material-components/material-components-web/issues/7360 ([216bb11](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/216bb1168e68006ade1cc849b167692c1129ee9b))
+
+
+### Features
+
+* **banner:** add ([b0765ff](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b0765ff73044a8acc45cbda88f4c15d0cf6bccf4))
+* **base:** allow delaying focus trap creation ([cb0bc91](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/cb0bc915e59e01a4b03106e32d3a2ba846445e20))
+* **segmented-button:** add ([a4fb7d7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a4fb7d766719be5653d2302d1ac03e4fc29bfa9b))
+
+
+
 ## [7.0.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.5...v7.0.6) (2021-08-23)
 
 
