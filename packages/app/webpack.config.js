@@ -31,7 +31,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
     stats: stats,
     resolve: {
       extensions: ['.ts', '.js'],
-      modules: ['src', 'node_modules', '../../node_modules'].map(x => path.resolve(x)),
+      modules: ['src', '../../local_modules', 'node_modules', '../../node_modules'].map(x => path.resolve(x)),
       alias: {
         'src': path.resolve(__dirname, 'src'),
         // alias all packages to src code

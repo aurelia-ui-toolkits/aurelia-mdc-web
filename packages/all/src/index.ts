@@ -3,7 +3,8 @@ import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 export function configure(config: FrameworkConfiguration) {
   config
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/base'))
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/banner'))
+    // the module is problematic, enable when source TS are deleted from the package
+    // .plugin(PLATFORM.moduleName('@aurelia-mdc-web/banner'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/button'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/card'))
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/checkbox'))

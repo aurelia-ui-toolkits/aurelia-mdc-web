@@ -25,7 +25,8 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'), (config: MdcDefaultSelectConfiguration) => {
       config.outlined = false;
     })
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/all'));
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/all'))
+    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/banner'));
 
   await aurelia.start();
   await aurelia.setRoot(PLATFORM.moduleName('views/root/root'));
