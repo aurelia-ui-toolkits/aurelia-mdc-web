@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/floating-label",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "7.1.0",
+    "@aurelia-mdc-web/base": "7.1.1",
     "@material/floating-label": "^12.0.0"
   }
 }

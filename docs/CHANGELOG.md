@@ -1,3 +1,12 @@
+## [7.1.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.0...v7.1.1) (2021-08-30)
+
+
+### Bug Fixes
+
+* **base:** check reference ([0039a3b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0039a3b7f22541bb07f7cd49576d66bd5a697b4c))
+
+
+
 # [7.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.6...v7.1.0) (2021-08-30)
 
 
