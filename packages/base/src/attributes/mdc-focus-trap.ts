@@ -8,7 +8,7 @@ import { FocusTrap } from '@material/dom/focus-trap';
 export class MdcFocusTrap {
   constructor(private root: HTMLElement) { }
 
-  focusTrap: FocusTrap;
+  focusTrap?: FocusTrap;
 
   @bindable.booleanAttr
   delay: boolean;
@@ -34,10 +34,10 @@ export class MdcFocusTrap {
   }
 
   trapFocus() {
-    this.focusTrap.trapFocus();
+    this.focusTrap?.trapFocus();
   }
 
   releaseFocus() {
-    this.focusTrap.releaseFocus();
+    this.focusTrap?.releaseFocus();
   }
 }
