@@ -3,38 +3,38 @@
     <mdc-drawer ref="demoPermanent">
       <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
       <mdc-drawer-content>
-        <mdc-list activated>
-          <a mdc-list-item repeat.for="item of destinations" activated.bind="item.activated"
+        <mdc-deprecated-list activated>
+          <a mdc-deprecated-list-item repeat.for="item of destinations" activated.bind="item.activated"
             click.delegate="item.activated = !item.activated">
-            <mdc-icon mdc-list-item-leading if.bind="item.icon">${item.icon}</mdc-icon>
+            <mdc-icon mdc-deprecated-list-item-graphic if.bind="item.icon">${item.icon}</mdc-icon>
             <span>${item.label}</span>
           </a>
-          <mdc-list-divider></mdc-list-divider>
-          <mdc-list-group>
+          <mdc-deprecated-list-divider></mdc-deprecated-list-divider>
+          <mdc-deprecated-list-group>
             <h6>Labels</h6>
-          </mdc-list-group>
-          <a mdc-list-item href="#/drawer-demo/examples">
-            <mdc-icon mdc-list-item-leading>bookmark</mdc-icon>
+          </mdc-deprecated-list-group>
+          <a mdc-deprecated-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-deprecated-list-item-graphic>bookmark</mdc-icon>
             <span>Family</span>
           </a>
-          <a mdc-list-item href="#/drawer-demo/examples">
-            <mdc-icon mdc-list-item-leading>bookmark</mdc-icon>
+          <a mdc-deprecated-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-deprecated-list-item-graphic>bookmark</mdc-icon>
             <span>Friends</span>
           </a>
-          <a mdc-list-item href="#/drawer-demo/examples">
-            <mdc-icon mdc-list-item-leading>bookmark</mdc-icon>
+          <a mdc-deprecated-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-deprecated-list-item-graphic>bookmark</mdc-icon>
             <span>Work</span>
           </a>
-          <mdc-list-divider></mdc-list-divider>
-          <a mdc-list-item href="#/drawer-demo/examples">
-            <mdc-icon mdc-list-item-leading>settings</mdc-icon>
+          <mdc-deprecated-list-divider></mdc-deprecated-list-divider>
+          <a mdc-deprecated-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-deprecated-list-item-graphic>settings</mdc-icon>
             <span>Settings</span>
           </a>
-          <a mdc-list-item href="#/drawer-demo/examples">
-            <mdc-icon mdc-list-item-leading>announcement</mdc-icon>
+          <a mdc-deprecated-list-item href="#/drawer-demo/examples">
+            <mdc-icon mdc-deprecated-list-item-graphic>announcement</mdc-icon>
             <span>Help & feedback</span>
           </a>
-        </mdc-list>
+        </mdc-deprecated-list>
       </mdc-drawer-content>
     </mdc-drawer>
     <div style="padding: 16px; height: 400px;">

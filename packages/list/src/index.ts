@@ -15,6 +15,17 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./mdc-list-item-secondary-text'),
     PLATFORM.moduleName('./mdc-list-divider/mdc-list-divider'),
     PLATFORM.moduleName('./mdc-list-group'),
+
+    PLATFORM.moduleName('./mdc-deprecated-list/mdc-deprecated-list'),
+    PLATFORM.moduleName('./mdc-deprecated-list/mdc-deprecated-list-item/mdc-deprecated-list-item'),
+    PLATFORM.moduleName('./mdc-deprecated-list/mdc-deprecated-list-item/enhance-mdc-deprecated-list-item'),
+    PLATFORM.moduleName('./mdc-deprecated-list/mdc-deprecated-list-item-primary-text'),
+    PLATFORM.moduleName('./mdc-deprecated-list/mdc-deprecated-list-item-secondary-text'),
+    PLATFORM.moduleName('./mdc-deprecated-list/mdc-deprecated-list-item-graphic'),
+    PLATFORM.moduleName('./mdc-deprecated-list/mdc-deprecated-list-item-meta'),
+    PLATFORM.moduleName('./mdc-deprecated-list/mdc-deprecated-list-divider/mdc-deprecated-list-divider'),
+    PLATFORM.moduleName('./mdc-deprecated-list/mdc-deprecated-list-group'),
+
   ]);
 
   config.aurelia.use.plugin(PLATFORM.moduleName('@aurelia-mdc-web/ripple'));

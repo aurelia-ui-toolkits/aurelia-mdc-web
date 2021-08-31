@@ -23,12 +23,12 @@
     <mdc-drawer view-model.ref="drawer" type="dismissible" mdc-top-app-bar-fixed-adjust>
       <mdc-drawer-header title="Aurelia" subtitle="Material Components Web"></mdc-drawer-header>
       <mdc-drawer-content>
-        <mdc-list activated wrap-focus mdclist:action.delegate="navigateTo($event.detail)" tabindex="0">
+        <mdc-deprecated-list activated wrap-focus mdclist:action.delegate="navigateTo($event.detail)" tabindex="0">
           <template repeat.for="m of navModels">
-            <mdc-list-item activated.bind="m.isActive" value.bind="m">${m.title}</mdc-list-item>
-            <mdc-list-divider if.bind="m.config.divider"></mdc-list-divider>
+            <mdc-deprecated-list-item activated.bind="m.isActive" value.bind="m">${m.title}</mdc-deprecated-list-item>
+            <mdc-deprecated-list-divider if.bind="m.config.divider"></mdc-deprecated-list-divider>
           </template>
-        </mdc-list>
+        </mdc-deprecated-list>
       </mdc-drawer-content>
     </mdc-drawer>
     <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class="demo-panel-section">
