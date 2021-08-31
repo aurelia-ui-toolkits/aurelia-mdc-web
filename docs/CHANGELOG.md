@@ -1,3 +1,12 @@
+## [7.1.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.1...v7.1.2) (2021-08-31)
+
+
+### Bug Fixes
+
+* **drawer:** add mdc-deprecated-list ([50cab88](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/50cab8818da543c9a42c43424487022d4aed069a)), closes [#55](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/55)
+
+
+
 ## [7.1.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.0...v7.1.1) (2021-08-30)
 
 
