@@ -37,7 +37,7 @@ export class MdcFormField extends MdcComponent<MDCFormFieldFoundation> {
     }
     this.ripple = rippleUpgraded?.au['mdc-ripple'].viewModel;
 
-    const input = this.root.querySelector('input');
+    const input = this.root.querySelector('input, button');
     if (input?.hasAttribute('id')) {
       this.label = this.root.querySelector('label');
       if (this.label) {
