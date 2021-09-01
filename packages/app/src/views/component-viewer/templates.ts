@@ -481,8 +481,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Sass Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-switch/README.md#sass-mixins' },
     ],
     code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/switch\'));',
-    sass: `@use '@material/switch/mdc-switch';
-@use '@material/switch';`
+    sass: '@use "@material/switch/styles";'
   },
   'tabs': {
     title: 'Tabs',
