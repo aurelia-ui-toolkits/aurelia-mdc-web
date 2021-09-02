@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/image-list",
-  "version": "7.1.2",
+  "version": "7.1.3",
   "publishConfig": {
     "access": "public"
   },

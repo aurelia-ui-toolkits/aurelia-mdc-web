@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/validation",
-  "version": "7.1.2",
+  "version": "7.1.3",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "7.1.2",
+    "@aurelia-mdc-web/base": "7.1.3",
     "aurelia-validation": "^2.0.0-rc2"
   }
 }

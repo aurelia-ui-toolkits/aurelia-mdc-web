@@ -1,3 +1,16 @@
+## [7.1.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.2...v7.1.3) (2021-09-02)
+
+
+### Bug Fixes
+
+* **app:** switch docs ([7a3671c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7a3671c59b0fd2ff3a78a33b0095abfe6166e219)), closes [#56](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/56)
+* **deprecated-list:** add href attribute ([d709144](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d709144d1e52ffdd570c61033aa54a68a094e299))
+* **form-field:** hook label to buttons ([23872c4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/23872c4c6825ddc42ddb3ad86c2c588854d7d91f)), closes [#57](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/57)
+* **menu:** display vertical scrollbar explicitly ([d5b2b5a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d5b2b5a7d3639eff947cc02f66918ac8faf95692))
+* **menu:** force resize to avoid ellipsis with scroll ([010a1dd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/010a1ddb0b3cbdf3a8f014be19203a161424c516))
+
+
+
 ## [7.1.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.1...v7.1.2) (2021-08-31)
 
 
