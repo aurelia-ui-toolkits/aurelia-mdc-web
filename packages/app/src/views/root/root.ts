@@ -1,5 +1,5 @@
 import { RouterConfiguration, RouteConfig, NavModel, Router } from 'aurelia-router';
-import { autoinject, observable, PLATFORM } from 'aurelia-framework';
+import { autoinject, observable } from 'aurelia-framework';
 import { MdcDrawer } from '@aurelia-mdc-web/drawer';
 import { IMdcListActionEventDetail } from '@aurelia-mdc-web/list';
 

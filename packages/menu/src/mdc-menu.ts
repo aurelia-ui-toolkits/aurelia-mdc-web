@@ -3,7 +3,7 @@ import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuIt
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
 import { MdcList, IMdcListActionEvent, IMdcListItemElement, IMdcListElement } from '@aurelia-mdc-web/list';
 import { MDCListIndex } from '@material/list';
-import { MDCMenuDimensions, MDCMenuDistance } from '@material/menu-surface';
+import { MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, bindingMode, useView, PLATFORM } from 'aurelia-framework';
