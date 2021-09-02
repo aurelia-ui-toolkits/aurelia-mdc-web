@@ -3,7 +3,7 @@ import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuIt
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
 import { MdcList, IMdcListActionEvent, IMdcListItemElement, IMdcListElement } from '@aurelia-mdc-web/list';
 import { MDCListIndex } from '@material/list';
-import { MDCMenuDistance } from '@material/menu-surface';
+import { MDCMenuDimensions, MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, bindingMode, useView, PLATFORM } from 'aurelia-framework';
@@ -95,13 +95,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   }
 
   set open(value: boolean) {
-    this.root.style.width = '0';
-    this.root.style.display  = 'block';
-    setTimeout(() => {
-      this.root.style.width = '';
-      this.root.style.display = '';
-      this.menuSurface_.open = value;
-    }, 1);
+    this.menuSurface_.open = value;
   }
 
   /** Toggles the menu to open or close */
