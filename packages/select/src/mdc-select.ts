@@ -177,6 +177,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
       this.helperText = (nextSibling as IMdcSelectHelperTextElement).au.controller.viewModel;
     }
     await Promise.all([this.helperText?.initialised, this.menu.initialised].filter(x => x));
+    this.menu.list_!.singleSelection = true;
   }
 
   initialSyncWithDOM() {
