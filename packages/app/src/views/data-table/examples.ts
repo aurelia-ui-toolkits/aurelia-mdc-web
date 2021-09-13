@@ -17,6 +17,7 @@ export class Examples {
   standardHtml = standardHtml;
   selectionHtml = selectionHtml;
   paginationHtml = paginationHtml;
+  pageSize = 10;
   activePage = 1;
   busy = false;
 
@@ -33,12 +34,6 @@ export class Examples {
 
   handleNavigation(type: string) {
     this.snackbarService.open(`navigation type: ${type}`);
-    switch (type) {
-      case 'first': this.activePage = 1; break;
-      case 'prev': this.activePage--; break;
-      case 'next': this.activePage++; break;
-      case 'last': this.activePage = 4; break;
-    }
   }
 
 }
