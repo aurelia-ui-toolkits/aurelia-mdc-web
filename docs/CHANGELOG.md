@@ -1,3 +1,13 @@
+## [7.1.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.3...v7.1.4) (2021-09-13)
+
+
+### Bug Fixes
+
+* **menu-surface:** remove unnecessary check ([e571092](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e5710925af11126b55534738488901a1c9c31285))
+* **select:** set internal list to single selection ([543a66a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/543a66a1138dc20935e800d8218d3413ea4dd2c6))
+
+
+
 ## [7.1.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.2...v7.1.3) (2021-09-02)
 
 
