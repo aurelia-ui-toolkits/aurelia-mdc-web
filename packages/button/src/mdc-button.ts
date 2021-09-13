@@ -37,6 +37,15 @@ export class MdcButton {
   outlined: boolean;
 
   /**
+   * Set the disabled property and trigger the blur event to reset the focus
+   */
+  @bindable.booleanAttr
+  disabled: boolean;
+  disabledChanged() {
+    this.root.blur();
+  }
+
+  /**
    * Set the button label
    */
   @bindable

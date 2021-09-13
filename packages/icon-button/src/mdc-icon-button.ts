@@ -41,6 +41,15 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   @bindable.booleanAttr
   touch: boolean;
 
+  /**
+   * Set the disabled property and trigger the blur event to reset the focus
+   */
+  @bindable.booleanAttr
+  disabled: boolean;
+  disabledChanged() {
+    this.root.blur();
+  }
+
   async attached() {
     await this.initialise();
     if (this.icons?.length) {
