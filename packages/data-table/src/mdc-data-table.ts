@@ -12,6 +12,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();
 events.SELECTED_ALL = events.SELECTED_ALL.toLowerCase();
 events.UNSELECTED_ALL = events.UNSELECTED_ALL.toLowerCase();
+events.SORTED = events.SORTED.toLowerCase();
 const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 
 /**
