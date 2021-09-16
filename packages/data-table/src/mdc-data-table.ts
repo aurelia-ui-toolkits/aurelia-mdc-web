@@ -103,8 +103,6 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     if (typeof this.pageSize !== 'number' || this.pageSize === undefined || isNaN(this.activePage) || isNaN(this.recordsCount)) {
       return undefined;
     }
-    const pagesCount = Math.ceil(this.recordsCount / this.pageSize);
-    if (this.activePage > pagesCount) this.activePage = pagesCount;
 
     const firstRecord = this.pageSize * (this.activePage - 1) + 1;
     const lastRecord = Math.min(this.pageSize * this.activePage, this.recordsCount);
