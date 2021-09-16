@@ -47,7 +47,12 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   @bindable.booleanAttr
   disabled: boolean;
   disabledChanged() {
-    this.root.blur();
+    if (this.disabled) {
+      this.root.blur();
+      this.root.setAttribute('disabled', '');
+    } else {
+      this.root.removeAttribute('disabled');
+    }
   }
 
   async attached() {
