@@ -95,7 +95,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   recordsCount: number;
 
   /** Active page number. Used in navigation row. */
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  @bindable.number({ defaultBindingMode: bindingMode.twoWay })
   activePage: number;
 
   @computedFrom('pageSize', 'recordsCount', 'activePage')
