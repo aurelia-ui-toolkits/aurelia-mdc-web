@@ -73,6 +73,18 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   /** Selected page size */
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   pageSize: unknown = 10;
+  pageSizeChanged() {
+    if (this.preserveActivePageWithEvents) {
+      if (typeof this.pageSize !== 'number' || this.pageSize === undefined) {
+        throw new Error('MDCDataTable: Active page cannot be set while pageSize is unknown or undefined.');
+      }
+
+      const pagesCount = Math.ceil(this.recordsCount / this.pageSize);
+      if (this.activePage > pagesCount) {
+        this.activePage = pagesCount;
+      }
+    }
+  }
   
   /** Makes header row sticky (fixed) on vertical scroll.
    * (Note: Sticky header feature is not compatible with IE11 browsers.) */
@@ -124,6 +136,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   @bindable.booleanAttr
   hoistPageSelectToBody: boolean;
 
+  @bindable.booleanAttr
+  preserveActivePageWithEvents: boolean;
+
   get rowCheckboxList(): MdcCheckbox[] {
     return Array.from(this.root.querySelectorAll<IMdcCheckboxElement>('tbody>tr .mdc-checkbox'))
       .map(x => x.au?.controller.viewModel);
@@ -150,15 +165,17 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   handleNavigationClick(type: 'first' | 'prev' | 'next' | 'last') {
     this.emit(NAVIGATION_EVENT, { type }, true);
 
-    if (typeof this.pageSize !== 'number' || this.pageSize === undefined) {
-      throw new Error('MDCDataTable: Active page cannot be set while pageSize is unknown or undefined.');
-    }
+    if (this.preserveActivePageWithEvents) {
+      if (typeof this.pageSize !== 'number' || this.pageSize === undefined) {
+        throw new Error('MDCDataTable: Active page cannot be set while pageSize is unknown or undefined.');
+      }
 
-    switch (type) {
-      case 'first': this.activePage = 1; break;
-      case 'prev': this.activePage--; break;
-      case 'next': this.activePage++; break;
-      case 'last': this.activePage = Math.ceil(this.recordsCount / this.pageSize); break;
+      switch (type) {
+        case 'first': this.activePage = 1; break;
+        case 'prev': this.activePage--; break;
+        case 'next': this.activePage++; break;
+        case 'last': this.activePage = Math.ceil(this.recordsCount / this.pageSize); break;
+      }
     }
   }
 
