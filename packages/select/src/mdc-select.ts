@@ -58,7 +58,6 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   private lineRipple?: MdcLineRipple;
   private mdcLabel: MdcFloatingLabel;
   private outline?: MDCNotchedOutline;
-  // private mutationObserver: MutationObserver;
   errors = new Map<IError, boolean>();
 
   /** Sets the select label */
