@@ -1,6 +1,6 @@
 import { inject, useView, customElement, processContent, ViewCompiler, ViewResources } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
-import { cssClasses } from '@material/list';
+import { cssClasses, strings } from '@material/list';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 let listItemId = 0;
@@ -105,6 +105,12 @@ export class MdcListItem {
     } else {
       this.root.removeAttribute('href');
     }
+  }
+
+  attached() {
+    // Child button/a elements are not tabbable until the list item is focused.
+    Array.from(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
+      .forEach(el => el.setAttribute('tabindex', '-1'));
   }
 
   onKeydown(evt: KeyboardEvent) {
