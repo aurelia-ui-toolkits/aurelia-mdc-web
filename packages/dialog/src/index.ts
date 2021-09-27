@@ -2,8 +2,8 @@ import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 import { FocusTrap } from '@material/dom/focus-trap';
 
 export { MdcDialog } from './mdc-dialog';
-export { MdcDialogService, IMdcDialogOptions } from './mdc-dialog-service';
-export { MdcDialogServiceNew } from './mdc-dialog-service-new';
+export { MdcDialogServiceDeprecated, IMdcDialogOptions } from './mdc-dialog-service-deprecated';
+export { MdcDialogService } from './mdc-dialog-service';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([
