@@ -48,6 +48,6 @@
   },
   "dependencies": {
     "@aurelia-mdc-web/base": "7.1.4",
-    "@material/linear-progress": "^12.0.0"
+    "@material/linear-progress": "^13.0.0"
   }
 }

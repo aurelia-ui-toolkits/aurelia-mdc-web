@@ -47,6 +47,6 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@material/elevation": "^12.0.0"
+    "@material/elevation": "^13.0.0"
   }
 }

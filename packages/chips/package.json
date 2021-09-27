@@ -49,7 +49,7 @@
   "dependencies": {
     "@aurelia-mdc-web/base": "7.1.4",
     "@aurelia-mdc-web/ripple": "7.1.4",
-    "@material/chips": "^12.0.0",
-    "@material/ripple": "^12.0.0"
+    "@material/chips": "^13.0.0",
+    "@material/ripple": "^13.0.0"
   }
 }

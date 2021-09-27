@@ -49,6 +49,6 @@
   "dependencies": {
     "@aurelia-mdc-web/base": "7.1.4",
     "@aurelia-mdc-web/button": "7.1.4",
-    "@material/banner": "^12.0.0"
+    "@material/banner": "^13.0.0"
   }
 }

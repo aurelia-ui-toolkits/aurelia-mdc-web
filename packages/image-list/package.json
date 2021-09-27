@@ -47,6 +47,6 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@material/image-list": "^12.0.0"
+    "@material/image-list": "^13.0.0"
   }
 }
