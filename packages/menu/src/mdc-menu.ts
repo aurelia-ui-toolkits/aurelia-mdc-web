@@ -75,6 +75,17 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   @bindable
   maxHeight: number;
 
+  /** Sets whether focus should be restored after the menu is closed */
+  @bindable.booleanAttr
+  skipRestoreFocus: boolean;
+  skipRestoreFocusChanged() {
+    if (this.skipRestoreFocus) {
+      this.root.setAttribute('data-menu-item-skip-restore-focus', 'true');
+    } else {
+      this.root.removeAttribute('data-menu-item-skip-restore-focus');
+    }
+  }
+
   handleKeydown_(evt: KeyboardEvent) {
     this.foundation?.handleKeydown(evt);
     return true;
@@ -269,6 +280,10 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
       removeAttributeFromElementAtIndex: (index, attr) => {
         const list = this.items;
         list[index].removeAttribute(attr);
+      },
+      getAttributeFromElementAtIndex: (index, attr) => {
+        const list = this.items;
+        return list[index].getAttribute(attr);
       },
       elementContainsClass: (element, className) => element.classList.contains(className),
       closeSurface: (skipRestoreFocus: boolean) => {
