@@ -175,6 +175,9 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
       setAttribute: (attr, value) => {
         this.root.setAttribute(attr, value);
       },
+      removeAttribute: (attr) => {
+        this.root.removeAttribute(attr);
+      },
       addClass: (className) => {
         this.root.classList.add(className);
       },
@@ -285,6 +288,9 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
         }
         topCaret.removeAttribute('style');
         bottomCaret.removeAttribute('style');
+      },
+      getActiveElement: () => {
+        return document.activeElement;
       },
     };
 

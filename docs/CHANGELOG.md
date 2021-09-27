@@ -1,3 +1,29 @@
+# [8.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.4...v8.0.0) (2021-09-27)
+
+### BREAKING CHANGES
+* **dialog:** Old dialog service has been marked as deprecated. See examples for proper DOM.
+
+### Bug Fixes
+
+* **app:** dialog examples ([ffec01b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ffec01bdcbf2936622744bbb98479905c54f327f))
+* **chips:** MDC upgrade ([291a417](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/291a4175325a1c1f97683f0fac681008c8cb8752))
+* **list:** handle initial tabindex in item ([e5b522c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e5b522cfe3d39bcb89e219bc21dd6b8f938a73c2))
+* **lookup:** include list item into default replaceables ([99e1ce5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/99e1ce55d76db2648148e9456fbf93eebb960f60))
+* **lookup:** prevent input blur when an item was selected ([5cff8f0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5cff8f029401ad79d5aba16595a67d8f0582479a))
+* **slider:** silence TS error ([a7c4794](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a7c47944884d99e4cabff371e093f00119694eb5))
+* **top-app-bar:** use proper base class ([c473e28](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c473e289f2abd4b9ad225f42e42e8e02f0f5fd55))
+
+
+### Features
+
+* **data-table:** MDC upgrade ([12f99e7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/12f99e7bf777baca53a8dc961e82e8befa88afa7))
+* **dialog:** deprecate old dialog service ([42d1a5d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/42d1a5d9cbf5a4b8a89b70cd8ef850ce3f80d034))
+* **icon-button:** MDC upgrade ([73fc9c8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/73fc9c86f68ca89bc4eba504a94d5192063edf34))
+* **menu:** add helper method ([039ff29](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/039ff29a07d20a2a15f4ce28646db0ae06d63107))
+* **menu:** MDC upgrade ([f6a244d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f6a244d53641abec007e9db5fecd1299a8236d1a))
+
+
+
 ## [7.1.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.3...v7.1.4) (2021-09-13)
 
 
