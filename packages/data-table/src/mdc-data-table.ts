@@ -19,6 +19,11 @@ const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 /**
  * Use `pagination-total` replaceable part to customise pagination total label.
  * @selector mdc-data-table
+ * @emits mdcdatatable:rowselectionchanged | Emitted when row checkbox is checked or unchecked
+ * @emits mdcdatatable:selectedall | Emitted when header row checkbox is checked
+ * @emits mdcdatatable:unselectedall | Emitted when header row checkbox is unchecked
+ * @emits mdcdatatable:sorted | Emitted when clicked on sortable header cell
+ * @emits mdcdatatable:rowclick | Emitted when a row is clicked
  */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-data-table.html'))
