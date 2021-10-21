@@ -1,3 +1,15 @@
+## [8.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.0...v8.0.1) (2021-10-21)
+
+
+### Bug Fixes
+
+* **lookup:** await for debounce promise on blur ([e574d57](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e574d574f0b5508d280aa44e58ccd810a1deec37))
+* **lookup:** do not suppress on mouse down ([3d83509](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3d83509b98d8acebc2c926778c636df2dad04883))
+* **menu-surface:** check for undefined foundation ([4d9b765](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4d9b7659c64194d943c01b6153e0488953e356b8))
+* **menu:** consider deprecated lists in menus ([22fbd4b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/22fbd4b704a3809639d3c17a63c50ab09b04ec11))
+
+
+
 # [8.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.1.4...v8.0.0) (2021-09-27)
 
 ### BREAKING CHANGES

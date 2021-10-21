@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/checkbox",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -47,8 +47,8 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "8.0.0",
-    "@aurelia-mdc-web/ripple": "8.0.0",
+    "@aurelia-mdc-web/base": "8.0.1",
+    "@aurelia-mdc-web/ripple": "8.0.1",
     "@material/checkbox": "^13.0.0"
   }
 }
