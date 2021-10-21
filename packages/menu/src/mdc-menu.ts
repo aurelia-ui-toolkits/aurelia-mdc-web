@@ -23,7 +23,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
 
   // @child('mdc-list')
   get list_(): MdcList | undefined {
-    const el = this.root.querySelector('mdc-list');
+    const el = this.root.querySelector('mdc-list,mdc-deprecated-list');
     return (el as IMdcListElement)?.au.controller.viewModel;
   }
 
