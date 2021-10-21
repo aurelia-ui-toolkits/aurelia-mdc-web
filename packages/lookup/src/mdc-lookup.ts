@@ -335,7 +335,6 @@ export class MdcLookup implements EventListenerObject {
 
   onBodyMousedown(evt: MouseEvent | TouchEvent) {
     if (closest(evt.target as HTMLElement, 'mdc-menu')) {
-      this.suppressBlur = true;
       evt.preventDefault();
     }
     return true;
