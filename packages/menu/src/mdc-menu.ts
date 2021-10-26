@@ -19,7 +19,7 @@ strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
 @customElement('mdc-menu')
 @useView(PLATFORM.moduleName('./mdc-menu.html'))
 export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
-  private menuSurface_: MdcMenuSurface; // assigned in html
+  menuSurface: MdcMenuSurface; // assigned in html
 
   // @child('mdc-list')
   get list_(): MdcList | undefined {
@@ -102,11 +102,11 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   }
 
   get open(): boolean {
-    return this.menuSurface_.open;
+    return this.menuSurface.open;
   }
 
   set open(value: boolean) {
-    this.menuSurface_.open = value;
+    this.menuSurface.open = value;
   }
 
   /** Toggles the menu to open or close */
@@ -166,7 +166,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   }
 
   async initialise() {
-    await this.menuSurface_.initialised;
+    await this.menuSurface.initialised;
     if (this.defaultFocusState !== undefined) {
       this.defaultFocusStateChanged();
     }
@@ -212,7 +212,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
    * @param corner Default anchor corner alignment of top-left menu corner.
    */
   setAnchorCorner(corner: Corner) {
-    this.menuSurface_.setAnchorCorner(corner);
+    this.menuSurface.setAnchorCorner(corner);
   }
 
   /**
@@ -258,7 +258,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   }
 
   setAbsolutePosition(x: number, y: number) {
-    this.menuSurface_.setAbsolutePosition(x, y);
+    this.menuSurface.setAbsolutePosition(x, y);
   }
 
   getDefaultFoundation() {
@@ -288,7 +288,7 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
       elementContainsClass: (element, className) => element.classList.contains(className),
       closeSurface: (skipRestoreFocus: boolean) => {
         if (!this.stayOpenOnSelection) {
-          this.menuSurface_?.close(skipRestoreFocus);
+          this.menuSurface?.close(skipRestoreFocus);
         }
       },
       getElementIndex: (element) => this.items.indexOf(element),
