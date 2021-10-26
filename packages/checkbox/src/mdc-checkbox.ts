@@ -82,7 +82,9 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   indeterminate: boolean;
   async indeterminateChanged() {
     await this.initialised;
-    this.nativeControl_.indeterminate = this.indeterminate;
+    if (this.nativeControl_) {
+      this.nativeControl_.indeterminate = this.indeterminate;
+    }
     this.foundation?.handleChange();
   }
 

@@ -54,8 +54,10 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   async labelChanged() {
     await this.initialised;
     this.taskQueue.queueTask(() => {
-      const openNotch = this.foundation!.shouldFloat;
-      this.foundation!.notchOutline(openNotch);
+      if (this.foundation) {
+        const openNotch = this.foundation.shouldFloat;
+        this.foundation.notchOutline(openNotch);
+      }
     });
   }
 
@@ -82,7 +84,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   async requiredChanged() {
     await this.initialised;
     this.input_.required = this.required;
-    this.foundation!.setUseNativeValidation(true);
+    this.foundation?.setUseNativeValidation(true);
   }
 
   @bindable.booleanAttr
