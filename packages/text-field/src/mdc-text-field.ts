@@ -459,6 +459,7 @@ export interface IMdcTextFieldElement extends IValidatedElement {
       viewModel: MdcTextField;
     };
   };
+  value: string;
 }
 
 function defineMdcTextFieldElementApis(element: HTMLElement) {
