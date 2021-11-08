@@ -5,7 +5,7 @@ const AureliaWebpackPlugin = require('aurelia-webpack-plugin');
 
 const outDir = path.resolve(__dirname, 'dist');
 module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
-  const cssLoaders = [{ loader: 'css-loader', options: { esModule: false } }, 'postcss-loader'];
+  const cssLoaders = [{ loader: 'css-loader' }, 'postcss-loader'];
   const scssLoaders = [...cssLoaders, {
     // this is super important as only 'sass' package supports new '@use' syntax
     loader: 'sass-loader', options: {
@@ -90,7 +90,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
     },
     module: {
       rules: [
-        { test: /\.(woff|woff2)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1, esModule: false } } },
+        { test: /\.(woff|woff2)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1 } } },
         { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000, esModule: false } } },
         { test: /\.ts$/, loader: 'ts-loader' },
         { test: /\.html$/i, use: { loader: 'html-loader', options: { esModule: false, sources: { list: [{ tag: 'img', attribute: 'src', type: 'src' }, { tag: 'app-nav-bar', attribute: 'logo-url', type: 'src' }] } } } },
