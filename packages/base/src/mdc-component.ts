@@ -22,6 +22,8 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   async attached() {
     this.continueAttaching = true;
     await this.initialise();
+    // detached might be called straight after attached starts
+    // do not continue attaching if that's the case
     if (!this.continueAttaching) {
       return;
     }
