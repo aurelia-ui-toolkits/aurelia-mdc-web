@@ -358,7 +358,9 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
         };
         const observer = new MutationObserver((mutationsList) => handler(getAttributesList(mutationsList)));
         const config = { attributes: true };
-        observer.observe(this.input_, config);
+        if (this.input_) {
+          observer.observe(this.input_, config);
+        }
         return observer;
       },
       deregisterValidationAttributeChangeHandler: (observer) => observer.disconnect(),
@@ -375,7 +377,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
         this.input_.removeAttribute(attr);
       },
       isFocused: () => document.activeElement === this.input_,
-      registerInputInteractionHandler: (evtType, handler) => this.input_.addEventListener(evtType, handler, applyPassive()),
+      registerInputInteractionHandler: (evtType, handler) => this.input_?.addEventListener(evtType, handler, applyPassive()),
       deregisterInputInteractionHandler: (evtType, handler) => this.input_?.removeEventListener(evtType, handler, applyPassive()),
     };
   }
