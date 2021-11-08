@@ -107,6 +107,7 @@ declare module 'typedoc' {
     setSignature: {
       type: IType;
     }[];
+    children?: NavigationItem[];
   }
 }
 
