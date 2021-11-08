@@ -15,6 +15,10 @@ Third-party integration incorporating [Google Material Components](https://githu
 *  [Contributing](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/CONTRIBUTING.md)
 *  [Developer guide](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/developer.md)
 
+#### Sponsors
+Huge thanks to the following sponsors
+[Singletree Technologies](https://avatars.githubusercontent.com/u/87871325?s=200&v=4) [Singletree Technologies](https://singletreetech.com/)
+
 ## Material Design Components
 Using Google Material Components [foundations and adapters](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters).
 
