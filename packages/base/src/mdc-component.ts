@@ -4,6 +4,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   constructor(public root: HTMLElement) { }
 
   foundation?: FoundationType;
+  continueAttaching: boolean;
 
   initialised = this.createInitiliasedPromise();
   protected initialisedResolve: (value?: unknown) => void;
@@ -19,7 +20,11 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   initialSyncWithDOM() { }
 
   async attached() {
+    this.continueAttaching = true;
     await this.initialise();
+    if (!this.continueAttaching) {
+      return;
+    }
     this.foundation = this.getDefaultFoundation();
     this.foundation.init();
     this.initialisedResolve();
@@ -30,6 +35,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
   destroy() { }
 
   detached() {
+    this.continueAttaching = false;
     this.destroy();
     this.foundation?.destroy();
     this.foundation = undefined;
