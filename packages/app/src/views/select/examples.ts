@@ -3,16 +3,16 @@ import { autoinject } from 'aurelia-framework';
 import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
 import customHtml from '!!raw-loader!./custom.html';
 import customSass from '!!raw-loader!./custom.scss';
-import customCode from '!!raw-loader!./custom';
+import customCode from './custom.ts.raw';
 import leadingIconHtml from '!!raw-loader!./leading-icon.html';
 import noLabelHtml from '!!raw-loader!./no-label.html';
 import objectsBindingHtml from '!!raw-loader!./objects-binding.html';
-import objectsBindingCode from '!!raw-loader!./objects-binding';
+import objectsBindingCode from './objects-binding.ts.raw';
 import selectHtml from '!!raw-loader!./select.html';
 import validationHtml from '!!raw-loader!./validation.html';
-import validationCode from '!!raw-loader!./validation';
+import validationCode from './validation.ts.raw';
 import delayedHtml from '!!raw-loader!./delayed.html';
-import delayedCode from '!!raw-loader!./delayed';
+import delayedCode from './delayed.ts.raw';
 
 @autoinject
 export class Examples {

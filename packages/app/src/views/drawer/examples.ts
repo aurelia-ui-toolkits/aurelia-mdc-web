@@ -2,7 +2,7 @@ import standardHtml from '!!raw-loader!./standard.html';
 import dismissibleHtml from '!!raw-loader!./dismissible.html';
 import modalHtml from '!!raw-loader!./modal.html';
 import rtlHtml from '!!raw-loader!./rtl.html';
-import examplesCode from '!!raw-loader!./examples-code';
+import examplesCode from './examples-code.ts.raw';
 
 export class Examples {
   standardHtml = standardHtml;

@@ -1,5 +1,5 @@
 import basicHtml from '!!raw-loader!./basic.html';
-import basicCode from '!!raw-loader!./basic';
+import basicCode from './basic.ts.raw';
 import { MdcTreeView } from '@aurelia-mdc-web/tree-view';
 
 export class Examples {

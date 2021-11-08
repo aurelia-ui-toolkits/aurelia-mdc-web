@@ -1,6 +1,6 @@
 import customHtml from '!!raw-loader!./custom.html';
 import customSass from '!!raw-loader!./custom.scss';
-import customCode from '!!raw-loader!./custom';
+import customCode from './custom.ts.raw';
 import disableRippleHtml from '!!raw-loader!./disable-ripple.html';
 import singleLineHtml from '!!raw-loader!./single-line.html';
 import twoLineHtml from '!!raw-loader!./two-line.html';

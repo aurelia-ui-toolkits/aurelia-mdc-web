@@ -1,8 +1,7 @@
 import inlineHtml from '!!raw-loader!./inline/inline.html';
-import inlineCode from '!!raw-loader!./inline/inline';
+import inlineCode from './inline/inline.ts.raw';
 
 export class Examples {
   inlineHtml = inlineHtml;
-  // inlineCode = require('!!raw-loader!./inline/inline');
   inlineCode = inlineCode;
 }

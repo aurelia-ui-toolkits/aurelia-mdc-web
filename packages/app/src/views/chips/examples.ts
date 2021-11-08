@@ -6,7 +6,7 @@ import filterLeadingHtml from '!!raw-loader!./filter-leading.html';
 import inputHtml from '!!raw-loader!./input.html';
 import inputTrailingActionHtml from '!!raw-loader!./input-trailing-action.html';
 import filterBindingHtml from '!!raw-loader!./filter-binding.html';
-import filterBindingCode from '!!raw-loader!./filter-binding-code';
+import filterBindingCode from './filter-binding-code.ts.raw';
 
 export class Examples {
   defaultHtml = defaultHtml;
