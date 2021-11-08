@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/top-app-bar",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "publishConfig": {
     "access": "public"
   },
@@ -47,8 +47,8 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "8.0.1",
-    "@aurelia-mdc-web/ripple": "8.0.1",
+    "@aurelia-mdc-web/base": "8.0.2",
+    "@aurelia-mdc-web/ripple": "8.0.2",
     "@material/ripple": "^13.0.0",
     "@material/top-app-bar": "^13.0.0"
   }

@@ -1,3 +1,15 @@
+## [8.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.1...v8.0.2) (2021-11-08)
+
+
+### Bug Fixes
+
+* **base:** do not continue attaching if detached was called ([15df287](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/15df2877f1ba56fef919ee9317f2e89e36981aaf))
+* **checkbox,radio,select,slider,text-field:** consider undefined references ([b67ba9d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b67ba9d6c419db18c4036f53f508fb0f5ee7e9af))
+* **menu:** expose menu surface ([40ff16c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/40ff16c8c565ee82f299fc9c9d724856a47144b5))
+* **text-field:** expose value ([677ddee](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/677ddeef4784a50c51cc5423505bfddf38e8fb4c))
+
+
+
 ## [8.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.0...v8.0.1) (2021-10-21)
 
 
