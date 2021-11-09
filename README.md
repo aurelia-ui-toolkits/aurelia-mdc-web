@@ -18,7 +18,7 @@ Third-party integration incorporating [Google Material Components](https://githu
 #### Sponsors
 Huge thanks to the following sponsor
 
-<div style="display: flex: align-items: center"><img alt="Singletree Technologies" src="https://avatars.githubusercontent.com/u/87871325?s=200&v=4" width="50" height="50" /> [Singletree Technologies](https://singletreetech.com/)</div>
+![Singletree Technologies](https://avatars.githubusercontent.com/u/87871325?s=200&v=4 =50x50) [Singletree Technologies](https://singletreetech.com/)
 
 ## Material Design Components
 Using Google Material Components [foundations and adapters](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters).
