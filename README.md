@@ -18,8 +18,9 @@ Third-party integration incorporating [Google Material Components](https://githu
 #### Sponsors
 Huge thanks to the following sponsor
 
-<p>
-![Singletree Technologies](https://avatars.githubusercontent.com/u/87871325?s=50) [Singletree Technologies](https://singletreetech.com/)
+<p align="center">
+  <img src="https://avatars.githubusercontent.com/u/87871325?s=50">
+  <a href="https://singletreetech.com/">Singletree Technologies</a>
 </p>
 
 ## Material Design Components
