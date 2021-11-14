@@ -51,24 +51,40 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     this.foundation?.setDisabled(this.disabled);
   }
 
-  @bindable
-  min: string = '0';
+  @bindable.number
+  min: number = 0;
   async minChanged() {
     await this.initialised;
-    (this.startInput ?? this.endInput)?.setAttribute(attributes.INPUT_MIN, this.min);
+    (this.startInput ?? this.endInput)?.setAttribute(attributes.INPUT_MIN, this.min.toString());
     this.foundation?.destroy();
     this.cleanupEventHandlers();
+    if (this.range && this.valueStart < this.min) {
+      this.valueStart = this.min;
+      this.emit(events.CHANGE, { value: this.value, thumb: Thumb.START }, true);
+    }
+    if (this.value < this.min) {
+      this.value = this.min;
+      this.emit(events.CHANGE, { value: this.value, thumb: Thumb.END }, true);
+    }
     this.foundation?.init();
     this.foundation?.layout();
   }
 
-  @bindable
-  max: string = '100';
+  @bindable.number
+  max: number = 100;
   async maxChanged() {
     await this.initialised;
-    this.endInput?.setAttribute(attributes.INPUT_MAX, this.max);
+    this.endInput?.setAttribute(attributes.INPUT_MAX, this.max.toString());
     this.foundation?.destroy();
     this.cleanupEventHandlers();
+    if (this.range && this.valueStart > this.max) {
+      this.valueStart = this.max;
+      this.emit(events.CHANGE, { value: this.value, thumb: Thumb.START }, true);
+    }
+    if (this.value > this.max) {
+      this.value = this.max;
+      this.emit(events.CHANGE, { value: this.value, thumb: Thumb.END }, true);
+    }
     this.foundation?.init();
     this.foundation?.layout();
   }
@@ -115,11 +131,13 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     this.foundation?.setValueStart(value);
   }
 
+  bind() { }
+
   // eslint-disable-next-line @typescript-eslint/require-await
   async initialise() {
     // assign initial values explicitly
-    this.endInput.setAttribute(attributes.INPUT_MIN, this.min);
-    this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
+    this.endInput.setAttribute(attributes.INPUT_MIN, this.min.toString());
+    this.endInput.setAttribute(attributes.INPUT_MAX, this.max.toString());
     this.endInput.setAttribute(attributes.INPUT_VALUE, this.value.toString());
     this.endInput.setAttribute(attributes.INPUT_STEP, this.step);
     this.startInput?.setAttribute(attributes.INPUT_VALUE, this.valueStart.toString());
@@ -132,6 +150,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
       this.valueStart = this._valueStart;
     }
     this.foundation?.layout();
+    this.disabledChanged();
   }
 
   getDefaultFoundation() {
@@ -317,7 +336,8 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
 
 /** @hidden */
 export interface IMdcSliderElement extends HTMLElement {
-  checked: boolean;
+  value: number;
+  valuestart: number;
   indeterminate: boolean;
   au: {
     controller: {
