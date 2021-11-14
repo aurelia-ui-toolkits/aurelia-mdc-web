@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses, PositionWithCaret } from '@material/tooltip';
+import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses, PositionWithCaret, numbers } from '@material/tooltip';
 import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
@@ -68,17 +68,17 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
   }
 
   @bindable.number
-  showDelay: number;
+  showDelay?: number = this.defaultConfiguration.showDelay;
   async showDelayChanged() {
     await this.initialised;
-    this.foundation?.setShowDelay(this.showDelay);
+    this.foundation?.setShowDelay(this.showDelay ?? numbers.SHOW_DELAY_MS);
   }
 
   @bindable.number
-  hideDelay: number;
+  hideDelay?: number = this.defaultConfiguration.hideDelay;
   async hideDelayChanged() {
     await this.initialised;
-    this.foundation?.setHideDelay(this.hideDelay);
+    this.foundation?.setHideDelay(this.hideDelay ?? numbers.HIDE_DELAY_MS);
   }
 
   @bindable
