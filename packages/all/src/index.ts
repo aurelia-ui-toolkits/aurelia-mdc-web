@@ -1,4 +1,5 @@
 import { IContainer, DI } from '@aurelia/kernel';
+import { BannerConfiguration } from '@aurelia-mdc-web/banner';
 import { ButtonConfiguration } from '@aurelia-mdc-web/button';
 import { CardConfiguration } from '@aurelia-mdc-web/card';
 import { CheckboxConfiguration } from '@aurelia-mdc-web/checkbox';
@@ -17,6 +18,7 @@ import { LookupConfiguration } from '@aurelia-mdc-web/lookup';
 import { NotchedOutlineConfiguration } from '@aurelia-mdc-web/notched-outline';
 import { RadioConfiguration } from '@aurelia-mdc-web/radio';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { SegmentedButtonConfiguration } from '@aurelia-mdc-web/segmented-button';
 import { SelectConfiguration } from '@aurelia-mdc-web/select';
 import { SnackbarConfiguration } from '@aurelia-mdc-web/snackbar';
 import { TabBarConfiguration } from '@aurelia-mdc-web/tab-bar';
@@ -43,13 +45,13 @@ export const AllConfiguration = {
    */
   register(container: IContainer): IContainer {
     return container.register(
-      BaseConfiguration, ButtonConfiguration, CardConfiguration, CheckboxConfiguration, ChipsConfiguration, CircularProgressConfiguration,
+      BaseConfiguration, BannerConfiguration, ButtonConfiguration, CardConfiguration, CheckboxConfiguration, ChipsConfiguration, CircularProgressConfiguration,
       DataTableConfiguration, DialogConfiguration, DrawerConfiguration, ElevationConfiguration, ExpandableConfiguration, FabConfiguration,
       FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, ImageListConfiguration, LayoutGridConfiguration,
       LineRippleConfiguration, LinearProgressConfiguration, ListConfiguration, LookupConfiguration, MenuConfiguration, MenuSurfaceConfiguration,
-      NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration, SelectConfiguration, SliderConfiguration, SnackbarConfiguration,
-      SwitchConfiguration, TabBarConfiguration, TextFieldConfiguration, TooltipConfiguration, TopAppBarConfiguration, TreeViewConfiguration,
-      TypographyConfiguration,
+      NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration, SegmentedButtonConfiguration, SelectConfiguration, SliderConfiguration,
+      SnackbarConfiguration, SwitchConfiguration, TabBarConfiguration, TextFieldConfiguration, TooltipConfiguration, TopAppBarConfiguration,
+      TreeViewConfiguration, TypographyConfiguration,
     );
   },
   /**
