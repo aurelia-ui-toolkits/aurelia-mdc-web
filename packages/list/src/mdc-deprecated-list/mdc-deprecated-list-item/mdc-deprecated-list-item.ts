@@ -64,6 +64,17 @@ export class MdcDeprecatedListItem {
   @bindable({ set: booleanAttr })
   disableRipple: boolean;
 
+  // this is necessary for the route-href to work
+  @bindable
+  href: string;
+  hrefChanged() {
+    if (this.href) {
+      this.root.setAttribute('href', this.href);
+    } else {
+      this.root.removeAttribute('href');
+    }
+  }
+
   onKeydown(evt: KeyboardEvent) {
     if ((evt.keyCode === ENTER || evt.keyCode === SPACE) && !this.disabled) {
       this.root.dispatchEvent(new CustomEvent(LIST_ITEM_ACTION, { detail: { item: this, data: this.value }, bubbles: true }));
