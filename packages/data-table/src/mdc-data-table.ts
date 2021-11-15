@@ -1,7 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 import { MdcComponent, booleanAttr, number, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import {
-  MDCDataTableFoundation, selectors, MDCDataTableAdapter, events, cssClasses,
+  MDCDataTableFoundation, selectors, MDCDataTableAdapter, events, cssClasses, RowClickEventData,
   dataAttributes, MDCDataTableRowSelectionChangedEventDetail, SortValue, messages
 } from '@material/data-table';
 import { MdcCheckbox } from '@aurelia-mdc-web/checkbox';
@@ -9,8 +9,10 @@ import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, INode, bindable, BindingMode, IPlatform } from 'aurelia';
 import { processContent, CustomElement } from '@aurelia/runtime-html';
 
+events.ROW_CLICK = events.ROW_CLICK.toLowerCase();
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();
 events.SELECTED_ALL = events.SELECTED_ALL.toLowerCase();
+events.SORTED = events.SORTED.toLowerCase();
 events.UNSELECTED_ALL = events.UNSELECTED_ALL.toLowerCase();
 const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 
@@ -86,7 +88,6 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   @bindable({ set: booleanAttr })
   stickyHeader: boolean;
 
-  // @computed('pageSize', 'recordsCount', 'activePage')
   get paginationPosition(): 'first' | 'between' | 'last' | undefined {
     if (typeof this.pageSize !== 'number' || this.pageSize === undefined || isNaN(this.activePage) || isNaN(this.recordsCount)) {
       return undefined;
@@ -105,7 +106,6 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   @bindable({ set: number })
   activePage: number;
 
-  // @computedFrom('pageSize', 'recordsCount', 'activePage')
   get paginationTotal(): string | undefined {
     if (typeof this.pageSize !== 'number' || this.pageSize === undefined || isNaN(this.activePage) || isNaN(this.recordsCount)) {
       return undefined;
@@ -155,6 +155,18 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
 
   handleNavigationClick(type: 'first' | 'prev' | 'next' | 'last') {
     this.emit(NAVIGATION_EVENT, { type }, true);
+  }
+
+  handleContentClick(event: Event) {
+    const dataRowEl = closest(event.target as Element, selectors.ROW) as HTMLElement;
+    if (!dataRowEl) {
+      return;
+    }
+
+    this.foundation?.handleRowClick({
+      rowId: this.getRowIdByRowElement(dataRowEl),
+      row: dataRowEl,
+    });
   }
 
   /**
@@ -216,6 +228,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
 
     this.content = this.root.querySelector<HTMLElement>(`.${cssClasses.CONTENT}`)!;
     this.content.addEventListener('change', this);
+    this.content.addEventListener('click', this);
 
     const rowCheckboxList = this.rowCheckboxList;
     this.rowCheckboxList.forEach(x => x.root.classList.add(cssClasses.ROW_CHECKBOX));
@@ -320,6 +333,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       notifyUnselectedAll: () => {
         this.emit(events.UNSELECTED_ALL, {}, /** shouldBubble */ true);
       },
+      notifyRowClick: (data: RowClickEventData) => {
+        this.emit(events.ROW_CLICK, data, /** shouldBubble */ true);
+      },
       registerHeaderRowCheckbox: () => {
         // const checkboxEl = this.root.querySelector<IMdcCheckboxElement>(selectors.HEADER_ROW_CHECKBOX);
         // this.headerRowCheckbox = checkboxEl?.au?.controller.viewModel;
@@ -405,5 +421,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       default:
         return '';
     }
+  }
+
+  private getRowIdByRowElement(rowElement: HTMLElement): string | null {
+    return rowElement.getAttribute(dataAttributes.ROW_ID);
   }
 }
