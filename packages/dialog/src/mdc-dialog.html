@@ -1,6 +1,7 @@
 <template class="mdc-dialog ${fullscreen ? 'mdc-dialog--fullscreen' : ''}" click.trigger="handleClick_($event)"
   keydown.trigger="handleKeydown_($event)" mdcdialog:opening.trigger="handleOpening_()"
-  mdcdialog:closing.trigger="handleClosing_()" aria-modal="true">
+  mdcdialog:closing.trigger="handleClosing_()" aria-modal="true"
+  mdc-focus-trap="initial-focus-el.bind: getInitialFocusEl" mdc-focus-trap.ref="mdcFocusTrap">
   <div class="mdc-dialog__container">
     <div class="mdc-dialog__surface" role="alertdialog" aria-modal="true" aria-labelledby="${titleId}"
       aria-describedby="${contentId}">

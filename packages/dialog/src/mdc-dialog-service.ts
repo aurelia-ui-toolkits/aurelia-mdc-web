@@ -71,8 +71,8 @@ export class MdcDialogService {
       await ripple?.viewModel.initialised;
       ripple?.viewModel.foundation?.layout();
     }));
-    dialogVm.createFocusTrap();
-    this.platform.taskQueue.queueTask(() => dialogVm.focusTrap?.trapFocus());
+    // TODO: is this needed?
+    this.platform.taskQueue.queueTask(() => dialogVm.mdcFocusTrap?.trapFocus());
     return closedPromise;
   }
 }

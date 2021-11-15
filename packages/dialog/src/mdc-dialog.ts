@@ -1,6 +1,5 @@
-import { MdcComponent, defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, defaultSlotProcessContent, booleanAttr, MdcFocusTrap } from '@aurelia-mdc-web/base';
 import { MDCDialogFoundation, strings, MDCDialogAdapter, util, MDCDialogCloseEventDetail } from '@material/dialog';
-import { FocusTrap } from '@material/dom/focus-trap';
 import { customElement, inject, bindable } from 'aurelia';
 import { closest, matches } from '@material/dom/ponyfill';
 import { processContent } from '@aurelia/runtime-html';
@@ -25,7 +24,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   contentId = `mdc-dialog-content-${this.id}`;
   titleId = `mdc-dialog-title-${this.id}`;
   private buttons!: HTMLElement[]; // assigned in initialize()
-  focusTrap!: FocusTrap | undefined; // assigned in initialSyncWithDOM()
+  mdcFocusTrap: MdcFocusTrap;
 
   /** Action returned when the dialog is closed via the scrim click */
   @bindable
@@ -42,9 +41,6 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   }
 
   @bindable({ set: booleanAttr })
-  delayFocusTrap: boolean;
-
-  @bindable({ set: booleanAttr })
   fullscreen: boolean;
 
   get defaultButton(): HTMLElement | null {
@@ -56,19 +52,11 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   }
 
   beforeFoundationCreated() {
-    if (!this.delayFocusTrap) {
-      this.createFocusTrap();
-    }
-
     this.buttons = [].slice.call(this.root.querySelectorAll<HTMLElement>(strings.BUTTON_SELECTOR));
     const content = this.root.querySelector('mdc-dialog-content');
     content?.setAttribute('id', this.contentId);
     const title = this.root.querySelector('mdc-dialog-title');
     title?.setAttribute('id', this.titleId);
-  }
-
-  createFocusTrap() {
-    this.focusTrap = util.createFocusTrapInstance(this.root, (el, focusOptions) => new FocusTrap(el, focusOptions), this.getInitialFocusEl() ?? undefined);
   }
 
   destroy() {
@@ -154,7 +142,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
       notifyOpened: () => this.emit(strings.OPENED_EVENT, {}),
       notifyOpening: () => this.emit(strings.OPENING_EVENT, {}),
       releaseFocus: () => {
-        this.focusTrap?.releaseFocus();
+        this.mdcFocusTrap?.releaseFocus();
       },
       removeBodyClass: (className) => document.body.classList.remove(className),
       removeClass: (className) => this.root.classList.remove(className),
@@ -165,7 +153,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
         });
       },
       trapFocus: () => {
-        this.focusTrap?.trapFocus();
+        this.mdcFocusTrap?.trapFocus();
       },
       registerContentEventHandler: (evt, handler) => {
         if (this.content instanceof HTMLElement) {
@@ -193,9 +181,9 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
     return new MDCDialogFoundation(adapter);
   }
 
-  private getInitialFocusEl(): HTMLElement | null {
+  getInitialFocusEl = (): HTMLElement | null => {
     return this.root.querySelector(`[${strings.INITIAL_FOCUS_ATTRIBUTE}] input, [${strings.INITIAL_FOCUS_ATTRIBUTE}] .mdc-select__anchor`);
-  }
+  };
 }
 
 /** @hidden */
