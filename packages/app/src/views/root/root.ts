@@ -36,10 +36,12 @@ import { Typography } from '../typography/typography';
 import githubSvg from '../../assets/github-circle-white-transparent.svg';
 import { IRouter, IRouteableComponent, IRoute } from 'aurelia-direct-router';
 import { TreeView } from '../tree-view/tree-view';
+import { BannerPage } from '../banner/banner';
 
 const routeDefs: IRoute[] = [
   { id: 'home', path: 'home', title: 'Home', component: Home, data: { divider: 'true' } },
   { id: 'getting-started', path: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
+  { id: 'banner-page', path: 'banner-page', title: 'Banner', component: BannerPage },
   { id: 'button-page', path: 'button-page', title: 'Button', component: ButtonPage },
   { id: 'card', path: 'card', title: 'Card', component: Card },
   { id: 'checkbox', path: 'checkbox', title: 'Checkbox', component: Checkbox },
@@ -97,5 +99,4 @@ export class Root implements IRouteableComponent {
       this.drawer.toggle();
     }
   }
-
 }

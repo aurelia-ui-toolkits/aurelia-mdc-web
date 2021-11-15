@@ -1,0 +1,54 @@
+{
+  "name": "@aurelia-mdc-web/banner",
+  "version": "8.0.0-au2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Wrapper for Material Components Web Banner",
+  "keywords": [
+    "aurelia",
+    "material",
+    "components",
+    "web",
+    "banner"
+  ],
+  "homepage": "http://aurelia.io",
+  "bugs": {
+    "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues"
+  },
+  "license": "MIT",
+  "author": "Maxim Balaganskiy <m.balaganskiy@gmail.com>",
+  "contributors": [],
+  "main": "dist/commonjs/index.js",
+  "module": "dist/native-modules/index.js",
+  "typings": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aurelia-ui-toolkits/aurelia-mdc-web"
+  },
+  "files": [
+    "dist",
+    "*.scss"
+  ],
+  "scripts": {
+    "build-ts:amd": "tsc -p tsconfig.build.json -t es5 -m amd      --outDir dist/amd",
+    "build-ts:cjs": "tsc -p tsconfig.build.json -t es5 -m commonjs --outDir dist/commonjs",
+    "build-ts:ntv": "tsc -p tsconfig.build.json -t es5 -m es6      --outDir dist/native-modules",
+    "build-ts:es6": "tsc -p tsconfig.build.json -t es6 -m es6      --outDir dist/es2015",
+    "build-ts:types": "tsc -p tsconfig.build.json --skipLibCheck -d --emitDeclarationOnly --declarationDir dist/types",
+    "build-assets:amd": "copyfiles -u 1 src/**/*.html src/**/*.css dist/amd",
+    "build-assets:cjs": "copyfiles -u 1 src/**/*.html src/**/*.css dist/commonjs",
+    "build-assets:ntv": "copyfiles -u 1 src/**/*.html src/**/*.css dist/native-modules",
+    "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css dist/es2015",
+    "prebuild": "rimraf dist",
+    "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\"",
+    "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
+    "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts",
+    "publish:latest": "npm publish"
+  },
+  "dependencies": {
+    "@aurelia-mdc-web/base": "8.0.0-au2",
+    "@aurelia-mdc-web/button": "8.0.0-au2",
+    "@material/banner": "^13.0.0"
+  }
+}

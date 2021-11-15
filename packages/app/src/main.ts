@@ -82,6 +82,8 @@ import { Tabs } from './views/tabs/tabs';
 import { TreeView } from './views/tree-view/tree-view';
 import { TreeViewExamples } from './views/tree-view/tree-view-examples';
 import { TooltipConfiguration } from '@aurelia-mdc-web/tooltip';
+import { BannerPage } from './views/banner/banner';
+import { BannerExamples } from './views/banner/banner-examples';
 
 // href is buggy
 // DefaultResources.splice(DefaultResources.findIndex(x => x === HrefCustomAttribute as unknown as IRegistry));
@@ -97,10 +99,10 @@ Aurelia
     Hljs, ApiViewer, ExampleViewer, JsonValueConverter, LoggerConfiguration.create({ level: LogLevel.debug }),
     ValidationHtmlConfiguration.customize(o => o.ValidationControllerFactoryType = MdcValidationControllerFactory), ValidationConfiguration
   )
-  .register(Home, GettingStarted, ButtonPage, Card, Checkbox, Chips, CircularProgress, DataTable, Dialog, Drawer, Elevation, Expandable, Fab, FormField,
+  .register(Home, GettingStarted, BannerPage, ButtonPage, Card, Checkbox, Chips, CircularProgress, DataTable, Dialog, Drawer, Elevation, Expandable, Fab, FormField,
     IconButton, ImageList, LayoutGrid, LinearProgress, List, Lookup, Menu, MenuSurface, Radio, Ripple, Select, Slider, Snackbar, Switch, Tabs, TextField,
     Tooltip, TopAppBar, TreeView, Typography)
-  .register(ButtonExamples, CardExamples, CheckboxExamples, ChipsExamples, CircularProgressExamples, DataTableExamples, DialogExamples, DrawerExamples,
+  .register(BannerExamples, ButtonExamples, CardExamples, CheckboxExamples, ChipsExamples, CircularProgressExamples, DataTableExamples, DialogExamples, DrawerExamples,
     ElevationExamples, ExpandableExamples, FabExamples, FormFieldExamples, IconButtonExamples, ImageListExamples, LayoutGridExamples, LinearProgressExamples,
     ListExamples, LookupExamples, MenuExamples, MenuSurfaceExamples, RadioExamples, RippleExamples, SelectExamples, SliderExamples, SnackbarExamples,
     SwitchExamples, TabsExamples, TextFieldExamples, TooltipExamples, TopAppBarExamples, TreeViewExamples, TypographyExamples)

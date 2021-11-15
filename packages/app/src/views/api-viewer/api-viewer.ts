@@ -1,4 +1,5 @@
 import { NavigationItem } from 'typedoc';
+import bannerApi from '../../../../banner/doc/api.json';
 import buttonApi from '../../../../button/doc/api.json';
 import chipsApi from '../../../../chips/doc/api.json';
 import cardApi from '../../../../card/doc/api.json';
@@ -21,6 +22,7 @@ import radioApi from '../../../../radio/doc/api.json';
 import { RoutingInstruction, IRouter, route } from 'aurelia-direct-router';
 
 const apis: Record<string, unknown> = {
+  'banner-page': bannerApi,
   'button-page': buttonApi,
   'chips': chipsApi,
   'card': cardApi,
