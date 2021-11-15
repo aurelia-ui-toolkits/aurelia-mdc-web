@@ -23,8 +23,8 @@ export const SelectConfiguration = {
       AppTask.beforeCreate(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
-        attrMapper.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SELECT' ? property === 'value' : false);
-        nodeObserverLocator.useConfig({ 'MDC-SELECT': { value: { events: [strings.CHANGE_EVENT], type: MdcSelectValueObserver } } });
+        attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-SELECT' ? property === 'value' : false);
+        nodeObserverLocator.useConfig('MDC-SELECT', 'value', { events: [strings.CHANGE_EVENT], type: MdcSelectValueObserver });
       }).register(container);
       configured = true;
     }

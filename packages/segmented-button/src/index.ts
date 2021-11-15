@@ -17,7 +17,7 @@ export const SegmentedButtonConfiguration = {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrMapper.useTwoWay((el, property) => el.hasAttribute('mdc-segmented-button-segment-element') ? property === 'checked' : false);
-        nodeObserverLocator.useConfig({ 'MDC-SEGMENTED-BUTTON-SEGMENT': { checked: { events: [events.SELECTED, 'unselected'], type: CheckedObserver } } });
+        nodeObserverLocator.useConfig('MDC-SEGMENTED-BUTTON-SEGMENT', 'checked', { events: [events.SELECTED, 'unselected'], type: CheckedObserver });
       }).register(container);
       configured = true;
     }

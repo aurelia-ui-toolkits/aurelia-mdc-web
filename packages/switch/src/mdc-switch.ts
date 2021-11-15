@@ -57,8 +57,7 @@ export class MdcSwitch extends MdcComponent<MDCSwitchRenderFoundation> implement
 
 /** @hidden */
 export interface IMdcSwitchElement extends HTMLButtonElement {
-  checked: boolean;
-  indeterminate: boolean;
+  selected: boolean;
   $au: {
     'au:resource:custom-element': {
       viewModel: MdcSwitch;
@@ -68,6 +67,11 @@ export interface IMdcSwitchElement extends HTMLButtonElement {
 
 function defineMdcSwitchElementApis(element: HTMLElement) {
   Object.defineProperties(element, {
+    tagName: {
+      get() {
+        return 'MDC-SWITCH';
+      }
+    },
     selected: {
       get(this: IMdcSwitchElement) {
         return CustomElement.for<MdcSwitch>(this).viewModel.selected;

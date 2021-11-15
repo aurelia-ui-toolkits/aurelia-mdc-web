@@ -13,7 +13,7 @@ export const SliderConfiguration = {
       AppTask.beforeCreate(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
-        attrMapper.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SLIDER' ? property === 'value' || property === 'valuestart' : false);
+        attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-SLIDER' ? property === 'value' || property === 'valuestart' : false);
         nodeObserverLocator.useConfig({
           'MDC-SLIDER': {
             value: { events: [events.CHANGE, events.INPUT] },

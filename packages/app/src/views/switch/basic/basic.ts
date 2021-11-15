@@ -1,3 +1,3 @@
 export class Basic {
-  selected: boolean;
+  selected: boolean = false;
 }

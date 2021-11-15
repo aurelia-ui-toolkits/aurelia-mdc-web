@@ -19,7 +19,7 @@ export const ChipsConfiguration = {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-CHIP' ? property === 'checked' : false);
-        nodeObserverLocator.useConfig({ 'MDC-CHIP': { checked: { events: ['change'], type: CheckedObserver } } });
+        nodeObserverLocator.useConfig('MDC-CHIP', 'checked', { events: ['change'], type: CheckedObserver });
       }).register(container);
       configured = true;
     }

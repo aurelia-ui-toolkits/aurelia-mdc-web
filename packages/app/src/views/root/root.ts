@@ -65,7 +65,7 @@ const routeDefs: IRoute[] = [
   { id: 'menu-surface', path: 'menu-surface', title: 'Menu surface', component: MenuSurface },
   { id: 'radio', path: 'radio', title: 'Radio', component: Radio },
   { id: 'ripple', path: 'ripple', title: 'Ripple', component: Ripple },
-  { id: 'segmented-button', path: 'segmented-button-page', title: 'Segmented Button', component: SegmentedButton },
+  { id: 'segmented-button', path: 'segmented-button-page', title: 'Segmented button', component: SegmentedButton },
   { id: 'select', path: 'select-page', title: 'Select', component: Select },
   { id: 'slider', path: 'slider', title: 'Slider', component: Slider },
   { id: 'snackbar', path: 'snackbar', title: 'Snackbar', component: Snackbar },

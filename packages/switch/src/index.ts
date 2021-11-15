@@ -13,8 +13,8 @@ export const SwitchConfiguration = {
       AppTask.beforeCreate(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
-        attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-SWITCH' ? property === 'checked' : false);
-        nodeObserverLocator.useConfig({ 'MDC-SWITCH': { selected: { events: ['change'] } } });
+        attrMapper.useTwoWay((el, property) => el.hasAttribute('mdc-switch-element') ? property === 'selected' : false);
+        nodeObserverLocator.useConfig('MDC-SWITCH', 'selected', { events: ['change'] });
       }).register(container);
       configured = true;
     }

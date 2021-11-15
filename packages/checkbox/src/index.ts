@@ -14,7 +14,7 @@ export const CheckboxConfiguration = {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-CHECKBOX' ? property === 'checked' : false);
-        nodeObserverLocator.useConfig({ 'MDC-CHECKBOX': { checked: { events: ['change'], type: CheckedObserver } } });
+        nodeObserverLocator.useConfig('MDC-CHECKBOX', 'checked', { events: ['change'], type: CheckedObserver });
       }).register(container);
       configured = true;
     }

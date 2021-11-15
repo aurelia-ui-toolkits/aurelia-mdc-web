@@ -23,8 +23,8 @@ export const TextFieldConfiguration = {
       AppTask.beforeCreate(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
-        attrMapper.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-TEXT-FIELD' ? property === 'value' : false);
-        nodeObserverLocator.useConfig({ 'MDC-TEXT-FIELD': { value: { events: ['input', 'change'] } } });
+        attrMapper.useTwoWay((el, property) => el.hasAttribute('mdc-text-field-element') ? property === 'value' : false);
+        nodeObserverLocator.useConfig('MDC-TEXT-FIELD', 'value', { events: ['input', 'change'] });
       }).register(container);
       configured = true;
     }

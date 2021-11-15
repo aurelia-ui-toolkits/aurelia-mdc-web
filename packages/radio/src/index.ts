@@ -14,7 +14,7 @@ export const RadioConfiguration = {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-RADIO' ? property === 'checked' : false);
-        nodeObserverLocator.useConfig({ 'MDC-RADIO': { checked: { events: ['change'], type: CheckedObserver } } });
+        nodeObserverLocator.useConfig('MDC-RADIO', 'checked', { events: ['change'], type: CheckedObserver });
       }).register(container);
       configured = true;
     }
