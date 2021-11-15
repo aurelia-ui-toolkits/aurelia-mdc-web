@@ -1,10 +1,8 @@
-import { cssClasses } from '@material/list';
+import { cssClasses, strings } from '@material/list';
 import { customElement, bindable, inject, INode } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { nextId } from '@aurelia/kernel';
 import { processContent } from '@aurelia/runtime-html';
-
-// let listItemId = 0;
 
 const ENTER = 13;
 const SPACE = 32;
@@ -95,6 +93,12 @@ export class MdcListItem {
   /** Disables ripple effect */
   @bindable({ set: booleanAttr })
   disableRipple: boolean;
+
+  attached() {
+    // Child button/a elements are not tabbable until the list item is focused.
+    Array.from(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
+      .forEach(el => el.setAttribute('tabindex', '-1'));
+  }
 
   onKeydown(evt: KeyboardEvent) {
     if ((evt.keyCode === ENTER || evt.keyCode === SPACE) && !this.disabled) {

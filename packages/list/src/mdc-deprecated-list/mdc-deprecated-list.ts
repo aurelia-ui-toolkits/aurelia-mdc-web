@@ -284,17 +284,6 @@ export class MdcDeprecatedList extends MdcComponent<MDCListFoundation>{
   layout() {
     const direction = this.root.getAttribute(strings.ARIA_ORIENTATION);
     this.vertical = direction !== strings.ARIA_ORIENTATION_HORIZONTAL;
-
-    // List items need to have at least tabindex=-1 to be focusable.
-    [].slice.call(this.root.querySelectorAll('.mdc-deprecated-list-item:not([tabindex])'))
-      .forEach((el: Element) => {
-        el.setAttribute('tabindex', '-1');
-      });
-
-    // Child button/a elements are not tabbable until the list item is focused.
-    [].slice.call(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
-      .forEach((el: Element) => el.setAttribute('tabindex', '-1'));
-
     this.foundation?.layout();
   }
 
@@ -324,7 +313,7 @@ export class MdcDeprecatedList extends MdcComponent<MDCListFoundation>{
 }
 
 /** @hidden */
-export interface IMdcListElement extends HTMLElement {
+export interface IMdcDeprecatedListElement extends HTMLElement {
   au: {
     controller: {
       viewModel: MdcDeprecatedList;

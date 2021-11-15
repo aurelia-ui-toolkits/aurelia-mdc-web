@@ -1,4 +1,4 @@
-import { cssClasses } from '@material/list';
+import { cssClasses, strings } from '@material/list';
 import { customElement, bindable, inject, INode } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { nextId } from '@aurelia/kernel';
@@ -73,6 +73,12 @@ export class MdcDeprecatedListItem {
     } else {
       this.root.removeAttribute('href');
     }
+  }
+
+  attached() {
+    // Child button/a elements are not tabbable until the list item is focused.
+    Array.from(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
+      .forEach(el => el.setAttribute('tabindex', '-1'));
   }
 
   onKeydown(evt: KeyboardEvent) {

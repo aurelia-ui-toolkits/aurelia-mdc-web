@@ -255,16 +255,6 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
   }
 
   layout() {
-    // List items need to have at least tabindex=-1 to be focusable.
-    [].slice.call(this.root.querySelectorAll('.mdc-list-item:not([tabindex])'))
-      .forEach((el: Element) => {
-        el.setAttribute('tabindex', '-1');
-      });
-
-    // Child button/a elements are not tabbable until the list item is focused.
-    [].slice.call(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
-      .forEach((el: Element) => el.setAttribute('tabindex', '-1'));
-
     this.foundation?.layout();
   }
 
