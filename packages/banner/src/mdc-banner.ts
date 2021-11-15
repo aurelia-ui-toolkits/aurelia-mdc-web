@@ -1,6 +1,7 @@
-import { booleanAttr, MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
+import { booleanAttr, defaultSlotProcessContent, MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
 import { CloseReason, events, MDCBannerAdapter, MDCBannerCloseEventDetail, MDCBannerFoundation } from '@material/banner';
 import { inject, customElement, bindable } from 'aurelia';
+import { processContent } from '@aurelia/runtime-html';
 
 events.CLOSED = events.CLOSED.toLowerCase();
 events.CLOSING = events.CLOSING.toLowerCase();
@@ -12,38 +13,29 @@ events.OPENING = events.OPENING.toLowerCase();
  */
 @inject(Element)
 @customElement('mdc-banner')
+@processContent(defaultSlotProcessContent)
 export class MdcBanner extends MdcComponent<MDCBannerFoundation> {
   private contentEl: HTMLElement;
   private mdcFocusTrap: MdcFocusTrap;
 
-  /**
-   * When used below top app bars, banners should remain fixed at the top of the screen
-   */
-  @bindable({set: booleanAttr})
+  /** When used below top app bars, banners should remain fixed at the top of the screen */
+  @bindable({ set: booleanAttr })
   fixed: boolean;
 
-  /**
-   * Displayed banner centered, optional
-   */
-  @bindable({set: booleanAttr})
+  /** Displayed banner centered, optional */
+  @bindable({ set: booleanAttr })
   centered: boolean;
 
-  /**
-   * Sets banner icon
-   */
+  /** Sets banner icon */
   @bindable
   icon: string;
 
-  /**
-   * Sets the banner primary action text
-   */
+  /** Sets the banner primary action text */
   @bindable
   primaryAction: string;
 
-  /**
-   * Sets the banner secondary action text
-   */
-   @bindable
+  /** Sets the banner secondary action text */
+  @bindable
   secondaryAction: string;
 
   handlePrimaryActionClick() {

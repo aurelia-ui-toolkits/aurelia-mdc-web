@@ -71,6 +71,7 @@ module.exports = function (env, { analyze }) {
           'notched-outline',
           'radio',
           'ripple',
+          'segmented-button',
           'select',
           'slider',
           'snackbar',

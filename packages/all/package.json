@@ -64,6 +64,7 @@
     "@aurelia-mdc-web/notched-outline": "8.0.0-au2",
     "@aurelia-mdc-web/radio": "8.0.0-au2",
     "@aurelia-mdc-web/ripple": "8.0.0-au2",
+    "@aurelia-mdc-web/segmented-button": "8.0.0-au2",
     "@aurelia-mdc-web/select": "8.0.0-au2",
     "@aurelia-mdc-web/slider": "8.0.0-au2",
     "@aurelia-mdc-web/snackbar": "8.0.0-au2",
