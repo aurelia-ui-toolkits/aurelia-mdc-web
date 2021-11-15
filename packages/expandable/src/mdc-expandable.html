@@ -1,10 +1,11 @@
-<template class="mdc-expandable mdc-expandable--${open ? 'open' : 'closed'}">
+<template
+  class="mdc-expandable mdc-expandable--${open ? 'open' : 'closed'} ${accordion === undefined ? '' : 'mdc-expandable--accordion__' + accordion}">
   <div class="
       mdc-expandable__header
       mdc-expandable__header--${open ? 'open' : 'closed'}
       ${focused ? 'mdc-expandable__header--focused' : ''}
-    " ref="header" click.trigger="toggle()" focus.trigger="handleFocus()" blur.trigger="handleBlur()" mdc-ripple="no-class.bind: true;"
-    tabindex="0" keydown.trigger="handleKeydown($event)">
+    " ref="header" click.trigger="toggle()" focus.trigger="handleFocus()" blur.trigger="handleBlur()"
+    mdc-ripple="no-class.bind: true;" tabindex="0" keydown.trigger="handleKeydown($event)">
     <div class="mdc-expandable__caption">
       <au-slot name="caption"></au-slot>
     </div>

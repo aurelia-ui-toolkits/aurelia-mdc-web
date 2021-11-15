@@ -68,9 +68,7 @@ export class MdcExpandable {
   /** Toggles the expandable open and closed */
   toggle() {
     if (!this.open && this.accordion !== undefined) {
-      const otherAccordions = this.accordion === ''
-        ? Array.from(this.element.parentElement!.querySelectorAll('.mdc-expandable[accordion].mdc-expandable--open'))
-        : Array.from(this.platform.document.querySelectorAll(`.mdc-expandable[accordion='${this.accordion}'].mdc-expandable--open`));
+      const otherAccordions = Array.from(this.element.parentElement!.querySelectorAll(`.mdc-expandable--accordion__${this.accordion}.mdc-expandable--open`));
       otherAccordions.filter(x => x !== this.element)
         .map(x => CustomElement.for<MdcExpandable>(x).viewModel)
         .forEach(x => x.toggle());

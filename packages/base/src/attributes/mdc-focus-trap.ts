@@ -1,6 +1,6 @@
 import { FocusTrap } from '@material/dom/focus-trap';
 import { customAttribute, inject, bindable } from 'aurelia';
-import { booleanAttr } from '..';
+import { booleanAttr } from '../interceptors';
 
 @customAttribute('mdc-focus-trap')
 @inject(Element)

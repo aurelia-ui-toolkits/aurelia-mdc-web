@@ -1,4 +1,5 @@
 import { IContainer } from 'aurelia';
+import { MdcFocusTrap } from './attributes/mdc-focus-trap';
 import { MdcPromisifyReference } from './elements/mdc-promisify-reference';
 
 export { MdcComponent } from './mdc-component';
@@ -10,6 +11,6 @@ export { MdcFocusTrap } from './attributes/mdc-focus-trap';
 
 export const BaseConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcPromisifyReference);
+    return container.register(MdcPromisifyReference, MdcFocusTrap);
   }
 };

@@ -19,7 +19,7 @@
 
       <mdc-list-item role="menuitem" repeat.for="option of optionsArray" value.bind="option" tabindex="-1"
         two-line.bind="twoLine">
-        <au-slot name="option">${getDisplay(option) & oneTime}</au-slot>
+        <au-slot name="option">${getDisplay(option)}</au-slot>
       </mdc-list-item>
     </mdc-list>
   </mdc-menu>

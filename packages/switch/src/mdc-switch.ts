@@ -7,7 +7,6 @@ let switchId = 0;
 
 @inject(Element)
 @customElement('mdc-switch')
-// @ts-expect-error MDCSwitchRenderFoundation seems to be using MDCFoundation from a different typings file
 export class MdcSwitch extends MdcComponent<MDCSwitchRenderFoundation> implements MDCSwitchState, MDCRippleCapableSurface {
   constructor(public root: IMdcSwitchElement) {
     super(root);

@@ -17,7 +17,9 @@ const LIST_ITEM_ACTION = 'mdclistitem:action';
 @customElement('mdc-deprecated-list-item')
 @processContent(MdcDeprecatedListItem.processContent)
 export class MdcDeprecatedListItem {
-  constructor(public root: HTMLElement) { }
+  constructor(public root: HTMLElement) {
+    this.root.id = `mdc-deprecated-list-item-${this.id}`;
+  }
 
   static processContent(node: INode) {
     const element = node as HTMLElement;
