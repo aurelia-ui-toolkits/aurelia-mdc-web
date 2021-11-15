@@ -54,8 +54,10 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   label: string;
   labelChanged() {
     this.platform.domWriteQueue.queueTask(() => {
-      const openNotch = this.foundation!.shouldFloat;
-      this.foundation!.notchOutline(openNotch);
+      if (this.foundation) {
+        const openNotch = this.foundation.shouldFloat;
+        this.foundation.notchOutline(openNotch);
+      }
     });
   }
 

@@ -23,7 +23,9 @@ export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
   @bindable({ set: booleanAttr })
   disabled: boolean;
   disabledChanged() {
-    this.nativeControl_.disabled = this.disabled;
+    if (this.nativeControl_) {
+      this.nativeControl_.disabled = this.disabled;
+    }
   }
 
   /** Set the component touch target to 48 x 48 px */

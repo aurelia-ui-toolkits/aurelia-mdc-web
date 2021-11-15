@@ -95,9 +95,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   required: boolean;
   requiredChanged() {
     if (this.required) {
-      this.selectAnchor.setAttribute('aria-required', 'true');
+      this.selectAnchor?.setAttribute('aria-required', 'true');
     } else {
-      this.selectAnchor.removeAttribute('aria-required');
+      this.selectAnchor?.removeAttribute('aria-required');
     }
     this.foundation?.setRequired(this.required);
     this.platform.domWriteQueue.queueTask(() => this.foundation?.layout());

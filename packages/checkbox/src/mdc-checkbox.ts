@@ -77,7 +77,9 @@ export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   @bindable({ set: booleanAttr, mode: BindingMode.twoWay })
   indeterminate: boolean;
   indeterminateChanged() {
-    this.nativeControl_.indeterminate = this.indeterminate;
+    if (this.nativeControl_) {
+      this.nativeControl_.indeterminate = this.indeterminate;
+    }
     this.foundation?.handleChange();
   }
 

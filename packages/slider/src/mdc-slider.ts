@@ -51,7 +51,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   @bindable
   min: string = '0';
   minChanged() {
-    (this.startInput ?? this.endInput).setAttribute(attributes.INPUT_MIN, this.min);
+    (this.startInput ?? this.endInput)?.setAttribute(attributes.INPUT_MIN, this.min);
     this.foundation?.destroy();
     this.cleanupEventHandlers();
     this.foundation?.init();
@@ -61,7 +61,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   @bindable
   max: string = '100';
   maxChanged() {
-    this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
+    this.endInput?.setAttribute(attributes.INPUT_MAX, this.max);
     this.foundation?.destroy();
     this.cleanupEventHandlers();
     this.foundation?.init();
@@ -72,7 +72,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   step: string = '1';
   stepChanged() {
     this.startInput?.setAttribute(attributes.INPUT_STEP, this.step);
-    this.endInput.setAttribute(attributes.INPUT_STEP, this.step);
+    this.endInput?.setAttribute(attributes.INPUT_STEP, this.step);
     this.foundation?.destroy();
     this.cleanupEventHandlers();
     this.foundation?.init();
