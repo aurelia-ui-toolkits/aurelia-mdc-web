@@ -196,6 +196,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     if (leadingIconEl) {
       this.leadingIcon = CustomAttribute.for<MdcSelectIcon>(leadingIconEl, mdcIconStrings.ATTRIBUTE)?.viewModel;
     }
+    this.menu.list_!.singleSelection = true;
   }
 
   initialSyncWithDOM() {
