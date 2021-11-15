@@ -7,7 +7,7 @@ import { processContent } from '@aurelia/runtime-html';
 @inject(Element)
 @customElement('mdc-top-app-bar')
 @processContent(defaultSlotProcessContent)
-export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
+export class MdcTopAppBar extends MdcComponent<MDCTopAppBarBaseFoundation> {
 
   private handleNavigationClick_!: SpecificEventListener<'click'>; // assigned in initialSyncWithDOM()
   private handleWindowResize_!: SpecificEventListener<'resize'>; // assigned in initialSyncWithDOM()
