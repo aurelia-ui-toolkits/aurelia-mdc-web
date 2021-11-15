@@ -3,12 +3,12 @@
     <mdc-drawer type="dismissible" view-model.ref="demoDismissible">
       <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
       <mdc-drawer-content>
-        <mdc-list>
-          <mdc-list-item repeat.for="item of destinations" activated.bind="item.activated">
-            <mdc-icon mdc-list-item-leading if.bind="item.icon">${item.icon}</mdc-icon>
+        <mdc-deprecated-list>
+          <mdc-deprecated-list-item repeat.for="item of destinations" activated.bind="item.activated">
+            <mdc-icon mdc-deprecated-list-item-graphic if.bind="item.icon">${item.icon}</mdc-icon>
             <span>${item.label}</span>
-          </mdc-list-item>
-        </mdc-list>
+          </mdc-deprecated-list-item>
+        </mdc-deprecated-list>
       </mdc-drawer-content>
     </mdc-drawer>
     <mdc-drawer-app-content style="padding: 16px; height: 400px;">

@@ -1,0 +1,14 @@
+<template class="
+    mdc-deprecated-list
+    ${twoLine ? 'mdc-deprecated-list--two-line' : ''}
+    ${dense ? 'mdc-deprecated-list--dense' : ''}
+    ${textual ? 'mdc-deprecated-list--textual-list' : ''}
+    ${avatar ? 'mdc-deprecated-list--avatar-list' : ''}
+    ${icon ? 'mdc-deprecated-list--icon-list' : ''}
+    ${image ? 'mdc-deprecated-list--image-list' : ''}
+    ${thumbnail ? 'mdc-deprecated-list--thumbnail-list' : ''}
+    ${video ? 'mdc-deprecated-list--video-list' : ''}
+  " keydown.trigger="handleKeydownEvent_($event)" click.trigger="handleClickEvent_($event)"
+  focusin.trigger="handleFocusInEvent_($event)" focusout.trigger="handleFocusOutEvent_($event)"
+  aria-orientation="${vertical ? 'vertical' : 'horizontal' }">
+</template>

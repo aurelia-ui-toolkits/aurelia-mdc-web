@@ -101,8 +101,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
         }
       },
       focusActiveNavigationItem: () => {
-        const activeNavItemEl = this.root.querySelector<HTMLElement>(
-          `.${MDCListFoundation.cssClasses.LIST_ITEM_ACTIVATED_CLASS}`);
+        const activeNavItemEl = this.root.querySelector<HTMLElement>('.mdc-deprecated-list-item--activated');
         if (activeNavItemEl) {
           activeNavItemEl.focus();
         }
