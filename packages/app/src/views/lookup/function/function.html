@@ -5,8 +5,8 @@
     <mdc-lookup options.bind="getOptions" display-field="name" value.bind="value" input.bind="input" two-line
       preload-options>
       <template au-slot="option">
-        <mdc-list-item-primary-text>${option.name}</mdc-list-item-primary-text>
-        <mdc-list-item-secondary-text>with id=${option.id}</mdc-list-item-secondary-text>
+        <mdc-list-item-primary-text>${$host.option.name}</mdc-list-item-primary-text>
+        <mdc-list-item-secondary-text>with id=${$host.option.id}</mdc-list-item-secondary-text>
       </template>
       <template au-slot="searching">
         <mdc-list-item-primary-text>Wait for 3 seconds...</mdc-list-item-primary-text>

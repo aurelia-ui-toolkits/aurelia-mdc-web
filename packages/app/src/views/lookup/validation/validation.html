@@ -4,8 +4,8 @@
     <mdc-text-field-helper-line></mdc-text-field-helper-line>
     <mdc-lookup options.bind="options" display-field="name" value.bind="value & validate" input.bind="input" two-line>
       <template au-slot="option">
-        <mdc-list-item-primary-text>${option.name}</mdc-list-item-primary-text>
-        <mdc-list-item-secondary-text>with id=${option.id}</mdc-list-item-secondary-text>
+        <mdc-list-item-primary-text>${$host.option.name}</mdc-list-item-primary-text>
+        <mdc-list-item-secondary-text>with id=${$host.option.id}</mdc-list-item-secondary-text>
       </template>
     </mdc-lookup>
   </div>
