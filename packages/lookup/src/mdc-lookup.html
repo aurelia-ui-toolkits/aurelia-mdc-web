@@ -3,29 +3,23 @@
     anchor.bind="input" hoist-to-body.bind="hoistToBody" class="${menuClass}">
     <mdc-list role="menu" wrap-focus>
 
-      <mdc-list-item if.bind="searching" two-line.bind="twoLine">
-        <au-slot name="searching">
-          ${defaultConfiguration.searchingMessage}
-        </au-slot>
-      </mdc-list-item>
+      <au-slot if.bind="searching" name="searching">
+        <mdc-list-item two-line.bind="twoLine">${defaultConfiguration.searchingMessage}</mdc-list-item>
+      </au-slot>
 
-      <mdc-list-item if.bind="errorMessage" two-line.bind="twoLine">
-        <au-slot name="error">
-          ${errorMessage}
-        </au-slot>
-      </mdc-list-item>
+      <au-slot if.bind="errorMessage" name="error">
+        <mdc-list-item two-line.bind="twoLine">${errorMessage}</mdc-list-item>
+      </au-slot>
 
-      <mdc-list-item if.bind="optionsArray && !optionsArray.length" two-line.bind="twoLine">
-        <au-slot name="not-found">
+      <au-slot if.bind="optionsArray && !optionsArray.length" name="not-found">
+        <mdc-list-item two-line.bind="twoLine">
           ${defaultConfiguration.notFoundMessage}
-        </au-slot>
-      </mdc-list-item>
+        </mdc-list-item>
+      </au-slot>
 
       <mdc-list-item role="menuitem" repeat.for="option of optionsArray" value.bind="option" tabindex="-1"
         two-line.bind="twoLine">
-        <au-slot name="option">
-          ${getDisplay(option)}
-        </au-slot>
+        <au-slot name="option">${getDisplay(option) & oneTime}</au-slot>
       </mdc-list-item>
     </mdc-list>
   </mdc-menu>
