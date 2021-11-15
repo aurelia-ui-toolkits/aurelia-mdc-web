@@ -475,8 +475,7 @@ Aurelia.register(SliderConfiguration).app(component).start();`,
     ],
     code: `import { SwitchConfiguration } from '@aurelia-web-mdc/switch';
 Aurelia.register(SwitchConfiguration).app(component).start();`,
-    sass: `@use '@material/switch/mdc-switch';
-@use '@material/switch';`
+    sass: '@use "@material/switch/styles";'
   },
   'tabs': {
     title: 'Tabs',
