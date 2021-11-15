@@ -4,6 +4,7 @@ import { MdcSegmentedButtonSegment } from './mdc-segmented-button-segment/mdc-se
 import { EnhanceMdcSegmentedButtonSegment } from './mdc-segmented-button-segment/enhance-mdc-segmented-button-segment';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { AppTask, CheckedObserver, IAttrMapper, NodeObserverLocator } from '@aurelia/runtime-html';
+import { events } from '@material/segmented-button/segmented-button/constants';
 
 export { MdcSegmentedButton, MdcSegmentedButtonSegment };
 
@@ -15,8 +16,8 @@ export const SegmentedButtonConfiguration = {
       AppTask.beforeCreate(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
-        attrMapper.useTwoWay((el, property) => (el.getAttribute('as-element') ?? el.tagName).toUpperCase() === 'MDC-SEGMENTED-BUTTON' ? property === 'checked' : false);
-        nodeObserverLocator.useConfig({ 'MDC-SEGMENTED-BUTTON': { checked: { events: ['change'], type: CheckedObserver } } });
+        attrMapper.useTwoWay((el, property) => el.hasAttribute('mdc-segmented-button-segment-element') ? property === 'checked' : false);
+        nodeObserverLocator.useConfig({ 'MDC-SEGMENTED-BUTTON-SEGMENT': { checked: { events: [events.SELECTED, 'unselected'], type: CheckedObserver } } });
       }).register(container);
       configured = true;
     }

@@ -3,11 +3,12 @@ import { CustomElement, processContent } from '@aurelia/runtime-html';
 import { inject, customElement, bindable } from 'aurelia';
 import { MDCSegmentedButtonSegmentAdapter, MDCSegmentedButtonSegmentFoundation, SegmentDetail } from '@material/segmented-button';
 import { events } from '@material/segmented-button/segmented-button/constants';
+import { MdcSegmentedButton } from '..';
 
 /**
  * @selector button[mdc-segmented-button-segment]
  */
-@inject(Element)
+@inject(Element, MdcSegmentedButton)
 @customElement('mdc-segmented-button-segment')
 @processContent(defaultSlotProcessContent)
 export class MdcSegmentedButtonSegment extends MdcComponent<MDCSegmentedButtonSegmentFoundation> {
@@ -150,6 +151,11 @@ function defineMdcSegmentedButtonSegmentElementApis(element: IMdcSegmentedButton
   Object.defineProperties(element, {
     type: {
       value: 'checkbox'
+    },
+    tagName: {
+      get() {
+        return 'MDC-SEGMENTED-BUTTON-SEGMENT';
+      }
     },
     checked: {
       get(this: IMdcSegmentedButtonSegmentElement) {

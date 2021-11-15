@@ -18,7 +18,7 @@ export class MdcSegmentedButton extends MdcComponent<MDCSegmentedButtonFoundatio
     this.root.setAttribute('role', this.single ? 'radiogroup' : 'group');
   }
 
-  @children({ query: controller => controller.host.querySelectorAll('.mdc-segmented-button__segment') })
+  @children({ query: controller => controller.host.querySelectorAll('button') })
   segmentsList!: MdcSegmentedButtonSegment[];
 
   initialSyncWithDOM() {
