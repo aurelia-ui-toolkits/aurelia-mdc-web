@@ -101,6 +101,11 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     this.open = !this.open;
   }
 
+  openAnchored(anchor: HTMLElement) {
+    this.anchor = anchor;
+    this.open = true;
+  }
+
   get wrapFocus(): boolean {
     return this.list_ ? this.list_.wrapFocus : false;
   }
