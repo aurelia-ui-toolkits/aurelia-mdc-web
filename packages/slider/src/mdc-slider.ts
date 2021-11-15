@@ -129,12 +129,12 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
 
   beforeFoundationCreated() {
     // assign initial values explicitly
-    this.endInput.setAttribute(attributes.INPUT_MIN, this.min);
-    this.endInput.setAttribute(attributes.INPUT_MAX, this.max);
+    this.endInput.setAttribute(attributes.INPUT_MIN, this.min.toString());
+    this.endInput.setAttribute(attributes.INPUT_MAX, this.max.toString());
     this.endInput.setAttribute(attributes.INPUT_VALUE, this.value.toString());
-    this.endInput.setAttribute(attributes.INPUT_STEP, this.step);
+    this.endInput.setAttribute(attributes.INPUT_STEP, this.step.toString());
     this.startInput?.setAttribute(attributes.INPUT_VALUE, this.valueStart.toString());
-    this.startInput?.setAttribute(attributes.INPUT_STEP, this.step);
+    this.startInput?.setAttribute(attributes.INPUT_STEP, this.step.toString());
   }
 
   initialSyncWithDOM() {
