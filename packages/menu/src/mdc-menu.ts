@@ -21,9 +21,10 @@ strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
 export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   private menuSurface_: MdcMenuSurface; // assigned in html
 
+  // TODO: can we use child here?
   // @child('mdc-list')
   get list_(): MdcList | undefined {
-    const el = this.root.querySelector('mdc-list');
+    const el = this.root.querySelector('mdc-list,mdc-deprecated-list');
     return el ? CustomElement.for<MdcList>(el).viewModel : undefined;
   }
 
