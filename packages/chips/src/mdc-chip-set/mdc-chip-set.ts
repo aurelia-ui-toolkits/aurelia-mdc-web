@@ -1,14 +1,14 @@
 import { inject, customElement, children, bindable } from 'aurelia';
-import { MDCChipSetFoundation, MDCChipSetAdapter, Events } from '@material/chips';
+import { MDCChipSetFoundation, MDCChipSetAdapter, MDCChipSetEvents } from '@material/chips';
 import { announce } from '@material/dom/announce';
 import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { processContent } from '@aurelia/runtime-html';
 import { MdcChip } from '../mdc-chip/mdc-chip';
 import { ChipAnimationEvent, ChipInteractionEvent, ChipNavigationEvent } from '@material/chips/chip-set/types';
 
-(Events as Record<string, string>).INTERACTION = Events.INTERACTION.toLowerCase();
-(Events as Record<string, string>).REMOVAL = Events.REMOVAL.toLowerCase();
-(Events as Record<string, string>).SELECTION = Events.SELECTION.toLowerCase();
+(MDCChipSetEvents as Record<string, string>).INTERACTION = MDCChipSetEvents.INTERACTION.toLowerCase();
+(MDCChipSetEvents as Record<string, string>).REMOVAL = MDCChipSetEvents.REMOVAL.toLowerCase();
+(MDCChipSetEvents as Record<string, string>).SELECTION = MDCChipSetEvents.SELECTION.toLowerCase();
 
 let chipSetId = 0;
 
@@ -54,44 +54,44 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
       },
       getAttribute: (attrName) => this.root.getAttribute(attrName),
       getChipActionsAtIndex: (index) => {
-        if (!this.isIndexValid(index)) return [];
+        if (!this.isIndexValid(index)) { return []; }
         return this.chips[index].getActions();
       },
       getChipCount: () => this.chips.length,
       getChipIdAtIndex: (index) => {
-        if (!this.isIndexValid(index)) return '';
+        if (!this.isIndexValid(index)) { return ''; }
         return this.chips[index].getElementID();
       },
       getChipIndexById: (id) =>
         this.chips.findIndex((chip) => chip.getElementID() === id),
       isChipFocusableAtIndex: (index, action) => {
-        if (!this.isIndexValid(index)) return false;
+        if (!this.isIndexValid(index)) { return false; }
         return this.chips[index].isActionFocusable(action);
       },
       isChipSelectableAtIndex: (index, action) => {
-        if (!this.isIndexValid(index)) return false;
+        if (!this.isIndexValid(index)) { return false; }
         return this.chips[index].isActionSelectable(action);
       },
       isChipSelectedAtIndex: (index, action) => {
-        if (!this.isIndexValid(index)) return false;
+        if (!this.isIndexValid(index)) { return false; }
         return this.chips[index].isActionSelected(action);
       },
       removeChipAtIndex: (index) => {
-        if (!this.isIndexValid(index)) return;
+        if (!this.isIndexValid(index)) { return; }
         this.chips[index].destroy();
         this.chips[index].remove();
         this.chips.splice(index, 1);
       },
       setChipFocusAtIndex: (index, action, focus) => {
-        if (!this.isIndexValid(index)) return;
+        if (!this.isIndexValid(index)) { return; }
         this.chips[index].setActionFocus(action, focus);
       },
       setChipSelectedAtIndex: (index, action, selected) => {
-        if (!this.isIndexValid(index)) return;
+        if (!this.isIndexValid(index)) { return; }
         this.chips[index].setActionSelected(action, selected);
       },
       startChipAnimationAtIndex: (index, animation) => {
-        if (!this.isIndexValid(index)) return;
+        if (!this.isIndexValid(index)) { return; }
         this.chips[index].startAnimation(animation);
       },
     };

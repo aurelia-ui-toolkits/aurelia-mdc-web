@@ -3,15 +3,12 @@ import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { processContent, CustomElement } from '@aurelia/runtime-html';
 import { MdcChipAction } from '../mdc-chip-action/mdc-chip-action';
 import { MDCChipFoundation } from '@material/chips/chip/foundation';
-import { Events } from '@material/chips/chip';
-import { MDCChipAdapter } from '@material/chips/chip/adapter';
-import { ActionType, FocusBehavior } from '@material/chips/action/constants';
+import { MDCChipEvents, MDCChipAdapter, MDCChipActionType, MDCChipActionFocusBehavior, MDCChipAnimation } from '@material/chips';
 import { ActionInteractionEvent, ActionNavigationEvent } from '@material/chips/chip/types';
-import { Animation } from '@material/chips/chip/constants';
 
-(Events as Record<string, string>).INTERACTION = Events.INTERACTION.toLowerCase();
-(Events as Record<string, string>).ANIMATION = Events.ANIMATION.toLowerCase();
-(Events as Record<string, string>).NAVIGATION = Events.NAVIGATION.toLowerCase();
+(MDCChipEvents as Record<string, string>).INTERACTION = MDCChipEvents.INTERACTION.toLowerCase();
+(MDCChipEvents as Record<string, string>).ANIMATION = MDCChipEvents.ANIMATION.toLowerCase();
+(MDCChipEvents as Record<string, string>).NAVIGATION = MDCChipEvents.NAVIGATION.toLowerCase();
 
 let chipId = 0;
 
@@ -65,13 +62,13 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
    * @return Whether the chip is selected.
    */
   get selected(): boolean {
-    return this.foundation?.isActionSelected(ActionType.PRIMARY) ?? this._selected;
+    return this.foundation?.isActionSelected(MDCChipActionType.PRIMARY) ?? this._selected;
   }
 
   /** Sets selected state on the chip. */
   set selected(selected: boolean) {
     this._selected = selected;
-    this.foundation?.setActionSelected(ActionType.PRIMARY, selected);
+    this.foundation?.setActionSelected(MDCChipActionType.PRIMARY, selected);
   }
 
   /** Marks the chip as disabled. */
@@ -92,15 +89,15 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
   @bindable
   icon: string;
 
-  actions: Map<ActionType, MdcChipAction>;
+  actions: Map<MDCChipActionType, MdcChipAction>;
 
   beforeFoundationCreated() {
     this.actions = new Map();
     const primaryAction = CustomElement.for<MdcChipAction>(this.root.querySelector('.mdc-evolution-chip__action--primary')!).viewModel;
-    this.actions.set(ActionType.PRIMARY, primaryAction);
+    this.actions.set(MDCChipActionType.PRIMARY, primaryAction);
     const trailingAction = this.root.querySelector('.mdc-evolution-chip__action--trailing');
     if (trailingAction) {
-      this.actions.set(ActionType.TRAILING, CustomElement.for<MdcChipAction>(trailingAction).viewModel);
+      this.actions.set(MDCChipActionType.TRAILING, CustomElement.for<MdcChipAction>(trailingAction).viewModel);
     }
   }
 
@@ -128,7 +125,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
         this.emit(eventName, eventDetail, true /* shouldBubble */);
       },
       getActions: () => {
-        const actions: ActionType[] = [];
+        const actions: MDCChipActionType[] = [];
         for (const [key] of this.actions) {
           actions.push(key);
         }
@@ -140,28 +137,28 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
         return this.root.offsetWidth;
       },
       hasClass: (className) => this.root.classList.contains(className),
-      isActionSelectable: (actionType: ActionType) => {
+      isActionSelectable: (actionType: MDCChipActionType) => {
         const action = this.actions.get(actionType);
         if (action) {
           return action.selectable;
         }
         return false;
       },
-      isActionSelected: (actionType: ActionType) => {
+      isActionSelected: (actionType: MDCChipActionType) => {
         const action = this.actions.get(actionType);
         if (action) {
           return action.selected;
         }
         return false;
       },
-      isActionFocusable: (actionType: ActionType) => {
+      isActionFocusable: (actionType: MDCChipActionType) => {
         const action = this.actions.get(actionType);
         if (action) {
           return action.isFocusable();
         }
         return false;
       },
-      isActionDisabled: (actionType: ActionType) => {
+      isActionDisabled: (actionType: MDCChipActionType) => {
         const action = this.actions.get(actionType);
         if (action) {
           return action.disabled;
@@ -173,19 +170,19 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
       removeClass: (className) => {
         this.root.classList.remove(className);
       },
-      setActionDisabled: (actionType: ActionType, isDisabled: boolean) => {
+      setActionDisabled: (actionType: MDCChipActionType, isDisabled: boolean) => {
         const action = this.actions.get(actionType);
         if (action) {
           action.disabled = isDisabled;
         }
       },
-      setActionFocus: (actionType: ActionType, behavior: FocusBehavior) => {
+      setActionFocus: (actionType: MDCChipActionType, behavior: MDCChipActionFocusBehavior) => {
         const action = this.actions.get(actionType);
         if (action) {
           action.setFocus(behavior);
         }
       },
-      setActionSelected: (actionType: ActionType, isSelected: boolean) => {
+      setActionSelected: (actionType: MDCChipActionType, isSelected: boolean) => {
         const action = this.actions.get(actionType);
         if (action) {
           if (action.selected !== isSelected) {
@@ -219,7 +216,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     this.foundation?.handleTransitionEnd();
   }
 
-  getActions(): ActionType[] {
+  getActions(): MDCChipActionType[] {
     return this.foundation?.getActions() ?? [];
   }
 
@@ -227,27 +224,27 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     return this.foundation?.getElementID() ?? '';
   }
 
-  isActionFocusable(action: ActionType): boolean {
+  isActionFocusable(action: MDCChipActionType): boolean {
     return this.foundation!.isActionFocusable(action);
   }
 
-  isActionSelectable(action: ActionType): boolean {
+  isActionSelectable(action: MDCChipActionType): boolean {
     return this.foundation!.isActionSelectable(action);
   }
 
-  isActionSelected(action: ActionType): boolean {
+  isActionSelected(action: MDCChipActionType): boolean {
     return this.foundation!.isActionSelected(action);
   }
 
-  setActionFocus(action: ActionType, focus: FocusBehavior) {
+  setActionFocus(action: MDCChipActionType, focus: MDCChipActionFocusBehavior) {
     this.foundation!.setActionFocus(action, focus);
   }
 
-  setActionSelected(action: ActionType, isSelected: boolean) {
+  setActionSelected(action: MDCChipActionType, isSelected: boolean) {
     this.foundation!.setActionSelected(action, isSelected);
   }
 
-  startAnimation(animation: Animation) {
+  startAnimation(animation: MDCChipAnimation) {
     this.foundation!.startAnimation(animation);
   }
 

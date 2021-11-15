@@ -1,17 +1,15 @@
 import { closest } from '@material/dom/ponyfill';
 import { booleanAttr, defaultSlotProcessContent, MdcComponent } from '@aurelia-mdc-web/base';
-import MDCChipActionFoundation from '@material/chips/action/foundation';
+import { MDCChipActionAdapter, MDCChipActionFoundation, MDCChipActionCssClasses, MDCChipActionEvents, MDCChipActionFocusBehavior } from '@material/chips';
 import { MDCRippleCapableSurface } from '@material/ripple';
-import { MDCChipActionAdapter } from '@material/chips/action/adapter';
-import { CssClasses, Events, FocusBehavior } from '@material/chips/action/constants';
 import { MDCChipTrailingActionFoundation } from '@material/chips/action/trailing-foundation';
 import { MDCChipPrimaryActionFoundation } from '@material/chips/action/primary-foundation';
 import { GRAPHIC_SELECTED_WIDTH_STYLE_PROP, computePrimaryActionRippleClientRect } from '@material/chips/action/component-ripple';
 import { bindable, customElement } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
 
-(Events as Record<string, string>).INTERACTION = Events.INTERACTION.toLowerCase();
-(Events as Record<string, string>).NAVIGATION = Events.NAVIGATION.toLowerCase();
+(MDCChipActionEvents as Record<string, string>).INTERACTION = MDCChipActionEvents.INTERACTION.toLowerCase();
+(MDCChipActionEvents as Record<string, string>).NAVIGATION = MDCChipActionEvents.NAVIGATION.toLowerCase();
 
 let actionId = 0;
 
@@ -102,7 +100,7 @@ export class MdcChipAction extends MdcComponent<MDCChipActionFoundation> impleme
       },
     };
 
-    if (this.root.classList.contains(CssClasses.TRAILING_ACTION)) {
+    if (this.root.classList.contains(MDCChipActionCssClasses.TRAILING_ACTION)) {
       return new MDCChipTrailingActionFoundation(adapter);
     }
 
@@ -114,15 +112,17 @@ export class MdcChipAction extends MdcComponent<MDCChipActionFoundation> impleme
     return this.foundation?.isFocusable() ?? false;
   }
 
-  setFocus(behavior: FocusBehavior) {
+  setFocus(behavior: MDCChipActionFocusBehavior) {
     this.foundation?.setFocus(behavior);
   }
 
   computeRippleClientRect = () => {
-    if (this.root.classList.contains(CssClasses.PRIMARY_ACTION)) {
-      const chipRoot = closest(this.root, `.${CssClasses.CHIP_ROOT}`);
+    if (this.root.classList.contains(MDCChipActionCssClasses.PRIMARY_ACTION)) {
+      const chipRoot = closest(this.root, `.${MDCChipActionCssClasses.CHIP_ROOT}`);
       // Return the root client rect since it's better than nothing
-      if (!chipRoot) return this.root.getBoundingClientRect();
+      if (!chipRoot) {
+        return this.root.getBoundingClientRect();
+      }
       const graphicWidth = window.getComputedStyle(chipRoot).getPropertyValue(
         GRAPHIC_SELECTED_WIDTH_STYLE_PROP);
       return computePrimaryActionRippleClientRect(
