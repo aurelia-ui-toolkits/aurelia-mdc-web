@@ -1,4 +1,4 @@
-import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MDCSliderAdapter, Thumb, cssClasses, TickMark, MDCSliderChangeEventDetail, events, attributes } from '@material/slider';
 import { inject, customElement, bindable, CustomElement } from 'aurelia';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
@@ -48,31 +48,49 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     this.foundation?.setDisabled(this.disabled);
   }
 
-  @bindable
-  min: string = '0';
-  minChanged() {
-    (this.startInput ?? this.endInput)?.setAttribute(attributes.INPUT_MIN, this.min);
+  @bindable({ set: number })
+  min: number = 0;
+  async minChanged() {
+    await this.initialised;
+    (this.startInput ?? this.endInput)?.setAttribute(attributes.INPUT_MIN, this.min.toString());
     this.foundation?.destroy();
     this.cleanupEventHandlers();
+    if (this.range && this.valueStart < this.min) {
+      this.valueStart = this.min;
+      this.emit(events.CHANGE, { value: this.value, thumb: Thumb.START }, true);
+    }
+    if (this.value < this.min) {
+      this.value = this.min;
+      this.emit(events.CHANGE, { value: this.value, thumb: Thumb.END }, true);
+    }
     this.foundation?.init();
     this.foundation?.layout();
   }
 
-  @bindable
-  max: string = '100';
-  maxChanged() {
-    this.endInput?.setAttribute(attributes.INPUT_MAX, this.max);
+  @bindable({ set: number })
+  max: number = 100;
+  async maxChanged() {
+    await this.initialised;
+    this.endInput?.setAttribute(attributes.INPUT_MAX, this.max.toString());
     this.foundation?.destroy();
     this.cleanupEventHandlers();
+    if (this.range && this.valueStart > this.max) {
+      this.valueStart = this.max;
+      this.emit(events.CHANGE, { value: this.value, thumb: Thumb.START }, true);
+    }
+    if (this.value > this.max) {
+      this.value = this.max;
+      this.emit(events.CHANGE, { value: this.value, thumb: Thumb.END }, true);
+    }
     this.foundation?.init();
     this.foundation?.layout();
   }
 
-  @bindable
-  step: string = '1';
+  @bindable({ set: number })
+  step: number = 1;
   stepChanged() {
-    this.startInput?.setAttribute(attributes.INPUT_STEP, this.step);
-    this.endInput?.setAttribute(attributes.INPUT_STEP, this.step);
+    this.startInput?.setAttribute(attributes.INPUT_STEP, this.step.toString());
+    this.endInput?.setAttribute(attributes.INPUT_STEP, this.step.toString());
     this.foundation?.destroy();
     this.cleanupEventHandlers();
     this.foundation?.init();
