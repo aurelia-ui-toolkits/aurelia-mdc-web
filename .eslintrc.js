@@ -143,6 +143,7 @@ module.exports = {
     // 'sonarjs/no-useless-catch': 'error',
     // 'sonarjs/prefer-immediate-return': 'error',
     'array-callback-return': 'error',
+    'curly': 'error',
     'eol-last': ['error', 'always'],
     'func-call-spacing': 'off', // See @typescript-eslint/func-call-spacing
     'function-call-argument-newline': ['off', 'consistent'],
