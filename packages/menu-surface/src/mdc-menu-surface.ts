@@ -229,6 +229,12 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
         }
       },
       getInnerDimensions: () => {
+        const firstChild = this.root.firstElementChild as HTMLElement;
+        if (this.root.offsetHeight < firstChild?.offsetHeight) {
+          // workaround https://github.com/material-components/material-components-web/issues/6709
+          // by explicitly displaying vertical scroll if a list does not fit
+          this.root.style.overflowY = this.root.offsetHeight < firstChild.offsetHeight ? 'scroll' : '';
+        }
         return {
           width: this.root.offsetWidth,
           height: this.root.offsetHeight
