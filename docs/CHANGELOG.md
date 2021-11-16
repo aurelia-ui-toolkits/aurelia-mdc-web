@@ -1,3 +1,13 @@
+## [8.0.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.0-au2...v8.0.1-au2) (2021-11-16)
+
+
+### Bug Fixes
+
+* **banner:** package.json ([f4a0d46](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f4a0d46f1038c0aef3458d1622aad62bd96c554d))
+* **segmented-button:** package.json ([4fedcf6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4fedcf65c1285b1b74aeaa436241fbdbd2fda237))
+
+
+
 # [8.0.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.5-au2...v8.0.0-au2) (2021-11-16)
 
 
