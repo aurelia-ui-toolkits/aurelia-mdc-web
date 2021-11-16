@@ -1,3 +1,46 @@
+# [8.0.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.5-au2...v8.0.0-au2) (2021-11-16)
+
+
+### Bug Fixes
+
+* **base:** add missing validation field ([7734320](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7734320174e83fa491e9325a943a72a01e05bd2f))
+* **base:** check reference ([b649b15](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b649b15f52b89cf5c3f0daa6901e0398147f7c36))
+* **checkbox,radio,select,slider,text-field:** consider undefined references ([16d8bfd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/16d8bfd78dfe747c5a9c1d7b6d88c00bc5525b2e))
+* **chips:** MDC upgrade ([6b15c53](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6b15c537790fd78e016f93dd3097e68c2f79180f))
+* **deprecated-list:** add href attribute ([3eec1bd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3eec1bdf3a0b7ea113c65d07c585be1edb29c768))
+* **drawer:** add mdc-deprecated-list ([3299f47](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3299f47311399c7c50b46ddd15b352dff42ce414))
+* **form-field:** hook label to buttons ([999126f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/999126f288843b5b78d662a7af342e8ec35a9153))
+* **list:** handle initial tabindex in item ([d235466](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d2354668bd95133cd4b8c4b87a0cf0c3e45283d7))
+* **lookup:** await for debounce promise on blur ([e0f2bbb](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e0f2bbbc8dd9161387b299d3436743359d65ee71))
+* **lookup:** do not suppress on mouse down ([0a5189d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0a5189d6ac1cf1075d16556fabc90e060d39d993))
+* **lookup:** include list item into default slots ([7827af2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7827af28be68ff5196699be0cc18a3a9af9bd693))
+* **lookup:** prevent input blur when an item was selected ([5a29c0b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5a29c0b650b63044b066d36c1813dc2744a32989))
+* **menu-surface:** check for undefined foundation ([9fe1dcc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9fe1dcc71eebafefa76b94300dfd686dc61bd1a9))
+* **menu-surface:** remove unnecessary check ([e234a8b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e234a8bccb44a54716d156324053cc1882446182))
+* **menu:** consider deprecated lists in menus ([cafe38b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/cafe38bf838ec088b58910547d975a76d92d4a26))
+* **menu:** display vertical scrollbar explicitly ([8a145ab](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8a145abe6cfd743cf681c898a436b7f3fa4716c0))
+* **menu:** expose menu surface ([08f1281](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/08f12811597a1040afac796f04c18136c71d94c9))
+* **select:** set internal list to single selection ([c7c96af](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c7c96af9aa2ee8c856d5bedd880043d2f45173e1))
+* **slider:** adjust value to fit into min/max ([795f51e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/795f51ebeda55173efb5e9675177bf2fc539678e))
+* **slider:** adjust value to fit into min/max ([331a67f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/331a67f896d0a51f54e5389288af8c7aa55b4d97))
+* **slider:** adjust value to fit into min/max ([c341ab3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c341ab38550fb3ea0805b3e9112dbf3d2f111251))
+* **text-field:** expose value ([eab3ed7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/eab3ed769bc94fa051d9af1679b6dded43d33152))
+* **top-app-bar:** use proper base class ([737c8d3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/737c8d3a03bb9a3094c0bc4af380ff4e104863cf))
+
+
+### Features
+
+* **banner:** add ([21dfc0d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/21dfc0da9fe42ea216a4e255f62140a499d32d03))
+* **base:** allow delaying focus trap creation ([09a3cbd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/09a3cbd23fcf2c358a7d2b6beb5416b23cbedd37))
+* **data-table:** MDC upgrade ([2c61345](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2c6134554b26696e27766b1db6b86cf8ab75316b))
+* **icon-button:** MDC upgrade ([796c85b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/796c85bf21cca13fda7778e0bd592d3fc25f59f2))
+* **menu:** add helper method ([e3c341a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e3c341a61e1dfb3f5355736961cbbf1c75ccd9c4))
+* **menu:** MDC upgrade ([7915bcf](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7915bcfca88490cd8d050b627b694f2840ab3529))
+* **segmented-button:** add ([5d691e3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5d691e3af2b560e5796dacf004edd4fb29eefe0b))
+* **tooltip:** add delay configs ([d93590f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d93590feee4bcbae9579b1f797baca0bfd0878a1))
+
+
+
 ## [7.0.5-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v7.0.2-au2...v7.0.5-au2) (2021-08-22)
 
 
