@@ -1,6 +1,5 @@
 import { MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
 import { MDCDismissibleDrawerFoundation, cssClasses, strings, MDCModalDrawerFoundation, MDCDrawerAdapter } from '@material/drawer';
-import { MDCListFoundation } from '@material/list';
 import { customElement, bindable, inject } from 'aurelia';
 
 strings.CLOSE_EVENT = strings.CLOSE_EVENT.toLowerCase();
