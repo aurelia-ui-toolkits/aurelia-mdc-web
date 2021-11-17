@@ -1,3 +1,17 @@
+## [8.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.2...v8.0.3) (2021-11-17)
+
+
+### Bug Fixes
+
+* **slider:** adjust value to fit into min/max ([65e546c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/65e546c1b21572144bd8e695f832b9228202bd1a)), closes [#62](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/62)
+
+
+### Features
+
+* **tooltip:** add delay configs ([f4c133c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f4c133c418bdd5620b53969229908a45f214c155))
+
+
+
 ## [8.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.1...v8.0.2) (2021-11-08)
 
 
