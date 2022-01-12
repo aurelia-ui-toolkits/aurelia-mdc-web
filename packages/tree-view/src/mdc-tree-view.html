@@ -21,7 +21,7 @@
         promise-ref.bind="$node.childTreeViewPromise">
       </mdc-promisify-reference>
       <mdc-tree-view if.bind="filteredChildren.length && $node.expanded" nodes.bind="filteredChildren"
-        root-binding-context.bind="rootBindingContext" view-model.ref="treeView"
+        root-binding-context.bind="rootBindingContext" view-model.ref="treeView" filter.bind="filter"
         mdctree:node-selected.trigger="childNodeSelected($event.detail.node)" node-template.bind="nodeTemplate">
       </mdc-tree-view>
     </li>
