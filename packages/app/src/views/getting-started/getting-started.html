@@ -34,6 +34,15 @@
     For more information on using Material Icons, check out the
     <a href="https://material.io/tools/icons/?style=baseline" target="_blank" rel="noopener">Material Icons Guide.</a>
 
+    <h2 class="demo-panel-heading">SVGs</h2>
+    Some components, such as the circular-progress require the SVGAnalyzer from Aurelia to be included and regsiterd in your Aurelia 2 Application.
+    To do so add the following to your <code mdc-subtitle2>main.ts/js</code> file.
+    
+    <hljs language="javascript">
+      import { SVGAnalyzer } from '@aurelia/runtime-html';
+      .register(SVGAnalyzer);
+    </hljs>
+    
     <h2 class="demo-panel-heading">Sample index.html</h2>
     Here's an example <code mdc-subtitle2>index.html</code> demonstrating Roboto Font applied to the body element with
     <code mdc-subtitle2>mdc-typography</code>.
