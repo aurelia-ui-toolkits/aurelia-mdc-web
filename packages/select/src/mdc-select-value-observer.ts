@@ -93,7 +93,11 @@ export class MdcSelectValueObserver {
         && (Array.from(x.addedNodes).find(y => (y as HTMLElement).tagName === 'MDC-LIST-ITEM')
           || Array.from(x.removedNodes).find(y => (y as HTMLElement).tagName === 'MDC-LIST-ITEM'))
       )) {
-        if (!this.optionsWereSet) {
+        if (this.optionsWereSet) {
+          if(this.element.value != this.value){
+            this.element.value = undefined;
+          }
+        } else {
           this.optionsWereSet = true;
           // if options are set for the first time pass the current value to the element
           this.setElementValue(true);
