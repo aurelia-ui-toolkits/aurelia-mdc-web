@@ -242,7 +242,7 @@ export class MdcSelectValueObserver implements IObserver {
   private start(): void {
     const vm = CustomElement.for<MdcSelect>(this.obj).viewModel;
     vm.initialised.then(() => {
-      (this.nodeObserver = new this.obj.ownerDocument.defaultView!.MutationObserver(this.handleNodeChange.bind(this)))
+      (this.nodeObserver = new this.obj.ownerDocument.defaultView!.MutationObserver(records => this.handleNodeChange(records)))
         .observe(vm.menu.root, childObserverOptions);
       // this.observeArray(this.currentValue instanceof Array ? this.currentValue : null);
       this.observing = true;
