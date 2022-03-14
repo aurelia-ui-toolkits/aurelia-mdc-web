@@ -1,7 +1,7 @@
 {
   "name": "@aurelia-mdc-web/monorepo",
   "private": true,
-  "version": "8.0.3",
+  "version": "8.0.4",
   "workspaces": [
     "packages/all",
     "packages/app",
@@ -119,7 +119,7 @@
     "aurelia-typed-observable-plugin": "^0.4.2",
     "aurelia-validation": "^2.0.0-rc2",
     "aurelia-webpack-plugin": "^5.0.3",
-    "concurrently": "^7.0.0",
+    "concurrently": "^6.5.1",
     "conventional-changelog-cli": "^2.2.2",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",

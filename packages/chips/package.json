@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/chips",
-  "version": "8.0.3",
+  "version": "8.0.4",
   "publishConfig": {
     "access": "public"
   },
@@ -47,8 +47,8 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "8.0.3",
-    "@aurelia-mdc-web/ripple": "8.0.3",
+    "@aurelia-mdc-web/base": "8.0.4",
+    "@aurelia-mdc-web/ripple": "8.0.4",
     "@material/chips": "^13.0.0",
     "@material/ripple": "^13.0.0"
   }

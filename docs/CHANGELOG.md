@@ -1,3 +1,13 @@
+## [8.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.3...v8.0.4) (2022-03-14)
+
+
+### Bug Fixes
+
+* **select:** reset value when it is not in the new options ([ddb670d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ddb670d3f1efc244d8e1624b66a34c47e704e8b5))
+* **tree:** pass filter to child trees ([51f41b1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/51f41b12f006f507225f2e7808ed7372fca71281))
+
+
+
 ## [8.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.2...v8.0.3) (2021-11-17)
 
 
