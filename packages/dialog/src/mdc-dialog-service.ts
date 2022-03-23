@@ -36,13 +36,26 @@ export class MdcDialogService {
     if (!dialogVm) {
       throw new Error('MDC-DIALOG element is missing');
     }
-    let closedResolver: (action?: string | PromiseLike<string> | undefined) => void;
-    const closedPromise = new Promise<string>(r => closedResolver = r);
-    dialogVm.root.addEventListener(strings.CLOSED_EVENT, (evt: MDCDialogCloseEvent) => closedResolver(evt.detail.action));
+
     let openedResolver: () => void;
     const openedPromise = new Promise<void>(r => openedResolver = r);
-    dialogVm.root.addEventListener(strings.CLOSED_EVENT, (evt: MDCDialogCloseEvent) => closedResolver(evt.detail.action));
-    dialogVm.root.addEventListener(strings.OPENED_EVENT, () => openedResolver());
+    let opened = false;
+    dialogVm.root.addEventListener(strings.OPENED_EVENT, () => {
+      opened = true;
+      openedResolver();
+    });
+
+    let closedResolver: (action?: string | PromiseLike<string> | undefined) => void;
+    const closedPromise = new Promise<string>(r => closedResolver = r);
+    dialogVm.root.addEventListener(strings.CLOSED_EVENT, (evt: MDCDialogCloseEvent) => {
+      if (!opened) {
+        // The dialog was closed before it was opened.
+        // Emit the event to prevent an unresolved open promise.
+        dialogVm.emit(strings.OPENED_EVENT, {});
+      }
+      closedResolver(evt.detail.action);
+    });
+
     await dialogVm.initialised;
     dialogVm.open();
     await openedPromise;
