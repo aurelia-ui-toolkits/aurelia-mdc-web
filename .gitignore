@@ -3,3 +3,4 @@ dist
 
 packages/*/src/*.css
 packages/**/api.json
+*.ts.raw

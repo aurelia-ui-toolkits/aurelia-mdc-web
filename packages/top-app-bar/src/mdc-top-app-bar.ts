@@ -7,7 +7,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-top-app-bar.html'))
 @customElement('mdc-top-app-bar')
-export class MdcTopAppBar extends MdcComponent<MDCTopAppBarFoundation> {
+export class MdcTopAppBar extends MdcComponent<MDCTopAppBarBaseFoundation> {
 
   private handleNavigationClick_!: SpecificEventListener<'click'>; // assigned in initialSyncWithDOM()
   private handleWindowResize_!: SpecificEventListener<'resize'>; // assigned in initialSyncWithDOM()

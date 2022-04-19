@@ -22,7 +22,7 @@ import textareaHtml from '!!raw-loader!./textarea.html';
 import textareaScss from '!!raw-loader!./textarea.scss';
 import typesHtml from '!!raw-loader!./types.html';
 import validationHtml from '!!raw-loader!./validation.html';
-import validationCode from '!!raw-loader!./validation';
+import validationCode from './validation.ts.raw';
 import blurOnEnterHtml from '!!raw-loader!./blur-on-enter.html';
 
 @autoinject

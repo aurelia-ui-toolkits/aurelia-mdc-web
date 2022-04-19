@@ -289,7 +289,7 @@ export class MdcLookup implements EventListenerObject {
   }
 
   suppressBlur: boolean;
-  onBlur() {
+  async onBlur() {
     if (this.suppressBlur) {
       this.suppressBlur = false;
       return;
@@ -297,9 +297,12 @@ export class MdcLookup implements EventListenerObject {
     if (this.autoselectSingleOnBlur && this.optionsArray?.length === 1 && this.value === undefined) {
       this.value = this.getValue(this.optionsArray[0]);
     }
-    // re-emit on root
-    this.root.dispatchEvent(new CustomEvent('blur'));
     this.close();
+    // re-emit on root
+    if (this.debouncePromise !== undefined) {
+      await this.debouncePromise;
+    }
+    this.root.dispatchEvent(new CustomEvent('blur'));
   }
 
   onInputKeydown(evt: KeyboardEvent) {
@@ -332,7 +335,6 @@ export class MdcLookup implements EventListenerObject {
 
   onBodyMousedown(evt: MouseEvent | TouchEvent) {
     if (closest(evt.target as HTMLElement, 'mdc-menu')) {
-      this.suppressBlur = true;
       evt.preventDefault();
     }
     return true;

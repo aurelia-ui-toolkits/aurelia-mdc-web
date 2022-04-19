@@ -1,11 +1,30 @@
 /* eslint-disable */
+const fs = require("fs");
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AureliaWebpackPlugin = require('aurelia-webpack-plugin');
 
+function copyToRawRecursive(dir) {
+  fs.readdirSync(dir).forEach(it => {
+    const itsPath = path.resolve(dir, it);
+    const itsStat = fs.statSync(itsPath);
+
+    if (itsStat.isDirectory()) {
+      copyToRawRecursive(itsPath);
+    } else if (dir !== "src/views") {
+      if (itsPath.endsWith(".ts")) {
+        fs.copyFileSync(itsPath, itsPath + ".raw");
+      }
+    }
+  })
+}
+
+console.log("Creating raw files for code examples...");
+copyToRawRecursive("src/views");
+
 const outDir = path.resolve(__dirname, 'dist');
 module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
-  const cssLoaders = [{ loader: 'css-loader', options: { esModule: false } }, 'postcss-loader'];
+  const cssLoaders = [{ loader: 'css-loader' }, 'postcss-loader'];
   const scssLoaders = [...cssLoaders, {
     // this is super important as only 'sass' package supports new '@use' syntax
     loader: 'sass-loader', options: {
@@ -31,7 +50,7 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
     stats: stats,
     resolve: {
       extensions: ['.ts', '.js'],
-      modules: ['src', '../../local_modules', 'node_modules', '../../node_modules'].map(x => path.resolve(x)),
+      modules: ['src', 'node_modules', '../../node_modules'].map(x => path.resolve(x)),
       alias: {
         'src': path.resolve(__dirname, 'src'),
         // alias all packages to src code
@@ -90,10 +109,10 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
     },
     module: {
       rules: [
-        { test: /\.(woff|woff2)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1, esModule: false } } },
-        { test: /\.(png|eot|ttf|svg)(\?|$)/, use: { loader: 'url-loader', options: { limit: 1000, esModule: false } } },
+        { test: /\.(woff|woff2|png|eot|ttf|svg)(\?|$)/, type: 'asset' },
+        { test: /\.raw$/, type: 'asset/source' },
         { test: /\.ts$/, loader: 'ts-loader' },
-        { test: /\.html$/i, use: { loader: 'html-loader', options: { esModule: false, sources: { list: [{ tag: 'img', attribute: 'src', type: 'src' }, { tag: 'app-nav-bar', attribute: 'logo-url', type: 'src' }] } } } },
+        { test: /\.html$/i, use: { loader: 'html-loader', options: { sources: { list: [{ tag: 'img', attribute: 'src', type: 'src' }, { tag: 'app-nav-bar', attribute: 'logo-url', type: 'src' }] } } } },
         { test: /\.scss$/i, issuer: /(\.html|empty-entry\.js)$/i, use: scssLoaders },
         { test: /\.scss$/i, issuer: /\.ts$/i, use: ['style-loader', ...scssLoaders] },
         { test: /\.css$/i, issuer: [{ not: /\.html$/i }], use: ['style-loader', ...cssLoaders] },

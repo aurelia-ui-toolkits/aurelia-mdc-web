@@ -2,21 +2,28 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import {
   MDCDataTableFoundation, selectors, MDCDataTableAdapter, events, cssClasses,
-  dataAttributes, MDCDataTableRowSelectionChangedEventDetail, SortValue, messages
+  dataAttributes, MDCDataTableRowSelectionChangedEventDetail, SortValue, messages, RowClickEventData
 } from '@material/data-table';
 import { MdcCheckbox, IMdcCheckboxElement } from '@aurelia-mdc-web/checkbox';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, useView, PLATFORM, ViewCompiler, ViewResources, bindingMode, computedFrom, processContent } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
+events.ROW_CLICK = events.ROW_CLICK.toLowerCase();
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();
 events.SELECTED_ALL = events.SELECTED_ALL.toLowerCase();
+events.SORTED = events.SORTED.toLowerCase();
 events.UNSELECTED_ALL = events.UNSELECTED_ALL.toLowerCase();
 const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 
 /**
  * Use `pagination-total` replaceable part to customise pagination total label.
  * @selector mdc-data-table
+ * @emits mdcdatatable:rowselectionchanged | Emitted when row checkbox is checked or unchecked
+ * @emits mdcdatatable:selectedall | Emitted when header row checkbox is checked
+ * @emits mdcdatatable:unselectedall | Emitted when header row checkbox is unchecked
+ * @emits mdcdatatable:sorted | Emitted when clicked on sortable header cell
+ * @emits mdcdatatable:rowclick | Emitted when a row is clicked
  */
 @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-data-table.html'))
@@ -163,6 +170,18 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     }
   }
 
+  handleContentClick(event: Event) {
+    const dataRowEl = closest(event.target as Element, selectors.ROW) as HTMLElement;
+    if (!dataRowEl) {
+      return;
+    }
+
+    this.foundation?.handleRowClick({
+      rowId: this.getRowIdByRowElement(dataRowEl),
+      row: dataRowEl,
+    });
+  }
+
   /**
    * Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table.
    */
@@ -222,6 +241,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
 
     this.content = this.root.querySelector<HTMLElement>(`.${cssClasses.CONTENT}`)!;
     this.content.addEventListener('change', this);
+    this.content.addEventListener('click', this);
 
     const rowCheckboxList = this.rowCheckboxList;
     this.rowCheckboxList.forEach(x => x.root.classList.add(cssClasses.ROW_CHECKBOX));
@@ -324,6 +344,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       notifyUnselectedAll: () => {
         this.emit(events.UNSELECTED_ALL, {}, /** shouldBubble */ true);
       },
+      notifyRowClick: (data: RowClickEventData) => {
+        this.emit(events.ROW_CLICK, data, /** shouldBubble */ true);
+      },
       registerHeaderRowCheckbox: () => {
         // const checkboxEl = this.root.querySelector<IMdcCheckboxElement>(selectors.HEADER_ROW_CHECKBOX);
         // this.headerRowCheckbox = checkboxEl?.au?.controller.viewModel;
@@ -409,5 +432,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
       default:
         return '';
     }
+  }
+
+  private getRowIdByRowElement(rowElement: HTMLElement): string | null {
+    return rowElement.getAttribute(dataAttributes.ROW_ID);
   }
 }

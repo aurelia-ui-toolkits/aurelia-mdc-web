@@ -81,7 +81,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   }
 
   get open(): boolean {
-    return this.foundation!.isOpen();
+    return this.foundation?.isOpen() ?? false;
   }
 
   set open(value: boolean) {

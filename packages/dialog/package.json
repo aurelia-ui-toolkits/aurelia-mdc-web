@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/dialog",
-  "version": "7.1.4",
+  "version": "8.0.4",
   "publishConfig": {
     "access": "public"
   },
@@ -47,9 +47,9 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "7.1.4",
-    "@aurelia-mdc-web/button": "7.1.4",
-    "@aurelia-mdc-web/ripple": "7.1.4",
-    "@material/dialog": "^12.0.0"
+    "@aurelia-mdc-web/base": "8.0.4",
+    "@aurelia-mdc-web/button": "8.0.4",
+    "@aurelia-mdc-web/ripple": "8.0.4",
+    "@material/dialog": "^13.0.0"
   }
 }

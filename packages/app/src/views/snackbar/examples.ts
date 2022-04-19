@@ -2,13 +2,13 @@ import { MdcSnackbarService, ISnackbarOptions } from '@aurelia-mdc-web/snackbar'
 import { autoinject } from 'aurelia-framework';
 
 import basicHtml from '!!raw-loader!./basic.html';
-import basicCode from '!!raw-loader!./basic';
+import basicCode from './basic.ts.raw';
 import customHtml from '!!raw-loader!./custom.html';
 import customSass from '!!raw-loader!./custom.scss';
-import customCode from '!!raw-loader!./custom';
+import customCode from './custom.ts.raw';
 import themeHtml from '!!raw-loader!./theme.html';
 import themeSass from '!!raw-loader!./theme.scss';
-import themeCode from '!!raw-loader!./theme';
+import themeCode from './theme.ts.raw';
 
 @autoinject
 export class Examples {

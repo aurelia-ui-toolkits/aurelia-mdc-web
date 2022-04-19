@@ -425,7 +425,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/helper-text/README.md#sass-mixins' },
       { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/icon/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/select\'));',
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/select\'), (c: MdcDefaultSelectConfiguration) => { c.outlined = false; });',
     sass: `@use '@material/select/mdc-select';
 @use '@material/select/_index' as select;
 @use '@material/list/mdc-list';
@@ -534,7 +534,7 @@ export const templates: { [x: string]: IComponentTemplate } = {
       { name: 'Helper Text Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/helper-text/README.md#sass-mixins' },
       { name: 'Icon Mixins', url: 'https://github.com/material-components/material-components-web/blob/master/packages/mdc-textfield/icon/README.md#sass-mixins' },
     ],
-    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/text-field\'));',
+    code: 'aurelia.use.plugin(PLATFORM.moduleName(\'@aurelia-mdc-web/text-field\'), (c: MdcDefaultTextFieldConfiguration) => { c.outlined = false; });',
     sass: `@use "@material/textfield/mdc-text-field";
 @use "@material/textfield/_index" as textfield;
 @use "@material/form-field/_index" as form-field;

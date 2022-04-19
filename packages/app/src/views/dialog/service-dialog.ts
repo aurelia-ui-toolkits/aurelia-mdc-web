@@ -1,9 +1,9 @@
 import { autoinject, useView, PLATFORM } from 'aurelia-framework';
-import { MdcDialog, MdcDialogServiceNew } from '@aurelia-mdc-web/dialog';
+import { MdcDialog, MdcDialogService } from '@aurelia-mdc-web/dialog';
 
 @autoinject
 export class DialogExamples {
-  constructor(private dialogService: MdcDialogServiceNew) { }
+  constructor(private dialogService: MdcDialogService) { }
 
   async open() {
     alert(await this.dialogService.open({ viewModel: ServiceDialog, model: { caption: 'Select an account' } }));

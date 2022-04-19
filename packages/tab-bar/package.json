@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/tab-bar",
-  "version": "7.1.4",
+  "version": "8.0.4",
   "publishConfig": {
     "access": "public"
   },
@@ -47,10 +47,10 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "7.1.4",
-    "@material/tab": "^12.0.0",
-    "@material/tab-bar": "^12.0.0",
-    "@material/tab-indicator": "^12.0.0",
-    "@material/tab-scroller": "^12.0.0"
+    "@aurelia-mdc-web/base": "8.0.4",
+    "@material/tab": "^13.0.0",
+    "@material/tab-bar": "^13.0.0",
+    "@material/tab-indicator": "^13.0.0",
+    "@material/tab-scroller": "^13.0.0"
   }
 }

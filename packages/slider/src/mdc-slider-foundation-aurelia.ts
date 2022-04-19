@@ -2,6 +2,7 @@ import { MDCSliderFoundation } from '@material/slider';
 
 // overriding lets the rest of the foundation to always get a fresh bounding rect
 // otherwise resizing a container, or moving an element ruins interaction
+// @ts-expect-error rect is private in base class
 export class MdcSliderFoundationAurelia extends MDCSliderFoundation {
   get rect(): ClientRect {
     return this.adapter.getBoundingClientRect();
