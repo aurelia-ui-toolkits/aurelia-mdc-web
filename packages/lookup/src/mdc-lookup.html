@@ -3,23 +3,23 @@
     anchor.bind="input" hoist-to-body.bind="hoistToBody" class="${menuClass}">
     <mdc-list role="menu" wrap-focus>
 
-      <mdc-list-item if.bind="searching" two-line.bind="twoLine">
+      <template if.bind="searching">
         <template replaceable part="searching">
-          ${defaultConfiguration.searchingMessage}
+          <mdc-list-item>${defaultConfiguration.searchingMessage}</mdc-list-item>
         </template>
-      </mdc-list-item>
+      </template>
 
-      <mdc-list-item if.bind="errorMessage" two-line.bind="twoLine">
+      <template if.bind="errorMessage">
         <template replaceable part="error">
-          ${errorMessage}
+          <mdc-list-item>${errorMessage}</mdc-list-item>
         </template>
-      </mdc-list-item>
+      </template>
 
-      <mdc-list-item if.bind="optionsArray && !optionsArray.length" two-line.bind="twoLine">
+      <template if.bind="optionsArray && !optionsArray.length">
         <template replaceable part="not-found">
-          ${defaultConfiguration.notFoundMessage}
+          <mdc-list-item>${defaultConfiguration.notFoundMessage}</mdc-list-item>
         </template>
-      </mdc-list-item>
+      </template>
 
       <div if.bind="virtual && optionsArray.length">
         <mdc-list-item role="menuitem" virtual-repeat.for="option of optionsArray" value.bind="option" tabindex="-1"

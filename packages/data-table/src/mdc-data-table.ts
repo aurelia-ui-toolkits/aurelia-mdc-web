@@ -363,7 +363,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
         const sortStatusLabel =
           headerCell.querySelector<HTMLElement>(selectors.SORT_STATUS_LABEL);
 
-        if (!sortStatusLabel) return;
+        if (!sortStatusLabel) {
+          return;
+        }
 
         sortStatusLabel.textContent =
           this.getSortStatusMessageBySortValue(sortValue);
