@@ -4,7 +4,7 @@ import { strings, MDCDialogCloseEvent } from '@material/dialog';
 import { IMdcRippleElement, MdcRipple } from '@aurelia-mdc-web/ripple';
 
 /** Dialog service open method options */
-export interface IMdcDialogOptionsNew {
+export interface IMdcDialogOptions {
   /** A class represeting the dialog content view model */
   viewModel: unknown;
 
@@ -18,7 +18,7 @@ export class MdcDialogService {
   constructor(private viewResources: ViewResources, private compositionEngine: CompositionEngine, private container: Container) { }
 
   /** Opens the dialog specified in the options */
-  async open(options: IMdcDialogOptionsNew) {
+  async open(options: IMdcDialogOptions) {
     const host = document.createElement('div');
     document.body.append(host);
     const compositionContext = {
