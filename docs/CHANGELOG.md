@@ -1,3 +1,20 @@
+## [8.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.4...v8.0.5) (2022-05-04)
+
+
+### Bug Fixes
+
+* **dialog:** prevent unresolved opened promise ([897dfb9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/897dfb98e79c53aeafc88862d30ab3fce12c692a))
+* **list:** add missing deprecated list styles ([e686c59](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e686c5963a4ae0158710ad823c3f6e0fae1c07a5))
+* **lookup:** restore focus before tabbing out ([f542d41](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f542d41afc77b2c4bf59beab811b3bb4de180a08))
+
+
+### Features
+
+* **base:** add helper function ([af4eb1e](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/af4eb1e8b1a7d10e0069be2d8a2c8fcb9a953a43))
+* **lookup:** enable selection on input blur and menu tab press ([f56df2f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f56df2fcc1a16a256e290202f0d221f1da7bf9be))
+
+
+
 ## [8.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.3...v8.0.4) (2022-03-14)
 
 
