@@ -153,9 +153,13 @@ export class MdcLookup implements EventListenerObject {
   @bindable.booleanAttr
   preloadOptions: boolean;
 
-  /** Enables a single option autoselect on blur */
+  /** Enables a first option select on blur */
   @bindable.booleanAttr
-  autoselectSingleOnBlur: boolean;
+  selectOnBlur: boolean;
+
+  /** Enables an item selection on Tab press */
+  @bindable.booleanAttr
+  selectOnTab: boolean;
 
   /** Enables the options list virtualisation */
   @bindable.booleanAttr
@@ -294,7 +298,7 @@ export class MdcLookup implements EventListenerObject {
       this.suppressBlur = false;
       return;
     }
-    if (this.autoselectSingleOnBlur && this.optionsArray?.length === 1 && this.value === undefined) {
+    if (this.selectOnBlur && this.optionsArray?.length && this.value === undefined) {
       this.value = this.getValue(this.optionsArray[0]);
     }
     this.close();
