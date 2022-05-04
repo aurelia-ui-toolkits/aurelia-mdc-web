@@ -340,6 +340,13 @@ export class MdcLookup implements EventListenerObject {
     return true;
   }
 
+  handleMenuKeydown(event: KeyboardEvent) {
+    if (this.hoistToBody && (event.key === 'Tab' || event.keyCode === 9)) {
+      this.input?.focus();
+    }
+    return true;
+  }
+
   addError(error: IError) {
     if (this.input && Object.getOwnPropertyDescriptor(this.input, 'addError')) {
       (this.input as HTMLElement as IValidatedElement).addError(error);
