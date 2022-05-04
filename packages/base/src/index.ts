@@ -6,6 +6,7 @@ export { Size } from './attributes/mdc-size-attribute';
 export { IValidatedElement, IError } from './elements/i-validated-element';
 export { MATERIAL_PALETTE } from './material-palette';
 export { MdcFocusTrap } from './attributes/mdc-focus-trap';
+export { nextElement } from './next-element';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([
