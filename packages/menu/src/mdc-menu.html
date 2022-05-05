@@ -1,5 +1,5 @@
 <template class="mdc-menu"
-  mdc-menu-surface="fixed.bind: fixed; anchor-corner.bind: anchorCorner; anchor-margin.bind: anchorMargin; hoist-to-body.bind: hoistToBody; anchor.bind: anchor; quick-open.bind: quickOpen; max-height.bind: maxHeight"
+  mdc-menu-surface="fixed.bind: fixed; anchor-corner.bind: anchorCorner; anchor-margin.bind: anchorMargin; hoist-to-body.bind: hoistToBody; anchor.bind: anchor; quick-open.bind: quickOpen; max-height.bind: maxHeight; open-bottom-bias.bind: openBottomBias"
   mdc-menu-surface.ref="menuSurface" keydown.trigger="handleKeydown_($event)"
   mdcmenusurface:opened.trigger="handleMenuSurfaceOpened_()" mdclist:action.trigger="handleItemAction_($event)">
   <slot></slot>

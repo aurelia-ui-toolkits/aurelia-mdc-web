@@ -66,18 +66,25 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   @bindable.booleanAttr
   stayOpen: boolean;
 
-  @bindable
+  @bindable.number
   maxHeight: number;
   async maxHeightChanged() {
     await this.initialised;
     this.foundation?.setMaxHeight(this.maxHeight);
   }
 
-  @bindable
+  @bindable.booleanAttr
   horizontallyCenteredOnViewport: boolean;
   async horizontallyCenteredOnViewportChanged() {
     await this.initialised;
     this.foundation?.setIsHorizontallyCenteredOnViewport(this.horizontallyCenteredOnViewport);
+  }
+
+  @bindable.number
+  openBottomBias: number;
+  async openBottomBiasChanged() {
+    await this.initialised;
+    this.foundation?.setOpenBottomBias(this.openBottomBias);
   }
 
   get open(): boolean {

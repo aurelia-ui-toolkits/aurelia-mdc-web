@@ -72,8 +72,11 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   @bindable.booleanAttr
   stayOpenOnSelection: boolean;
 
-  @bindable
+  @bindable.number
   maxHeight: number;
+
+  @bindable.number
+  openBottomBias: number;
 
   /** Sets whether focus should be restored after the menu is closed */
   @bindable.booleanAttr
