@@ -1,5 +1,5 @@
 import { MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
-import { CloseReason, events, MDCBannerAdapter, MDCBannerCloseEventDetail, MDCBannerFoundation } from '@material/banner';
+import { CloseReason, events, MDCBannerActionEventDetail, MDCBannerAdapter, MDCBannerCloseEventDetail, MDCBannerFoundation } from '@material/banner';
 import { inject } from 'aurelia-dependency-injection';
 import { PLATFORM } from 'aurelia-pal';
 import { customElement, useView } from 'aurelia-templating';
@@ -36,12 +36,18 @@ export class MdcBanner extends MdcComponent<MDCBannerFoundation> {
   @bindable
   secondaryAction: string;
 
+  @bindable.booleanAttr
+  disablePrimaryAutoClose: boolean;
+
+  @bindable.booleanAttr
+  disableSecondaryAutoClose: boolean;
+
   handlePrimaryActionClick() {
-    this.foundation?.handlePrimaryActionClick();
+    this.foundation?.handlePrimaryActionClick(this.disablePrimaryAutoClose);
   }
 
   handleSecondaryActionClick() {
-    this.foundation?.handleSecondaryActionClick();
+    this.foundation?.handleSecondaryActionClick(this.disableSecondaryAutoClose);
   }
 
   /**
@@ -87,6 +93,9 @@ export class MdcBanner extends MdcComponent<MDCBannerFoundation> {
       },
       notifyOpening: () => {
         this.emit(events.OPENING, {});
+      },
+      notifyActionClicked: (action) => {
+        this.emit<MDCBannerActionEventDetail>(events.ACTION_CLICKED, {action});
       },
       releaseFocus: () => {
         this.mdcFocusTrap?.releaseFocus();
