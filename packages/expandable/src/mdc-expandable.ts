@@ -57,7 +57,9 @@ export class MdcExpandable {
     if (this.open) {
       // after transition set body height to auto so that expandable children are visible
       this.contentContainer.addEventListener('transitionend', this);
-      this.contentContainer.style.height = `${this.content.clientHeight}px`;
+      this.taskQueue.queueTask(() => {
+        this.contentContainer.style.height = `${this.content.clientHeight}px`;
+      });
     } else {
       // the following line is needed because height has been restored to auto'
       this.contentContainer.style.height = `${this.content.clientHeight}px`;
