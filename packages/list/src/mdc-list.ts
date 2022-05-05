@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCListFoundation, MDCListAdapter, strings, cssClasses, MDCListIndex } from '@material/list';
+import { MDCListFoundation, MDCListAdapter, strings, cssClasses, MDCListIndex, MDCListSelectionChangeDetail } from '@material/list';
 import { inject, useView, customElement, children } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { closest, matches } from '@material/dom/ponyfill';
@@ -7,6 +7,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcListItem, IMdcListItemElement, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
+strings.SELECTION_CHANGE_EVENT = strings.SELECTION_CHANGE_EVENT.toLowerCase();
 
 export const mdcListStrings = {
   ITEMS_CHANGED: 'mdclist:itemschanged'
@@ -130,6 +131,10 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
           const data = (listItem as IMdcListItemElement).au.controller.viewModel.value;
           this.emit<IMdcListActionEventDetail>(strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
         }
+      },
+      notifySelectionChange: (changedIndices: number[]) => {
+        this.emit<MDCListSelectionChangeDetail>(strings.SELECTION_CHANGE_EVENT,
+            {changedIndices}, /** shouldBubble */ true);
       },
       removeClassForElementIndex: (index, className) => {
         const element = this.listElements[index];
