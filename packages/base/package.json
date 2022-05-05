@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/base",
-  "version": "8.0.5",
+  "version": "9.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@material/base": "^13.0.0",
+    "@material/base": "^14.0.0",
     "aurelia-typed-observable-plugin": "^0.4.2"
   },
   "peerDependencies": {
