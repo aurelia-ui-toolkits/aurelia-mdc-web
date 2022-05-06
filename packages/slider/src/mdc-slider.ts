@@ -51,6 +51,10 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     this.foundation?.setDisabled(this.disabled);
   }
 
+  /** Set if focus styles should be hidden for pointer events */
+  @bindable.booleanAttr
+  hideFocus: boolean;
+
   @bindable.number
   min: number = 0;
   async minChanged() {
@@ -206,6 +210,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
       },
       focusInput: (thumb: Thumb) => { this.getInput(thumb)?.focus(); },
       isInputFocused: (thumb: Thumb) => this.getInput(thumb) === document.activeElement,
+      shouldHideFocusStylesForPointerEvents: () => this.hideFocus,
       getThumbKnobWidth: (thumb: Thumb) => {
         return this.getThumbEl(thumb)?.querySelector<HTMLElement>(`.${cssClasses.THUMB_KNOB}`)!
           .getBoundingClientRect()
