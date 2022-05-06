@@ -1,5 +1,5 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCListFoundation, MDCListAdapter, strings, MDCListIndex } from '@material/list';
+import { MDCListFoundation, MDCListAdapter, strings, MDCListIndex, MDCListSelectionChangeDetail } from '@material/list';
 import { inject, useView, customElement, children } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import { closest, matches } from '@material/dom/ponyfill';
@@ -164,6 +164,10 @@ export class MdcDeprecatedList extends MdcComponent<MDCListFoundation>{
           const data = (listItem as IMdcListItemElement).au.controller.viewModel.value;
           this.emit<IMdcListActionEventDetail>(strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
         }
+      },
+      notifySelectionChange: (changedIndices: number[]) => {
+        this.emit<MDCListSelectionChangeDetail>(strings.SELECTION_CHANGE_EVENT,
+            {changedIndices}, /** shouldBubble */ true);
       },
       removeClassForElementIndex: (index, className) => {
         const element = this.listElements[index];
