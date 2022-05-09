@@ -1,3 +1,24 @@
+# [9.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.5...v9.0.0) (2022-05-09)
+
+
+### Bug Fixes
+
+* **dialog:** export options interface ([c1217d8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c1217d88e71a3947f41fb5499851a3bcb3ff32e1))
+
+
+### Features
+
+* **banner:** update to MDC14 ([9bd0a67](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9bd0a67e23ed8af6a4588f4fb61878d72147aec4))
+* **dialog:** update to MDC14 ([0026aa3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0026aa37acaa5c4cdaeca0567dae28bb049ad361))
+* **list:** update to MDC14 ([b1dd428](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b1dd428e2793a82fcd82d3e39671bf3fe97e2b4d))
+* **list:** update to MDC14 ([28e7e8a](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/28e7e8a80e3186b0c14a4407c45e85f3f2837653))
+* **menu-surface:** update to MDC14 ([5f0061b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5f0061bd3874ab199c1e75f813b7168b08e07b83))
+* **menu:** update to MDC14 ([8d3a880](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8d3a88017931819a265ac155dcd5bbea6263ea49))
+* **slider:** update to MDC14 ([e900691](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e900691b8918e03c880c28f9746559be2dd16c5a))
+* **slider:** update to MDC14 ([2c233e5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2c233e5d0e37a0dbf26f5dd80a178b8fd34ef1f0))
+
+
+
 ## [8.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.4...v8.0.5) (2022-05-04)
 
 
