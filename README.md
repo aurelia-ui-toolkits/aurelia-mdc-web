@@ -6,6 +6,12 @@
 
 Third-party integration incorporating [Google Material Components](https://github.com/material-components/material-components-web) for building beautiful, usable products using Material Design.
 
+## Final release
+
+The v9 is going to be the last major version of the bridge. Google is going to concentrate on [Material Web Components](https://github.com/material-components/material-web) from now on.
+
+See [this comment](https://github.com/material-components/material-components-web/issues/7583#issuecomment-1079282375).
+
 #### Quick Links
 *  [Getting Started](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web/#/getting-started)
 *  [Changelog](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/master/docs/CHANGELOG.md)
