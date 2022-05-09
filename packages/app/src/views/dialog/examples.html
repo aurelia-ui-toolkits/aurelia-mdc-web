@@ -12,4 +12,12 @@
     </div>
     <example-viewer html.bind="serviceHtml" code.bind="serviceCode"></example-viewer>
   </div>
+
+  <div class="demo-content">
+    <h3 class="demo-content__headline">Sheet</h3>
+    <button mdc-button click.delegate="sheetDialog.open()">Open</button>
+    <compose view="./sheet.html" class="demo-layout__row"></compose>
+    <example-viewer html.bind="inlineHtml"></example-viewer>
+  </div>
+
 </template>
