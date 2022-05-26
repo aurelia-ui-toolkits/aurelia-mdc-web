@@ -1,3 +1,12 @@
+## [9.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.0...v9.0.1) (2022-05-26)
+
+
+### Bug Fixes
+
+* **slider:** consider undefined references ([a95e601](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a95e601db4f4bed9b4db3bb37ab944538254dcb8))
+
+
+
 # [9.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.5...v9.0.0) (2022-05-09)
 
 
