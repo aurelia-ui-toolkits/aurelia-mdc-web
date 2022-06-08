@@ -1,3 +1,12 @@
+## [9.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.1...v9.0.2) (2022-06-08)
+
+
+### Bug Fixes
+
+* **list:** fix click handling ([d24c46f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d24c46f5a3283506154c441de00897adfab120f7)), closes [#73](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/73)
+
+
+
 ## [9.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.0...v9.0.1) (2022-05-26)
 
 
