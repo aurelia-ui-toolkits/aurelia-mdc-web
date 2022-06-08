@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/text-field",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "publishConfig": {
     "access": "public"
   },
@@ -47,11 +47,11 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.0.1",
-    "@aurelia-mdc-web/floating-label": "9.0.1",
-    "@aurelia-mdc-web/line-ripple": "9.0.1",
-    "@aurelia-mdc-web/notched-outline": "9.0.1",
-    "@aurelia-mdc-web/ripple": "9.0.1",
+    "@aurelia-mdc-web/base": "9.0.2",
+    "@aurelia-mdc-web/floating-label": "9.0.2",
+    "@aurelia-mdc-web/line-ripple": "9.0.2",
+    "@aurelia-mdc-web/notched-outline": "9.0.2",
+    "@aurelia-mdc-web/ripple": "9.0.2",
     "@material/ripple": "^14.0.0",
     "@material/textfield": "^14.0.0"
   }
