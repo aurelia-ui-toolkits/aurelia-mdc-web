@@ -32,4 +32,8 @@ export class MdcFab {
   /** Optional, for the text label. Applicable only for Extended FAB. */
   @bindable
   label: string;
+
+  /** Set the button disabled */
+  @bindable.booleanAttr
+  disabled: boolean;
 }
