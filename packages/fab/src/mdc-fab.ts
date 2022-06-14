@@ -1,4 +1,4 @@
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
+import { inject, customElement, useView, PLATFORM } from 'aurelia-framework';
 import { bindable } from 'aurelia-typed-observable-plugin';
 
 /**
@@ -6,9 +6,12 @@ import { bindable } from 'aurelia-typed-observable-plugin';
  * @selector a[mdc-fab]
  * @selector button[mdc-fab]
  */
+ @inject(Element)
 @useView(PLATFORM.moduleName('./mdc-fab.html'))
 @customElement('mdc-fab')
 export class MdcFab {
+  constructor(private root: HTMLElement) { }
+
   /** Make the fab smaller (40 x 40 pixels) */
   @bindable.booleanAttr
   mini: boolean;
@@ -36,4 +39,11 @@ export class MdcFab {
   /** Set the button disabled */
   @bindable.booleanAttr
   disabled: boolean;
+  disabledChanged() {
+    if (this.disabled) {
+      this.root.setAttribute('disabled', '');
+    } else {
+      this.root.removeAttribute('disabled');
+    }
+  }
 }

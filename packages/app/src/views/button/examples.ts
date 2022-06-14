@@ -1,6 +1,8 @@
 import defaultHtml from '!!raw-loader!./default.html';
 import defaultSass from '!!raw-loader!./default.scss';
 
+import disabledHtml from '!!raw-loader!./disabled.html';
+
 import densityHtml from '!!raw-loader!./density.html';
 import densitySass from '!!raw-loader!./density.scss';
 
@@ -23,6 +25,8 @@ import accessibilityHtml from '!!raw-loader!./accessibility.html';
 export class Examples {
   defaultHtml = defaultHtml;
   defaultSass = defaultSass;
+
+  disabledHtml = disabledHtml;
 
   densityHtml = densityHtml;
   densitySass = densitySass;
