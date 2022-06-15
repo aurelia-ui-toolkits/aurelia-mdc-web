@@ -1,0 +1,11 @@
+<template>
+  <div class="demo-layout__row">
+    <button mdc-button unelevated disabled.bind="isButtonDisabled">Disabled binding</button>
+  </div>
+  <div class="demo-layout__row">
+    <mdc-form-field>
+      <mdc-checkbox checked.bind="isButtonDisabled"></mdc-checkbox>
+      <label>Disabled</label>
+    </mdc-form-field>
+  </div>
+</template>

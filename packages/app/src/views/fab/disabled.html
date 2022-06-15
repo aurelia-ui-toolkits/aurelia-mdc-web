@@ -1,0 +1,11 @@
+<template>
+  <div class="demo-layout__row">
+    <button mdc-fab icon="edit" disabled.bind="isFabDisabled"></button>
+  </div>
+  <div class="demo-layout__row">
+    <mdc-form-field>
+      <mdc-checkbox checked.bind="isFabDisabled"></mdc-checkbox>
+      <label>Disabled</label>
+    </mdc-form-field>
+  </div>
+</template>

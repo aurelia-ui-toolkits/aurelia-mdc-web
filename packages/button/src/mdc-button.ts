@@ -47,6 +47,13 @@ export class MdcButton {
    */
   @bindable.booleanAttr
   disabled: boolean;
+  disabledChanged() {
+    if (this.disabled) {
+      this.root.setAttribute('disabled', '');
+    } else {
+      this.root.removeAttribute('disabled');
+    }
+  }
 
   // this is necessary for the route-href to work
   @bindable
