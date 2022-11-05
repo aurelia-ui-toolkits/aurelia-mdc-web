@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/tab-bar",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.0.2",
+    "@aurelia-mdc-web/base": "9.0.3",
     "@material/tab": "^14.0.0",
     "@material/tab-bar": "^14.0.0",
     "@material/tab-indicator": "^14.0.0",

@@ -4,6 +4,7 @@ import { Aurelia, PLATFORM } from 'aurelia-framework';
 import { MdcDefaultTooltipConfiguration } from '@aurelia-mdc-web/tooltip';
 import { MdcDefaultTextFieldConfiguration } from '@aurelia-mdc-web/text-field';
 import { MdcDefaultSelectConfiguration } from '@aurelia-mdc-web/select';
+import { usePropertyTypeForBindable } from 'aurelia-typed-observable-plugin';
 
 export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia
@@ -31,3 +32,5 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   await aurelia.start();
   await aurelia.setRoot(PLATFORM.moduleName('views/root/root'));
 }
+
+// usePropertyTypeForBindable(true);
