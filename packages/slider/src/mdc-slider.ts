@@ -113,7 +113,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     this.foundation?.layout();
   }
 
-  @bindable
+  @bindable.none
   step: string = '1';
   async stepChanged() {
     await this.initialised;
@@ -124,7 +124,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     this.foundation?.init();
   }
 
-  @bindable
+  @bindable.none
   valueToAriaValueTextFn: ((value: number) => string) | null = null;
 
   _value: number = 0;

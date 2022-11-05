@@ -12,7 +12,7 @@ export class Hljs {
   codeEl: HTMLElement;
   observer?: MutationObserver;
 
-  @bindable
+  @bindable.none
   language: string;
 
   attached() {

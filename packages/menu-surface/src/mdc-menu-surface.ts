@@ -13,7 +13,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   originalParent: HTMLElement | null;
   private previousFocus?: HTMLElement | SVGElement | null;
 
-  @bindable
+  @bindable.none
   anchor?: Element | null;
 
   /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
@@ -32,14 +32,14 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
     this.foundation?.setFixedPosition(this.fixed);
   }
 
-  @bindable
+  @bindable.none
   anchorCorner: keyof typeof Corner;
   async anchorCornerChanged() {
     await this.initialised;
     this.foundation?.setAnchorCorner(Corner[this.anchorCorner]);
   }
 
-  @bindable
+  @bindable.none
   anchorMargin: Partial<MDCMenuDistance>;
   async anchorMarginChanged(margin: Partial<MDCMenuDistance>) {
     await this.initialised;

@@ -16,7 +16,7 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
   }
 
   /** Sets the anchor element */
-  @bindable
+  @bindable.none
   anchorElem?: HTMLElement;
 
   @bindable.booleanAttr
@@ -26,7 +26,7 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
   persistent: boolean;
 
   /** Sets the horizontal alignment of the tooltip */
-  @bindable
+  @bindable.none
   xPosition?: keyof typeof XPosition;
   async xPositionChanged() {
     if (this.xPosition !== undefined) {
@@ -36,7 +36,7 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
   }
 
   /** Sets the vertical alignment of the tooltip */
-  @bindable
+  @bindable.none
   yPosition?: keyof typeof YPosition;
   async yPositionChanged() {
     if (this.yPosition !== undefined) {
@@ -46,7 +46,7 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
   }
 
   /** Sets the caret position relative to the tooltip */
-  @bindable
+  @bindable.none
   withCaretPos?: keyof typeof PositionWithCaret;
   async withCaretPosChanged() {
     if (this.withCaretPos !== undefined) {
@@ -58,7 +58,7 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
   /** Specifies whether the anchor element is bounded (element has an identifiable boundary such as a button) or unbounded (element does not have a visually declared boundary such as a text link).
    * Tooltips are placed closer to bounded anchor elements compared to unbounded anchor elements. If no type is specified, defaults to BOUNDED.
    **/
-  @bindable
+  @bindable.none
   boundaryType?: keyof typeof AnchorBoundaryType;
   async boundaryTypeChanged() {
     if (this.boundaryType !== undefined) {
@@ -81,7 +81,7 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
     this.foundation?.setHideDelay(this.hideDelay ?? numbers.HIDE_DELAY_MS);
   }
 
-  @bindable
+  @bindable.none
   scrollHost?: HTMLElement | string = this.defaultConfiguration.scrollHost;
 
   // eslint-disable-next-line @typescript-eslint/require-await

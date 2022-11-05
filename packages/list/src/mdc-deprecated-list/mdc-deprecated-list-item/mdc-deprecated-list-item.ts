@@ -54,7 +54,7 @@ export class MdcDeprecatedListItem {
   activated: boolean;
 
   /** Random data associated with the list item. Passed in events payload. */
-  @bindable
+  @bindable.none
   value: unknown;
 
   /** Disables ripple effect */
@@ -62,7 +62,7 @@ export class MdcDeprecatedListItem {
   disableRipple: boolean;
 
   // this is necessary for the route-href to work
-  @bindable
+  @bindable.none
   href: string;
   hrefChanged() {
     if (this.href) {

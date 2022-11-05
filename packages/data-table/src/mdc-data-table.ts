@@ -69,15 +69,15 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   pagination: boolean;
 
   /** Caption for the page size selector */
-  @bindable
+  @bindable.none
   rowsPerPageLabel: string = 'Rows per page';
 
   /** Page sizes available for selection, e.g. [10, 25, 100, 'All'] */
-  @bindable
+  @bindable.none
   pageSizes: unknown[] = [10, 25, 100];
 
   /** Selected page size */
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  @bindable.none({ defaultBindingMode: bindingMode.twoWay })
   pageSize: unknown = 10;
 
   /** Makes header row sticky (fixed) on vertical scroll.

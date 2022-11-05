@@ -5,7 +5,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @useView(PLATFORM.moduleName('./mdc-text-field-helper-line.html'))
 @customElement('mdc-text-field-helper-line')
 export class MdcTextFieldHelperLine {
-  @bindable
+  @bindable.none
   errors: string[];
 }
 

@@ -45,11 +45,11 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   hoistToBody: boolean;
 
   /** Set to indicate an element the menu should be anchored to */
-  @bindable
+  @bindable.none
   anchor?: Element | null;
 
   /** Sets default focus state where the menu should focus every time when menu is opened. Focuses the list root ('list') element by default. */
-  @bindable
+  @bindable.none
   defaultFocusState: keyof typeof DefaultFocusState = 'LIST_ROOT';
   async defaultFocusStateChanged() {
     await this.initialised;
@@ -57,11 +57,11 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   }
 
   /** Override the opening point of the menu. (Default: TOP_START) */
-  @bindable
+  @bindable.none
   anchorCorner: keyof typeof Corner;
 
   /** Sets the distance from the anchor point that the menu surface should be shown */
-  @bindable
+  @bindable.none
   anchorMargin: Partial<MDCMenuDistance>;
 
   /** Sets whether the menu should open and close without animation when the open/close methods are called */

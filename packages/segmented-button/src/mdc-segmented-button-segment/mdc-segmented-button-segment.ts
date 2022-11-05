@@ -24,7 +24,7 @@ export class MdcSegmentedButtonSegment extends MdcComponent<MDCSegmentedButtonSe
   touch: boolean;
 
   /** Sets an icon in the segment */
-  @bindable
+  @bindable.none
   icon: string;
 
   private _checked?: boolean;

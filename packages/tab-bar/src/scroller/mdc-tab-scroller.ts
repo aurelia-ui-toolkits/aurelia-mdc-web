@@ -12,7 +12,7 @@ export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   private content_: HTMLElement; // assigned in html
   private area_: HTMLElement; // assigned in html
 
-  @bindable
+  @bindable.none
   align: 'start' | 'end' | 'center';
 
   @children('mdc-tab')

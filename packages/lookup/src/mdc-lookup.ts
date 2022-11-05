@@ -29,7 +29,7 @@ export class MdcLookup implements EventListenerObject {
   public menu: MdcMenu;
 
   /** Reference to the input */
-  @bindable
+  @bindable.none
   public input?: HTMLInputElement & { isFocused: boolean };
 
   /** Sets the menu list to have two lines */
@@ -42,7 +42,7 @@ export class MdcLookup implements EventListenerObject {
    * When set to a function, it is called with an option as a parameter to retrieve the display string.
    * When undefined, an option.toString() is used.
    */
-  @bindable
+  @bindable.none
   displayField: string | undefined | ((option: unknown) => string);
   displayFieldChanged() {
     if (this.displayField instanceof Function) {
@@ -62,7 +62,7 @@ export class MdcLookup implements EventListenerObject {
    * When set to a function, it is called with an option as a parameter to retrieve the value.
    * When undefined, an option is used as a value.
    */
-  @bindable
+  @bindable.none
   valueField: string | undefined | ((option: unknown) => unknown);
   valueFieldChanged() {
     if (this.valueField instanceof Function) {
@@ -80,7 +80,7 @@ export class MdcLookup implements EventListenerObject {
    * Sets the array of options to display.
    * Can be an async function which returns an array.
    */
-  @bindable
+  @bindable.none
   options: unknown[] | undefined | ((filter: string, value: unknown) => Promise<unknown[]>);
   optionsChanged() {
     const shouldRefresh = this.getOptions !== undefined;
@@ -111,7 +111,7 @@ export class MdcLookup implements EventListenerObject {
   naturalWidth: boolean;
 
   /** The CSS class to set on the menu. Helps styling body hoisted menus */
-  @bindable
+  @bindable.none
   menuClass: string;
 
   getOptions: (filter: string | undefined, value: unknown) => Promise<unknown[]>;
@@ -126,7 +126,7 @@ export class MdcLookup implements EventListenerObject {
   }
 
   /** The selected value */
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  @bindable.none({ defaultBindingMode: bindingMode.twoWay })
   value: unknown;
   suppressValueChanged: boolean;
   async valueChanged() {

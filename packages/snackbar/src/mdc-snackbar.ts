@@ -15,10 +15,10 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
 
   private labelEl_!: Element; // assigned in html
 
-  @bindable
+  @bindable.none
   label: string;
 
-  @bindable
+  @bindable.none
   actions: string[];
 
   @bindable.booleanAttr
@@ -41,13 +41,13 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
     this.foundation?.setCloseOnEscape(this.closeOnEscape);
   }
 
-  @bindable
+  @bindable.none
   classes: string;
 
-  @bindable
+  @bindable.none
   actionClasses: string;
 
-  @bindable
+  @bindable.none
   dismissClasses: string;
 
   @bindable.booleanAttr

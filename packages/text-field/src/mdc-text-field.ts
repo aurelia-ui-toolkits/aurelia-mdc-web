@@ -49,7 +49,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   errors = new Map<IError, boolean>();
   mutationObserver = new MutationObserver(mutations => this.mutated(mutations));
 
-  @bindable
+  @bindable.none
   label: string;
   async labelChanged() {
     await this.initialised;
@@ -73,10 +73,10 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable.booleanAttr
   outlined?: boolean = this.defaultConfiguration.outlined;
 
-  @bindable
+  @bindable.none
   prefix: string;
 
-  @bindable
+  @bindable.none
   suffix: string;
 
   @bindable.booleanAttr
@@ -105,7 +105,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable.booleanAttr
   blurOnEnter: boolean;
 
-  @bindable
+  @bindable.none
   maxlength: string;
   maxlengthChanged() {
     if (this.maxlength) {
@@ -115,7 +115,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   rows: string;
   rowsChanged() {
     if (this.rows) {
@@ -125,7 +125,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   cols: string;
   colsChanged() {
     if (this.rows) {
@@ -135,7 +135,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   max: string;
   maxChanged() {
     if (this.max === undefined) {
@@ -145,7 +145,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   min: string;
   minChanged() {
     if (this.min === undefined) {
@@ -155,7 +155,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   step: string;
   stepChanged() {
     if (this.step === undefined) {
@@ -165,7 +165,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   autocomplete: string;
   autocompleteChanged() {
     if (this.autocomplete === undefined) {
@@ -185,7 +185,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   type: string;
   typeChanged() {
     if (!this.textarea) {
@@ -197,7 +197,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   name: string;
   nameChanged() {
     if (this.name === undefined) {
@@ -207,7 +207,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   placeholder: string = ' '; // non empty placeholder solves the issue of misplaced labels in Safari
 
   private initialValue: string;

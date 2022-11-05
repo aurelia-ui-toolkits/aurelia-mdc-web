@@ -69,7 +69,7 @@ export class MdcChip extends MdcComponent<MDCChipFoundation> {
     }
   }
 
-  @bindable
+  @bindable.none
   icon: string;
 
   actions: Map<MDCChipActionType, MdcChipAction>;

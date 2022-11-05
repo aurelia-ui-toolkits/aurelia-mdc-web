@@ -29,11 +29,11 @@ export class MdcFab {
   exited: boolean;
 
   /** Optional. Apply a Material Icon. */
-  @bindable
+  @bindable.none
   icon: string;
 
   /** Optional, for the text label. Applicable only for Extended FAB. */
-  @bindable
+  @bindable.none
   label: string;
 
   /** Set the button disabled */

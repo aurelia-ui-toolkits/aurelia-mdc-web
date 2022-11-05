@@ -8,34 +8,34 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @customElement('mdc-layout-grid-cell')
 export class MdcLayoutGridCell {
   /** Optional, specifies the order of the cell */
-  @bindable
+  @bindable.none
   order: string;
 
   /** Optional, specifies the alignment of cell */
-  @bindable
+  @bindable.none
   position: 'top' | 'middle' | 'bottom';
 
   /** Optional, specifies the number of columns the cell spans */
-  @bindable
+  @bindable.none
   span: string;
 
   /** Optional, specifies the number of columns the cell spans on a desktop */
-  @bindable
+  @bindable.none
   desktopSpan: string;
 
   /** Optional, specifies the number of columns the cell spans on a tablet */
-  @bindable
+  @bindable.none
   tabletSpan: string;
 
   /** Optional, specifies the number of columns the cell spans on a phone */
-  @bindable
+  @bindable.none
   phoneSpan: string;
 
   @bindable.booleanAttr
   newRow: string;
 
   /** Optional, specifies the number of columns the cell spans for all screen sizes */
-  @bindable
+  @bindable.none
   spans: string;
   spansChanged() {
     [this.phoneSpan, this.tabletSpan, this.desktopSpan] = this.spans.split(' ');

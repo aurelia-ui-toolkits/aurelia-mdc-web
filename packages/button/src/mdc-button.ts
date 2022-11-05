@@ -39,7 +39,7 @@ export class MdcButton {
   /**
    * Set the button label
    */
-  @bindable
+  @bindable.none
   label: string;
 
   /**
@@ -56,7 +56,7 @@ export class MdcButton {
   }
 
   // this is necessary for the route-href to work
-  @bindable
+  @bindable.none
   href: string;
   hrefChanged() {
     if (this.href) {

@@ -18,14 +18,14 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   on: boolean;
 
   /** Optional. Set a Material icon as a non-toggle icon. */
-  @bindable
+  @bindable.none
   icon: string;
 
   @children('mdc-icon-button-icon')
   icons?: MdcIconButtonIcon[];
 
   // this is necessary for the route-href to work
-  @bindable
+  @bindable.none
   href: string;
   hrefChanged() {
     if (this.href) {

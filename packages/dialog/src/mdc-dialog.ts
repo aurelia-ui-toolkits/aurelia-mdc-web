@@ -30,7 +30,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   content_?: MdcDialogContent; // assigned in initialize()
 
   /** Action returned when the dialog is closed via the scrim click */
-  @bindable
+  @bindable.none
   scrimClickAction: string;
   async scrimClickActionChanged() {
     await this.initialised;
@@ -38,7 +38,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   }
 
   /** Action returned when the dialog is closed via the ESC key */
-  @bindable
+  @bindable.none
   escapeKeyAction: string;
   async escapeKeyActionChanged() {
     await this.initialised;

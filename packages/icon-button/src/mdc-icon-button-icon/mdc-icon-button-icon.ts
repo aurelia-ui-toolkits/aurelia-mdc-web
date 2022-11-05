@@ -13,6 +13,6 @@ export class MdcIconButtonIcon {
   on: boolean;
 
   /** Optional. Set a Material icon. */
-  @bindable
+  @bindable.none
   icon: string;
 }

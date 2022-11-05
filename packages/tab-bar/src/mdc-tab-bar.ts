@@ -30,7 +30,7 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
     this.foundation?.setUseAutomaticActivation(this.useAutomaticActivation);
   }
 
-  @bindable
+  @bindable.none
   align: MdcTabScroller['align'];
 
   async initialise() {

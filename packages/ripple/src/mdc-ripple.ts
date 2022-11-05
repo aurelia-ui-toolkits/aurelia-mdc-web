@@ -12,16 +12,16 @@ export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
 
   inputBindingPromiseResolver: (value?: unknown) => void;
   inputBindingPromise = new Promise(r => this.inputBindingPromiseResolver = r);
-  @bindable
+  @bindable.none
   input?: HTMLInputElement;
   inputChanged() {
     this.inputBindingPromiseResolver();
   }
 
-  @bindable
+  @bindable.none
   surface?: HTMLElement;
 
-  @bindable
+  @bindable.none
   computeBoundingRect: () => ClientRect;
 
   @bindable.booleanAttr

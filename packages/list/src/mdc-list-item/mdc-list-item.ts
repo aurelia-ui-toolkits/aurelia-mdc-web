@@ -89,7 +89,7 @@ export class MdcListItem {
   threeLine: boolean;
 
   /** Random data associated with the list item. Passed in events payload. */
-  @bindable
+  @bindable.none
   value: unknown;
 
   /** Disables ripple effect */
@@ -97,7 +97,7 @@ export class MdcListItem {
   disableRipple: boolean;
 
   // this is necessary for the route-href to work
-  @bindable
+  @bindable.none
   href: string;
   hrefChanged() {
     if (this.href) {
