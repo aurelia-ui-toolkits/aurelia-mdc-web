@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@material/base": "^14.0.0",
-    "aurelia-typed-observable-plugin": "^0.4.2"
+    "aurelia-typed-observable-plugin": "^0.5.1"
   },
   "peerDependencies": {
     "aurelia-binding": "^2.5.4",
