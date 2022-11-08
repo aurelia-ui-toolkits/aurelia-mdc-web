@@ -1,3 +1,13 @@
+## [9.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.3...v9.0.4) (2022-11-08)
+
+
+### Bug Fixes
+
+* **base:** bump plugin version ([254af07](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/254af07da290894c65c017e72bd7178a41ccf302))
+* **select:** reset style ([2ef8d2d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2ef8d2dbb65fbb5b0baf4b03ee2621cefb83f768))
+
+
+
 ## [9.0.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.2...v9.0.3) (2022-11-05)
 
 
