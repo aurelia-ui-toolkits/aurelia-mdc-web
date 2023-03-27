@@ -1,5 +1,4 @@
 import Aurelia, { LoggerConfiguration, LogLevel } from 'aurelia';
-import { RouterConfiguration } from 'aurelia-direct-router';
 import { StandardConfiguration, SVGAnalyzer } from '@aurelia/runtime-html';
 import { Root } from './views/root/root';
 import { AllConfiguration as MaterialConfiguration } from '@aurelia-mdc-web/all';
@@ -86,6 +85,7 @@ import { Banner } from './views/banner/banner';
 import { BannerExamples } from './views/banner/banner-examples';
 import { SegmentedButton } from './views/segmented-button/segmented-button';
 import { SegmentedButtonExamples } from './views/segmented-button/segmented-button-examples';
+import { RouterConfiguration } from '@aurelia/router';
 
 // href is buggy
 // DefaultResources.splice(DefaultResources.findIndex(x => x === HrefCustomAttribute as unknown as IRegistry));

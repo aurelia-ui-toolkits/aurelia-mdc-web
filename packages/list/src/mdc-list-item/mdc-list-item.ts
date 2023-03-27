@@ -1,12 +1,12 @@
 import { cssClasses, strings } from '@material/list';
 import { customElement, bindable, inject, INode } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
-import { nextId } from '@aurelia/kernel';
 import { processContent } from '@aurelia/runtime-html';
 
 const ENTER = 13;
 const SPACE = 32;
 const LIST_ITEM_ACTION = 'mdclistitem:action';
+let id = 0;
 
 /**
  * @selector mdc-list-item
@@ -60,7 +60,7 @@ export class MdcListItem {
 
   cssClasses = cssClasses;
 
-  id = nextId('mdc-list-item');
+  id = `mdc-list-item-${++id}`;
 
   /** Disables the list item */
   @bindable({ set: booleanAttr })

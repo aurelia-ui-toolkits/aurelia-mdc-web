@@ -3,7 +3,7 @@
   <mdc-top-app-bar style="position: unset" class="demo-top-app-bar-with-tabs">
     <mdc-top-app-bar-row>
       <mdc-top-app-bar-section align="start">
-        <button mdc-top-app-bar-nav-icon click.delegate="drawer.open = !drawer.open">
+        <button mdc-top-app-bar-nav-icon click.trigger="drawer.open = !drawer.open">
           <mdc-icon>menu</mdc-icon>
         </button>
         <mdc-top-app-bar-title>App</mdc-top-app-bar-title>
@@ -11,7 +11,7 @@
       <mdc-top-app-bar-section end>
         <mdc-icon mdc-top-app-bar-action-item>search</mdc-icon>
         <mdc-icon mdc-top-app-bar-action-item>notifications_none</mdc-icon>
-        <mdc-icon mdc-top-app-bar-action-item click.delegate="profileMenu.open = !profileMenu.open">more_vert</mdc-icon>
+        <mdc-icon mdc-top-app-bar-action-item click.trigger="profileMenu.open = !profileMenu.open">more_vert</mdc-icon>
         <div mdc-menu-surface-anchor ref="menuAnchor">
           <!-- <mdc-menu view-model.ref="profileMenu" anchor.bind="menuAnchor">
             <mdc-list>

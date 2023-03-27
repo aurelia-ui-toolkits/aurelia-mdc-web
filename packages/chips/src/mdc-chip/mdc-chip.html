@@ -4,8 +4,8 @@
     ${disabled ? 'mdc-evolution-chip--disabled' : ''}
     ${icon ? 'mdc-evolution-chip--with-primary-icon' : ''}
   " role="row" mdcchipaction:interaction.trigger="handleActionInteraction($event)"
-  mdcchipaction:navigation.trigger="handleActionNavigation($event)" animationend.delegate="handleAnimationEnd($event)"
-  transitionend.delegate="handleTransitionEnd()">
+  mdcchipaction:navigation.trigger="handleActionNavigation($event)" animationend.trigger="handleAnimationEnd($event)"
+  transitionend.trigger="handleTransitionEnd()">
 
   <span class="mdc-evolution-chip__cell mdc-evolution-chip__cell--primary" role="gridcell">
     <au-slot name="primary-action">

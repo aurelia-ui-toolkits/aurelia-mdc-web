@@ -21,7 +21,7 @@ import { Theme } from './theme/theme';
 import { Trailing } from './trailing/trailing';
 import { SvgExample } from './svg-example/svg-example';
 import { Shaped } from './shaped/shaped';
-import { route } from 'aurelia-direct-router';
+import { route } from '@aurelia/router';
 
 @route({ path: 'examples' })
 export class ButtonExamples {

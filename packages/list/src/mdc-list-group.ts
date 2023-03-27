@@ -7,7 +7,7 @@ import { customElement, customAttribute, inject } from 'aurelia';
 @inject(Element)
 @customElement({
   name: 'mdc-list-group',
-  template: '<template class="mdc-list-group"></template>'
+  template: '<template class="mdc-list-group"><au-slot></au-slot></template>'
 })
 export class MdcListGroup {
   constructor(private root: HTMLElement) { }

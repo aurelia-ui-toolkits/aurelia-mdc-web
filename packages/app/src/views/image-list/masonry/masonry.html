@@ -1,7 +1,7 @@
 <template>
   <require from="./masonry.scss"></require>
   <div class="demo-layout__row">
-    <button mdc-button click.delegate="textProtection = !textProtection">
+    <button mdc-button click.trigger="textProtection = !textProtection">
       Text Protection: ${textProtection ? 'On' : 'Off'}</button>
   </div>
   <mdc-image-list text-protection.bind="textProtection" class="image-list--rounded-corners"

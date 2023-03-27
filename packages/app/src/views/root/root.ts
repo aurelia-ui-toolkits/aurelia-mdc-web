@@ -34,7 +34,7 @@ import { Tooltip } from '../tooltip/tooltip';
 import { Tabs } from '../tabs/tabs';
 import { Typography } from '../typography/typography';
 import githubSvg from '../../assets/github-circle-white-transparent.svg';
-import { IRouter, IRouteableComponent, IRoute } from 'aurelia-direct-router';
+import { IRouter, IRouteableComponent, IRoute } from '@aurelia/router';
 import { TreeView } from '../tree-view/tree-view';
 import { Banner } from '../banner/banner';
 import { SegmentedButton } from '../segmented-button/segmented-button';

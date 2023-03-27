@@ -1,15 +1,15 @@
 <template>
   <require from="./standard.scss"></require>
   <div class="demo-layout__row">
-    <button mdc-button click.delegate="outlined = !outlined">
+    <button mdc-button click.trigger="outlined = !outlined">
       Outlined: ${outlined ? 'On' : 'Off'}</button>
-    <button mdc-button click.delegate="required = !required">
+    <button mdc-button click.trigger="required = !required">
       Required: ${required ? 'On' : 'Off'}</button>
-    <button mdc-button click.delegate="disabled = !disabled">
+    <button mdc-button click.trigger="disabled = !disabled">
       Disabled: ${disabled ? 'On' : 'Off'}</button>
-    <button mdc-button click.delegate="readonly = !readonly">
+    <button mdc-button click.trigger="readonly = !readonly">
       Read Only: ${readonly ? 'On' : 'Off'}</button>
-    <button mdc-button click.delegate="alternateColors(standard)">
+    <button mdc-button click.trigger="alternateColors(standard)">
       Alternate Colors</button>
   </div>
   <div class="demo-layout__row">

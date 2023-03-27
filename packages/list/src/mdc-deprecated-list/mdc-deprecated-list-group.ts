@@ -7,7 +7,7 @@ import { customElement, customAttribute, inject } from 'aurelia';
 @inject(Element)
 @customElement({
   name: 'mdc-deprecated-list-group',
-  template: '<template class="mdc-deprecated-list-group"></template>'
+  template: '<template class="mdc-deprecated-list-group"><au-slot></au-slot></template>'
 })
 export class MdcDeprecatedListGroup {
   constructor(private root: HTMLElement) { }

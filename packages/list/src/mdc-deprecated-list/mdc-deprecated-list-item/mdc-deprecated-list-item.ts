@@ -1,7 +1,6 @@
 import { cssClasses, strings } from '@material/list';
 import { customElement, bindable, inject, INode } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
-import { nextId } from '@aurelia/kernel';
 import { processContent } from '@aurelia/runtime-html';
 
 // let listItemId = 0;
@@ -9,6 +8,7 @@ import { processContent } from '@aurelia/runtime-html';
 const ENTER = 13;
 const SPACE = 32;
 const LIST_ITEM_ACTION = 'mdclistitem:action';
+let id = 0;
 
 /**
  * @selector mdc-deprecated-list-item
@@ -48,7 +48,7 @@ export class MdcDeprecatedListItem {
 
   cssClasses = cssClasses;
 
-  id = nextId('mdc-deprecated-list-item');
+  id = `mdc-deprecated-list-item-${++id}`;
 
   /** Disables the list item */
   @bindable({ set: booleanAttr })

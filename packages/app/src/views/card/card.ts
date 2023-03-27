@@ -3,7 +3,7 @@ import { customElement } from 'aurelia';
 import template from '../component-viewer/component-viewer.html';
 import { CardExamples } from './card-examples';
 import { ApiViewer } from '../api-viewer/api-viewer';
-import { routes } from 'aurelia-direct-router';
+import { routes } from '@aurelia/router';
 
 @customElement({ name: 'card', template })
 @routes([

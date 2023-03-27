@@ -1,6 +1,6 @@
 <template>
   <mdc-list single-selection>
-    <mdc-list-item tabindex="0" mdclistitem:action.delegate="expanded = !expanded" no-list-action>
+    <mdc-list-item tabindex="0" mdclistitem:action.trigger="expanded = !expanded" no-list-action>
       <span>line item</span>
       <mdc-icon mdc-list-item-trailing>${expanded ? 'expand_less' :'expand_more'}</mdc-icon>
     </mdc-list-item>

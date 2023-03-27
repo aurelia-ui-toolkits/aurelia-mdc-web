@@ -1,19 +1,19 @@
 <template>
   <div class="demo-content">
     <h3 class="demo-content__headline">Standard</h3>
-    <au-compose view-model.bind="standard" class="demo-layout__row"></au-compose>
+    <au-compose component.bind="standard" class="demo-layout__row"></au-compose>
     <example-viewer html.bind="standardHtml"></example-viewer>
   </div>
 
   <div class="demo-content">
     <h3 class="demo-content__headline">Data Table with Row Selection</h3>
-    <au-compose view-model.bind="selection" class="demo-layout__row"></au-compose>
+    <au-compose component.bind="selection" class="demo-layout__row"></au-compose>
     <example-viewer html.bind="selectionHtml"></example-viewer>
   </div>
 
   <div class="demo-content">
     <h3 class="demo-content__headline">Pagination</h3>
-    <au-compose view-model.bind="pagination" class="demo-layout__row"></au-compose>
+    <au-compose component.bind="pagination" class="demo-layout__row"></au-compose>
     <example-viewer html.bind="paginationHtml"></example-viewer>
   </div>
 </template>

@@ -1,24 +1,24 @@
 <require from="./theme.scss"></require>
 <div class="demo-layout__row">
   <div class="demo-container">
-    <button mdc-button raised click.delegate="openCustom({classes: 'custom-snackbar--fill-color'})">
+    <button mdc-button raised click.trigger="openCustom({classes: 'custom-snackbar--fill-color'})">
       Fill Color</button>
   </div>
   <div class="demo-container">
-    <button mdc-button raised click.delegate="openCustom({classes: 'custom-snackbar--label-ink-color'})">
+    <button mdc-button raised click.trigger="openCustom({classes: 'custom-snackbar--label-ink-color'})">
       Ink Color</button>
   </div>
   <div class="demo-container">
     <button mdc-button raised
-      click.delegate="openCustom({classes: 'custom-snackbar--fill-color custom-snackbar--label-ink-color'})">
+      click.trigger="openCustom({classes: 'custom-snackbar--fill-color custom-snackbar--label-ink-color'})">
       Fill/Ink Color</button>
   </div>
   <div class="demo-container">
-    <button mdc-button raised click.delegate="openCustom({actionClasses: 'mdc-button--outlined'})">
+    <button mdc-button raised click.trigger="openCustom({actionClasses: 'mdc-button--outlined'})">
       Action Outlined</button>
   </div>
   <div class="demo-container">
-    <button mdc-button raised click.delegate="openCustom({dismissClasses: 'demo-icon-button-custom'})">
+    <button mdc-button raised click.trigger="openCustom({dismissClasses: 'demo-icon-button-custom'})">
       Icon Color</button>
   </div>
 </div>

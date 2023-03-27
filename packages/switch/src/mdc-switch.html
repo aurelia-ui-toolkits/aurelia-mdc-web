@@ -1,6 +1,6 @@
 <template class="mdc-switch ${selected ? 'mdc-switch--selected' : ''} ${disabled ? 'mdc-switch--disabled' : ''}"
   type="button" role="switch" aria-checked="${selected ? 'true' : 'false'}"
-  mdc-ripple="no-class.bind: true; unbounded.bind: true; surface.bind: rippleElement" click.delegate="handleClick()">
+  mdc-ripple="no-class.bind: true; unbounded.bind: true; surface.bind: rippleElement" click.trigger="handleClick()">
   <div class="mdc-switch__track"></div>
   <div class="mdc-switch__handle-track">
     <div class="mdc-switch__handle">

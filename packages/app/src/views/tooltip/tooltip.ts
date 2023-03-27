@@ -1,6 +1,6 @@
 import template from '../component-viewer/component-viewer.html';
 import { customElement } from 'aurelia';
-import { routes } from 'aurelia-direct-router';
+import { routes } from '@aurelia/router';
 import { ComponentViewer } from '../component-viewer/component-viewer';
 import { TooltipExamples } from './tooltip-examples';
 import { ApiViewer } from '../api-viewer/api-viewer';

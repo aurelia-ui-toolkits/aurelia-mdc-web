@@ -1,5 +1,5 @@
 import { templates } from './templates';
-import { IRouter, Navigation, RoutingInstruction } from 'aurelia-direct-router';
+import { IRouter, Navigation, RoutingInstruction } from '@aurelia/router';
 
 interface IReference {
   name: string;

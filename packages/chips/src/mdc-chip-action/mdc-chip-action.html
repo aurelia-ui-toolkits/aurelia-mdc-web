@@ -1,7 +1,7 @@
 <template class="
     mdc-evolution-chip__action
     ${trailing ? 'mdc-evolution-chip__action--trailing' : 'mdc-evolution-chip__action--primary'}
-  " click.delegate="handleClick()" keydown.delegate="handleKeydown($event)"
+  " click.trigger="handleClick()" keydown.trigger="handleKeydown($event)"
   mdc-ripple="no-class.bind: true; compute-bounding-rect.bind: computeRippleClientRect">
   <span class="
       mdc-evolution-chip__ripple

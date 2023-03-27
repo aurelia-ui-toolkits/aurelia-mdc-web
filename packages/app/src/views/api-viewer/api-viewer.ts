@@ -19,7 +19,7 @@ import linearProgressApi from '../../../../linear-progress/doc/api.json';
 import listApi from '../../../../list/doc/api.json';
 import lookupApi from '../../../../lookup/doc/api.json';
 import radioApi from '../../../../radio/doc/api.json';
-import { RoutingInstruction, IRouter, route } from 'aurelia-direct-router';
+import { RoutingInstruction, IRouter, route } from '@aurelia/router';
 
 const apis: Record<string, unknown> = {
   'banner-page': bannerApi,

@@ -1,5 +1,5 @@
 <div class="au-select">
-  <mdc-select ref="select" label="Wait for 10 seconds" change.delegate="onSelectionChange($event)"
+  <mdc-select ref="select" label="Wait for 10 seconds" change.trigger="onSelectionChange($event)"
     value.bind="delayedItem" hoist-to-body>
     <mdc-list>
       <mdc-list-item repeat.for="i of delayedItems" value.bind="i">${i}</mdc-list-item>

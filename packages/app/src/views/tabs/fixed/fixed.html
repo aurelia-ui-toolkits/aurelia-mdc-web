@@ -1,10 +1,10 @@
 <div class="demo-layout__row">
-  <button mdc-button click.delegate="align = 'start'">Align Start</button>
-  <button mdc-button click.delegate="align = 'center'">Align Center</button>
-  <button mdc-button click.delegate="align = 'end'">Align End</button>
-  <button mdc-button click.delegate="stacked = !stacked">Stacked: ${stacked ? 'On' : 'Off'}</button>
-  <button mdc-button click.delegate="fade = !fade">Fade: ${fade ? 'On' : 'Off'}</button>
-  <button mdc-button click.delegate="useAutomaticActivation = !useAutomaticActivation">
+  <button mdc-button click.trigger="align = 'start'">Align Start</button>
+  <button mdc-button click.trigger="align = 'center'">Align Center</button>
+  <button mdc-button click.trigger="align = 'end'">Align End</button>
+  <button mdc-button click.trigger="stacked = !stacked">Stacked: ${stacked ? 'On' : 'Off'}</button>
+  <button mdc-button click.trigger="fade = !fade">Fade: ${fade ? 'On' : 'Off'}</button>
+  <button mdc-button click.trigger="useAutomaticActivation = !useAutomaticActivation">
     Automatic Activation: ${useAutomaticActivation ? 'On' : 'Off'}</button>
 </div>
 <mdc-tab-bar align.bind="align" focus-on-activate.bind="false" use-automatic-activation.bind="useAutomaticActivation">

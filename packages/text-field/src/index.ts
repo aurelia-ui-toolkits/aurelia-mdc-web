@@ -20,7 +20,7 @@ let configured = false;
 export const TextFieldConfiguration = {
   register(container: IContainer): IContainer {
     if (!configured) {
-      AppTask.beforeCreate(IContainer, c => {
+      AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrMapper.useTwoWay((el, property) => el.hasAttribute('mdc-text-field-element') ? property === 'value' : false);

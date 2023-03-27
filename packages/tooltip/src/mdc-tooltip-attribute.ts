@@ -1,19 +1,17 @@
-import { inject, customAttribute, bindable, createElement, IPlatform, IContainer, IAppRoot, LifecycleFlags, BindingMode } from 'aurelia';
+import Aurelia, { inject, customAttribute, bindable, IAurelia } from 'aurelia';
 import { XPosition, YPosition, AnchorBoundaryType } from '@material/tooltip';
 import { booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MdcTooltip } from './mdc-tooltip';
-import { Scope } from '@aurelia/runtime';
-import { PropertyBindingInstruction, ISyntheticView, ITemplateCompiler } from '@aurelia/runtime-html';
 import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
+import { ICustomElementController } from '@aurelia/runtime-html';
 
 /**
  * @selector [mdc-tooltip]
  */
-@inject(Element, IPlatform, IContainer, IAppRoot, ITemplateCompiler, MdcDefaultTooltipConfiguration)
+@inject(Element, MdcDefaultTooltipConfiguration, Aurelia)
 @customAttribute('mdc-tooltip')
 export class MdcTooltipAttribute {
-  constructor(root: HTMLElement, private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot,
-    private defaultConfiguration: MdcDefaultTooltipConfiguration) {
+  constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration, @IAurelia private readonly au: Aurelia) {
     this.root = root;
   }
 
@@ -52,33 +50,39 @@ export class MdcTooltipAttribute {
   scrollHost?: HTMLElement | string = this.defaultConfiguration.scrollHost;
 
   tooltip: HTMLElement;
-  view: ISyntheticView;
+  // view: ISyntheticView;
+  controller: ICustomElementController<MdcTooltip>;
 
-  attached() {
+  async attached() {
     // const def = this.templateCompiler.compile({ name: 'test', template: `<mdc-tooltip>${this.value}</mdc-tooltip>` }, this.container, null);
+    this.tooltip = document.createElement('div');
+    this.tooltip.innerHTML = '<mdc-tooltip anchor-elem.bind="anchorElem" x-position.bind="xPosition" y-position.bind="" boundary-type.bind="boundaryType" rich.bind="rich" persistent.bind="persistent" show-delay.bind="showDelay" hide-delay.bind="hideDelay" scroll-host.bind="scrollHost">${value}</mdc-tooltip>';
 
-    const props = {
-      'anchor-elem': new PropertyBindingInstruction('root', 'anchorElem', BindingMode.toView),
-      'x-position': new PropertyBindingInstruction('xPosition', 'xPosition', BindingMode.default),
-      'y-position': new PropertyBindingInstruction('yPosition', 'yPosition', BindingMode.default),
-      'boundary-type': new PropertyBindingInstruction('boundaryType', 'boundaryType', BindingMode.default),
-      'rich': new PropertyBindingInstruction('rich', 'rich', BindingMode.default),
-      'persistent': new PropertyBindingInstruction('persistent', 'persistent', BindingMode.default),
-      'show-delay': new PropertyBindingInstruction('showDelay', 'showDelay', BindingMode.default),
-      'hide-delay': new PropertyBindingInstruction('hideDelay', 'hideDelay', BindingMode.default),
-      'scroll-host': new PropertyBindingInstruction('scrollHost', 'scrollHost', BindingMode.default),
-    };
-
-    const renderPlan = createElement(this.platform, MdcTooltip, props);
-    const sv = renderPlan.createView(this.container);
-    sv.activate(sv, this.appRoot.controller, LifecycleFlags.none, Scope.create(this));
-    this.tooltip = sv.children![0].host!;
-    this.tooltip.querySelector('.mdc-tooltip__surface')!.innerHTML = this.value;
+    this.controller = await this.au.enhance({ component: this, host: this.tooltip });
     document.body.appendChild(this.tooltip);
+
+    // const props = {
+    //   'anchor-elem': new PropertyBindingInstruction('root', 'anchorElem', BindingMode.toView),
+    //   'x-position': new PropertyBindingInstruction('xPosition', 'xPosition', BindingMode.default),
+    //   'y-position': new PropertyBindingInstruction('yPosition', 'yPosition', BindingMode.default),
+    //   'boundary-type': new PropertyBindingInstruction('boundaryType', 'boundaryType', BindingMode.default),
+    //   'rich': new PropertyBindingInstruction('rich', 'rich', BindingMode.default),
+    //   'persistent': new PropertyBindingInstruction('persistent', 'persistent', BindingMode.default),
+    //   'show-delay': new PropertyBindingInstruction('showDelay', 'showDelay', BindingMode.default),
+    //   'hide-delay': new PropertyBindingInstruction('hideDelay', 'hideDelay', BindingMode.default),
+    //   'scroll-host': new PropertyBindingInstruction('scrollHost', 'scrollHost', BindingMode.default),
+    // };
+
+    // const renderPlan = createElement(this.platform, MdcTooltip, props);
+    // const sv = renderPlan.createView(this.container);
+    // sv.activate(sv, this.appRoot.controller, LifecycleFlags.none, Scope.create(this));
+    // this.tooltip = sv.children![0].host!;
+    // this.tooltip.querySelector('.mdc-tooltip__surface')!.innerHTML = this.value;
   }
 
   detached() {
-    this.view.deactivate(this.view, this.appRoot.controller, LifecycleFlags.none);
+    this.controller.deactivate(this.controller, null);
+    // this.view.deactivate(this.view, this.appRoot.controller, LifecycleFlags.none);
     this.tooltip.remove();
   }
 }

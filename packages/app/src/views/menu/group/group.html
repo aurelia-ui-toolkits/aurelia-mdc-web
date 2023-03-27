@@ -1,6 +1,6 @@
 <template>
   <div mdc-menu-surface-anchor ref="demoSelectionAnchor">
-    <button mdc-button raised click.delegate="demoSelectionGroup.open = !demoSelectionGroup.open">
+    <button mdc-button raised click.trigger="demoSelectionGroup.open = !demoSelectionGroup.open">
       Show Selection Group Menu
     </button>
     <mdc-menu view-model.ref="demoSelectionGroup" anchor.bind="demoSelectionAnchor">

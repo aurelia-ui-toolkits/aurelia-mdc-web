@@ -1,4 +1,4 @@
-import { route } from 'aurelia-direct-router';
+import { route } from '@aurelia/router';
 import inlineHtml from '!!raw-loader!./inline/inline.html';
 import inlineCode from '!!raw-loader!./inline/inline';
 

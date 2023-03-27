@@ -3,7 +3,7 @@ import { ComponentViewer } from '../component-viewer/component-viewer';
 import { customElement } from 'aurelia';
 import { ApiViewer } from '../api-viewer/api-viewer';
 import { DataTableExamples } from './data-table-examples';
-import { routes } from 'aurelia-direct-router';
+import { routes } from '@aurelia/router';
 
 @customElement({ name: 'data-table', template })
 @routes([

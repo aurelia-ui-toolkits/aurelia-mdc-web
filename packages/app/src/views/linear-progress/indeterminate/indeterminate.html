@@ -1,7 +1,7 @@
 <require from="./indeterminate.scss"></require>
 <div class="demo-layout__row">
-  <button mdc-button click.delegate="open = true">Open</button>
-  <button mdc-button click.delegate="open = false">Close</button>
-  <button mdc-button click.delegate="alternateColors(ip)">Alternate Colors</button>
+  <button mdc-button click.trigger="open = true">Open</button>
+  <button mdc-button click.trigger="open = false">Close</button>
+  <button mdc-button click.trigger="alternateColors(ip)">Alternate Colors</button>
 </div>
 <mdc-linear-progress open.bind="open" ref="ip"></mdc-linear-progress>

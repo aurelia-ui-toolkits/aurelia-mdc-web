@@ -1,5 +1,5 @@
 import { MdcDialog } from './mdc-dialog';
-import { inject, IPlatform, IContainer, IAppRoot, LifecycleFlags, createElement, CustomAttribute } from 'aurelia';
+import Aurelia, { inject, IPlatform, IContainer, IAppRoot, CustomAttribute, IAurelia } from 'aurelia';
 import { MDCDialogCloseEvent, strings } from '@material/dialog';
 import { Scope } from '@aurelia/runtime';
 import { CustomElement } from '@aurelia/runtime-html';
@@ -23,7 +23,7 @@ interface IMdcDialogBindingContext {
 /** Service to open MDC dialogs */
 @inject(IPlatform, IContainer, IAppRoot)
 export class MdcDialogService {
-  constructor(private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot) { }
+  constructor(private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot, @IAurelia private readonly au: Aurelia) { }
 
   /** Opens the dialog specified in the options */
   async open(options: IMdcDialogOptions) {
@@ -34,43 +34,46 @@ export class MdcDialogService {
     const bindingContext: IMdcDialogBindingContext = {
       handleClosed: (evt: MDCDialogCloseEvent) => {
         closedResolver(evt.detail.action);
-        sv.deactivate(sv, this.appRoot.controller, LifecycleFlags.none);
-        dialogVm.root.removeEventListener(strings.CLOSED_EVENT, bindingContext.handleClosed);
-        dialogVm.root.removeEventListener(strings.OPENED_EVENT, bindingContext.handleOpened);
-        dialogEl.remove();
+        // sv.deactivate(sv, this.appRoot.controller, LifecycleFlags.none);
+        // dialogVm.root.removeEventListener(strings.CLOSED_EVENT, bindingContext.handleClosed);
+        // dialogVm.root.removeEventListener(strings.OPENED_EVENT, bindingContext.handleOpened);
+        // dialogEl.remove();
       },
       handleOpened: () => {
         openedResolver();
       }
     };
 
-    const renderPlan = createElement(this.platform, options.viewModel);
-    const sv = renderPlan.createView(this.container);
-    const dialogEl = sv.children![0].host!;
-    sv.activate(sv, this.appRoot.controller, LifecycleFlags.none, Scope.create(bindingContext));
-    document.body.appendChild(dialogEl);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const vm = sv.children![0].viewModel as any;
-    const dialogVm = CustomElement.for<MdcDialog>(dialogEl.querySelector('mdc-dialog')!).viewModel;
-    dialogVm.root.addEventListener(strings.CLOSED_EVENT, bindingContext.handleClosed);
-    dialogVm.root.addEventListener(strings.OPENED_EVENT, bindingContext.handleOpened);
-    if (vm.activate) {
-      const activateResult = vm.activate(options.model);
-      if (activateResult instanceof Promise) {
-        await activateResult;
-      }
-    }
-    await dialogVm.initialised;
-    dialogVm.open();
+    const controller = await this.au.enhance({host: document.body, component: options.viewModel});
 
-    await openedPromise;
-    // re-layout ripple elements because dialogs use `transform: scale(.8)` and initial layout is incorrect
-    const ripples = Array.from(dialogVm.root.querySelectorAll<IMdcRippleElement>('.mdc-ripple-upgraded'));
-    await Promise.all(ripples.map(async x => {
-      const ripple = CustomAttribute.for<MdcRipple>(x, 'mdc-ripple');
-      await ripple?.viewModel.initialised;
-      ripple?.viewModel.foundation?.layout();
-    }));
+    // const renderPlan = createElement(this.platform, options.viewModel);
+    // const sv = renderPlan.createView(this.container);
+    // const dialogEl = sv.children![0].host!;
+    // sv.activate(sv, this.appRoot.controller, LifecycleFlags.none, Scope.create(bindingContext));
+    // document.body.appendChild(dialogEl);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // const vm = sv.children![0].viewModel as any;
+    // controller.
+    // const dialogVm = CustomElement.for<MdcDialog>().viewModel;
+    // dialogVm.root.addEventListener(strings.CLOSED_EVENT, bindingContext.handleClosed);
+    // dialogVm.root.addEventListener(strings.OPENED_EVENT, bindingContext.handleOpened);
+    // if (vm.activate) {
+    //   const activateResult = vm.activate(options.model);
+    //   if (activateResult instanceof Promise) {
+    //     await activateResult;
+    //   }
+    // }
+    // await dialogVm.initialised;
+    // dialogVm.open();
+
+    // await openedPromise;
+    // // re-layout ripple elements because dialogs use `transform: scale(.8)` and initial layout is incorrect
+    // const ripples = Array.from(dialogVm.root.querySelectorAll<IMdcRippleElement>('.mdc-ripple-upgraded'));
+    // await Promise.all(ripples.map(async x => {
+    //   const ripple = CustomAttribute.for<MdcRipple>(x, 'mdc-ripple');
+    //   await ripple?.viewModel.initialised;
+    //   ripple?.viewModel.foundation?.layout();
+    // }));
     return closedPromise;
   }
 }

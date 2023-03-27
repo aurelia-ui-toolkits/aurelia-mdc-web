@@ -1,15 +1,15 @@
 <require from="./textarea.scss"></require>
 <div class="demo-layout__row">
-  <button mdc-button click.delegate="toggleTextareaDisabled()">
+  <button mdc-button click.trigger="toggleTextareaDisabled()">
     Disabled: ${textareaDisabled ? 'On' : 'Off'}
   </button>
-  <button mdc-button click.delegate="toggleTextareaRequired()">
+  <button mdc-button click.trigger="toggleTextareaRequired()">
     Required: ${textareaRequired ? 'On' : 'Off'}
   </button>
-  <button mdc-button click.delegate="alternateColors(comments)">
+  <button mdc-button click.trigger="alternateColors(comments)">
     Alternate Colors
   </button>
-  <button mdc-button click.delegate="textareaEndAligned = !textareaEndAligned">
+  <button mdc-button click.trigger="textareaEndAligned = !textareaEndAligned">
     End Aligned: ${textareaEndAligned ? 'On' : 'Off'}</button>
 </div>
 <div>

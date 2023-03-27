@@ -1,9 +1,9 @@
 <template>
   <div class="demo-layout__row">
-    <button mdc-button click.delegate="dividerInset = !dividerInset">
+    <button mdc-button click.trigger="dividerInset = !dividerInset">
       Divider Inset: ${dividerInset ? 'On' : 'Off'}
     </button>
-    <button mdc-button click.delegate="dividerPadded = !dividerPadded">
+    <button mdc-button click.trigger="dividerPadded = !dividerPadded">
       Divider Padded: ${dividerPadded ? 'On' : 'Off'}
     </button>
   </div>

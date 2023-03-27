@@ -6,6 +6,6 @@ import { customElement } from 'aurelia';
  */
 @customElement({
   name: 'mdc-deprecated-list-item-primary-text',
-  template: '<template class="mdc-deprecated-list-item__primary-text"></template>'
+  template: '<template class="mdc-deprecated-list-item__primary-text"><au-slot></au-slot></template>'
 })
 export class MdcDeprecatedListItemPrimaryText { }

@@ -18,11 +18,11 @@
     </mdc-drawer-app-content>
   </div>
   <div class="demo-layout__row">
-    <button mdc-button click.delegate="demoDismissible.toggle()">Open/Close</button>
-    <button mdc-button click.delegate="alternateColors(demoDismissible.root, 'demo-drawer--custom')">
+    <button mdc-button click.trigger="demoDismissible.toggle()">Open/Close</button>
+    <button mdc-button click.trigger="alternateColors(demoDismissible.root, 'demo-drawer--custom')">
       Custom Colors
     </button>
-    <button mdc-button click.delegate="alternateColors(demoDismissible.root, 'demo-drawer--accessible')">
+    <button mdc-button click.trigger="alternateColors(demoDismissible.root, 'demo-drawer--accessible')">
       Accessible Colors
     </button>
   </div>

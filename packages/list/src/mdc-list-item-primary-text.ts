@@ -6,6 +6,6 @@ import { customElement } from 'aurelia';
  */
 @customElement({
   name: 'mdc-list-item-primary-text',
-  template: '<template class="mdc-list-item__primary-text"></template>'
+  template: '<template class="mdc-list-item__primary-text"><au-slot></au-slot></template>'
 })
 export class MdcListItemPrimaryText { }

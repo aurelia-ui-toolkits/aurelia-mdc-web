@@ -1,12 +1,12 @@
 <require from="./custom.scss"></require>
 <div class="demo-layout__row">
-  <button mdc-button click.delegate="alignEnd = !alignEnd">
+  <button mdc-button click.trigger="alignEnd = !alignEnd">
     RTL: ${alignEnd ? 'On' : 'Off'}
   </button>
-  <button mdc-button click.delegate="disabled = !disabled">
+  <button mdc-button click.trigger="disabled = !disabled">
     Disabled: ${disabled ? 'On' : 'Off'}
   </button>
-  <button mdc-button click.delegate="alternateColors(radio)">
+  <button mdc-button click.trigger="alternateColors(radio)">
     Alternate Colors
   </button>
 </div>

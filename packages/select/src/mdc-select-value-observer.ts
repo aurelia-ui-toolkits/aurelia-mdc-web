@@ -1,6 +1,5 @@
 import {
   CollectionKind,
-  LifecycleFlags as LF,
   subscriberCollection,
   AccessorType,
 } from '@aurelia/runtime';
@@ -14,7 +13,7 @@ import type {
   ISubscriberCollection,
 } from '@aurelia/runtime';
 
-import { INode, EventSubscriber, CustomElement } from '@aurelia/runtime-html';
+import { INode, CustomElement } from '@aurelia/runtime-html';
 import { IMdcSelectElement, MdcSelect } from './mdc-select';
 
 // const hasOwn = Object.prototype.hasOwnProperty;
@@ -35,11 +34,36 @@ export interface IOptionElement extends HTMLOptionElement {
 export interface MdcSelectValueObserver extends
   ISubscriberCollection { }
 
-export class MdcSelectValueObserver implements IObserver {
+export interface INodeObserverConfigBase {
+  /**
+   * Indicates the list of events can be used to observe a particular property
+   */
+  readonly events: string[];
+  /**
+   * Indicates whether this property is readonly, so observer wont attempt to assign value
+   * example: input.files
+   */
+  readonly readonly?: boolean;
+  /**
+   * A default value to assign to the corresponding property if the incoming value is null/undefined
+   */
+  readonly default?: unknown;
+}
+
+
+export interface INodeObserver extends IObserver {
+  /**
+   * Instruct this node observer event observation behavior
+   */
+  useConfig(config: INodeObserverConfigBase): void;
+}
+
+export class MdcSelectValueObserver implements INodeObserver {
   public currentValue: unknown = void 0;
   public oldValue: unknown = void 0;
 
   public readonly obj: IMdcSelectElement;
+  public config: INodeObserverConfigBase;
 
   public hasChanges: boolean = false;
   // ObserverType.Layout is not always true
@@ -48,17 +72,21 @@ export class MdcSelectValueObserver implements IObserver {
 
   public arrayObserver?: ICollectionObserver<CollectionKind.array> = void 0;
   public nodeObserver?: MutationObserver = void 0;
+  private readonly _observerLocator: IObserverLocator;
 
   private observing: boolean = false;
+  private listened: boolean = false;
 
   public constructor(
     obj: INode,
     // deepscan-disable-next-line
     _key: PropertyKey,
-    public readonly handler: EventSubscriber,
-    public readonly observerLocator: IObserverLocator,
+    config: INodeObserverConfigBase,
+    observerLocator: IObserverLocator,
   ) {
     this.obj = obj as unknown as IMdcSelectElement;
+    this.config = config;
+    this._observerLocator = observerLocator;
   }
 
   optionsWereSet: boolean;
@@ -81,17 +109,17 @@ export class MdcSelectValueObserver implements IObserver {
       : this.obj.value;
   }
 
-  public setValue(newValue: unknown, flags: LF): void {
+  public setValue(newValue: unknown): void {
     this.currentValue = newValue;
     this.hasChanges = newValue !== this.oldValue;
     // this.observeArray(newValue instanceof Array ? newValue : null);
-    if ((flags & LF.noFlush) === 0 && this.optionsWereSet) {
-      this.flushChanges(flags);
+    if (this.optionsWereSet) {
+      this.flushChanges();
     }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  public flushChanges(_flags: LF): void {
+  public flushChanges(): void {
     if (this.hasChanges) {
       this.hasChanges = false;
       this.synchronizeOptions();
@@ -104,22 +132,19 @@ export class MdcSelectValueObserver implements IObserver {
     this.synchronizeOptions();
   }
 
-  public notify(flags: LF): void {
-    if ((flags & LF.fromBind) > 0) {
-      return;
-    }
+  public notify(): void {
     const oldValue = this.oldValue;
     const newValue = this.currentValue;
     if (newValue === oldValue) {
       return;
     }
-    this.subs.notify(newValue, oldValue, flags);
+    this.subs.notify(newValue, oldValue);
   }
 
   public handleEvent(): void {
     const shouldNotify = this.synchronizeValue();
     if (shouldNotify) {
-      this.subs.notify(this.currentValue, this.oldValue, LF.none);
+      this.subs.notify(this.currentValue, this.oldValue);
     }
   }
 
@@ -284,22 +309,40 @@ export class MdcSelectValueObserver implements IObserver {
       this.synchronizeOptions();
       const shouldNotify = this.synchronizeValue();
       if (shouldNotify) {
-        this.notify(LF.none);
+        this.notify();
       }
     }
   }
 
   public subscribe(subscriber: ISubscriber): void {
     if (this.subs.add(subscriber) && this.subs.count === 1) {
-      this.handler.subscribe(this.obj, this);
+      for (const e of this.config.events) {
+        this.obj.addEventListener(e, this);
+      }
+      this.listened = true;
       this.start();
     }
   }
 
   public unsubscribe(subscriber: ISubscriber): void {
     if (this.subs.remove(subscriber) && this.subs.count === 0) {
-      this.handler.dispose();
+      for (const e of this.config.events) {
+        this.obj.removeEventListener(e, this);
+      }
+      this.listened = false;
       this.stop();
+    }
+  }
+
+  useConfig(config: INodeObserverConfigBase): void {
+    this.config = config;
+    if (this.listened) {
+      for (const e of this.config.events) {
+        this.obj.removeEventListener(e, this);
+      }
+      for (const e of this.config.events) {
+        this.obj.addEventListener(e, this);
+      }
     }
   }
 }

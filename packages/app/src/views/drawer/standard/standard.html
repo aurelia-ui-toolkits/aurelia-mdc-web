@@ -5,7 +5,7 @@
       <mdc-drawer-content>
         <mdc-deprecated-list activated>
           <a mdc-deprecated-list-item repeat.for="item of destinations" activated.bind="item.activated"
-            click.delegate="item.activated = !item.activated">
+            click.trigger="item.activated = !item.activated">
             <mdc-icon mdc-deprecated-list-item-graphic if.bind="item.icon">${item.icon}</mdc-icon>
             <span>${item.label}</span>
           </a>
@@ -44,10 +44,10 @@
     </div>
   </div>
   <div class="demo-layout__row">
-    <button mdc-button click.delegate="alternateColors(demoPermanent, 'demo-drawer--custom')">
+    <button mdc-button click.trigger="alternateColors(demoPermanent, 'demo-drawer--custom')">
       Custom Colors
     </button>
-    <button mdc-button click.delegate="alternateColors(demoPermanent, 'demo-drawer--accessible')">
+    <button mdc-button click.trigger="alternateColors(demoPermanent, 'demo-drawer--accessible')">
       Accessible Colors
     </button>
   </div>

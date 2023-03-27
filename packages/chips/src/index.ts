@@ -15,7 +15,7 @@ let configured = false;
 export const ChipsConfiguration = {
   register(container: IContainer): IContainer {
     if (!configured) {
-      AppTask.beforeCreate(IContainer, c => {
+      AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-CHIP' ? property === 'checked' : false);

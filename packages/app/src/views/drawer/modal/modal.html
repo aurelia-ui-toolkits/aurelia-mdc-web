@@ -17,11 +17,11 @@
   </div>
 </div>
 <div class="demo-layout__row">
-  <button mdc-button click.delegate="demoModal.open = !demoModal.open">Open</button>
-  <button mdc-button click.delegate="alternateColors(demoModal.root, 'demo-drawer--custom')">
+  <button mdc-button click.trigger="demoModal.open = !demoModal.open">Open</button>
+  <button mdc-button click.trigger="alternateColors(demoModal.root, 'demo-drawer--custom')">
     Custom Colors
   </button>
-  <button mdc-button click.delegate="alternateColors(demoModal.root, 'demo-drawer--accessible')">
+  <button mdc-button click.trigger="alternateColors(demoModal.root, 'demo-drawer--accessible')">
     Accessible Colors
   </button>
 </div>

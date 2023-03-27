@@ -15,7 +15,7 @@ export class Validation {
   options: IOption[] = Array.from({ length: 20 }, (x, i) => ({ id: i, name: `option ${i}` }));
   value = this.options[1];
 
-  validate(){
+  validate() {
     this.controller.validate();
   }
 }

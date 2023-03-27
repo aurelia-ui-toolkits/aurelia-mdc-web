@@ -3,7 +3,7 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCLineRippleFoundation, MDCLineRippleAdapter } from '@material/line-ripple';
 
 @inject(Element)
-@customElement({ name: 'mdc-line-ripple', template: '<template class="mdc-line-ripple"></template>' })
+@customElement({ name: 'mdc-line-ripple', template: '<template class="mdc-line-ripple"><au-slot></au-slot></template>' })
 export class MdcLineRipple extends MdcComponent<MDCLineRippleFoundation> {
   /**
    * Activates the line ripple

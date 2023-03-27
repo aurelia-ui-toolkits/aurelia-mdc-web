@@ -7,7 +7,7 @@
   </mdc-text-field>
 </div>
 <div class="demo-layout__row">
-  <button mdc-button click.delegate="endAligned = !endAligned">
+  <button mdc-button click.trigger="endAligned = !endAligned">
     End Aligned: ${endAligned ? 'On' : 'Off'}</button>
 </div>
 <div class="demo-container">
@@ -15,7 +15,7 @@
   </mdc-text-field>
 </div>
 <div class="demo-layout__row">
-  <button mdc-button click.delegate="ltrText = !ltrText">
+  <button mdc-button click.trigger="ltrText = !ltrText">
     LTR Text: ${ltrText ? 'On' : 'Off'}</button>
 </div>
 <div class="demo-container">

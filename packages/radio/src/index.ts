@@ -10,7 +10,7 @@ let configured = false;
 export const RadioConfiguration = {
   register(container: IContainer): IContainer {
     if (!configured) {
-      AppTask.beforeCreate(IContainer, c => {
+      AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
         attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-RADIO' ? property === 'checked' : false);
