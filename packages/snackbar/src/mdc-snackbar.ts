@@ -28,7 +28,7 @@ export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
   @bindable({ set: number })
   timeout?: number;
   timeoutChanged() {
-    if (this.timeout !== undefined) {
+    if (this.timeout !== undefined && !isNaN(this.timeout)) {
       this.foundation?.setTimeoutMs(this.timeout);
     }
   }

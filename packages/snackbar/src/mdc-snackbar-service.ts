@@ -1,5 +1,5 @@
-import Aurelia, { inject, IAurelia, CustomElement } from 'aurelia';
-import { IMdcSnackbarElement, MdcSnackbar } from './mdc-snackbar';
+import Aurelia, { IAurelia, CustomElement } from 'aurelia';
+import { MdcSnackbar } from './mdc-snackbar';
 import { MDCSnackbarCloseEvent } from '@material/snackbar';
 
 interface IMdcSnackbarBindingContext {
@@ -20,7 +20,6 @@ export interface ISnackbarOptions {
   dismissClasses: string;
 }
 
-@inject(Aurelia)
 export class MdcSnackbarService {
   constructor(@IAurelia private readonly au: Aurelia) { }
 
@@ -42,7 +41,7 @@ export class MdcSnackbarService {
     };
 
     const snackbar = document.createElement('div');
-    snackbar.innerHTML = '<mdc-snackbar mdcsnackbar:closed.trigger="handleClosed($event)" label.bind="label" actions.bind="actions"></mdc-snackbar>';
+    snackbar.innerHTML = '<mdc-snackbar mdcsnackbar:closed.trigger="handleClosed($event)" label.bind="label" actions.bind="actions" dismissible.bind="options.dismissible" stacked.bind="options.stacked" timeout.bind="options.timeout" close-on-escape.bind="options.closeOnEscape" classes.bind="options.classes" action-classes.bind="options.actionClasses" dismiss-classes.bind="options.dismissClasses" leading.bind="options.leading"></mdc-snackbar>';
     const controller = await this.au.enhance({ host: snackbar, component: bindingContext });
     document.body.appendChild(snackbar);
     CustomElement.for<MdcSnackbar>(snackbar.firstElementChild as HTMLElement).viewModel.open();
