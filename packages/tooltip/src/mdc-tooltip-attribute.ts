@@ -8,7 +8,6 @@ import { ICustomElementController } from '@aurelia/runtime-html';
 /**
  * @selector [mdc-tooltip]
  */
-@inject(Element, MdcDefaultTooltipConfiguration, Aurelia)
 @customAttribute('mdc-tooltip')
 export class MdcTooltipAttribute {
   constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration, @IAurelia private readonly au: Aurelia) {
@@ -56,9 +55,11 @@ export class MdcTooltipAttribute {
   async attached() {
     // const def = this.templateCompiler.compile({ name: 'test', template: `<mdc-tooltip>${this.value}</mdc-tooltip>` }, this.container, null);
     this.tooltip = document.createElement('div');
-    this.tooltip.innerHTML = '<mdc-tooltip anchor-elem.bind="anchorElem" x-position.bind="xPosition" y-position.bind="" boundary-type.bind="boundaryType" rich.bind="rich" persistent.bind="persistent" show-delay.bind="showDelay" hide-delay.bind="hideDelay" scroll-host.bind="scrollHost">${value}</mdc-tooltip>';
+    this.tooltip.innerHTML = '<mdc-tooltip anchor-elem.bind="root" x-position.bind="xPosition" y-position.bind="yPosition" boundary-type.bind="boundaryType" rich.bind="rich" persistent.bind="persistent" show-delay.bind="showDelay" hide-delay.bind="hideDelay" scroll-host.bind="scrollHost">${value}</mdc-tooltip>';
 
-    this.controller = await this.au.enhance({ component: this, host: this.tooltip });
+    this.controller = await this.au.enhance({
+      component: this, host: this.tooltip
+    });
     document.body.appendChild(this.tooltip);
 
     // const props = {
