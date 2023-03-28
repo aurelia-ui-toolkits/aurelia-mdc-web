@@ -7,9 +7,9 @@ import { Constructable } from '@aurelia/kernel';
 import { IMdcRippleElement, MdcRipple } from '@aurelia-mdc-web/ripple';
 
 /** Dialog service open method options */
-export interface IMdcDialogOptions {
+export interface IMdcDialogOptions<T> {
   /** A class represeting the dialog content view model */
-  viewModel: Constructable;
+  viewModel: Constructable<T>;
 
   /** Data to pass to the view model's activate method */
   model?: unknown;
@@ -21,12 +21,11 @@ interface IMdcDialogBindingContext {
 }
 
 /** Service to open MDC dialogs */
-@inject(IPlatform, IContainer, IAppRoot)
 export class MdcDialogService {
-  constructor(private platform: IPlatform, private container: IContainer, private appRoot: IAppRoot, @IAurelia private readonly au: Aurelia) { }
+  constructor(@IAurelia private readonly au: Aurelia) { }
 
   /** Opens the dialog specified in the options */
-  async open(options: IMdcDialogOptions) {
+  async open<T>(options: IMdcDialogOptions<T>) {
     let closedResolver: (action?: string | PromiseLike<string> | undefined) => void;
     const closedPromise = new Promise<string>(r => closedResolver = r);
     let openedResolver: (value?: unknown) => void;
@@ -44,7 +43,11 @@ export class MdcDialogService {
       }
     };
 
-    const controller = await this.au.enhance({host: document.body, component: options.viewModel});
+    const dialogContainer = document.createElement('div');
+    document.body.appendChild(dialogContainer);
+
+    const controller = await this.au.enhance({ host: dialogContainer, component: options.viewModel });
+
 
     // const renderPlan = createElement(this.platform, options.viewModel);
     // const sv = renderPlan.createView(this.container);

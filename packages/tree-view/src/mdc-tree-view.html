@@ -15,7 +15,7 @@
           <mdc-icon-button-icon class="material-icons" on>expand_more</mdc-icon-button-icon>
         </button>
         <div else class="mdc-tree-view__leaf-padding"></div>
-        <au-compose view.bind="nodeTemplate" model.bind="$node" class="mdc-tree-node"></au-compose>
+        <au-compose template.bind="nodeTemplate" model.bind="$node" class="mdc-tree-node"></au-compose>
       </div>
       <mdc-promisify-reference if.bind="$node.children" reference.bind="treeView"
         promise-ref.bind="$node.childTreeViewPromise">
