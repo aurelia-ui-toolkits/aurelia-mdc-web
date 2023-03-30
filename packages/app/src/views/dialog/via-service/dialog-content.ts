@@ -6,7 +6,7 @@ export class DialogContent {
   params: unknown;
   dialog: MdcDialog;
 
-  activate(params: unknown) {
+  loading(params: unknown) {
     this.params = params;
   }
 

@@ -86,6 +86,7 @@ import { BannerExamples } from './views/banner/banner-examples';
 import { SegmentedButton } from './views/segmented-button/segmented-button';
 import { SegmentedButtonExamples } from './views/segmented-button/segmented-button-examples';
 import { RouterConfiguration } from '@aurelia/router';
+import { DialogContent } from './views/dialog/via-service/dialog-content';
 
 // href is buggy
 // DefaultResources.splice(DefaultResources.findIndex(x => x === HrefCustomAttribute as unknown as IRegistry));
@@ -108,6 +109,7 @@ Aurelia
     ElevationExamples, ExpandableExamples, FabExamples, FormFieldExamples, IconButtonExamples, ImageListExamples, LayoutGridExamples, LinearProgressExamples,
     ListExamples, LookupExamples, MenuExamples, MenuSurfaceExamples, RadioExamples, RippleExamples, SegmentedButtonExamples, SelectExamples, SliderExamples, SnackbarExamples,
     SwitchExamples, TabsExamples, TextFieldExamples, TooltipExamples, TopAppBarExamples, TreeViewExamples, TypographyExamples)
+  .register(DialogContent)
   // To use HTML5 pushState routes, replace previous line with the following
   // customized router config.
   // .register(RouterConfiguration.customize({ useUrlFragmentHash: false }))
