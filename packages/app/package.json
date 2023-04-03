@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --progress",
-    "prebuild": "rimraf dist/*.{js,css,map,html}",
+    "prebuild": "rimraf --glob dist/*.{js,css,map,html}",
     "build:app": "npm run prebuild && webpack --progress",
     "analyze": "npm run prebuild && webpack --env production --analyze",
     "test": "echo \"Error: no test specified\" && exit 1",
