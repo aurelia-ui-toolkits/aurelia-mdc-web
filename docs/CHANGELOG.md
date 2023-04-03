@@ -1,3 +1,13 @@
+## [8.0.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.1-au2...v8.0.2-au2) (2023-04-03)
+
+
+### Bug Fixes
+
+* **all** upgrade Aurelia to beta.3
+* **tree:** pass filter to child trees ([44bebe1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/44bebe122c40e6b9dbc197a267efef8ca2ba3970))
+
+
+
 ## [8.0.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.0-au2...v8.0.1-au2) (2021-11-16)
 
 

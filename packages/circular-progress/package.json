@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/circular-progress",
-  "version": "8.0.1-au2",
+  "version": "8.0.2-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -38,7 +38,7 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "8.0.1-au2",
+    "@aurelia-mdc-web/base": "8.0.2-au2",
     "@material/circular-progress": "^13.0.0"
   }
 }

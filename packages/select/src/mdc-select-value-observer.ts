@@ -72,7 +72,6 @@ export class MdcSelectValueObserver implements INodeObserver {
 
   public arrayObserver?: ICollectionObserver<CollectionKind.array> = void 0;
   public nodeObserver?: MutationObserver = void 0;
-  private readonly _observerLocator: IObserverLocator;
 
   private observing: boolean = false;
   private listened: boolean = false;
@@ -82,11 +81,10 @@ export class MdcSelectValueObserver implements INodeObserver {
     // deepscan-disable-next-line
     _key: PropertyKey,
     config: INodeObserverConfigBase,
-    observerLocator: IObserverLocator,
+    _: IObserverLocator
   ) {
     this.obj = obj as unknown as IMdcSelectElement;
     this.config = config;
-    this._observerLocator = observerLocator;
   }
 
   optionsWereSet: boolean;
