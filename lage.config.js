@@ -3,5 +3,6 @@ module.exports = {
     build: ["^build"],
     test: ["build"],
     "update-versions": [],
+    "publish:au2": []
   },
 };
