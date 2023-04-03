@@ -23,7 +23,7 @@ export class ComponentViewer {
   template: IComponentTemplate;
   apiActive: boolean;
 
-  load(params: Record<string, unknown>, ri: RoutingInstruction, nav: Navigation) {
+  loading(params: Record<string, unknown>, ri: RoutingInstruction, nav: Navigation) {
     this.apiActive = nav.path?.endsWith(this.api) ?? false;
     this.examples = `${ri.component.name?.replace('-page', '')}-examples`;
     this.template = templates[ri.component.name!];

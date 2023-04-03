@@ -22,6 +22,8 @@ const postcssLoader = {
   }
 };
 
+console.log(__dirname);
+
 const outDir = path.resolve(__dirname, 'dist');
 module.exports = function (env, { analyze }) {
   const production = env.production || process.env.NODE_ENV === 'production';
@@ -40,6 +42,17 @@ module.exports = function (env, { analyze }) {
       modules: ['src', 'node_modules', '../../node_modules'].map(x => path.resolve(x)),
       alias: {
         'src': path.resolve(__dirname, 'src'),
+        ...[
+          'kernel',
+          'runtime-html'
+        ].reduce((map, pkg) => {
+          const name = `@aurelia/${pkg}`;
+          map[name] = path.resolve(__dirname, '../../node_modules', name, 'dist/esm/index.dev.mjs');
+          return map;
+        }, {
+          'aurelia': path.resolve(__dirname, '../../node_modules/aurelia/dist/esm/index.dev.mjs'),
+          // add your development aliasing here
+        }),
         // alias all packages to src code
         ...([
           'all',
@@ -91,7 +104,13 @@ module.exports = function (env, { analyze }) {
       },
     },
     devServer: {
-      historyApiFallback: true
+      historyApiFallback: true,
+      client: {
+        overlay: {
+          warnings: false,
+          errors: true
+        }
+      }
     },
     module: {
       rules: [
@@ -99,7 +118,7 @@ module.exports = function (env, { analyze }) {
         { test: /\.css$/i, use: ['style-loader', cssLoader/*, postcssLoader*/] },
         { test: /\.scss$/i, use: ['style-loader', cssLoader/*, postcssLoader*/, sassLoader] },
         { test: /\.ts$/i, use: ['ts-loader', '@aurelia/webpack-loader'], exclude: /node_modules/ },
-        { test: /\.js$/, enforce: 'pre', use: ['source-map-loader'], include: [/@aurelia\\kernel/] },
+        { test: /\.mjs$/, enforce: 'pre', use: ['source-map-loader'], include: [/@aurelia\\kernel/, /@aurelia\\runtime-html/] },
         { test: /\.html$/i, use: '@aurelia/webpack-loader', exclude: /node_modules/ }
       ]
     },
