@@ -1,3 +1,12 @@
+## [9.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.4...v9.0.5) (2023-05-11)
+
+
+### Bug Fixes
+
+* **base:** import plugin fix explicitly ([25678e6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/25678e6d526af48d5229420bad1dfd938b46a820))
+
+
+
 ## [9.0.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.3...v9.0.4) (2022-11-08)
 
 
