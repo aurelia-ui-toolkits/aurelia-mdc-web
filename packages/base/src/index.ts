@@ -1,5 +1,5 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
-import { coerceFunctions, createTypedBindable } from 'aurelia-typed-observable-plugin';
+import './aurelia-typed-observable-plugin-fix';
 
 export { MdcComponent } from './mdc-component';
 export { MdcComponentAdapters } from './mdc-component-adapters';
@@ -16,9 +16,3 @@ export function configure(config: FrameworkConfiguration) {
     PLATFORM.moduleName('./elements/mdc-promisify-reference')
   ]);
 }
-
-coerceFunctions.none = function (a) {
-  return a;
-}
-
-createTypedBindable('none');

@@ -2,6 +2,7 @@ import { inject } from 'aurelia-dependency-injection';
 import { customAttribute } from 'aurelia-templating';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { FocusTrap } from '@material/dom/focus-trap';
+import '../aurelia-typed-observable-plugin-fix';
 
 @customAttribute('mdc-focus-trap')
 @inject(Element)
