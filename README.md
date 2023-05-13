@@ -6,7 +6,7 @@ Keep in mind that Aurelia2 itself is still in alpha stage.
 
 [![npm version](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase.svg)](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase)
 
-[Demos, documentation and guides](https://aurelia-mdc-web-au2.balaganskiy.pro/)
+[Demos, documentation and guides](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web-au2-demo/)
 
 Third-party integration incorporating [Google Material Components](https://github.com/material-components/material-components-web) for building beautiful, usable products using Material Design.
 
