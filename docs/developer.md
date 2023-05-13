@@ -6,7 +6,8 @@
 2. Fork the `aurelia-mdc-web` repo on GitHub.
 3. Clone your fork to your machine with `git clone`.
 4. From the root of the project, run `npm i` to install the dependencies.
-5. From the root of the project, run `npm run refresh` to bootstrap lerna.
+5. From the root of the project, run `npx lage init` to bootstrap `lage`.
+6. From the root of the project, run `npm run doc` to generate doc file for each package.
 
 ## <a name="demo-server"></a> Run demo application
 From the root of the project,
