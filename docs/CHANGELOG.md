@@ -1,3 +1,10 @@
+## [8.0.3-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/8.0.2-au2...8.0.3-au2) (2023-05-15)
+
+### Bug Fixes
+
+* **layout-gridall** add missing slot in mdc-layout-grid template ([1941b7b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d68f4a50c154b13e3fbf201d5fc2d05781941b7b))
+
+
 ## [8.0.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.1-au2...v8.0.2-au2) (2023-04-03)
 
 
