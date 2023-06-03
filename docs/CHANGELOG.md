@@ -1,3 +1,17 @@
+## [9.0.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.5...v9.0.6) (2023-06-03)
+
+
+### Bug Fixes
+
+* **lookup:** prevent auto menu closure ([1f16183](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1f161837b059bf3292866710114bd072cda32db1))
+
+
+### Features
+
+* **menu:** forward stay-open property to the surface ([3d08e77](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3d08e779dfaecf543ab3230358aaabb0de47e825))
+
+
+
 ## [9.0.5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.4...v9.0.5) (2023-05-11)
 
 
