@@ -5,9 +5,10 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
 import { IValidatedElement, IError } from '@aurelia-mdc-web/base';
 import { closest } from '@material/dom/ponyfill';
+import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
 
 const inputEvents = ['click', 'input', 'keydown', 'blur'];
-const bodyEvents = ['touchstart', 'mousedown'];
+const bodyEvents = ['touchstart', 'mousedown', 'click'];
 
 /**
  * @selector mdc-lookup
@@ -20,6 +21,7 @@ export class MdcLookup implements EventListenerObject {
     defineMdcLookupElementApis(this.root);
   }
 
+  private menuSurface: MdcMenuSurface;
   public isWrapperOpen: boolean = false;
   public optionsArray?: unknown[];
   public focusedOption: unknown = undefined;
@@ -219,6 +221,7 @@ export class MdcLookup implements EventListenerObject {
         switch (evt.type) {
           case 'mousedown': this.onBodyMousedown(evt as MouseEvent); break;
           case 'touchstart': this.onBodyMousedown(evt as TouchEvent); break;
+          case 'click': this.handleBodyClick(evt as MouseEvent); break;
         }
         break;
     }
@@ -338,10 +341,17 @@ export class MdcLookup implements EventListenerObject {
   }
 
   onBodyMousedown(evt: MouseEvent | TouchEvent) {
+    // this is needed to prevent text field label jumping
     if (closest(evt.target as HTMLElement, 'mdc-menu')) {
       evt.preventDefault();
     }
     return true;
+  }
+
+  handleBodyClick(evt: MouseEvent) {
+    if (!closest(evt.target as HTMLElement, 'mdc-menu') && !(evt.target as HTMLElement).classList.contains('mdc-text-field') && !(evt.target as HTMLElement).classList.contains('mdc-text-field__input')) {
+      this.menuSurface.foundation?.handleBodyClick(evt);
+    }
   }
 
   handleMenuKeydown(event: KeyboardEvent) {
