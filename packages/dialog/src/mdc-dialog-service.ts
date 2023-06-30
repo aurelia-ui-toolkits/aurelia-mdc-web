@@ -29,16 +29,22 @@ export class MdcDialogService {
     const closedPromise = new Promise<string>(r => closedResolver = r);
     let openedResolver: (value?: unknown) => void;
     const openedPromise = new Promise(r => openedResolver = r);
+    let opened = false;
     const bindingContext: IMdcDialogBindingContext = {
+      handleOpened: () => {
+        opened = true;
+        openedResolver();
+      },
       handleClosed: (evt: MDCDialogCloseEvent) => {
+        if (!opened) {
+          // The dialog was closed before it was opened, need to prevent an unresolved open promise.
+          openedResolver();
+        }
         closedResolver(evt.detail.action);
         controller.deactivate(controller, null);
         dialogVm.root.removeEventListener(strings.CLOSED_EVENT, bindingContext.handleClosed);
         dialogVm.root.removeEventListener(strings.OPENED_EVENT, bindingContext.handleOpened);
         dialogContainer.remove();
-      },
-      handleOpened: () => {
-        openedResolver();
       }
     };
 
