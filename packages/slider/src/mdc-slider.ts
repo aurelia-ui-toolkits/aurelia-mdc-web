@@ -190,14 +190,16 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
         this.getThumbEl(thumb)?.classList.remove(className);
       },
       getAttribute: (attribute) => this.root.getAttribute(attribute),
-      getInputValue: (thumb: Thumb) => this.getInput(thumb)!.value,
+      getInputValue: (thumb: Thumb) => this.getInput(thumb)?.value ?? '',
       setInputValue: (value: string, thumb: Thumb) => {
-        this.getInput(thumb)!.value = value;
+        const thumbInput = this.getInput(thumb);
+        if (thumbInput) {
+          thumbInput.value = value;
+        }
       },
-      getInputAttribute: (attribute, thumb: Thumb) =>
-        this.getInput(thumb)!.getAttribute(attribute),
+      getInputAttribute: (attribute, thumb: Thumb) => this.getInput(thumb)?.getAttribute(attribute) ?? null,
       setInputAttribute: (attribute, value, thumb: Thumb) => {
-        this.getInput(thumb)!.setAttribute(attribute, value);
+        this.getInput(thumb)?.setAttribute(attribute, value);
       },
       removeInputAttribute: (attribute, thumb: Thumb) => {
         this.getInput(thumb)?.removeAttribute(attribute);
