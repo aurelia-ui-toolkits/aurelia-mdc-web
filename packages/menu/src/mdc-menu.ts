@@ -1,4 +1,4 @@
-import { MdcComponent, defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, defaultSlotProcessContent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuItemComponentEventDetail, strings, cssClasses } from '@material/menu';
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
 import { MdcList, IMdcListActionEvent, MdcListItem } from '@aurelia-mdc-web/list';
@@ -73,6 +73,9 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
 
   @bindable
   maxHeight: number;
+
+  @bindable({ set: number })
+  openBottomBias: number;
 
   /** Sets whether focus should be restored after the menu is closed */
   @bindable({ set: booleanAttr })

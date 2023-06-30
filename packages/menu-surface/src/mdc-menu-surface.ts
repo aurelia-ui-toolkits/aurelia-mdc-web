@@ -1,4 +1,4 @@
-import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MDCMenuSurfaceFoundation, MDCMenuSurfaceAdapter, cssClasses, Corner, MDCMenuDistance, strings } from '@material/menu-surface';
 import { inject, customAttribute, bindable, BindingMode } from 'aurelia';
 import { getCorrectPropertyName } from '@material/animation/util';
@@ -65,7 +65,7 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   @bindable({ set: booleanAttr })
   stayOpen: boolean;
 
-  @bindable
+  @bindable({ set: number })
   maxHeight: number;
   async maxHeightChanged() {
     await this.initialised;
@@ -77,6 +77,13 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
   async horizontallyCenteredOnViewportChanged() {
     await this.initialised;
     this.foundation?.setIsHorizontallyCenteredOnViewport(this.horizontallyCenteredOnViewport);
+  }
+
+  @bindable({ set: number })
+  openBottomBias: number;
+  async openBottomBiasChanged() {
+    await this.initialised;
+    this.foundation?.setOpenBottomBias(this.openBottomBias);
   }
 
   get open(): boolean {
