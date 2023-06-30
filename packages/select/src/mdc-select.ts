@@ -128,12 +128,12 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   @bindable({ set: booleanAttr })
   naturalWidth: boolean;
 
-  private initialValue: unknown;
+  private _value: unknown;
   get value(): unknown {
     if (this.foundation) {
       return this.foundation.getValue();
     } else {
-      return this.initialValue;
+      return this._value;
     }
   }
 
@@ -142,11 +142,10 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
   }
 
   setValue(value: unknown, skipNotify: boolean = false) {
+    this._value = value;
     if (this.foundation) {
       this.foundation.setValue(value, skipNotify);
       this.foundation.layout();
-    } else {
-      this.initialValue = value;
     }
   }
 
@@ -200,7 +199,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 
   initialSyncWithDOM() {
     // set initial value without emitting change events
-    this.foundation?.setValue(this.initialValue, true);
+    this.foundation?.setValue(this._value, true);
     this.foundation?.layout();
     this.errors = new Map<IError, boolean>();
     this.valid = true;
