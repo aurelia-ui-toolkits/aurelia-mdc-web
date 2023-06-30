@@ -10,6 +10,12 @@ Keep in mind that Aurelia2 itself is still in alpha stage.
 
 Third-party integration incorporating [Google Material Components](https://github.com/material-components/material-components-web) for building beautiful, usable products using Material Design.
 
+## Final release
+
+The v9 is going to be the last major version of the bridge. Google is going to concentrate on [Material Web Components](https://github.com/material-components/material-web) from now on.
+
+See [this comment](https://github.com/material-components/material-components-web/issues/7583#issuecomment-1079282375).
+
 #### Quick Links
 *  [Getting Started](https://aurelia-mdc-web-au2.balaganskiy.pro/#/getting-started)
 *  [Changelog](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/blob/v2/docs/CHANGELOG.md)
