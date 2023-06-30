@@ -210,6 +210,9 @@ export class MdcMenuSurface extends MdcComponent<MDCMenuSurfaceFoundation> imple
         this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
         this.registerBodyClickListener();
       },
+      notifyOpening: () => {
+        this.emit(MDCMenuSurfaceFoundation.strings.OPENING_EVENT, {});
+      },
       isElementInContainer: (el) => this.root.contains(el),
       isRtl: () => getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
