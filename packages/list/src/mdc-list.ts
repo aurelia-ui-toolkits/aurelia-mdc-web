@@ -232,7 +232,7 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
     const target = evt.target as Element;
     // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
     const toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
-    this.foundation?.handleClick(index, toggleCheckbox);
+    this.foundation?.handleClick(index, !toggleCheckbox);
     return true;
   }
 
