@@ -91,6 +91,9 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   @bindable({ set: booleanAttr })
   selectOnTab: boolean;
 
+  @bindable({ set: booleanAttr })
+  stayOpen: boolean;
+
   handleKeydown_(evt: KeyboardEvent) {
     const focusedItemIndex = this.list_?.foundation?.getFocusedItemIndex() ?? listConstants.UNSET_INDEX;
     if (this.selectOnTab && (evt.key === 'Tab' || evt.keyCode === 9)
