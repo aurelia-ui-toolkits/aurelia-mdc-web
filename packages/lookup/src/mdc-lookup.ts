@@ -182,7 +182,7 @@ export class MdcLookup implements EventListenerObject {
     bodyEvents.forEach(x => document.body.addEventListener(x, this));
   }
 
-  detached() {
+  detaching() {
     if (this.input) {
       inputEvents.forEach(x => this.input!.removeEventListener(x, this));
     }
