@@ -1,3 +1,37 @@
+# [9.0.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.3-au2...v9.0.0-au2) (2023-06-30)
+
+
+### Bug Fixes
+
+* **button,fab:** add disabled property to fix tabindex when disabled ([0bae17c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0bae17c18a2d1a82d007b3eccc389820338e5114))
+* **button,fab:** fix disabled.bind ([cd41edc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/cd41edc2a90a3fa17f7c2dae10045c5604317f54))
+* **dialog:** prevent unresolved opened promise ([0b9fcf3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0b9fcf3f3042c755fc2983705a3ad2fda8ed1747))
+* **list:** checkbox not checked when clicking list item ([8fd5c01](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8fd5c01309558730ece5548df65dd070600ee946)), closes [#73](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/73)
+* **list:** fix click handling ([2d50bfc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/2d50bfc8b80b4aeca09ed4a878a016ffc8932f5b)), closes [#73](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/issues/73)
+* **lookup:** prevent auto menu closure ([ea643ad](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ea643ad56d81b2263c06fa0bbda8bf1358bebdf0))
+* **lookup:** remove listners earlier ([c621d7c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c621d7cd3afa8a0d86c3a429f6eb9c15aa38a37d))
+* **lookup:** restore focus before tabbing out ([3f08141](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/3f08141dc540c0b1a4c487f15392d9ff6f28d542))
+* **select:** handle undefined value ([16e1340](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/16e134042f1181ea0b5e7df5e05ca4c87ea6796f))
+* **select:** reset style ([983fa45](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/983fa452e0cae3f9c3507578e822399fff8997c6))
+* **slider:** consider undefined references ([485f255](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/485f25586b9158202481fd10cd800ea1f163e601))
+
+
+### Features
+
+* **banner:** update to MDC14 ([a4d1791](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a4d17919e922546a90f05fa1b2c4cb5e62b022f0))
+* **base:** add helper function ([7e585b7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7e585b780d0744a36c086dce053c3f84807aed0e))
+* **dialog:** update to MDC14 ([d3ec3a5](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d3ec3a5e32061738c0015a23b69bdcb40d2f53bf))
+* **list:** update to MDC14 ([daa5f5b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/daa5f5b6dc71639f7a0eb4409ce5d4859b069cb5))
+* **list:** update to MDC14 ([a2ce167](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a2ce167ac5431dae4cb2d647b8331c8ea96ae89f))
+* **lookup:** enable selection on input blur and menu tab press ([4a61a7f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4a61a7fb543701dbbd49494374dd4aff6593a290))
+* **menu-surface:** update to MDC14 ([b7b95fb](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/b7b95fb39387fe35a00fd605db23945eb3eb2ec7))
+* **menu:** forward stay-open property to the surface ([1ecc8f9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1ecc8f9d52391b29c1342ca6f93e8a9e84765799))
+* **menu:** update to MDC14 ([358c906](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/358c9066772d545263b77bde37828ff622a708ad))
+* **slider:** update to MDC14 ([6c5b95f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6c5b95f5cf97b8437afbba39b2551673aefffa93))
+* **slider:** update to MDC14 ([1eb353b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/1eb353b47b504b3570fe4b0ac1523a9f46dc311f))
+
+
+
 ## [8.0.3-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/8.0.2-au2...8.0.3-au2) (2023-05-15)
 
 ### Bug Fixes
