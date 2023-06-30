@@ -43,6 +43,9 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   @bindable({ set: booleanAttr })
   fullscreen: boolean;
 
+  @bindable({ set: booleanAttr })
+  sheet: boolean;
+
   get defaultButton(): HTMLElement | null {
     return this.root.querySelector<HTMLElement>(`[${strings.BUTTON_DEFAULT_ATTRIBUTE}]`);
   }
