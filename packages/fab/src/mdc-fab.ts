@@ -1,4 +1,4 @@
-import { customElement, bindable } from 'aurelia';
+import { customElement, bindable, inject } from 'aurelia';
 import { booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { processContent } from '@aurelia/runtime-html';
 
@@ -7,9 +7,12 @@ import { processContent } from '@aurelia/runtime-html';
  * @selector a[mdc-fab]
  * @selector button[mdc-fab]
  */
+@inject(Element)
 @customElement('mdc-fab')
 @processContent(defaultSlotProcessContent)
 export class MdcFab {
+  constructor(private root: HTMLElement) { }
+
   /** Make the fab smaller (40 x 40 pixels) */
   @bindable({ set: booleanAttr })
   mini: boolean;
@@ -38,4 +41,11 @@ export class MdcFab {
   /** Set the button disabled */
   @bindable({ set: booleanAttr })
   disabled: boolean;
+  disabledChanged() {
+    if (this.disabled) {
+      this.root.setAttribute('disabled', '');
+    } else {
+      this.root.removeAttribute('disabled');
+    }
+  }
 }

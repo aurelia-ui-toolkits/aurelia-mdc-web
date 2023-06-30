@@ -46,6 +46,13 @@ export class MdcButton {
    */
   @bindable({ set: booleanAttr })
   disabled: boolean;
+  disabledChanged() {
+    if (this.disabled) {
+      this.root.setAttribute('disabled', '');
+    } else {
+      this.root.removeAttribute('disabled');
+    }
+  }
 
   // this is necessary for the route-href to work
   @bindable
@@ -57,16 +64,6 @@ export class MdcButton {
       this.root.removeAttribute('href');
     }
   }
-
-  // beforeCompile(controller: Controller) {
-  //   const t = document.createElement('template');
-  //   t.setAttribute('au-slot', '');
-  //   const host = (controller.host as HTMLElement);
-  //   const nodes = Array.from(host.childNodes);
-  //   nodes.forEach(x => t.appendChild(x));
-  //   host.innerHTML = '';
-  //   host.appendChild(t);
-  // }
 
   attached() {
     this.hrefChanged();
