@@ -1,5 +1,5 @@
 import { booleanAttr, MdcComponent } from '@aurelia-mdc-web/base';
-import { MDCListFoundation, MDCListAdapter, strings, MDCListIndex } from '@material/list';
+import { MDCListFoundation, MDCListAdapter, strings, MDCListIndex, MDCListSelectionChangeDetail } from '@material/list';
 import { closest, matches } from '@material/dom/ponyfill';
 import { MdcDeprecatedListItem, IMdcListActionEventDetail } from './mdc-deprecated-list-item/mdc-deprecated-list-item';
 import { inject, customElement, bindable, children, CustomElement } from 'aurelia';
@@ -161,6 +161,10 @@ export class MdcDeprecatedList extends MdcComponent<MDCListFoundation>{
           const data = CustomElement.for<MdcDeprecatedListItem>(listItem).viewModel.value;
           this.emit<IMdcListActionEventDetail>(strings.ACTION_EVENT, { index, data }, /** shouldBubble */ true);
         }
+      },
+      notifySelectionChange: (changedIndices: number[]) => {
+        this.emit<MDCListSelectionChangeDetail>(strings.SELECTION_CHANGE_EVENT,
+          { changedIndices }, /** shouldBubble */ true);
       },
       removeClassForElementIndex: (index, className) => {
         const element = this.listElements[index];
