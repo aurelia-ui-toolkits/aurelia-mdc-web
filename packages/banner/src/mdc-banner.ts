@@ -1,5 +1,5 @@
 import { booleanAttr, defaultSlotProcessContent, MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
-import { CloseReason, events, MDCBannerAdapter, MDCBannerCloseEventDetail, MDCBannerFoundation } from '@material/banner';
+import { CloseReason, events, MDCBannerActionEventDetail, MDCBannerAdapter, MDCBannerCloseEventDetail, MDCBannerFoundation } from '@material/banner';
 import { inject, customElement, bindable } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
 
@@ -38,12 +38,18 @@ export class MdcBanner extends MdcComponent<MDCBannerFoundation> {
   @bindable
   secondaryAction: string;
 
+  @bindable({ set: booleanAttr })
+  disablePrimaryAutoClose: boolean;
+
+  @bindable({ set: booleanAttr })
+  disableSecondaryAutoClose: boolean;
+
   handlePrimaryActionClick() {
-    this.foundation?.handlePrimaryActionClick();
+    this.foundation?.handlePrimaryActionClick(this.disablePrimaryAutoClose);
   }
 
   handleSecondaryActionClick() {
-    this.foundation?.handleSecondaryActionClick();
+    this.foundation?.handleSecondaryActionClick(this.disableSecondaryAutoClose);
   }
 
   /**
@@ -89,6 +95,9 @@ export class MdcBanner extends MdcComponent<MDCBannerFoundation> {
       },
       notifyOpening: () => {
         this.emit(events.OPENING, {});
+      },
+      notifyActionClicked: (action) => {
+        this.emit<MDCBannerActionEventDetail>(events.ACTION_CLICKED, {action});
       },
       releaseFocus: () => {
         this.mdcFocusTrap?.releaseFocus();
