@@ -85,8 +85,17 @@ export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
     }
   }
 
+  @bindable({ set: booleanAttr })
+  selectOnTab: boolean;
+
   handleKeydown_(evt: KeyboardEvent) {
-    this.foundation?.handleKeydown(evt);
+    const focusedItemIndex = this.list_?.foundation?.getFocusedItemIndex() ?? listConstants.UNSET_INDEX;
+    if (this.selectOnTab && (evt.key === 'Tab' || evt.keyCode === 9)
+      && focusedItemIndex !== listConstants.UNSET_INDEX) {
+      this.foundation?.handleItemAction(this.items[focusedItemIndex]);
+    } else {
+      this.foundation?.handleKeydown(evt);
+    }
     return true;
   }
 
