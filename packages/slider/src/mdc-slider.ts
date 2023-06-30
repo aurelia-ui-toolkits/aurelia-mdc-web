@@ -87,6 +87,27 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   }
 
   @bindable({ set: number })
+  minRange: number;
+  async minRangeChanged() {
+    await this.initialised;
+    this.endInput?.setAttribute(attributes.DATA_MIN_RANGE, this.minRange.toString());
+    this.foundation?.destroy();
+    this.cleanupEventHandlers();
+    if (this.range && this.value - this.valueStart < this.minRange) {
+      if (this.valueStart + this.minRange < this.max) {
+        this.value = this.valueStart + this.minRange;
+      }
+      else if (this.value - this.minRange > this.min) {
+        this.valueStart = this.value - this.minRange;
+      }
+      this.emit(events.CHANGE, { value: this.value, thumb: Thumb.START }, true);
+    }
+    this.foundation?.init();
+    this.foundation?.layout();
+  }
+
+
+  @bindable({ set: number })
   step: number = 1;
   stepChanged() {
     this.startInput?.setAttribute(attributes.INPUT_STEP, this.step.toString());
@@ -186,6 +207,12 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
       },
       getThumbBoundingClientRect: (thumb: Thumb) => this.getThumbEl(thumb)!.getBoundingClientRect(),
       getBoundingClientRect: () => this.root.getBoundingClientRect(),
+      getValueIndicatorContainerWidth: (thumb: Thumb) => {
+        return this.getThumbEl(thumb)!
+          .querySelector<HTMLElement>(`.${cssClasses.VALUE_INDICATOR_CONTAINER}`)!
+          .getBoundingClientRect()
+          .width;
+      },
       isRTL: () => getComputedStyle(this.root).direction === 'rtl',
       setThumbStyleProperty: (propertyName, value, thumb: Thumb) => {
         this.getThumbEl(thumb)?.style.setProperty(propertyName, value);
