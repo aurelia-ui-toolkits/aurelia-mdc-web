@@ -99,7 +99,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
     } else {
       this.selectAnchor?.removeAttribute('aria-required');
     }
-    this.foundation?.setRequired(this.required);
+    this.foundation?.setRequired(this.required ?? false);
     this.platform.domWriteQueue.queueTask(() => this.foundation?.layout());
   }
 
