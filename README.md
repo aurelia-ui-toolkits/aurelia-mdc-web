@@ -1,9 +1,5 @@
 # Aurelia2 MDC
 
-## Here be :dragon_face:!
-
-Keep in mind that Aurelia2 itself is still in alpha stage.
-
 [![npm version](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase.svg)](https://badge.fury.io/js/%40aurelia-mdc-web%2Fbase)
 
 [Demos, documentation and guides](https://aurelia-ui-toolkits.github.io/aurelia-mdc-web-au2-demo/)
