@@ -243,9 +243,9 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
       },
       openMenu: () => {
         this.menu.open = true;
-        if ((this.hoistToBody || this.fixed) && !this.naturalWidth) {
-          this.menu.root.style.minWidth = this.menu.root.style.maxWidth = `${this.root.clientWidth}px`;
-        }
+        this.menu.root.style.minWidth = this.menu.root.style.maxWidth = (this.hoistToBody || this.fixed) && !this.naturalWidth
+          ? `${this.root.clientWidth}px`
+          : '';
       },
       closeMenu: () => { this.menu.open = false; },
       getAnchorElement: () => this.root.querySelector(strings.SELECT_ANCHOR_SELECTOR)!,
