@@ -1,7 +1,7 @@
 <template class="mdc-lookup">
   <mdc-menu view-model.ref="menu" mdcmenu:selected.trigger="handleMenuItemAction($event)" anchor-corner="BOTTOM_LEFT"
-    anchor.bind="input" hoist-to-body.bind="hoistToBody" class="${menuClass}" select-on-tab.bind="selectOnTab"
-    keydown.trigger="handleMenuKeydown($event)">
+    anchor.bind="input" hoist-to-body.bind="hoistToBody" class="${menuClass}" select-on-tab.bind="selectOnTab" stay-open
+    mdc-menu-surface.ref="menuSurface" keydown.trigger="handleMenuKeydown($event)">
     <mdc-list role="menu" wrap-focus>
 
       <au-slot if.bind="searching" name="searching">
