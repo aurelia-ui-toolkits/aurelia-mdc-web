@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/banner",
-  "version": "9.0.6",
+  "version": "9.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -47,8 +47,8 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.0.6",
-    "@aurelia-mdc-web/button": "9.0.6",
+    "@aurelia-mdc-web/base": "9.0.7",
+    "@aurelia-mdc-web/button": "9.0.7",
     "@material/banner": "^14.0.0"
   }
 }

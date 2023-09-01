@@ -1,3 +1,12 @@
+## [9.0.7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.6...v9.0.7) (2023-09-01)
+
+
+### Bug Fixes
+
+* **expandable:** change height asynchronously ([855bb86](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/855bb86fee1cbe64cb4b9783a270e3e19a8f29e5))
+
+
+
 ## [9.0.6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.5...v9.0.6) (2023-06-03)
 
 

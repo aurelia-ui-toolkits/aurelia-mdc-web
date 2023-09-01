@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/tooltip",
-  "version": "9.0.6",
+  "version": "9.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.0.6",
+    "@aurelia-mdc-web/base": "9.0.7",
     "@material/tooltip": "^14.0.0"
   }
 }
