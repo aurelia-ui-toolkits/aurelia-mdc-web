@@ -13,7 +13,7 @@
         <mdc-icon mdc-top-app-bar-action-item>notifications_none</mdc-icon>
         <mdc-icon mdc-top-app-bar-action-item click.trigger="profileMenu.open = !profileMenu.open">more_vert</mdc-icon>
         <div mdc-menu-surface-anchor ref="menuAnchor">
-          <!-- <mdc-menu view-model.ref="profileMenu" anchor.bind="menuAnchor">
+          <!-- <mdc-menu component.ref="profileMenu" anchor.bind="menuAnchor">
             <mdc-list>
               <mdc-list-item>My Profile</mdc-list-item>
               <mdc-list-divider></mdc-list-divider>
@@ -33,7 +33,7 @@
   </mdc-top-app-bar>
 
   <div class="demo-drawer-app-content">
-    <mdc-drawer type="dismissible" view-model.ref="drawer">
+    <mdc-drawer type="dismissible" component.ref="drawer">
       <mdc-drawer-header title="Drawer Title" subtitle="Subtitle"></mdc-drawer-header>
       <mdc-drawer-content>
         <mdc-list>

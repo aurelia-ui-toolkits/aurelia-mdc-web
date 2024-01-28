@@ -18,7 +18,7 @@
         <button mdc-icon-button icon="share"></button>
         <div mdc-menu-surface-anchor ref="cardAnchor">
           <button mdc-icon-button icon="more_vert" click.trigger="cardMenu.open = !cardMenu.open"></button>
-          <mdc-menu view-model.ref="cardMenu" anchor.bind="cardAnchor">
+          <mdc-menu component.ref="cardMenu" anchor.bind="cardAnchor">
             <mdc-list>
               <mdc-list-item>Open</mdc-list-item>
               <mdc-list-item>Dismiss</mdc-list-item>

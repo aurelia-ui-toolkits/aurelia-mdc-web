@@ -1,7 +1,7 @@
 <div class="demo-layout--center">
   <div mdc-menu-surface-anchor ref="demoAnchor">
     <button mdc-button raised click.trigger="demo.open = !demo.open">Show Menu</button>
-    <mdc-menu view-model.ref="demo" mdcmenu:selected.trigger="onMenuSelect($event.detail)" anchor.bind="demoAnchor"
+    <mdc-menu component.ref="demo" mdcmenu:selected.trigger="onMenuSelect($event.detail)" anchor.bind="demoAnchor"
       anchor-corner.bind="anchorCorner" quick-open.bind="quickOpen"
       default-focus-state.bind="defaultFocusState" fixed.bind="fixed" stay-open-on-selection.bind="stayOpenOnSelection"
       anchor-margin.bind="anchorMargin">

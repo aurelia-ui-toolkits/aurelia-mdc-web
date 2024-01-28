@@ -1,6 +1,6 @@
 <div class="demo-layout__row">
   <mdc-chip-set mdcchipset:removal.trigger="removed($event.detail)" aria-multiselectable="true"
-    change.trigger="changed()" view-model.ref="chipsVm">
+    change.trigger="changed()" component.ref="chipsVm">
     <mdc-chip filter repeat.for="c of chips" checked.bind="c.selected">
       ${c.label}
       <button mdc-chip-action trailing icon="close"></button>

@@ -11,8 +11,8 @@
   <span class="mdc-text-field__ripple"></span>
   <au-slot name="leading-icon"></au-slot>
   <span class="mdc-text-field__affix mdc-text-field__affix--prefix" if.bind="prefix && !textarea">${prefix}</span>
-  <mdc-notched-outline if.bind="outlined" view-model.ref="outline_">
-    <mdc-floating-label if.bind="label" id.bind="id" view-model.ref="label_">${label}</mdc-floating-label>
+  <mdc-notched-outline if.bind="outlined" component.ref="outline_">
+    <mdc-floating-label if.bind="label" id.bind="id" component.ref="label_">${label}</mdc-floating-label>
   </mdc-notched-outline>
   <input if.bind="!textarea" class="mdc-text-field__input" type="text" aria-labelledby.bind="id" ref="input_"
     focus.trigger="onFocus()" input.trigger="onInput($event)" change.trigger="onChange($event)" blur.trigger="onBlur()"
@@ -24,6 +24,6 @@
   </span>
   <span class="mdc-text-field__affix mdc-text-field__affix--suffix" if.bind="suffix && !textarea">${suffix}</span>
   <au-slot name="trailing-icon"></au-slot>
-  <mdc-floating-label if.bind="label && !outlined" id.bind="id" view-model.ref="label_">${label}</mdc-floating-label>
-  <mdc-line-ripple if.bind="!outlined" view-model.ref="lineRipple_"></mdc-line-ripple>
+  <mdc-floating-label if.bind="label && !outlined" id.bind="id" component.ref="label_">${label}</mdc-floating-label>
+  <mdc-line-ripple if.bind="!outlined" component.ref="lineRipple_"></mdc-line-ripple>
 </template>

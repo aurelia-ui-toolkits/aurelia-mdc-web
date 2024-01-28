@@ -20,16 +20,16 @@
         </polygon>
       </svg>
     </span>
-    <mdc-floating-label if.bind="label && !outlined" for="${id}" view-model.ref="mdcLabel">${label}
+    <mdc-floating-label if.bind="label && !outlined" for="${id}" component.ref="mdcLabel">${label}
     </mdc-floating-label>
-    <mdc-line-ripple if.bind="!outlined" view-model.ref="lineRipple"></mdc-line-ripple>
-    <mdc-notched-outline if.bind="outlined" view-model.ref="outline">
-      <mdc-floating-label if.bind="label" for="${id}" view-model.ref="mdcLabel">${label}</mdc-floating-label>
+    <mdc-line-ripple if.bind="!outlined" component.ref="lineRipple"></mdc-line-ripple>
+    <mdc-notched-outline if.bind="outlined" component.ref="outline">
+      <mdc-floating-label if.bind="label" for="${id}" component.ref="mdcLabel">${label}</mdc-floating-label>
     </mdc-notched-outline>
   </div>
 
   <mdc-menu class="mdc-select__menu ${naturalWidth || hoistToBody || fixed ? '' : 'mdc-menu-surface--fullwidth'}"
-    view-model.ref="menu" ref="menuElement" typeahead mdcmenusurface:closed.trigger="handleMenuClosed()"
+    component.ref="menu" ref="menuElement" typeahead mdcmenusurface:closed.trigger="handleMenuClosed()"
     anchor-margin.bind="anchorMargin" mdcmenusurface:opened.trigger="handleMenuOpened()"
     mdcmenu:selected.trigger="handleMenuItemAction($event)" mdclist:itemschanged.trigger="handleItemsChanged($event)"
     hoist-to-body.bind="hoistToBody" fixed.bind="fixed">

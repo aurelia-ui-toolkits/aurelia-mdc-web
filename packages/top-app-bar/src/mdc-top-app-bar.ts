@@ -3,9 +3,10 @@ import { MDCTopAppBarFoundation, MDCTopAppBarAdapter, MDCTopAppBarBaseFoundation
 import { SpecificEventListener } from '@material/base';
 import { inject, customElement, bindable } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-top-app-bar.html';
 
 @inject(Element)
-@customElement('mdc-top-app-bar')
+@customElement({ name: 'mdc-top-app-bar', template })
 @processContent(defaultSlotProcessContent)
 export class MdcTopAppBar extends MdcComponent<MDCTopAppBarBaseFoundation> {
 

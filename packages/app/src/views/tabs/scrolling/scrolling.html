@@ -5,7 +5,7 @@
   <button mdc-button click.trigger="stacked = !stacked">Stacked: ${stacked ? 'On' : 'Off'}</button>
   <button mdc-button click.trigger="fade = !fade">Fade: ${fade ? 'On' : 'Off'}</button>
 </div>
-<mdc-tab-bar view-model.ref="tabBar" focus-on-activate.bind="false" style="width: 600px; display: block">
+<mdc-tab-bar component.ref="tabBar" focus-on-activate.bind="false" style="width: 600px; display: block">
   <mdc-tab repeat.for="tab of scrollingTabs" label.bind="tab.label" icon.bind="tab.icon" stacked.bind="stacked"
     fade.bind="fade"></mdc-tab>
 </mdc-tab-bar>
