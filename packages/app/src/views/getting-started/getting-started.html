@@ -37,12 +37,12 @@
     <h2 class="demo-panel-heading">SVGs</h2>
     Some components, such as the circular-progress require the SVGAnalyzer from Aurelia to be included and regsiterd in your Aurelia 2 Application.
     To do so add the following to your <code mdc-subtitle2>main.ts/js</code> file.
-    
+
     <hljs language="javascript">
       import { SVGAnalyzer } from '@aurelia/runtime-html';
       .register(SVGAnalyzer);
     </hljs>
-    
+
     <h2 class="demo-panel-heading">Sample index.html</h2>
     Here's an example <code mdc-subtitle2>index.html</code> demonstrating Roboto Font applied to the body element with
     <code mdc-subtitle2>mdc-typography</code>.
@@ -50,6 +50,18 @@
 
 
     <h1>This is super important! Please don't skip!</h1>
+
+    <h2 class="demo-panel-heading">Aurelia Webpack Loader</h2>
+    It is important to setup a Webpack rule to load custom elements templates using the Aurelia Webpack Loader.
+    Add the following to your <code mdc-subtitle2>webpack.config.js</code>:
+    <hljs language="javascript">
+module: {
+  rules: [
+    { test: /@aurelia-mdc-web.*\.html$/i, use: '@aurelia/webpack-loader' },
+  ]
+},
+    </hljs>
+
     <h2 class="demo-panel-heading">MDC Sass modules - Webpack</h2>
     In your <code mdc-subtitle2>webpack.config.js</code>, make sure <code mdc-subtitle2>node_modules/</code> is listed
     as a Sass include path. This is needed for the Sass compiler to be able to find the MDC Web Sass files.
