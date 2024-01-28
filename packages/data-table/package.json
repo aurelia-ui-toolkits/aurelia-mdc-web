@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/data-table",
-  "version": "9.1.0-au2",
+  "version": "9.1.1-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -40,11 +40,11 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.1.0-au2",
-    "@aurelia-mdc-web/checkbox": "9.1.0-au2",
-    "@aurelia-mdc-web/icon": "9.1.0-au2",
-    "@aurelia-mdc-web/linear-progress": "9.1.0-au2",
-    "@aurelia-mdc-web/select": "9.1.0-au2",
+    "@aurelia-mdc-web/base": "9.1.1-au2",
+    "@aurelia-mdc-web/checkbox": "9.1.1-au2",
+    "@aurelia-mdc-web/icon": "9.1.1-au2",
+    "@aurelia-mdc-web/linear-progress": "9.1.1-au2",
+    "@aurelia-mdc-web/select": "9.1.1-au2",
     "@material/data-table": "^14.0.0"
   }
 }

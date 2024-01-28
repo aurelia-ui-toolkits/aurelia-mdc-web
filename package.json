@@ -1,7 +1,7 @@
 {
   "name": "@aurelia-mdc-web/monorepo",
   "private": true,
-  "version": "9.1.0-au2",
+  "version": "9.1.1-au2",
   "workspaces": [
     "packages/all",
     "packages/app",

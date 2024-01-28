@@ -1,3 +1,12 @@
+## [9.1.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.0-au2...v9.1.1-au2) (2024-01-28)
+
+
+### Bug Fixes
+
+* **all:** explicitly import templates ([6977c55](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6977c5575affaa22d84e54952a07b243e526e934))
+
+
+
 # [9.1.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.0-au2...v9.1.0-au2) (2024-01-28)
 
 
