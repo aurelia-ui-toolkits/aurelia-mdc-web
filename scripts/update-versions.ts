@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { loadPackageJson, Package, savePackageJson } from './package.json';
 
 function updateVersions(pkg: Package, newMdcVersion: string | undefined, newBridgeVersion: string | undefined) {

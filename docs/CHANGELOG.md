@@ -1,3 +1,17 @@
+# [9.1.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.0-au2...v9.1.0-au2) (2024-01-28)
+
+
+### Bug Fixes
+
+* **all:** clean up deprecated syntax ([5cbb755](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5cbb755bd33d7a0490921b0db84a71bc8ee8ba2a))
+
+
+### Features
+
+* **all:** change build output and upgrade packages ([f0881e8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f0881e8861ab72abe3a721a3cd16ea128fcedb8c))
+
+
+
 # [9.0.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v8.0.3-au2...v9.0.0-au2) (2023-06-30)
 
 

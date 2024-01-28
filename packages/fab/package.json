@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/fab",
-  "version": "9.0.0-au2",
+  "version": "9.1.0-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -40,8 +40,8 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.0.0-au2",
-    "@aurelia-mdc-web/ripple": "9.0.0-au2",
+    "@aurelia-mdc-web/base": "9.1.0-au2",
+    "@aurelia-mdc-web/ripple": "9.1.0-au2",
     "@material/fab": "^14.0.0"
   }
 }
