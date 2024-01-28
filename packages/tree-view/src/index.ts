@@ -3,6 +3,7 @@ import { MdcTreeView } from './mdc-tree-view';
 import { MdcTreeViewNodeMeta } from './mdc-tree-node-meta';
 import { MdcTreeNode } from './mdc-tree-node';
 import { IconButtonConfiguration } from '@aurelia-mdc-web/icon-button';
+import { NodeFilterValueConverter } from './node-filter';
 
 export { MdcTreeView, MdcTreeViewNodeMeta, MdcTreeNode };
 
@@ -12,7 +13,8 @@ export const TreeViewConfiguration = {
       IconButtonConfiguration,
       MdcTreeView,
       MdcTreeViewNodeMeta,
-      MdcTreeNode
+      MdcTreeNode,
+      NodeFilterValueConverter
     );
   }
 };

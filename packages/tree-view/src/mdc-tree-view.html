@@ -1,6 +1,4 @@
 <template class="mdc-tree-view">
-  <require from="./mdc-tree-node"></require>
-  <require from="./node-filter"></require>
   <ul class="mdc-tree-view__list">
     <li repeat.for="$node of nodes | nodeFilter:filter" class="mdc-tree-view__list-item">
       <let $tree.bind="element"></let>
@@ -15,7 +13,9 @@
           <mdc-icon-button-icon class="material-icons" on>expand_more</mdc-icon-button-icon>
         </button>
         <div else class="mdc-tree-view__leaf-padding"></div>
-        <au-compose template.bind="nodeTemplate" model.bind="$node" class="mdc-tree-node"></au-compose>
+        <div class="mdc-tree-node">
+          <au-compose containerless template.bind="nodeTemplate" model.bind="$node"></au-compose>
+        </div>
       </div>
       <mdc-promisify-reference if.bind="$node.children" reference.bind="treeView"
         promise-ref.bind="$node.childTreeViewPromise">

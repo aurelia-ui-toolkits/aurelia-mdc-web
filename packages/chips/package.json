@@ -19,8 +19,8 @@
   "license": "MIT",
   "author": "Arjen de Blok <arjen@deblok.org>",
   "contributors": [],
-  "main": "dist/esnext/index.js",
-  "module": "dist/esnext/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "typings": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -32,7 +32,9 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "gulp --gulpfile ../../gulpfile.js --cwd ./ build",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build:other": "copyfiles -u 1 src/**/*.html src/**/*.css dist",
+    "build": "npm run build:ts && npm run build:other",
     "publish:au2": "npm publish --tag au2",
     "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"

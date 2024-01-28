@@ -1,4 +1,14 @@
 {
   "extends": "../../tsconfig.build.json",
-  "include": ["src"]
+  "compilerOptions": {
+    "outDir": "./dist",
+    "declarationDir": "./dist/types"
+  },
+  "compilerOptions": {
+    "outDir": "./dist",
+    "declarationDir": "./dist/types"
+  },
+  "include": [
+    "src"
+  ]
 }

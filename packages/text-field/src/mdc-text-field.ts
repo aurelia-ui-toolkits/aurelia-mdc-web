@@ -166,7 +166,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   }
 
   @bindable
-  autocomplete: string;
+  autocomplete: AutoFill;
   autocompleteChanged() {
     if (this.autocomplete === undefined) {
       this.input_.removeAttribute('autocomplete');

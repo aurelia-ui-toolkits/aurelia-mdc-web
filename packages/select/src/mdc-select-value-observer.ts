@@ -1,5 +1,4 @@
 import {
-  CollectionKind,
   subscriberCollection,
   AccessorType,
 } from '@aurelia/runtime';
@@ -68,9 +67,9 @@ export class MdcSelectValueObserver implements INodeObserver {
   public hasChanges: boolean = false;
   // ObserverType.Layout is not always true
   // but for simplicity, always treat as such
-  public type: AccessorType = AccessorType.Node | AccessorType.Observer | AccessorType.Layout;
+  public type: AccessorType = (AccessorType.Node | AccessorType.Observer | AccessorType.Layout) as AccessorType;
 
-  public arrayObserver?: ICollectionObserver<CollectionKind.array> = void 0;
+  public arrayObserver?: ICollectionObserver<'array'> = void 0;
   public nodeObserver?: MutationObserver = void 0;
 
   private observing: boolean = false;
