@@ -35,7 +35,7 @@ Using Google Material Components [foundations and adapters](https://github.com/m
 
 | Component  | Status  | Demo |
 | ---------- | ------- | :------: |
-| banner | Not Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/banner) |
+| banner | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/banner) |
 | button | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/button) |
 | card | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/card) |
 | checkbox | Available | [View](https://aurelia-mdc-web-au2.balaganskiy.pro/#/checkbox) |
