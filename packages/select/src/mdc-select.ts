@@ -14,6 +14,7 @@ import { MDCSelectAdapterAurelia } from './mdc-select-adapter-aurelia';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { processContent, BindingMode, CustomElement, CustomAttribute } from '@aurelia/runtime-html';
 import { MdcDefaultSelectConfiguration } from './mdc-default-select-configuration';
+import template from './mdc-select.html';
 
 strings.CHANGE_EVENT = strings.CHANGE_EVENT.toLowerCase();
 
@@ -24,7 +25,7 @@ let selectId = 0;
  * @emits mdcselect:change | Emitted if user changed the value
  */
 @inject(Element, IPlatform, MdcDefaultSelectConfiguration)
-@customElement('mdc-select')
+@customElement({ name: 'mdc-select', template })
 @processContent(MdcSelect.processContent)
 export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
 

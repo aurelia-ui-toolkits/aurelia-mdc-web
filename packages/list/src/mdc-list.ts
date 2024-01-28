@@ -4,6 +4,7 @@ import { closest, matches } from '@material/dom/ponyfill';
 import { MdcListItem, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';
 import { customElement, bindable, children, inject, CustomElement } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-list.html';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
 strings.SELECTION_CHANGE_EVENT = strings.SELECTION_CHANGE_EVENT.toLowerCase();
@@ -18,7 +19,7 @@ export const mdcListStrings = {
  * @emits mdclist:itemschanged | Indicates that the list of items has changed
  */
 @inject(Element)
-@customElement('mdc-list')
+@customElement({ name: 'mdc-list', template })
 @processContent(defaultSlotProcessContent)
 export class MdcList extends MdcComponent<MDCListFoundation>{
 

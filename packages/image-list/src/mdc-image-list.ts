@@ -1,6 +1,7 @@
 import { customElement, bindable, inject } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
 import { defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
+import template from './mdc-image-list.html';
 
 export interface IColumnsOptions {
   media: string;
@@ -14,7 +15,7 @@ let id = 0;
  * @selector mdc-image-list
  */
 @inject(Element)
-@customElement('mdc-image-list')
+@customElement({ name: 'mdc-image-list', template })
 @processContent(defaultSlotProcessContent)
 export class MdcImageList {
   constructor(private root: HTMLElement) {

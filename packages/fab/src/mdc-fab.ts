@@ -1,6 +1,7 @@
 import { customElement, bindable, inject } from 'aurelia';
 import { booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-fab.html';
 
 /**
  * @selector mdc-fab
@@ -8,7 +9,7 @@ import { processContent } from '@aurelia/runtime-html';
  * @selector button[mdc-fab]
  */
 @inject(Element)
-@customElement('mdc-fab')
+@customElement({ name: 'mdc-fab', template })
 @processContent(defaultSlotProcessContent)
 export class MdcFab {
   constructor(private root: HTMLElement) { }

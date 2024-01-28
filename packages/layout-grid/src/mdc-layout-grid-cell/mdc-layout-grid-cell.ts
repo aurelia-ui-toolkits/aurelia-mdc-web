@@ -1,10 +1,11 @@
 import { customElement, bindable } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
+import template from './mdc-layout-grid-cell.html';
 
 /**
  * @selector mdc-layout-grid-cell
  */
-@customElement('mdc-layout-grid-cell')
+@customElement({ name: 'mdc-layout-grid-cell', template })
 export class MdcLayoutGridCell {
   /** Optional, specifies the order of the cell */
   @bindable

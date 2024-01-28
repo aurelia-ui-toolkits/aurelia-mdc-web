@@ -1,11 +1,12 @@
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { customElement, bindable } from 'aurelia';
+import template from './mdc-deprecated-list-divider.html';
 
 /**
  * Optional, for list divider element
  * @selector mdc-list-divider
  */
-@customElement('mdc-deprecated-list-divider')
+@customElement({ name: 'mdc-deprecated-list-divider', template })
 export class MdcDeprecatedListDivider {
   /** To make a divider match the padding of list items */
   @bindable({ set: booleanAttr })

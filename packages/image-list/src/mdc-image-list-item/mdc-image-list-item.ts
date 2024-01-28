@@ -1,12 +1,13 @@
 import { customElement, inject, bindable } from 'aurelia';
 import { number } from '@aurelia-mdc-web/base';
+import template from './mdc-image-list-item.html';
 
 /**
  * Mandatory. Indicates each item in an Image List.
  * @selector mdc-image-list-item
  */
 @inject(Element)
-@customElement('mdc-image-list-item')
+@customElement({ name: 'mdc-image-list-item', template })
 export class MdcImageListItem {
   constructor(private root: HTMLElement) { }
 

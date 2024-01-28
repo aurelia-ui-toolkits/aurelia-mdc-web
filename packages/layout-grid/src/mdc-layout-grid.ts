@@ -1,11 +1,12 @@
 import { customElement, inject, bindable } from 'aurelia';
 import { booleanAttr, number } from '@aurelia-mdc-web/base';
+import template from './mdc-layout-grid.html';
 
 /**
  * @selector mdc-layout-grid
  */
 @inject(Element)
-@customElement('mdc-layout-grid')
+@customElement({ name: 'mdc-layout-grid', template })
 export class MdcLayoutGrid {
   constructor(private root: HTMLElement) { }
 

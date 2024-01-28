@@ -1,12 +1,13 @@
 import { MdcComponent, number } from '@aurelia-mdc-web/base';
 import { inject, customElement, bindable } from 'aurelia';
 import { MDCCircularProgressFoundation, MDCCircularProgressAdapter, strings } from '@material/circular-progress';
+import template from './mdc-circular-progress.html';
 
 /**
  * @selector mdc-circular-progress
  */
 @inject(Element)
-@customElement('mdc-circular-progress')
+@customElement({ name: 'mdc-circular-progress', template })
 export class MdcCircularProgress extends MdcComponent<MDCCircularProgressFoundation> {
   private determinateCircle_?: HTMLElement;
 

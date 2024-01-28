@@ -2,6 +2,7 @@ import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCCheckboxFoundation, MDCCheckboxAdapter } from '@material/checkbox';
 import { getCorrectEventName } from '@material/animation/util';
 import { customElement, inject, bindable, BindingMode, CustomElement } from 'aurelia';
+import template from './mdc-checkbox.html';
 
 let checkboxId = 0;
 
@@ -10,7 +11,7 @@ let checkboxId = 0;
  * @emits change | Event dispatched on checked change.
  */
 @inject(Element)
-@customElement('mdc-checkbox')
+@customElement({ name: 'mdc-checkbox', template })
 export class MdcCheckbox extends MdcComponent<MDCCheckboxFoundation> {
   constructor(root: IMdcCheckboxElement) {
     super(root);

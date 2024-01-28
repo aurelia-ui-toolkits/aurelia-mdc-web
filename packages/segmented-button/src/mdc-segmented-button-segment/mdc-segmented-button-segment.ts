@@ -4,12 +4,13 @@ import { inject, customElement, bindable } from 'aurelia';
 import { MDCSegmentedButtonSegmentAdapter, MDCSegmentedButtonSegmentFoundation, SegmentDetail } from '@material/segmented-button';
 import { events } from '@material/segmented-button/segmented-button/constants';
 import { MdcSegmentedButton } from '..';
+import template from './mdc-segmented-button-segment.html';
 
 /**
  * @selector button[mdc-segmented-button-segment]
  */
 @inject(Element, MdcSegmentedButton)
-@customElement('mdc-segmented-button-segment')
+@customElement({ name: 'mdc-segmented-button-segment', template })
 @processContent(defaultSlotProcessContent)
 export class MdcSegmentedButtonSegment extends MdcComponent<MDCSegmentedButtonSegmentFoundation> {
   constructor(root: IMdcSegmentedButtonSegmentElement) {

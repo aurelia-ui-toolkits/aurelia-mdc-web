@@ -2,6 +2,7 @@ import { customElement, inject, BindingMode, bindable } from 'aurelia';
 import { MDCIconButtonToggleFoundation, MDCIconButtonToggleAdapter, MDCIconButtonToggleEventDetail, strings } from '@material/icon-button';
 import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-icon-button.html';
 
 /**
  * @selector button[mdc-icon-button]
@@ -9,7 +10,7 @@ import { processContent } from '@aurelia/runtime-html';
  * @selector mdc-icon-button
  */
 @inject(Element)
-@customElement('mdc-icon-button')
+@customElement({ name: 'mdc-icon-button', template })
 @processContent(defaultSlotProcessContent)
 export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   /** Sets the toggle state to the provided value */

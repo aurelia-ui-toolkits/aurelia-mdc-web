@@ -3,13 +3,14 @@ import { MDCTabFoundation, MDCTabAdapter, MDCTabInteractionEventDetail, MDCTabDi
 import { MdcTabIndicator } from '../indicator/mdc-tab-indicator';
 import { inject, customElement, bindable } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-tab.html';
 
 let tabId = 0;
 
 MDCTabFoundation.strings.INTERACTED_EVENT = MDCTabFoundation.strings.INTERACTED_EVENT.toLowerCase();
 
 @inject(Element)
-@customElement('mdc-tab')
+@customElement({ name: 'mdc-tab', template })
 @processContent(defaultSlotProcessContent)
 export class MdcTab extends MdcComponent<MDCTabFoundation> {
   private tabIndicator_: MdcTabIndicator; // assigned in initialize();

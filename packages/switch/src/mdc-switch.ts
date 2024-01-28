@@ -2,11 +2,12 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCSwitchState, MDCSwitchRenderAdapter, MDCSwitchRenderFoundation } from '@material/switch';
 import { inject, customElement, CustomElement } from 'aurelia';
 import { MDCRippleCapableSurface } from '@material/ripple';
+import template from './mdc-switch.html';
 
 let switchId = 0;
 
 @inject(Element)
-@customElement('mdc-switch')
+@customElement({ name: 'mdc-switch', template })
 export class MdcSwitch extends MdcComponent<MDCSwitchRenderFoundation> implements MDCSwitchState, MDCRippleCapableSurface {
   constructor(public root: IMdcSwitchElement) {
     super(root);

@@ -1,6 +1,7 @@
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCRadioFoundation, MDCRadioAdapter } from '@material/radio';
 import { inject, customElement, CustomElement, bindable } from 'aurelia';
+import template from './mdc-radio.html';
 
 let radioId = 0;
 
@@ -8,7 +9,7 @@ let radioId = 0;
  * @selector mdc-radio
  */
 @inject(Element)
-@customElement('mdc-radio')
+@customElement({ name: 'mdc-radio', template })
 export class MdcRadio extends MdcComponent<MDCRadioFoundation> {
   constructor(root: IMdcRadioElement) {
     super(root);

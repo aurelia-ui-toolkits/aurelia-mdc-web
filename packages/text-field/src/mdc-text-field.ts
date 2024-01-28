@@ -14,13 +14,14 @@ import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter
 import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 import { processContent, IPlatform, CustomAttribute, CustomElement } from '@aurelia/runtime-html';
 import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
+import template from './mdc-text-field.html';
 
 let textFieldId = 0;
 const leadingIconSelector = '.mdc-text-field__icon--leading';
 const trailingIconSelector = '.mdc-text-field__icon--trailing';
 
 @inject(Element, IPlatform, MdcDefaultTextFieldConfiguration)
-@customElement('mdc-text-field')
+@customElement({ name: 'mdc-text-field', template })
 @processContent(MdcTextField.processContent)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   constructor(root: HTMLElement, private platform: IPlatform, private defaultConfiguration: MdcDefaultTextFieldConfiguration) {

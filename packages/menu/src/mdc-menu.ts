@@ -8,6 +8,7 @@ import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, bindable, BindingMode } from 'aurelia';
 import { processContent, CustomElement } from '@aurelia/runtime-html';
+import template from './mdc-menu.html';
 
 strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
 
@@ -16,7 +17,7 @@ strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
  * @emits mdcmenu:selected | Indicates that a menu item has been selected
  */
 @inject(Element)
-@customElement('mdc-menu')
+@customElement({ name: 'mdc-menu', template })
 @processContent(defaultSlotProcessContent)
 export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   menuSurface: MdcMenuSurface; // assigned in html

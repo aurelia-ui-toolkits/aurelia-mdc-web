@@ -1,4 +1,4 @@
 import { customElement } from 'aurelia';
 
-@customElement('mdc-tree-node')
+@customElement({ name: 'mdc-tree-node', template: '<au-slot></au-slot>' })
 export class MdcTreeNode { }

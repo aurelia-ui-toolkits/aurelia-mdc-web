@@ -4,6 +4,7 @@ import { inject, customElement, bindable, CustomElement } from 'aurelia';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
 import { MdcRipple } from '@aurelia-mdc-web/ripple';
 import { EventType, SpecificEventListener } from '@material/base';
+import template from './mdc-slider.html';
 
 events.INPUT = events.INPUT.toLowerCase();
 events.CHANGE = events.CHANGE.toLowerCase();
@@ -15,7 +16,7 @@ interface IEventHandler {
 }
 
 @inject(Element)
-@customElement('mdc-slider')
+@customElement({ name: 'mdc-slider', template })
 export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
   constructor(root: HTMLElement) {
     super(root);

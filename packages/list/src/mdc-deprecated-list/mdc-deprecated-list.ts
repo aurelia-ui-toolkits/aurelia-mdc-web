@@ -3,6 +3,7 @@ import { MDCListFoundation, MDCListAdapter, strings, MDCListIndex, MDCListSelect
 import { closest, matches } from '@material/dom/ponyfill';
 import { MdcDeprecatedListItem, IMdcListActionEventDetail } from './mdc-deprecated-list-item/mdc-deprecated-list-item';
 import { inject, customElement, bindable, children, CustomElement } from 'aurelia';
+import template from './mdc-deprecated-list.html';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
 
@@ -16,7 +17,7 @@ export const mdcListStrings = {
  * @emits mdclist:itemschanged | Indicates that the list of items has changed
  */
 @inject(Element)
-@customElement('mdc-deprecated-list')
+@customElement({ name: 'mdc-deprecated-list', template })
 export class MdcDeprecatedList extends MdcComponent<MDCListFoundation>{
 
   /** Increases the height of the row to give it greater visual separation from adjacent rows */

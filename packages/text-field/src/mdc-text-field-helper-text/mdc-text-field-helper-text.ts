@@ -1,9 +1,10 @@
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTextFieldHelperTextFoundation, MDCTextFieldHelperTextAdapter, helperTextCssClasses } from '@material/textfield';
 import { inject, customElement, bindable } from 'aurelia';
+import template from './mdc-text-field-helper-text.html';
 
 @inject(Element)
-@customElement('mdc-text-field-helper-text')
+@customElement({ name: 'mdc-text-field-helper-text', template })
 export class MdcTextFieldHelperText extends MdcComponent<MDCTextFieldHelperTextFoundation> {
   helperTextCssClasses = helperTextCssClasses;
 

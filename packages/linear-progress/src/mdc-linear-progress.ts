@@ -1,12 +1,13 @@
 import { MdcComponent, number, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCLinearProgressFoundation, MDCLinearProgressAdapter, WithMDCResizeObserver } from '@material/linear-progress';
 import { inject, customElement, bindable } from 'aurelia';
+import template from './mdc-linear-progress.html';
 
 /**
  * @selector mdc-linear-progress
  */
 @inject(Element)
-@customElement('mdc-linear-progress')
+@customElement({ name: 'mdc-linear-progress', template })
 export class MdcLinearProgress extends MdcComponent<MDCLinearProgressFoundation> {
 
   /** Sets the progress bar to this value. Value should be between [0, 1] or undefined for indeterminate progress indicator. */

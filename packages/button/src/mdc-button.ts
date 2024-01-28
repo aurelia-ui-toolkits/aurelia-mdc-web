@@ -1,6 +1,6 @@
 import { customElement, bindable, inject } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
-import { template } from './mdc-button.html'
+import template from './mdc-button.html'
 
 /**
  * @selector button[mdc-button]
@@ -8,7 +8,7 @@ import { template } from './mdc-button.html'
  * @selector mdc-button
  */
 @inject(Element)
-@customElement({ name: 'mdc-button', template: template })
+@customElement({ name: 'mdc-button', template })
 export class MdcButton {
   constructor(public root: HTMLElement) { }
 

@@ -3,12 +3,13 @@ import { MDCSegmentedButtonAdapter, MDCSegmentedButtonFoundation, SegmentDetail 
 import { events } from '@material/segmented-button/segmented-button/constants';
 import { inject, customElement, bindable, children } from 'aurelia';
 import { MdcSegmentedButtonSegment } from './mdc-segmented-button-segment/mdc-segmented-button-segment';
+import template from './mdc-segmented-button.html';
 
 /**
  * @selector mdc-segmented-button
  */
 @inject(Element)
-@customElement('mdc-segmented-button')
+@customElement({ name: 'mdc-segmented-button', template })
 export class MdcSegmentedButton extends MdcComponent<MDCSegmentedButtonFoundation>{
 
   /** Indicates the segmented button only allows one segment to be selected at a time */

@@ -2,6 +2,7 @@ import { cssClasses, strings } from '@material/list';
 import { customElement, bindable, inject, INode } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-deprecated-list-item.html';
 
 // let listItemId = 0;
 
@@ -14,7 +15,7 @@ let id = 0;
  * @selector mdc-deprecated-list-item
  */
 @inject(Element)
-@customElement('mdc-deprecated-list-item')
+@customElement({ name: 'mdc-deprecated-list-item', template })
 @processContent(MdcDeprecatedListItem.processContent)
 export class MdcDeprecatedListItem {
   constructor(public root: HTMLElement) {

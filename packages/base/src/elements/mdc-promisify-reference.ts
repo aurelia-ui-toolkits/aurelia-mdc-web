@@ -1,6 +1,6 @@
 import { bindable, customElement, BindingMode } from 'aurelia';
 
-@customElement('mdc-promisify-reference')
+@customElement({ name: 'mdc-promisify-reference' })
 export class MdcPromisifyReference {
   resolve: (value: unknown | PromiseLike<unknown>) => void;
 

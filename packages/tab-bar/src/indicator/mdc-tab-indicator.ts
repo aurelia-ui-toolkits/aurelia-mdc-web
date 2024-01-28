@@ -1,9 +1,10 @@
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTabIndicatorFoundation, MDCTabIndicatorAdapter, MDCFadingTabIndicatorFoundation, MDCSlidingTabIndicatorFoundation } from '@material/tab-indicator';
 import { inject, customElement, bindable } from 'aurelia';
+import template from './mdc-tab-indicator.html';
 
 @inject(Element)
-@customElement('mdc-tab-indicator')
+@customElement({ name: 'mdc-tab-indicator', template })
 export class MdcTabIndicator extends MdcComponent<MDCTabIndicatorFoundation> {
   private content: HTMLElement; // assigned in html
 

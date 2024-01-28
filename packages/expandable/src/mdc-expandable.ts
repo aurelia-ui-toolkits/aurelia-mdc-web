@@ -1,6 +1,7 @@
 import { customElement, inject, bindable, IPlatform } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { CustomElement } from '@aurelia/runtime-html';
+import template from './mdc-expandable.html';
 
 const OPEN_CHANGED_EVENT = 'mdcexpandable:open-changed';
 const ENTER = 13;
@@ -8,7 +9,7 @@ const SPACE = 32;
 
 /** @selector mdc-expandable */
 @inject(Element, IPlatform)
-@customElement('mdc-expandable')
+@customElement({ name: 'mdc-expandable', template })
 export class MdcExpandable {
   constructor(public element: HTMLElement, private platform: IPlatform) { }
 

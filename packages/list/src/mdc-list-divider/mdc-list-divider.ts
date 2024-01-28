@@ -2,12 +2,13 @@ import { booleanAttr } from '@aurelia-mdc-web/base';
 import { customElement, bindable } from 'aurelia';
 import { MdcListItemLeading } from '../mdc-list-item/mdc-list-item-leading';
 import { MdcListItemTrailing } from '../mdc-list-item/mdc-list-item-trailing';
+import template from './mdc-list-divider.html';
 
 /**
  * Optional, for list divider element
  * @selector mdc-list-divider
  */
-@customElement('mdc-list-divider')
+@customElement({ name: 'mdc-list-divider', template })
 export class MdcListDivider {
   /** To make a divider match the padding of list items */
   @bindable({ set: booleanAttr })

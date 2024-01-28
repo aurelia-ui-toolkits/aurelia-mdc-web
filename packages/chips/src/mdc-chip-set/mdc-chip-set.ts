@@ -5,6 +5,7 @@ import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-m
 import { processContent } from '@aurelia/runtime-html';
 import { MdcChip } from '../mdc-chip/mdc-chip';
 import { ChipAnimationEvent, ChipInteractionEvent, ChipNavigationEvent } from '@material/chips/chip-set/types';
+import template from './mdc-chip-set.html';
 
 (MDCChipSetEvents as Record<string, string>).INTERACTION = MDCChipSetEvents.INTERACTION.toLowerCase();
 (MDCChipSetEvents as Record<string, string>).REMOVAL = MDCChipSetEvents.REMOVAL.toLowerCase();
@@ -13,7 +14,7 @@ import { ChipAnimationEvent, ChipInteractionEvent, ChipNavigationEvent } from '@
 let chipSetId = 0;
 
 @inject(Element)
-@customElement('mdc-chip-set')
+@customElement({ name: 'mdc-chip-set', template })
 @processContent(defaultSlotProcessContent)
 export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
 

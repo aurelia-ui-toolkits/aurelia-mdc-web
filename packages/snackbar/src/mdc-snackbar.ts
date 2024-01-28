@@ -1,6 +1,7 @@
 import { customElement, inject, bindable } from 'aurelia';
 import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MDCSnackbarFoundation, MDCSnackbarAdapter, util, MDCSnackbarCloseEventDetail, strings } from '@material/snackbar';
+import template from './mdc-snackbar.html';
 
 strings.OPENING_EVENT = strings.OPENING_EVENT.toLowerCase();
 strings.OPENED_EVENT = strings.OPENED_EVENT.toLowerCase();
@@ -8,7 +9,7 @@ strings.CLOSING_EVENT = strings.CLOSING_EVENT.toLowerCase();
 strings.CLOSED_EVENT = strings.CLOSED_EVENT.toLowerCase();
 
 @inject(Element)
-@customElement('mdc-snackbar')
+@customElement({ name: 'mdc-snackbar', template })
 export class MdcSnackbar extends MdcComponent<MDCSnackbarFoundation> {
 
   private labelEl_!: Element; // assigned in html

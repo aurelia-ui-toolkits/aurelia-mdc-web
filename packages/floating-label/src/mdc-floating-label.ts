@@ -2,9 +2,10 @@ import { inject, customElement } from 'aurelia';
 import { MDCFloatingLabelFoundation, MDCFloatingLabelAdapter } from '@material/floating-label';
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { estimateScrollWidth } from '@material/dom/ponyfill';
+import template from './mdc-floating-label.html';
 
 @inject(Element)
-@customElement('mdc-floating-label')
+@customElement({ name: 'mdc-floating-label', template })
 export class MdcFloatingLabel extends MdcComponent<MDCFloatingLabelFoundation> {
   shake(shouldShake: boolean) {
     this.foundation?.shake(shouldShake);

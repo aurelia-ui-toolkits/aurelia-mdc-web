@@ -3,6 +3,7 @@ import { MDCFoundation } from '@material/base';
 import { customElement, bindable, inject, ViewFactory, INode } from 'aurelia';
 import { ITreeNode } from './i-tree-node';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-tree-view.html';
 
 let id = 0;
 const templateLookup: Record<string, string> = {};
@@ -12,7 +13,7 @@ const NODE_SELECTED_EVENT = 'mdctree:node-selected';
 export class MDCTreeViewFoundation extends MDCFoundation { }
 
 @inject(Element)
-@customElement('mdc-tree-view')
+@customElement({ name: 'mdc-tree-view', template })
 @processContent(MdcTreeView.processContent)
 export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
   getDefaultFoundation(): MDCTreeViewFoundation {

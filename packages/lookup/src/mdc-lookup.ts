@@ -5,6 +5,7 @@ import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
 import { IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { closest } from '@material/dom/ponyfill';
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
+import template from './mdc-lookup.html';
 
 const inputEvents = ['click', 'input', 'keydown', 'blur'];
 const bodyEvents = ['touchstart', 'mousedown', 'click'];
@@ -13,7 +14,7 @@ const bodyEvents = ['touchstart', 'mousedown', 'click'];
  * @selector mdc-lookup
  */
 @inject(Element, MdcDefaultLookupConfiguration)
-@customElement('mdc-lookup')
+@customElement({ name: 'mdc-lookup', template })
 export class MdcLookup implements EventListenerObject {
   constructor(private root: HTMLElement, private defaultConfiguration: MdcDefaultLookupConfiguration) {
     defineMdcLookupElementApis(this.root);

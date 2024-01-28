@@ -5,6 +5,7 @@ import { MdcChipAction } from '../mdc-chip-action/mdc-chip-action';
 import { MDCChipFoundation } from '@material/chips/chip/foundation';
 import { MDCChipEvents, MDCChipAdapter, MDCChipActionType, MDCChipActionFocusBehavior, MDCChipAnimation } from '@material/chips';
 import { ActionInteractionEvent, ActionNavigationEvent } from '@material/chips/chip/types';
+import template from './mdc-chip.html';
 
 (MDCChipEvents as Record<string, string>).INTERACTION = MDCChipEvents.INTERACTION.toLowerCase();
 (MDCChipEvents as Record<string, string>).ANIMATION = MDCChipEvents.ANIMATION.toLowerCase();
@@ -19,7 +20,7 @@ let chipId = 0;
  * @emits mdcchip:selection | Indicates a selection event has occurred on a chip
  */
 @inject(Element)
-@customElement('mdc-chip')
+@customElement({ name: 'mdc-chip', template })
 @processContent(MdcChip.processContent)
 export class MdcChip extends MdcComponent<MDCChipFoundation> {
   constructor(root: IMdcChipElement) {

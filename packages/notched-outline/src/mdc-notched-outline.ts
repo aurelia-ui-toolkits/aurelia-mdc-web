@@ -4,9 +4,10 @@ import { MDCFloatingLabelFoundation } from '@material/floating-label';
 import { inject, customElement, children } from 'aurelia';
 import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-notched-outline.html';
 
 @inject(Element)
-@customElement('mdc-notched-outline')
+@customElement({ name: 'mdc-notched-outline', template })
 @processContent(defaultSlotProcessContent)
 export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation> {
   private notchElement_!: HTMLElement; // assigned in html

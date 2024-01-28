@@ -4,9 +4,10 @@ import { matches } from '@material/dom/ponyfill';
 import { MdcTab } from '../tab/mdc-tab';
 import { inject, customElement, bindable, CustomElement } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-tab-scroller.html';
 
 @inject(Element)
-@customElement('mdc-tab-scroller')
+@customElement({ name: 'mdc-tab-scroller', template })
 @processContent(defaultSlotProcessContent)
 export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   private content_: HTMLElement; // assigned in html

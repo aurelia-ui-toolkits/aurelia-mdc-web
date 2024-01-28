@@ -2,6 +2,7 @@ import { cssClasses, strings } from '@material/list';
 import { customElement, bindable, inject, INode } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { processContent } from '@aurelia/runtime-html';
+import template from './mdc-list-item.html';
 
 const ENTER = 13;
 const SPACE = 32;
@@ -12,7 +13,7 @@ let id = 0;
  * @selector mdc-list-item
  */
 @inject(Element)
-@customElement('mdc-list-item')
+@customElement({ name: 'mdc-list-item', template })
 @processContent(MdcListItem.processContent)
 export class MdcListItem {
   constructor(public root: HTMLElement) { }

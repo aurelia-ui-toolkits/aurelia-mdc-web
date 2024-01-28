@@ -1,10 +1,11 @@
 import { customElement, bindable } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
+import template from './mdc-card.html';
 
 /**
  * @selector mdc-card
  */
-@customElement('mdc-card')
+@customElement({ name: 'mdc-card', template })
 export class MdcCard {
 
   /**

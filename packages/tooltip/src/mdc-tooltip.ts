@@ -3,11 +3,13 @@ import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, 
 import { inject, customElement, bindable } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
 import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
+import template from './mdc-tooltip.html';
+
 /**
  * @selector mdc-tooltip
  */
 @inject(Element, MdcDefaultTooltipConfiguration)
-@customElement('mdc-tooltip')
+@customElement({ name: 'mdc-tooltip', template })
 @processContent(defaultSlotProcessContent)
 export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements EventListenerObject {
   constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration) {

@@ -8,6 +8,7 @@ import { MdcCheckbox } from '@aurelia-mdc-web/checkbox';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, INode, bindable, BindingMode, IPlatform } from 'aurelia';
 import { processContent, CustomElement } from '@aurelia/runtime-html';
+import template from './mdc-data-table.html';
 
 events.ROW_CLICK = events.ROW_CLICK.toLowerCase();
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();
@@ -26,7 +27,7 @@ const NAVIGATION_EVENT = 'mdcdatatable:navigation';
  * @emits mdcdatatable:rowclick | Emitted when a row is clicked
  */
 @inject(Element)
-@customElement('mdc-data-table')
+@customElement({ name: 'mdc-data-table', template })
 @processContent(MdcDataTable.processContent)
 export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implements EventListenerObject {
   static processContent(node: INode, platform: IPlatform) {
