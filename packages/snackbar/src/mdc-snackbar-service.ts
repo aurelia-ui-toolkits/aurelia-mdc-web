@@ -33,7 +33,7 @@ export class MdcSnackbarService {
       options,
       handleClosed: (evt: MDCSnackbarCloseEvent) => {
         closedResolver(evt.detail.reason);
-        controller.deactivate(controller, null);
+        controller.deactivate();
         snackbar.remove();
       }
     };

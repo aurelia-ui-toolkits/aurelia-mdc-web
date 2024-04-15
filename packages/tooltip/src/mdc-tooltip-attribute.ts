@@ -1,16 +1,14 @@
-import Aurelia, { customAttribute, bindable, IAurelia } from 'aurelia';
+import { customAttribute, bindable, IAurelia, IAppRoot } from 'aurelia';
 import { XPosition, YPosition, AnchorBoundaryType } from '@material/tooltip';
 import { booleanAttr, number } from '@aurelia-mdc-web/base';
-import { MdcTooltip } from './mdc-tooltip';
 import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
-import { ICustomElementController } from '@aurelia/runtime-html';
 
 /**
  * @selector [mdc-tooltip]
  */
 @customAttribute('mdc-tooltip')
 export class MdcTooltipAttribute {
-  constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration, @IAurelia private readonly au: Aurelia) {
+  constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration, @IAurelia private readonly au: IAurelia) {
     this.root = root;
   }
 
@@ -76,7 +74,7 @@ export class MdcTooltipAttribute {
   }
 
   tooltip: HTMLElement;
-  controller: ICustomElementController<MdcTooltip>;
+  controller: IAppRoot<any>;
   context: Partial<{
     root: HTMLElement;
     value: string;
@@ -112,7 +110,7 @@ export class MdcTooltipAttribute {
   }
 
   detached() {
-    this.controller.deactivate(this.controller, null);
+    this.controller.deactivate();
     this.tooltip.remove();
   }
 }

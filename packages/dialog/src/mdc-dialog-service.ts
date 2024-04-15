@@ -41,7 +41,7 @@ export class MdcDialogService {
           openedResolver();
         }
         closedResolver(evt.detail.action);
-        controller.deactivate(controller, null);
+        controller.deactivate();
         dialogVm.root.removeEventListener(strings.CLOSED_EVENT, bindingContext.handleClosed);
         dialogVm.root.removeEventListener(strings.OPENED_EVENT, bindingContext.handleOpened);
         dialogContainer.remove();
