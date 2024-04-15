@@ -1,3 +1,7 @@
+## [9.1.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.1-au2...v9.1.2-au2) (2024-04-15)
+
+
+
 ## [9.1.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.0-au2...v9.1.1-au2) (2024-01-28)
 
 
