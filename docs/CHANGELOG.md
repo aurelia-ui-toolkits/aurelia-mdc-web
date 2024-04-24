@@ -1,3 +1,12 @@
+## [9.1.3-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.2-au2...v9.1.3-au2) (2024-04-24)
+
+
+### Bug Fixes
+
+* **icon-button:** add missing ripple ([24c9fee](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/24c9fee779a480fcef978cefdc2bc2b9451ae623))
+
+
+
 ## [9.1.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.1-au2...v9.1.2-au2) (2024-04-15)
 
 

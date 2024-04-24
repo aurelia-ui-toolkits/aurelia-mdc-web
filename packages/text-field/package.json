@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/text-field",
-  "version": "9.1.2-au2",
+  "version": "9.1.3-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -40,11 +40,11 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.1.2-au2",
-    "@aurelia-mdc-web/floating-label": "9.1.2-au2",
-    "@aurelia-mdc-web/line-ripple": "9.1.2-au2",
-    "@aurelia-mdc-web/notched-outline": "9.1.2-au2",
-    "@aurelia-mdc-web/ripple": "9.1.2-au2",
+    "@aurelia-mdc-web/base": "9.1.3-au2",
+    "@aurelia-mdc-web/floating-label": "9.1.3-au2",
+    "@aurelia-mdc-web/line-ripple": "9.1.3-au2",
+    "@aurelia-mdc-web/notched-outline": "9.1.3-au2",
+    "@aurelia-mdc-web/ripple": "9.1.3-au2",
     "@material/ripple": "^14.0.0",
     "@material/textfield": "^14.0.0"
   }
