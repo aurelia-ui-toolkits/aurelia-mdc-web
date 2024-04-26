@@ -7,6 +7,7 @@ import { MdcListItemLeading } from './mdc-list-item/mdc-list-item-leading';
 import { MdcListItemTrailing } from './mdc-list-item/mdc-list-item-trailing';
 import { MdcListItemPrimaryText } from './mdc-list-item-primary-text';
 import { MdcListItemSecondaryText } from './mdc-list-item-secondary-text';
+import { MdcListItemOverlineText } from './mdc-list-item-overline-text';
 import { EnhanceMdcListItem } from './mdc-list-item/enhance-mdc-list-item';
 import { MdcDeprecatedList } from './mdc-deprecated-list/mdc-deprecated-list';
 import { MdcDeprecatedListItem } from './mdc-deprecated-list/mdc-deprecated-list-item/mdc-deprecated-list-item';
@@ -20,7 +21,7 @@ import { MdcDeprecatedListDivider } from './mdc-deprecated-list/mdc-deprecated-l
 
 export {
   MdcList, MdcListDivider, MdcListGroup, MdcListGroupSubheader, MdcListItem, MdcListItemLeading, MdcListItemTrailing, IMdcListItemElement,
-  MdcListItemPrimaryText, MdcListItemSecondaryText, IMdcListActionEventDetail, IMdcListActionEvent, IMdcListElement,
+  MdcListItemPrimaryText, MdcListItemSecondaryText, MdcListItemOverlineText, IMdcListActionEventDetail, IMdcListActionEvent, IMdcListElement,
   MdcDeprecatedList,
   MdcDeprecatedListItem,
   MdcDeprecatedListItemPrimaryText,

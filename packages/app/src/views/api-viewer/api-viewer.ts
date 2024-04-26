@@ -105,8 +105,6 @@ declare module 'typedoc' {
 
 @route({ path: 'api' })
 export class ApiViewer {
-  constructor(@IRouter private router: IRouter) { }
-
   classesApi?: NavigationItem[];
 
   load(parameters: Record<string, unknown>, ri: RoutingInstruction) {

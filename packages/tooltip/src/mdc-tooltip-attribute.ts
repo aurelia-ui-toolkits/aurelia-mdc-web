@@ -1,4 +1,4 @@
-import { customAttribute, bindable, IAurelia, IAppRoot } from 'aurelia';
+import { customAttribute, bindable, IAurelia, IAppRoot, resolve, inject } from 'aurelia';
 import { XPosition, YPosition, AnchorBoundaryType } from '@material/tooltip';
 import { booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
@@ -6,9 +6,10 @@ import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configurat
 /**
  * @selector [mdc-tooltip]
  */
+@inject(Element, MdcDefaultTooltipConfiguration, IAurelia)
 @customAttribute('mdc-tooltip')
 export class MdcTooltipAttribute {
-  constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration, @IAurelia private readonly au: IAurelia) {
+  constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration, private readonly au: IAurelia) {
     this.root = root;
   }
 

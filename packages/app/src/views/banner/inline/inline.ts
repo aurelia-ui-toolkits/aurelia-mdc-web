@@ -1,6 +1,8 @@
 import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
 import { CloseReason, MDCBannerCloseEventDetail } from '@material/banner';
+import { inject } from 'aurelia';
 
+@inject(MdcSnackbarService)
 export class Inline {
   constructor(private snackbarService: MdcSnackbarService) { }
 

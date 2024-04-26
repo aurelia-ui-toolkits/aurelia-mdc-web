@@ -14,50 +14,49 @@ let id = 0;
  */
 @inject(Element)
 @customElement({ name: 'mdc-list-item', template })
-@processContent(MdcListItem.processContent)
-export class MdcListItem {
-  constructor(public root: HTMLElement) { }
-
-  static processContent(node: INode) {
-    const element = node as HTMLElement;
-    const leading = element.querySelector('[mdc-list-item-leading]');
-    if (leading) {
-      element.removeChild(leading);
+@processContent(function processContent(node: INode) {
+  const element = node as HTMLElement;
+  const leading = element.querySelector('[mdc-list-item-leading]');
+  if (leading) {
+    element.removeChild(leading);
+  }
+  const trailing = element.querySelector('[mdc-list-item-trailing]');
+  if (trailing) {
+    element.removeChild(trailing);
+  }
+  const content = document.createElement('span');
+  content.classList.add('mdc-list-item__content');
+  const texts = element.querySelectorAll('mdc-list-item-overline-text, mdc-list-item-primary-text, mdc-list-item-secondary-text, au-slot');
+  const children = Array.from(element.childNodes);
+  if (!texts.length) {
+    const primary = document.createElement('span');
+    primary.classList.add('mdc-list-item__primary-text');
+    for (let i = 0; i < children.length; ++i) {
+      primary.appendChild(children[i]);
     }
-    const trailing = element.querySelector('[mdc-list-item-trailing]');
-    if (trailing) {
-      element.removeChild(trailing);
-    }
-    const content = document.createElement('span');
-    content.classList.add('mdc-list-item__content');
-    const texts = element.querySelectorAll('mdc-list-item-overline-text, mdc-list-item-primary-text, mdc-list-item-secondary-text, au-slot');
-    const children = Array.from(element.childNodes);
-    if (!texts.length) {
-      const primary = document.createElement('span');
-      primary.classList.add('mdc-list-item__primary-text');
-      for (let i = 0; i < children.length; ++i) {
-        primary.appendChild(children[i]);
-      }
-      content.appendChild(primary);
-    } else {
-      for (let i = 0; i < children.length; ++i) {
-        content.appendChild(children[i]);
-      }
-    }
-    if (leading) {
-      const start = document.createElement('span');
-      start.classList.add('mdc-list-item__start');
-      start.appendChild(leading);
-      element.appendChild(start);
-    }
-    element.appendChild(content);
-    if (trailing) {
-      const end = document.createElement('span');
-      end.classList.add('mdc-list-item__end');
-      end.appendChild(trailing);
-      element.appendChild(end);
+    content.appendChild(primary);
+  } else {
+    for (let i = 0; i < children.length; ++i) {
+      content.appendChild(children[i]);
     }
   }
+  if (leading) {
+    const start = document.createElement('span');
+    start.classList.add('mdc-list-item__start');
+    start.appendChild(leading);
+    element.appendChild(start);
+  }
+  element.appendChild(content);
+  if (trailing) {
+    const end = document.createElement('span');
+    end.classList.add('mdc-list-item__end');
+    end.appendChild(trailing);
+    element.appendChild(end);
+  }
+}
+)
+export class MdcListItem {
+  constructor(public root: HTMLElement) { }
 
   cssClasses = cssClasses;
 

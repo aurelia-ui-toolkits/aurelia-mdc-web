@@ -26,6 +26,7 @@ export class MdcListGroup {
   }
 }
 
+@inject(Element)
 @customAttribute('mdc-list-group-subheader')
 export class MdcListGroupSubheader {
   constructor(private root: HTMLElement) { }

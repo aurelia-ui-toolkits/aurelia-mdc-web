@@ -16,8 +16,6 @@ export interface IComponentTemplate {
 }
 
 export class ComponentViewer {
-  constructor(@IRouter public router: IRouter) { }
-
   examples: string;
   api = 'api-viewer';
   template: IComponentTemplate;

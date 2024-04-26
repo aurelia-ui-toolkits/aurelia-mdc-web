@@ -1,9 +1,10 @@
-import { customAttribute } from 'aurelia';
+import { customAttribute, inject } from 'aurelia';
 
 /**
  * Optional, marks the trailing control element
  * @selector [mdc-list-item-trailing]
  */
+@inject(Element)
 @customAttribute('mdc-list-item-trailing')
 export class MdcListItemTrailing {
   constructor(private root: Element) { }

@@ -28,48 +28,47 @@ const NAVIGATION_EVENT = 'mdcdatatable:navigation';
  */
 @inject(Element)
 @customElement({ name: 'mdc-data-table', template })
-@processContent(MdcDataTable.processContent)
-export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implements EventListenerObject {
-  static processContent(node: INode, platform: IPlatform) {
-    const element = node as HTMLElement;
-    const table = element.querySelector('table');
-    if (!table) {
-      throw new Error('Have you forgotten the <table> tag in you data table markup?');
-    }
-    table.classList.add('mdc-data-table__table');
-    table.setAttribute('aria-label', '${ariaLabel}');
+@processContent(function processContent(node: INode, platform: IPlatform) {
+  const element = node as HTMLElement;
+  const table = element.querySelector('table');
+  if (!table) {
+    throw new Error('Have you forgotten the <table> tag in you data table markup?');
+  }
+  table.classList.add('mdc-data-table__table');
+  table.setAttribute('aria-label', '${ariaLabel}');
 
-    const headerRow = element.querySelector('thead>tr');
-    if (!headerRow) {
-      throw new Error('Have you forgotten the <thead><tr> tags in you data table markup?');
-    }
-    headerRow.classList.add(cssClasses.HEADER_ROW);
-    headerRow.setAttribute('ref', 'headerRow');
-    const headerCells = headerRow.querySelectorAll<HTMLElement>('th');
-    for (const th of Array.from(headerCells)) {
-      th.classList.add(cssClasses.HEADER_CELL);
-      th.classList.toggle('mdc-data-table__header-cell--numeric', th.hasAttribute('numeric'));
-      th.setAttribute('role', 'columnheader');
-      th.setAttribute('scope', 'col');
-    }
-
-    const tbody = element.querySelector('tbody');
-    if (!tbody) {
-      throw new Error('Have you forgotten the <tbody> tag in you data table markup?');
-    }
-    tbody.classList.add(cssClasses.CONTENT);
-    tbody.setAttribute('ref', 'content');
-
-    const paginationTotalSlot = element.querySelector('[au-slot="pagination-total"]');
-    paginationTotalSlot?.remove();
-
-    defaultSlotProcessContent(node, platform);
-
-    if (paginationTotalSlot) {
-      element.appendChild(paginationTotalSlot);
-    }
+  const headerRow = element.querySelector('thead>tr');
+  if (!headerRow) {
+    throw new Error('Have you forgotten the <thead><tr> tags in you data table markup?');
+  }
+  headerRow.classList.add(cssClasses.HEADER_ROW);
+  headerRow.setAttribute('ref', 'headerRow');
+  const headerCells = headerRow.querySelectorAll<HTMLElement>('th');
+  for (const th of Array.from(headerCells)) {
+    th.classList.add(cssClasses.HEADER_CELL);
+    th.classList.toggle('mdc-data-table__header-cell--numeric', th.hasAttribute('numeric'));
+    th.setAttribute('role', 'columnheader');
+    th.setAttribute('scope', 'col');
   }
 
+  const tbody = element.querySelector('tbody');
+  if (!tbody) {
+    throw new Error('Have you forgotten the <tbody> tag in you data table markup?');
+  }
+  tbody.classList.add(cssClasses.CONTENT);
+  tbody.setAttribute('ref', 'content');
+
+  const paginationTotalSlot = element.querySelector('[au-slot="pagination-total"]');
+  paginationTotalSlot?.remove();
+
+  defaultSlotProcessContent(node, platform);
+
+  if (paginationTotalSlot) {
+    element.appendChild(paginationTotalSlot);
+  }
+}
+)
+export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implements EventListenerObject {
   header: HTMLElement;
   content: HTMLElement;
 

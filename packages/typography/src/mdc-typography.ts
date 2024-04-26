@@ -1,5 +1,6 @@
 import { inject, customAttribute } from 'aurelia';
 
+@inject(Element)
 class MdcTypography {
   constructor(private root: HTMLElement) { }
 

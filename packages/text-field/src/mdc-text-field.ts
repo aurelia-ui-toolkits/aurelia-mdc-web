@@ -22,20 +22,19 @@ const trailingIconSelector = '.mdc-text-field__icon--trailing';
 
 @inject(Element, IPlatform, MdcDefaultTextFieldConfiguration)
 @customElement({ name: 'mdc-text-field', template })
-@processContent(MdcTextField.processContent)
+@processContent(function processContent(node: INode) {
+  const element = node as HTMLElement;
+  // move icons to slots - this allows omitting slot specification
+  const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`);
+  leadingIcon?.setAttribute('au-slot', 'leading-icon');
+  const trailingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`);
+  trailingIcon?.setAttribute('au-slot', 'trailing-icon');
+}
+)
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   constructor(root: HTMLElement, private platform: IPlatform, private defaultConfiguration: MdcDefaultTextFieldConfiguration) {
     super(root);
     defineMdcTextFieldElementApis(this.root);
-  }
-
-  static processContent(node: INode) {
-    const element = node as HTMLElement;
-    // move icons to slots - this allows omitting slot specification
-    const leadingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.LEADING}]`);
-    leadingIcon?.setAttribute('au-slot', 'leading-icon');
-    const trailingIcon = element.querySelector(`[${mdcIconStrings.ATTRIBUTE}][${mdcIconStrings.TRAILING}]`);
-    trailingIcon?.setAttribute('au-slot', 'trailing-icon');
   }
 
   id: string = `mdc-text-field-${++textFieldId}`;

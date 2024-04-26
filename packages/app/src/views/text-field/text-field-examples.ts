@@ -41,15 +41,6 @@ import { Types } from './types/types';
 import { Validation } from './validation/validation';
 
 export class TextFieldExamples {
-  // constructor(validationControllerFactory: ValidationControllerFactory, private snackbarService: MdcSnackbarService) {
-  //   this.validationController = validationControllerFactory.createForCurrentScope();
-  //   this.rules = ValidationRules
-  //     .ensure<TextFieldExamples, string>(x => x.valueStr).required()
-  //     .satisfies(x => !x.startsWith('erro')).withMessage('cannot start with "erro"')
-  //     .satisfies(x => !x.startsWith('error')).withMessage('cannot start with "error"')
-  //     .rules;
-  // }
-
   counterHtml = counterHtml;
   densityHtml = densityHtml;
   densityScss = densityScss;

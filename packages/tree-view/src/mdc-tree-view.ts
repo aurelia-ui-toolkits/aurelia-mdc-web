@@ -14,22 +14,21 @@ export class MDCTreeViewFoundation extends MDCFoundation { }
 
 @inject(Element)
 @customElement({ name: 'mdc-tree-view', template })
-@processContent(MdcTreeView.processContent)
+@processContent(function processContent(node: INode) {
+  const element = node as Element;
+  const treeNode = element.querySelector('mdc-tree-node');
+  if (treeNode) {
+    const nodeTemplateId = getNextNodeTemplateId();
+    element.setAttribute('data-template-id', nodeTemplateId.toString());
+    templateLookup[nodeTemplateId] = treeNode.innerHTML;
+  }
+  element.innerHTML = '';
+  return false;
+}
+)
 export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
   getDefaultFoundation(): MDCTreeViewFoundation {
     return new MDCTreeViewFoundation();
-  }
-
-  static processContent(node: INode) {
-    const element = node as Element;
-    const treeNode = element.querySelector('mdc-tree-node');
-    if (treeNode) {
-      const nodeTemplateId = getNextNodeTemplateId();
-      element.setAttribute('data-template-id', nodeTemplateId.toString());
-      templateLookup[nodeTemplateId] = treeNode.innerHTML;
-    }
-    element.innerHTML = '';
-    return false;
   }
 
   constructor(root: HTMLElement) {

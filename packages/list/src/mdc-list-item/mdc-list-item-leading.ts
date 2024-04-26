@@ -1,10 +1,11 @@
-import { customAttribute } from 'aurelia';
+import { customAttribute, inject } from 'aurelia';
 
 /**
  * Optional, marks the leading control or media element
  * @selector [mdc-list-item-leading]
  */
 @customAttribute('mdc-list-item-leading')
+@inject(Element)
 export class MdcListItemLeading {
   constructor(private root: Element) { }
 

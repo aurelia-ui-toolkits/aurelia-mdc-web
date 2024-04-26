@@ -16,35 +16,34 @@ let id = 0;
  */
 @inject(Element)
 @customElement({ name: 'mdc-deprecated-list-item', template })
-@processContent(MdcDeprecatedListItem.processContent)
+@processContent(function processContent(node: INode) {
+  const element = node as HTMLElement;
+  const graphic = element.querySelector('mdc-checkbox:not([mdc-deprecated-list-item-meta]),[mdc-deprecated-list-item-graphic]');
+  if (graphic) {
+    element.removeChild(graphic);
+  }
+  const meta = element.querySelector('[mdc-deprecated-list-item-meta]');
+  if (meta) {
+    element.removeChild(meta);
+  }
+  const itemText = document.createElement('span');
+  itemText.classList.add('mdc-deprecated-list-item__text');
+  const children = [].slice.call(element.childNodes) as ChildNode[];
+  for (let i = 0; i < children.length; ++i) {
+    itemText.appendChild(children[i]);
+  }
+  if (graphic) {
+    element.appendChild(graphic);
+  }
+  element.appendChild(itemText);
+  if (meta) {
+    element.appendChild(meta);
+  }
+}
+)
 export class MdcDeprecatedListItem {
   constructor(public root: HTMLElement) {
     this.root.id = `mdc-deprecated-list-item-${this.id}`;
-  }
-
-  static processContent(node: INode) {
-    const element = node as HTMLElement;
-    const graphic = element.querySelector('mdc-checkbox:not([mdc-deprecated-list-item-meta]),[mdc-deprecated-list-item-graphic]');
-    if (graphic) {
-      element.removeChild(graphic);
-    }
-    const meta = element.querySelector('[mdc-deprecated-list-item-meta]');
-    if (meta) {
-      element.removeChild(meta);
-    }
-    const itemText = document.createElement('span');
-    itemText.classList.add('mdc-deprecated-list-item__text');
-    const children = [].slice.call(element.childNodes) as ChildNode[];
-    for (let i = 0; i < children.length; ++i) {
-      itemText.appendChild(children[i]);
-    }
-    if (graphic) {
-      element.appendChild(graphic);
-    }
-    element.appendChild(itemText);
-    if (meta) {
-      element.appendChild(meta);
-    }
   }
 
   cssClasses = cssClasses;

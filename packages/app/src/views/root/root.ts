@@ -38,6 +38,7 @@ import { IRouter, IRouteableComponent, IRoute } from '@aurelia/router';
 import { TreeView } from '../tree-view/tree-view';
 import { Banner } from '../banner/banner';
 import { SegmentedButton } from '../segmented-button/segmented-button';
+import { resolve } from 'aurelia';
 
 const routeDefs: IRoute[] = [
   { id: 'home', path: 'home', title: 'Home', component: Home, data: { divider: 'true' } },
@@ -79,7 +80,7 @@ const routeDefs: IRoute[] = [
 ];
 
 export class Root implements IRouteableComponent {
-  constructor(@IRouter private router: IRouter) { }
+  constructor(private router: IRouter = resolve(IRouter)) { }
 
   githubSvg = githubSvg;
 

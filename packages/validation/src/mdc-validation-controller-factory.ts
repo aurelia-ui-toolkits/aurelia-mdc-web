@@ -1,10 +1,5 @@
 import { IContainer, IFactory, Constructable, Transformer, Key } from '@aurelia/kernel';
 import { IValidationController, ValidationController } from '@aurelia/validation-html';
-import { IValidator } from '@aurelia/validation';
-import { IPlatform } from 'aurelia';
-import {
-  IExpressionParser
-} from '@aurelia/runtime';
 import { MdcValidationResultPresenter } from './mdc-validation-result-presenter';
 
 export class MdcValidationControllerFactory implements IFactory<Constructable<IValidationController>> {
@@ -15,15 +10,10 @@ export class MdcValidationControllerFactory implements IFactory<Constructable<IV
     return false;
   }
 
-  public construct(container: IContainer, _dynamicDependencies?: Key[] | undefined): IValidationController {
+  public construct(_: IContainer, _dynamicDependencies?: Key[] | undefined): IValidationController {
     const controller: IValidationController = _dynamicDependencies !== void 0
       ? Reflect.construct(ValidationController, _dynamicDependencies)
-      : new ValidationController(
-        container.get<IValidator>(IValidator),
-        container.get(IExpressionParser),
-        container.get(IPlatform),
-        container,
-      );
+      : new ValidationController();
     controller.addSubscriber(new MdcValidationResultPresenter());
     return controller;
   }

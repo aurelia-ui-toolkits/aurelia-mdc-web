@@ -1,6 +1,6 @@
 import { IValidationController } from '@aurelia/validation-html';
 import { IValidationRules } from '@aurelia/validation';
-import { newInstanceForScope } from '@aurelia/kernel';
+import { newInstanceForScope, resolve } from '@aurelia/kernel';
 
 interface IOption {
   id: number;
@@ -8,7 +8,8 @@ interface IOption {
 }
 
 export class Validation {
-  constructor(@newInstanceForScope(IValidationController) private controller: IValidationController, @IValidationRules private rules: IValidationRules) {
+  constructor(private controller: IValidationController = resolve(newInstanceForScope(IValidationController)),
+    private rules: IValidationRules = resolve(IValidationRules)) {
     this.rules.on(Validation).ensure(x => x.value).required();
   }
 

@@ -1,5 +1,7 @@
 import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
+import { inject } from 'aurelia';
 
+@inject(MdcSnackbarService)
 export class Pagination {
   constructor(private snackbarService: MdcSnackbarService) { }
 

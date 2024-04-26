@@ -1,4 +1,4 @@
-import Aurelia, { IAurelia, CustomElement } from 'aurelia';
+import Aurelia, { IAurelia, CustomElement, resolve } from 'aurelia';
 import { MdcSnackbar } from './mdc-snackbar';
 import { MDCSnackbarCloseEvent } from '@material/snackbar';
 
@@ -21,7 +21,7 @@ export interface ISnackbarOptions {
 }
 
 export class MdcSnackbarService {
-  constructor(@IAurelia private readonly au: Aurelia) { }
+  constructor(private readonly au: Aurelia = resolve(IAurelia)) { }
 
   async open(label: string, actions?: string | string[], options?: Partial<ISnackbarOptions>) {
     // const props = { 'mdcsnackbar:closed.trigger': 'handleClosed($event)' };

@@ -21,41 +21,40 @@ let chipId = 0;
  */
 @inject(Element)
 @customElement({ name: 'mdc-chip', template })
-@processContent(MdcChip.processContent)
+@processContent(function processContent(node: INode, platform: IPlatform) {
+  const element = node as HTMLElement;
+
+  const primaryAction = element.querySelector('[as-element="mdc-chip-action"]:not([trailing])');
+  if (primaryAction) {
+    primaryAction.setAttribute('au-slot', 'primary-action');
+    primaryAction.remove();
+  }
+
+  const trailingAction = element.querySelector('[as-element="mdc-chip-action"][trailing]');
+  if (trailingAction) {
+    trailingAction.setAttribute('au-slot', trailingAction.hasAttribute('non-navigable') ? 'non-navigable-trailing-action' : 'trailing-action');
+    trailingAction.remove();
+  }
+
+  const template = platform.document.createElement('template');
+  template.setAttribute('au-slot', '');
+  template.innerHTML = element.innerHTML;
+  element.innerHTML = '';
+  element.appendChild(template);
+
+  if (primaryAction) {
+    element.appendChild(primaryAction);
+  }
+  if (trailingAction) {
+    element.appendChild(trailingAction);
+  }
+}
+)
 export class MdcChip extends MdcComponent<MDCChipFoundation> {
   constructor(root: IMdcChipElement) {
     super(root);
     defineMdcChipElementApis(this.root);
     this.root.id = `mdc-chip-${++chipId}`;
-  }
-
-  static processContent(node: INode, platform: IPlatform) {
-    const element = node as HTMLElement;
-
-    const primaryAction = element.querySelector('[as-element="mdc-chip-action"]:not([trailing])');
-    if (primaryAction) {
-      primaryAction.setAttribute('au-slot', 'primary-action');
-      primaryAction.remove();
-    }
-
-    const trailingAction = element.querySelector('[as-element="mdc-chip-action"][trailing]');
-    if (trailingAction) {
-      trailingAction.setAttribute('au-slot', trailingAction.hasAttribute('non-navigable') ? 'non-navigable-trailing-action' : 'trailing-action');
-      trailingAction.remove();
-    }
-
-    const template = platform.document.createElement('template');
-    template.setAttribute('au-slot', '');
-    template.innerHTML = element.innerHTML;
-    element.innerHTML = '';
-    element.appendChild(template);
-
-    if (primaryAction) {
-      element.appendChild(primaryAction);
-    }
-    if (trailingAction) {
-      element.appendChild(trailingAction);
-    }
   }
 
   _selected: boolean;

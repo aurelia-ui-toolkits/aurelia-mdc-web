@@ -1,5 +1,5 @@
 import { MdcDialog } from './mdc-dialog';
-import Aurelia, { CustomAttribute, IAurelia } from 'aurelia';
+import Aurelia, { CustomAttribute, IAurelia, resolve } from 'aurelia';
 import { MDCDialogCloseEvent, strings } from '@material/dialog';
 import { CustomElement } from '@aurelia/runtime-html';
 import { Constructable } from '@aurelia/kernel';
@@ -21,7 +21,7 @@ interface IMdcDialogBindingContext {
 
 /** Service to open MDC dialogs */
 export class MdcDialogService {
-  constructor(@IAurelia private readonly au: Aurelia) { }
+  constructor(private readonly au: Aurelia = resolve(IAurelia)) { }
 
   /** Opens the dialog specified in the options */
   async open<T extends { loading: (params: any) => any }>(options: IMdcDialogOptions<T>) {

@@ -26,32 +26,30 @@ let selectId = 0;
  */
 @inject(Element, IPlatform, MdcDefaultSelectConfiguration)
 @customElement({ name: 'mdc-select', template })
-@processContent(MdcSelect.processContent)
-export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia>{
+@processContent(function processContent(node: INode, platform: IPlatform) {
+  const el = node as Element;
 
-  static processContent(node: INode, platform: IPlatform) {
-    const el = node as Element;
+  const leadingIcon = el.querySelector(`[${mdcIconStrings.ATTRIBUTE}]`);
+  leadingIcon?.remove();
 
-    const leadingIcon = el.querySelector(`[${mdcIconStrings.ATTRIBUTE}]`);
-    leadingIcon?.remove();
+  const template = platform.document.createElement('template');
+  template.setAttribute('au-slot', '');
+  template.innerHTML = el.innerHTML;
+  el.innerHTML = '';
+  el.appendChild(template);
 
-    const template = platform.document.createElement('template');
-    template.setAttribute('au-slot', '');
-    template.innerHTML = el.innerHTML;
-    el.innerHTML = '';
-    el.appendChild(template);
-
-    // move icon to the slot - this allows omitting slot specification
-    if (leadingIcon) {
-      const div = platform.document.createElement('div');
-      div.appendChild(leadingIcon);
-      const iconTemplate = platform.document.createElement('template');
-      iconTemplate.setAttribute('au-slot', 'leading-icon');
-      iconTemplate.innerHTML = div.innerHTML;
-      el.appendChild(iconTemplate);
-    }
+  // move icon to the slot - this allows omitting slot specification
+  if (leadingIcon) {
+    const div = platform.document.createElement('div');
+    div.appendChild(leadingIcon);
+    const iconTemplate = platform.document.createElement('template');
+    iconTemplate.setAttribute('au-slot', 'leading-icon');
+    iconTemplate.innerHTML = div.innerHTML;
+    el.appendChild(iconTemplate);
   }
-
+}
+)
+export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
   constructor(root: HTMLElement, private platform: IPlatform, private defaultConfiguration: MdcDefaultSelectConfiguration) {
     super(root);
     defineMdcSelectElementApis(this.root);
