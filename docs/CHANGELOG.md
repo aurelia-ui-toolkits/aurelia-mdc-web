@@ -1,3 +1,12 @@
+## [9.2.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.2.0-au2...v9.2.1-au2) (2024-04-26)
+
+
+### Bug Fixes
+
+* **all:** prevent double registration ([c7c9057](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c7c90577e30408a80be00345533f35138b9c0dd1))
+
+
+
 # [9.2.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.3-au2...v9.2.0-au2) (2024-04-26)
 
 
