@@ -3,8 +3,15 @@ import { MdcElevation } from './mdc-elevation';
 
 export { MdcElevation } from './mdc-elevation';
 
+let registered = false;
+
 export const ElevationConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcElevation);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcElevation);
+    }
   }
 };

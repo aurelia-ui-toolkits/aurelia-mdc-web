@@ -19,7 +19,9 @@ let configured = false;
 
 export const SelectConfiguration = {
   register(container: IContainer): IContainer {
-    if (!configured) {
+    if (configured) {
+      return container;
+    } else {
       AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
@@ -27,9 +29,8 @@ export const SelectConfiguration = {
         nodeObserverLocator.useConfig('MDC-SELECT', 'value', { events: [strings.CHANGE_EVENT], type: MdcSelectValueObserver });
       }).register(container);
       configured = true;
+      return container.register(MdcSelect, MdcSelectIcon, MdcSelectHelperText, ListConfiguration, FloatingLabelConfiguration, LineRippleConfiguration, NotchedOutlineConfiguration, RippleConfiguration);
     }
-    return container.register(MdcSelect, MdcSelectIcon, MdcSelectHelperText, ListConfiguration,
-      FloatingLabelConfiguration, LineRippleConfiguration, NotchedOutlineConfiguration, RippleConfiguration);
   },
   customize(optionsProvider: (config: MdcDefaultSelectConfiguration) => void) {
     return {

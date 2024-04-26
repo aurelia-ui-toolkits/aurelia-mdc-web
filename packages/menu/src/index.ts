@@ -7,8 +7,15 @@ import { MenuSurfaceConfiguration } from '@aurelia-mdc-web/menu-surface';
 
 export { MdcMenu, IMdcMenuItemComponentEventDetail, IMdcMenuItemComponentEvent } from './mdc-menu';
 
+let registered = false;
+
 export const MenuConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcMenu, MdcMenuSelectionGroup, MdcMenuSelectionGroupIcon, ListConfiguration, MenuSurfaceConfiguration);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcMenu, MdcMenuSelectionGroup, MdcMenuSelectionGroupIcon, ListConfiguration, MenuSurfaceConfiguration);
+    }
   }
 };

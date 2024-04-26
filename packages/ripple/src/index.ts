@@ -4,8 +4,15 @@ import { MdcRipple, IMdcRippleElement } from './mdc-ripple';
 
 export { MdcRipple, IMdcRippleElement };
 
+let registered = false;
+
 export const RippleConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcRipple);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcRipple);
+    }
   }
 };

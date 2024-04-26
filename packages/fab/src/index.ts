@@ -6,9 +6,16 @@ import { EnhanceMdcFab } from './enhance-mdc-fab';
 
 export { MdcFab } from './mdc-fab';
 
+let registered = false;
+
 export const FabConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcFab, MdcFabIcon, RippleConfiguration, EnhanceMdcFab);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcFab, MdcFabIcon, RippleConfiguration, EnhanceMdcFab);
+    }
   }
 };
 

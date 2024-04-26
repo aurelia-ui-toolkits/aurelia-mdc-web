@@ -10,17 +10,24 @@ import { EnhanceTopAppBarActions } from './enhance-top-app-bar-actions';
 
 export { MdcTopAppBar, MdcTopAppBarRow, MdcTopAppBarTitle, MdcTopAppBarSection, MdcTopAppBarFixedAdjust, MdcTopAppBarNavIcon, MdcTopAppBarActionItem };
 
+let registered = false;
+
 export const TopAppBarConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(
-      MdcTopAppBar,
-      MdcTopAppBarRow,
-      MdcTopAppBarTitle,
-      MdcTopAppBarSection,
-      MdcTopAppBarFixedAdjust,
-      MdcTopAppBarNavIcon,
-      MdcTopAppBarActionItem,
-      EnhanceTopAppBarActions
-    );
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(
+        MdcTopAppBar,
+        MdcTopAppBarRow,
+        MdcTopAppBarTitle,
+        MdcTopAppBarSection,
+        MdcTopAppBarFixedAdjust,
+        MdcTopAppBarNavIcon,
+        MdcTopAppBarActionItem,
+        EnhanceTopAppBarActions
+      );
+    }
   }
 };

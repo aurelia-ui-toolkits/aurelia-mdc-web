@@ -3,8 +3,15 @@ import { MdcIcon } from './mdc-icon';
 
 export { MdcIcon };
 
+let registered = false;
+
 export const IconConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcIcon);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcIcon);
+    }
   }
 };

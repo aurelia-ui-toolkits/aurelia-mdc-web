@@ -8,8 +8,15 @@ import { MdcCard } from './mdc-card';
 
 export { MdcCard } from './mdc-card';
 
+let registered = false;
+
 export const CardConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcCard, MdcCardActions, MdcCardMedia, MdcCardActionButtons, MdcCardPrimaryAction, MdcCardActionIcons);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcCard, MdcCardActions, MdcCardMedia, MdcCardActionButtons, MdcCardPrimaryAction, MdcCardActionIcons);
+    }
   }
 };

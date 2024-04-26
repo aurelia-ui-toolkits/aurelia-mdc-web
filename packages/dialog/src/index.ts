@@ -8,9 +8,16 @@ import { FocusTrap } from '@material/dom/focus-trap';
 export { MdcDialog } from './mdc-dialog';
 export { MdcDialogService, IMdcDialogOptions } from './mdc-dialog-service';
 
+let registered = false;
+
 export const DialogConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcDialog, MdcDialogActions, MdcDialogTitle, MdcDialogContent);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcDialog, MdcDialogActions, MdcDialogTitle, MdcDialogContent);
+    }
   }
 };
 

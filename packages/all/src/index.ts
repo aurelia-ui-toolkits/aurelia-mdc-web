@@ -39,20 +39,27 @@ import { TooltipConfiguration } from '@aurelia-mdc-web/tooltip';
 import { BaseConfiguration } from '@aurelia-mdc-web/base';
 import { TreeViewConfiguration } from '@aurelia-mdc-web/tree-view';
 
+let registered = false;
+
 export const AllConfiguration = {
   /**
    * Apply this configuration to the provided container.
    */
   register(container: IContainer): IContainer {
-    return container.register(
-      BaseConfiguration, BannerConfiguration, ButtonConfiguration, CardConfiguration, CheckboxConfiguration, ChipsConfiguration, CircularProgressConfiguration,
-      DataTableConfiguration, DialogConfiguration, DrawerConfiguration, ElevationConfiguration, ExpandableConfiguration, FabConfiguration,
-      FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, ImageListConfiguration, LayoutGridConfiguration,
-      LineRippleConfiguration, LinearProgressConfiguration, ListConfiguration, LookupConfiguration, MenuConfiguration, MenuSurfaceConfiguration,
-      NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration, SegmentedButtonConfiguration, SelectConfiguration, SliderConfiguration,
-      SnackbarConfiguration, SwitchConfiguration, TabBarConfiguration, TextFieldConfiguration, TooltipConfiguration, TopAppBarConfiguration,
-      TreeViewConfiguration, TypographyConfiguration,
-    );
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(
+        BaseConfiguration, BannerConfiguration, ButtonConfiguration, CardConfiguration, CheckboxConfiguration, ChipsConfiguration, CircularProgressConfiguration,
+        DataTableConfiguration, DialogConfiguration, DrawerConfiguration, ElevationConfiguration, ExpandableConfiguration, FabConfiguration,
+        FloatingLabelConfiguration, FormFieldConfiguration, IconButtonConfiguration, IconConfiguration, ImageListConfiguration, LayoutGridConfiguration,
+        LineRippleConfiguration, LinearProgressConfiguration, ListConfiguration, LookupConfiguration, MenuConfiguration, MenuSurfaceConfiguration,
+        NotchedOutlineConfiguration, RadioConfiguration, RippleConfiguration, SegmentedButtonConfiguration, SelectConfiguration, SliderConfiguration,
+        SnackbarConfiguration, SwitchConfiguration, TabBarConfiguration, TextFieldConfiguration, TooltipConfiguration, TopAppBarConfiguration,
+        TreeViewConfiguration, TypographyConfiguration,
+      );
+    }
   },
   /**
    * Create a new container with this configuration applied to it.

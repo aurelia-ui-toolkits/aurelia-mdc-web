@@ -3,8 +3,15 @@ import { MdcLinearProgress } from './mdc-linear-progress';
 
 export { MdcLinearProgress } from './mdc-linear-progress';
 
+let registered = false;
+
 export const LinearProgressConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcLinearProgress);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcLinearProgress);
+    }
   }
 };

@@ -4,8 +4,15 @@ import { MdcExpandable } from './mdc-expandable';
 
 export { MdcExpandable } from './mdc-expandable';
 
+let registered = false;
+
 export const ExpandableConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcExpandable, RippleConfiguration);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcExpandable, RippleConfiguration);
+    }
   }
 };

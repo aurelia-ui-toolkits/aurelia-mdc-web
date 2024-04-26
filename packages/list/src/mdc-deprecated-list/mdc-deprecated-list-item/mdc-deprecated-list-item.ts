@@ -66,17 +66,6 @@ export class MdcDeprecatedListItem {
   @bindable({ set: booleanAttr })
   disableRipple: boolean;
 
-  // this is necessary for the route-href to work
-  @bindable
-  href: string;
-  hrefChanged() {
-    if (this.href) {
-      this.root.setAttribute('href', this.href);
-    } else {
-      this.root.removeAttribute('href');
-    }
-  }
-
   attached() {
     // Child button/a elements are not tabbable until the list item is focused.
     Array.from(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))

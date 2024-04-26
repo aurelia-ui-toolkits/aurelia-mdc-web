@@ -55,19 +55,7 @@ export class MdcButton {
     }
   }
 
-  // this is necessary for the route-href to work
-  @bindable
-  href: string;
-  hrefChanged() {
-    if (this.href) {
-      this.root.setAttribute('href', this.href);
-    } else {
-      this.root.removeAttribute('href');
-    }
-  }
-
   attached() {
-    this.hrefChanged();
     const icons = this.root.querySelectorAll('mdc-icon');
     Array.from(icons).forEach(x => x.classList.add('mdc-button__icon'));
   }

@@ -9,7 +9,9 @@ let configured = false;
 
 export const SliderConfiguration = {
   register(container: IContainer): IContainer {
-    if (!configured) {
+    if (configured) {
+      return container;
+    } else {
       AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
@@ -22,7 +24,7 @@ export const SliderConfiguration = {
         });
       }).register(container);
       configured = true;
+      return container.register(MdcSlider, RippleConfiguration);
     }
-    return container.register(MdcSlider, RippleConfiguration);
   }
 };

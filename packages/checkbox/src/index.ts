@@ -9,7 +9,9 @@ let configured = false;
 
 export const CheckboxConfiguration = {
   register(container: IContainer): IContainer {
-    if (!configured) {
+    if (configured) {
+      return container;
+    } else {
       AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
@@ -17,7 +19,7 @@ export const CheckboxConfiguration = {
         nodeObserverLocator.useConfig('MDC-CHECKBOX', 'checked', { events: ['change'], type: CheckedObserver });
       }).register(container);
       configured = true;
+      return container.register(MdcCheckbox, RippleConfiguration);
     }
-    return container.register(MdcCheckbox, RippleConfiguration);
   }
 };

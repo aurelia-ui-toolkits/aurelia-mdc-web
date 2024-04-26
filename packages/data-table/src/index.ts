@@ -5,9 +5,16 @@ import { MdcDataTableRow } from './mdc-data-table-row';
 
 export { MdcDataTable } from './mdc-data-table';
 
+let registered = false;
+
 export const DataTableConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcDataTable, MdcDataTableRow, CheckboxConfiguration);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcDataTable, MdcDataTableRow, CheckboxConfiguration);
+    }
   }
 };
 

@@ -12,7 +12,9 @@ let configured = false;
 
 export const SegmentedButtonConfiguration = {
   register(container: IContainer): IContainer {
-    if (!configured) {
+    if (configured) {
+      return container;
+    } else {
       AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
@@ -20,7 +22,7 @@ export const SegmentedButtonConfiguration = {
         nodeObserverLocator.useConfig('MDC-SEGMENTED-BUTTON-SEGMENT', 'checked', { events: [events.SELECTED, 'unselected'], type: CheckedObserver });
       }).register(container);
       configured = true;
+      return container.register(MdcSegmentedButton, MdcSegmentedButtonSegment, EnhanceMdcSegmentedButtonSegment, RippleConfiguration);
     }
-    return container.register(MdcSegmentedButton, MdcSegmentedButtonSegment, EnhanceMdcSegmentedButtonSegment, RippleConfiguration);
   }
 };

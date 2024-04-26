@@ -6,8 +6,15 @@ import { MdcTabIndicator } from './indicator/mdc-tab-indicator';
 
 export { MdcTabBar, MdcTab, IMdcTabElement, MdcTabScroller, MdcTabIndicator };
 
+let registered = false;
+
 export const TabBarConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcTabBar, MdcTab, MdcTabScroller, MdcTabIndicator);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcTabBar, MdcTab, MdcTabScroller, MdcTabIndicator);
+    }
   }
 };

@@ -3,8 +3,15 @@ import { IContainer } from 'aurelia';
 
 export { MdcFloatingLabel } from './mdc-floating-label';
 
+let registered = false;
+
 export const FloatingLabelConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcFloatingLabel);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcFloatingLabel);
+    }
   }
 };

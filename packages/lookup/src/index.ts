@@ -4,9 +4,16 @@ import { IContainer } from 'aurelia';
 
 export { MdcLookup, IMdcLookupElement } from './mdc-lookup';
 
+let registered = false;
+
 export const LookupConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcLookup);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcLookup);
+    }
   },
   customize(optionsProvider: (config: MdcDefaultLookupConfiguration) => void) {
     return {

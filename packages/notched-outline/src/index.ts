@@ -3,8 +3,15 @@ import { MdcNotchedOutline } from './mdc-notched-outline';
 
 export { MdcNotchedOutline } from './mdc-notched-outline';
 
+let registered = false;
+
 export const NotchedOutlineConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcNotchedOutline);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcNotchedOutline);
+    }
   }
 };

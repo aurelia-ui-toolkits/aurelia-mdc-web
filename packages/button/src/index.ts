@@ -4,9 +4,15 @@ import { MdcButtonLabel } from './mdc-button-label';
 import { EnhanceMdcButton } from './enhance-mdc-button';
 
 export { MdcButton, MdcButtonLabel };
+let registered = false;
 
 export const ButtonConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcButton, MdcButtonLabel, EnhanceMdcButton);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcButton, MdcButtonLabel, EnhanceMdcButton);
+    }
   }
 };

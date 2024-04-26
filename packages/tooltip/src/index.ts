@@ -7,9 +7,16 @@ export { MdcTooltip } from './mdc-tooltip';
 export { MdcTooltipAttribute } from './mdc-tooltip-attribute';
 export { MdcDefaultTooltipConfiguration };
 
+let registered = false;
+
 export const TooltipConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcTooltip, MdcTooltipAttribute);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcTooltip, MdcTooltipAttribute);
+    }
   },
   customize(optionsProvider: (config: MdcDefaultTooltipConfiguration) => void) {
     return {

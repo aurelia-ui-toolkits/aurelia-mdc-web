@@ -4,8 +4,15 @@ import { IContainer } from 'aurelia';
 
 export { MdcMenuSurface } from './mdc-menu-surface';
 
+let registered = false;
+
 export const MenuSurfaceConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcMenuSurface, MdcMenuSurfaceAnchor);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcMenuSurface, MdcMenuSurfaceAnchor);
+    }
   }
 };

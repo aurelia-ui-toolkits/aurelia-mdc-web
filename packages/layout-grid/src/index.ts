@@ -5,8 +5,15 @@ import { MdcLayoutGrid } from './mdc-layout-grid';
 
 export { MdcLayoutGrid } from './mdc-layout-grid';
 
+let registered = false;
+
 export const LayoutGridConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcLayoutGrid, MdcLayoutGridInner, MdcLayoutGridCell);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcLayoutGrid, MdcLayoutGridInner, MdcLayoutGridCell);
+    }
   }
 };

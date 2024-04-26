@@ -7,9 +7,12 @@ export { MdcSwitch, IMdcSwitchElement } from './mdc-switch';
 
 let configured = false;
 
+
 export const SwitchConfiguration = {
   register(container: IContainer): IContainer {
-    if (!configured) {
+    if (configured) {
+      return container;
+    } else {
       AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
@@ -17,7 +20,7 @@ export const SwitchConfiguration = {
         nodeObserverLocator.useConfig('MDC-SWITCH', 'selected', { events: ['change'] });
       }).register(container);
       configured = true;
+      return container.register(MdcSwitch, RippleConfiguration, EnhanceMdcSwitch);
     }
-    return container.register(MdcSwitch, RippleConfiguration, EnhanceMdcSwitch);
   }
 };

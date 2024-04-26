@@ -5,8 +5,15 @@ import { EnhanceMdcIconButton } from './enhance-mdc-icon-button';
 
 export { MdcIconButton, MdcIconButtonIcon };
 
+let registered = false;
+
 export const IconButtonConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcIconButton, MdcIconButtonIcon, EnhanceMdcIconButton);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcIconButton, MdcIconButtonIcon, EnhanceMdcIconButton);
+    }
   }
 };

@@ -33,30 +33,37 @@ export {
   MdcDeprecatedListGroupSubheader
 };
 
+let registered = false;
+
 export const ListConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(
-      MdcList,
-      MdcListDivider,
-      MdcListGroup,
-      MdcListGroupSubheader,
-      MdcListItem,
-      MdcListItemLeading,
-      MdcListItemTrailing,
-      MdcListItemPrimaryText,
-      MdcListItemSecondaryText,
-      EnhanceMdcListItem,
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(
+        MdcList,
+        MdcListDivider,
+        MdcListGroup,
+        MdcListGroupSubheader,
+        MdcListItem,
+        MdcListItemLeading,
+        MdcListItemTrailing,
+        MdcListItemPrimaryText,
+        MdcListItemSecondaryText,
+        EnhanceMdcListItem,
 
-      MdcDeprecatedList,
-      MdcDeprecatedListItem,
-      EnhanceMdcDeprecatedListItem,
-      MdcDeprecatedListItemPrimaryText,
-      MdcDeprecatedListItemSecondaryText,
-      MdcDeprecatedListItemGraphic,
-      MdcDeprecatedListItemMeta,
-      MdcDeprecatedListDivider,
-      MdcDeprecatedListGroup,
-      MdcDeprecatedListGroupSubheader
-    );
+        MdcDeprecatedList,
+        MdcDeprecatedListItem,
+        EnhanceMdcDeprecatedListItem,
+        MdcDeprecatedListItemPrimaryText,
+        MdcDeprecatedListItemSecondaryText,
+        MdcDeprecatedListItemGraphic,
+        MdcDeprecatedListItemMeta,
+        MdcDeprecatedListDivider,
+        MdcDeprecatedListGroup,
+        MdcDeprecatedListGroupSubheader
+      );
+    }
   }
 };

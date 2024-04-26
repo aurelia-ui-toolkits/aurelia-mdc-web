@@ -14,7 +14,9 @@ let configured = false;
 
 export const ChipsConfiguration = {
   register(container: IContainer): IContainer {
-    if (!configured) {
+    if (configured) {
+      return container;
+    } else {
       AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
@@ -22,7 +24,7 @@ export const ChipsConfiguration = {
         nodeObserverLocator.useConfig('MDC-CHIP', 'checked', { events: ['change'], type: CheckedObserver });
       }).register(container);
       configured = true;
+      return container.register(MdcChip, MdcChipAction, EnhanceMdcChipAction, MdcChipSet, RippleConfiguration);
     }
-    return container.register(MdcChip, MdcChipAction, EnhanceMdcChipAction, MdcChipSet, RippleConfiguration);
   }
 };

@@ -10,8 +10,15 @@ export { defaultSlotProcessContent } from './default-slot-process-content';
 export { MdcFocusTrap } from './attributes/mdc-focus-trap';
 export { nextElement } from './next-element';
 
+let registered = false;
+
 export const BaseConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcPromisifyReference, MdcFocusTrap);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcPromisifyReference, MdcFocusTrap);
+    }
   }
 };

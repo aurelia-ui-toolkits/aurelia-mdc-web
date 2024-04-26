@@ -4,8 +4,15 @@ import { MdcCircularProgress } from './mdc-circular-progress';
 
 export { MdcCircularProgress };
 
+let registered = false;
+
 export const CircularProgressConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcCircularProgress);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcCircularProgress);
+    }
   }
 };

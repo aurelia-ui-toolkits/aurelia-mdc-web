@@ -9,7 +9,9 @@ let configured = false;
 
 export const RadioConfiguration = {
   register(container: IContainer): IContainer {
-    if (!configured) {
+    if (configured) {
+      return container;
+    } else {
       AppTask.creating(IContainer, c => {
         const attrMapper = c.get(IAttrMapper);
         const nodeObserverLocator = c.get(NodeObserverLocator);
@@ -17,7 +19,7 @@ export const RadioConfiguration = {
         nodeObserverLocator.useConfig('MDC-RADIO', 'checked', { events: ['change'], type: CheckedObserver });
       }).register(container);
       configured = true;
+      return container.register(MdcRadio, RippleConfiguration);
     }
-    return container.register(MdcRadio, RippleConfiguration);
   }
 };

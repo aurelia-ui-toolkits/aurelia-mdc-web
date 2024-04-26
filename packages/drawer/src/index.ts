@@ -7,8 +7,15 @@ import { MdcDrawerHeader } from './mdc-drawer-header/mdc-drawer-header';
 
 export { MdcDrawer, MdcDrawerContent, MdcDrawerAppContent, MdcDrawerHeader };
 
+let registered = false;
+
 export const DrawerConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(MdcDrawer, MdcDrawerContent, MdcDrawerAppContent, MdcDrawerHeader);
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcDrawer, MdcDrawerContent, MdcDrawerAppContent, MdcDrawerHeader);
+    }
   }
 };

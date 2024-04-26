@@ -7,14 +7,21 @@ import { NodeFilterValueConverter } from './node-filter';
 
 export { MdcTreeView, MdcTreeViewNodeMeta, MdcTreeNode };
 
+let registered = false;
+
 export const TreeViewConfiguration = {
   register(container: IContainer): IContainer {
-    return container.register(
-      IconButtonConfiguration,
-      MdcTreeView,
-      MdcTreeViewNodeMeta,
-      MdcTreeNode,
-      NodeFilterValueConverter
-    );
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(
+        IconButtonConfiguration,
+        MdcTreeView,
+        MdcTreeViewNodeMeta,
+        MdcTreeNode,
+        NodeFilterValueConverter
+      );
+    }
   }
 };

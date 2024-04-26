@@ -5,7 +5,7 @@ import { MDCRippleCapableSurface } from '@material/ripple';
 import { MDCChipTrailingActionFoundation } from '@material/chips/action/trailing-foundation';
 import { MDCChipPrimaryActionFoundation } from '@material/chips/action/primary-foundation';
 import { GRAPHIC_SELECTED_WIDTH_STYLE_PROP, computePrimaryActionRippleClientRect } from '@material/chips/action/component-ripple';
-import { bindable, customElement } from 'aurelia';
+import { bindable, customElement, inject } from 'aurelia';
 import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-chip-action.html';
 
@@ -18,6 +18,7 @@ let actionId = 0;
  * @hidden
  * @selector mdc-chip-action
  */
+@inject(Element)
 @customElement({ name: 'mdc-chip-action', template })
 @processContent(defaultSlotProcessContent)
 export class MdcChipAction extends MdcComponent<MDCChipActionFoundation> implements MDCRippleCapableSurface {
