@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/chips",
-  "version": "9.1.3-au2",
+  "version": "9.2.0-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -40,8 +40,8 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.1.3-au2",
-    "@aurelia-mdc-web/ripple": "9.1.3-au2",
+    "@aurelia-mdc-web/base": "9.2.0-au2",
+    "@aurelia-mdc-web/ripple": "9.2.0-au2",
     "@material/chips": "^14.0.0",
     "@material/ripple": "^14.0.0"
   }

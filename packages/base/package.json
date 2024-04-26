@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/base",
-  "version": "9.1.3-au2",
+  "version": "9.2.0-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -43,7 +43,7 @@
     "@material/base": "^14.0.0"
   },
   "peerDependencies": {
-    "aurelia": "^2.0.0-beta.14",
+    "aurelia": "^2.0.0-beta.15",
     "tslib": "^2.1.0"
   }
 }

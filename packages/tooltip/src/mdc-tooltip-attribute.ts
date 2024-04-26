@@ -1,4 +1,4 @@
-import { customAttribute, bindable, IAurelia, IAppRoot, resolve, inject } from 'aurelia';
+import { customAttribute, bindable, IAurelia, IAppRoot, inject } from 'aurelia';
 import { XPosition, YPosition, AnchorBoundaryType } from '@material/tooltip';
 import { booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';

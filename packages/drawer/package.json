@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/drawer",
-  "version": "9.1.3-au2",
+  "version": "9.2.0-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -46,7 +46,7 @@
     "_version": "node ../update-peers.js"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.1.3-au2",
+    "@aurelia-mdc-web/base": "9.2.0-au2",
     "@material/drawer": "^14.0.0",
     "@material/list": "^14.0.0"
   }
