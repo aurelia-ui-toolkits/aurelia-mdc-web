@@ -3,8 +3,9 @@ import { MdcSegmentedButton } from './mdc-segmented-button';
 import { MdcSegmentedButtonSegment } from './mdc-segmented-button-segment/mdc-segmented-button-segment';
 import { EnhanceMdcSegmentedButtonSegment } from './mdc-segmented-button-segment/enhance-mdc-segmented-button-segment';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
-import { AppTask, CheckedObserver, IAttrMapper, NodeObserverLocator } from '@aurelia/runtime-html';
+import { AppTask, CheckedObserver, NodeObserverLocator } from '@aurelia/runtime-html';
 import { events } from '@material/segmented-button/segmented-button/constants';
+import { IAttrMapper } from 'aurelia';
 
 export { MdcSegmentedButton, MdcSegmentedButtonSegment };
 

@@ -57,6 +57,7 @@ export interface INodeObserver extends IObserver {
   useConfig(config: INodeObserverConfigBase): void;
 }
 
+@subscriberCollection()
 export class MdcSelectValueObserver implements INodeObserver {
   public currentValue: unknown = void 0;
   public oldValue: unknown = void 0;
@@ -343,5 +344,3 @@ export class MdcSelectValueObserver implements INodeObserver {
     }
   }
 }
-
-subscriberCollection(MdcSelectValueObserver);
