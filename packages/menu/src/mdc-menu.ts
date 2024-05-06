@@ -1,4 +1,4 @@
-import { MdcComponent, defaultSlotProcessContent, booleanAttr, number } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuItemComponentEventDetail, strings, cssClasses } from '@material/menu';
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
 import { MdcList, IMdcListActionEvent, MdcListItem } from '@aurelia-mdc-web/list';
@@ -7,7 +7,7 @@ import { MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, bindable, BindingMode } from 'aurelia';
-import { processContent, CustomElement } from '@aurelia/runtime-html';
+import { CustomElement } from '@aurelia/runtime-html';
 import template from './mdc-menu.html';
 
 strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
@@ -18,7 +18,6 @@ strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
  */
 @inject(Element)
 @customElement({ name: 'mdc-menu', template })
-@processContent(defaultSlotProcessContent)
 export class MdcMenu extends MdcComponent<MDCMenuFoundation> {
   menuSurface: MdcMenuSurface; // assigned in html
 

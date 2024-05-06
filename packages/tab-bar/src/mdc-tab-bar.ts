@@ -1,10 +1,9 @@
-import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTabBarFoundation, MDCTabBarAdapter, MDCTabBarActivatedEventDetail, strings } from '@material/tab-bar';
 import { IMdcTabElement } from './tab/mdc-tab';
 import { MdcTabScroller } from './scroller/mdc-tab-scroller';
 import { MDCTabInteractionEvent, MDCTabFoundation } from '@material/tab';
 import { inject, customElement, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-tab-bar.html';
 
 // aurelia is case insensitive
@@ -13,7 +12,6 @@ strings.TAB_ACTIVATED_EVENT = strings.TAB_ACTIVATED_EVENT.toLowerCase();
 
 @inject(Element)
 @customElement({ name: 'mdc-tab-bar', template })
-@processContent(defaultSlotProcessContent)
 export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
   private tabScroller_?: MdcTabScroller; // assigned in html
 

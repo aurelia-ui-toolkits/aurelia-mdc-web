@@ -1,6 +1,4 @@
 import { customElement, inject, children } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
-import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import { MdcButton } from '@aurelia-mdc-web/button';
 
 /**
@@ -9,7 +7,6 @@ import { MdcButton } from '@aurelia-mdc-web/button';
  */
 @inject(Element)
 @customElement({ name: 'mdc-dialog-actions', template: '<template class="mdc-dialog__actions"><au-slot></au-slot></template>' })
-@processContent(defaultSlotProcessContent)
 export class MdcDialogActions {
   @children({ query: controller => controller.host.querySelectorAll('.mdc-button') })
   buttons: MdcButton[];

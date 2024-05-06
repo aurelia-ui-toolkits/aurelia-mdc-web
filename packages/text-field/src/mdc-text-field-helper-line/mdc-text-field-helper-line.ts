@@ -1,11 +1,8 @@
 import { inject, customElement, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
-import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 import template from './mdc-text-field-helper-line.html';
 
 @inject(Element)
 @customElement({ name: 'mdc-text-field-helper-line', template })
-@processContent(defaultSlotProcessContent)
 export class MdcTextFieldHelperLine {
   @bindable
   errors: string[];

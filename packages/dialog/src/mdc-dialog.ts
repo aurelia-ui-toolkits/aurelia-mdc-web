@@ -1,8 +1,7 @@
-import { MdcComponent, defaultSlotProcessContent, booleanAttr, MdcFocusTrap } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, MdcFocusTrap } from '@aurelia-mdc-web/base';
 import { MDCDialogFoundation, strings, MDCDialogAdapter, util, MDCDialogCloseEventDetail } from '@material/dialog';
 import { customElement, inject, bindable } from 'aurelia';
 import { closest, matches } from '@material/dom/ponyfill';
-import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-dialog.html';
 
 const LAYOUT_EVENTS = ['resize', 'orientationchange'];
@@ -18,7 +17,6 @@ strings.CLOSED_EVENT = strings.CLOSED_EVENT.toLowerCase();
  */
 @inject(Element)
 @customElement({ name: 'mdc-dialog', template })
-@processContent(defaultSlotProcessContent)
 export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements EventListenerObject {
 
   id = ++dialogId;

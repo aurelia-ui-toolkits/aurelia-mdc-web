@@ -1,8 +1,8 @@
 import { cssClasses, MDCFormFieldFoundation, MDCFormFieldAdapter } from '@material/form-field';
-import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MdcRipple, IMdcRippleElement } from '@aurelia-mdc-web/ripple';
 import { customElement, inject, bindable } from 'aurelia';
-import { processContent, CustomAttribute } from '@aurelia/runtime-html';
+import { CustomAttribute } from '@aurelia/runtime-html';
 import template from './mdc-form-field.html';
 
 /**
@@ -10,7 +10,6 @@ import template from './mdc-form-field.html';
  */
 @inject(Element)
 @customElement({ name: 'mdc-form-field', template })
-@processContent(defaultSlotProcessContent)
 export class MdcFormField extends MdcComponent<MDCFormFieldFoundation> {
   cssClasses = cssClasses;
 

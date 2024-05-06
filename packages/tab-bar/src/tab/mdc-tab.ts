@@ -1,8 +1,7 @@
-import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTabFoundation, MDCTabAdapter, MDCTabInteractionEventDetail, MDCTabDimensions } from '@material/tab';
 import { MdcTabIndicator } from '../indicator/mdc-tab-indicator';
 import { inject, customElement, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-tab.html';
 
 let tabId = 0;
@@ -11,7 +10,6 @@ MDCTabFoundation.strings.INTERACTED_EVENT = MDCTabFoundation.strings.INTERACTED_
 
 @inject(Element)
 @customElement({ name: 'mdc-tab', template })
-@processContent(defaultSlotProcessContent)
 export class MdcTab extends MdcComponent<MDCTabFoundation> {
   private tabIndicator_: MdcTabIndicator; // assigned in initialize();
   private content_: HTMLElement; // assigned in initialize();

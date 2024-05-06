@@ -1,6 +1,5 @@
 import { customElement, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
-import { defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
+import { booleanAttr } from '@aurelia-mdc-web/base';
 import template from './mdc-card-primary-action.html';
 
 /**
@@ -9,7 +8,6 @@ import template from './mdc-card-primary-action.html';
  * @selector mdc-card-primary-action
  */
 @customElement({ name: 'mdc-card-primary-action', template })
-@processContent(defaultSlotProcessContent)
 export class MdcCardPrimaryAction {
 
   /** Disables ripple effect */

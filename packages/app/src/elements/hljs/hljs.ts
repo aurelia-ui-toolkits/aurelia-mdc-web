@@ -1,11 +1,8 @@
 import hljs from 'highlight.js';
 import { customElement, bindable, inject, } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
-import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 
 @inject(Element)
 @customElement('hljs')
-@processContent(defaultSlotProcessContent)
 export class Hljs {
   source: HTMLDivElement;
   codeEl: HTMLElement;

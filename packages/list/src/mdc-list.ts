@@ -1,9 +1,8 @@
-import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCListFoundation, MDCListAdapter, strings, cssClasses, MDCListIndex, MDCListSelectionChangeDetail } from '@material/list';
 import { closest, matches } from '@material/dom/ponyfill';
 import { MdcListItem, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';
 import { customElement, bindable, children, inject, CustomElement } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-list.html';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
@@ -20,7 +19,6 @@ export const mdcListStrings = {
  */
 @inject(Element)
 @customElement({ name: 'mdc-list', template })
-@processContent(defaultSlotProcessContent)
 export class MdcList extends MdcComponent<MDCListFoundation>{
 
   cssClasses = cssClasses;

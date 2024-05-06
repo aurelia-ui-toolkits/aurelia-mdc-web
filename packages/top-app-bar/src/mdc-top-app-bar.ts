@@ -1,13 +1,11 @@
-import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTopAppBarFoundation, MDCTopAppBarAdapter, MDCTopAppBarBaseFoundation, cssClasses, strings, MDCShortTopAppBarFoundation, MDCFixedTopAppBarFoundation } from '@material/top-app-bar';
 import { SpecificEventListener } from '@material/base';
 import { inject, customElement, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-top-app-bar.html';
 
 @inject(Element)
 @customElement({ name: 'mdc-top-app-bar', template })
-@processContent(defaultSlotProcessContent)
 export class MdcTopAppBar extends MdcComponent<MDCTopAppBarBaseFoundation> {
 
   private handleNavigationClick_!: SpecificEventListener<'click'>; // assigned in initialSyncWithDOM()

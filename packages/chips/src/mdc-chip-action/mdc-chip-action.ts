@@ -1,12 +1,11 @@
 import { closest } from '@material/dom/ponyfill';
-import { booleanAttr, defaultSlotProcessContent, MdcComponent } from '@aurelia-mdc-web/base';
+import { booleanAttr, MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCChipActionAdapter, MDCChipActionFoundation, MDCChipActionCssClasses, MDCChipActionEvents, MDCChipActionFocusBehavior } from '@material/chips';
 import { MDCRippleCapableSurface } from '@material/ripple';
 import { MDCChipTrailingActionFoundation } from '@material/chips/action/trailing-foundation';
 import { MDCChipPrimaryActionFoundation } from '@material/chips/action/primary-foundation';
 import { GRAPHIC_SELECTED_WIDTH_STYLE_PROP, computePrimaryActionRippleClientRect } from '@material/chips/action/component-ripple';
 import { bindable, customElement, inject } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-chip-action.html';
 
 (MDCChipActionEvents as Record<string, string>).INTERACTION = MDCChipActionEvents.INTERACTION.toLowerCase();
@@ -20,7 +19,6 @@ let actionId = 0;
  */
 @inject(Element)
 @customElement({ name: 'mdc-chip-action', template })
-@processContent(defaultSlotProcessContent)
 export class MdcChipAction extends MdcComponent<MDCChipActionFoundation> implements MDCRippleCapableSurface {
   constructor(public root: HTMLElement) {
     super(root);

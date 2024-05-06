@@ -1,6 +1,5 @@
 import { customElement, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
-import { defaultSlotProcessContent, booleanAttr } from '@aurelia-mdc-web/base';
+import { booleanAttr } from '@aurelia-mdc-web/base';
 import template from './mdc-icon-button-icon.html';
 
 /**
@@ -8,7 +7,6 @@ import template from './mdc-icon-button-icon.html';
  * @selector mdc-icon-button-icon
  */
 @customElement({ name: 'mdc-icon-button-icon', template })
-@processContent(defaultSlotProcessContent)
 export class MdcIconButtonIcon {
   /** Indicates an "on" toggle element */
   @bindable({ set: booleanAttr })

@@ -1,5 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
-import { MdcComponent, booleanAttr, number, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import {
   MDCDataTableFoundation, selectors, MDCDataTableAdapter, events, cssClasses, RowClickEventData,
   dataAttributes, MDCDataTableRowSelectionChangedEventDetail, SortValue, messages
@@ -60,8 +60,6 @@ const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 
   const paginationTotalSlot = element.querySelector('[au-slot="pagination-total"]');
   paginationTotalSlot?.remove();
-
-  defaultSlotProcessContent(node, platform);
 
   if (paginationTotalSlot) {
     element.appendChild(paginationTotalSlot);

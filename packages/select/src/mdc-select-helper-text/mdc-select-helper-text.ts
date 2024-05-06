@@ -1,7 +1,6 @@
-import { MdcComponent, booleanAttr, defaultSlotProcessContent } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { helperTextCssClasses, MDCSelectHelperTextFoundation, MDCSelectHelperTextAdapter } from '@material/select';
 import { customElement, inject, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-select-helper-text.html';
 
 export const mdcHelperTextCssClasses = {
@@ -10,7 +9,6 @@ export const mdcHelperTextCssClasses = {
 
 @inject(Element)
 @customElement({ name: 'mdc-select-helper-text', template })
-@processContent(defaultSlotProcessContent)
 export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundation> {
   helperTextCssClasses = helperTextCssClasses;
   ROOT = mdcHelperTextCssClasses.ROOT;

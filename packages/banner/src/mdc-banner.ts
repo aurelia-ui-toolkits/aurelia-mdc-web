@@ -1,7 +1,6 @@
-import { booleanAttr, defaultSlotProcessContent, MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
+import { booleanAttr, MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
 import { CloseReason, events, MDCBannerActionEventDetail, MDCBannerAdapter, MDCBannerCloseEventDetail, MDCBannerFoundation } from '@material/banner';
 import { inject, customElement, bindable } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-banner.html';
 
 events.CLOSED = events.CLOSED.toLowerCase();
@@ -14,7 +13,6 @@ events.OPENING = events.OPENING.toLowerCase();
  */
 @inject(Element)
 @customElement({ name: 'mdc-banner', template })
-@processContent(defaultSlotProcessContent)
 export class MdcBanner extends MdcComponent<MDCBannerFoundation> {
   private contentEl: HTMLElement;
   private mdcFocusTrap: MdcFocusTrap;

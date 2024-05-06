@@ -1,6 +1,4 @@
 import { customElement, inject } from 'aurelia';
-import { processContent } from '@aurelia/runtime-html';
-import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
 
 /**
  * Optional. A group of action buttons, displayed on the left side of the card (in LTR).
@@ -8,7 +6,6 @@ import { defaultSlotProcessContent } from '@aurelia-mdc-web/base';
  */
 @inject(Element)
 @customElement({ name: 'mdc-card-action-buttons', template: '<template class="mdc-card__action-buttons"><au-slot></au-slot></template>' })
-@processContent(defaultSlotProcessContent)
 export class MdcCardActionButtons {
   constructor(private root: HTMLElement) { }
 
