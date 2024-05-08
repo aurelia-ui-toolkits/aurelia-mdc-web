@@ -1,3 +1,12 @@
+## [9.0.8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.7...v9.0.8) (2024-05-08)
+
+
+### Features
+
+* **data-table:** allow disabling checkbox behavior ([5edcc1f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5edcc1f5108446bb3a596d15e254a6157a81e719))
+
+
+
 ## [9.0.7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.6...v9.0.7) (2023-09-01)
 
 
