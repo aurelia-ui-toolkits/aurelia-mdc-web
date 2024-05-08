@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/icon-button",
-  "version": "9.0.7",
+  "version": "9.0.8",
   "publishConfig": {
     "access": "public"
   },
@@ -47,8 +47,8 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.0.7",
-    "@aurelia-mdc-web/ripple": "9.0.7",
+    "@aurelia-mdc-web/base": "9.0.8",
+    "@aurelia-mdc-web/ripple": "9.0.8",
     "@material/icon-button": "^14.0.0"
   }
 }
