@@ -122,7 +122,7 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     this.foundation?.init();
   }
 
-  @bindable
+  @bindable()
   valueToAriaValueTextFn: ((value: number) => string) | null = null;
 
   _value: number = 0;

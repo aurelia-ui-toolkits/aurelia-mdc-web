@@ -2,7 +2,7 @@ import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCListFoundation, MDCListAdapter, strings, cssClasses, MDCListIndex, MDCListSelectionChangeDetail } from '@material/list';
 import { closest, matches } from '@material/dom/ponyfill';
 import { MdcListItem, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';
-import { customElement, bindable, children, inject, CustomElement } from 'aurelia';
+import { customElement, bindable, inject, CustomElement, slotted } from 'aurelia';
 import template from './mdc-list.html';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
@@ -19,7 +19,7 @@ export const mdcListStrings = {
  */
 @inject(Element)
 @customElement({ name: 'mdc-list', template })
-export class MdcList extends MdcComponent<MDCListFoundation>{
+export class MdcList extends MdcComponent<MDCListFoundation> {
 
   cssClasses = cssClasses;
 
@@ -37,12 +37,14 @@ export class MdcList extends MdcComponent<MDCListFoundation>{
     this.foundation?.setUseActivatedClass(this.activated);
   }
 
-  @children({
-    filter: (el: HTMLElement) => el.tagName === 'MDC-LIST-ITEM'
-  })
-  items: MdcListItem[];
+  @slotted({ query: 'mdc-list-item' })
+  itemElements: HTMLElement[];
   itemsChanged() {
-    this.emit(mdcListStrings.ITEMS_CHANGED, { items: this.items }, true);
+    this.emit(mdcListStrings.ITEMS_CHANGED, { items: this.itemElements }, true);
+  }
+
+  get items(): MdcListItem[] {
+    return (this.itemElements ?? []).map(x => CustomElement.for<MdcListItem>(x).viewModel);
   }
 
   @bindable({ set: booleanAttr })

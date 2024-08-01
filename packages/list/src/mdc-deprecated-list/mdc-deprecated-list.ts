@@ -2,7 +2,7 @@ import { booleanAttr, MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCListFoundation, MDCListAdapter, strings, MDCListIndex, MDCListSelectionChangeDetail } from '@material/list';
 import { closest, matches } from '@material/dom/ponyfill';
 import { MdcDeprecatedListItem, IMdcListActionEventDetail } from './mdc-deprecated-list-item/mdc-deprecated-list-item';
-import { inject, customElement, bindable, children, CustomElement } from 'aurelia';
+import { inject, customElement, bindable, CustomElement, slotted } from 'aurelia';
 import template from './mdc-deprecated-list.html';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
@@ -72,11 +72,14 @@ export class MdcDeprecatedList extends MdcComponent<MDCListFoundation>{
   @bindable({ set: booleanAttr })
   video: boolean;
 
-  @children({ filter: (el: HTMLElement) => el.tagName === 'MDC-DEPRECATED-LIST-ITEM' })
-  items: MdcDeprecatedListItem[];
+  @slotted({ query: 'mdc-deprecated-list-item' })
+  itemElements: HTMLElement[];
   itemsChanged() {
-    this.foundation?.layout();
-    this.emit(mdcListStrings.ITEMS_CHANGED, { items: this.items }, true);
+    this.emit(mdcListStrings.ITEMS_CHANGED, { items: this.itemElements }, true);
+  }
+
+  get items(): MdcDeprecatedListItem[] {
+    return (this.itemElements ?? []).map(x => CustomElement.for<MdcDeprecatedListItem>(x).viewModel);
   }
 
   @bindable({ set: booleanAttr })

@@ -14,7 +14,7 @@ export class MdcTabIndicator extends MdcComponent<MDCTabIndicatorFoundation> {
   @bindable({ set: booleanAttr })
   active: boolean;
 
-  @bindable
+  @bindable()
   icon: string;
 
   computeContentClientRect(): ClientRect {

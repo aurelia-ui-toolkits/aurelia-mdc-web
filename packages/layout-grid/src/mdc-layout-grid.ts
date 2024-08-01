@@ -11,7 +11,7 @@ export class MdcLayoutGrid {
   constructor(private root: HTMLElement) { }
 
   /** Set grid alignment. Has no effect when the grid already fills its container. */
-  @bindable
+  @bindable()
   position: 'left' | 'right';
 
   /** Specifies the grid should have fixed column width */

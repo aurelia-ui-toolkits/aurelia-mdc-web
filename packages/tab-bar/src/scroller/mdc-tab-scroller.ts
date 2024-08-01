@@ -2,7 +2,7 @@ import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCTabScrollerFoundation, MDCTabScrollerAdapter, util } from '@material/tab-scroller';
 import { matches } from '@material/dom/ponyfill';
 import { MdcTab } from '../tab/mdc-tab';
-import { inject, customElement, bindable, CustomElement } from 'aurelia';
+import { inject, customElement, bindable, CustomElement, slotted } from 'aurelia';
 import template from './mdc-tab-scroller.html';
 
 @inject(Element)
@@ -11,14 +11,14 @@ export class MdcTabScroller extends MdcComponent<MDCTabScrollerFoundation> {
   private content_: HTMLElement; // assigned in html
   private area_: HTMLElement; // assigned in html
 
-  @bindable
+  @bindable()
   align: 'start' | 'end' | 'center';
 
-  // TODO: this does not work yet
-  // @children({ filter: el => (el as HTMLElement).tagName === 'MDC-TAB' })
-  // tabs: MdcTab[];
+  @slotted({ query: 'mdc-tab' })
+  tabElements: HTMLElement[];
+
   get tabs(): MdcTab[] {
-    return Array.from(this.root.querySelectorAll('.mdc-tab')).map(x => CustomElement.for<MdcTab>(x).viewModel);
+    return this.tabElements.map(x => CustomElement.for<MdcTab>(x).viewModel);
   }
 
   getDefaultFoundation() {

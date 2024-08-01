@@ -1,7 +1,7 @@
 import { booleanAttr, MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCSegmentedButtonAdapter, MDCSegmentedButtonFoundation, SegmentDetail } from '@material/segmented-button';
 import { events } from '@material/segmented-button/segmented-button/constants';
-import { inject, customElement, bindable, children } from 'aurelia';
+import { inject, customElement, bindable, slotted, CustomElement } from 'aurelia';
 import { MdcSegmentedButtonSegment } from './mdc-segmented-button-segment/mdc-segmented-button-segment';
 import template from './mdc-segmented-button.html';
 
@@ -10,7 +10,7 @@ import template from './mdc-segmented-button.html';
  */
 @inject(Element)
 @customElement({ name: 'mdc-segmented-button', template })
-export class MdcSegmentedButton extends MdcComponent<MDCSegmentedButtonFoundation>{
+export class MdcSegmentedButton extends MdcComponent<MDCSegmentedButtonFoundation> {
 
   /** Indicates the segmented button only allows one segment to be selected at a time */
   @bindable({ set: booleanAttr })
@@ -19,8 +19,12 @@ export class MdcSegmentedButton extends MdcComponent<MDCSegmentedButtonFoundatio
     this.root.setAttribute('role', this.single ? 'radiogroup' : 'group');
   }
 
-  @children({ query: controller => controller.host.querySelectorAll('button') })
-  segmentsList!: MdcSegmentedButtonSegment[];
+  @slotted({ query: 'button' })
+  segmentElements!: HTMLElement[];
+
+  get segmentsList(): MdcSegmentedButtonSegment[] {
+    return this.segmentElements.map(x => CustomElement.for<MdcSegmentedButtonSegment>(x).viewModel);
+  }
 
   initialSyncWithDOM() {
     const isSingleSelect = this.foundation!.isSingleSelect();

@@ -7,13 +7,13 @@ import { customAttribute, bindable, inject } from 'aurelia';
 @inject(Element)
 @customAttribute('mdc-ripple')
 export class MdcRipple extends MdcComponent<MDCRippleFoundation> {
-  @bindable
+  @bindable()
   input?: HTMLInputElement;
 
-  @bindable
+  @bindable()
   surface?: HTMLElement;
 
-  @bindable
+  @bindable()
   computeBoundingRect: () => ClientRect;
 
   @bindable({ set: booleanAttr })

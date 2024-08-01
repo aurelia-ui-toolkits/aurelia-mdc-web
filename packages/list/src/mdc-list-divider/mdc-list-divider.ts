@@ -15,10 +15,10 @@ export class MdcListDivider {
   padded: boolean;
 
   /** Aligns the divider’s leading edge with the item’s content block */
-  @bindable
+  @bindable()
   leadingType: MdcListItemLeading['value'];
 
   /** Aligns the divider’s leading edge with the item’s trailing padding */
-  @bindable
+  @bindable()
   trailingType: MdcListItemTrailing['value'];
 }

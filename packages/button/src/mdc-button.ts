@@ -15,7 +15,7 @@ export class MdcButton {
   /**
    * Set the component label
    */
-  @bindable
+  @bindable()
   label: string;
 
   /**

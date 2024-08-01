@@ -12,7 +12,7 @@ export class MdcFocusTrap {
   @bindable({ set: booleanAttr })
   delay: boolean;
 
-  @bindable
+  @bindable()
   initialFocusEl?: HTMLElement | (() => HTMLElement);
 
   @bindable({ set: booleanAttr })

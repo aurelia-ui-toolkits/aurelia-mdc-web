@@ -14,7 +14,7 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   private tabIndicator_: MdcTabIndicator; // assigned in initialize();
   private content_: HTMLElement; // assigned in initialize();
 
-  @bindable
+  @bindable()
   id: string = `mdc-tab-${++tabId}`;
 
   @bindable({ set: booleanAttr })
@@ -23,10 +23,10 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   @bindable({ set: booleanAttr })
   active: boolean;
 
-  @bindable
+  @bindable()
   icon: string;
 
-  @bindable
+  @bindable()
   label: string;
 
   @bindable({ set: booleanAttr })
@@ -38,7 +38,7 @@ export class MdcTab extends MdcComponent<MDCTabFoundation> {
   @bindable({ set: booleanAttr })
   stacked: boolean;
 
-  @bindable
+  @bindable()
   indicatorIcon: string;
 
   handleClick_() {

@@ -19,7 +19,7 @@ export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundat
   @bindable({ set: booleanAttr })
   validation: boolean;
 
-  @bindable
+  @bindable()
   errors: string[];
 
   attachedPromise = this.createAttachedPromise();

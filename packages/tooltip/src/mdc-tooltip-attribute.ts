@@ -34,14 +34,14 @@ export class MdcTooltipAttribute {
   }
 
   /** Sets the horizontal alignment of the tooltip */
-  @bindable
+  @bindable()
   xPosition: keyof typeof XPosition;
   xPositionChanged() {
     this.context.xPosition = this.xPosition;
   }
 
   /** Sets the vertical alignment of the tooltip */
-  @bindable
+  @bindable()
   yPosition: keyof typeof YPosition;
   yPositionChanged() {
     this.context.yPosition = this.yPosition;
@@ -50,7 +50,7 @@ export class MdcTooltipAttribute {
   /** Specifies whether the anchor element is bounded (element has an identifiable boundary such as a button) or unbounded (element does not have a visually declared boundary such as a text link).
    * Tooltips are placed closer to bounded anchor elements compared to unbounded anchor elements. If no type is specified, defaults to BOUNDED.
    **/
-  @bindable
+  @bindable()
   boundaryType: keyof typeof AnchorBoundaryType;
   boundaryTypeChanged() {
     this.context.boundaryType = this.boundaryType;
@@ -68,7 +68,7 @@ export class MdcTooltipAttribute {
     this.context.hideDelay = this.hideDelay;
   }
 
-  @bindable
+  @bindable()
   scrollHost?: HTMLElement | string = this.defaultConfiguration.scrollHost;
   scrollHostChanged() {
     this.context.scrollHost = this.scrollHost;

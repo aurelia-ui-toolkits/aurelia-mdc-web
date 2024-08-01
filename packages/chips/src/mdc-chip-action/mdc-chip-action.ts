@@ -48,7 +48,7 @@ export class MdcChipAction extends MdcComponent<MDCChipActionFoundation> impleme
   @bindable({ set: booleanAttr })
   trailing: boolean;
 
-  @bindable
+  @bindable()
   icon: string;
 
   @bindable({ set: booleanAttr })

@@ -87,7 +87,7 @@ export class MdcListItem {
   threeLine: boolean;
 
   /** Random data associated with the list item. Passed in events payload. */
-  @bindable
+  @bindable()
   value: unknown;
 
   /** Disables ripple effect */

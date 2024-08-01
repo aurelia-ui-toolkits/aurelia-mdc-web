@@ -1,4 +1,5 @@
 import { customElement, bindable } from 'aurelia';
+import template from './example-viewer.html';
 
 interface ITab {
   label: string;
@@ -6,19 +7,20 @@ interface ITab {
   code: string;
 }
 
-@customElement('example-viewer')
+@customElement({ name: 'example-viewer', template })
+// @customElement({ name: 'example-viewer' })
 export class ExampleViewer {
   tabs: ITab[];
   selectedTab: ITab | undefined = undefined;
   open: boolean;
 
-  @bindable
+  @bindable()
   html: string;
 
-  @bindable
+  @bindable()
   sass: string;
 
-  @bindable
+  @bindable()
   code: string;
 
   bound() {

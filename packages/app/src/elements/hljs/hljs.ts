@@ -1,14 +1,15 @@
 import hljs from 'highlight.js';
 import { customElement, bindable, inject, } from 'aurelia';
+import { template } from './hljs.html';
 
 @inject(Element)
-@customElement('hljs')
+@customElement({ name: 'hljs', template })
 export class Hljs {
   source: HTMLDivElement;
   codeEl: HTMLElement;
   observer?: MutationObserver;
 
-  @bindable
+  @bindable()
   language: string;
 
   attached() {

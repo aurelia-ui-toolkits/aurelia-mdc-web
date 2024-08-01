@@ -30,7 +30,7 @@ export class MdcExpandable {
   }
 
   /** Set the expandable to be in an accordion group */
-  @bindable
+  @bindable()
   accordion?: string;
 
   handleEvent(e: Event) {

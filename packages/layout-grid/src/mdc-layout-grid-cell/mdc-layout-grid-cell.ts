@@ -8,34 +8,34 @@ import template from './mdc-layout-grid-cell.html';
 @customElement({ name: 'mdc-layout-grid-cell', template })
 export class MdcLayoutGridCell {
   /** Optional, specifies the order of the cell */
-  @bindable
+  @bindable()
   order: string;
 
   /** Optional, specifies the alignment of cell */
-  @bindable
+  @bindable()
   position: 'top' | 'middle' | 'bottom';
 
   /** Optional, specifies the number of columns the cell spans */
-  @bindable
+  @bindable()
   span: string;
 
   /** Optional, specifies the number of columns the cell spans on a desktop */
-  @bindable
+  @bindable()
   desktopSpan: string;
 
   /** Optional, specifies the number of columns the cell spans on a tablet */
-  @bindable
+  @bindable()
   tabletSpan: string;
 
   /** Optional, specifies the number of columns the cell spans on a phone */
-  @bindable
+  @bindable()
   phoneSpan: string;
 
   @bindable({ set: booleanAttr })
   newRow: string;
 
   /** Optional, specifies the number of columns the cell spans for all screen sizes */
-  @bindable
+  @bindable()
   spans: string;
   spansChanged() {
     [this.phoneSpan, this.tabletSpan, this.desktopSpan] = this.spans.split(' ');

@@ -42,10 +42,10 @@ export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
   nodeViewFactory: ViewFactory;
   selectedNode?: ITreeNode;
 
-  @bindable
+  @bindable()
   nodeTemplate: string;
 
-  @bindable
+  @bindable()
   nodes: ITreeNode[];
 
   onTest: boolean[] = [];
@@ -53,10 +53,10 @@ export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
   /**
    * Allows for filtering tree nodes
    */
-  @bindable
+  @bindable()
   filter: (n: ITreeNode) => boolean = () => true;
 
-  @bindable
+  @bindable()
   rootBindingContext: Record<string, unknown>;
 
   bind(bindingContext: Record<string, unknown>) {

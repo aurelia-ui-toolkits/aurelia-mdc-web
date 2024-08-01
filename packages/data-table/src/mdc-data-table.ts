@@ -6,7 +6,7 @@ import {
 } from '@material/data-table';
 import { MdcCheckbox } from '@aurelia-mdc-web/checkbox';
 import { closest } from '@material/dom/ponyfill';
-import { inject, customElement, INode, bindable, BindingMode, IPlatform } from 'aurelia';
+import { inject, customElement, INode, bindable, BindingMode } from 'aurelia';
 import { processContent, CustomElement } from '@aurelia/runtime-html';
 import template from './mdc-data-table.html';
 
@@ -28,7 +28,7 @@ const NAVIGATION_EVENT = 'mdcdatatable:navigation';
  */
 @inject(Element)
 @customElement({ name: 'mdc-data-table', template })
-@processContent(function processContent(node: INode, platform: IPlatform) {
+@processContent(function processContent(node: INode) {
   const element = node as HTMLElement;
   const table = element.querySelector('table');
   if (!table) {
@@ -75,11 +75,11 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   pagination: boolean;
 
   /** Caption for the page size selector */
-  @bindable
+  @bindable()
   rowsPerPageLabel: string = 'Rows per page';
 
   /** Page sizes available for selection, e.g. [10, 25, 100, 'All'] */
-  @bindable
+  @bindable()
   pageSizes: unknown[] = [10, 25, 100];
 
   /** Selected page size */

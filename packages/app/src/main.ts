@@ -96,7 +96,7 @@ Aurelia
   //   // optionally add the shared styles for all components
   //   sharedStyles: [shared]
   // }))
-  .register(StandardConfiguration, RouterConfiguration.customize({ useUrlFragmentHash: true, useHref: false }),
+  .register(RouterConfiguration.customize({ useUrlFragmentHash: true, useHref: false }),
     TooltipConfiguration.customize(c => { c.scrollHost = '.demo-panel-content'; }),
     MaterialConfiguration, SVGAnalyzer,
     Hljs, ApiViewer, ExampleViewer, JsonValueConverter, LoggerConfiguration.create({ level: LogLevel.debug }),

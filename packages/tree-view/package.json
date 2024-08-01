@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/tree-view",
-  "version": "9.2.1-au2",
+  "version": "9.2.2-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -40,7 +40,7 @@
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.2.1-au2",
-    "@aurelia-mdc-web/icon-button": "9.2.1-au2"
+    "@aurelia-mdc-web/base": "9.2.2-au2",
+    "@aurelia-mdc-web/icon-button": "9.2.2-au2"
   }
 }

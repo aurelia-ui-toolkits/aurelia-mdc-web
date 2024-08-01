@@ -1,4 +1,4 @@
-import { inject, customElement, children, bindable } from 'aurelia';
+import { inject, customElement, bindable, slotted, CustomElement } from 'aurelia';
 import { MDCChipSetFoundation, MDCChipSetAdapter, MDCChipSetEvents } from '@material/chips';
 import { announce } from '@material/dom/announce';
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
@@ -24,9 +24,12 @@ export class MdcChipSet extends MdcComponent<MDCChipSetFoundation> {
   @bindable({ set: booleanAttr })
   overflow: boolean;
 
-  // a list of MDC chips
-  @children({ query: controller => controller.host.querySelectorAll('mdc-chip') })
-  chips: MdcChip[];
+  @slotted({ query: 'mdc-chip' })
+  chipElements: HTMLElement[];
+
+  get chips(): MdcChip[] {
+    return (this.chipElements ?? []).map(x => CustomElement.for<MdcChip>(x).viewModel);
+  }
 
   handleChipInteraction(event: ChipInteractionEvent) {
     this.foundation?.handleChipInteraction(event);

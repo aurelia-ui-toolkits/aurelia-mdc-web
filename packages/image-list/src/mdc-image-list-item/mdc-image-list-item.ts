@@ -12,11 +12,11 @@ export class MdcImageListItem {
   constructor(private root: HTMLElement) { }
 
   /** Image url */
-  @bindable
+  @bindable()
   src: string;
 
   /** Image label */
-  @bindable
+  @bindable()
   label: string;
 
   hasAspect: boolean;

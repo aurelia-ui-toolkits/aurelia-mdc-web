@@ -9,10 +9,10 @@ import template from './mdc-drawer-header.html';
 export class MdcDrawerHeader {
 
   /** Optional. Title text element of the drawer. */
-  @bindable
+  @bindable()
   title: string;
 
   /** Optional. Subtitle text element of the drawer. */
-  @bindable
+  @bindable()
   subtitle: string;
 }

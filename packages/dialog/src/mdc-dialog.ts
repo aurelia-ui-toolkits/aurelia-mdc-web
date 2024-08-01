@@ -26,14 +26,14 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   mdcFocusTrap: MdcFocusTrap;
 
   /** Action returned when the dialog is closed via the scrim click */
-  @bindable
+  @bindable()
   scrimClickAction: string;
   scrimClickActionChanged() {
     this.foundation?.setScrimClickAction(this.scrimClickAction);
   }
 
   /** Action returned when the dialog is closed via the ESC key */
-  @bindable
+  @bindable()
   escapeKeyAction: string;
   escapeKeyActionChanged() {
     this.foundation?.setEscapeKeyAction(this.escapeKeyAction);

@@ -76,7 +76,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
   errors = new Map<IError, boolean>();
 
   /** Sets the select label */
-  @bindable
+  @bindable()
   label: string;
   labelChanged() {
     this.platform.domWriteQueue.queueTask(() => this.foundation?.layout());
@@ -120,7 +120,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
   fixed: boolean;
 
   /** Sets the margin between the select input and the dropdown */
-  @bindable
+  @bindable()
   anchorMargin: Partial<MDCMenuDistance>;
 
   /** Sets the select dropdown width to match content */

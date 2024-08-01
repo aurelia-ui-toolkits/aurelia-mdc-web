@@ -33,7 +33,7 @@ export class MdcImageList {
   textProtection: boolean;
 
   /** Number of columns in the list */
-  @bindable
+  @bindable()
   columns: string | Partial<IColumnsOptions>[];
   columnsChanged() {
     if (!this.columns) {

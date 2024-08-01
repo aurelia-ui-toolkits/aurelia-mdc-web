@@ -26,15 +26,15 @@ export class MdcBanner extends MdcComponent<MDCBannerFoundation> {
   centered: boolean;
 
   /** Sets banner icon */
-  @bindable
+  @bindable()
   icon: string;
 
   /** Sets the banner primary action text */
-  @bindable
+  @bindable()
   primaryAction: string;
 
   /** Sets the banner secondary action text */
-  @bindable
+  @bindable()
   secondaryAction: string;
 
   @bindable({ set: booleanAttr })

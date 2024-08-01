@@ -1,4 +1,4 @@
-import { IContainer, DI } from '@aurelia/kernel';
+import { IContainer } from '@aurelia/kernel';
 import { BannerConfiguration } from '@aurelia-mdc-web/banner';
 import { ButtonConfiguration } from '@aurelia-mdc-web/button';
 import { CardConfiguration } from '@aurelia-mdc-web/card';
@@ -64,7 +64,7 @@ export const AllConfiguration = {
   /**
    * Create a new container with this configuration applied to it.
    */
-  createContainer(): IContainer {
-    return this.register(DI.createContainer());
-  }
+  // createContainer(): IContainer {
+  //   return this.register(DI.createContainer());
+  // }
 };

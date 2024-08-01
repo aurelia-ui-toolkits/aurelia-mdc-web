@@ -16,7 +16,7 @@ strings.OPEN_EVENT = strings.OPEN_EVENT.toLowerCase();
 export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDCModalDrawerFoundation> {
 
   /** Set the drawer implementation */
-  @bindable
+  @bindable()
   type: 'standard' | 'dismissible' | 'modal' = 'standard';
 
   /**

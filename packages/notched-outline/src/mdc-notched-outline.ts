@@ -1,8 +1,7 @@
 import { MdcComponent } from '@aurelia-mdc-web/base';
 import { MDCNotchedOutlineFoundation, MDCNotchedOutlineAdapter, cssClasses } from '@material/notched-outline';
 import { MDCFloatingLabelFoundation } from '@material/floating-label';
-import { inject, customElement, children } from 'aurelia';
-import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
+import { inject, customElement, slotted } from 'aurelia';
 import template from './mdc-notched-outline.html';
 
 @inject(Element)
@@ -10,17 +9,17 @@ import template from './mdc-notched-outline.html';
 export class MdcNotchedOutline extends MdcComponent<MDCNotchedOutlineFoundation> {
   private notchElement_!: HTMLElement; // assigned in html
 
-  label?: MdcFloatingLabel;
+  label?: HTMLElement;
 
-  @children({ query: controller => controller.host.querySelectorAll(`.${MDCFloatingLabelFoundation.cssClasses.ROOT}`) })
-  labels: MdcFloatingLabel[];
+  @slotted({ query: `.${MDCFloatingLabelFoundation.cssClasses.ROOT}` })
+  labels: HTMLElement[];
   labelsChanged() {
     if (this.labels.length) {
       this.label = this.labels[0];
-      this.label.root.style.transitionDuration = '0s';
+      this.label.style.transitionDuration = '0s';
       this.root.classList.add(cssClasses.OUTLINE_UPGRADED);
       requestAnimationFrame(() => {
-        this.label!.root.style.transitionDuration = '';
+        this.label!.style.transitionDuration = '';
       });
     } else {
       this.label = undefined;

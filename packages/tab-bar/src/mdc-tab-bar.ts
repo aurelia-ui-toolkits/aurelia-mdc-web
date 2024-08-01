@@ -27,7 +27,7 @@ export class MdcTabBar extends MdcComponent<MDCTabBarFoundation> {
     this.foundation?.setUseAutomaticActivation(this.useAutomaticActivation);
   }
 
-  @bindable
+  @bindable()
   align: MdcTabScroller['align'];
 
   initialSyncWithDOM() {

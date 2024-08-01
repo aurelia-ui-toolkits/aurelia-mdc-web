@@ -29,7 +29,7 @@ export class MdcTopAppBar extends MdcComponent<MDCTopAppBarBaseFoundation> {
   @bindable({ set: booleanAttr })
   dense: boolean;
 
-  @bindable
+  @bindable()
   scrollTarget: EventTarget = window;
   scrollTargetChanged(newValue: EventTarget, oldValue: EventTarget) {
     // Remove scroll handler from the previous scroll target
