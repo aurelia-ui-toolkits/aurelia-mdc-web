@@ -1,5 +1,5 @@
 import { route } from '@aurelia/router';
-import inlineHtml from '!!raw-loader!./inline/inline.html';
+import inlineHtml from '!!raw-loader!./inline/inline.html?raw';
 import inlineCode from '!!raw-loader!./inline/inline';
 
 import { Inline } from './inline/inline';

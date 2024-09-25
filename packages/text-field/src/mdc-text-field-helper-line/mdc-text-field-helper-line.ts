@@ -1,5 +1,5 @@
 import { inject, customElement, bindable } from 'aurelia';
-import template from './mdc-text-field-helper-line.html';
+import template from './mdc-text-field-helper-line.html?raw';
 
 @inject(Element)
 @customElement({ name: 'mdc-text-field-helper-line', template })

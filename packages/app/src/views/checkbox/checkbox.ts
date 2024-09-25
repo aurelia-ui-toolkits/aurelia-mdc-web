@@ -1,4 +1,4 @@
-import template from '../component-viewer/component-viewer.html';
+import template from '../component-viewer/component-viewer.html?raw';
 import { ComponentViewer } from '../component-viewer/component-viewer';
 import { customElement } from 'aurelia';
 import { routes } from '@aurelia/router';

@@ -5,7 +5,7 @@ import { MdcChipAction } from '../mdc-chip-action/mdc-chip-action';
 import { MDCChipFoundation } from '@material/chips/chip/foundation';
 import { MDCChipEvents, MDCChipAdapter, MDCChipActionType, MDCChipActionFocusBehavior, MDCChipAnimation } from '@material/chips';
 import { ActionInteractionEvent, ActionNavigationEvent } from '@material/chips/chip/types';
-import template from './mdc-chip.html';
+import template from './mdc-chip.html?raw';
 
 (MDCChipEvents as Record<string, string>).INTERACTION = MDCChipEvents.INTERACTION.toLowerCase();
 (MDCChipEvents as Record<string, string>).ANIMATION = MDCChipEvents.ANIMATION.toLowerCase();

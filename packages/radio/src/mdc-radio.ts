@@ -1,7 +1,7 @@
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCRadioFoundation, MDCRadioAdapter } from '@material/radio';
 import { inject, customElement, CustomElement, bindable } from 'aurelia';
-import template from './mdc-radio.html';
+import template from './mdc-radio.html?raw';
 
 let radioId = 0;
 

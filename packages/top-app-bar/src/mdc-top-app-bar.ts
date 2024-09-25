@@ -2,7 +2,7 @@ import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTopAppBarFoundation, MDCTopAppBarAdapter, MDCTopAppBarBaseFoundation, cssClasses, strings, MDCShortTopAppBarFoundation, MDCFixedTopAppBarFoundation } from '@material/top-app-bar';
 import { SpecificEventListener } from '@material/base';
 import { inject, customElement, bindable } from 'aurelia';
-import template from './mdc-top-app-bar.html';
+import template from './mdc-top-app-bar.html?raw';
 
 @inject(Element)
 @customElement({ name: 'mdc-top-app-bar', template })

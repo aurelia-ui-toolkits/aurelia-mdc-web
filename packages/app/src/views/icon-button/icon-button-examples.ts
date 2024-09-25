@@ -1,9 +1,9 @@
-import densityHtml from '!!raw-loader!./density/density.html';
+import densityHtml from '!!raw-loader!./density/density.html?raw';
 import densitySass from '!!raw-loader!./density/density.scss';
-import themeHtml from '!!raw-loader!./theme/theme.html';
+import themeHtml from '!!raw-loader!./theme/theme.html?raw';
 import themeSass from '!!raw-loader!./theme/theme.scss';
-import toggleHtml from '!!raw-loader!./toggle/toggle.html';
-import buttonHtml from '!!raw-loader!./button/button.html';
+import toggleHtml from '!!raw-loader!./toggle/toggle.html?raw';
+import buttonHtml from '!!raw-loader!./button/button.html?raw';
 
 import { Density } from './density/density';
 import { Theme } from './theme/theme';

@@ -1,10 +1,10 @@
-import standardHtml from '!!raw-loader!./standard/standard.html';
+import standardHtml from '!!raw-loader!./standard/standard.html?raw';
 import standardCode from '!!raw-loader!./standard/standard';
-import dismissibleHtml from '!!raw-loader!./dismissible/dismissible.html';
+import dismissibleHtml from '!!raw-loader!./dismissible/dismissible.html?raw';
 import dismissibleCode from '!!raw-loader!./dismissible/dismissible';
-import modalHtml from '!!raw-loader!./modal/modal.html';
+import modalHtml from '!!raw-loader!./modal/modal.html?raw';
 import modalCode from '!!raw-loader!./modal/modal';
-import rtlHtml from '!!raw-loader!./rtl/rtl.html';
+import rtlHtml from '!!raw-loader!./rtl/rtl.html?raw';
 import rtlCode from '!!raw-loader!./rtl/rtl';
 
 import { Dismissible } from './dismissible/dismissible';

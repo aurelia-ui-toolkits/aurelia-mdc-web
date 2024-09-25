@@ -1,6 +1,6 @@
-import multipleHtml from '!!raw-loader!./multiple/multiple.html';
+import multipleHtml from '!!raw-loader!./multiple/multiple.html?raw';
 import multipleCode from '!!raw-loader!./multiple/multiple';
-import singleHtml from '!!raw-loader!./single/single.html';
+import singleHtml from '!!raw-loader!./single/single.html?raw';
 import singleCode from '!!raw-loader!./single/single';
 import { route } from '@aurelia/router';
 

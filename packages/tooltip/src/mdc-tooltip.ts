@@ -2,7 +2,7 @@ import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses, PositionWithCaret, numbers } from '@material/tooltip';
 import { inject, customElement, bindable } from 'aurelia';
 import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
-import template from './mdc-tooltip.html';
+import template from './mdc-tooltip.html?raw';
 
 /**
  * @selector mdc-tooltip

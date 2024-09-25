@@ -3,7 +3,7 @@ import { MDCListFoundation, MDCListAdapter, strings, cssClasses, MDCListIndex, M
 import { closest, matches } from '@material/dom/ponyfill';
 import { MdcListItem, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';
 import { customElement, bindable, inject, CustomElement, slotted } from 'aurelia';
-import template from './mdc-list.html';
+import template from './mdc-list.html?raw';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
 strings.SELECTION_CHANGE_EVENT = strings.SELECTION_CHANGE_EVENT.toLowerCase();

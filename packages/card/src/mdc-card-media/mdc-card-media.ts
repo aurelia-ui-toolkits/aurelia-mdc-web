@@ -1,6 +1,6 @@
 import { customElement, bindable } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
-import template from './mdc-card-media.html';
+import template from './mdc-card-media.html?raw';
 
 /**
  * @selector mdc-card-media

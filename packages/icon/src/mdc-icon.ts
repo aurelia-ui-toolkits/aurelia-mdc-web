@@ -1,5 +1,5 @@
 import { customElement, inject } from 'aurelia';
-import template from './mdc-icon.html';
+import template from './mdc-icon.html?raw';
 
 /**
  * @selector mdc-icon

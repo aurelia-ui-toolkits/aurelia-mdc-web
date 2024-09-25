@@ -3,7 +3,7 @@ import { MDCFoundation } from '@material/base';
 import { customElement, bindable, inject, ViewFactory, INode } from 'aurelia';
 import { ITreeNode } from './i-tree-node';
 import { processContent } from '@aurelia/runtime-html';
-import template from './mdc-tree-view.html';
+import template from './mdc-tree-view.html?raw';
 
 let id = 0;
 const templateLookup: Record<string, string> = {};

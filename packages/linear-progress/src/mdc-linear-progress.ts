@@ -1,7 +1,7 @@
 import { MdcComponent, number, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCLinearProgressFoundation, MDCLinearProgressAdapter, WithMDCResizeObserver } from '@material/linear-progress';
 import { inject, customElement, bindable } from 'aurelia';
-import template from './mdc-linear-progress.html';
+import template from './mdc-linear-progress.html?raw';
 
 /**
  * @selector mdc-linear-progress

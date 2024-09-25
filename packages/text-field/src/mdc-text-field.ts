@@ -14,7 +14,7 @@ import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter
 import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 import { processContent, IPlatform, CustomAttribute, CustomElement } from '@aurelia/runtime-html';
 import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
-import template from './mdc-text-field.html';
+import template from './mdc-text-field.html?raw';
 
 let textFieldId = 0;
 const leadingIconSelector = '.mdc-text-field__icon--leading';

@@ -1,6 +1,6 @@
 import { customElement, bindable, inject } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
-import template from './mdc-image-list.html';
+import template from './mdc-image-list.html?raw';
 
 export interface IColumnsOptions {
   media: string;

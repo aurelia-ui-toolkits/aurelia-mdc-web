@@ -2,7 +2,7 @@ import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCCheckboxFoundation, MDCCheckboxAdapter } from '@material/checkbox';
 import { getCorrectEventName } from '@material/animation/util';
 import { customElement, inject, bindable, BindingMode, CustomElement } from 'aurelia';
-import template from './mdc-checkbox.html';
+import template from './mdc-checkbox.html?raw';
 
 let checkboxId = 0;
 

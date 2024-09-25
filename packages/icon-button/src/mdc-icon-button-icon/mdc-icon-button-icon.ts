@@ -1,6 +1,6 @@
 import { customElement, bindable } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
-import template from './mdc-icon-button-icon.html';
+import template from './mdc-icon-button-icon.html?raw';
 
 /**
  * Optional. Used as a toggle icon button element.

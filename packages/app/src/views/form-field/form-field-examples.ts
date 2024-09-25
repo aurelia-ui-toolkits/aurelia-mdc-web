@@ -1,8 +1,8 @@
-import checkboxHtml from '!!raw-loader!./checkbox/checkbox.html';
-import nowrapHtml from '!!raw-loader!./nowrap/nowrap.html';
-import radioHtml from '!!raw-loader!./radio/radio.html';
-import spaceBetweenHtml from '!!raw-loader!./space-between/space-between.html';
-import switchHtml from '!!raw-loader!./switch/switch.html';
+import checkboxHtml from '!!raw-loader!./checkbox/checkbox.html?raw';
+import nowrapHtml from '!!raw-loader!./nowrap/nowrap.html?raw';
+import radioHtml from '!!raw-loader!./radio/radio.html?raw';
+import spaceBetweenHtml from '!!raw-loader!./space-between/space-between.html?raw';
+import switchHtml from '!!raw-loader!./switch/switch.html?raw';
 
 import { Checkbox } from './checkbox/checkbox';
 import { Nowrap } from './nowrap/nowrap';

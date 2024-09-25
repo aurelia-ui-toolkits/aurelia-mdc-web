@@ -1,7 +1,7 @@
 import { customElement, inject, BindingMode, bindable } from 'aurelia';
 import { MDCIconButtonToggleFoundation, MDCIconButtonToggleAdapter, MDCIconButtonToggleEventDetail, strings } from '@material/icon-button';
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
-import template from './mdc-icon-button.html';
+import template from './mdc-icon-button.html?raw';
 
 /**
  * @selector button[mdc-icon-button]

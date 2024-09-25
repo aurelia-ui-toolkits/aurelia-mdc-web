@@ -1,7 +1,7 @@
 import { ComponentViewer } from '../component-viewer/component-viewer';
 import { customElement } from 'aurelia';
 import { routes } from '@aurelia/router';
-import template from '../component-viewer/component-viewer.html';
+import template from '../component-viewer/component-viewer.html?raw';
 import { DialogExamples } from './dialog-examples';
 import { ApiViewer } from '../api-viewer/api-viewer';
 

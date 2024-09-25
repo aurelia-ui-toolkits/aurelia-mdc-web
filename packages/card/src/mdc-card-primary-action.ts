@@ -1,6 +1,6 @@
 import { customElement, bindable } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
-import template from './mdc-card-primary-action.html';
+import template from './mdc-card-primary-action.html?raw';
 
 /**
  * Optional. The main tappable area of the card. Typically contains most (or all) card content except mdc-card-actions.

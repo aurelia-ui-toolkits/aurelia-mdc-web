@@ -3,7 +3,7 @@ import { MDCSegmentedButtonAdapter, MDCSegmentedButtonFoundation, SegmentDetail 
 import { events } from '@material/segmented-button/segmented-button/constants';
 import { inject, customElement, bindable, slotted, CustomElement } from 'aurelia';
 import { MdcSegmentedButtonSegment } from './mdc-segmented-button-segment/mdc-segmented-button-segment';
-import template from './mdc-segmented-button.html';
+import template from './mdc-segmented-button.html?raw';
 
 /**
  * @selector mdc-segmented-button

@@ -2,7 +2,7 @@ import { cssClasses, strings } from '@material/list';
 import { customElement, bindable, inject, INode } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { processContent } from '@aurelia/runtime-html';
-import template from './mdc-list-item.html';
+import template from './mdc-list-item.html?raw';
 
 const ENTER = 13;
 const SPACE = 32;

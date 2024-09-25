@@ -6,7 +6,7 @@ import { MDCChipTrailingActionFoundation } from '@material/chips/action/trailing
 import { MDCChipPrimaryActionFoundation } from '@material/chips/action/primary-foundation';
 import { GRAPHIC_SELECTED_WIDTH_STYLE_PROP, computePrimaryActionRippleClientRect } from '@material/chips/action/component-ripple';
 import { bindable, customElement, inject } from 'aurelia';
-import template from './mdc-chip-action.html';
+import template from './mdc-chip-action.html?raw';
 
 (MDCChipActionEvents as Record<string, string>).INTERACTION = MDCChipActionEvents.INTERACTION.toLowerCase();
 (MDCChipActionEvents as Record<string, string>).NAVIGATION = MDCChipActionEvents.NAVIGATION.toLowerCase();

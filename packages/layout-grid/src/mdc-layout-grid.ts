@@ -1,6 +1,6 @@
 import { customElement, inject, bindable } from 'aurelia';
 import { booleanAttr, number } from '@aurelia-mdc-web/base';
-import template from './mdc-layout-grid.html';
+import template from './mdc-layout-grid.html?raw';
 
 /**
  * @selector mdc-layout-grid

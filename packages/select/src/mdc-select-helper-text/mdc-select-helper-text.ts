@@ -1,7 +1,7 @@
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { helperTextCssClasses, MDCSelectHelperTextFoundation, MDCSelectHelperTextAdapter } from '@material/select';
 import { customElement, inject, bindable } from 'aurelia';
-import template from './mdc-select-helper-text.html';
+import template from './mdc-select-helper-text.html?raw';
 
 export const mdcHelperTextCssClasses = {
   ROOT: 'mdc-select-helper-text'

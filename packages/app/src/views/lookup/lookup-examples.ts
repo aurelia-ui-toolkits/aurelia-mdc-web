@@ -1,10 +1,10 @@
-import basicHtml from '!!raw-loader!./basic/basic.html';
+import basicHtml from '!!raw-loader!./basic/basic.html?raw';
 import basicCode from '!!raw-loader!./basic/basic';
-import functionHtml from '!!raw-loader!./function/function.html';
+import functionHtml from '!!raw-loader!./function/function.html?raw';
 import functionCode from '!!raw-loader!./function/function';
-import objectsHtml from '!!raw-loader!./objects/objects.html';
+import objectsHtml from '!!raw-loader!./objects/objects.html?raw';
 import objectsCode from '!!raw-loader!./objects/objects';
-import validationHtml from '!!raw-loader!./validation/validation.html';
+import validationHtml from '!!raw-loader!./validation/validation.html?raw';
 import validationCode from '!!raw-loader!./validation/validation';
 
 import { Basic } from './basic/basic';

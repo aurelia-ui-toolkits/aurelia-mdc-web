@@ -1,6 +1,6 @@
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { customElement, bindable } from 'aurelia';
-import template from './mdc-deprecated-list-divider.html';
+import template from './mdc-deprecated-list-divider.html?raw';
 
 /**
  * Optional, for list divider element

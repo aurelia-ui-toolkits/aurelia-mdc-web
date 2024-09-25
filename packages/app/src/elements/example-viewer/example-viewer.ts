@@ -1,5 +1,5 @@
 import { customElement, bindable } from 'aurelia';
-import template from './example-viewer.html';
+import template from './example-viewer.html?raw';
 
 interface ITab {
   label: string;

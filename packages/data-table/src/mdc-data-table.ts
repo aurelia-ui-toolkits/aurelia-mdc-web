@@ -8,7 +8,7 @@ import { MdcCheckbox } from '@aurelia-mdc-web/checkbox';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, INode, bindable, BindingMode } from 'aurelia';
 import { processContent, CustomElement } from '@aurelia/runtime-html';
-import template from './mdc-data-table.html';
+import template from './mdc-data-table.html?raw';
 
 events.ROW_CLICK = events.ROW_CLICK.toLowerCase();
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();

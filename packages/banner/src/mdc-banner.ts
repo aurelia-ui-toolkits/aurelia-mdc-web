@@ -1,7 +1,7 @@
 import { booleanAttr, MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
 import { CloseReason, events, MDCBannerActionEventDetail, MDCBannerAdapter, MDCBannerCloseEventDetail, MDCBannerFoundation } from '@material/banner';
 import { inject, customElement, bindable } from 'aurelia';
-import template from './mdc-banner.html';
+import template from './mdc-banner.html?raw';
 
 events.CLOSED = events.CLOSED.toLowerCase();
 events.CLOSING = events.CLOSING.toLowerCase();

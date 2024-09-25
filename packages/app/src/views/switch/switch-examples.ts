@@ -1,7 +1,7 @@
-import basicHtml from '!!raw-loader!./basic/basic.html';
-import customHtml from '!!raw-loader!./custom/custom.html';
+import basicHtml from '!!raw-loader!./basic/basic.html?raw';
+import customHtml from '!!raw-loader!./custom/custom.html?raw';
 import customScss from '!!raw-loader!./custom/custom.scss';
-import themeHtml from '!!raw-loader!./theme/theme.html';
+import themeHtml from '!!raw-loader!./theme/theme.html?raw';
 import themeScss from '!!raw-loader!./theme/theme.scss';
 
 import { Basic } from './basic/basic';

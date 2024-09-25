@@ -3,7 +3,7 @@ import { MDCTabScrollerFoundation, MDCTabScrollerAdapter, util } from '@material
 import { matches } from '@material/dom/ponyfill';
 import { MdcTab } from '../tab/mdc-tab';
 import { inject, customElement, bindable, CustomElement, slotted } from 'aurelia';
-import template from './mdc-tab-scroller.html';
+import template from './mdc-tab-scroller.html?raw';
 
 @inject(Element)
 @customElement({ name: 'mdc-tab-scroller', template })

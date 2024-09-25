@@ -4,7 +4,7 @@ import { inject, customElement, bindable, CustomElement } from 'aurelia';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
 import { MdcRipple } from '@aurelia-mdc-web/ripple';
 import { EventType, SpecificEventListener } from '@material/base';
-import template from './mdc-slider.html';
+import template from './mdc-slider.html?raw';
 
 events.INPUT = events.INPUT.toLowerCase();
 events.CHANGE = events.CHANGE.toLowerCase();

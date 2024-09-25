@@ -3,7 +3,7 @@ import { MDCListFoundation, MDCListAdapter, strings, MDCListIndex, MDCListSelect
 import { closest, matches } from '@material/dom/ponyfill';
 import { MdcDeprecatedListItem, IMdcListActionEventDetail } from './mdc-deprecated-list-item/mdc-deprecated-list-item';
 import { inject, customElement, bindable, CustomElement, slotted } from 'aurelia';
-import template from './mdc-deprecated-list.html';
+import template from './mdc-deprecated-list.html?raw';
 
 strings.ACTION_EVENT = strings.ACTION_EVENT.toLowerCase();
 

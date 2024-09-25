@@ -4,7 +4,7 @@ import { IMdcTabElement } from './tab/mdc-tab';
 import { MdcTabScroller } from './scroller/mdc-tab-scroller';
 import { MDCTabInteractionEvent, MDCTabFoundation } from '@material/tab';
 import { inject, customElement, bindable } from 'aurelia';
-import template from './mdc-tab-bar.html';
+import template from './mdc-tab-bar.html?raw';
 
 // aurelia is case insensitive
 MDCTabFoundation.strings.INTERACTED_EVENT = MDCTabFoundation.strings.INTERACTED_EVENT.toLowerCase();

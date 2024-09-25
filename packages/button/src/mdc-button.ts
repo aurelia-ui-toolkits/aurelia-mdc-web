@@ -1,6 +1,6 @@
 import { customElement, bindable, inject } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
-import template from './mdc-button.html'
+import template from './mdc-button.html?raw';
 
 /**
  * @selector button[mdc-button]

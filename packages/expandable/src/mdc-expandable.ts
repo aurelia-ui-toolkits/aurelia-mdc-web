@@ -1,7 +1,7 @@
 import { customElement, inject, bindable, IPlatform } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 import { CustomElement } from '@aurelia/runtime-html';
-import template from './mdc-expandable.html';
+import template from './mdc-expandable.html?raw';
 
 const OPEN_CHANGED_EVENT = 'mdcexpandable:open-changed';
 const ENTER = 13;

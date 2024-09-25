@@ -5,7 +5,7 @@ import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
 import { IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
 import { closest } from '@material/dom/ponyfill';
 import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
-import template from './mdc-lookup.html';
+import template from './mdc-lookup.html?raw';
 
 const inputEvents = ['click', 'input', 'keydown', 'blur'];
 const bodyEvents = ['touchstart', 'mousedown', 'click'];

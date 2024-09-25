@@ -1,7 +1,7 @@
-import defaultHtml from '!!raw-loader!./default/default.html';
-import filterHtml from '!!raw-loader!./filter/filter.html';
-import inputHtml from '!!raw-loader!./input/input.html';
-import filterBindingHtml from '!!raw-loader!./filter-binding/filter-binding.html';
+import defaultHtml from '!!raw-loader!./default/default.html?raw';
+import filterHtml from '!!raw-loader!./filter/filter.html?raw';
+import inputHtml from '!!raw-loader!./input/input.html?raw';
+import filterBindingHtml from '!!raw-loader!./filter-binding/filter-binding.html?raw';
 import filterBindingCode from '!!raw-loader!./filter-binding/filter-binding';
 
 import { Default } from './default/default';

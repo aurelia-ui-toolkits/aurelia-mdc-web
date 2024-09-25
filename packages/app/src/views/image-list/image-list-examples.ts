@@ -1,6 +1,6 @@
-import standardHtml from '!!raw-loader!./standard/standard.html';
+import standardHtml from '!!raw-loader!./standard/standard.html?raw';
 import standardSass from '!!raw-loader!./standard/standard.scss';
-import masonryHtml from '!!raw-loader!./masonry/masonry.html';
+import masonryHtml from '!!raw-loader!./masonry/masonry.html?raw';
 
 import { Standard } from './standard/standard';
 import { Masonry } from './masonry/masonry';

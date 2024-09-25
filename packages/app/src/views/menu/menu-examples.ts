@@ -1,9 +1,9 @@
-import basicHtml from '!!raw-loader!./basic/basic.html';
-import groupHtml from '!!raw-loader!./group/group.html';
-import groupSvgHtml from '!!raw-loader!./group-svg/group-svg.html';
-import cardHtml from '!!raw-loader!./card/card.html';
+import basicHtml from '!!raw-loader!./basic/basic.html?raw';
+import groupHtml from '!!raw-loader!./group/group.html?raw';
+import groupSvgHtml from '!!raw-loader!./group-svg/group-svg.html?raw';
+import cardHtml from '!!raw-loader!./card/card.html?raw';
 import cardSass from '!!raw-loader!./card/card.scss';
-import hierarchicalHtml from '!!raw-loader!./hierarchical/hierarchical.html';
+import hierarchicalHtml from '!!raw-loader!./hierarchical/hierarchical.html?raw';
 
 import basicCode from '!!raw-loader!./basic/basic';
 import groupCode from '!!raw-loader!./group/group';

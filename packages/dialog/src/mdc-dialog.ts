@@ -2,7 +2,7 @@ import { MdcComponent, booleanAttr, MdcFocusTrap } from '@aurelia-mdc-web/base';
 import { MDCDialogFoundation, strings, MDCDialogAdapter, util, MDCDialogCloseEventDetail } from '@material/dialog';
 import { customElement, inject, bindable } from 'aurelia';
 import { closest, matches } from '@material/dom/ponyfill';
-import template from './mdc-dialog.html';
+import template from './mdc-dialog.html?raw';
 
 const LAYOUT_EVENTS = ['resize', 'orientationchange'];
 let dialogId = 0;

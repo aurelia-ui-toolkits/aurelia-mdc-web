@@ -1,6 +1,6 @@
 import { customElement, inject, bindable } from 'aurelia';
 import { number } from '@aurelia-mdc-web/base';
-import template from './mdc-image-list-item.html';
+import template from './mdc-image-list-item.html?raw';
 
 /**
  * Mandatory. Indicates each item in an Image List.

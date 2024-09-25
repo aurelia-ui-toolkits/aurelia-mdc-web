@@ -4,7 +4,7 @@ import { announce } from '@material/dom/announce';
 import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MdcChip } from '../mdc-chip/mdc-chip';
 import { ChipAnimationEvent, ChipInteractionEvent, ChipNavigationEvent } from '@material/chips/chip-set/types';
-import template from './mdc-chip-set.html';
+import template from './mdc-chip-set.html?raw';
 
 (MDCChipSetEvents as Record<string, string>).INTERACTION = MDCChipSetEvents.INTERACTION.toLowerCase();
 (MDCChipSetEvents as Record<string, string>).REMOVAL = MDCChipSetEvents.REMOVAL.toLowerCase();

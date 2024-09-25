@@ -14,7 +14,7 @@ import { MDCSelectAdapterAurelia } from './mdc-select-adapter-aurelia';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { processContent, BindingMode, CustomElement, CustomAttribute } from '@aurelia/runtime-html';
 import { MdcDefaultSelectConfiguration } from './mdc-default-select-configuration';
-import template from './mdc-select.html';
+import template from './mdc-select.html?raw';
 
 strings.CHANGE_EVENT = strings.CHANGE_EVENT.toLowerCase();
 

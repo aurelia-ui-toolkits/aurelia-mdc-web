@@ -2,7 +2,7 @@ import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
 import { MDCTabFoundation, MDCTabAdapter, MDCTabInteractionEventDetail, MDCTabDimensions } from '@material/tab';
 import { MdcTabIndicator } from '../indicator/mdc-tab-indicator';
 import { inject, customElement, bindable } from 'aurelia';
-import template from './mdc-tab.html';
+import template from './mdc-tab.html?raw';
 
 let tabId = 0;
 

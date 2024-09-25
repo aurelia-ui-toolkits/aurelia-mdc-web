@@ -1,9 +1,9 @@
-import basicHtml from '!!raw-loader!./basic/basic.html';
+import basicHtml from '!!raw-loader!./basic/basic.html?raw';
 import basicCode from '!!raw-loader!./basic/basic';
-import customHtml from '!!raw-loader!./custom/custom.html';
+import customHtml from '!!raw-loader!./custom/custom.html?raw';
 import customSass from '!!raw-loader!./custom/custom.scss';
 import customCode from '!!raw-loader!./custom/custom';
-import themeHtml from '!!raw-loader!./theme/theme.html';
+import themeHtml from '!!raw-loader!./theme/theme.html?raw';
 import themeSass from '!!raw-loader!./theme/theme.scss';
 import themeCode from '!!raw-loader!./theme/theme';
 

@@ -2,7 +2,7 @@ import { booleanAttr } from '@aurelia-mdc-web/base';
 import { customElement, bindable } from 'aurelia';
 import { MdcListItemLeading } from '../mdc-list-item/mdc-list-item-leading';
 import { MdcListItemTrailing } from '../mdc-list-item/mdc-list-item-trailing';
-import template from './mdc-list-divider.html';
+import template from './mdc-list-divider.html?raw';
 
 /**
  * Optional, for list divider element
