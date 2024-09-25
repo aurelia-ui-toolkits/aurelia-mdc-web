@@ -8,7 +8,7 @@ const sassLoader = {
   loader: 'sass-loader',
   options: {
     sassOptions: {
-      includePaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')]
+      loadPaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')]
     }
   }
 };
