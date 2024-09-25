@@ -1,4 +1,4 @@
-declare module '*.html?raw' {
+declare module '*.html' {
   import { IContainer } from '@aurelia/kernel';
   import { IBindableDescription } from '@aurelia/runtime';
   export const name: string;
