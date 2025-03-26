@@ -41,4 +41,8 @@ export class Examples {
     }
   }
 
+  sorted() {
+    alert('sorted');
+  }
+
 }

@@ -1,6 +1,6 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
-export { MdcDataTable } from './mdc-data-table';
+export { MdcDataTable, MDCDataTableColumnsResizedEventDetail } from './mdc-data-table';
 
 export function configure(config: FrameworkConfiguration) {
   config.globalResources([

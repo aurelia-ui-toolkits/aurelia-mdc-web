@@ -16,6 +16,10 @@ events.SORTED = events.SORTED.toLowerCase();
 events.UNSELECTED_ALL = events.UNSELECTED_ALL.toLowerCase();
 const NAVIGATION_EVENT = 'mdcdatatable:navigation';
 
+export interface MDCDataTableColumnsResizedEventDetail {
+  widths: string[];
+}
+
 /**
  * Use `pagination-total` replaceable part to customise pagination total label.
  * @selector mdc-data-table
@@ -63,6 +67,8 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
 
   header: HTMLElement;
   content: HTMLElement;
+  columnResized: boolean;
+  private mutationObserver: MutationObserver;
 
   /** Shows pagination footer */
   @bindable.booleanAttr
@@ -85,8 +91,13 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   @bindable.booleanAttr
   stickyHeader: boolean;
 
+  /** Turns off checkbox handling by the MDC framework */
   @bindable.booleanAttr
   manualCheckboxHandling: boolean;
+
+  /** Turns on automatic column widths saving to localStorage */
+  @bindable.booleanAttr
+  saveColumnWidths: boolean;
 
   @computedFrom('pageSize', 'recordsCount', 'activePage')
   get paginationPosition(): 'first' | 'between' | 'last' | undefined {
@@ -181,8 +192,8 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   /**
    * @return Returns array of header row cell elements.
    */
-  getHeaderCells(): Element[] {
-    return [].slice.call(this.root.querySelectorAll(selectors.HEADER_CELL)) as Element[];
+  getHeaderCells(): HTMLElement[] {
+    return [].slice.call(this.root.querySelectorAll(selectors.HEADER_CELL)) as HTMLElement[];
   }
 
   /**
@@ -227,6 +238,17 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     this.header = this.root.querySelector<HTMLElement>(`.${cssClasses.HEADER_ROW}`)!;
     this.content = this.root.querySelector<HTMLElement>(`.${cssClasses.CONTENT}`)!;
     this.header.addEventListener('click', this);
+    this.header.querySelectorAll('th[resizeable]').forEach(x => {
+      const resizeHandle = document.createElement('div');
+      resizeHandle.addEventListener('mousedown', (event) => this.startColumnResize(event, x as HTMLElement));
+      x.insertBefore(document.createElement('div'), x.firstChild).classList.add('mdc-data-table__header-cell__hover-indicator');
+      x.appendChild(resizeHandle).classList.add('mdc-data-table__header-cell__resize-handle');
+    });
+    if (this.saveColumnWidths) {
+      this.restoreColumnWidths();
+      this.mutationObserver = new MutationObserver(() => this.restoreColumnWidths());
+      this.mutationObserver.observe(this.content, { childList: true, subtree: false });
+    }
 
     if (!this.manualCheckboxHandling) {
       this.header.addEventListener('change', this);
@@ -242,6 +264,11 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     await Promise.all(rowCheckboxList.map(async x => x.initialised));
   }
 
+  public restoreColumnWidths() {
+    const widths = JSON.parse(localStorage.getItem(`mdc-data-table-${this.root.id}-column-widths`) ?? '[]');
+    this.setColumnWidths(widths);
+  }
+
   initialSyncWithDOM() {
     if (!this.manualCheckboxHandling) {
       const rowCheckboxList = this.rowCheckboxList;
@@ -254,10 +281,75 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     this.foundation?.layout();
   }
 
+  private startColumnResize(event: MouseEvent, headerCell: HTMLElement): void {
+    this.columnResized = true;
+    const startX = event.clientX;
+    const resizeHandle = event.target as HTMLElement;
+    const initialHandlePosition = resizeHandle.offsetLeft;
+
+    // Create a visual indicator for the resize handle
+    const handleIndicator = document.createElement('div');
+    handleIndicator.classList.add('mdc-data-table__header-cell__resize-handle-indicator');
+    handleIndicator.style.left = `${initialHandlePosition}px`;
+    handleIndicator.style.height = `${headerCell.offsetHeight}px`;
+    document.body.style.cursor = 'col-resize';
+    headerCell.classList.add('mdc-data-table__header-cell--resizing');
+    headerCell.appendChild(handleIndicator);
+
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      const deltaX = moveEvent.clientX - startX;
+      handleIndicator.style.left = `${Math.max(initialHandlePosition + deltaX, headerCell.clientLeft)}px`;
+    };
+
+    const onMouseUp = () => {
+      const finalDeltaX = parseInt(handleIndicator.style.left, 10) - initialHandlePosition;
+      const newWidth = Math.max(5, headerCell.offsetWidth + finalDeltaX); // Minimum width of 5px
+
+      // Apply the new width to the column
+      headerCell.style.minWidth = headerCell.style.maxWidth = `${newWidth}px`;
+      this.content.querySelectorAll(`tr td:nth-child(${Array.from(headerCell.parentElement!.children).indexOf(headerCell) + 1})`)
+        .forEach((cell: HTMLElement) => {
+          cell.style.minWidth = cell.style.maxWidth = `${newWidth}px`;
+        });
+
+      // Clean up
+      handleIndicator.remove();
+      this.columnResized = false;
+      document.body.style.cursor = '';
+      headerCell.classList.remove('mdc-data-table__header-cell--resizing');
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+
+      // Save the new widths if required
+      const widths = this.getHeaderCells().map(x => x.style.minWidth);
+      if (this.saveColumnWidths) {
+        localStorage.setItem(`mdc-data-table-${this.root.id}-column-widths`, JSON.stringify(widths));
+      }
+
+      this.emit<MDCDataTableColumnsResizedEventDetail>('mdcdatatable:columnsresized', { widths }, true);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  }
+
   destroy() {
     this.header.removeEventListener('change', this);
     this.header.removeEventListener('click', this);
     this.content.removeEventListener('change', this);
+    this.mutationObserver?.disconnect();
+  }
+
+  public setColumnWidths(widths: string[]) {
+    if (!widths || widths.length === 0) {
+      return;
+    }
+    this.getHeaderCells().forEach((x, i) => {
+      x.style.minWidth = x.style.maxWidth = widths[i];
+      this.content.querySelectorAll(`tr td:nth-child(${i + 1})`).forEach((cell: HTMLElement) => {
+        cell.style.minWidth = cell.style.maxWidth = widths[i];
+      });
+    });
   }
 
   getDefaultFoundation() {
