@@ -1,0 +1,64 @@
+@use "@material/data-table";
+
+
+.mdc-data-table__header-cell {
+  &--resizing {
+    .mdc-data-table__header-cell__hover-indicator {
+      display: block!important;
+    }
+
+    // this puts the column above the other columns so that resizing indicator is visible
+    z-index: 2 !important;
+  }
+
+  &__resize-handle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    cursor: col-resize;
+    z-index: 1;
+    background-color: transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    transition: background-color 0.2s;
+  }
+
+  .mdc-data-table__header-cell__hover-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    left: 0;
+    background-color: data-table.$row-hover-fill-color;
+    display: none;
+  }
+
+  .mdc-data-table__header-cell__resize-handle-indicator {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    background-color: var(--mdc-theme-primary);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  &:has(.mdc-data-table__header-cell__resize-handle-indicator) {
+    overflow: visible;
+  }
+}
+
+.mdc-data-table:not(.mdc-data-table--column-resized) {
+  .mdc-data-table__header-cell[resizeable] {
+    &:hover {
+      .mdc-data-table__header-cell__hover-indicator {
+        display: block;
+      }
+    }
+  }
+}
+
+.mdc-data-table--column-resized {
+  user-select: none;
+}

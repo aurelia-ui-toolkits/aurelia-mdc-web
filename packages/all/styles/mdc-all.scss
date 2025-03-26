@@ -47,6 +47,7 @@
 @use "@material/tooltip/styles" as tooltip-styles;
 @use "@material/banner/styles" as banner-styles;
 @use '@material/segmented-button/styles' as segmented-button-styles;
+@use "../src/data-table/styles" as data-table;
 
 @include slider.core-styles;
 @include list-evolution-mixins.core-styles;
