@@ -1,3 +1,12 @@
+# [9.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.8...v9.1.0) (2025-03-28)
+
+
+### Features
+
+* **data-table:** enable column resizing ([30d7bf8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/30d7bf886246f45e93be32ad8a367a15c713ea2f))
+
+
+
 ## [9.0.8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.7...v9.0.8) (2024-05-08)
 
 
