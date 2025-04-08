@@ -1,3 +1,12 @@
+## [9.1.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.0...v9.1.1) (2025-04-08)
+
+
+### Bug Fixes
+
+* **lookup:** autoselect only when filter is not empty ([0208ecb](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/0208ecb4fa321243c661d081361583284f7b477f))
+
+
+
 # [9.1.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.0.8...v9.1.0) (2025-03-28)
 
 
