@@ -1,6 +1,6 @@
-import standardHtml from '!!raw-loader!./standard/standard.html?raw';
-import selectionHtml from '!!raw-loader!./selection/selection.html?raw';
-import paginationHtml from '!!raw-loader!./pagination/pagination.html?raw';
+import standardHtml from './standard/standard.html?raw';
+import selectionHtml from './selection/selection.html?raw';
+import paginationHtml from './pagination/pagination.html?raw';
 
 import { Standard } from './standard/standard';
 import { Selection } from './selection/selection';

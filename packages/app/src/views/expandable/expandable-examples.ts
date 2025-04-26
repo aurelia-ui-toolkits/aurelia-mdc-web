@@ -1,7 +1,7 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
-import childHtml from '!!raw-loader!./child/child.html?raw';
-import accordionHtml from '!!raw-loader!./accordion/accordion.html?raw';
-import independentAccordionsHtml from '!!raw-loader!./independent-accordions/independent-accordions.html?raw';
+import basicHtml from './basic/basic.html?raw';
+import childHtml from './child/child.html?raw';
+import accordionHtml from './accordion/accordion.html?raw';
+import independentAccordionsHtml from './independent-accordions/independent-accordions.html?raw';
 
 import { Basic } from './basic/basic';
 import { Child } from './child/child';

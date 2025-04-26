@@ -1,9 +1,9 @@
-import inlineHtml from '!!raw-loader!./inline/inline.html?raw';
-import inlineCode from '!!raw-loader!./inline/inline';
-import sheetHtml from '!!raw-loader!./sheet/sheet.html?raw';
-import sheetCode from '!!raw-loader!./sheet/sheet';
-import viaServiceHtml from '!!raw-loader!./via-service/via-service.html?raw';
-import viaServiceCode from '!!raw-loader!./via-service/via-service';
+import inlineHtml from './inline/inline.html?raw';
+import inlineCode from './inline/inline.ts?raw';
+import sheetHtml from './sheet/sheet.html?raw';
+import sheetCode from './sheet/sheet.ts?raw';
+import viaServiceHtml from './via-service/via-service.html?raw';
+import viaServiceCode from './via-service/via-service.ts?raw';
 
 import { Inline } from './inline/inline';
 import { ViaService } from './via-service/via-service';

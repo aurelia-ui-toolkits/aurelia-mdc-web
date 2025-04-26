@@ -39,7 +39,7 @@ import { TooltipConfiguration } from '@aurelia-mdc-web/tooltip';
 import { BaseConfiguration } from '@aurelia-mdc-web/base';
 import { TreeViewConfiguration } from '@aurelia-mdc-web/tree-view';
 
-let registered = false;
+let registered = false; //
 
 export const AllConfiguration = {
   /**

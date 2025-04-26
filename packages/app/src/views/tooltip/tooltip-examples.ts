@@ -1,5 +1,5 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
-import positionsHtml from '!!raw-loader!./positions/positions.html?raw';
+import basicHtml from './basic/basic.html?raw';
+import positionsHtml from './positions/positions.html?raw';
 
 import { Basic } from './basic/basic';
 import { Positions } from './positions/positions';

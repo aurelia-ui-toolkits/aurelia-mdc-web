@@ -1,7 +1,7 @@
-import indeterminateHtml from '!!raw-loader!./indeterminate/indeterminate.html?raw';
-import indeterminateSass from '!!raw-loader!./indeterminate/indeterminate.scss';
-import determinateHtml from '!!raw-loader!./determinate/determinate.html?raw';
-import determinateSass from '!!raw-loader!./determinate/determinate.scss';
+import indeterminateHtml from './indeterminate/indeterminate.html?raw';
+import indeterminateSass from './indeterminate/indeterminate.scss?raw';
+import determinateHtml from './determinate/determinate.html?raw';
+import determinateSass from './determinate/determinate.scss?raw';
 
 import {Indeterminate} from './indeterminate/indeterminate';
 import {Determinate} from './determinate/determinate';

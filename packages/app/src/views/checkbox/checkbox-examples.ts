@@ -1,8 +1,8 @@
-import defaultHtml from '!!raw-loader!./default/default.html?raw';
-import indeterminateHtml from '!!raw-loader!./indeterminate/indeterminate.html?raw';
-import labelHtml from '!!raw-loader!./label/label.html?raw';
-import themeHtml from '!!raw-loader!./theme/theme.html?raw';
-import themeSass from '!!raw-loader!./theme/theme.scss';
+import defaultHtml from './default/default.html?raw';
+import indeterminateHtml from './indeterminate/indeterminate.html?raw';
+import labelHtml from './label/label.html?raw';
+import themeHtml from './theme/theme.html?raw';
+import themeSass from './theme/theme.scss?raw';
 
 import { Default } from './default/default';
 import { Indeterminate } from './indeterminate/indeterminate';

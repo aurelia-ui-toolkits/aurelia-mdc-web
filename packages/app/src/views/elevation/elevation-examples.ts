@@ -1,6 +1,6 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
-import basicCode from '!!raw-loader!./basic/basic';
-import basicSass from '!!raw-loader!./basic/basic.scss';
+import basicHtml from './basic/basic.html?raw';
+import basicCode from './basic/basic.ts?raw';
+import basicSass from './basic/basic.scss?raw';
 import { Basic } from './basic/basic';
 
 export class ElevationExamples {

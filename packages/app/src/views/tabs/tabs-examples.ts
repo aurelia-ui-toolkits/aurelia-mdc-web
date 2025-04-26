@@ -1,13 +1,13 @@
-import dynamicHtml from '!!raw-loader!./dynamic/dynamic.html?raw';
-import fadingIndicatorHtml from '!!raw-loader!./fading-indicator/fading-indicator.html?raw';
-import fixedHtml from '!!raw-loader!./fixed/fixed.html?raw';
-import iconIndicatorHtml from '!!raw-loader!./icon-indicator/icon-indicator.html?raw';
-import iconIndicatorWithLabelHtml from '!!raw-loader!./icon-indicator-with-label/icon-indicator-with-label.html?raw';
-import iconWithLabelHtml from '!!raw-loader!./icon-with-label/icon-with-label.html?raw';
-import noInitialSelectionHtml from '!!raw-loader!./no-initial-selection/no-initial-selection.html?raw';
-import noLabelsHtml from '!!raw-loader!./no-labels/no-labels.html?raw';
-import scrollingHtml from '!!raw-loader!./scrolling/scrolling.html?raw';
-import stackedHtml from '!!raw-loader!./stacked/stacked.html?raw';
+import dynamicHtml from './dynamic/dynamic.html?raw';
+import fadingIndicatorHtml from './fading-indicator/fading-indicator.html?raw';
+import fixedHtml from './fixed/fixed.html?raw';
+import iconIndicatorHtml from './icon-indicator/icon-indicator.html?raw';
+import iconIndicatorWithLabelHtml from './icon-indicator-with-label/icon-indicator-with-label.html?raw';
+import iconWithLabelHtml from './icon-with-label/icon-with-label.html?raw';
+import noInitialSelectionHtml from './no-initial-selection/no-initial-selection.html?raw';
+import noLabelsHtml from './no-labels/no-labels.html?raw';
+import scrollingHtml from './scrolling/scrolling.html?raw';
+import stackedHtml from './stacked/stacked.html?raw';
 
 import { Dynamic } from './dynamic/dynamic';
 import { FadingIndicator } from './fading-indicator/fading-indicator';

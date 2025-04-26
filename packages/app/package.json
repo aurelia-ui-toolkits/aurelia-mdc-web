@@ -4,8 +4,11 @@
   "private": true,
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "webpack serve --progress",
+    "start:vite": "vite",
+    "build:vite": "vite build",
     "prebuild": "rimraf --glob dist/*.{js,css,map,html}",
     "build:app": "npm run prebuild && webpack --progress",
     "analyze": "npm run prebuild && webpack --env production --analyze",

@@ -1,6 +1,6 @@
 import hljs from 'highlight.js';
 import { customElement, bindable, inject, } from 'aurelia';
-import { template } from './hljs.html?raw';
+import template from './hljs.html?raw';
 
 @inject(Element)
 @customElement({ name: 'hljs', template })

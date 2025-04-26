@@ -1,16 +1,16 @@
-import customHtml from '!!raw-loader!./custom/custom.html?raw';
-import customSass from '!!raw-loader!./custom/custom.scss';
-import leadingIconHtml from '!!raw-loader!./leading-icon/leading-icon.html?raw';
-import noLabelHtml from '!!raw-loader!./no-label/no-label.html?raw';
-import objectsBindingHtml from '!!raw-loader!./objects-binding/objects-binding.html?raw';
-import standardHtml from '!!raw-loader!./standard/standard.html?raw';
-import validationHtml from '!!raw-loader!./validation/validation.html?raw';
-import delayedHtml from '!!raw-loader!./delayed/delayed.html?raw';
+import customHtml from './custom/custom.html?raw';
+import customSass from './custom/custom.scss?raw';
+import leadingIconHtml from './leading-icon/leading-icon.html?raw';
+import noLabelHtml from './no-label/no-label.html?raw';
+import objectsBindingHtml from './objects-binding/objects-binding.html?raw';
+import standardHtml from './standard/standard.html?raw';
+import validationHtml from './validation/validation.html?raw';
+import delayedHtml from './delayed/delayed.html?raw';
 
-import customCode from '!!raw-loader!./custom/custom';
-import delayedCode from '!!raw-loader!./delayed/delayed';
-import objectsBindingCode from '!!raw-loader!./objects-binding/objects-binding';
-import validationCode from '!!raw-loader!./validation/validation';
+import customCode from './custom/custom.ts?raw';
+import delayedCode from './delayed/delayed.ts?raw';
+import objectsBindingCode from './objects-binding/objects-binding.ts?raw';
+import validationCode from './validation/validation.ts?raw';
 
 import { Custom } from './custom/custom';
 import { LeadingIcon } from './leading-icon/leading-icon';

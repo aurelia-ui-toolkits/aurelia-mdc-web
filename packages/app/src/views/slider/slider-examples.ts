@@ -1,10 +1,10 @@
-import continuousHtml from '!!raw-loader!./continuous/continuous.html?raw';
-import customRangeHtml from '!!raw-loader!./custom-range/custom-range.html?raw';
-import discreteHtml from '!!raw-loader!./discrete/discrete.html?raw';
-import discreteTicksHtml from '!!raw-loader!./discrete-ticks/discrete-ticks.html?raw';
-import rangeHtml from '!!raw-loader!./range/range.html?raw';
-import themeHtml from '!!raw-loader!./theme/theme.html?raw';
-import themeScss from '!!raw-loader!./theme/theme.scss';
+import continuousHtml from './continuous/continuous.html?raw';
+import customRangeHtml from './custom-range/custom-range.html?raw';
+import discreteHtml from './discrete/discrete.html?raw';
+import discreteTicksHtml from './discrete-ticks/discrete-ticks.html?raw';
+import rangeHtml from './range/range.html?raw';
+import themeHtml from './theme/theme.html?raw';
+import themeScss from './theme/theme.scss?raw';
 
 import { Continuous } from './continuous/continuous';
 import { CustomRange } from './custom-range/custom-range';

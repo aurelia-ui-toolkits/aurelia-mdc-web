@@ -1,8 +1,8 @@
-import bodyHtml from '!!raw-loader!./body/body.html?raw';
-import captionHtml from '!!raw-loader!./caption/caption.html?raw';
-import headlineHtml from '!!raw-loader!./headline/headline.html?raw';
-import pageHtml from '!!raw-loader!./page/page.html?raw';
-import subtitleHtml from '!!raw-loader!./subtitle/subtitle.html?raw';
+import bodyHtml from './body/body.html?raw';
+import captionHtml from './caption/caption.html?raw';
+import headlineHtml from './headline/headline.html?raw';
+import pageHtml from './page/page.html?raw';
+import subtitleHtml from './subtitle/subtitle.html?raw';
 
 import { Body } from './body/body';
 import { Caption } from './caption/caption';

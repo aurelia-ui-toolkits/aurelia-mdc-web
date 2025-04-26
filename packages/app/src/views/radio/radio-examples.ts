@@ -1,9 +1,9 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
-import groupHtml from '!!raw-loader!./group/group.html?raw';
-import customHtml from '!!raw-loader!./custom/custom.html?raw';
-import customSass from '!!raw-loader!./custom/custom.scss';
-import setHtml from '!!raw-loader!./set/set.html?raw';
-import accessibilityHtml from '!!raw-loader!./accessibility/accessibility.html?raw';
+import basicHtml from './basic/basic.html?raw';
+import groupHtml from './group/group.html?raw';
+import customHtml from './custom/custom.html?raw';
+import customSass from './custom/custom.scss?raw';
+import setHtml from './set/set.html?raw';
+import accessibilityHtml from './accessibility/accessibility.html?raw';
 
 import { Basic } from './basic/basic';
 import { Group } from './group/group';

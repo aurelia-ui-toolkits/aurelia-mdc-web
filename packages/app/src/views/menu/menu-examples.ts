@@ -1,15 +1,15 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
-import groupHtml from '!!raw-loader!./group/group.html?raw';
-import groupSvgHtml from '!!raw-loader!./group-svg/group-svg.html?raw';
-import cardHtml from '!!raw-loader!./card/card.html?raw';
-import cardSass from '!!raw-loader!./card/card.scss';
-import hierarchicalHtml from '!!raw-loader!./hierarchical/hierarchical.html?raw';
+import basicHtml from './basic/basic.html?raw';
+import groupHtml from './group/group.html?raw';
+import groupSvgHtml from './group-svg/group-svg.html?raw';
+import cardHtml from './card/card.html?raw';
+import cardSass from './card/card.scss?raw';
+import hierarchicalHtml from './hierarchical/hierarchical.html?raw';
 
-import basicCode from '!!raw-loader!./basic/basic';
-import groupCode from '!!raw-loader!./group/group';
-import groupSvgCode from '!!raw-loader!./group-svg/group-svg';
-import cardCode from '!!raw-loader!./card/card';
-import hierarchicalCode from '!!raw-loader!./hierarchical/hierarchical';
+import basicCode from './basic/basic.ts?raw';
+import groupCode from './group/group.ts?raw';
+import groupSvgCode from './group-svg/group-svg.ts?raw';
+import cardCode from './card/card.ts?raw';
+import hierarchicalCode from './hierarchical/hierarchical.ts?raw';
 
 import { Basic } from './basic/basic';
 import { Group } from './group/group';

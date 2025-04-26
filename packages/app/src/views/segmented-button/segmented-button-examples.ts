@@ -1,7 +1,7 @@
-import multipleHtml from '!!raw-loader!./multiple/multiple.html?raw';
-import multipleCode from '!!raw-loader!./multiple/multiple';
-import singleHtml from '!!raw-loader!./single/single.html?raw';
-import singleCode from '!!raw-loader!./single/single';
+import multipleHtml from './multiple/multiple.html?raw';
+import multipleCode from './multiple/multiple.ts?raw';
+import singleHtml from './single/single.html?raw';
+import singleCode from './single/single.ts?raw';
 import { route } from '@aurelia/router';
 
 import { Multiple } from './multiple/multiple';

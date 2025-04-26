@@ -20,6 +20,12 @@
   "contributors": [],
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
   "typings": "dist/types/index.d.ts",
   "repository": {
     "type": "git",

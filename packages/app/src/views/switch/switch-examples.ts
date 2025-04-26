@@ -1,8 +1,8 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
-import customHtml from '!!raw-loader!./custom/custom.html?raw';
-import customScss from '!!raw-loader!./custom/custom.scss';
-import themeHtml from '!!raw-loader!./theme/theme.html?raw';
-import themeScss from '!!raw-loader!./theme/theme.scss';
+import basicHtml from './basic/basic.html?raw';
+import customHtml from './custom/custom.html?raw';
+import customScss from './custom/custom.scss?raw';
+import themeHtml from './theme/theme.html?raw';
+import themeScss from './theme/theme.scss?raw';
 
 import { Basic } from './basic/basic';
 import { Custom } from './custom/custom';

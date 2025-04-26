@@ -1,9 +1,9 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
-import columnsHtml from '!!raw-loader!./columns/columns.html?raw';
-import basicSass from '!!raw-loader!./basic/basic.scss';
-import alignmentHtml from '!!raw-loader!./alignment/alignment.html?raw';
-import cellAlignmentHtml from '!!raw-loader!./cell-alignment/cell-alignment.html?raw';
-import cellAlignmentSass from '!!raw-loader!./cell-alignment/cell-alignment.scss';
+import basicHtml from './basic/basic.html?raw';
+import columnsHtml from './columns/columns.html?raw';
+import basicSass from './basic/basic.scss?raw';
+import alignmentHtml from './alignment/alignment.html?raw';
+import cellAlignmentHtml from './cell-alignment/cell-alignment.html?raw';
+import cellAlignmentSass from './cell-alignment/cell-alignment.scss?raw';
 
 import { Basic } from './basic/basic';
 import { Columns } from './columns/columns';

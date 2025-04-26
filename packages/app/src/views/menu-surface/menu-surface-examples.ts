@@ -1,6 +1,6 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
-import basicSass from '!!raw-loader!./basic/basic.scss';
-import basicCode from '!!raw-loader!./basic/basic';
+import basicHtml from './basic/basic.html?raw';
+import basicSass from './basic/basic.scss?raw';
+import basicCode from './basic/basic.ts?raw';
 import { Basic } from './basic/basic';
 
 export class MenuSurfaceExamples {

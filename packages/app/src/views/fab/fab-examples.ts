@@ -1,15 +1,15 @@
-import themeHtml from '!!raw-loader!./theme/theme.html?raw';
-import themeSass from '!!raw-loader!./theme/theme.scss';
-import customHtml from '!!raw-loader!./custom/custom.html?raw';
-import customSass from '!!raw-loader!./custom/custom.scss';
-import extendedHtml from '!!raw-loader!./extended/extended.html?raw';
-import extendedSass from '!!raw-loader!./extended/extended.scss';
-import shapedHtml from '!!raw-loader!./shaped/shaped.html?raw';
-import shapedSass from '!!raw-loader!./shaped/shaped.scss';
-import accessibilityHtml from '!!raw-loader!./accessibility/accessibility.html?raw';
-import animationHtml from '!!raw-loader!./animation/animation.html?raw';
-import miniHtml from '!!raw-loader!./mini/mini.html?raw';
-import defaultHtml from '!!raw-loader!./default/default.html?raw';
+import themeHtml from './theme/theme.html?raw';
+import themeSass from './theme/theme.scss?raw';
+import customHtml from './custom/custom.html?raw';
+import customSass from './custom/custom.scss?raw';
+import extendedHtml from './extended/extended.html?raw';
+import extendedSass from './extended/extended.scss?raw';
+import shapedHtml from './shaped/shaped.html?raw';
+import shapedSass from './shaped/shaped.scss?raw';
+import accessibilityHtml from './accessibility/accessibility.html?raw';
+import animationHtml from './animation/animation.html?raw';
+import miniHtml from './mini/mini.html?raw';
+import defaultHtml from './default/default.html?raw';
 
 import { Theme } from './theme/theme';
 import { Custom } from './custom/custom';

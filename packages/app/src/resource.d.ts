@@ -24,5 +24,15 @@ declare module '*.html?raw' {
   export function register(container: IContainer);
 }
 
+declare module '*.ts?raw' {
+  export const template: string;
+  export default template;
+}
+
+declare module '*.scss?raw' {
+  export const template: string;
+  export default template;
+}
+
 declare module '*.css';
 declare module '*.scss';

@@ -1,11 +1,11 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
-import basicCode from '!!raw-loader!./basic/basic';
-import customHtml from '!!raw-loader!./custom/custom.html?raw';
-import customSass from '!!raw-loader!./custom/custom.scss';
-import customCode from '!!raw-loader!./custom/custom';
-import themeHtml from '!!raw-loader!./theme/theme.html?raw';
-import themeSass from '!!raw-loader!./theme/theme.scss';
-import themeCode from '!!raw-loader!./theme/theme';
+import basicHtml from './basic/basic.html?raw';
+import basicCode from './basic/basic.ts?raw';
+import customHtml from './custom/custom.html?raw';
+import customSass from './custom/custom.scss?raw';
+import customCode from './custom/custom.ts?raw';
+import themeHtml from './theme/theme.html?raw';
+import themeSass from './theme/theme.scss?raw';
+import themeCode from './theme/theme.ts?raw';
 
 import { Basic } from './basic/basic';
 import { Custom } from './custom/custom';

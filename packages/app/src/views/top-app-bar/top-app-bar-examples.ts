@@ -1,13 +1,13 @@
-import collapsedHtml from '!!raw-loader!./collapsed/collapsed.html?raw';
-import denseHtml from '!!raw-loader!./dense/dense.html?raw';
-import fixedHtml from '!!raw-loader!./fixed/fixed.html?raw';
-import prominentHtml from '!!raw-loader!./prominent/prominent.html?raw';
-import shortHtml from '!!raw-loader!./short/short.html?raw';
-import standardHtml from '!!raw-loader!./standard/standard.html?raw';
-import tabsHtml from '!!raw-loader!./tabs/tabs.html?raw';
-import tabsScss from '!!raw-loader!./tabs/tabs.scss';
-import themeHtml from '!!raw-loader!./theme/theme.html?raw';
-import themeScss from '!!raw-loader!./theme/theme.scss';
+import collapsedHtml from './collapsed/collapsed.html?raw';
+import denseHtml from './dense/dense.html?raw';
+import fixedHtml from './fixed/fixed.html?raw';
+import prominentHtml from './prominent/prominent.html?raw';
+import shortHtml from './short/short.html?raw';
+import standardHtml from './standard/standard.html?raw';
+import tabsHtml from './tabs/tabs.html?raw';
+import tabsScss from './tabs/tabs.scss?raw';
+import themeHtml from './theme/theme.html?raw';
+import themeScss from './theme/theme.scss?raw';
 
 import { Collapsed } from './collapsed/collapsed';
 import { Dense } from './dense/dense';

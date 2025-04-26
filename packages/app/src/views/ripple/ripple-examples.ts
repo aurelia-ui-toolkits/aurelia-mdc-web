@@ -1,4 +1,4 @@
-import basicHtml from '!!raw-loader!./basic/basic.html?raw';
+import basicHtml from './basic/basic.html?raw';
 
 import { Basic } from './basic/basic';
 
