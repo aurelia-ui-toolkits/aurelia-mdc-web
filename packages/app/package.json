@@ -6,8 +6,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "webpack serve --progress",
-    "start:vite": "vite",
+    "start:webpack": "webpack serve --progress",
+    "start": "vite",
     "build:vite": "vite build",
     "prebuild": "rimraf --glob dist/*.{js,css,map,html}",
     "build:app": "npm run prebuild && webpack --progress",

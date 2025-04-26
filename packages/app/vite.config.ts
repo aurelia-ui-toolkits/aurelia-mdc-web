@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import aurelia from '@aurelia/vite-plugin';
-import { name, version } from "./package.json";
+// import { name, version } from "./package.json";
 import path from 'path';
 
 // const htmlImport = {
@@ -23,25 +23,28 @@ import path from 'path';
 // }
 
 export default defineConfig({
-  define: {
-    pkgJson: { name, version },
-  },
-  resolve: {
-    alias: [
-      { find: '@aurelia-mdc-web/all', replacement: path.resolve(__dirname, '../all/src') },
-      { find: '@aurelia-mdc-web/button', replacement: path.resolve(__dirname, '../button/src') },
-    ]
-    // alias: [
-    //   { find: /@aurelia-mdc-web\/button\/(.*).html(.*)/, replacement: path.resolve(__dirname, '../button/src/$1.html$2') },
-    // ]
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-
-      }
-    }
-  },
+  // define: {
+  //   pkgJson: { name, version },
+  // },
+  // resolve: {
+  //   alias: [
+  //     // { find: '@aurelia-mdc-web/all', replacement: path.resolve(__dirname, '../all/src') },
+  //     // { find: '@aurelia-mdc-web/button', replacement: path.resolve(__dirname, '../button/src') },
+  //   ]
+  //   // alias: [
+  //   //   { find: /@aurelia-mdc-web\/button\/(.*).html(.*)/, replacement: path.resolve(__dirname, '../button/src/$1.html$2') },
+  //   // ]
+  // },
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       api: 'modern',
+  //       // loadPaths: [path.resolve(__dirname, 'node_modules'),'../all']
+  //       // api: 'legacy',
+  //       // includePaths: [path.resolve(__dirname, 'node_modules')],
+  //     }
+  //   }
+  // },
   server: {
     open: !process.env.CI,
     port: 9000,
@@ -49,13 +52,13 @@ export default defineConfig({
   esbuild: {
     target: 'es2022',
   },
-  optimizeDeps: {
-    esbuildOptions: {
-      loader: {
-        '.html': 'text',
-      },
-    },
-  },
+  // optimizeDeps: {
+  //   esbuildOptions: {
+  //     loader: {
+  //       '.html': 'text',
+  //     },
+  //   },
+  // },
   plugins: [
     // htmlImport,
     aurelia({

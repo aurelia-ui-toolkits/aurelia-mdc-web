@@ -13,5 +13,11 @@
     "noUnusedParameters": false,
     "newLine": "lf"
   },
+  "include": [
+    "src"
+  ],
+  "files": [
+    "src/resource.d.ts"
+  ],
   "exclude": []
 }
