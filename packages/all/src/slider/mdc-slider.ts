@@ -2,9 +2,9 @@ import { MdcComponent, booleanAttr, number } from '../base';
 import { MDCSliderAdapter, Thumb, cssClasses, TickMark, MDCSliderChangeEventDetail, events, attributes } from '@material/slider';
 import { inject, customElement, bindable, CustomElement } from 'aurelia';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
-import { MdcRipple } from '../ripple';
 import { EventType, SpecificEventListener } from '@material/base';
 import template from './mdc-slider.html?raw';
+import { MdcRipple } from '../ripple/mdc-ripple';
 
 events.INPUT = events.INPUT.toLowerCase();
 events.CHANGE = events.CHANGE.toLowerCase();

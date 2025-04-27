@@ -4,10 +4,14 @@ import template from './mdc-text-field-helper-line.html?raw';
 @inject(Element)
 @customElement({ name: 'mdc-text-field-helper-line', template })
 export class MdcTextFieldHelperLine {
+  constructor() {
+    this.attachedPromise = this.createAttachedPromise();
+  }
+
   @bindable()
   errors: string[];
 
-  attachedPromise = this.createAttachedPromise();
+  attachedPromise: Promise<unknown>
   protected attachedPromiseResolve: (value?: unknown) => void;
 
   private async createAttachedPromise() {

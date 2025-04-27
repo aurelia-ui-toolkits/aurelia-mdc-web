@@ -1,7 +1,5 @@
 import { MdcComponent, booleanAttr, number } from '../base';
 import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuItemComponentEventDetail, strings, cssClasses } from '@material/menu';
-import { MdcMenuSurface } from '../menu-surface';
-import { MdcList, IMdcListActionEvent, MdcListItem } from '../list';
 import { MDCListIndex } from '@material/list';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';
@@ -9,6 +7,9 @@ import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, bindable, BindingMode } from 'aurelia';
 import { CustomElement } from '@aurelia/runtime-html';
 import template from './mdc-menu.html?raw';
+import { MdcList } from '../list/mdc-list';
+import { IMdcListActionEvent, MdcListItem } from '../list/mdc-list-item/mdc-list-item';
+import { MdcMenuSurface } from '../menu-surface/mdc-menu-surface';
 
 strings.SELECTED_EVENT = strings.SELECTED_EVENT.toLowerCase();
 

@@ -278,7 +278,7 @@ export class MdcSelectValueObserver implements INodeObserver {
 
   private stop(): void {
     this.optionsWereSet = false;
-    this.nodeObserver!.disconnect();
+    this.nodeObserver?.disconnect();
     this.arrayObserver?.unsubscribe(this);
     this.nodeObserver
       = this.arrayObserver

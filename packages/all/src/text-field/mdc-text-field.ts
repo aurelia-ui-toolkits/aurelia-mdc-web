@@ -5,9 +5,6 @@ import {
 } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
 import { MdcComponent, IValidatedElement, IError, booleanAttr, number } from '../base';
-import { MdcFloatingLabel } from '../floating-label';
-import { MdcLineRipple } from '../line-ripple';
-import { MdcNotchedOutline } from '../notched-outline';
 import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './mdc-text-field-icon';
 import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';
@@ -15,6 +12,9 @@ import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-fi
 import { processContent, IPlatform, CustomAttribute, CustomElement } from '@aurelia/runtime-html';
 import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 import template from './mdc-text-field.html?raw';
+import { MdcFloatingLabel } from '../floating-label/mdc-floating-label';
+import { MdcLineRipple } from '../line-ripple/mdc-line-ripple';
+import { MdcNotchedOutline } from '../notched-outline/mdc-notched-outline';
 
 let textFieldId = 0;
 const leadingIconSelector = '.mdc-text-field__icon--leading';
@@ -54,7 +54,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable()
   label: string;
   labelChanged() {
-    this.platform.domWriteQueue.queueTask(() => {
+    this.platform.domQueue.queueTask(() => {
       if (this.foundation) {
         const openNotch = this.foundation.shouldFloat;
         this.foundation.notchOutline(openNotch);

@@ -4,11 +4,11 @@ import {
   MDCDataTableFoundation, selectors, MDCDataTableAdapter, events, cssClasses, RowClickEventData,
   dataAttributes, MDCDataTableRowSelectionChangedEventDetail, SortValue, messages
 } from '@material/data-table';
-import { MdcCheckbox } from '../checkbox';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, INode, bindable, BindingMode } from 'aurelia';
 import { processContent, CustomElement } from '@aurelia/runtime-html';
 import template from './mdc-data-table.html?raw';
+import { MdcCheckbox } from '../checkbox/mdc-checkbox';
 
 events.ROW_CLICK = events.ROW_CLICK.toLowerCase();
 events.ROW_SELECTION_CHANGED = events.ROW_SELECTION_CHANGED.toLowerCase();

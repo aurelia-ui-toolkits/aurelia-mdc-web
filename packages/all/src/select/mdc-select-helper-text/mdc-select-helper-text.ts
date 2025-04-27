@@ -22,21 +22,6 @@ export class MdcSelectHelperText extends MdcComponent<MDCSelectHelperTextFoundat
   @bindable()
   errors: string[];
 
-  attachedPromise = this.createAttachedPromise();
-  protected attachedPromiseResolve: (value?: unknown) => void;
-
-  private async createAttachedPromise() {
-    return new Promise(r => this.attachedPromiseResolve = r);
-  }
-
-  attached() {
-    this.attachedPromiseResolve();
-  }
-
-  detached() {
-    this.attachedPromise = this.createAttachedPromise();
-  }
-
   // Provided for access by MDCTextField component
   get foundationForTextField(): MDCSelectHelperTextFoundation {
     return this.foundation!;

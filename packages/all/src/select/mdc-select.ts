@@ -3,18 +3,18 @@ import { cssClasses, MDCSelectFoundationMap, MDCSelectEventDetail, strings } fro
 import { inject, customElement, INode, IPlatform, bindable } from 'aurelia';
 import { MdcSelectIcon, IMdcSelectIconElement, mdcIconStrings } from './mdc-select-icon';
 import { MdcSelectHelperText, mdcHelperTextCssClasses } from './mdc-select-helper-text/mdc-select-helper-text';
-import { MdcLineRipple } from '../line-ripple';
-import { MdcFloatingLabel } from '../floating-label';
 import { MDCNotchedOutline } from '@material/notched-outline';
-import { MdcMenu } from '../menu';
 import { MDCMenuItemEvent, Corner } from '@material/menu';
-import { MdcListItem } from '../list';
 import { MDCSelectFoundationAurelia } from './mdc-select-foundation-aurelia';
 import { MDCSelectAdapterAurelia } from './mdc-select-adapter-aurelia';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { processContent, BindingMode, CustomElement, CustomAttribute } from '@aurelia/runtime-html';
 import { MdcDefaultSelectConfiguration } from './mdc-default-select-configuration';
 import template from './mdc-select.html?raw';
+import { MdcFloatingLabel } from '../floating-label/mdc-floating-label';
+import { MdcLineRipple } from '../line-ripple/mdc-line-ripple';
+import { MdcListItem } from '../list/mdc-list-item/mdc-list-item';
+import { MdcMenu } from '../menu/mdc-menu';
 
 strings.CHANGE_EVENT = strings.CHANGE_EVENT.toLowerCase();
 
@@ -185,7 +185,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
     const nextSibling = this.root.nextElementSibling;
     if (nextSibling?.tagName === mdcHelperTextCssClasses.ROOT.toUpperCase()) {
       this.helperText = CustomElement.for<MdcSelectHelperText>(nextSibling).viewModel;
-      await this.helperText.attachedPromise;
+      await this.helperText.initialised;
     }
   }
 

@@ -1,4 +1,5 @@
 <template class="mdc-tree-view">
+  <import from="./nodeFilter"></import>
   <ul class="mdc-tree-view__list">
     <li repeat.for="$node of nodes | nodeFilter:filter" class="mdc-tree-view__list-item">
       <let $tree.bind="element"></let>

@@ -14,6 +14,7 @@ import path from 'path';
 //    * @returns {{code: string}}
 //    */
 //   transform(code, id) {
+//     console.log('!!!!!!!!!!!!!!!!!', id);
 //     if (/@aurelia-mdc-web.*\.html$/g.test(id)) {
 //       console.log('!!!!!!!!!!!!!!!!!', id);
 //       code = `export default \`${code}\``
@@ -42,7 +43,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         api: 'modern',
-        loadPaths:['../all']
+        // loadPaths:['../all']
         // api: 'legacy',
         // includePaths: ['node_modules'],
         // loadPaths: [path.resolve(__dirname, 'node_modules'),'../all'],
@@ -58,18 +59,19 @@ export default defineConfig({
   esbuild: {
     target: 'es2022',
   },
-  // optimizeDeps: {
-  //   esbuildOptions: {
-  //     loader: {
-  //       '.html': 'text',
-  //     },
-  //   },
-  // },
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.html?import': 'text',
+        '.html?raw': 'text',
+      },
+    },
+  },
   plugins: [
     // htmlImport,
     aurelia({
       useDev: true,
-      include: ['src/**/*.{ts,js,html}', 'node_modules/@aurelia-mdc-web/**/*.{js,ts,html}'],
+      include: ['src/**/*.{ts,js,html}', '../all/src/**/*.{ts,js,html}'],
     }),
     nodePolyfills()
   ]

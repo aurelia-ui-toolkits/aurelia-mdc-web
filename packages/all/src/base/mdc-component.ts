@@ -1,11 +1,13 @@
 import { MDCFoundation } from '@material/base';
 
 export abstract class MdcComponent<FoundationType extends MDCFoundation> {
-  constructor(public root: HTMLElement) { }
+  constructor(public root: HTMLElement) {
+    this.initialised = this.createInitiliasedPromise();
+  }
 
   foundation?: FoundationType;
 
-  initialised = this.createInitiliasedPromise();
+  initialised: Promise<unknown>;
   protected initialisedResolve: (value?: unknown) => void;
 
   private async createInitiliasedPromise() {

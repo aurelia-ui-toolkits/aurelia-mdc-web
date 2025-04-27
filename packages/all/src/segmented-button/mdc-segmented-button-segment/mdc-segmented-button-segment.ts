@@ -3,8 +3,8 @@ import { CustomElement } from '@aurelia/runtime-html';
 import { inject, customElement, bindable } from 'aurelia';
 import { MDCSegmentedButtonSegmentAdapter, MDCSegmentedButtonSegmentFoundation, SegmentDetail } from '@material/segmented-button';
 import { events } from '@material/segmented-button/segmented-button/constants';
-import { MdcSegmentedButton } from '..';
 import template from './mdc-segmented-button-segment.html?raw';
+import { MdcSegmentedButton } from '../mdc-segmented-button';
 
 /**
  * @selector button[mdc-segmented-button-segment]

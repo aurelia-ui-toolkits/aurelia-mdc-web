@@ -79,7 +79,6 @@ import { ButtonPage } from './views/button/button';
 import { Tabs } from './views/tabs/tabs';
 import { TreeView } from './views/tree-view/tree-view';
 import { TreeViewExamples } from './views/tree-view/tree-view-examples';
-import { TooltipConfiguration } from '@aurelia-mdc-web/all';
 import { Banner } from './views/banner/banner';
 import { BannerExamples } from './views/banner/banner-examples';
 import { SegmentedButton } from './views/segmented-button/segmented-button';
@@ -96,8 +95,9 @@ Aurelia
   //   sharedStyles: [shared]
   // }))
   .register(RouterConfiguration.customize({ useUrlFragmentHash: true, useHref: false }),
-    TooltipConfiguration.customize(c => { c.scrollHost = '.demo-panel-content'; }),
-    MaterialConfiguration, SVGAnalyzer,
+    MaterialConfiguration.customize(c => {
+      c.tooltip.scrollHost = '.demo-panel-content';
+    }), SVGAnalyzer,
     Hljs, ApiViewer, ExampleViewer, JsonValueConverter, LoggerConfiguration.create({ level: LogLevel.debug }),
     ValidationHtmlConfiguration.customize(o => o.ValidationControllerFactoryType = MdcValidationControllerFactory), ValidationConfiguration
   )
