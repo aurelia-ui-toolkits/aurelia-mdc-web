@@ -3,7 +3,7 @@ import Aurelia, { CustomAttribute, IAurelia, resolve } from 'aurelia';
 import { MDCDialogCloseEvent, strings } from '@material/dialog';
 import { CustomElement } from '@aurelia/runtime-html';
 import { Constructable } from '@aurelia/kernel';
-import { IMdcRippleElement, MdcRipple } from '@aurelia-mdc-web/ripple';
+import { IMdcRippleElement, MdcRipple } from '../ripple';
 
 /** Dialog service open method options */
 export interface IMdcDialogOptions<T extends { loading: (params: any) => any }> {

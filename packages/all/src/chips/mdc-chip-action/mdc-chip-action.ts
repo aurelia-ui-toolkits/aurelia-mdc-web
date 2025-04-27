@@ -1,5 +1,5 @@
 import { closest } from '@material/dom/ponyfill';
-import { booleanAttr, MdcComponent } from '@aurelia-mdc-web/base';
+import { booleanAttr, MdcComponent } from '../../base';
 import { MDCChipActionAdapter, MDCChipActionFoundation, MDCChipActionCssClasses, MDCChipActionEvents, MDCChipActionFocusBehavior } from '@material/chips';
 import { MDCRippleCapableSurface } from '@material/ripple';
 import { MDCChipTrailingActionFoundation } from '@material/chips/action/trailing-foundation';

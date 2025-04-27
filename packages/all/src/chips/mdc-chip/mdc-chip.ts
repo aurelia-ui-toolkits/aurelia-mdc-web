@@ -1,5 +1,5 @@
 import { inject, customElement, INode, IPlatform, bindable } from 'aurelia';
-import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '../../base';
 import { processContent, CustomElement } from '@aurelia/runtime-html';
 import { MdcChipAction } from '../mdc-chip-action/mdc-chip-action';
 import { MDCChipFoundation } from '@material/chips/chip/foundation';

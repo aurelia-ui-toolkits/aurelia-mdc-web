@@ -4,10 +4,10 @@ import {
   MDCTextFieldLineRippleAdapter, MDCTextFieldOutlineAdapter, cssClasses, helperTextStrings, characterCountStrings
 } from '@material/textfield';
 import { applyPassive } from '@material/dom/events';
-import { MdcComponent, IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
-import { MdcFloatingLabel } from '@aurelia-mdc-web/floating-label';
-import { MdcLineRipple } from '@aurelia-mdc-web/line-ripple';
-import { MdcNotchedOutline } from '@aurelia-mdc-web/notched-outline';
+import { MdcComponent, IValidatedElement, IError, booleanAttr, number } from '../base';
+import { MdcFloatingLabel } from '../floating-label';
+import { MdcLineRipple } from '../line-ripple';
+import { MdcNotchedOutline } from '../notched-outline';
 import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './mdc-text-field-icon';
 import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';

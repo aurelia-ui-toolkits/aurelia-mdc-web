@@ -1,5 +1,5 @@
 import { customElement, inject, bindable } from 'aurelia';
-import { number } from '@aurelia-mdc-web/base';
+import { number } from '../../base';
 import template from './mdc-image-list-item.html?raw';
 
 /**

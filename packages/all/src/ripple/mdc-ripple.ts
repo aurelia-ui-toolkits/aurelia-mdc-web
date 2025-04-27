@@ -1,4 +1,4 @@
-import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '../base';
 import { MDCRippleFoundation, MDCRippleAdapter, util } from '@material/ripple';
 import { matches } from '@material/dom/ponyfill';
 import { applyPassive } from '@material/dom/events';

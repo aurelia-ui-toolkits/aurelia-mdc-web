@@ -1,10 +1,10 @@
 /* eslint-disable no-template-curly-in-string */
-import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '../base';
 import {
   MDCDataTableFoundation, selectors, MDCDataTableAdapter, events, cssClasses, RowClickEventData,
   dataAttributes, MDCDataTableRowSelectionChangedEventDetail, SortValue, messages
 } from '@material/data-table';
-import { MdcCheckbox } from '@aurelia-mdc-web/checkbox';
+import { MdcCheckbox } from '../checkbox';
 import { closest } from '@material/dom/ponyfill';
 import { inject, customElement, INode, bindable, BindingMode } from 'aurelia';
 import { processContent, CustomElement } from '@aurelia/runtime-html';

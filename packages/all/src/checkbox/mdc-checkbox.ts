@@ -1,4 +1,4 @@
-import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '../base';
 import { MDCCheckboxFoundation, MDCCheckboxAdapter } from '@material/checkbox';
 import { getCorrectEventName } from '@material/animation/util';
 import { customElement, inject, bindable, BindingMode, CustomElement } from 'aurelia';

@@ -4,10 +4,10 @@ import { MdcTextFieldIcon } from './mdc-text-field-icon';
 import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';
-import { FloatingLabelConfiguration } from '@aurelia-mdc-web/floating-label';
-import { LineRippleConfiguration } from '@aurelia-mdc-web/line-ripple';
-import { NotchedOutlineConfiguration } from '@aurelia-mdc-web/notched-outline';
-import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { FloatingLabelConfiguration } from '../floating-label';
+import { LineRippleConfiguration } from '../line-ripple';
+import { NotchedOutlineConfiguration } from '../notched-outline';
+import { RippleConfiguration } from '../ripple';
 import { EnhanceMdcTextfield } from './enhance-mdc-text-field';
 import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 

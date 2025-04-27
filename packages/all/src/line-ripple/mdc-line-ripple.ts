@@ -1,5 +1,5 @@
 import { inject, customElement } from 'aurelia';
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent } from '../base';
 import { MDCLineRippleFoundation, MDCLineRippleAdapter } from '@material/line-ripple';
 
 @inject(Element)

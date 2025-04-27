@@ -1,9 +1,9 @@
 import { IContainer } from 'aurelia';
-import { ListConfiguration } from '@aurelia-mdc-web/list';
+import { ListConfiguration } from '../list';
 import { MdcMenu } from './mdc-menu';
 import { MdcMenuSelectionGroup } from './mdc-menu-selection-group';
 import { MdcMenuSelectionGroupIcon } from './mdc-menu-selection-group-icon';
-import { MenuSurfaceConfiguration } from '@aurelia-mdc-web/menu-surface';
+import { MenuSurfaceConfiguration } from '../menu-surface';
 
 export { MdcMenu } from './mdc-menu';
 export type { IMdcMenuItemComponentEventDetail, IMdcMenuItemComponentEvent } from './mdc-menu';

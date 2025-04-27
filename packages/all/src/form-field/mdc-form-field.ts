@@ -1,6 +1,6 @@
 import { cssClasses, MDCFormFieldFoundation, MDCFormFieldAdapter } from '@material/form-field';
-import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
-import { MdcRipple, IMdcRippleElement } from '@aurelia-mdc-web/ripple';
+import { MdcComponent, booleanAttr } from '../base';
+import { MdcRipple, IMdcRippleElement } from '../ripple';
 import { customElement, inject, bindable } from 'aurelia';
 import { CustomAttribute } from '@aurelia/runtime-html';
 import template from './mdc-form-field.html?raw';

@@ -1,4 +1,4 @@
-import { MdcComponent, number } from '@aurelia-mdc-web/base';
+import { MdcComponent, number } from '../base';
 import { inject, customElement, bindable } from 'aurelia';
 import { MDCCircularProgressFoundation, MDCCircularProgressAdapter, strings } from '@material/circular-progress';
 import template from './mdc-circular-progress.html?raw';

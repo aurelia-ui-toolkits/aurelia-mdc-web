@@ -1,13 +1,13 @@
 import { strings } from '@material/select';
 import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
-import { FloatingLabelConfiguration } from '@aurelia-mdc-web/floating-label';
-import { LineRippleConfiguration } from '@aurelia-mdc-web/line-ripple';
+import { FloatingLabelConfiguration } from '../floating-label';
+import { LineRippleConfiguration } from '../line-ripple';
 import { MdcSelect } from './mdc-select';
 import { MdcSelectIcon } from './mdc-select-icon';
 import { MdcSelectHelperText } from './mdc-select-helper-text/mdc-select-helper-text';
-import { ListConfiguration } from '@aurelia-mdc-web/list';
-import { NotchedOutlineConfiguration } from '@aurelia-mdc-web/notched-outline';
-import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { ListConfiguration } from '../list';
+import { NotchedOutlineConfiguration } from '../notched-outline';
+import { RippleConfiguration } from '../ripple';
 import { MdcSelectValueObserver } from './mdc-select-value-observer';
 import { MdcDefaultSelectConfiguration } from './mdc-default-select-configuration';
 

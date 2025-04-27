@@ -1,7 +1,7 @@
 import { inject, customElement, bindable, slotted, CustomElement } from 'aurelia';
 import { MDCChipSetFoundation, MDCChipSetAdapter, MDCChipSetEvents } from '@material/chips';
 import { announce } from '@material/dom/announce';
-import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '../../base';
 import { MdcChip } from '../mdc-chip/mdc-chip';
 import { ChipAnimationEvent, ChipInteractionEvent, ChipNavigationEvent } from '@material/chips/chip-set/types';
 import template from './mdc-chip-set.html?raw';

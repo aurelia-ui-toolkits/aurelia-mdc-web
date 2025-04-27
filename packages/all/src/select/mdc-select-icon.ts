@@ -1,4 +1,4 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent } from '../base';
 import { MDCSelectIconFoundation, MDCSelectIconAdapter, strings } from '@material/select';
 import { inject, customAttribute } from 'aurelia';
 

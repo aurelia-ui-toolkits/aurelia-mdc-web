@@ -1,4 +1,4 @@
-import { booleanAttr, MdcComponent, MdcFocusTrap } from '@aurelia-mdc-web/base';
+import { booleanAttr, MdcComponent, MdcFocusTrap } from '../base';
 import { CloseReason, events, MDCBannerActionEventDetail, MDCBannerAdapter, MDCBannerCloseEventDetail, MDCBannerFoundation } from '@material/banner';
 import { inject, customElement, bindable } from 'aurelia';
 import template from './mdc-banner.html?raw';

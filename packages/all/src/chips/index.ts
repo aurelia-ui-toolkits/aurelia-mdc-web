@@ -1,7 +1,7 @@
 import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { MdcChip } from './mdc-chip/mdc-chip';
 import { CheckedObserver } from '@aurelia/runtime-html';
-import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { RippleConfiguration } from '../ripple';
 import { MdcChipAction } from './mdc-chip-action/mdc-chip-action';
 import { MdcChipSet } from './mdc-chip-set/mdc-chip-set';
 import { EnhanceMdcChipAction } from './mdc-chip-action/enhance-mdc-chip-action';

@@ -1,4 +1,4 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent } from '../base';
 import { MDCFoundation } from '@material/base';
 import { customElement, bindable, inject, ViewFactory, INode } from 'aurelia';
 import { ITreeNode } from './i-tree-node';

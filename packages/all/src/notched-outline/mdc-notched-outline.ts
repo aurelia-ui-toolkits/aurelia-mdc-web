@@ -1,4 +1,4 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent } from '../../../base';
 import { MDCNotchedOutlineFoundation, MDCNotchedOutlineAdapter, cssClasses } from '@material/notched-outline';
 import { MDCFloatingLabelFoundation } from '@material/floating-label';
 import { inject, customElement, slotted } from 'aurelia';

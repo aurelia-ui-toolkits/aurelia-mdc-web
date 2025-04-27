@@ -1,6 +1,6 @@
 import { events } from '@material/slider';
 import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
-import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { RippleConfiguration } from '../ripple';
 import { MdcSlider } from './mdc-slider';
 
 export { MdcSlider } from './mdc-slider';

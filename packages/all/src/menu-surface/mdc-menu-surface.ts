@@ -1,4 +1,4 @@
-import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '../base';
 import { MDCMenuSurfaceFoundation, MDCMenuSurfaceAdapter, cssClasses, Corner, MDCMenuDistance, strings } from '@material/menu-surface';
 import { inject, customAttribute, bindable, BindingMode } from 'aurelia';
 import { getCorrectPropertyName } from '@material/animation/util';

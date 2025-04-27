@@ -1,6 +1,6 @@
 import { IContainer } from 'aurelia';
 import { MdcDataTable } from './mdc-data-table';
-import { CheckboxConfiguration } from '@aurelia-mdc-web/checkbox';
+import { CheckboxConfiguration } from '../checkbox';
 import { MdcDataTableRow } from './mdc-data-table-row';
 
 export { MdcDataTable } from './mdc-data-table';

@@ -1,5 +1,5 @@
 import { customElement, inject, bindable } from 'aurelia';
-import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '../base';
 import { MDCSnackbarFoundation, MDCSnackbarAdapter, util, MDCSnackbarCloseEventDetail, strings } from '@material/snackbar';
 import template from './mdc-snackbar.html?raw';
 

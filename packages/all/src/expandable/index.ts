@@ -1,5 +1,5 @@
 import { IContainer } from 'aurelia';
-import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { RippleConfiguration } from '../ripple';
 import { MdcExpandable } from './mdc-expandable';
 
 export { MdcExpandable } from './mdc-expandable';

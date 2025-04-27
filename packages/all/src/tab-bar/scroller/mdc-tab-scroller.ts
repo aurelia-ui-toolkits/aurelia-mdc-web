@@ -1,4 +1,4 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent } from '../../base';
 import { MDCTabScrollerFoundation, MDCTabScrollerAdapter, util } from '@material/tab-scroller';
 import { matches } from '@material/dom/ponyfill';
 import { MdcTab } from '../tab/mdc-tab';

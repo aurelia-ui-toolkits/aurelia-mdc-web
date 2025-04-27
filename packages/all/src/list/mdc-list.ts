@@ -1,4 +1,4 @@
-import { MdcComponent, booleanAttr } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr } from '../base';
 import { MDCListFoundation, MDCListAdapter, strings, cssClasses, MDCListIndex, MDCListSelectionChangeDetail } from '@material/list';
 import { closest, matches } from '@material/dom/ponyfill';
 import { MdcListItem, IMdcListActionEventDetail } from './mdc-list-item/mdc-list-item';

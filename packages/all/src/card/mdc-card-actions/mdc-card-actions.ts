@@ -1,5 +1,5 @@
 import { customElement, bindable } from 'aurelia';
-import { booleanAttr } from '@aurelia-mdc-web/base';
+import { booleanAttr } from '../../base';
 import template from './mdc-card-actions.html?raw';
 
 /**

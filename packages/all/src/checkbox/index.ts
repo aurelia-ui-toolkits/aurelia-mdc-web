@@ -1,6 +1,6 @@
 import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { MdcCheckbox } from './mdc-checkbox';
-import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { RippleConfiguration } from '../ripple';
 import { CheckedObserver } from '@aurelia/runtime-html';
 
 export { MdcCheckbox } from './mdc-checkbox';

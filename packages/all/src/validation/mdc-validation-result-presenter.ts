@@ -1,4 +1,4 @@
-import { IValidatedElement } from '@aurelia-mdc-web/base';
+import { IValidatedElement } from '../base';
 import { ValidationEvent, ValidationResultsSubscriber } from '@aurelia/validation-html';
 
 export class MdcValidationResultPresenter implements ValidationResultsSubscriber {

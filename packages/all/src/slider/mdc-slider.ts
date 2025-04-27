@@ -1,8 +1,8 @@
-import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '../base';
 import { MDCSliderAdapter, Thumb, cssClasses, TickMark, MDCSliderChangeEventDetail, events, attributes } from '@material/slider';
 import { inject, customElement, bindable, CustomElement } from 'aurelia';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
-import { MdcRipple } from '@aurelia-mdc-web/ripple';
+import { MdcRipple } from '../ripple';
 import { EventType, SpecificEventListener } from '@material/base';
 import template from './mdc-slider.html?raw';
 

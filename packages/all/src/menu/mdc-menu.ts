@@ -1,7 +1,7 @@
-import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '../base';
 import { MDCMenuFoundation, DefaultFocusState, MDCMenuAdapter, Corner, MDCMenuItemComponentEventDetail, strings, cssClasses } from '@material/menu';
-import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
-import { MdcList, IMdcListActionEvent, MdcListItem } from '@aurelia-mdc-web/list';
+import { MdcMenuSurface } from '../menu-surface';
+import { MdcList, IMdcListActionEvent, MdcListItem } from '../list';
 import { MDCListIndex } from '@material/list';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { numbers as listConstants } from '@material/list/constants';

@@ -1,10 +1,10 @@
 import { customElement, inject, bindable, BindingMode, CustomElement } from 'aurelia';
 import { DiscardablePromise } from './discardable-promise';
 import { MdcDefaultLookupConfiguration } from './mdc-lookup-configuration';
-import { MdcMenu, IMdcMenuItemComponentEvent } from '@aurelia-mdc-web/menu';
-import { IValidatedElement, IError, booleanAttr, number } from '@aurelia-mdc-web/base';
+import { MdcMenu, IMdcMenuItemComponentEvent } from '../menu';
+import { IValidatedElement, IError, booleanAttr, number } from '../base';
 import { closest } from '@material/dom/ponyfill';
-import { MdcMenuSurface } from '@aurelia-mdc-web/menu-surface';
+import { MdcMenuSurface } from '../menu-surface';
 import template from './mdc-lookup.html?raw';
 
 const inputEvents = ['click', 'input', 'keydown', 'blur'];

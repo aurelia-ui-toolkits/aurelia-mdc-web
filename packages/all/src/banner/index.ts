@@ -1,6 +1,6 @@
 import { IContainer } from '@aurelia/kernel';
 import { MdcBanner } from './mdc-banner';
-import { ButtonConfiguration } from '@aurelia-mdc-web/button';
+import { ButtonConfiguration } from '../button';
 
 export { MdcBanner };
 

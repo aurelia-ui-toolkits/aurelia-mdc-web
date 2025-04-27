@@ -1,8 +1,8 @@
 import { IContainer } from 'aurelia';
 import { MdcSnackbar } from './mdc-snackbar';
 import { MdcSnackbarService } from './mdc-snackbar-service';
-import { ButtonConfiguration } from '@aurelia-mdc-web/button';
-import { IconButtonConfiguration } from '@aurelia-mdc-web/icon-button';
+import { ButtonConfiguration } from '../button';
+import { IconButtonConfiguration } from '../icon-button';
 
 export { MdcSnackbar } from './mdc-snackbar';
 export type { ISnackbarOptions } from './mdc-snackbar-service';

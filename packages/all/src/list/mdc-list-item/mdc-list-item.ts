@@ -1,6 +1,6 @@
 import { cssClasses, strings } from '@material/list';
 import { customElement, bindable, inject, INode } from 'aurelia';
-import { booleanAttr } from '@aurelia-mdc-web/base';
+import { booleanAttr } from '../../base';
 import { processContent } from '@aurelia/runtime-html';
 import template from './mdc-list-item.html?raw';
 

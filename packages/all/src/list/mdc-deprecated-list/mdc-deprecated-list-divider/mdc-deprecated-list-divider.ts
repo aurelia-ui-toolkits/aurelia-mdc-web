@@ -1,4 +1,4 @@
-import { booleanAttr } from '@aurelia-mdc-web/base';
+import { booleanAttr } from '../../../base';
 import { customElement, bindable } from 'aurelia';
 import template from './mdc-deprecated-list-divider.html?raw';
 

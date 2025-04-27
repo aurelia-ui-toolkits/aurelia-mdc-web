@@ -1,6 +1,6 @@
 import { inject, customElement } from 'aurelia';
 import { MDCTextFieldCharacterCounterFoundation, MDCTextFieldCharacterCounterAdapter, characterCountCssClasses } from '@material/textfield';
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent } from '../base';
 
 @inject(Element)
 @customElement({ name: 'mdc-text-field-character-counter', template: `<template class="${characterCountCssClasses.ROOT}"></template>` })

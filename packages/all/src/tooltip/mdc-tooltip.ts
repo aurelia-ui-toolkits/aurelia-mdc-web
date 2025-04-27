@@ -1,4 +1,4 @@
-import { MdcComponent, booleanAttr, number } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, number } from '../base';
 import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses, PositionWithCaret, numbers } from '@material/tooltip';
 import { inject, customElement, bindable } from 'aurelia';
 import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';

@@ -1,6 +1,6 @@
 import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { MdcSwitch } from './mdc-switch';
-import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
+import { RippleConfiguration } from '../ripple';
 import { EnhanceMdcSwitch } from './enhance-mdc-switch';
 
 export { MdcSwitch } from './mdc-switch';

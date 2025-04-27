@@ -1,5 +1,5 @@
 import { customElement, inject, bindable, IPlatform } from 'aurelia';
-import { booleanAttr } from '@aurelia-mdc-web/base';
+import { booleanAttr } from '../base';
 import { CustomElement } from '@aurelia/runtime-html';
 import template from './mdc-expandable.html?raw';
 

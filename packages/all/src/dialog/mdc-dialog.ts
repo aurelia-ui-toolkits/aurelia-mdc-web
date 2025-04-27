@@ -1,4 +1,4 @@
-import { MdcComponent, booleanAttr, MdcFocusTrap } from '@aurelia-mdc-web/base';
+import { MdcComponent, booleanAttr, MdcFocusTrap } from '../base';
 import { MDCDialogFoundation, strings, MDCDialogAdapter, util, MDCDialogCloseEventDetail } from '@material/dialog';
 import { customElement, inject, bindable } from 'aurelia';
 import { closest, matches } from '@material/dom/ponyfill';

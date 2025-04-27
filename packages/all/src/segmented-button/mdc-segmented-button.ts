@@ -1,4 +1,4 @@
-import { booleanAttr, MdcComponent } from '@aurelia-mdc-web/base';
+import { booleanAttr, MdcComponent } from '../base';
 import { MDCSegmentedButtonAdapter, MDCSegmentedButtonFoundation, SegmentDetail } from '@material/segmented-button';
 import { events } from '@material/segmented-button/segmented-button/constants';
 import { inject, customElement, bindable, slotted, CustomElement } from 'aurelia';

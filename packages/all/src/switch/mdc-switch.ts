@@ -1,4 +1,4 @@
-import { MdcComponent } from '@aurelia-mdc-web/base';
+import { MdcComponent } from '../base';
 import { MDCSwitchState, MDCSwitchRenderAdapter, MDCSwitchRenderFoundation } from '@material/switch';
 import { inject, customElement, CustomElement } from 'aurelia';
 import { MDCRippleCapableSurface } from '@material/ripple';
