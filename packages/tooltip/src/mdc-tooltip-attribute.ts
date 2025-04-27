@@ -11,6 +11,7 @@ import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configurat
 export class MdcTooltipAttribute {
   constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration, private readonly au: IAurelia) {
     this.root = root;
+    this.scrollHost = this.defaultConfiguration.scrollHost;
   }
 
   root: HTMLElement;
@@ -69,7 +70,7 @@ export class MdcTooltipAttribute {
   }
 
   @bindable()
-  scrollHost?: HTMLElement | string = this.defaultConfiguration.scrollHost;
+  scrollHost?: HTMLElement | string;
   scrollHostChanged() {
     this.context.scrollHost = this.scrollHost;
   }

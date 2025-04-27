@@ -6,7 +6,8 @@ import { MdcDialogContent } from './mdc-dialog-content';
 import { FocusTrap } from '@material/dom/focus-trap';
 
 export { MdcDialog } from './mdc-dialog';
-export { MdcDialogService, IMdcDialogOptions } from './mdc-dialog-service';
+export { MdcDialogService } from './mdc-dialog-service';
+export type { IMdcDialogOptions } from './mdc-dialog-service';
 
 let registered = false;
 

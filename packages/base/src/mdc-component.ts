@@ -22,7 +22,7 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
     this.beforeFoundationCreated();
     this.foundation = this.getDefaultFoundation();
     this.foundation.init();
-    this.initialisedResolve();
+    this.initialisedResolve?.();
     this.initialSyncWithDOM();
   }
 

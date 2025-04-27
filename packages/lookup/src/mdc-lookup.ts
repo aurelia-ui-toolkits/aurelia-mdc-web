@@ -17,6 +17,7 @@ const bodyEvents = ['touchstart', 'mousedown', 'click'];
 @customElement({ name: 'mdc-lookup', template })
 export class MdcLookup implements EventListenerObject {
   constructor(private root: HTMLElement, private defaultConfiguration: MdcDefaultLookupConfiguration) {
+    this.debounce = this.defaultConfiguration.debounce;
     defineMdcLookupElementApis(this.root);
   }
 
@@ -148,7 +149,7 @@ export class MdcLookup implements EventListenerObject {
 
   /** Sets debounce in milliseconds */
   @bindable({ set: number })
-  debounce: number = this.defaultConfiguration.debounce;
+  debounce: number;
 
   /** Loads the options to the menu when attached */
   @bindable({ set: booleanAttr })

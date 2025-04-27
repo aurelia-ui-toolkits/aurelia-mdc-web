@@ -34,6 +34,7 @@ const trailingIconSelector = '.mdc-text-field__icon--trailing';
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   constructor(root: HTMLElement, private platform: IPlatform, private defaultConfiguration: MdcDefaultTextFieldConfiguration) {
     super(root);
+    this.outlined = this.defaultConfiguration.outlined;
     defineMdcTextFieldElementApis(this.root);
   }
 
@@ -71,7 +72,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   ltrText: boolean;
 
   @bindable({ set: booleanAttr })
-  outlined?: boolean = this.defaultConfiguration.outlined;
+  outlined?: boolean;
 
   @bindable()
   prefix: string;

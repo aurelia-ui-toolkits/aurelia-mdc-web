@@ -3,7 +3,8 @@ import { MdcSwitch } from './mdc-switch';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { EnhanceMdcSwitch } from './enhance-mdc-switch';
 
-export { MdcSwitch, IMdcSwitchElement } from './mdc-switch';
+export { MdcSwitch } from './mdc-switch';
+export type { IMdcSwitchElement } from './mdc-switch';
 
 let configured = false;
 

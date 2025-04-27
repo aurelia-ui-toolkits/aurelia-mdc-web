@@ -19,7 +19,8 @@
     "sourceMap": true,
     "inlineSources": true,
     "newLine": "lf",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "isolatedModules": true
   },
   "exclude": [
     ".vscode",

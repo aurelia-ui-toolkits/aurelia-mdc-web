@@ -26,25 +26,31 @@ export default defineConfig({
   // define: {
   //   pkgJson: { name, version },
   // },
-  // resolve: {
-  //   alias: [
-  //     // { find: '@aurelia-mdc-web/all', replacement: path.resolve(__dirname, '../all/src') },
-  //     // { find: '@aurelia-mdc-web/button', replacement: path.resolve(__dirname, '../button/src') },
-  //   ]
-  //   // alias: [
-  //   //   { find: /@aurelia-mdc-web\/button\/(.*).html(.*)/, replacement: path.resolve(__dirname, '../button/src/$1.html$2') },
-  //   // ]
-  // },
-  // css: {
-  //   preprocessorOptions: {
-  //     scss: {
-  //       api: 'modern',
-  //       // loadPaths: [path.resolve(__dirname, 'node_modules'),'../all']
-  //       // api: 'legacy',
-  //       // includePaths: [path.resolve(__dirname, 'node_modules')],
-  //     }
-  //   }
-  // },
+  resolve: {
+    alias: [
+      // { find: '@aurelia-mdc-web/all', replacement: path.resolve(__dirname, '../all/src') },
+      // { find: '@aurelia-mdc-web/button', replacement: path.resolve(__dirname, '../button/src') },
+      // { find: '@aurelia-mdc-web/validation', replacement: path.resolve(__dirname, '../validation/src') },
+      { find: /@aurelia-mdc-web\/([a-z\-]*)$/, replacement: path.resolve(__dirname, '../$1/src') },
+      { find: /@aurelia-mdc-web\/([a-z\-]*)\/styles$/, replacement: path.resolve(__dirname, '../$1/styles') },
+    ]
+    // alias: [
+    //   { find: /@aurelia-mdc-web\/button\/(.*).html(.*)/, replacement: path.resolve(__dirname, '../button/src/$1.html$2') },
+    // ]
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+        loadPaths:['../all']
+        // api: 'legacy',
+        // includePaths: ['node_modules'],
+        // loadPaths: [path.resolve(__dirname, 'node_modules'),'../all'],
+        // api: 'legacy',
+        // includePaths: [path.resolve(__dirname, 'node_modules')],
+      }
+    }
+  },
   server: {
     open: !process.env.CI,
     port: 9000,

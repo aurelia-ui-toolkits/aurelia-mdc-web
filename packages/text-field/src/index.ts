@@ -11,8 +11,9 @@ import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { EnhanceMdcTextfield } from './enhance-mdc-text-field';
 import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 
-export { MdcTextField, IMdcTextFieldElement } from './mdc-text-field';
-export { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
+export { MdcTextField } from './mdc-text-field';
+export type { IMdcTextFieldElement } from './mdc-text-field';
+export type { IMdcTextFieldHelperLineElement } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 export { MdcDefaultTextFieldConfiguration };
 
 let configured = false;

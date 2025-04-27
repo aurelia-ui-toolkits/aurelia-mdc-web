@@ -107,7 +107,7 @@ declare module 'typedoc' {
 export class ApiViewer {
   classesApi?: NavigationItem[];
 
-  load(parameters: Record<string, unknown>, ri: RoutingInstruction) {
+  loading(parameters: Record<string, unknown>, ri: RoutingInstruction) {
     const componentName = ri.endpoint.scope?.routingInstruction?.component.name;
     if (!componentName) {
       return;

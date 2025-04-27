@@ -2,7 +2,8 @@
 import { IContainer } from '@aurelia/kernel';
 import { MdcRipple, IMdcRippleElement } from './mdc-ripple';
 
-export { MdcRipple, IMdcRippleElement };
+export { MdcRipple };
+export type { IMdcRippleElement };
 
 let registered = false;
 

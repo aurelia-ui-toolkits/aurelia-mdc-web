@@ -28,7 +28,7 @@
   },
   "files": [
     "dist",
-    "*.scss"
+    "styles/*.scss"
   ],
   "scripts": {
     "prebuild": "rimraf dist",

@@ -3,7 +3,7 @@ import { MdcFocusTrap } from './attributes/mdc-focus-trap';
 import { MdcPromisifyReference } from './elements/mdc-promisify-reference';
 
 export { MdcComponent } from './mdc-component';
-export { IValidatedElement, IError } from './elements/i-validated-element';
+export type { IValidatedElement, IError } from './elements/i-validated-element';
 export { MATERIAL_PALETTE } from './material-palette';
 export { boolean, booleanAttr, date, number, string } from './interceptors';
 export { MdcFocusTrap } from './attributes/mdc-focus-trap';

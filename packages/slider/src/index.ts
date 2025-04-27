@@ -3,7 +3,8 @@ import { IContainer, AppTask, IAttrMapper, NodeObserverLocator } from 'aurelia';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { MdcSlider } from './mdc-slider';
 
-export { MdcSlider, IMdcSliderElement } from './mdc-slider';
+export { MdcSlider } from './mdc-slider';
+export type { IMdcSliderElement } from './mdc-slider';
 
 let configured = false;
 

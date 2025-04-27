@@ -5,7 +5,8 @@ import { ButtonConfiguration } from '@aurelia-mdc-web/button';
 import { IconButtonConfiguration } from '@aurelia-mdc-web/icon-button';
 
 export { MdcSnackbar } from './mdc-snackbar';
-export { MdcSnackbarService, ISnackbarOptions } from './mdc-snackbar-service';
+export type { ISnackbarOptions } from './mdc-snackbar-service';
+export { MdcSnackbarService } from './mdc-snackbar-service';
 
 let registered = false;
 

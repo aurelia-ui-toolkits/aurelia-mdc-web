@@ -4,7 +4,8 @@ import { MdcTab, IMdcTabElement } from './tab/mdc-tab';
 import { MdcTabScroller } from './scroller/mdc-tab-scroller';
 import { MdcTabIndicator } from './indicator/mdc-tab-indicator';
 
-export { MdcTabBar, MdcTab, IMdcTabElement, MdcTabScroller, MdcTabIndicator };
+export { MdcTabBar, MdcTab, MdcTabScroller, MdcTabIndicator };
+export type { IMdcTabElement };
 
 let registered = false;
 

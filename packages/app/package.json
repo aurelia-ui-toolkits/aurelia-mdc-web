@@ -6,12 +6,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:webpack": "webpack serve --progress",
     "start": "vite",
-    "build:vite": "vite build",
+    "build": "vite build",
     "prebuild": "rimraf --glob dist/*.{js,css,map,html}",
-    "build:app": "npm run prebuild && webpack --progress",
-    "analyze": "npm run prebuild && webpack --env production --analyze",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },

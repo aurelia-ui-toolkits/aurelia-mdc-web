@@ -3,7 +3,8 @@ import { MdcCheckbox } from './mdc-checkbox';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { CheckedObserver } from '@aurelia/runtime-html';
 
-export { MdcCheckbox, IMdcCheckboxElement } from './mdc-checkbox';
+export { MdcCheckbox } from './mdc-checkbox';
+export type { IMdcCheckboxElement } from './mdc-checkbox';
 
 let configured = false;
 

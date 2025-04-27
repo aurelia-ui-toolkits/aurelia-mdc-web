@@ -52,6 +52,7 @@ let selectId = 0;
 export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
   constructor(root: HTMLElement, private platform: IPlatform, private defaultConfiguration: MdcDefaultSelectConfiguration) {
     super(root);
+    this.outlined = this.defaultConfiguration.outlined;
     defineMdcSelectElementApis(this.root);
     this.root.id = this.id;
   }
@@ -79,14 +80,14 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
   @bindable()
   label: string;
   labelChanged() {
-    this.platform.domWriteQueue.queueTask(() => this.foundation?.layout());
+    this.platform.domQueue.queueTask(() => this.foundation?.layout());
   }
 
   /** Styles the select as an outlined select */
   @bindable({ set: booleanAttr })
-  outlined?: boolean = this.defaultConfiguration.outlined;
+  outlined?: boolean;
   outlinedChanged() {
-    this.platform.domWriteQueue.queueTask(() => this.foundation?.layout());
+    this.platform.domQueue.queueTask(() => this.foundation?.layout());
   }
 
   /** Makes the value required */

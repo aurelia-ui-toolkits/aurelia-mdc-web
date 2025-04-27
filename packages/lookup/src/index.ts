@@ -2,7 +2,8 @@ import { MdcDefaultLookupConfiguration } from './mdc-lookup-configuration';
 import { MdcLookup } from './mdc-lookup';
 import { IContainer } from 'aurelia';
 
-export { MdcLookup, IMdcLookupElement } from './mdc-lookup';
+export { MdcLookup } from './mdc-lookup';
+export type { IMdcLookupElement } from './mdc-lookup';
 
 let registered = false;
 

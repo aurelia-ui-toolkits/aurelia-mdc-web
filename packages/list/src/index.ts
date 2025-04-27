@@ -2,7 +2,8 @@ import { IContainer } from '@aurelia/kernel';
 import { MdcList, IMdcListElement } from './mdc-list';
 import { MdcListDivider } from './mdc-list-divider/mdc-list-divider';
 import { MdcListGroup, MdcListGroupSubheader } from './mdc-list-group';
-import { MdcListItem, IMdcListItemElement, IMdcListActionEventDetail, IMdcListActionEvent } from './mdc-list-item/mdc-list-item';
+import { MdcListItem } from './mdc-list-item/mdc-list-item';
+import type { IMdcListItemElement, IMdcListActionEventDetail, IMdcListActionEvent } from './mdc-list-item/mdc-list-item';
 import { MdcListItemLeading } from './mdc-list-item/mdc-list-item-leading';
 import { MdcListItemTrailing } from './mdc-list-item/mdc-list-item-trailing';
 import { MdcListItemPrimaryText } from './mdc-list-item-primary-text';
@@ -20,8 +21,8 @@ import { MdcDeprecatedListGroup, MdcDeprecatedListGroupSubheader } from './mdc-d
 import { MdcDeprecatedListDivider } from './mdc-deprecated-list/mdc-deprecated-list-divider/mdc-deprecated-list-divider';
 
 export {
-  MdcList, MdcListDivider, MdcListGroup, MdcListGroupSubheader, MdcListItem, MdcListItemLeading, MdcListItemTrailing, IMdcListItemElement,
-  MdcListItemPrimaryText, MdcListItemSecondaryText, MdcListItemOverlineText, IMdcListActionEventDetail, IMdcListActionEvent, IMdcListElement,
+  MdcList, MdcListDivider, MdcListGroup, MdcListGroupSubheader, MdcListItem, MdcListItemLeading, MdcListItemTrailing,
+  MdcListItemPrimaryText, MdcListItemSecondaryText, MdcListItemOverlineText,
   MdcDeprecatedList,
   MdcDeprecatedListItem,
   MdcDeprecatedListItemPrimaryText,
@@ -32,6 +33,8 @@ export {
   MdcDeprecatedListGroup,
   MdcDeprecatedListGroupSubheader
 };
+
+export type { IMdcListItemElement, IMdcListActionEventDetail, IMdcListActionEvent, IMdcListElement };
 
 let registered = false;
 

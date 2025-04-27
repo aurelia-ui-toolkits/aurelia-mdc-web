@@ -12,6 +12,9 @@ import template from './mdc-tooltip.html?raw';
 export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements EventListenerObject {
   constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration) {
     super(root);
+    this.showDelay = this.defaultConfiguration.showDelay;
+    this.hideDelay = this.defaultConfiguration.hideDelay;
+    this.scrollHost = this.defaultConfiguration.scrollHost;
   }
 
   /** Sets the anchor element */
@@ -65,7 +68,7 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
 
   /** Sets show delay */
   @bindable({ set: number })
-  showDelay?: number = this.defaultConfiguration.showDelay;
+  showDelay?: number;
   async showDelayChanged() {
     await this.initialised;
     this.foundation?.setShowDelay(this.showDelay ?? numbers.SHOW_DELAY_MS);
@@ -73,14 +76,14 @@ export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements Ev
 
   /** Sets hide delay */
   @bindable({ set: number })
-  hideDelay?: number = this.defaultConfiguration.hideDelay;
+  hideDelay?: number;
   async hideDelayChanged() {
     await this.initialised;
     this.foundation?.setHideDelay(this.hideDelay ?? numbers.HIDE_DELAY_MS);
   }
 
   @bindable()
-  scrollHost?: HTMLElement | string = this.defaultConfiguration.scrollHost;
+  scrollHost?: HTMLElement | string;
 
   beforeFoundationCreated() {
     if (this.persistent) {

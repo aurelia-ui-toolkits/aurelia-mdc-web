@@ -3,7 +3,8 @@ import { MdcRadio } from './mdc-radio';
 import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { CheckedObserver } from '@aurelia/runtime-html';
 
-export { MdcRadio, IMdcRadioElement } from './mdc-radio';
+export { MdcRadio } from './mdc-radio';
+export type {  IMdcRadioElement } from './mdc-radio';
 
 let configured = false;
 

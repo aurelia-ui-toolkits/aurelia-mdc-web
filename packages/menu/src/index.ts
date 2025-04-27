@@ -5,7 +5,8 @@ import { MdcMenuSelectionGroup } from './mdc-menu-selection-group';
 import { MdcMenuSelectionGroupIcon } from './mdc-menu-selection-group-icon';
 import { MenuSurfaceConfiguration } from '@aurelia-mdc-web/menu-surface';
 
-export { MdcMenu, IMdcMenuItemComponentEventDetail, IMdcMenuItemComponentEvent } from './mdc-menu';
+export { MdcMenu } from './mdc-menu';
+export type { IMdcMenuItemComponentEventDetail, IMdcMenuItemComponentEvent } from './mdc-menu';
 
 let registered = false;
 

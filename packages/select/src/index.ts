@@ -11,8 +11,9 @@ import { RippleConfiguration } from '@aurelia-mdc-web/ripple';
 import { MdcSelectValueObserver } from './mdc-select-value-observer';
 import { MdcDefaultSelectConfiguration } from './mdc-default-select-configuration';
 
-export { MdcSelect, IMdcSelectElement } from './mdc-select';
-export { IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
+export { MdcSelect } from './mdc-select';
+export type { IMdcSelectElement } from './mdc-select';
+export type { IMdcSelectHelperTextElement } from './mdc-select-helper-text/mdc-select-helper-text';
 export { MdcDefaultSelectConfiguration };
 
 let configured = false;
