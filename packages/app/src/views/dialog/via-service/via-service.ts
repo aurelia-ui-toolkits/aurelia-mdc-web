@@ -1,5 +1,5 @@
 import { inject } from 'aurelia';
-import { MdcDialogService } from '@aurelia-mdc-web/dialog';
+import { MdcDialogService } from '@aurelia-mdc-web/all';
 import { DialogContent } from './dialog-content';
 
 @inject(MdcDialogService)

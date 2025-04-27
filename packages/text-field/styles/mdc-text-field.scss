@@ -1,8 +1,0 @@
-.mdc-text-field-helper-line--with-errors {
-
-  // validation errors should hide all other helper texts
-  .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--errors),
-  .mdc-text-field-character-counter {
-    display: none;
-  }
-}

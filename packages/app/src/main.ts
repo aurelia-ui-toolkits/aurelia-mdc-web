@@ -1,7 +1,7 @@
 import Aurelia, { LoggerConfiguration, LogLevel } from 'aurelia';
 import { StandardConfiguration, SVGAnalyzer } from '@aurelia/runtime-html';
 import { Root } from './views/root/root';
-import { AllConfiguration as MaterialConfiguration } from '@aurelia-mdc-web/all';
+import { AllConfiguration as MaterialConfiguration, MdcValidationControllerFactory } from '@aurelia-mdc-web/all';
 // Css files imported in this main file are NOT processed by style-loader
 // They are for sharedStyles in shadowDOM.
 // However, css files imported in other js/ts files are processed by style-loader.
@@ -12,7 +12,6 @@ import { ExampleViewer } from './elements/example-viewer/example-viewer';
 import { JsonValueConverter } from './converters/json';
 import { ValidationHtmlConfiguration } from '@aurelia/validation-html';
 import { ValidationConfiguration } from '@aurelia/validation';
-import { MdcValidationControllerFactory } from '@aurelia-mdc-web/validation';
 //  import { DefaultResources, HrefCustomAttribute } from '@aurelia/router';
 import { CircularProgress } from './views/circular-progress/circular-progress';
 import { ButtonExamples } from './views/button/button-examples';
@@ -80,7 +79,7 @@ import { ButtonPage } from './views/button/button';
 import { Tabs } from './views/tabs/tabs';
 import { TreeView } from './views/tree-view/tree-view';
 import { TreeViewExamples } from './views/tree-view/tree-view-examples';
-import { TooltipConfiguration } from '@aurelia-mdc-web/tooltip';
+import { TooltipConfiguration } from '@aurelia-mdc-web/all';
 import { Banner } from './views/banner/banner';
 import { BannerExamples } from './views/banner/banner-examples';
 import { SegmentedButton } from './views/segmented-button/segmented-button';

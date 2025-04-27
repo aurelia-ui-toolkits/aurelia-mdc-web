@@ -1,5 +1,5 @@
 import { inject } from 'aurelia';
-import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
+import { MdcSnackbarService } from '@aurelia-mdc-web/all';
 
 @inject(MdcSnackbarService)
 export class Delayed {

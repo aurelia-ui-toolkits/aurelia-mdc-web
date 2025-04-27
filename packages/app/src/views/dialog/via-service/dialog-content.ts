@@ -1,4 +1,4 @@
-import { MdcDialog } from '@aurelia-mdc-web/dialog';
+import { MdcDialog } from '@aurelia-mdc-web/all';
 import { inject } from 'aurelia';
 
 @inject(MdcDialog)

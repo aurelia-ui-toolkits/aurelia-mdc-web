@@ -1,5 +1,5 @@
 import { MDCTabBarActivatedEvent } from '@material/tab-bar';
-import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
+import { MdcSnackbarService } from '@aurelia-mdc-web/all';
 import { inject } from 'aurelia';
 
 @inject(MdcSnackbarService)

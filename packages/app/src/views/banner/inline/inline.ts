@@ -1,4 +1,4 @@
-import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
+import { MdcSnackbarService } from '@aurelia-mdc-web/all';
 import { CloseReason, MDCBannerCloseEventDetail } from '@material/banner';
 import { inject } from 'aurelia';
 

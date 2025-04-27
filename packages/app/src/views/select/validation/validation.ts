@@ -1,7 +1,7 @@
 import { IValidationController } from '@aurelia/validation-html';
 import { IValidationRules } from '@aurelia/validation';
 import { newInstanceForScope, resolve } from '@aurelia/kernel';
-import { MdcSnackbarService } from '@aurelia-mdc-web/snackbar';
+import { MdcSnackbarService } from '@aurelia-mdc-web/all';
 
 export class Validation {
   constructor(private validationController: IValidationController = resolve(newInstanceForScope(IValidationController)),

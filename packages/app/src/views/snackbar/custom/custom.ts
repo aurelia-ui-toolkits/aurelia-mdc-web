@@ -1,4 +1,4 @@
-import { MdcSnackbarService, ISnackbarOptions } from '@aurelia-mdc-web/snackbar';
+import { MdcSnackbarService, ISnackbarOptions } from '@aurelia-mdc-web/all';
 import { inject } from 'aurelia';
 
 @inject(MdcSnackbarService)
