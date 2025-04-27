@@ -1,0 +1,28 @@
+<template
+  class="mdc-expandable mdc-expandable--${open ? 'open' : 'closed'} ${accordion === undefined ? '' : 'mdc-expandable--accordion__' + accordion}">
+  <div class="
+      mdc-expandable__header
+      mdc-expandable__header--${open ? 'open' : 'closed'}
+      ${focused ? 'mdc-expandable__header--focused' : ''}
+    " ref="header" click.trigger="toggle()" focus.trigger="handleFocus()" blur.trigger="handleBlur()"
+    mdc-ripple="no-class.bind: true;" tabindex="0" keydown.trigger="handleKeydown($event)">
+    <div class="mdc-expandable__caption">
+      <au-slot name="caption"></au-slot>
+    </div>
+    <span class="mdc-expandable__dropdown-icon">
+      <svg class="mdc-expandable__dropdown-icon-graphic" viewBox="7 10 10 5">
+        <polygon class="mdc-expandable__dropdown-icon-inactive" stroke="none" fill-rule="evenodd"
+          points="7 10 12 15 17 10">
+        </polygon>
+        <polygon class="mdc-expandable__dropdown-icon-active" stroke="none" fill-rule="evenodd"
+          points="7 15 12 10 17 15">
+        </polygon>
+      </svg>
+    </span>
+  </div>
+  <div class="mdc-expandable__content-container" ref="contentContainer">
+    <div class="mdc-expandable__content" ref="content">
+      <au-slot></au-slot>
+    </div>
+  </div>
+</template>

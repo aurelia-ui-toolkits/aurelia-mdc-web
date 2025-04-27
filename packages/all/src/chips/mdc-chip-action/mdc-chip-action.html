@@ -1,0 +1,25 @@
+<template class="
+    mdc-evolution-chip__action
+    ${trailing ? 'mdc-evolution-chip__action--trailing' : 'mdc-evolution-chip__action--primary'}
+  " click.trigger="handleClick()" keydown.trigger="handleKeydown($event)"
+  mdc-ripple="no-class.bind: true; compute-bounding-rect.bind: computeRippleClientRect">
+  <span class="
+      mdc-evolution-chip__ripple
+      ${trailing ? 'mdc-evolution-chip__ripple--trailing' : 'mdc-evolution-chip__ripple--primary'}
+    "></span>
+  <span class="mdc-evolution-chip__icon mdc-evolution-chip__icon--trailing material-icons"
+    if.bind="trailing && icon">${icon}</span>
+  <span class="mdc-evolution-chip__graphic" if.bind="!trailing && (icon || selectable)">
+    <span if.bind="icon"
+      class="mdc-evolution-chip__icon ${trailing ? '' : 'mdc-evolution-chip__icon--primary'} material-icons">${icon}</span>
+    <span class="mdc-evolution-chip__checkmark" if.bind="selectable">
+      <svg class="mdc-evolution-chip__checkmark-svg" viewBox="-2 -3 30 30">
+        <path class="mdc-evolution-chip__checkmark-path" fill="none" stroke="black"
+          d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+      </svg>
+    </span>
+  </span>
+  <span class="mdc-evolution-chip__text-label">
+    <au-slot></au-slot>
+  </span>
+</template>

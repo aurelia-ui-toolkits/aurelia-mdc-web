@@ -1,0 +1,7 @@
+<!-- DO NOT FORMAT THIS FILE! ANY SPACE BEFORE <SLOT> OR <SPAN> BREAKS HELPER TEXT ALIGNMENT! -->
+<!-- beautify ignore:start -->
+<template class="
+    ${ROOT} ${persistent ? helperTextCssClasses.HELPER_TEXT_VALIDATION_MSG_PERSISTENT : ''}
+    ${validation ? helperTextCssClasses.HELPER_TEXT_VALIDATION_MSG : ''}"><au-slot></au-slot><span class="mdc-select-helper-text__error" repeat.for="e of errors">${e}<br/></span>
+</template>
+<!-- beautify ignore:end -->

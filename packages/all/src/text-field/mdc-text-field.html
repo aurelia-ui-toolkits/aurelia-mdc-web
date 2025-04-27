@@ -1,0 +1,29 @@
+<template class="
+    mdc-text-field
+    ${textarea ? 'mdc-text-field--textarea' : ''}
+    ${endAligned ? 'mdc-text-field--end-aligned' : ''}
+    ${ltrText ? 'mdc-text-field--ltr-text' : ''}
+    ${label ? '' : 'mdc-text-field--no-label'}
+    mdc-text-field--${outlined ? 'outlined' : 'filled'}
+    ${leadingIcon_ ? 'mdc-text-field--with-leading-icon' : ''}
+    ${trailingIcon_ ? 'mdc-text-field--with-trailing-icon' : ''}
+  " mdc-ripple="no-class.bind: true; input.bind: input_">
+  <span class="mdc-text-field__ripple"></span>
+  <au-slot name="leading-icon"></au-slot>
+  <span class="mdc-text-field__affix mdc-text-field__affix--prefix" if.bind="prefix && !textarea">${prefix}</span>
+  <mdc-notched-outline if.bind="outlined" component.ref="outline_">
+    <mdc-floating-label if.bind="label" id.bind="id" component.ref="label_">${label}</mdc-floating-label>
+  </mdc-notched-outline>
+  <input if.bind="!textarea" class="mdc-text-field__input" type="text" aria-labelledby.bind="id" ref="input_"
+    focus.trigger="onFocus()" input.trigger="onInput($event)" change.trigger="onChange($event)" blur.trigger="onBlur()"
+    placeholder.bind="placeholder" keyup.trigger="onKeyup($event)">
+  <span if.bind="textarea" class="mdc-text-field__resizer">
+    <textarea class="mdc-text-field__input" aria-labelledby.bind="id" ref="input_"
+      focus.trigger="onFocus()" input.trigger="onInput($event)" change.trigger="onChange($event)"
+      blur.trigger="onBlur()" keyup.trigger="onKeyup($event)"></textarea>
+  </span>
+  <span class="mdc-text-field__affix mdc-text-field__affix--suffix" if.bind="suffix && !textarea">${suffix}</span>
+  <au-slot name="trailing-icon"></au-slot>
+  <mdc-floating-label if.bind="label && !outlined" id.bind="id" component.ref="label_">${label}</mdc-floating-label>
+  <mdc-line-ripple if.bind="!outlined" component.ref="lineRipple_"></mdc-line-ripple>
+</template>

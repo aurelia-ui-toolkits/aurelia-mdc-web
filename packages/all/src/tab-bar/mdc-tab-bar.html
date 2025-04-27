@@ -1,0 +1,6 @@
+<template class="mdc-tab-bar" role="tablist" keydown.trigger="handleKeyDown_($event)"
+  mdctab:interacted.trigger="handleTabInteraction_($event)">
+  <div as-element="mdc-tab-scroller" component.ref="tabScroller_" align.bind="align">
+    <au-slot></au-slot>
+  </div>
+</template>

@@ -1,0 +1,287 @@
+@use 'sass:math';
+@use "@material/feature-targeting/functions"as feature-targeting-functions;
+@use "@material/feature-targeting/mixins"as feature-targeting-mixins;
+@use "@material/theme/mixins"as theme-mixins;
+@use "@material/theme/variables"as theme-variables;
+@use "@material/rtl/mixins"as rtl-mixins;
+@use "@material/ripple/mixins"as ripple-mixins;
+@use "@material/ripple/functions"as ripple-functions;
+@use "@material/elevation/mixins"as elevation-mixins;
+@use "@material/shape/mixins"as shape-mixins;
+
+@use "./variables";
+@use "./icon-variables";
+
+@mixin core-styles($query: feature-targeting-functions.all()) {
+  @include ripple($query);
+  @include without-ripple($query);
+}
+
+@mixin without-ripple($query: feature-targeting-functions.all()) {
+  $feat-animation: feature-targeting-functions.create-target($query, animation);
+  $feat-color: feature-targeting-functions.create-target($query, color);
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  @include elevation-mixins.overlay-common($query); // COPYBARA_COMMENT_THIS_LINE
+
+  .mdc-expandable {
+    @include shape-radius(variables.$shape-radius, $query: $query);
+    @include fill-color(surface, $query);
+    @include elevation-mixins.overlay-surface-position($query: $query);
+    @include elevation-mixins.overlay-dimensions(100%, $query: $query);
+    @include elevation-mixins.elevation(1, $query: $query);
+
+    @include dropdown-icon-color(variables.$dropdown-icon-color, $query: $query);
+    @include focused-dropdown-icon-color(primary, $query: $query);
+
+    @include _dropdown-icon-size(icon-variables.$icon-size, $query: $query);
+
+
+    display: block;
+
+    &.mdc-expandable--open {
+      margin: 16px 0;
+    }
+
+    transition: {
+      duration: variables.$duration;
+      timing-function: variables.$fast-out-slow-in-timing-function;
+      property: margin;
+    }
+
+    .mdc-expandable__header {
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0 24px;
+      border-radius: inherit;
+      position: relative;
+      overflow: hidden;
+
+      &:focus {
+        outline: none;
+      }
+
+      &.mdc-expandable__header--open {
+        height: 64px;
+      }
+
+      &.mdc-expandable__header--closed {
+        height: 48px;
+      }
+
+      transition: {
+        duration: variables.$duration;
+        timing-function: variables.$timing-function;
+        property: height;
+      }
+
+      .mdc-expandable__caption {
+        flex: 1;
+      }
+    }
+
+    &__dropdown-icon {
+      @include _dropdown-icon-base($query: $query);
+      @include _dropdown-icon-inactive($query: $query);
+
+      @include feature-targeting-mixins.targets($feat-structure) {
+        @include rtl-mixins.reflexive-property(margin,
+          icon-variables.$icon-horizontal-margin,
+          icon-variables.$icon-horizontal-margin);
+        display: inline-flex;
+        position: relative;
+        align-self: center;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        pointer-events: none;
+      }
+
+      .mdc-expandable--open & {
+        @include _dropdown-icon-active($query: $query);
+      }
+    }
+
+    .mdc-expandable__content-container {
+      height: 0;
+      overflow: hidden;
+
+      transition: {
+        duration: variables.$duration;
+        timing-function: variables.$timing-function;
+        property: height;
+      }
+
+      .mdc-expandable__content {
+        padding: 0 24px 16px;
+      }
+    }
+  }
+}
+
+@mixin ripple($query: feature-targeting-functions.all()) {
+  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
+
+  .mdc-expandable__header {
+    @include ripple-mixins.surface($query);
+    @include ripple-mixins.radius-bounded($query: $query);
+    @include ripple-mixins.states($query: $query);
+  }
+}
+
+@mixin dropdown-icon-color($color, $query: feature-targeting-functions.all()) {
+  @include _dropdown-icon-color($color, $query: $query);
+}
+
+@mixin focused-dropdown-icon-color($color,
+  $query: feature-targeting-functions.all()) {
+  .mdc-expandable__header--focused {
+    @include _dropdown-icon-color($color, $query: $query);
+  }
+}
+
+///
+/// Sets the dropdown icon to the specified size.
+/// @access private
+///
+@mixin _dropdown-icon-size($size, $query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  .mdc-expandable__dropdown-icon {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      width: $size;
+      height: $size;
+    }
+  }
+}
+
+///
+/// Sets the dropdown icon to the specified color.
+/// @access private
+///
+@mixin _dropdown-icon-color($color, $query: feature-targeting-functions.all()) {
+  $feat-color: feature-targeting-functions.create-target($query, color);
+
+  @include feature-targeting-mixins.targets($feat-color) {
+    .mdc-expandable__dropdown-icon {
+      @include theme-mixins.prop(fill, $color);
+    }
+  }
+}
+
+///
+/// Sets base dropdown icon styles.
+/// @access private
+///
+@mixin _dropdown-icon-base($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  .mdc-expandable__dropdown-icon-active,
+  .mdc-expandable__dropdown-icon-inactive {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .mdc-expandable__dropdown-icon-graphic {
+    $svg-natural-width: 10px;
+    $svg-natural-height: 5px;
+
+    @include feature-targeting-mixins.targets($feat-structure) {
+      width: math.div($svg-natural-width, icon-variables.$icon-size) * 100%;
+      height: math.div($svg-natural-height, icon-variables.$icon-size) * 100%;
+    }
+  }
+}
+
+///
+/// Sets styles for transitioning the dropdown icon to inactive state.
+/// @access private
+///
+@mixin _dropdown-icon-inactive($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+  $feat-animation: feature-targeting-functions.create-target($query, animation);
+
+  .mdc-expandable__dropdown-icon-inactive {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      opacity: 1;
+    }
+
+    @include feature-targeting-mixins.targets($feat-animation) {
+      transition: opacity variables.$icon-inactive-fade-in-duration linear variables.$icon-inactive-fade-out-duration;
+    }
+  }
+
+  .mdc-expandable__dropdown-icon-active {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      opacity: 0;
+    }
+
+    @include feature-targeting-mixins.targets($feat-animation) {
+      transition: opacity variables.$icon-inactive-fade-out-duration linear;
+    }
+  }
+}
+
+///
+/// Sets styles for transitioning the dropdown icon to activated state.
+/// @access private
+///
+@mixin _dropdown-icon-active($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+  $feat-animation: feature-targeting-functions.create-target($query, animation);
+
+  .mdc-expandable__dropdown-icon-inactive {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      opacity: 0;
+    }
+
+    @include feature-targeting-mixins.targets($feat-animation) {
+      transition: opacity variables.$icon-active-fade-out-duration linear;
+    }
+  }
+
+  .mdc-expandable__dropdown-icon-active {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      opacity: 1;
+    }
+
+    @include feature-targeting-mixins.targets($feat-animation) {
+      transition: opacity variables.$icon-active-fade-in-duration linear variables.$icon-active-fade-out-duration;
+    }
+  }
+}
+
+@mixin fill-color($color, $query: functions.all()) {
+  $feat-color: feature-targeting-functions.create-target($query, color);
+
+  @include feature-targeting-mixins.targets($feat-color) {
+    @include theme-mixins.prop(background-color, $color);
+  }
+}
+
+@mixin shape-radius($radius, $rtl-reflexive: false, $query: functions.all()) {
+  &:first-of-type {
+    @include shape-mixins.radius($radius $radius 0 0, $rtl-reflexive, $query);
+  }
+
+  &:last-of-type {
+    @include shape-mixins.radius(0 0 $radius $radius, $rtl-reflexive, $query);
+  }
+
+  &:first-of-type:last-of-type {
+    @include shape-mixins.radius($radius, $rtl-reflexive, $query);
+  }
+
+  &.mdc-expandable--open {
+    @include shape-mixins.radius($radius, $rtl-reflexive, $query);
+
+    .mdc-expandable__header {
+      @include shape-mixins.radius($radius $radius 0 0, $rtl-reflexive, $query);
+    }
+  }
+}

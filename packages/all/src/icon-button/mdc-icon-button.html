@@ -1,0 +1,11 @@
+<template class="
+    mdc-icon-button mdc-icon-button--display-flex
+    ${on ? 'mdc-icon-button--on' : ''}
+    ${icon ? 'material-icons' : ''}
+    ${touch ? 'mdc-icon-button--touch' : ''}
+  " mdc-ripple="no-class.bind: true; unbounded.bind: true" click.trigger="handleClick()">
+  <div class="mdc-icon-button__ripple"></div>
+  <au-slot></au-slot>
+  <span if.bind="icon">${icon}</span>
+  <div class="mdc-icon-button__touch" if.bind="touch"></div>
+</template>

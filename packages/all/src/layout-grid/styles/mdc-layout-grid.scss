@@ -1,0 +1,11 @@
+.mdc-layout-grid {
+  display: block;
+
+  &--no-padding {
+    padding: 0;
+  }
+
+  .mdc-layout-grid__cell--new-row {
+    grid-column-start: 1;
+  }
+}

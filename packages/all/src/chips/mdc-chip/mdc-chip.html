@@ -1,0 +1,24 @@
+<template class="
+    mdc-evolution-chip
+    ${filter ? 'mdc-evolution-chip--selectable' : ''}
+    ${disabled ? 'mdc-evolution-chip--disabled' : ''}
+    ${icon ? 'mdc-evolution-chip--with-primary-icon' : ''}
+  " role="row" mdcchipaction:interaction.trigger="handleActionInteraction($event)"
+  mdcchipaction:navigation.trigger="handleActionNavigation($event)" animationend.trigger="handleAnimationEnd($event)"
+  transitionend.trigger="handleTransitionEnd()">
+
+  <span class="mdc-evolution-chip__cell mdc-evolution-chip__cell--primary" role="gridcell">
+    <au-slot name="primary-action">
+      <button mdc-chip-action selectable.bind="filter" disabled.bind="disabled"
+        icon.bind="icon">
+        <au-slot></au-slot>
+      </button>
+    </au-slot>
+  </span>
+
+  <span class="mdc-evolution-chip__cell mdc-evolution-chip__cell--trailing" role="gridcell">
+    <au-slot name="trailing-action"></au-slot>
+  </span>
+
+  <au-slot name="non-navigable-trailing-action"></au-slot>
+</template>

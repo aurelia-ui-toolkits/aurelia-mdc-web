@@ -1,0 +1,36 @@
+<template class="mdc-slider
+  ${range ? 'mdc-slider--range' : ''}
+  ${discrete ? 'mdc-slider--discrete' : ''}
+  ${discrete && tickMarks ? 'mdc-slider--tick-marks' : ''}
+  ">
+  <input class="mdc-slider__input" type="range" min="0" max="100" value="0" if.bind="range" ref="startInput">
+  <input class="mdc-slider__input" type="range" min="0" max="100" value="0" ref="endInput">
+  <div class="mdc-slider__track">
+    <div class="mdc-slider__track--inactive"></div>
+    <div class="mdc-slider__track--active">
+      <div class="mdc-slider__track--active_fill" ref="trackActive"></div>
+    </div>
+    <div class="mdc-slider__tick-marks" if.bind="discrete && tickMarks">
+      <div repeat.for="s of tickMarkStatuses"
+        class="mdc-slider__tick-mark--${s === TickMark.ACTIVE ? 'active' : 'inactive' }"></div>
+    </div>
+  </div>
+  <div class="mdc-slider__thumb" mdc-ripple="unbounded.bind: true" mdc-ripple.ref="startRipple" if.bind="range"
+    ref="startThumb">
+    <div class="mdc-slider__value-indicator-container" if.bind="discrete">
+      <div class="mdc-slider__value-indicator">
+        <span class="mdc-slider__value-indicator-text"></span>
+      </div>
+    </div>
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+  <div class="mdc-slider__thumb" mdc-ripple="unbounded.bind: true" mdc-ripple.ref="endRipple" ref="endThumb"
+    style="overflow: visible;">
+    <div class="mdc-slider__value-indicator-container" if.bind="discrete">
+      <div class="mdc-slider__value-indicator">
+        <span class="mdc-slider__value-indicator-text"></span>
+      </div>
+    </div>
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+</template>

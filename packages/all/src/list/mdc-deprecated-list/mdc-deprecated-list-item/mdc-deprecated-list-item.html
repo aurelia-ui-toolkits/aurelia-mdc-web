@@ -1,0 +1,8 @@
+<template class="mdc-deprecated-list-item
+    ${disabled ? 'mdc-deprecated-list-item--disabled' : ''}
+    ${activated ? 'mdc-deprecated-list-item--activated' : ''}
+  " mdc-ripple="disabled.bind: disabled || disableRipple"
+  keydown.trigger="onKeydown($event)" click.trigger="onClick()" tabindex="-1">
+  <div class="mdc-deprecated-list-item__ripple"></div>
+  <au-slot></au-slot>
+</template>

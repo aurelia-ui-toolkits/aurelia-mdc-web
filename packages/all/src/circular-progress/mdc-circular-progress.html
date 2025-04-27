@@ -1,0 +1,38 @@
+<template class="mdc-circular-progress mdc-circular-progress--${size}" role="progressbar" aria-valuemin="0"
+  aria-valuemax="1" css="width:${size}px; height:${size}px;">
+  <div class="mdc-circular-progress__determinate-container">
+    <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 ${size} ${size}"
+      xmlns="http://www.w3.org/2000/svg">
+      <circle class="mdc-circular-progress__determinate-track" cx="${size/2}" cy="${size/2}" r="${radius}"
+        stroke-width="${strokeWidth}" />
+      <circle class="mdc-circular-progress__determinate-circle" cx="${size/2}" cy="${size/2}" r="${radius}"
+        stroke-width="${strokeWidth}" stroke-dasharray="${strokeDasharray}" stroke-dashoffset="${strokeDashoffset}"
+        ref="determinateCircle_" />
+    </svg>
+  </div>
+  <div class="mdc-circular-progress__indeterminate-container">
+    <div class="mdc-circular-progress__spinner-layer">
+      <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
+        <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 ${size} ${size}"
+          xmlns="http://www.w3.org/2000/svg">
+          <circle cx="${size/2}" cy="${size/2}" r="${radius}" stroke-dasharray="${strokeDasharray}"
+            stroke-dashoffset="${strokeDashoffset}" stroke-width="${strokeWidth}" />
+        </svg>
+      </div>
+      <div class="mdc-circular-progress__gap-patch">
+        <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 ${size} ${size}"
+          xmlns="http://www.w3.org/2000/svg">
+          <circle cx="${size/2}" cy="${size/2}" r="${radius}" stroke-dasharray="${strokeDasharray}"
+            stroke-dashoffset="${strokeDashoffset}" stroke-width="${strokeWidth}" />
+        </svg>
+      </div>
+      <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
+        <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 ${size} ${size}"
+          xmlns="http://www.w3.org/2000/svg">
+          <circle cx="${size/2}" cy="${size/2}" r="${radius}" stroke-dasharray="${strokeDasharray}"
+            stroke-dashoffset="${strokeDashoffset}" stroke-width="${strokeWidth}" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</template>
