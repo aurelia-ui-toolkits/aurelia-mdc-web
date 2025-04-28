@@ -198,7 +198,7 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   }
 
   getInitialFocusEl = (): HTMLElement | null => {
-    return this.root.querySelector(`[${strings.INITIAL_FOCUS_ATTRIBUTE}] input, [${strings.INITIAL_FOCUS_ATTRIBUTE}] .mdc-select__anchor`);
+    return this.root.querySelector(`[${strings.INITIAL_FOCUS_ATTRIBUTE}] input, [${strings.INITIAL_FOCUS_ATTRIBUTE}] .mdc-select__anchor, button[${strings.INITIAL_FOCUS_ATTRIBUTE}], .mdc-button[${strings.INITIAL_FOCUS_ATTRIBUTE}]`);
   };
 }
 
