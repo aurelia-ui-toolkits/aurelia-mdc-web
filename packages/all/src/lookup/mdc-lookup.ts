@@ -301,7 +301,7 @@ export class MdcLookup implements EventListenerObject {
       this.suppressBlur = false;
       return;
     }
-    if (this.selectOnBlur && this.optionsArray?.length && this.value === undefined) {
+    if (this.selectOnBlur && this.optionsArray?.length && this.input?.value && this.value === undefined) {
       this.value = this.getValue(this.optionsArray[0]);
     }
     this.close();
