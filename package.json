@@ -13,15 +13,12 @@
     "start": "cd packages/app && npm start",
     "doc": "lage doc --no-cache",
     "changelog": "cross-env conventional-changelog -p angular -i docs/CHANGELOG.md -s",
-    "deploy": "cross-env GIT_DEPLOY_REPO=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web-au2-demo.git\" && cd packages/app && npm run build:app && cd ../.. && deploy.sh",
-    "update-versions:root": "ts-node -P tsconfig.scripts.json scripts/update-versions.ts",
-    "update-versions": "npm run update-versions:root && lage run update-versions --scope @aurelia-mdc-web/*"
+    "deploy": "cross-env GIT_DEPLOY_REPO=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web-au2-demo.git\" && npm run build && deploy.sh"
   },
   "devDependencies": {
     "@aurelia/router": "2.0.0-beta.23",
     "@aurelia/validation": "2.0.0-beta.23",
     "@aurelia/validation-html": "2.0.0-beta.23",
-    "@aurelia/webpack-loader": "2.0.0-beta.23",
     "@material/banner": "^14.0.0",
     "@material/button": "^14.0.0",
     "@material/card": "^14.0.0",

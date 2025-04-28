@@ -1,5 +1,5 @@
 <template class="mdc-tree-view">
-  <import from="./nodeFilter"></import>
+  <import from="./node-filter"></import>
   <ul class="mdc-tree-view__list">
     <li repeat.for="$node of nodes | nodeFilter:filter" class="mdc-tree-view__list-item">
       <let $tree.bind="element"></let>
@@ -27,5 +27,4 @@
       </mdc-tree-view>
     </li>
   </ul>
-  <span repeat.for="o of onTest">${o}</span>
 </template>

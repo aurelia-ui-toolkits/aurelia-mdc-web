@@ -48,8 +48,6 @@ export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
   @bindable()
   nodes: ITreeNode[];
 
-  onTest: boolean[] = [];
-
   /**
    * Allows for filtering tree nodes
    */
