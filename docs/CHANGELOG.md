@@ -1,3 +1,8 @@
+## [9.3.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.0-au2...v9.3.1-au2) (2025-04-28)
+
+* **all:** Upgrade to Aurelia beta.24
+
+
 # [9.3.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.2.3-au2...v9.3.0-au2) (2025-04-28)
 
 ### Features
