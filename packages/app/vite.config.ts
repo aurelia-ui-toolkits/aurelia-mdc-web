@@ -5,6 +5,7 @@ import path from 'path';
 
 
 export default defineConfig({
+  base: '/aurelia-mdc-web-au2-demo/',
   resolve: {
     alias: [
       { find: /@aurelia-mdc-web\/([a-z\-]*)$/, replacement: path.resolve(__dirname, '../$1/src') },
