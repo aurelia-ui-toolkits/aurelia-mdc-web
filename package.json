@@ -1,7 +1,7 @@
 {
   "name": "@aurelia-mdc-web/monorepo",
   "private": true,
-  "version": "9.3.0-au2",
+  "version": "9.3.1-au2",
   "workspaces": [
     "packages/all",
     "packages/app"
@@ -16,9 +16,9 @@
     "deploy": "cross-env GIT_DEPLOY_REPO=\"https://github.com/aurelia-ui-toolkits/aurelia-mdc-web-au2-demo.git\" && npm run build && deploy.sh"
   },
   "devDependencies": {
-    "@aurelia/router": "2.0.0-beta.23",
-    "@aurelia/validation": "2.0.0-beta.23",
-    "@aurelia/validation-html": "2.0.0-beta.23",
+    "@aurelia/router": "2.0.0-beta.24",
+    "@aurelia/validation": "2.0.0-beta.24",
+    "@aurelia/validation-html": "2.0.0-beta.24",
     "@material/banner": "^14.0.0",
     "@material/button": "^14.0.0",
     "@material/card": "^14.0.0",
@@ -60,7 +60,7 @@
     "@material/typography": "^14.0.0",
     "@typescript-eslint/eslint-plugin": "^8.31.0",
     "@typescript-eslint/parser": "^8.31.0",
-    "aurelia": "2.0.0-beta.23",
+    "aurelia": "2.0.0-beta.24",
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.1.2",
     "conventional-changelog-cli": "^5.0.0",
@@ -93,7 +93,7 @@
     "url-loader": "^4.1.1"
   },
   "dependencies": {
-    "@aurelia/vite-plugin": "^2.0.0-beta.23",
+    "@aurelia/vite-plugin": "^2.0.0-beta.24",
     "vite": "^6.3.3",
     "vite-plugin-node-polyfills": "^0.23.0"
   }
