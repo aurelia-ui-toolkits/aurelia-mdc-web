@@ -91,6 +91,9 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   @bindable({ set: booleanAttr })
   stickyHeader: boolean;
 
+  @bindable({ set: booleanAttr })
+  manualCheckboxHandling: boolean;
+
   get paginationPosition(): 'first' | 'between' | 'last' | undefined {
     if (typeof this.pageSize !== 'number' || this.pageSize === undefined || isNaN(this.activePage) || isNaN(this.recordsCount)) {
       return undefined;
@@ -226,12 +229,13 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
 
   beforeFoundationCreated() {
     this.header = this.root.querySelector<HTMLElement>(`.${cssClasses.HEADER_ROW}`)!;
-    this.header.addEventListener('change', this);
+    this.content = this.root.querySelector<HTMLElement>(`.${cssClasses.CONTENT}`)!;
     this.header.addEventListener('click', this);
 
-    this.content = this.root.querySelector<HTMLElement>(`.${cssClasses.CONTENT}`)!;
-    this.content.addEventListener('change', this);
-    this.content.addEventListener('click', this);
+    if (!this.manualCheckboxHandling) {
+      this.header.addEventListener('change', this);
+      this.content.addEventListener('change', this);
+    }
 
     const rowCheckboxList = this.rowCheckboxList;
     this.rowCheckboxList.forEach(x => x.root.classList.add(cssClasses.ROW_CHECKBOX));
@@ -245,10 +249,12 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     if (this.busy !== undefined) {
       this.busyChanged();
     }
-    const rowCheckboxList = this.rowCheckboxList;
-    for (let i = 0; i < rowCheckboxList.length; ++i) {
-      if (rowCheckboxList[i].checked) {
-        this.getRowByIndex(i).classList.add(cssClasses.ROW_SELECTED);
+    if (!this.manualCheckboxHandling) {
+      const rowCheckboxList = this.rowCheckboxList;
+      for (let i = 0; i < rowCheckboxList.length; ++i) {
+        if (rowCheckboxList[i].checked) {
+          this.getRowByIndex(i).classList.add(cssClasses.ROW_SELECTED);
+        }
       }
     }
     this.foundation?.layout();
