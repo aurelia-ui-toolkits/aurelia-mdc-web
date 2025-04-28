@@ -180,21 +180,21 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   }
 
   /**
-   * @return Returns array of header row cell elements.
+   * Returns array of header row cell elements.
    */
   getHeaderCells(): Element[] {
     return [].slice.call(this.root.querySelectorAll(selectors.HEADER_CELL)) as Element[];
   }
 
   /**
-   * @return Returns array of row elements.
+   * Returns array of row elements.
    */
   getRows(): Element[] {
     return this.foundation!.getRows();
   }
 
   /**
-   * @return Returns array of selected row ids.
+   * Returns array of selected row ids.
    */
   getSelectedRowIds(): (string | null)[] {
     return this.foundation!.getSelectedRowIds();

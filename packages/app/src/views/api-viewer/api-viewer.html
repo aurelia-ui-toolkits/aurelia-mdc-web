@@ -1,12 +1,15 @@
-<require from="./api-viewer.scss"></require>
+<import from="./api-viewer.scss"></import>
+<import from="./declaration-reflection-converter"></import>
 <div class="docs-api" repeat.for="a of classesApi">
-  <div class="section-header" mdc-headline6>${a.name}</div>
-  <div>${a.comment.shortText}</div>
-  <div if.bind="a.comment.blockTags" class="section-selector__label">
+  <let d.bind="a | declarationReflection"></let>
+  <div class="section-header" mdc-headline6>${d.name}</div>
+  <div>${d.description}</div>
+  <div if.bind="d.selectors.length" class="section-selector__label">
     <span mdc-body1>Selector:</span>
-    <div class="markdown-code section-selectors" repeat.for="selector of a.comment.blockTags">${selector.content[0].text}</div>
+    <div class="markdown-code section-selectors" repeat.for="selector of d.selectors">
+      ${selector}</div>
   </div>
-  <div repeat.for="category of a.categories" class="section-category">
+  <div repeat.for="category of d.categories" class="section-category">
     <h4 mdc-subtitle2>${category.name}</h4>
     <mdc-data-table>
       <table>
@@ -18,9 +21,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr mdc-data-table-row repeat.for="c of category.children">
+          <tr mdc-data-table-row repeat.for="c of category.items">
             <td>${c.name}</td>
-            <td if.bind="category.hasType">${c.type}</td>
+            <td if.bind="category.hasType" class="mdc-data-table__cell">${c.type}</td>
             <td>${c.description}</td>
           </tr>
         </tbody>

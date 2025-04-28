@@ -117,6 +117,7 @@ import { MdcSegmentedButton } from './segmented-button/mdc-segmented-button';
 import { MdcSegmentedButtonSegment } from './segmented-button/mdc-segmented-button-segment/mdc-segmented-button-segment';
 import { MdcSelect } from './select/mdc-select';
 import { MdcIcon } from './icon/mdc-icon';
+import { MdcDefaultLookupConfiguration } from './lookup/mdc-lookup-configuration';
 
 let registered = false; //
 
@@ -133,7 +134,7 @@ export {
   MdcTextFieldCharacterCounter, EnhanceMdcTextfield, MdcTooltip, MdcTooltipAttribute, MdcTopAppBar, MdcTopAppBarRow, MdcTopAppBarTitle, MdcTopAppBarSection, MdcTopAppBarFixedAdjust, MdcTopAppBarNavIcon,
   MdcTopAppBarActionItem, EnhanceTopAppBarActions, MdcTreeView, MdcTreeViewNodeMeta, MdcTreeNode, NodeFilterValueConverter, MdcBody1, MdcBody2, MdcCaption, MdcHeadline1, MdcHeadline2, MdcHeadline3,
   MdcHeadline4, MdcHeadline5, MdcHeadline6, MdcOveline, MdcSubtitle1, MdcSubtitle2, MdcTypographyButton, MdcIcon,
-  MdcDialogService, MdcValidationControllerFactory
+  MdcDialogService, MdcValidationControllerFactory, MdcDefaultLookupConfiguration
 };
 
 export { MdcComponent } from './base/mdc-component';
