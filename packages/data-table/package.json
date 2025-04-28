@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/data-table",
-  "version": "9.1.1",
+  "version": "9.1.2",
   "publishConfig": {
     "access": "public"
   },
@@ -47,11 +47,11 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.1.1",
-    "@aurelia-mdc-web/checkbox": "9.1.1",
-    "@aurelia-mdc-web/icon": "9.1.1",
-    "@aurelia-mdc-web/linear-progress": "9.1.1",
-    "@aurelia-mdc-web/select": "9.1.1",
+    "@aurelia-mdc-web/base": "9.1.2",
+    "@aurelia-mdc-web/checkbox": "9.1.2",
+    "@aurelia-mdc-web/icon": "9.1.2",
+    "@aurelia-mdc-web/linear-progress": "9.1.2",
+    "@aurelia-mdc-web/select": "9.1.2",
     "@material/data-table": "^14.0.0"
   }
 }

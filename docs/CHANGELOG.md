@@ -1,3 +1,12 @@
+## [9.1.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.1...v9.1.2) (2025-04-28)
+
+
+### Bug Fixes
+
+* **dialog:** enable initial focus on buttons ([7f3b316](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7f3b3160546b8ed0d1b6a536766e57370065239a))
+
+
+
 ## [9.1.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.0...v9.1.1) (2025-04-08)
 
 
