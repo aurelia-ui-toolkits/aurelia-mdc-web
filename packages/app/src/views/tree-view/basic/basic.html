@@ -1,8 +1,10 @@
-<mdc-tree-view nodes.bind="treeViewNodes" component.ref="treeView">
+<mdc-tree-view nodes.bind="treeViewNodes" component.ref="treeView"
+  mdctree:node-selected.trigger="selected = $event.detail.node">
   <mdc-tree-node><span>${$node.name}</span>
-    <button mdc-icon-button mdc-tree-node-meta icon="edit"></button>
+    <button if.bind="$node === selected" mdc-icon-button mdc-tree-node-meta icon="edit"></button>
   </mdc-tree-node>
 </mdc-tree-view>
+Selected: ${selected.name}
 <div>
   <button mdc-button click.trigger="findChild()">Find Child111</button>
 </div>

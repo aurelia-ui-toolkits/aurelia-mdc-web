@@ -1,12 +1,14 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@aurelia-mdc-web/*": ["../*/src"]
+      "@aurelia-mdc-web/*": [
+        "../*/src"
+      ]
     },
     "resolveJsonModule": true,
     "noUnusedLocals": false,

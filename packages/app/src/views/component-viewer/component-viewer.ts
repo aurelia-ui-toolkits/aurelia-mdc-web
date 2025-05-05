@@ -1,4 +1,4 @@
-import { templates } from './templates.js';
+import { templates } from './templates';
 import { IRouter, Navigation, RoutingInstruction } from '@aurelia/router';
 
 interface IReference {
