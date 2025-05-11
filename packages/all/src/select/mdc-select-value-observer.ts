@@ -108,6 +108,7 @@ export class MdcSelectValueObserver implements INodeObserver {
   }
 
   public setValue(newValue: unknown): void {
+    this.oldValue = this.currentValue;
     this.currentValue = newValue;
     this.hasChanges = newValue !== this.oldValue;
     // this.observeArray(newValue instanceof Array ? newValue : null);
