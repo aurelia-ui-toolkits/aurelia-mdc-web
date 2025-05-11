@@ -23,7 +23,8 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "types": "./dist/types/index.d.ts"
     },
     "./styles": {
       "sass": "./_index.scss"

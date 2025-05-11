@@ -6,7 +6,7 @@ import { strings } from '@material/select';
 import { events as segmentedButtonEvents } from '@material/segmented-button/segmented-button/constants';
 import { MdcSelectValueObserver } from './select/mdc-select-value-observer';
 import { events as sliderEvents } from '@material/slider';
-import { MdcFocusTrap } from './base';
+import { IValidatedElement, MdcFocusTrap } from './base';
 import { MdcPromisifyReference } from './base/elements/mdc-promisify-reference';
 import { EnhanceMdcButton } from './button/enhance-mdc-button';
 import { MdcCardActionButtons } from './card/mdc-card-action-buttons';
@@ -118,6 +118,7 @@ import { MdcSegmentedButtonSegment } from './segmented-button/mdc-segmented-butt
 import { MdcSelect } from './select/mdc-select';
 import { MdcIcon } from './icon/mdc-icon';
 import { MdcDefaultLookupConfiguration } from './lookup/mdc-lookup-configuration';
+import { MdcDefaultTextFieldConfiguration } from './text-field/mdc-default-text-field-configuration';
 
 let registered = false; //
 
@@ -134,7 +135,7 @@ export {
   MdcTextFieldCharacterCounter, EnhanceMdcTextfield, MdcTooltip, MdcTooltipAttribute, MdcTopAppBar, MdcTopAppBarRow, MdcTopAppBarTitle, MdcTopAppBarSection, MdcTopAppBarFixedAdjust, MdcTopAppBarNavIcon,
   MdcTopAppBarActionItem, EnhanceTopAppBarActions, MdcTreeView, MdcTreeViewNodeMeta, MdcTreeNode, NodeFilterValueConverter, MdcBody1, MdcBody2, MdcCaption, MdcHeadline1, MdcHeadline2, MdcHeadline3,
   MdcHeadline4, MdcHeadline5, MdcHeadline6, MdcOveline, MdcSubtitle1, MdcSubtitle2, MdcTypographyButton, MdcIcon,
-  MdcDialogService, MdcValidationControllerFactory, MdcDefaultLookupConfiguration
+  MdcDialogService, MdcValidationControllerFactory, MdcDefaultLookupConfiguration, MdcDefaultTextFieldConfiguration,
 };
 
 export { MdcComponent } from './base/mdc-component';
