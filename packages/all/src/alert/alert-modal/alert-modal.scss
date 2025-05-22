@@ -1,0 +1,10 @@
+.alert-modal__dialog-content {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+
+  mdc-icon {
+    margin-right: 15px;
+    font-size: xxx-large;
+  }
+}

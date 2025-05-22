@@ -1,0 +1,15 @@
+<mdc-dialog component.ref="dialog" class="prompt-dialog">
+  <mdc-dialog-title if.bind="data.title">${data.title}</mdc-dialog-title>
+  <mdc-dialog-content style="width: 500px">
+    <at-form-field>
+      <mdc-text-field label.bind="data.label" textarea.bind="data.textarea" value.bind="data.text & validate"
+        data-mdc-dialog-initial-focus>
+      </mdc-text-field>
+      <mdc-text-field-helper-line></mdc-text-field-helper-line>
+    </at-form-field>
+  </mdc-dialog-content>
+  <mdc-dialog-actions>
+    <button mdc-button data-mdc-dialog-action="cancel" if.bind="data.cancelText">${data.cancelText}</button>
+    <button mdc-button click.trigger="ok()" if.bind="data.okText">${data.okText}</button>
+  </mdc-dialog-actions>
+</mdc-dialog>

@@ -10,17 +10,17 @@ import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-fi
 import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';
 import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
 import { processContent, IPlatform, CustomAttribute, CustomElement } from '@aurelia/runtime-html';
-import { MdcDefaultTextFieldConfiguration } from './mdc-default-text-field-configuration';
 import template from './mdc-text-field.html?raw';
 import { MdcFloatingLabel } from '../floating-label/mdc-floating-label';
 import { MdcLineRipple } from '../line-ripple/mdc-line-ripple';
 import { MdcNotchedOutline } from '../notched-outline/mdc-notched-outline';
+import { MdcConfiguration } from '../mdc-configuration';
 
 let textFieldId = 0;
 const leadingIconSelector = '.mdc-text-field__icon--leading';
 const trailingIconSelector = '.mdc-text-field__icon--trailing';
 
-@inject(Element, IPlatform, MdcDefaultTextFieldConfiguration)
+@inject(Element, IPlatform, MdcConfiguration)
 @customElement({ name: 'mdc-text-field', template })
 @processContent(function processContent(node: INode) {
   const element = node as HTMLElement;
@@ -32,9 +32,9 @@ const trailingIconSelector = '.mdc-text-field__icon--trailing';
 }
 )
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
-  constructor(root: HTMLElement, private platform: IPlatform, private defaultConfiguration: MdcDefaultTextFieldConfiguration) {
+  constructor(root: HTMLElement, private platform: IPlatform, private configuration: MdcConfiguration) {
     super(root);
-    this.outlined = this.defaultConfiguration.outlined;
+    this.outlined = this.configuration.textField.outlined;
     defineMdcTextFieldElementApis(this.root);
   }
 

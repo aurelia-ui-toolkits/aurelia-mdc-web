@@ -1,3 +1,4 @@
+import { MdcAlertConfiguration } from './alert/alert-configuration';
 import { MdcDefaultLookupConfiguration } from './lookup/mdc-lookup-configuration';
 import { MdcDefaultSelectConfiguration } from './select/mdc-default-select-configuration';
 import { MdcDefaultTextFieldConfiguration } from './text-field/mdc-default-text-field-configuration';
@@ -8,5 +9,6 @@ export class MdcConfiguration {
   select: MdcDefaultSelectConfiguration = new MdcDefaultSelectConfiguration();
   textField: MdcDefaultTextFieldConfiguration = new MdcDefaultTextFieldConfiguration();
   tooltip: MdcDefaultTooltipConfiguration = new MdcDefaultTooltipConfiguration();
+  alert: MdcAlertConfiguration = new MdcAlertConfiguration();
 }
 

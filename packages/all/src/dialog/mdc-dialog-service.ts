@@ -49,6 +49,9 @@ export class MdcDialogService {
     };
 
     const dialogContainer = document.createElement('div');
+    if (!this.au.container.has(options.viewModel, false)) {
+      this.au.container.register(options.viewModel);
+    }
     const def = CustomElement.getDefinition(options.viewModel);
     dialogContainer.innerHTML = `<${def.name}></${def.name}>`;
     document.body.appendChild(dialogContainer);

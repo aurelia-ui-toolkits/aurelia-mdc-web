@@ -1,20 +1,20 @@
 import { MdcComponent, booleanAttr, number } from '../base';
 import { MDCTooltipFoundation, MDCTooltipAdapter, events, XPosition, YPosition, AnchorBoundaryType, attributes, CssClasses, PositionWithCaret, numbers } from '@material/tooltip';
 import { inject, customElement, bindable } from 'aurelia';
-import { MdcDefaultTooltipConfiguration } from './mdc-default-tooltip-configuration';
 import template from './mdc-tooltip.html?raw';
+import { MdcConfiguration } from '../mdc-configuration';
 
 /**
  * @selector mdc-tooltip
  */
-@inject(Element, MdcDefaultTooltipConfiguration)
+@inject(Element, MdcConfiguration)
 @customElement({ name: 'mdc-tooltip', template })
 export class MdcTooltip extends MdcComponent<MDCTooltipFoundation> implements EventListenerObject {
-  constructor(root: HTMLElement, private defaultConfiguration: MdcDefaultTooltipConfiguration) {
+  constructor(root: HTMLElement, private configuration: MdcConfiguration) {
     super(root);
-    this.showDelay = this.defaultConfiguration.showDelay;
-    this.hideDelay = this.defaultConfiguration.hideDelay;
-    this.scrollHost = this.defaultConfiguration.scrollHost;
+    this.showDelay = this.configuration.tooltip.showDelay;
+    this.hideDelay = this.configuration.tooltip.hideDelay;
+    this.scrollHost = this.configuration.tooltip.scrollHost;
   }
 
   /** Sets the anchor element */

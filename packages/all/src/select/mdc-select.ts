@@ -9,12 +9,12 @@ import { MDCSelectFoundationAurelia } from './mdc-select-foundation-aurelia';
 import { MDCSelectAdapterAurelia } from './mdc-select-adapter-aurelia';
 import { MDCMenuDistance } from '@material/menu-surface';
 import { processContent, BindingMode, CustomElement, CustomAttribute } from '@aurelia/runtime-html';
-import { MdcDefaultSelectConfiguration } from './mdc-default-select-configuration';
 import template from './mdc-select.html?raw';
 import { MdcFloatingLabel } from '../floating-label/mdc-floating-label';
 import { MdcLineRipple } from '../line-ripple/mdc-line-ripple';
 import { MdcListItem } from '../list/mdc-list-item/mdc-list-item';
 import { MdcMenu } from '../menu/mdc-menu';
+import { MdcConfiguration } from '../mdc-configuration';
 
 strings.CHANGE_EVENT = strings.CHANGE_EVENT.toLowerCase();
 
@@ -24,7 +24,7 @@ let selectId = 0;
  * @selector mdc-select
  * @emits mdcselect:change | Emitted if user changed the value
  */
-@inject(Element, IPlatform, MdcDefaultSelectConfiguration)
+@inject(Element, IPlatform, MdcConfiguration)
 @customElement({ name: 'mdc-select', template })
 @processContent(function processContent(node: INode, platform: IPlatform) {
   const el = node as Element;
@@ -50,9 +50,9 @@ let selectId = 0;
 }
 )
 export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
-  constructor(root: HTMLElement, private platform: IPlatform, private defaultConfiguration: MdcDefaultSelectConfiguration) {
+  constructor(root: HTMLElement, private platform: IPlatform, private configuration: MdcConfiguration) {
     super(root);
-    this.outlined = this.defaultConfiguration.outlined;
+    this.outlined = this.configuration.select.outlined;
     defineMdcSelectElementApis(this.root);
     this.root.id = this.id;
   }

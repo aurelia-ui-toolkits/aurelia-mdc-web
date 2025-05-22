@@ -1,11 +1,11 @@
 import { customElement, inject, bindable, BindingMode, CustomElement } from 'aurelia';
 import { DiscardablePromise } from './discardable-promise';
-import { MdcDefaultLookupConfiguration } from './mdc-lookup-configuration';
 import { IValidatedElement, IError, booleanAttr, number } from '../base';
 import { closest } from '@material/dom/ponyfill';
 import template from './mdc-lookup.html?raw';
 import { MdcMenuSurface } from '../menu-surface/mdc-menu-surface';
 import { MdcMenu, IMdcMenuItemComponentEvent } from '../menu/mdc-menu';
+import { MdcConfiguration } from '../mdc-configuration';
 
 const inputEvents = ['click', 'input', 'keydown', 'blur'];
 const bodyEvents = ['touchstart', 'mousedown', 'click'];
@@ -13,11 +13,11 @@ const bodyEvents = ['touchstart', 'mousedown', 'click'];
 /**
  * @selector mdc-lookup
  */
-@inject(Element, MdcDefaultLookupConfiguration)
+@inject(Element, MdcConfiguration)
 @customElement({ name: 'mdc-lookup', template })
 export class MdcLookup implements EventListenerObject {
-  constructor(private root: HTMLElement, private defaultConfiguration: MdcDefaultLookupConfiguration) {
-    this.debounce = this.defaultConfiguration.debounce;
+  constructor(private root: HTMLElement, private configuration: MdcConfiguration) {
+    this.debounce = this.configuration.lookup.debounce;
     defineMdcLookupElementApis(this.root);
   }
 

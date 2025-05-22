@@ -1,0 +1,38 @@
+global-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 6;
+
+  .progress-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0.7;
+  }
+
+  >div {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+
+    .mdc-circular-progress {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    >div,
+    >a {
+      text-align: center;
+      z-index: 1;
+    }
+  }
+}

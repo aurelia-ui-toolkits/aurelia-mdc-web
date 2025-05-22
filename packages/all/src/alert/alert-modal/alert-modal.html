@@ -1,0 +1,27 @@
+<mdc-dialog class="alert-modal">
+  <mdc-dialog-title if.bind="payload.caption">${payload.caption}</mdc-dialog-title>
+  <mdc-dialog-content class='alert-modal__dialog-content'>
+    <mdc-icon class="${payload.iconColour}">${payload.icon}</mdc-icon>
+    <span if.bind="payload.message">${payload.message}</span>
+    <div if.bind="payload.html" innerhtml.bind="payload.html"></div>
+  </mdc-dialog-content>
+  <mdc-dialog-actions>
+    <template if.bind="payload.button1Action === payload.defaultAction">
+      <button mdc-button data-mdc-dialog-action.bind="payload.button1Action" data-mdc-dialog-button-default
+        data-mdc-dialog-initial-focus if.bind="payload.button1Text">${payload.button1Text}</button>
+    </template>
+    <template else>
+      <button mdc-button data-mdc-dialog-action.bind="payload.button1Action"
+        if.bind="payload.button1Text">${payload.button1Text}</button>
+    </template>
+
+    <template if.bind="payload.button2Action === payload.defaultAction">
+      <button mdc-button data-mdc-dialog-action.bind="payload.button2Action" data-mdc-dialog-button-default
+        data-mdc-dialog-initial-focus if.bind="payload.button2Text">${payload.button2Text}</button>
+    </template>
+    <template else>
+      <button mdc-button data-mdc-dialog-action.bind="payload.button2Action"
+        if.bind="payload.button2Text">${payload.button2Text}</button>
+    </template>
+  </mdc-dialog-actions>
+</mdc-dialog>

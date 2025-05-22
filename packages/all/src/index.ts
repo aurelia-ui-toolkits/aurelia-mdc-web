@@ -6,7 +6,7 @@ import { strings } from '@material/select';
 import { events as segmentedButtonEvents } from '@material/segmented-button/segmented-button/constants';
 import { MdcSelectValueObserver } from './select/mdc-select-value-observer';
 import { events as sliderEvents } from '@material/slider';
-import { IValidatedElement, MdcFocusTrap } from './base';
+import { MdcFocusTrap } from './base';
 import { MdcPromisifyReference } from './base/elements/mdc-promisify-reference';
 import { EnhanceMdcButton } from './button/enhance-mdc-button';
 import { MdcCardActionButtons } from './card/mdc-card-action-buttons';
@@ -119,6 +119,16 @@ import { MdcSelect } from './select/mdc-select';
 import { MdcIcon } from './icon/mdc-icon';
 import { MdcDefaultLookupConfiguration } from './lookup/mdc-lookup-configuration';
 import { MdcDefaultTextFieldConfiguration } from './text-field/mdc-default-text-field-configuration';
+import { AlertModal } from './alert/alert-modal/alert-modal';
+import { GlobalProgress } from './alert/global-progress/global-progress';
+import { PromptDialog } from './alert/prompt-dialog/prompt-dialog';
+import { MdcInputmaskCustomAttribute, EnhanceMask } from './text-field/mdc-inputmask';
+import { IAlertModalPayload } from './alert/alert-modal/i-alert-modal-payload';
+import { AlertService } from './alert/alert-service';
+import { confirmAction } from './alert/decorators/confirm-action';
+import { usingProgress } from './alert/decorators/using-progress';
+import { ExceptionsTracker } from './alert/exceptions-tracker';
+import { validate } from './validation/validate';
 
 let registered = false; //
 
@@ -134,8 +144,8 @@ export {
   MdcSlider, MdcSnackbar, MdcSnackbarService, MdcSwitch, EnhanceMdcSwitch, MdcTabBar, MdcTab, MdcTabScroller, MdcTabIndicator, MdcTextField, MdcTextFieldIcon, MdcTextFieldHelperLine, MdcTextFieldHelperText,
   MdcTextFieldCharacterCounter, EnhanceMdcTextfield, MdcTooltip, MdcTooltipAttribute, MdcTopAppBar, MdcTopAppBarRow, MdcTopAppBarTitle, MdcTopAppBarSection, MdcTopAppBarFixedAdjust, MdcTopAppBarNavIcon,
   MdcTopAppBarActionItem, EnhanceTopAppBarActions, MdcTreeView, MdcTreeViewNodeMeta, MdcTreeNode, NodeFilterValueConverter, MdcBody1, MdcBody2, MdcCaption, MdcHeadline1, MdcHeadline2, MdcHeadline3,
-  MdcHeadline4, MdcHeadline5, MdcHeadline6, MdcOveline, MdcSubtitle1, MdcSubtitle2, MdcTypographyButton, MdcIcon,
-  MdcDialogService, MdcValidationControllerFactory, MdcDefaultLookupConfiguration, MdcDefaultTextFieldConfiguration,
+  MdcHeadline4, MdcHeadline5, MdcHeadline6, MdcOveline, MdcSubtitle1, MdcSubtitle2, MdcTypographyButton, MdcIcon, validate,
+  MdcDialogService, MdcValidationControllerFactory, MdcDefaultLookupConfiguration, MdcDefaultTextFieldConfiguration, AlertService, confirmAction, usingProgress, ExceptionsTracker, IAlertModalPayload
 };
 
 export { MdcComponent } from './base/mdc-component';
@@ -160,6 +170,8 @@ export type { IMdcTabElement } from './tab-bar/tab/mdc-tab';
 export type { IMdcTextFieldElement } from './text-field/mdc-text-field';
 export type { IMdcTextFieldHelperLineElement } from './text-field/mdc-text-field-helper-line/mdc-text-field-helper-line';
 export { MdcValidationResultPresenter } from './validation/mdc-validation-result-presenter';
+export type { IPromptDialogData } from './alert/prompt-dialog/prompt-dialog';
+export type { IWithAlertService } from './alert/decorators/using-progress';
 
 
 export const AllConfiguration = {
@@ -218,7 +230,7 @@ export const AllConfiguration = {
       MdcSlider, MdcSnackbar, MdcSnackbarService, MdcSwitch, EnhanceMdcSwitch, MdcTabBar, MdcTab, MdcTabScroller, MdcTabIndicator, MdcTextField, MdcTextFieldIcon, MdcTextFieldHelperLine, MdcTextFieldHelperText,
       MdcTextFieldCharacterCounter, EnhanceMdcTextfield, MdcTooltip, MdcTooltipAttribute, MdcTopAppBar, MdcTopAppBarRow, MdcTopAppBarTitle, MdcTopAppBarSection, MdcTopAppBarFixedAdjust, MdcTopAppBarNavIcon,
       MdcTopAppBarActionItem, EnhanceTopAppBarActions, MdcTreeView, MdcTreeViewNodeMeta, MdcTreeNode, NodeFilterValueConverter, MdcBody1, MdcBody2, MdcCaption, MdcHeadline1, MdcHeadline2, MdcHeadline3,
-      MdcHeadline4, MdcHeadline5, MdcHeadline6, MdcOveline, MdcSubtitle1, MdcSubtitle2, MdcTypographyButton, MdcIcon
+      MdcHeadline4, MdcHeadline5, MdcHeadline6, MdcOveline, MdcSubtitle1, MdcSubtitle2, MdcTypographyButton, MdcIcon, AlertModal, GlobalProgress, PromptDialog, MdcInputmaskCustomAttribute, EnhanceMask
     );
   },
   customize(optionsProvider: (config: MdcConfiguration) => void) {

@@ -1,0 +1,9 @@
+<template class="global-progress">
+  <div class="progress-background"></div>
+  <div>
+    <mdc-circular-progress size.bind="size" stroke-width.bind="strokeWidth" progress.bind="progress">
+    </mdc-circular-progress>
+    <div>${text}</div>
+    <a if.bind="allowCancel" href="#" click.trigger="cancel()">${allowCancel === true ? 'Cancel' : allowCancel}</a>
+  </div>
+</template>
