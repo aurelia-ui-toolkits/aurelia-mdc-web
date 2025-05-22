@@ -4,12 +4,12 @@ import { merge } from 'rxjs/internal/observable/merge';
 import { map } from 'rxjs/internal/operators/map';
 import { scan } from 'rxjs/internal/operators/scan';
 import { AlertModal } from './alert-modal/alert-modal';
-import { IMdcDialogOptions, MdcDialogService } from '@aurelia-mdc-web/all';
 import { IPromptDialogData, PromptDialog } from './prompt-dialog/prompt-dialog';
 import { ExceptionsTracker } from './exceptions-tracker';
 import { IAlertModalPayload } from './alert-modal/i-alert-modal-payload';
 import { resolve } from 'aurelia';
 import { MdcConfiguration } from '../mdc-configuration';
+import { MdcDialogService, IMdcDialogOptions } from '../dialog/mdc-dialog-service';
 
 export class AlertService {
   private dialogService: MdcDialogService = resolve(MdcDialogService);

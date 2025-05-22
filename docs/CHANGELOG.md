@@ -1,3 +1,23 @@
+## [9.3.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.1-au2...v9.3.2-au2) (2025-05-22)
+
+
+### Bug Fixes
+
+* **dialog:** enable initial focus on buttons ([e8588bc](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e8588bc84e32b2d57298a38caeb07a7d25d4b8e2))
+* **lookup:** autoselect only when filter is not empty ([9d510cd](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/9d510cd3abaa1893e215684163394eff6fccd29f))
+* **select:** store old value ([d23242f](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d23242fffa2b8423957d981148dbb4f348ae4303))
+* **select:** use undefined as initial value ([900d754](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/900d7542960a8353bfe4184d7f87b9940cd02e62))
+* **text-field:** export config ([ee27af4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ee27af4393ee47646297d9476991c296dfa9494d))
+
+
+### Features
+
+* **alert:** add common service ([880fdb9](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/880fdb9bcff451da0a903f89a0a61102133bb727))
+* **data-table:** allow disabling checkbox behavior ([dc06c0b](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/dc06c0b0b4e49d2a83c56132b896326d9ba08633))
+* **data-table:** enable column resizing ([90d7035](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/90d7035134d19532abd43a7e3114acf177a9ccea))
+
+
+
 ## [9.3.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.0-au2...v9.3.1-au2) (2025-04-28)
 
 * **all:** Upgrade to Aurelia beta.24

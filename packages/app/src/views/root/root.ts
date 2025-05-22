@@ -1,4 +1,4 @@
-import { MdcDrawer } from '@aurelia-mdc-web/drawer';
+import { MdcDrawer } from '@aurelia-mdc-web/all';
 import { observable } from '@aurelia/runtime';
 import { Home } from '../home/home';
 import { GettingStarted } from '../getting-started/getting-started';

@@ -1,8 +1,8 @@
-import { MdcDialog } from '@aurelia-mdc-web/all';
 import template from './prompt-dialog.html?raw'
 import { customElement, inject, newInstanceForScope } from 'aurelia';
 import { IValidationController } from '@aurelia/validation-html';
 import { IValidationRules } from '@aurelia/validation';
+import { MdcDialog } from '../../dialog/mdc-dialog';
 
 export interface IPromptDialogData {
   title: string;
