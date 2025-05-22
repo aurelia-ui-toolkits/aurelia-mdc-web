@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/all",
-  "version": "9.3.3-au2",
+  "version": "9.3.4-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -43,7 +43,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build:ts": "tsc -p tsconfig.build.json",
-    "build:other": "copyfiles -u 1 src/**/*.html dist",
+    "build:other": "copyfiles -u 1 src/**/*.html src/**/*.scss dist",
     "build": "npm run build:ts && npm run build:other",
     "publish:au2": "npm publish --tag au2",
     "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
