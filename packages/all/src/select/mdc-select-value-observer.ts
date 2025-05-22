@@ -245,7 +245,7 @@ export class MdcSelectValueObserver implements INodeObserver {
     */
     // B. single select
     // B.1
-    let value: unknown = null;
+    let value: unknown = undefined;
     while (i < len) {
       const option = options[i];
       if (option.value === this.obj.value) {
