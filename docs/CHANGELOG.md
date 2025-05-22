@@ -1,3 +1,11 @@
+## [9.3.4-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.1-au2...v9.3.4-au2) (2025-05-22)
+
+
+### Bug Fixes
+
+* **all:** TS config ([80b86b7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/80b86b73bd74591f101d63fe6d00deb015af02b8))
+
+
 ## [9.3.3-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.1-au2...v9.3.3-au2) (2025-05-22)
 
 
