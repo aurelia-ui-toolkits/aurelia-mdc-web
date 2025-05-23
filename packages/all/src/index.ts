@@ -172,6 +172,7 @@ export type { IMdcTextFieldHelperLineElement } from './text-field/mdc-text-field
 export { MdcValidationResultPresenter } from './validation/mdc-validation-result-presenter';
 export type { IPromptDialogData } from './alert/prompt-dialog/prompt-dialog';
 export type { IWithAlertService } from './alert/decorators/using-progress';
+export type { IWithValidationController } from './validation/validate';
 
 
 export const AllConfiguration = {

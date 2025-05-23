@@ -71,24 +71,43 @@ export class AlertService {
     const model: Partial<IAlertModalPayload> = {
       icon: 'info',
       iconColour: 'mdc-theme--primary',
-      okText: this.configuration.alert.okText,
+      button2Text: this.configuration.alert.okText,
+      button2Action: 'ok',
+      defaultAction: 'ok',
+      successAction: 'ok',
       ...message
     };
-    return await this.showModal(model) === 'ok';
+    return await this.showModal(model) === model.successAction;
   }
 
   async confirm(message: string | Partial<IAlertModalPayload>): Promise<boolean> {
     if (typeof message === 'string') {
       message = { message };
     }
-    const model: IAlertModalPayload = {
-      icon: 'help',
-      iconColour: 'mdc-theme--primary',
-      okText: this.configuration.alert.yesText,
-      cancelText: this.configuration.alert.noText,
-      ...message
-    };
-    return await this.showModal(model) === 'ok';
+    const model: IAlertModalPayload = message.defensive
+      ? {
+        icon: 'help',
+        iconColour: 'mdc-theme--primary',
+        button1Text: this.configuration.alert.yesText,
+        button1Action: 'yes',
+        button2Text: this.configuration.alert.noText,
+        button2Action: 'no',
+        defaultAction: 'no',
+        successAction: 'yes',
+        ...message
+      }
+      : {
+        icon: 'help',
+        iconColour: 'mdc-theme--primary',
+        button1Text: this.configuration.alert.noText,
+        button1Action: 'no',
+        button2Text: this.configuration.alert.yesText,
+        button2Action: 'yes',
+        defaultAction: 'yes',
+        successAction: 'yes',
+        ...message
+      };
+    return await this.showModal(model) === model.successAction;
   }
 
   async prompt(data: Partial<IPromptDialogData>): Promise<boolean> {
