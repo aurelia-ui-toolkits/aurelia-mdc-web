@@ -5,7 +5,7 @@
     <mdc-list role="menu" wrap-focus>
 
       <au-slot if.bind="searching" name="searching">
-        <mdc-list-item two-line.bind="twoLine">${defaultConfiguration.searchingMessage}</mdc-list-item>
+        <mdc-list-item two-line.bind="twoLine">${configuration.lookup.searchingMessage}</mdc-list-item>
       </au-slot>
 
       <au-slot if.bind="errorMessage" name="error">
@@ -14,14 +14,23 @@
 
       <au-slot if.bind="optionsArray && !optionsArray.length" name="not-found">
         <mdc-list-item two-line.bind="twoLine">
-          ${defaultConfiguration.notFoundMessage}
+          ${configuration.lookup.notFoundMessage}
         </mdc-list-item>
       </au-slot>
 
-      <mdc-list-item role="menuitem" repeat.for="option of optionsArray" value.bind="option" tabindex="-1"
-        two-line.bind="twoLine">
-        <au-slot name="option">${getDisplay(option)}</au-slot>
-      </mdc-list-item>
+      <div if.bind="!virtual && optionsArray.length">
+        <mdc-list-item role="menuitem" repeat.for="option of optionsArray" value.bind="option"
+          tabindex="-1" two-line.bind="twoLine">
+          <au-slot name="option">${getDisplay(option)}</au-slot>
+        </mdc-list-item>
+      </div>
+
+      <div if.bind="virtual && optionsArray.length">
+        <mdc-list-item role="menuitem" virtual-repeat.for="option of optionsArray" value.bind="option" tabindex="-1"
+          two-line.bind="twoLine">
+          <au-slot name="option">${getDisplay(option)}</au-slot>
+        </mdc-list-item>
+      </div>
     </mdc-list>
   </mdc-menu>
 </template>
