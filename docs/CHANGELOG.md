@@ -1,3 +1,12 @@
+## [9.3.6-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.5-au2...v9.3.6-au2) (2025-06-09)
+
+
+### Features
+
+* **lookup:** add virtual ([e4abfd6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/e4abfd65ccbc887d5cb64a0bed6d544632170959))
+
+
+
 ## [9.3.5-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.1-au2...v9.3.5-au2) (2025-05-23)
 
 
