@@ -22,9 +22,10 @@
   <mdc-drawer component.ref="drawer" type="dismissible" mdc-top-app-bar-fixed-adjust>
     <mdc-drawer-header title="Aurelia" subtitle="Material Components Web"></mdc-drawer-header>
     <mdc-drawer-content>
-      <mdc-deprecated-list activated wrap-focus mdclist:action.trigger="navigateTo($event.detail.data)" tabindex="0">
+      <mdc-deprecated-list activated wrap-focus tabindex="0">
         <template repeat.for="m of routes">
-          <a mdc-deprecated-list-item activated.bind="m.path === currentPath" value.bind="m">
+          <a mdc-deprecated-list-item activated.bind="currentRoute.path.includes(m.path)"
+            value.bind="m" href.bind="m.path">
             <span>${m.title}</span>
           </a>
           <mdc-deprecated-list-divider if.bind="m.data.divider"></mdc-deprecated-list-divider>
@@ -33,6 +34,6 @@
     </mdc-drawer-content>
   </mdc-drawer>
   <mdc-drawer-app-content mdc-top-app-bar-fixed-adjust class="demo-panel-section">
-    <au-viewport default="home"></au-viewport>
+    <au-viewport></au-viewport>
   </mdc-drawer-app-content>
 </div>

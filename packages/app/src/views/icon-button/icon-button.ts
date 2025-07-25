@@ -1,13 +1,13 @@
 import template from '../component-viewer/component-viewer.html?raw';
 import { customElement } from 'aurelia';
-import { routes } from '@aurelia/router';
 import { ComponentViewer } from '../component-viewer/component-viewer';
-import {IconButtonExamples } from './icon-button-examples';
+import { IconButtonExamples } from './icon-button-examples';
 import { ApiViewer } from '../api-viewer/api-viewer';
 
 @customElement({ name: 'icon-button', template })
-@routes([    // { path: '', redirectTo: 'examples' },
-    { id: 'examples', path: 'examples', title: 'Examples', component: IconButtonExamples },
-    { id: 'api', path: 'api', title: 'Api', component: ApiViewer }
-])
-export class IconButton extends ComponentViewer { }
+export class IconButton extends ComponentViewer {
+  static routes = [    { path: '', redirectTo: 'examples' },
+    { path: 'examples', title: 'Examples', component: IconButtonExamples },
+    { path: 'api', title: 'Api', component: ApiViewer }
+  ];
+}

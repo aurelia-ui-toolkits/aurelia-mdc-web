@@ -1,5 +1,5 @@
 import { ConsoleLogger, DeclarationReflection, Deserializer, FileRegistry } from "typedoc/browser";
-import apiJson from '../../../../all/doc/api.json' with { type: "json" };
+import apiJson from '../../../../all/doc/api.json';
 
 const logger = new ConsoleLogger();
 const deserializer = new Deserializer(logger);
@@ -8,14 +8,13 @@ const project = deserializer.reviveProject("API Docs", apiJson as any, {
   registry: new FileRegistry(),
 });
 
-import { RoutingInstruction, route } from '@aurelia/router';
+import { RouteNode } from '@aurelia/router';
 
-@route({ path: 'api' })
 export class ApiViewer {
   classesApi?: DeclarationReflection[];
 
-  loading(parameters: Record<string, unknown>, ri: RoutingInstruction) {
-    const componentName = ri.endpoint.scope?.routingInstruction?.component.name?.replace('-page', '');
+  loading(parameters: Record<string, unknown>, node: RouteNode) {
+    const componentName = node.context.parent?.routeConfigContext.config.id.replace('-page', '');
     if (!componentName) {
       return;
     }

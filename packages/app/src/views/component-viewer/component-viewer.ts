@@ -1,5 +1,5 @@
 import { templates } from './templates';
-import { IRouter, Navigation, RoutingInstruction } from '@aurelia/router';
+import { RouteNode } from '@aurelia/router';
 
 interface IReference {
   name: string;
@@ -17,13 +17,14 @@ export interface IComponentTemplate {
 
 export class ComponentViewer {
   examples: string;
-  api = 'api-viewer';
+  api = 'api';
   template: IComponentTemplate;
   apiActive: boolean;
 
-  loading(params: Record<string, unknown>, ri: RoutingInstruction, nav: Navigation) {
-    this.apiActive = nav.path?.endsWith(this.api) ?? false;
-    this.examples = `${ri.component.name?.replace('-page', '')}-examples`;
-    this.template = templates[ri.component.name!];
+  // loading(params: Record<string, unknown>, ri: RoutingInstruction, nav: Navigation) {
+  loading(params: Record<string, unknown>, node: RouteNode) {
+    this.apiActive = node.residue[0]?.component.value === 'api';
+    this.examples = 'examples';
+    this.template = templates[node.path!.replace('/*$$residue', '')];
   }
 }

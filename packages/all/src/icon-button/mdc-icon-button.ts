@@ -20,15 +20,15 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   icon: string;
 
   // this is necessary for the route-href to work
-  @bindable()
-  href: string;
-  hrefChanged() {
-    if (this.href) {
-      this.root.setAttribute('href', this.href);
-    } else {
-      this.root.removeAttribute('href');
-    }
-  }
+  // @bindable()
+  // href: string;
+  // hrefChanged() {
+  //   if (this.href) {
+  //     this.root.setAttribute('href', this.href);
+  //   } else {
+  //     this.root.removeAttribute('href');
+  //   }
+  // }
 
   /**
    * Set the component touch target to 48 x 48 px
@@ -37,7 +37,7 @@ export class MdcIconButton extends MdcComponent<MDCIconButtonToggleFoundation> {
   touch: boolean;
 
   attached() {
-    this.hrefChanged();
+    // this.hrefChanged();
     if (this.root.querySelector('mdc-icon-button-icon')) {
       this.foundation = this.getDefaultFoundation();
       this.foundation.init();

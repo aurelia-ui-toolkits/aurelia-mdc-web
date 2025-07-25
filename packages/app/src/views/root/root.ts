@@ -34,70 +34,68 @@ import { Tooltip } from '../tooltip/tooltip';
 import { Tabs } from '../tabs/tabs';
 import { Typography } from '../typography/typography';
 import githubSvg from '../../assets/github-circle-white-transparent.svg';
-import { IRouter, IRouteableComponent, IRoute } from '@aurelia/router';
+import { IRouter, IChildRouteConfig, ICurrentRoute } from '@aurelia/router';
 import { TreeView } from '../tree-view/tree-view';
 import { Banner } from '../banner/banner';
 import { SegmentedButton } from '../segmented-button/segmented-button';
-import { customElement, resolve } from 'aurelia';
+import { resolve } from 'aurelia';
 
-const routeDefs: IRoute[] = [
-  { id: 'home', path: 'home', title: 'Home', component: Home, data: { divider: 'true' } },
-  { id: 'getting-started', path: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
-  { id: 'banner-page', path: 'banner-page', title: 'Banner', component: Banner },
-  { id: 'button-page', path: 'button-page', title: 'Button', component: ButtonPage },
-  { id: 'card', path: 'card', title: 'Card', component: Card },
-  { id: 'checkbox', path: 'checkbox', title: 'Checkbox', component: Checkbox },
-  { id: 'chips', path: 'chips', title: 'Chips', component: Chips },
-  { id: 'circular-progress', path: 'circular-progress', title: 'Circular progress', component: CircularProgress },
-  { id: 'data-table', path: 'data-table', title: 'Data table', component: DataTable },
-  { id: 'dialog', path: 'dialog-page', title: 'Dialog', component: Dialog },
-  { id: 'drawer', path: 'drawer', title: 'Drawer', component: Drawer },
-  { id: 'elevation', path: 'elevation', title: 'Elevation', component: Elevation },
-  { id: 'expandable', path: 'expandable', title: 'Expandable', component: Expandable },
-  { id: 'fab', path: 'fab', title: 'Fab', component: Fab },
-  { id: 'form-field', path: 'form-field', title: 'Form field', component: FormField },
-  { id: 'icon-button', path: 'icon-button', title: 'Icon button', component: IconButton },
-  { id: 'image-list', path: 'image-list', title: 'Image list', component: ImageList },
-  { id: 'layout-grid', path: 'layout-grid', title: 'Layout grid', component: LayoutGrid },
-  { id: 'list', path: 'list', title: 'List', component: List },
-  { id: 'linear-progress', path: 'linear-progress', title: 'Linear progress', component: LinearProgress },
-  { id: 'lookup', path: 'lookup', title: 'Lookup', component: Lookup },
-  { id: 'menu', path: 'menu-page', title: 'Menu', component: Menu },
-  { id: 'menu-surface', path: 'menu-surface', title: 'Menu surface', component: MenuSurface },
-  { id: 'radio', path: 'radio', title: 'Radio', component: Radio },
-  { id: 'ripple', path: 'ripple', title: 'Ripple', component: Ripple },
-  { id: 'segmented-button', path: 'segmented-button-page', title: 'Segmented button', component: SegmentedButton },
-  { id: 'select', path: 'select-page', title: 'Select', component: Select },
-  { id: 'slider', path: 'slider', title: 'Slider', component: Slider },
-  { id: 'snackbar', path: 'snackbar', title: 'Snackbar', component: Snackbar },
-  { id: 'switch', path: 'switch', title: 'Switch', component: Switch },
-  { id: 'tabs', path: 'tabs', title: 'Tabs', component: Tabs },
-  { id: 'text-field', path: 'text-field', title: 'Text field', component: TextField },
-  { id: 'tooltip', path: 'tooltip', title: 'Tooltip', component: Tooltip },
-  { id: 'top-app', path: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
-  { id: 'tree-view', path: 'tree-view', title: 'Tree view', component: TreeView },
-  { id: 'typography', path: 'typography', title: 'Typography', component: Typography },
-];
-
-export class Root implements IRouteableComponent {
+export class Root {
   constructor(private router: IRouter = resolve(IRouter)) { }
+
+  readonly currentRoute = resolve(ICurrentRoute);
 
   githubSvg = githubSvg;
 
   @observable
   drawer: MdcDrawer;
 
-  routes = routeDefs;
-  currentPath?: string = '';
+  static routes = [
+    { id: 'home', path: 'home', title: 'Home', component: Home, data: { divider: 'true' } },
+    { id: 'getting-started', path: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
+    { id: 'banner-page', path: 'banner-page', title: 'Banner', component: Banner },
+    { id: 'button-page', path: 'button-page', title: 'Button', component: ButtonPage },
+    { id: 'card', path: 'card', title: 'Card', component: Card },
+    { id: 'checkbox', path: 'checkbox', title: 'Checkbox', component: Checkbox },
+    { id: 'chips', path: 'chips', title: 'Chips', component: Chips },
+    { id: 'circular-progress', path: 'circular-progress', title: 'Circular progress', component: CircularProgress },
+    { id: 'data-table', path: 'data-table', title: 'Data table', component: DataTable },
+    { id: 'dialog', path: 'dialog-page', title: 'Dialog', component: Dialog },
+    { id: 'drawer', path: 'drawer', title: 'Drawer', component: Drawer },
+    { id: 'elevation', path: 'elevation', title: 'Elevation', component: Elevation },
+    { id: 'expandable', path: 'expandable', title: 'Expandable', component: Expandable },
+    { id: 'fab', path: 'fab', title: 'Fab', component: Fab },
+    { id: 'form-field', path: 'form-field', title: 'Form field', component: FormField },
+    { id: 'icon-button', path: 'icon-button', title: 'Icon button', component: IconButton },
+    { id: 'image-list', path: 'image-list', title: 'Image list', component: ImageList },
+    { id: 'layout-grid', path: 'layout-grid', title: 'Layout grid', component: LayoutGrid },
+    { id: 'list', path: 'list', title: 'List', component: List },
+    { id: 'linear-progress', path: 'linear-progress', title: 'Linear progress', component: LinearProgress },
+    { id: 'lookup', path: 'lookup', title: 'Lookup', component: Lookup },
+    { id: 'menu', path: 'menu-page', title: 'Menu', component: Menu },
+    { id: 'menu-surface', path: 'menu-surface', title: 'Menu surface', component: MenuSurface },
+    { id: 'radio', path: 'radio', title: 'Radio', component: Radio },
+    { id: 'ripple', path: 'ripple', title: 'Ripple', component: Ripple },
+    { id: 'segmented-button', path: 'segmented-button-page', title: 'Segmented button', component: SegmentedButton },
+    { id: 'select', path: 'select', title: 'Select', component: Select },
+    { id: 'slider', path: 'slider', title: 'Slider', component: Slider },
+    { id: 'snackbar', path: 'snackbar', title: 'Snackbar', component: Snackbar },
+    { id: 'switch', path: 'switch', title: 'Switch', component: Switch },
+    { id: 'tabs', path: 'tabs', title: 'Tabs', component: Tabs },
+    { id: 'text-field', path: 'text-field', title: 'Text field', component: TextField },
+    { id: 'tooltip', path: 'tooltip', title: 'Tooltip', component: Tooltip },
+    { id: 'top-app', path: 'top-app-bar', title: 'Top app bar', component: TopAppBar },
+    { id: 'tree-view', path: 'tree-view', title: 'Tree view', component: TreeView },
+    { id: 'typography', path: 'typography', title: 'Typography', component: Typography },
+  ];
+  routes = Root.routes;
 
   attached() {
     this.drawer.open = true;
-    // this.currentPath = this.router.activeNavigation.path;
   }
 
-  async navigateTo(routeDef: IRoute) {
-    await this.router.load({ component: routeDef.component });
-    this.currentPath = this.router.activeNavigation.path;
+  async navigateTo(route: IChildRouteConfig) {
+    await this.router.load({ component: route.component });
     if (this.drawer.type === 'modal') {
       this.drawer.toggle();
     }
