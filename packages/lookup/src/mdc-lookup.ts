@@ -342,7 +342,7 @@ export class MdcLookup implements EventListenerObject {
 
   onBodyMousedown(evt: MouseEvent | TouchEvent) {
     // this is needed to prevent text field label jumping
-    if (closest(evt.target as HTMLElement, 'mdc-menu')) {
+    if (closest(evt.target as HTMLElement, 'mdc-menu') === this.menu.root) {
       evt.preventDefault();
     }
     return true;
