@@ -1,3 +1,12 @@
+## [9.1.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.2...v9.1.3) (2025-10-10)
+
+
+### Bug Fixes
+
+* **lookup:** only prevent "own" events ([7bdaee6](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/7bdaee65302f31420ad46817470eaf2c60d494b2))
+
+
+
 ## [9.1.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.1...v9.1.2) (2025-04-28)
 
 
