@@ -1,3 +1,12 @@
+## [9.3.8-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.7-au2...v9.3.8-au2) (2025-10-11)
+
+
+### Bug Fixes
+
+* **lookup:** only prevent "own" events ([f707c35](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/f707c35fc602856cd7940657b7a7fe2b80f0c4f3))
+
+
+
 ## [9.3.7-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.6-au2...v9.3.7-au2) (2025-07-25)
 
 * **all:** Upgrade to Aurelia beta.25
