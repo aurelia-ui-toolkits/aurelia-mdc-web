@@ -94,7 +94,7 @@ Aurelia
   //   // optionally add the shared styles for all components
   //   sharedStyles: [shared]
   // }))
-  .register(RouterConfiguration.customize({ useUrlFragmentHash: true, useHref: false }),
+  .register(RouterConfiguration,
     MaterialConfiguration.customize(c => {
       c.tooltip.scrollHost = '.demo-panel-content';
     }), SVGAnalyzer,

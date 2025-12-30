@@ -9,6 +9,7 @@
     "start": "vite",
     "build": "vite build",
     "prebuild": "rimraf --glob dist/*.{js,css,map,html}",
+    "postbuild": "node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts"
   },
