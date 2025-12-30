@@ -1,3 +1,12 @@
+## [9.3.11-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.10-au2...v9.3.11-au2) (2025-12-30)
+
+
+### Bug Fixes
+
+* **dialog:** check registration correctly ([4f8e277](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/4f8e277575be3a46802068bffc910ee86d0db33e))
+
+
+
 ## [9.3.10-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.9-au2...v9.3.10-au2) (2025-12-30)
 
 
