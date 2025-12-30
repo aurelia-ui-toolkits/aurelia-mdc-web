@@ -1,3 +1,12 @@
+## [9.3.10-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.9-au2...v9.3.10-au2) (2025-12-30)
+
+
+### Bug Fixes
+
+* **select:** injection ([063a451](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/063a45142d0387273f713802dcd763a0883ed8df))
+
+
+
 ## [9.3.9-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.7-au2...v9.3.9-au2) (2025-12-30)
 
 
