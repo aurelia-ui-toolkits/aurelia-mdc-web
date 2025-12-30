@@ -1,4 +1,4 @@
-import { customElement, inject, bindable, IPlatform } from 'aurelia';
+import { customElement, inject, bindable, IPlatform, queueTask } from 'aurelia';
 import { booleanAttr } from '../base';
 import { CustomElement } from '@aurelia/runtime-html';
 import template from './mdc-expandable.html?raw';
@@ -11,7 +11,7 @@ const SPACE = 32;
 @inject(Element, IPlatform)
 @customElement({ name: 'mdc-expandable', template })
 export class MdcExpandable {
-  constructor(public element: HTMLElement, private platform: IPlatform) { }
+  constructor(public element: HTMLElement) { }
 
   header?: HTMLElement = undefined;
   content?: HTMLElement = undefined;
@@ -59,7 +59,7 @@ export class MdcExpandable {
     } else {
       // the following line is needed because height has been restored to auto'
       this.contentContainer!.style.height = `${this.content!.clientHeight}px`;
-      this.platform.taskQueue.queueTask(() => {
+      queueTask(() => {
         this.contentContainer!.style.overflow = 'hidden';
         this.contentContainer!.style.height = '0';
       });

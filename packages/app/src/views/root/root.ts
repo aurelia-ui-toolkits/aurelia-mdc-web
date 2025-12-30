@@ -51,7 +51,7 @@ export class Root {
   drawer: MdcDrawer;
 
   static routes = [
-    { id: 'home', path: 'home', title: 'Home', component: Home, data: { divider: 'true' } },
+    { id: 'home', path: ['', 'home'], title: 'Home', component: Home, data: { divider: 'true' } },
     { id: 'getting-started', path: 'getting-started', title: 'Getting Started', component: GettingStarted, data: { divider: 'true' } },
     { id: 'banner-page', path: 'banner-page', title: 'Banner', component: Banner },
     { id: 'button-page', path: 'button-page', title: 'Button', component: ButtonPage },

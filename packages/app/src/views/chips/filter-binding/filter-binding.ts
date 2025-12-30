@@ -1,5 +1,5 @@
-import { MdcChipSet } from '@aurelia-mdc-web/chips';
-import { IPlatform, ISignaler, inject } from 'aurelia';
+import { MdcChipSet } from '@aurelia-mdc-web/all';
+import { IPlatform, ISignaler, inject, queueTask } from 'aurelia';
 
 interface IChip {
   label: string;
@@ -8,7 +8,7 @@ interface IChip {
 
 @inject(ISignaler, IPlatform)
 export class FilterBinding {
-  constructor(private signaler: ISignaler, private platform: IPlatform) { }
+  constructor(private signaler: ISignaler) { }
 
   chips: IChip[] = [{ label: 'One', selected: true }, { label: 'Two' }, { label: 'Three' }];
   newChip: string;
@@ -18,7 +18,7 @@ export class FilterBinding {
     this.chips.push({ label: this.newChip });
     this.newChip = '';
     this.changed();
-    this.platform.taskQueue.queueTask(() => {
+    queueTask(() => {
       this.chipsVm.foundation?.addChip(this.chips.length - 1);
     });
   }

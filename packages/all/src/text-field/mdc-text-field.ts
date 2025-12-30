@@ -1,4 +1,4 @@
-import { inject, customElement, INode, bindable } from 'aurelia';
+import { inject, customElement, INode, bindable, queueTask } from 'aurelia';
 import {
   MDCTextFieldFoundation, MDCTextFieldRootAdapter, MDCTextFieldInputAdapter, MDCTextFieldLabelAdapter, MDCTextFieldAdapter, MDCTextFieldFoundationMap,
   MDCTextFieldLineRippleAdapter, MDCTextFieldOutlineAdapter, cssClasses, helperTextStrings, characterCountStrings
@@ -32,7 +32,7 @@ const trailingIconSelector = '.mdc-text-field__icon--trailing';
 }
 )
 export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
-  constructor(root: HTMLElement, private platform: IPlatform, private configuration: MdcConfiguration) {
+  constructor(root: HTMLElement, private configuration: MdcConfiguration) {
     super(root);
     this.outlined = this.configuration.textField.outlined;
     defineMdcTextFieldElementApis(this.root);
@@ -54,7 +54,7 @@ export class MdcTextField extends MdcComponent<MDCTextFieldFoundation> {
   @bindable()
   label: string;
   labelChanged() {
-    this.platform.domQueue.queueTask(() => {
+    queueTask(() => {
       if (this.foundation) {
         const openNotch = this.foundation.shouldFloat;
         this.foundation.notchOutline(openNotch);

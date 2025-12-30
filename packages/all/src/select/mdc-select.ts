@@ -1,6 +1,6 @@
 import { MdcComponent, IValidatedElement, IError, booleanAttr } from '../base';
 import { cssClasses, MDCSelectFoundationMap, MDCSelectEventDetail, strings } from '@material/select';
-import { inject, customElement, INode, IPlatform, bindable } from 'aurelia';
+import { inject, customElement, INode, IPlatform, bindable, queueTask } from 'aurelia';
 import { MdcSelectIcon, IMdcSelectIconElement, mdcIconStrings } from './mdc-select-icon';
 import { MdcSelectHelperText, mdcHelperTextCssClasses } from './mdc-select-helper-text/mdc-select-helper-text';
 import { MDCNotchedOutline } from '@material/notched-outline';
@@ -50,7 +50,7 @@ let selectId = 0;
 }
 )
 export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
-  constructor(root: HTMLElement, private platform: IPlatform, private configuration: MdcConfiguration) {
+  constructor(root: HTMLElement, private configuration: MdcConfiguration) {
     super(root);
     this.outlined = this.configuration.select.outlined;
     defineMdcSelectElementApis(this.root);
@@ -80,14 +80,14 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
   @bindable()
   label: string;
   labelChanged() {
-    this.platform.domQueue.queueTask(() => this.foundation?.layout());
+    queueTask(() => this.foundation?.layout());
   }
 
   /** Styles the select as an outlined select */
   @bindable({ set: booleanAttr })
   outlined?: boolean;
   outlinedChanged() {
-    this.platform.domQueue.queueTask(() => this.foundation?.layout());
+    queueTask(() => this.foundation?.layout());
   }
 
   /** Makes the value required */
@@ -100,7 +100,7 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
       this.selectAnchor?.removeAttribute('aria-required');
     }
     this.foundation?.setRequired(this.required ?? false);
-    this.platform.domWriteQueue.queueTask(() => this.foundation?.layout());
+    queueTask(() => this.foundation?.layout());
   }
 
   /** Enables/disables the select */
