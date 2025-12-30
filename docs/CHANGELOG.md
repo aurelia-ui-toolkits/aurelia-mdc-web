@@ -1,3 +1,12 @@
+## [9.3.12-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.10-au2...v9.3.12-au2) (2025-12-30)
+
+
+### Bug Fixes
+
+* **dialog:** do no try to register dialog elements ([a6db2ad](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a6db2add8f2f4e859535721543b1fd7872d49072))
+
+
+
 ## [9.3.11-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.10-au2...v9.3.11-au2) (2025-12-30)
 
 
