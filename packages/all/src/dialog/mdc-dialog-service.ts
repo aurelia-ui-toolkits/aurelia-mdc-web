@@ -49,7 +49,7 @@ export class MdcDialogService {
     };
 
     const dialogContainer = document.createElement('div');
-    if (!this.au.container.has(options.viewModel, false)) {
+    if (!this.au.container.hasFactory(options.viewModel)) {
       this.au.container.register(options.viewModel);
     }
     const def = CustomElement.getDefinition(options.viewModel);
