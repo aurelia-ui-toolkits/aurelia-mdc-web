@@ -1,12 +1,12 @@
 import { MdcChipSet } from '@aurelia-mdc-web/all';
-import { IPlatform, ISignaler, inject, queueTask } from 'aurelia';
+import { ISignaler, inject, queueTask } from 'aurelia';
 
 interface IChip {
   label: string;
   selected?: boolean;
 }
 
-@inject(ISignaler, IPlatform)
+@inject(ISignaler)
 export class FilterBinding {
   constructor(private signaler: ISignaler) { }
 

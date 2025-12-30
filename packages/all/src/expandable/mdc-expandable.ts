@@ -1,4 +1,4 @@
-import { customElement, inject, bindable, IPlatform, queueTask } from 'aurelia';
+import { customElement, inject, bindable, queueTask } from 'aurelia';
 import { booleanAttr } from '../base';
 import { CustomElement } from '@aurelia/runtime-html';
 import template from './mdc-expandable.html?raw';
@@ -8,7 +8,7 @@ const ENTER = 13;
 const SPACE = 32;
 
 /** @selector mdc-expandable */
-@inject(Element, IPlatform)
+@inject(Element)
 @customElement({ name: 'mdc-expandable', template })
 export class MdcExpandable {
   constructor(public element: HTMLElement) { }

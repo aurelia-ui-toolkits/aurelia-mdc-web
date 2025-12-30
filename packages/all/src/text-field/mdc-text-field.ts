@@ -9,7 +9,7 @@ import { MdcTextFieldIcon, mdcIconStrings, IMdcTextFieldIconElement } from './md
 import { MdcTextFieldHelperText } from './mdc-text-field-helper-text/mdc-text-field-helper-text';
 import { MdcTextFieldCharacterCounter } from './mdc-text-field-character-counter';
 import { MdcTextFieldHelperLine } from './mdc-text-field-helper-line/mdc-text-field-helper-line';
-import { processContent, IPlatform, CustomAttribute, CustomElement } from '@aurelia/runtime-html';
+import { processContent, CustomAttribute, CustomElement } from '@aurelia/runtime-html';
 import template from './mdc-text-field.html?raw';
 import { MdcFloatingLabel } from '../floating-label/mdc-floating-label';
 import { MdcLineRipple } from '../line-ripple/mdc-line-ripple';
@@ -20,7 +20,7 @@ let textFieldId = 0;
 const leadingIconSelector = '.mdc-text-field__icon--leading';
 const trailingIconSelector = '.mdc-text-field__icon--trailing';
 
-@inject(Element, IPlatform, MdcConfiguration)
+@inject(Element, MdcConfiguration)
 @customElement({ name: 'mdc-text-field', template })
 @processContent(function processContent(node: INode) {
   const element = node as HTMLElement;

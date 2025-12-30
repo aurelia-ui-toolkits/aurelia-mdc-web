@@ -24,7 +24,7 @@ let selectId = 0;
  * @selector mdc-select
  * @emits mdcselect:change | Emitted if user changed the value
  */
-@inject(Element, IPlatform, MdcConfiguration)
+@inject(Element, MdcConfiguration)
 @customElement({ name: 'mdc-select', template })
 @processContent(function processContent(node: INode, platform: IPlatform) {
   const el = node as Element;

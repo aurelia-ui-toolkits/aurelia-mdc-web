@@ -15,7 +15,6 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern',
         loadPaths: [path.resolve(__dirname, 'node_modules')],
       }
     }
