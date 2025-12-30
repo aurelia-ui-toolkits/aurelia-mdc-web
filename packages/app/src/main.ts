@@ -1,5 +1,5 @@
 import Aurelia, { LoggerConfiguration, LogLevel } from 'aurelia';
-import { StandardConfiguration, SVGAnalyzer } from '@aurelia/runtime-html';
+import { SVGAnalyzer } from '@aurelia/runtime-html';
 import { Root } from './views/root/root';
 import { AllConfiguration as MaterialConfiguration, MdcValidationControllerFactory } from '@aurelia-mdc-web/all';
 // Css files imported in this main file are NOT processed by style-loader
