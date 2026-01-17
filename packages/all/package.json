@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/all",
-  "version": "9.3.12-au2",
+  "version": "9.4.0-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -90,7 +90,7 @@
     "@material/tooltip": "^14.0.0",
     "@material/top-app-bar": "^14.0.0",
     "@material/typography": "^14.0.0",
-    "aurelia": "2.0.0-beta.27",
+    "aurelia": "2.0.0-rc.0",
     "rxjs": "^7.8.2",
     "tslib": "^2.8.1"
   }
