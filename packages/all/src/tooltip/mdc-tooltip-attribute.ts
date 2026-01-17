@@ -16,7 +16,7 @@ export class MdcTooltipAttribute {
 
   root: HTMLElement;
 
-  @bindable({ primary: true })
+  @bindable()
   value: string;
   valueChanged() {
     this.context.value = this.value;
