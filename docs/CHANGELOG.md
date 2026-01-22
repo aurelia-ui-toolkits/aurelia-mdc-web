@@ -1,3 +1,12 @@
+## [9.4.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.4.0-au2...v9.4.1-au2) (2026-01-22)
+
+
+### Bug Fixes
+
+* **select:** stop focusout events when select is still focused ([a826ff7](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/a826ff7e235f4e24f0308086811ea2cc41e48ec1))
+
+
+
 # [9.4.0-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.3.13-au2...v9.4.0-au2) (2026-01-17)
 
 
