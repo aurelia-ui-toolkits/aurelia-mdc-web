@@ -325,6 +325,13 @@ export class MdcSelect extends MdcComponent<MDCSelectFoundationAurelia> {
     this.foundation?.handleFocus();
   }
 
+  handleFocusOut(evt: FocusEvent) {
+    if (this.root.classList.contains(cssClasses.FOCUSED)) {
+      evt.stopPropagation();
+      evt.preventDefault();
+    }
+  }
+
   handleBlur() {
     this.foundation?.handleBlur();
     // if class is set it means the menu is open,

@@ -10,7 +10,7 @@ import { Hljs } from './elements/hljs/hljs';
 import { ApiViewer } from './views/api-viewer/api-viewer';
 import { ExampleViewer } from './elements/example-viewer/example-viewer';
 import { JsonValueConverter } from './converters/json';
-import { ValidationHtmlConfiguration } from '@aurelia/validation-html';
+import { ValidationHtmlConfiguration, ValidationTrigger } from '@aurelia/validation-html';
 import { ValidationConfiguration } from '@aurelia/validation';
 //  import { DefaultResources, HrefCustomAttribute } from '@aurelia/router';
 import { CircularProgress } from './views/circular-progress/circular-progress';
@@ -99,7 +99,10 @@ Aurelia
       c.tooltip.scrollHost = '.demo-panel-content';
     }), SVGAnalyzer,
     Hljs, ApiViewer, ExampleViewer, JsonValueConverter, LoggerConfiguration.create({ level: LogLevel.debug }),
-    ValidationHtmlConfiguration.customize(o => o.ValidationControllerFactoryType = MdcValidationControllerFactory), ValidationConfiguration
+    ValidationHtmlConfiguration.customize(o => {
+      o.ValidationControllerFactoryType = MdcValidationControllerFactory;
+      // o.DefaultTrigger = ValidationTrigger.changeOrBlur;
+    }), ValidationConfiguration
   )
   .register(Home, GettingStarted, Banner, ButtonPage, Card, Checkbox, Chips, CircularProgress, DataTable, Dialog, Drawer, Elevation, Expandable, Fab, FormField,
     IconButton, ImageList, LayoutGrid, LinearProgress, List, Lookup, Menu, MenuSurface, Radio, Ripple, SegmentedButton, Select, Slider, Snackbar, Switch, Tabs, TextField,

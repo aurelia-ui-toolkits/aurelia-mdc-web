@@ -13,7 +13,7 @@ export class Validation {
   }
 
   pets = [{ id: 1, name: 'Cat' }, { id: 2, name: 'Dog' }];
-  validatedValue = this.pets[1];
+  validatedValue = undefined;
 
   async validate() {
     const res = await this.validationController.validate();
