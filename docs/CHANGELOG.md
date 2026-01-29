@@ -1,3 +1,15 @@
+## [9.4.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.4.1-au2...v9.4.2-au2) (2026-01-29)
+
+
+### Bug Fixes
+
+* **alert:** cancel link ([d5f3e53](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/d5f3e53314f1701509b6dcb200cb452d7e2b9263))
+* **all:** detaching ([c3f10b0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/c3f10b0b6b1be644acc042eb0ddfec870abd24ef))
+* **dialog:** get buttons on demand ([82c3564](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/82c35642f354d6a2feecf9b263c9ebc0f2224873))
+* **lookup:** handle delayed options binding ([ecd0d3c](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/ecd0d3c125c2bcb70c093eabf6aabfd2f4bc8569))
+
+
+
 ## [9.4.1-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.4.0-au2...v9.4.1-au2) (2026-01-22)
 
 
