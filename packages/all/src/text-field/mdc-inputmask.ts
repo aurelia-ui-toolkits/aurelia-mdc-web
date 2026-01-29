@@ -11,7 +11,7 @@ export class MdcInputmaskCustomAttribute {
     this.inputmaskChangeHandler();
   }
 
-  detached() {
+  detaching() {
     this.element.removeEventListener('inputmask-change', this);
   }
 

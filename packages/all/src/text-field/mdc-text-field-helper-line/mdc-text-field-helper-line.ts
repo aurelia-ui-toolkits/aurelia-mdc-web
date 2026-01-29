@@ -22,7 +22,7 @@ export class MdcTextFieldHelperLine {
     this.attachedPromiseResolve();
   }
 
-  detached() {
+  detaching() {
     this.attachedPromise = this.createAttachedPromise();
   }
 }

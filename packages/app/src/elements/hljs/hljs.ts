@@ -21,7 +21,7 @@ export class Hljs {
     this.highlight();
   }
 
-  detached() {
+  detaching() {
     if (this.observer) {
       this.observer.disconnect();
       this.observer = undefined;

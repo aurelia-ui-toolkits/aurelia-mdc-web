@@ -111,7 +111,7 @@ export class MdcTooltipAttribute {
     document.body.appendChild(this.tooltip);
   }
 
-  detached() {
+  detaching() {
     this.controller.deactivate();
     this.tooltip.remove();
   }
