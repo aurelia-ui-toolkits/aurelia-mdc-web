@@ -1,10 +1,10 @@
-import { bindable, customElement } from 'aurelia';
+import { bindable, customElement, resolve } from 'aurelia';
 import template from './global-progress.html?raw';
 import './global-progress.scss';
 
 @customElement({ name: 'global-progress', template })
 export class GlobalProgress {
-  constructor(private element: Element) { }
+  private element = resolve(Element);
 
   @bindable({ type: Number })
   size: number = 100;
