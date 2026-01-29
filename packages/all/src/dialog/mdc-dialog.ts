@@ -23,7 +23,11 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   id = ++dialogId;
   contentId = `mdc-dialog-content-${this.id}`;
   titleId = `mdc-dialog-title-${this.id}`;
-  private buttons!: HTMLElement[]; // assigned in initialize()
+
+  private get buttons(): HTMLElement[] {
+    return [].slice.call(this.root.querySelectorAll<HTMLElement>(strings.BUTTON_SELECTOR))
+  }
+
   mdcFocusTrap: MdcFocusTrap;
 
   /** Action returned when the dialog is closed via the scrim click */
@@ -55,7 +59,6 @@ export class MdcDialog extends MdcComponent<MDCDialogFoundation> implements Even
   }
 
   beforeFoundationCreated() {
-    this.buttons = [].slice.call(this.root.querySelectorAll<HTMLElement>(strings.BUTTON_SELECTOR));
     const content = this.root.querySelector('mdc-dialog-content');
     content?.setAttribute('id', this.contentId);
     const title = this.root.querySelector('mdc-dialog-title');
