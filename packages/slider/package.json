@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/slider",
-  "version": "9.1.3",
+  "version": "9.1.4",
   "publishConfig": {
     "access": "public"
   },
@@ -47,8 +47,8 @@
     "publish:latest": "npm publish"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": "9.1.3",
-    "@aurelia-mdc-web/ripple": "9.1.3",
+    "@aurelia-mdc-web/base": "9.1.4",
+    "@aurelia-mdc-web/ripple": "9.1.4",
     "@material/slider": "^14.0.0"
   }
 }

@@ -1,3 +1,12 @@
+## [9.1.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.3...v9.1.4) (2026-02-16)
+
+
+### Bug Fixes
+
+* **data-table:** handle dynamic resizeable columns ([400f4ef](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/400f4efb6da5fe95fde26ced7cc155c26f903ccb))
+
+
+
 ## [9.1.3](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.2...v9.1.3) (2025-10-10)
 
 

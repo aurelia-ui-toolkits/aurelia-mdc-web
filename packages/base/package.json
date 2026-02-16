@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-mdc-web/base",
-  "version": "9.1.3",
+  "version": "9.1.4",
   "publishConfig": {
     "access": "public"
   },
