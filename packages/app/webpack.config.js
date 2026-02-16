@@ -25,6 +25,10 @@ copyToRawRecursive("src/views");
 const outDir = path.resolve(__dirname, 'dist');
 module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
   const cssLoaders = [{ loader: 'css-loader' }, 'postcss-loader'];
+  const sassLoadPaths = [
+    path.resolve(__dirname, '../../node_modules'),
+    path.resolve(__dirname, 'node_modules')
+  ];
   const scssLoaders = [...cssLoaders, {
     // this is super important as only 'sass' package supports new '@use' syntax
     loader: 'sass-loader', options: {
@@ -32,7 +36,9 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
       webpackImporter: false,
       sassOptions: {
         // this tells sass to consider following folders when looking for modules in scoped packages
-        includePaths: [path.resolve('../../node_modules/'), path.resolve('./node_modules')]
+        loadPaths: sassLoadPaths,
+        // keep legacy key for compatibility with older sass-loader behavior
+        includePaths: sassLoadPaths
       }
     }
   }];
