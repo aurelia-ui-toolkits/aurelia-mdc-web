@@ -238,15 +238,16 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     this.header = this.root.querySelector<HTMLElement>(`.${cssClasses.HEADER_ROW}`)!;
     this.content = this.root.querySelector<HTMLElement>(`.${cssClasses.CONTENT}`)!;
     this.header.addEventListener('click', this);
-    this.header.querySelectorAll('th[resizeable]').forEach(x => {
-      const resizeHandle = document.createElement('div');
-      resizeHandle.addEventListener('mousedown', (event) => this.startColumnResize(event, x as HTMLElement));
-      x.insertBefore(document.createElement('div'), x.firstChild).classList.add('mdc-data-table__header-cell__hover-indicator');
-      x.appendChild(resizeHandle).classList.add('mdc-data-table__header-cell__resize-handle');
+    this.initialiseHeaderCells();
+    this.mutationObserver = new MutationObserver(() => {
+      this.initialiseHeaderCells();
+      if (this.saveColumnWidths) {
+        this.restoreColumnWidths();
+      }
     });
+    this.mutationObserver.observe(this.header, { childList: true, subtree: true });
     if (this.saveColumnWidths) {
       this.restoreColumnWidths();
-      this.mutationObserver = new MutationObserver(() => this.restoreColumnWidths());
       this.mutationObserver.observe(this.content, { childList: true, subtree: false });
     }
 
@@ -267,6 +268,22 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
   public restoreColumnWidths() {
     const widths = JSON.parse(localStorage.getItem(`mdc-data-table-${this.root.id}-column-widths`) ?? '[]');
     this.setColumnWidths(widths);
+  }
+
+  private initialiseHeaderCells() {
+    this.header.querySelectorAll<HTMLElement>('th').forEach(x => {
+      x.classList.add(cssClasses.HEADER_CELL);
+      x.classList.toggle('mdc-data-table__header-cell--numeric', x.hasAttribute('numeric'));
+      x.setAttribute('role', 'columnheader');
+      x.setAttribute('scope', 'col');
+      if (!x.hasAttribute('resizeable') || x.querySelector('.mdc-data-table__header-cell__resize-handle')) {
+        return;
+      }
+      const resizeHandle = document.createElement('div');
+      resizeHandle.addEventListener('mousedown', (event) => this.startColumnResize(event, x));
+      x.insertBefore(document.createElement('div'), x.firstChild).classList.add('mdc-data-table__header-cell__hover-indicator');
+      x.appendChild(resizeHandle).classList.add('mdc-data-table__header-cell__resize-handle');
+    });
   }
 
   initialSyncWithDOM() {
