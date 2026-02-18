@@ -16,6 +16,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         loadPaths: [path.resolve(__dirname, 'node_modules')],
+        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function']
       }
     }
   },

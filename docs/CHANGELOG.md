@@ -1,3 +1,13 @@
+# [10.0.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.4.2-au2...v10.0.0) (2026-02-18)
+
+
+### Bug Fixes
+
+* **data-table:** handle dynamic resizeable columns ([6893e99](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/6893e99162ebccab140849668c4358462e10675c))
+* **dialog:** re-layout lists after data is bound ([5aeb74d](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/5aeb74dca20b504b7f97b712c448d2c85eab6fca))
+
+
+
 ## [9.4.2-au2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.4.1-au2...v9.4.2-au2) (2026-01-29)
 
 
