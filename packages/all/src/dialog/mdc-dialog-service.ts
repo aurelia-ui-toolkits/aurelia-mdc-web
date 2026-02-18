@@ -1,9 +1,9 @@
 import { MdcDialog } from './mdc-dialog';
-import Aurelia, { CustomAttribute, IAurelia, resolve } from 'aurelia';
+import Aurelia, { CustomAttribute, CustomElement, IAurelia, queueTask, resolve } from 'aurelia';
 import { MDCDialogCloseEvent, strings } from '@material/dialog';
-import { CustomElement } from '@aurelia/runtime-html';
 import { Constructable } from '@aurelia/kernel';
 import { IMdcRippleElement, MdcRipple } from '../ripple/mdc-ripple';
+import { MdcList } from '../list/mdc-list';
 
 /** Dialog service open method options */
 export interface IMdcDialogOptions<T extends { loading: (params: any) => any }> {
@@ -64,6 +64,15 @@ export class MdcDialogService {
         await loadingResult;
       }
     }
+
+    await new Promise<void>(resolve => queueTask(resolve));
+    const lists = Array.from(dialogContainer.querySelectorAll<HTMLElement>('mdc-list'));
+    lists.forEach((listElement) => {
+      const list = CustomElement.for<MdcList>(listElement)?.viewModel;
+      list?.layout();
+      list?.initializeListType();
+    });
+
     await dialogVm.initialised;
     dialogVm.open();
 
