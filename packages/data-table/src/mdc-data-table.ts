@@ -324,8 +324,8 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
 
       // Apply the new width to the column
       headerCell.style.minWidth = headerCell.style.maxWidth = `${newWidth}px`;
-      this.content.querySelectorAll(`tr td:nth-child(${Array.from(headerCell.parentElement!.children).indexOf(headerCell) + 1})`)
-        .forEach((cell: HTMLElement) => {
+      this.content.querySelectorAll<HTMLElement>(`tr td:nth-child(${Array.from(headerCell.parentElement!.children).indexOf(headerCell) + 1})`)
+        .forEach(cell => {
           cell.style.minWidth = cell.style.maxWidth = `${newWidth}px`;
         });
 

@@ -111,7 +111,7 @@ export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
     this.selectedNode = n;
   }
 
-  findPath<T extends INode>(nodes: T[], predicate: (node: T) => boolean): number[] {
+  findPath(nodes: INode[], predicate: (node: INode) => boolean): number[] {
     const path: number[] = [];
     for (let i = 0; i < nodes.length; ++i) {
       if (predicate(nodes[i])) {
@@ -145,7 +145,7 @@ export class MdcTreeView extends MdcComponent<MDCTreeViewFoundation> {
     }
   }
 
-  async find<T extends INode>(predicate: (node: T) => boolean) {
+  async find(predicate: (node: INode) => boolean) {
     // to avoid rendering the whole tree finding a node is a 2-step process
     // firstly, find the path - nodes which need to be expanded to display the target node
     const filteredNodes = this.nodes.filter(x => this.filter(x));

@@ -47,14 +47,14 @@ export class MdcDialogService {
 
     let closedResolver: (action?: string | PromiseLike<string> | undefined) => void;
     const closedPromise = new Promise<string>(r => closedResolver = r);
-    dialogVm.root.addEventListener(strings.CLOSED_EVENT, (evt: MDCDialogCloseEvent) => {
+    dialogVm.root.addEventListener(strings.CLOSED_EVENT, ((evt: MDCDialogCloseEvent) => {
       if (!opened) {
         // The dialog was closed before it was opened.
         // Emit the event to prevent an unresolved open promise.
         dialogVm.emit(strings.OPENED_EVENT, {});
       }
       closedResolver(evt.detail.action);
-    });
+    }) as EventListener);
 
     await dialogVm.initialised;
     dialogVm.open();

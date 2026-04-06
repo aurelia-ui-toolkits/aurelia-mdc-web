@@ -69,7 +69,7 @@ export class MdcComponentAdapters {
       this: SyntaxInterpreter,
       element: Element,
       attrName: string,
-      context?: unknown
+      context?: any
     ) {
       const tagName = element.getAttribute('as-element') ?? element.tagName;
       const elAdapters = mdc.adapters[tagName];

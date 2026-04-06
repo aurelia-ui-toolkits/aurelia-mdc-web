@@ -1,8 +1,8 @@
-export function nextElement(element?: HTMLElement, reverse?: boolean) {
+export function nextElement(element?: HTMLElement, reverse?: boolean): HTMLElement | undefined {
   /*check if an element is defined or use activeElement*/
   const activeElem = element instanceof HTMLElement ? element : document.activeElement as HTMLElement;
   if (!activeElem) {
-    return;
+    return undefined;
   }
 
   let queryString = [

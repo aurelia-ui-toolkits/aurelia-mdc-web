@@ -1,8 +1,14 @@
 import { autoinject } from 'aurelia-framework';
 
+interface IFoodOption {
+  value: string | undefined;
+  viewValue?: string;
+  disabled?: boolean;
+}
+
 @autoinject
 export class Custom {
-  foods = [
+  foods: IFoodOption[] = [
     { value: undefined, disabled: false },
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },

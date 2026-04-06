@@ -14,6 +14,12 @@ import validationCode from './validation.ts.raw';
 import delayedHtml from '!!raw-loader!./delayed.html';
 import delayedCode from './delayed.ts.raw';
 
+interface IFoodOption {
+  value: string | undefined;
+  viewValue?: string;
+  disabled?: boolean;
+}
+
 @autoinject
 export class Examples {
   constructor(validationControllerFactory: ValidationControllerFactory, private snackbarService: MdcSnackbarService) {
@@ -43,10 +49,10 @@ export class Examples {
   rules: Rule<Examples, unknown>[][];
 
   pets = [{ id: 1, name: 'Cat' }, { id: 2, name: 'Dog' }];
-  value = undefined;
-  validatedValue = undefined;
+  value: unknown = undefined;
+  validatedValue: unknown = undefined;
 
-  foods = [
+  foods: IFoodOption[] = [
     { value: undefined, disabled: false },
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },

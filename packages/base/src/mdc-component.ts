@@ -46,12 +46,12 @@ export abstract class MdcComponent<FoundationType extends MDCFoundation> {
 
   abstract getDefaultFoundation(): FoundationType;
 
-  listen(evtType: string, handler: EventListener | EventListenerObject, options?: AddEventListenerOptions | boolean) {
-    this.root.addEventListener(evtType, handler, options);
+  listen(evtType: string, handler: any, options?: AddEventListenerOptions | boolean) {
+    this.root.addEventListener(evtType, handler as EventListenerOrEventListenerObject, options);
   }
 
-  unlisten(evtType: string, handler: EventListener | EventListenerObject, options?: AddEventListenerOptions | boolean) {
-    this.root.removeEventListener(evtType, handler, options);
+  unlisten(evtType: string, handler: any, options?: AddEventListenerOptions | boolean) {
+    this.root.removeEventListener(evtType, handler as EventListenerOrEventListenerObject, options);
   }
 
   /**
