@@ -38,7 +38,8 @@ module.exports = function ({ production = '', stats = 'errors-only' } = {}) {
         // this tells sass to consider following folders when looking for modules in scoped packages
         loadPaths: sassLoadPaths,
         // keep legacy key for compatibility with older sass-loader behavior
-        includePaths: sassLoadPaths
+        includePaths: sassLoadPaths,
+        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function']
       }
     }
   }];

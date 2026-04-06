@@ -4,7 +4,7 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import { inject, useView, PLATFORM, customElement } from 'aurelia-framework';
 import { MdcSliderFoundationAurelia } from './mdc-slider-foundation-aurelia';
 import { MdcRipple } from '@aurelia-mdc-web/ripple';
-import { EventType, SpecificEventListener } from '@material/base';
+import { EventType } from '@material/base';
 
 events.INPUT = events.INPUT.toLowerCase();
 events.CHANGE = events.CHANGE.toLowerCase();
@@ -12,7 +12,7 @@ events.CHANGE = events.CHANGE.toLowerCase();
 interface IEventHandler {
   element: HTMLElement | Window;
   evtType: EventType;
-  handler: SpecificEventListener<EventType>;
+  handler: any;
 }
 
 @inject(Element)
@@ -327,11 +327,11 @@ export class MdcSlider extends MdcComponent<MdcSliderFoundationAurelia> {
     return new MdcSliderFoundationAurelia(adapter);
   }
 
-  addEventHandler(element: HTMLElement | Window, evtType: EventType, handler: SpecificEventListener<EventType>) {
+  addEventHandler(element: HTMLElement | Window, evtType: EventType, handler: any) {
     this.eventHandlers.push({ element, evtType, handler });
   }
 
-  removeEventHandler(element: HTMLElement | Window, evtType: EventType, handler: SpecificEventListener<EventType>) {
+  removeEventHandler(element: HTMLElement | Window, evtType: EventType, handler: any) {
     const i = this.eventHandlers.findIndex(x => x.element === element && x.evtType === evtType && x.handler === handler);
     if (i !== -1) {
       this.eventHandlers.splice(i, 1);
