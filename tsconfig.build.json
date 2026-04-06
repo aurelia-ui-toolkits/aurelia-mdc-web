@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "module": "amd",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "target": "es5",
+    "target": "es2021",
     "lib": [
-      "es2017",
+      "es2021",
       "dom"
     ],
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "declaration": false,
     "forceConsistentCasingInFileNames": true,
     "emitDecoratorMetadata": true,
@@ -22,7 +22,6 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "newLine": "lf",
-    "downlevelIteration": true,
     "inlineSources": true
   },
   "exclude": [
