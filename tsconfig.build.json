@@ -2,6 +2,11 @@
   "compilerOptions": {
     "module": "esnext",
     "moduleResolution": "bundler",
+    "paths": {
+      "@aurelia-mdc-web/*": [
+        "./packages/*/src"
+      ]
+    },
     "esModuleInterop": true,
     "target": "es2021",
     "lib": [

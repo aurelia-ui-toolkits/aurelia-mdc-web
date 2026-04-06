@@ -257,7 +257,7 @@ export class MdcLookup implements EventListenerObject {
       }
     } catch (e) {
       if (e !== DiscardablePromise.discarded) {
-        this.errorMessage = e.message;
+        this.errorMessage = (e as Error).message;
         this.optionsArray = undefined;
       }
     } finally {

@@ -99,7 +99,7 @@ export class MdcDrawer extends MdcComponent<MDCDismissibleDrawerFoundation | MDC
       elementHasClass: (element, className) => element.classList.contains(className),
       saveFocus: () => this.previousFocus_ = document.activeElement,
       restoreFocus: () => {
-        const previousFocus = this.previousFocus_ as HTMLOrSVGElement | null;
+        const previousFocus = this.previousFocus_ as any as HTMLOrSVGElement | null;
         if (previousFocus?.focus && this.root.contains(document.activeElement)) {
           previousFocus.focus();
         }

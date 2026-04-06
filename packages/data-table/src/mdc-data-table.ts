@@ -363,7 +363,7 @@ export class MdcDataTable extends MdcComponent<MDCDataTableFoundation> implement
     }
     this.getHeaderCells().forEach((x, i) => {
       x.style.minWidth = x.style.maxWidth = widths[i];
-      this.content.querySelectorAll(`tr td:nth-child(${i + 1})`).forEach((cell: HTMLElement) => {
+      this.content.querySelectorAll<HTMLElement>(`tr td:nth-child(${i + 1})`).forEach(cell => {
         cell.style.minWidth = cell.style.maxWidth = widths[i];
       });
     });
