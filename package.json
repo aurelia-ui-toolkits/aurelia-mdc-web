@@ -49,7 +49,7 @@
   ],
   "scripts": {
     "lint": "eslint -c .eslintrc.js packages/**/src/*.ts",
-    "build": "lage run build --scope @aurelia-mdc-web/* --no-cache --no-deps",
+    "build": "lage run build --scope @aurelia-mdc-web/* --no-cache",
     "start": "cd packages/app && npm start",
     "doc": "lage run doc",
     "changelog": "cross-env conventional-changelog -p angular -i docs/CHANGELOG.md -s",

@@ -4,7 +4,7 @@
     "moduleResolution": "bundler",
     "paths": {
       "@aurelia-mdc-web/*": [
-        "./packages/*/src"
+        "./packages/*/dist/types"
       ]
     },
     "esModuleInterop": true,
