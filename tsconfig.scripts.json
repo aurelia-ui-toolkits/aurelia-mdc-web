@@ -5,6 +5,7 @@
     "module": "commonjs",
     "target": "es2018",
     "lib": ["esnext"],
+    "types": ["node"],
     "resolveJsonModule": true
   }
 }
