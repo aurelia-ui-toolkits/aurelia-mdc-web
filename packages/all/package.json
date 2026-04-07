@@ -35,7 +35,7 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets\"",
     "doc": "cross-env mkdirp doc && typedoc --json doc/api.json --excludeExternals --name aurelia-mdc-web-docs src/",
     "update-versions": "ts-node -P ../../tsconfig.scripts.json ../../scripts/update-versions.ts",
-    "publish:latest": "npm publish",
+    "publish:latest": "npm publish --tag au1",
     "build-ts:code": "tsc -p tsconfig.build.json --outDir dist",
     "build-assets": "copyfiles -u 1 src/**/*.html src/**/*.css dist"
   },
