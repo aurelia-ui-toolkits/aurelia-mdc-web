@@ -1,3 +1,12 @@
+# [9.2.0](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.4...v9.2.0) (2026-04-07)
+
+
+### Features
+
+* **all:** build for es2021 only
+
+
+
 ## [9.1.4](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v9.1.3...v9.1.4) (2026-02-16)
 
 
