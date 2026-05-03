@@ -1,3 +1,12 @@
+## [10.0.2](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v10.0.1...v10.0.2) (2026-05-03)
+
+
+### Bug Fixes
+
+* **alert:** pass arguments correctly ([8203aa8](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/commit/8203aa841512c1e5860b83545fffdd818e568a52))
+
+
+
 ## [10.0.1](https://github.com/aurelia-ui-toolkits/aurelia-mdc-web/compare/v10.0.0...v10.0.1) (2026-03-17)
 
 
