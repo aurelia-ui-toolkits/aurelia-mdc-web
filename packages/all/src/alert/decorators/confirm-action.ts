@@ -12,7 +12,7 @@ export function confirmAction(message: string | Partial<IAlertModalPayload>) {
       if (!await this.alertService.confirm(message)) {
         return;
       }
-      return originalMethod.call(this, args);
+      return originalMethod.call(this, ...args);
     };
   };
 }
