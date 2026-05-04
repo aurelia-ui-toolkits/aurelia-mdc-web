@@ -84,17 +84,19 @@ export class MdcLookup implements EventListenerObject {
    */
   @bindable()
   options: unknown[] | undefined | ((filter: string, value: unknown) => Promise<unknown[]>);
-  optionsChanged() {
+  async optionsChanged() {
     const firstTimeChange = this.getOptions === undefined;
     this.setGetOptions();
+    if (this.preloadOptions) {
+      await this.loadOptions(false);
+    }
     if (firstTimeChange) {
-      this.updateFilterBasedOnValue();
+      if (this.value) {
+        this.updateFilterBasedOnValue();
+      }
     } else {
       this.optionsArray = undefined;
       this.value = undefined;
-      if (this.preloadOptions) {
-        this.loadOptions(false);
-      }
     }
   }
 
@@ -118,7 +120,7 @@ export class MdcLookup implements EventListenerObject {
   @bindable()
   menuClass: string;
 
-  getOptions: (filter: string | undefined, value: unknown) => Promise<unknown[]>;
+  getOptions: ((filter: string | undefined, value: unknown) => Promise<unknown[]>) | undefined;
 
   async getOptionsDefault(filter: string, value: unknown): Promise<unknown[]> {
     const options = this.options as unknown[];
@@ -247,6 +249,9 @@ export class MdcLookup implements EventListenerObject {
   }
 
   async loadOptions(open: boolean) {
+    if (!this.getOptions) {
+      return;
+    }
     this.searching = true;
     this.errorMessage = undefined;
     if (open) {
